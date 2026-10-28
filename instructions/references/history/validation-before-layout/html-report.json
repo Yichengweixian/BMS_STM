@@ -1,0 +1,18 @@
+{
+  "checked_at_utc": "2026-10-28T10:36:22.260Z",
+  "scope": "HTML layout, navigation, local links and expansion controls only",
+  "layout": {
+    "width": 390,
+    "scroll": 390,
+    "chapters": 10,
+    "tables": 19
+  },
+  "allOpen": true,
+  "openAfterCollapse": [
+    "guide"
+  ],
+  "badLinks": [],
+  "missingAnchors": [],
+  "errors": [],
+  "passed": true
+}

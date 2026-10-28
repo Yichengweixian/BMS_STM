@@ -1,0 +1,34 @@
+{
+  "checked_at_utc": "2026-10-28T11:58:26.811093+00:00",
+  "scope": [
+    "unchanged_keil_files",
+    "relocated_source_hashes",
+    "root_entry_links",
+    "three_active_html_local_links",
+    "inventory_targets"
+  ],
+  "keil_files_verified": 432,
+  "relocated_original_files_verified": 11,
+  "intentionally_updated_moved_html": 2,
+  "html_local_links_checked": 40,
+  "root_markdown_links_checked": 8,
+  "inventory_rows": 486,
+  "root_items": [
+    "AGENTS.md",
+    "BMS_EXv1.1",
+    "docs",
+    "firmware",
+    "instructions",
+    "README.md",
+    "tools",
+    "~$基于STM32N6的智能BMS边缘智能系统设计.pptx"
+  ],
+  "office_lock_files_left_in_place": [
+    "~$基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "BMS_EXv1.1/BMS_EX/~$BMS实验教学方案 - 副本.docx"
+  ],
+  "firmware_built": false,
+  "hardware_experiments_executed": false,
+  "issues": [],
+  "passed": true
+}

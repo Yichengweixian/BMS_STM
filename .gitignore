@@ -1,0 +1,34 @@
+# Local OS / Office state
+Thumbs.db
+Desktop.ini
+.DS_Store
+~$*
+~WRL*.tmp
+*.tmp
+
+# Local agent scratch and editor state
+.workbuddy/
+.vscode/
+.idea/
+__pycache__/
+*.py[cod]
+*.uvguix.*
+*.uvgui.*
+*.bak
+
+# Reproducible Keil build output; keep the supplied firmware/prebuilt image
+/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli/
+/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Debug/
+/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Release/
+
+# Credentials and machine-local overrides
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+
+# Locally installed documentation dependencies
+node_modules/
+.venv/

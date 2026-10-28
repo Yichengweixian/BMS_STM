@@ -1,0 +1,17 @@
+{
+  "checked_at_utc": "2026-10-28T10:36:19.909556+00:00",
+  "scope": [
+    "json_parse",
+    "template_unexecuted_state",
+    "local_markdown_links",
+    "selected_source_hashes",
+    "html_exists"
+  ],
+  "firmware_built": false,
+  "hardware_experiments_executed": false,
+  "json_files_checked": 5,
+  "local_links_checked": 28,
+  "source_hashes_checked": 33,
+  "issues": [],
+  "passed": true
+}

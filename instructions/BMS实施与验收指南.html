@@ -1,0 +1,1516 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BMS 实施与验收指南</title>
+<style>
+:root{--ink:#183244;--muted:#62717c;--teal:#087f81;--line:#dce4e7;--paper:#fff;--canvas:#f3f5f3;--nav:#152f40}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:25px}body{margin:0;background:var(--canvas);color:var(--ink);font:16px/1.85 "Microsoft YaHei","PingFang SC",system-ui,sans-serif}a{color:#087c85;text-decoration-thickness:1px;text-underline-offset:3px}a:hover{color:#ba6335}header{padding:54px max(5vw,24px) 44px;background:var(--nav);color:white;border-top:7px solid #46b9b0}.hero{max-width:1310px;margin:auto}.eyebrow{font:12px/1.4 Consolas,monospace;letter-spacing:2px;color:#87d9cf}header h1{font-size:clamp(29px,3.1vw,46px);line-height:1.4;margin:14px 0}header p{max-width:860px;color:#d2e0e6;margin:0}header .tag{display:inline-block;margin:20px 8px 0 0;border:1px solid #4b6472;padding:3px 12px;border-radius:20px;font-size:12px;color:#d5ebe8}.layout{max-width:1450px;margin:30px auto;padding:0 24px;display:grid;grid-template-columns:235px minmax(0,1fr);gap:32px}.sidebar{position:sticky;top:22px;align-self:start}.sidebar nav{display:grid;gap:3px}.sidebar a{color:var(--ink);text-decoration:none;padding:8px 10px;border-radius:7px;font-size:14px}.sidebar a:hover{background:#e0eeeb}.sidebar a span{font:12px Consolas,monospace;color:var(--teal);margin-right:10px}.smallnote{font-size:12px;line-height:1.7;color:var(--muted);border-top:1px solid var(--line);padding:15px 10px}.toolbar{display:flex;gap:8px;margin:5px 0 17px;flex-wrap:wrap}button{font:inherit;font-size:13px;background:white;border:1px solid #cbd9dc;border-radius:6px;padding:6px 12px;cursor:pointer;color:var(--ink)}button:hover{border-color:var(--teal);color:var(--teal)}main{min-width:0}.milestones{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:23px}.milestones div{background:#e6efeb;padding:15px;border-radius:8px;border-top:3px solid var(--teal)}.milestones b{display:block;font-size:15px}.milestones span{font-size:12px;color:var(--muted)}.chapter{background:var(--paper);border:1px solid var(--line);border-radius:10px;margin-bottom:16px;overflow:hidden}.chapter summary{padding:20px 24px;cursor:pointer;display:flex;gap:13px;align-items:center;font-size:19px;font-weight:700;list-style:none}.chapter summary::-webkit-details-marker{display:none}.index{font:14px Consolas,monospace;color:var(--teal);background:#e6f3ef;border-radius:5px;padding:4px 7px}summary small{font-size:11px;font-weight:400;margin-left:auto;color:var(--muted);white-space:nowrap}.chapter[open] summary{border-bottom:1px solid var(--line)}article{padding:16px 32px 30px}article h1{font-size:27px;line-height:1.55;margin:16px 0 22px}article h2{font-size:21px;border-top:1px solid var(--line);padding-top:25px;margin-top:36px}article h3{font-size:18px;color:var(--teal);margin-top:24px}article p{margin:16px 0}article li{margin:7px 0}article ul,article ol{padding-left:25px}article strong{color:#133f51}code{font:14px/1.65 Consolas,"Microsoft YaHei",monospace;overflow-wrap:anywhere;background:#eef3f3;border-radius:3px;padding:2px 4px}pre{padding:19px;background:#142c3a;color:#e1f1ee;overflow-x:auto;border-radius:7px;line-height:1.7}pre code{background:none;color:inherit;overflow-wrap:normal;padding:0}.table-scroll{overflow-x:auto;margin:21px 0;border:1px solid var(--line);border-radius:7px}table{border-collapse:collapse;min-width:600px;width:100%;font-size:14px}th{background:#eaf1f1;text-align:left;color:#173d4c}th,td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}tr:last-child td{border-bottom:0}td+td,th+th{border-left:1px solid #e9eded}blockquote{border-left:4px solid var(--teal);background:#eef6f3;padding:3px 20px;margin:20px 0}.footer{color:var(--muted);font-size:12px;text-align:center;padding:30px}.statusnote{border-left:4px solid #d09b46;padding:12px 16px;background:#fff6e7;font-size:13px;margin:0 0 20px}a,td,p,li{overflow-wrap:anywhere}
+@media(max-width:1000px){.layout{grid-template-columns:190px minmax(0,1fr);gap:18px;padding:0 18px}.sidebar a{font-size:12px}article{padding:12px 22px 24px}.milestones{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){header{padding:30px 21px}.layout{display:block;margin-top:18px;padding:0 12px}.sidebar{position:static;margin-bottom:20px}.sidebar nav{display:grid;grid-template-columns:1fr 1fr}.sidebar a{font-size:12px;padding:7px}.smallnote{display:none}.chapter summary{font-size:16px;padding:16px 13px;gap:8px}summary small{font-size:10px}article{padding:9px 17px 21px;font-size:15px}article h1{font-size:23px}article h2{font-size:20px}.milestones{gap:7px}.milestones div{padding:11px}.table-scroll{margin-left:0;margin-right:0}pre{font-size:12px;padding:13px}code{font-size:12px}.toolbar{margin:9px 0 17px}}
+@media print{.sidebar,.toolbar,summary small{display:none}.layout{display:block;margin:0;padding:0}header{background:white;color:#142c3a;padding:15px;border-top:3px solid #142c3a}header p,.eyebrow{color:#234}header .tag{color:#234;border-color:#ccc}details{break-inside:auto}.chapter{border:0}article{padding:0}.table-scroll{overflow:visible}table{min-width:0;font-size:10px}pre{white-space:pre-wrap;background:#eee;color:#111}.chapter summary{padding:12px 0}body{font-size:11px}.milestones{display:none}a{color:#123;text-decoration:none}}
+</style></head><body><header><div class="hero"><div class="eyebrow">BMS ENGINEERING NOTE · 2026.10.28</div><h1>从读数到闭环，再到可信数据</h1><p>把 ADC、标定、PWM、PI 与 SOC 放回同一条可追溯链路。先弄清每一层负责什么，再为每一步规定可测量的完成标准。</p><span class="tag">依据当前工程与课程资料</span><span class="tag">验收草案 · 硬件尚未实测</span><span class="tag">离线阅读 · 无外部依赖</span></div></header><div class="layout"><aside class="sidebar"><nav><a href="#guide"><span>01</span>问题解答与路线</a><a href="#acceptance"><span>02</span>G00—G07 验收标准</a><a href="#measurement"><span>03</span>驱动与测量分层</a><a href="#data"><span>04</span>数据、标定与 SOC</a><a href="#migration"><span>05</span>旧 instructions 怎样改</a><a href="#workflow"><span>06</span>执行与证据链</a><a href="#questions"><span>07</span>待确认项</a><a href="#status"><span>08</span>当前项目状态</a><a href="#files"><span>09</span>规范包文件导航</a><a href="#sources"><span>10</span>依据与来源</a></nav><div class="smallnote">C · 课程明确要求<br>E · 工程建议，正式验收前冻结<br>H · 硬件待确认，不代入猜测值<br><br>正式结果仍须回到原始数据。说明包完整不等于系统验收通过。</div></aside><main><div class="milestones"><div><b>01 测得可信</b><span>原码 / 标定 / 独立验证</span></div><div><b>02 控得稳定</b><span>PWM / 功率级 / PI</span></div><div><b>03 数据可追溯</b><span>时间 / 版本 / 参考 SOC</span></div><div><b>04 模型可复现</b><span>分组 / 评估 / 端侧一致</span></div></div><div class="statusnote">已完成：代码与资料审查、流程适配、文档和模板。尚未执行：新固件构建、烧录、台架标定、功率实验或模型训练。</div><div class="toolbar"><button id="expand">展开全部章节</button><button id="collapse">收起附录</button><button id="print">打印 / 保存 PDF</button><a href="README.md">打开规范包入口</a></div><details class="chapter" id="guide" open><summary><span class="index">01</span><span>问题解答与路线</span><small>展开 / 收起</small></summary><article><h1>从“能读数”到“可信数据集”：BMS 实施与验收指南</h1>
+<p><strong>你的主线是对的：先把测量做可信，再验证功率级，然后闭环控制，最后积累可用于 SOC 的数据。</strong> 需要修正的是：ADBMS 不会替你算好外接电路的电流和温度；占空比到功率不是固定的一条标定曲线；数据记录要从第一阶段开始；SOC 的参考依据需要单独建立。</p>
+<p>本指南依据当前源码、课件、实验步骤、官方器件资料及你提供的其他工程 instructions。这里提出的是下一步执行方案，尚未完成任何硬件验收。</p>
+<h2>1. ADBMS 已经做了什么，MCU 还要算什么</h2>
+<p>可以把 ADBMS1818 理解为带内部 ADC、参考源和数字接口的多节电池监测前端。它完成模拟输入到数字码的转换，主控通过 SPI/对应通信链读寄存器。<strong>“已数字化”不等于“已变成安培和摄氏度”。</strong> 外接分流电阻、放大器、温度传感器与接线属于你的板子，芯片并不知道它们的完整参数。<a href="https://www.analog.com/media/en/technical-documentation/data-sheets/adbms1818.pdf">ADI 官方数据手册</a></p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>过程/公式</th>
+<th>谁负责</th>
+<th>是否仍需软件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ADBMS 内部模拟采样、ADC 转换和硬件数字滤波</td>
+<td>ADBMS 硬件</td>
+<td>不用自己重写 ADC；需要配置模式、启动、确认完成</td>
+</tr>
+<tr>
+<td>读取寄存器、检查 PEC、组合字节</td>
+<td>MCU 芯片驱动</td>
+<td>必须做；SPI 只是搬数据</td>
+</tr>
+<tr>
+<td>本项目电芯/AUX 的 <code>V=raw×0.0001</code></td>
+<td>MCU 驱动的换算辅助函数或测量层</td>
+<td>仍需做；不要再乘 STM32 的 ADC 比例</td>
+</tr>
+<tr>
+<td><code>I=(Vsense−Vzero)/(s·G·Rshunt)</code></td>
+<td>MCU 板级测量</td>
+<td>必须做，或使用独立标定得到的 <code>I=a·raw+b</code></td>
+</tr>
+<tr>
+<td>分压电压→电阻→PT1000/NTC 温度</td>
+<td>MCU 板级测量</td>
+<td>必须按实装传感器做</td>
+</tr>
+<tr>
+<td><code>P=V×I</code>、能量积分、SOC</td>
+<td>MCU 应用层或离线处理</td>
+<td>芯片没有替整个系统完成这些算法</td>
+</tr>
+<tr>
+<td><code>e=Iref−Imeas</code>、PI、PWM 更新</td>
+<td>MCU 实时控制</td>
+<td>必须做，是执行控制的部分</td>
+</tr>
+</tbody></table></div>
+<p>用一个纯算术示例说明：AFE 读出 9750，换算得到 0.9750 V。若实际零点是 0.9000 V、完整通道灵敏度确为 0.75 V/A，则电流是 0.100 A。这是说明换算关系的示例，不是此板的实测标定。更换放大器增益，最后一步结果就会变化，芯片传回的电压码本身并不会替你选择新系数。</p>
+<p>现有 <code>main.c</code> 已在 BMS_ReadReg 中做 <code>raw×0.0001</code>，BMS_ReadSample 再做电流与 PT1000 换算。因此不能把这些全删掉，只留 SPI 读取。较合理的重构是：器件驱动保留通用命令和码值解释；板级测量统一存放通道、传感器模型和标定版本；控制与 SOC 放在上层。详见 <a href="#measurement">测量分层</a>。</p>
+<h2>2. 课件中的 STM32 ADC 主要在干什么</h2>
+<p>这个工程有两条采样链，而不是“STM32 ADC 再采一次 ADBMS 发来的数字量”。</p>
+<pre><code class="language-text">电芯端子、温度分压、电流调理信号
+    → ADBMS 内部 ADC → 寄存器 → SPI → 慢速监测、记录、保护输入
+
+电流分流/放大器的模拟输出
+    → STM32 ADC1 → 本周期电流 → PI → TIM1 → 驱动器 → MOSFET/电感
+                                  ↑                    ↓
+                                  └──── 实际电流反馈 ──┘
+</code></pre>
+<p>课件安排 STM32 ADC1 提供较快的电流反馈。TIM1 让 PWM 与采样具有确定的时序，PI 根据电流误差改占空比。它首先完成的是<strong>恒流控制 CC</strong>。</p>
+<p>“第二层使用 ADC 追踪功率”这个说法不够准确。ADC 读的是引脚电压；经过电流测量电路和换算才得到电流。计算电池功率还需要对应的电池组电压：<code>Pbat=Vpack×Ibat</code>。这里三个 V 是三节单体电压，组电压需按实际串联关系求和，不能拿某一节电压乘整组电流就叫整组功率。</p>
+<p>恒流时电池电压会变化，所以功率也会变化。以后若要恒功率 CP，可设计受限外环 <code>Iref≈Pset/Vpack</code>，再交给内层恒流环；必须限制电压过低、给定电流与动态响应。课件现有目标不能自动扩展为已经完成恒功率或最大功率点追踪。</p>
+<p>课程提出的 100 kHz 控制目标对应 10µs 一个周期；1 Hz 上位机显示是另一种任务频率。不要把打印、阻塞 SPI、OLED 更新或模型推理放进每个电流控制中断。完整采样与计算时延要实际测量，不能只根据定时器配置认定达到 100 kHz。</p>
+<h2>3. 你提出的步骤，哪些保留、哪些调整</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>你的理解</th>
+<th>调整后的做法</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>测量 V/I/T，用串口 CSV 与实际值标定</td>
+<td>正确；同时保留原码、采样时间、质量标志和独立参考读数，先拟合再独立验证</td>
+<td>只有转换后的曲线，无法区分 ADC、系数和清洗造成的误差</td>
+</tr>
+<tr>
+<td>标定 PWM 与输出功率关系</td>
+<td>先验 PWM 波形和驱动，再测不同工作点的 D→V/I/P 响应</td>
+<td>电源、负载、电池 SOC、温度和模式会改变关系，不能得到万能 D-P 表</td>
+</tr>
+<tr>
+<td>开环让测量数据改变 D</td>
+<td>固定 D 或预设 D 时间表，测量用于观察和保护</td>
+<td>若根据输出误差自动修改 D，就已经是反馈闭环</td>
+</tr>
+<tr>
+<td>之后加入 PI</td>
+<td>正确；先确认反馈符号、采样相位与停止路径，再加限幅、抗饱和、软启动和换向状态机</td>
+<td>单个 PI 公式不等于完整电源控制系统</td>
+</tr>
+<tr>
+<td>最后才加上位机</td>
+<td>最小日志工具从测量阶段开始；完整界面与实验编排后置</td>
+<td>标定和闭环调试本来就需要保存证据</td>
+</tr>
+<tr>
+<td>上位机做 SOC 校正，再得训练集</td>
+<td>先定义容量、初始 SOC、电流/时间基准和标签算法，再由上位机采集/组织数据</td>
+<td>图形界面不能替代独立的参考 SOC</td>
+</tr>
+</tbody></table></div>
+<p>电脑端把串口流存成 CSV 完全可行，但不要求 MCU 一定逐行打印 CSV。MCU 可以输出有版本的文本帧或二进制帧，PC 再转换；关键是能复原 raw、时间、状态、固件和标定身份。现有上位机与模板目前协议不一致，不能凭能打开 COM 口就认为联调完成。</p>
+<p>在开环测试中还要区分 <code>Ibat</code> 和 <code>Iload</code>。Boost 输出侧通过 <code>Vout/Rload</code> 得到的是负载电流，不是电池侧电流。相同电路两端的电压、电流本来就不同，另有损耗，不能跨端相乘。</p>
+<p>课件把 D 定义为上管占空比，因此放电 Boost 的理想关系写 <code>Vout≈Vin/D</code>；常见教材用低侧开关占空比，表达式可能是 <code>Vin/(1−Dlow)</code>。先统一 D 的物理定义，再比较曲线。它们都是特定工作条件下的近似，不是误差为零的验收模型。</p>
+<h2>4. 推荐路线与每一步的完成边界</h2>
+<p>以下是路线总览，详细前置、方法、判据、证据及失败回退见 <a href="#acceptance">G00—G07 验收标准</a>。数据工具可以提前并行开发；带载实验必须满足它所依赖的测量、波形、边界和停止条件。</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>要回答的问题</th>
+<th>完成时应拿出的证据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>G00 基线</td>
+<td>这块板、这份源码、这份固件和资料能否对应？</td>
+<td>硬件表、源码/固件哈希、构建日志、链接地址、待确认项</td>
+</tr>
+<tr>
+<td>G01 测量</td>
+<td>V/I/T 在规定范围内到底准不准？</td>
+<td>两路电流各自标定、V/T 记录、独立验证误差、无效数据处理</td>
+</tr>
+<tr>
+<td>G02 波形与时序</td>
+<td>实际 PWM 和采样是否符合设计？</td>
+<td>示波器频率/占空比/有效死区、ADC 触发及完成时序</td>
+</tr>
+<tr>
+<td>G03 受限开环</td>
+<td>D 如何影响本工况的电压、电流与功率？</td>
+<td>固定工况逐点记录、方向确认、理论偏差、停止证据</td>
+</tr>
+<tr>
+<td>G04 PI 恒流</td>
+<td>能否稳、准、及时地跟踪并退出？</td>
+<td>正负方向误差、瞬态、饱和恢复、时限与故障停止</td>
+</tr>
+<tr>
+<td>G05 接口联调</td>
+<td>人机命令与实际执行是否一致？</td>
+<td>协议、应答/应用值、分片粘包、断连和恢复、连续日志</td>
+</tr>
+<tr>
+<td>G06 SOC 数据</td>
+<td>时间、测量、容量和标签是否可信且可复算？</td>
+<td>参考链、容量/初值依据、数据质量报告、标签与划分版本</td>
+</tr>
+<tr>
+<td>G07 模型部署</td>
+<td>离线、量化、板端结果是否一致且不干扰控制？</td>
+<td>独立评估、黄金输入对比、内存/时延、快环并发回归</td>
+</tr>
+</tbody></table></div>
+<p><strong>最小功能完成</strong>可以先定义为 G00—G05：可靠测量、双向恒流、本地/远程设置、可控停机和可追溯日志。<strong>可用于建模的数据完成</strong>是 G06；模型训练与端侧部署属于 G07。这样每一阶段都有自己的交付，不会把“上位机能画曲线”和“模型数据合格”混成一个终点。</p>
+<h2>5. 验收线如何定，才能既具体又不乱承诺</h2>
+<p>先把“指标数值、适用条件、测量方法、判定规则”四项写齐。<code>误差&lt;5%</code> 若不说明哪个量、哪一段时间、相对什么参考、量程多少，仍然无法验收。</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>本项目例子</th>
+<th>使用方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>C：课程明确要求</td>
+<td>PWM 100 kHz；±0.5 A 稳态误差&lt;5%；D为0.40～0.90；测量上传1 Hz</td>
+<td>记录来源，补齐方法和容差定义</td>
+</tr>
+<tr>
+<td>E：工程建议草案</td>
+<td>给 ±0.5 A 闭环分配 ≤5mA 测量误差预算；具体稳定窗口/纹波/响应指标</td>
+<td>先检查仪器与板卡能力，再在正式验收前确定，不能称课程硬指标</td>
+</tr>
+<tr>
+<td>H：必须确认的硬件边界</td>
+<td>电芯型号、电压/温度/电流限制、负载功率、驱动死区、停止延迟</td>
+<td>保留 null，取得原理图/规格/实测后填写，不用讲义默认值代替</td>
+</tr>
+</tbody></table></div>
+<p>例：课程的 ±0.5 A、误差&lt;5% 等价于稳态电流绝对误差&lt;25mA。应使用独立参考电流，在预先选定的稳定窗口计算指标；纹波和峰值另列，不允许均值合格就掩盖瞬时越限。建议采用保守判断 <code>|误差|+U95&lt;25mA</code>，其中 U95 是该比较的不确定度，不是随意加的余量。<a href="https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-6-expanded-uncertainty">不确定度基础：NIST TN1297</a></p>
+<p>举例：误差20mA、U95=3mA，按上述规则可通过；误差24mA、U95=3mA则落在不确定区，不能硬判通过。两个数都是演示，未从这块板测得。</p>
+<p>电流精度不能只定百分比，零点附近需绝对误差要求。SOC 又对长期偏置更敏感：1Ah 电池若持续偏置1mA，积分1小时会产生0.1个百分点的SOC偏差。这说明“满足恒流实验”未必已经足够“高精度SOC数据”。具体预算应由容量、实验时长与目标误差倒推。</p>
+<h2>6. SOC 的“校正”应该拆成什么</h2>
+<p>第一步是测量标定；第二步是规定条件下的容量测量；第三步是给初始 SOC 一个有依据的锚点；第四步才是电流和时间积分；随后才能比较 SOC 估计器或训练模型。</p>
+<p>充电为正、容量单位为 Ah、时间为秒时，可写：<code>SOC[k]=SOC0+Σ(Ieffective·Δt)/(3600·Qref)</code>。SOC 用0～1比例，乘100才是百分数；效率定义、容量口径、积分方式和缺口处理必须一致。上位机可以执行这些计算，但可信度来自测量与参考方法。</p>
+<p>用同一个有偏置的板载电流产生 SOC 标签，又用它证明自己的 SOC 算法精确，会形成同源自证。可以用这样的数据做原型，但应称“代理标签”。更强的参考方案用独立校准的电流与时间链，并报告初始SOC和容量的不确定度。独立参考也不是没有误差的绝对真值。</p>
+<p>HPPC/DST 等动态工况会暴露另一问题：1 Hz 的瞬时电流点不一定保留这一秒流过的电荷。可以保存更高频电流，或输出有明确时间窗的平均电流/累计电荷，并验证聚合算法。显示1Hz、SOC输出10Hz、控制100kHz是三个不同频率，重复输出旧值不能增加数据带宽。</p>
+<p>训练集应先按电池/完整循环/实验段分组，再切时间窗口。课件的8:2划分是课程要求；若要宣称泛化精度，建议另设未用于调参的最终测试集，例如80%开发数据内部做训练/验证，20%锁定测试。不能先切高度重叠窗口再随机8:2，也不能用测试集拟合归一化或选择量化参数。详见 <a href="#data">数据规范</a>。</p>
+<h2>7. 旧 instructions 应怎样改</h2>
+<p>保留的是研究纪律：问题可判定、方法可重复、标准先确定、失败有记录、结果能独立复算。替换的是赛题、几何模型、官方比赛次数、原有模型额度策略和历史截止日期。详细文件映射见 <a href="#migration">迁移说明</a>。</p>
+<p>不必让每个小修改都写五份文件。小任务使用一张工作卡，仍包含“问题、设计、判据、执行、结果”五部分；每次正式运行一份 manifest。状态只维护一处；RUNLOG 只追加会改变结论的动作。</p>
+<pre><code class="language-text">需求 R-I-CC：±0.5 A 稳态误差&lt;25mA
+  → 工作卡 U04 / 测试 T-CC-POS、T-CC-NEG
+  → 判据版本、实际固件/配置/标定哈希
+  → run_id
+  → raw：参考电流、板载数据、PWM、状态与事件
+  → derived：按固定脚本计算误差/纹波/响应
+  → result：pass / fail / inconclusive / invalid
+</code></pre>
+<p>这是说明追溯结构的示例，还没有对应的实验 run。编译成功只能支持构建结论；示波器测得 PWM 只能支持波形结论；只有相应电流证据才能支持恒流通过。</p>
+<p>MCP 可以在这套证据链上逐步实现“修改代码→构建→回放/测试→计算指标→定位问题”的开发闭环。建议先做离线构建和日志回放，再接下载器与仪器。实时 PI 留在 MCU；工具执行只允许在已定义的实验边界和当前授权内进行。更详细的未来接口原则见 <a href="#workflow">执行规则</a>。本次只是设计，没有创建或启用 MCP。</p>
+<h2>8. 当前最值得先完成的工作</h2>
+<ol>
+<li>核实实装电流放大器、分流阻值、温度探头和两路电流接线；当前资料的 INA199A2/50倍、PT1000/NTC 表述存在冲突。</li>
+<li>固定当前源码与实际准备下载的产物身份；重新构建选定 target，区分 Debug、Release 和 <code>firmware/prebuilt/BMS_Appli.hex</code> 现成固件。</li>
+<li>先补测量记录链：原码、有效标志、序号、采样时间、标定ID；修正坏 PEC 填0与转换完成判断。</li>
+<li>以独立仪器完成 G01；在禁能状态验证 PWM/采样时序和停止输出，再开展受限开环。</li>
+</ol>
+<p>当前 <code>main.c</code> 仅启动时采样一次，主循环为空；ADC/PWM 连续控制尚未启动，PI 尚未接入。所以下一步应从基线和测量链开始，而不是直接根据现成上位机按钮训练模型。</p>
+<p>本文和规范包保留了所有待确认值；没有用推测参数填成验收成功。具体阻塞范围和所需证据见 <a href="#questions">待确认项</a>。</p>
+</article></details>
+<details class="chapter" id="acceptance" ><summary><span class="index">02</span><span>G00—G07 验收标准</span><small>展开 / 收起</small></summary><article><h1>BMS 分阶段验收规范（草案）</h1>
+<p>版本：draft-0.1<br>日期：2026-10-28<br>适用对象：当前目录中的 <code>BMS_EXv1.1/BMS_EX</code> 模板及其后续开发版本。<br>状态：本文件定义将来的验收方法，不代表已经编译、烧录、连接硬件或完成测试。</p>
+<h2>1. 判据来源与使用规则</h2>
+<p>每条判据须区分以下来源，验收记录保留其来源标签：</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>含义</th>
+<th>使用规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>C：课程要求</strong></td>
+<td>课程 PPT 或实验步骤明确提出的任务、指标、提交物</td>
+<td>保留原始来源；发现材料冲突时记录冲突并冻结解释，不能选择方便的段落宣告通过。</td>
+</tr>
+<tr>
+<td><strong>E：工程建议</strong></td>
+<td>为使结果可复现、可判断而提出的工程判据</td>
+<td>本文件中的数值均为 <strong>draft 提议</strong>，需在正式验收前冻结版本；不得写成已测性能或课程硬性要求，也不阻止为确定指标而进行的探索测试。</td>
+</tr>
+<tr>
+<td><strong>H：硬件/方案待确认</strong></td>
+<td>取决于实物、原理图、电池、仪器、台架或最终实验方案</td>
+<td>未确定时为 <code>null</code>；相关带能量测试不得进入。不能用课程示例自动填充硬限。</td>
+</tr>
+</tbody></table></div>
+<p>探索阶段可根据实际实现、仪器和初步数据调整方案，并记录重要条件与异常；不要求在尚无可测实现时冻结所有E指标。正式验收前固定判据、固件、接线、仪器、工况与处理版本，测试后填写实测值。不得为了让已有数据通过而追改判据；确需修改时形成新版本并说明原因，按新版本重新验收。带载所需硬件事实、运行边界和停止路径在探索阶段同样不能省略。</p>
+<p>本文件只定义判据，不维护阶段进度。状态唯一入口为 <a href="#status">STATUS.md</a>，字段严格采用 <a href="#workflow">WORKFLOW.md</a>：</p>
+<ul>
+<li><code>status</code>：<code>not_started | in_progress | blocked | complete | skipped</code>。</li>
+<li><code>verdict</code>：<code>null | pass | fail | inconclusive | invalid</code>。</li>
+<li><code>evidence_scope</code>：<code>static | build | simulation | bench | release_boot</code> 的数组，不是自动递升的等级。</li>
+</ul>
+<p><code>complete + fail</code>表示已测完且明确未达到要求；<code>blocked + null</code>表示缺条件尚无可判定结果；有效证据不足以判断时使用<code>inconclusive</code>；只有实验本身无法解释时才使用<code>invalid</code>。有效实验中的超调、超时或保护失效应判<code>fail</code>。每个结论注明证据范围，不能用静态、构建或仿真结论代替台架/独立启动结果。</p>
+<p>当前静态检查只能确认：模板在启动时执行一次 AFE 采样；MCU ADC/TIM 尚未 Start；PI 未接入运行链路；串口为回显示例；没有 SOC 训练或端侧模型实现。历史 README、旧日志、现成 HEX、源码中存在函数，都不能替代当前版本实测证据。</p>
+<h2>2. 所有阶段共用的边界</h2>
+<h3>2.1 测量与换算必须分层</h3>
+<ol>
+<li><strong>AFE 传输层</strong>：SPI 命令/返回字节、长度、字节序、PEC、转换完成状态。</li>
+<li><strong>AFE 码值层</strong>：电芯/AUX 结果按该器件规定的 <code>raw × 0.0001 V</code> 换算。ADBMS1818 自带 ADC，STM32 经 SPI 读数字结果，不再经过 MCU ADC。</li>
+<li><strong>板级物理量层</strong>：对传感电压应用实测零点、放大器增益、分流电阻、分压比例和温度模型，得到 A、V、℃。</li>
+<li><strong>MCU 采样层</strong>：PA1 等模拟电压经 STM32 ADC，按实际参考电压、分辨率、过采样与标定换算；不能直接套 AFE 的码值比例。</li>
+<li><strong>应用层</strong>：只对有效、时间明确的测量执行显示、保护、PI、积分和记录。无效数据必须携带错误状态，不能伪装成有效的零。</li>
+</ol>
+<p>MCU ADC 在本任务中的主要控制用途是电流反馈。计算 <code>P=V×I</code> 是测量运算，不等于已经实现恒功率控制、功率追踪或最大功率点跟踪。</p>
+<h3>2.2 端口、方向与功率定义</h3>
+<p>每个电压/电流字段必须声明测量位置、参考方向和单位：</p>
+<ul>
+<li><code>Vbat / Ibat</code>：电池端电压和电池端电流，课程约定 <code>Ibat&gt;0</code> 为充电、<code>Ibat&lt;0</code> 为放电。</li>
+<li><code>Vload / Iload</code>：负载端电压和负载端电流，正方向单独注明。</li>
+<li><code>Vbus / Ibus</code>：母线端电压和母线端电流，正方向单独注明。</li>
+<li><code>Pbat=Vbat×Ibat</code>、<code>Pload=Vload×Iload</code> 必须使用<strong>同一电气端口</strong>并时间对齐的数据。不能把 <code>Vload×Ibat</code> 当负载功率，也不能把 <code>Vbat×Iload</code> 当电池功率。</li>
+<li>Boost 时 <code>Vload/Rload</code> 得到的是负载电流，通常不等于电池电流。能量损耗、动态储能和时间对齐也使两端功率不能无条件视为相等。</li>
+<li>单节电压、三节电压向量、整组电压应有不同字段，不能统一命名为含义不明的 <code>V</code>。</li>
+</ul>
+<h3>2.3 开环、闭环与保护</h3>
+<p><strong>开环</strong>：D 由人工或测试前冻结的时间表给定，测量只用于记录、人工判断和保护。若根据测量持续自动调 D 以跟踪电流/电压目标，必须标作反馈闭环，不能作为开环验收证据。</p>
+<p><strong>保护</strong>：越限后撤销输出、锁存故障或进入明确停机态，可以存在于开环实验。不得以“自动调 D 维持电流上限”的持续反馈动作冒充纯开环。</p>
+<p><strong>停止路径优先</strong>：首次带载前，必须验证强制停止、复位默认态、继电器互锁与故障锁存；不能等 PI 调完再补停止功能。正常停止、故障快速关断、急停、通信失联分别定义动作与时限。上位机/MCP 请求超时不等于 PWM 已停止。</p>
+<h3>2.4 硬件参数唯一入口</h3>
+<p>实际硬件参数及限制只在 <a href="specs/hardware-profile.json">specs/hardware-profile.json</a> 维护。本规范不建立第二套参数字典。<code>null</code> 表示未知，不表示无限制，也不表示零；课程值、允许测试范围和保护阈值分别处理。每次正式验收记录所用<code>profile_id</code>与文件哈希。</p>
+<p>相应阶段还需确认的项目包括：过流触发阈值、输出关闭期限、继电器开断前电流条件、各方向起始D、驱动电压/有效死区、通信失联期限、最长运行时间。若profile尚未覆盖所需项，应先通过统一profile的版本变更补齐，不在验收报告或脚本内静默增加另一套默认值。</p>
+<p>H 项须附实物/规格/原理图/台架依据和确认者。课程要求的测试点若超出已确认硬限，应标为未执行并处理条件冲突，不能提高硬限，也不能以另一个测试点代替后写成原要求通过。</p>
+<h2>3. 正式验收阶段依赖</h2>
+<p>以下阶段门描述正式验收依赖。独立的实现、离线解析、数据处理和探索测量可以提前推进；只有依赖缺失条件的测试受阻。阶段结果在STATUS.md维护，此处不复制状态表。</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>交付目标</th>
+<th>依赖</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>G00</td>
+<td>可追溯的工程、硬件和测试基线</td>
+<td>原始资料</td>
+</tr>
+<tr>
+<td>G01</td>
+<td>测量、标定、有效性正确</td>
+<td>G00</td>
+</tr>
+<tr>
+<td>G02</td>
+<td>无功率 PWM、驱动/采样时序、停止路径</td>
+<td>G00、G01对应部分</td>
+</tr>
+<tr>
+<td>G03</td>
+<td>受限带载开环与方向确认</td>
+<td>G01、G02、带载硬限已确认</td>
+</tr>
+<tr>
+<td>G04</td>
+<td>PI 恒流、故障、换向和停机</td>
+<td>G03</td>
+</tr>
+<tr>
+<td>G05</td>
+<td>按键/OLED/串口/上位机业务闭环</td>
+<td>G04；解析器离线测试可提前</td>
+</tr>
+<tr>
+<td>G06</td>
+<td>可追溯实验数据、SOC 标签和数据集</td>
+<td>G01～G05</td>
+</tr>
+<tr>
+<td>G07</td>
+<td>量化模型、端侧推理与并发回归</td>
+<td>G06</td>
+</tr>
+</tbody></table></div>
+<h2>G00：基线</h2>
+<h3>前置</h3>
+<ul>
+<li>可访问当前源码、课程 PPT（含任务3内容）、任务2实验步骤、安装及上位机手册。</li>
+<li>保留原始工程和固件，知道哪些材料是模板、哪些是现成演示程序。</li>
+</ul>
+<h3>方法</h3>
+<ol>
+<li>登记板号、板版、MCU/AFE、实际电流放大器型号、采样电阻、温度探头、电池/负载和仪器。</li>
+<li>固定源码快照与哈希、工具版本、target、宏、链接脚本、编译和烧录方法。</li>
+<li>对 Debug/Release 分别做干净构建；核对 MAP 与 HEX 的地址、段大小、实际纳入构建的文件。</li>
+<li>区分 <code>firmware/prebuilt/BMS_Appli.hex</code> 与模板产物；不推断它们具有相同协议/控制功能。</li>
+<li>登记 <code>.ioc</code>/源码不一致、PI 接口冲突、文档冲突；建立执行前的冻结项。</li>
+<li>先检查默认输出和停止设计，再开始带能量测试。</li>
+</ol>
+<h3>指标</h3>
+<ul>
+<li><strong>C</strong>：完整代码工程与过程记录；基础启动、串口和 OLED 是路线起点。[C-P13]</li>
+<li><strong>E/draft</strong>：构建错误数为0；所有警告有结论；产物、源码和配置一一对应。不同日期重复构建若因时间字段产生差异，解释差异，不机械要求字节完全一致。</li>
+<li><strong>E/draft</strong>：对应执行目标重复启动验证3次，结果可重复。Debug为SRAM镜像时，每次断电后重新加载对应AXF并由调试器启动；Release验证断电后经已确认FSBL/Flash链自主启动。两种方法分别记录，不能相互代替，也不能要求SRAM镜像断电保留。</li>
+<li><strong>H</strong>：FSBL、启动介质、烧录算法和实际板型；测量仪器精度、带宽、参考不确定度；上述硬限及停止设计。</li>
+</ul>
+<h3>证据</h3>
+<p>源码/配置清单及哈希、工具版本、构建日志、MAP/HEX核验、固件ID、板与仪器登记、启动记录、冲突处理表。</p>
+<h3>失败回退</h3>
+<p>源码和产物不能对应、当前固件身份未知、target/地址不清或关键硬件未知，保持G00未通过；允许继续只读和离线工作。仅Debug通过时只放行明确依赖Debug的活动，不宣告Release启动通过。</p>
+<h2>G01：测量</h2>
+<h3>前置</h3>
+<ul>
+<li>G00对应测试目标通过；功率输出禁能；有独立参考仪器、已知输入和已冻结的测量位置。</li>
+<li>标定时ADC仍有明确触发来源。关闭PWM功率输出不意味着必须关闭内部触发定时器；测试触发模式须记录。</li>
+</ul>
+<h3>方法</h3>
+<ol>
+<li>分别验证AFE电芯、AUX电流、AUX温度，再验证MCU ADC电流和所需电压通道。</li>
+<li>同时记录原始字节/码、PEC、转换模式、完成状态、传感电压和物理量，按第2.1节逐层核对。</li>
+<li>测零点及范围内多个已知点；电流覆盖正负方向，确认充电为正、放电为负。</li>
+<li>拟合板级零点/斜率，评估残差、重复性、噪声、饱和和温漂；为每条测量路径分配独立标定ID。用未参与拟合的新采集点独立验证，拟合点与验证点分别列ID；不能只用拟合残差或同一稳态窗口随机抽行宣布标定通过。</li>
+<li>对PEC错误、超时、旧样本、开路/短路等条件执行可控测试；无效样本不得进入积分/控制。</li>
+<li>核验ADAX等待与实际转换模式。当前源码的固定2ms等待不能直接作为全部辅助通道已完成的证明。</li>
+</ol>
+<h3>指标</h3>
+<ul>
+<li><strong>C</strong>：V/I/T先单点分别验证；方向分别检查；PA1/ADC1电流反馈；采样标定先于闭环。[C-P07][C-P10][C-D03][C-D04]</li>
+<li><strong>E/draft</strong>：零点＋至少2个正向、2个负向已知电流点，覆盖拟用范围；每点保留不少于100个有效样本，统计均值/标准差/极值。点数不是硬件安全范围授权。</li>
+<li><strong>E/draft</strong>：为支持G04的25mA总误差，建议在每个独立验证点评估电流测量误差预算5mA：<code>|平均误差| + U_ref,95 &lt; 0.005 A</code>，其中不确定度覆盖参考仪器及比较方法；达不到时重新分配预算并冻结，不能隐去仪器误差，也不能用拟合点残差替代独立验证。</li>
+<li><strong>E/draft</strong>：本次异常测试中，所有无效输入均被标记，不生成伪有效零值；时间戳/序号能识别过期、重复和丢样。</li>
+<li><strong>H</strong>：实际VREF、放大器增益、分流电阻、零点、温度探头/接法、激励电压；电压/温度允许误差和有效范围。</li>
+<li><strong>C-诊断参考，不能替代H标定</strong>：讲义零点2030～2170码基于其1.8V/约0.9V假设；讲义INA199A2/50倍存在冲突，不直接用于放行。[C-D04][C-D11]</li>
+</ul>
+<h3>证据</h3>
+<p>标定CSV与独立重采验证CSV、两者的点ID清单、原始码/寄存器、参考值及不确定度来源、拟合脚本、参数表、有效性与异常记录、温度模型说明、校准版本。</p>
+<h3>失败回退</h3>
+<p>方向/端口错误、参考电压或增益未知、量程饱和、无效值继续参与运算或缺独立参考时退回G01；反馈数据未合格不得启动闭环。显示数字“稳定”不能替代准确性验收。</p>
+<h2>G02：无功率 PWM、采样时序与强制停止</h2>
+<h3>前置</h3>
+<ul>
+<li>G00通过，G01的采样路径/量纲已验证；功率能量路径未接入或处于冻结的禁能测试状态。</li>
+<li>明确观察点：MCU引脚、驱动器输出和MOSFET栅源电压分别标记；不能只用MCU逻辑波形证明驱动级正确。</li>
+</ul>
+<h3>方法</h3>
+<ol>
+<li>固定50% D，测PA9/CH2与PF7/CH2N频率和互补关系；改变CCR，核对实际D定义。</li>
+<li>核验实际TIM时钟、PSC、ARR、RCR、极性、空闲态、预装载和启动顺序。</li>
+<li>按台架方法观测驱动输出的幅度、死区及交越；确认“无同时导通”由实际输出证明。</li>
+<li>仪表化标记TRGO、ADC完成/回调、CCR写入及生效时刻；统计触发、完成、overrun和丢周期。</li>
+<li>验证手动强制STOP、故障输入、软件复位、启动失败的输出禁能、继电器互锁和锁存状态。未接功率时可以用可控注入验证逻辑；不必制造真实过流故障。</li>
+</ol>
+<h3>指标</h3>
+<ul>
+<li><strong>C</strong>：100kHz互补PWM；50%基础验证；中心对齐、RCR=1、ADC同步触发目标。[C-P08][C-P10][C-D01]</li>
+<li><strong>E/draft</strong>：频率相对目标误差≤1%；50%测试点占空比误差≤0.5个百分点。实际允差应结合时钟与仪器冻结。</li>
+<li><strong>E/draft</strong>：连续10s的计数窗口内，触发/完成关系符合冻结配置，无overrun/漏周期；示波器验证采样相位。断点能停住只证明中断发生，不能证明没有丢中断。</li>
+<li><strong>E/draft</strong>：所有停止/故障/复位用例均撤销输出且不自行恢复运行；重新启动必须经过明确状态转换。</li>
+<li><strong>H</strong>：驱动幅度、有效死区、关断电平、ADC实际转换时间/相位、停止响应期限。TIM DeadTime=0需结合EG3112实际输出判断，不能仅据配置判通过。</li>
+</ul>
+<h3>证据</h3>
+<p>示波器原始波形及截图、测量点/探头/时基、频率/占空比/死区读数、时序计数、停止矩阵和逐例结果。</p>
+<h3>失败回退</h3>
+<p>单路输出、错误频率/极性、驱动重叠、过期ADC数据、强制停止不可用、复位后误启动，均不得进入G03。保留无功率状态，退回时钟/驱动/采样/状态机相应部分。</p>
+<h2>G03：受限带载开环</h2>
+<h3>前置</h3>
+<ul>
+<li>G01、G02通过，尤其强制停止已经验证；带载所需H硬限全部有值和依据。</li>
+<li>固定电池、负载、母线、散热、测试时长、允许D范围和起始点。D=0.90不是所有模式通用的安全保证。</li>
+</ul>
+<h3>方法</h3>
+<ol>
+<li>禁止PI及其他追踪反馈更新D；D来自人工或预先冻结的时间表。</li>
+<li>先验证放电路径；每个点记录D命令/实际CCR/PWM、Vbat/Ibat、Vload/Iload、Vbus/Ibus中实际可测的字段，以及温度、状态、输入条件。</li>
+<li>按课程扫描点与已确认硬限的交集执行。每点的稳定条件、记录窗口、退出条件预先确定；越限立即走停止路径，不为凑齐表格继续扫描。</li>
+<li>用上管D定义比较：Boost理想稳态 <code>Vout≈Vin/D</code>；充电Buck的电压比关系另行验证。解释损耗、CCM/DCM、负载温升和电池电压变化。</li>
+<li>从独立实测判断局部 <code>D→Ibat</code> 的符号，为G04反馈方向提供证据。</li>
+<li>如需宣告双向功率级完成，补充充电路径的受限开环证据；单向结果不替代双向。</li>
+</ol>
+<h3>指标</h3>
+<ul>
+<li><strong>C</strong>：上管D=0.90、0.80、0.70、0.60、0.50、0.40，10个百分点步进；记录曲线并比较理论；开环先于闭环。[C-P09][C-D02]</li>
+<li><strong>C-条件约束</strong>：PPT在33Ω负载条件下写放电电流限定0.5～0.8A；实际验收须明确电流所在端口，并与H限制核对，不能直接套到Iload或Ibat的另一端。[C-P09]</li>
+<li><strong>E/draft</strong>：每点条件稳定后保留至少2s同步记录；稳态判据由输入漂移和电流/电压变化量冻结。只读一次万用表值不足以验收动态或保护。</li>
+<li><strong>E/draft</strong>：实际D在允许范围内；实测趋势与本板D定义相容；所有理论偏差有数据解释。课程未给出统一理论误差百分比，不擅自设为课程硬线。</li>
+<li><strong>H</strong>：每方向安全起始D、最大电流/电压/负载功率、温度、持续时间及中止条件。</li>
+</ul>
+<h3>证据</h3>
+<p>逐点CSV、台架与负载条件、D-V/D-I曲线、端口定义、理论/损耗计算、代表性驱动与电流波形、未执行点及原因、停止事件。</p>
+<h3>失败回退</h3>
+<p>测量反馈自动改D却标开环、跨端混算功率、未知实际占空比、趋势不符且无解释、越限继续运行，均不得通过。保持停机，按问题退回G01测量、G02输出或G00硬件边界。</p>
+<h2>G04：PI 恒流、故障与换向</h2>
+<h3>前置</h3>
+<ul>
+<li>G03通过，反馈方向已由实测确定；统一 <code>pi.c/pi.h</code>、PI状态和接口；采样有效性与STOP优先级已验证。</li>
+<li>固定Kp、Ki、Ts、限幅、抗饱和方式、初始D、斜坡、模式状态机及故障策略。讲义参数不是免测试的默认值。</li>
+</ul>
+<h3>方法</h3>
+<ol>
+<li>接通新ADC结果→物理电流→误差→PI→限幅→CCR，检查 <code>e=Iref−Imeas</code> 与实测对象增益形成负反馈。</li>
+<li>分别测试充电与放电的启动、小给定变化、保持、允许扰动、饱和/解除、停止和再启动。</li>
+<li>先停再换向：撤销输出并确认电流已衰减到冻结条件，再执行继电器切换和重启；互锁任何时刻不得被远程命令绕过。</li>
+<li>正常停机与故障快速关断分别验证，记录电流衰减、输出关闭、继电器动作和锁存。等待20/100ms仅是讲义示例，不能替代实测衰减条件。</li>
+<li>用高时间分辨率采集Iref/Imeas/D/积分/状态；用独立参考电流确认实际误差。</li>
+<li>测量转换、等待、ISR计算及CCR生效的最坏延迟，在OLED/UART等同时运行时重复。<strong>1Hz曲线不能验收超调、纹波、停止瞬态或10µs周期执行。</strong></li>
+</ol>
+<h3>指标</h3>
+<ul>
+<li><strong>C</strong>：±0.5A分别验收稳态误差＜5%，即在这两个指定工况下 <code>|Iactual−Iref| &lt; 0.025 A</code>；这不是所有给定的固定25mA容差，更不是过流保护阈值。[C-D11]</li>
+<li><strong>E/draft，参考不确定度护栏</strong>：稳态窗口内使用独立参考电流，要求 <code>|mean(Ireference)−Iref| + U95 &lt; 0.025 A</code>才判<code>pass</code>。U95应包含参考仪器、换算/位置/时序比较等适用分量，避免重复计入。有效证据的不确定度区间与边界相交时判<code>inconclusive</code>；明确整体超出容差时判<code>fail</code>。不确定度来源不足时不能只看中心值宣告通过。</li>
+<li><strong>E/draft</strong>：给定斜坡完成并满足冻结稳定条件后取至少2s稳态窗口，同时报告偏差、标准差、极值/纹波及样本数。不能用平均值掩盖明显振荡。</li>
+<li><strong>C</strong>：D限制0.40～0.90；ARR=2000时CCR范围800～1800；积分限幅/抗饱和、先停再启。[C-P11][C-D06][C-D07][C-D11]</li>
+<li><strong>C</strong>：100kHz控制目标，即10µs周期；本次新采样进入控制。[C-P11][C-D06]</li>
+<li><strong>E/draft</strong>：最坏端到端路径满足实际控制/预装载截止期；先分配ISR执行≤5µs作为草案预算，测量后冻结。丢周期/overrun在连续10s并发测试窗口内为0；如预算调整，仍必须满足实际截止期。</li>
+<li><strong>E/draft</strong>：记录到位时间、超调、纹波、饱和恢复和停止延迟；讲义约200ms到位含斜坡因素，计时起点须明确。未冻结动态阈值时不宣告动态指标通过。</li>
+<li><strong>H</strong>：故障硬限、动作期限、电流衰减条件、可执行的±0.5A工况、继电器时序、起始D与允许动态峰值。</li>
+</ul>
+<h3>证据</h3>
+<p>PI/状态机版本、高速原始波形、独立电流记录与U95预算、稳态指标脚本、ISR/采样时序测量、饱和恢复、停止/换向/故障注入矩阵和结果。</p>
+<h3>失败回退</h3>
+<p>正反馈、稳定性差、饱和不恢复、换向互锁失败、STOP不可用、时限不满足、无效反馈仍控制、仅用自身反馈证明自身准确，均保持停机并退回相应门。不得靠上位机降速或截图挑选掩盖失败。</p>
+<h2>G05：串口与上位机</h2>
+<h3>前置</h3>
+<ul>
+<li>G04本地控制和停止通过；协议解析可先离线验证，但远程命令不能绕过G04状态机。</li>
+<li>固定协议版本，说明兼容现成<code>bms</code>协议还是自定义协议；按键步长、命令和零值语义已冻结。</li>
+</ul>
+<h3>方法</h3>
+<ol>
+<li>规定字段、单位、端口、方向、帧边界、长度/校验、序号、请求/应答与错误码。</li>
+<li>测试合法命令、缺参数、NaN/Inf、超范围、未知命令、分片、粘包、重复/过期命令、坏校验、断线和重连。</li>
+<li>UART IDLE仅作为接收块边界，不假设一块必是一条命令；解析器能累积片段并提取多帧。</li>
+<li>回调只做有界收包/入队与重启接收；继电器等待、阻塞打印、模式动作不放在控制ISR或会死锁的回调路径。</li>
+<li>显示请求值与实际应用值；拒绝/钳位有明确回执。<code>set 0</code>/STOP的语义单独测试，不能被最小非零电流钳位变成继续运行。</li>
+<li>STOP优先并取消不适用的排队动作；重连不执行陈旧命令；主机断线后的动作由本地系统强制执行。</li>
+<li>按键、OLED、遥测与控制器实际状态相符，并回归G04时序。</li>
+</ol>
+<h3>指标</h3>
+<ul>
+<li><strong>C</strong>：USART1 115200、8N1；测量上传1Hz；OLED1Hz；远程设定可应用。[C-P12][C-D08][C-D09][C-D10]</li>
+<li><strong>E/draft</strong>：离线协议测试集合全部符合预期；无效命令不改变运行目标；每个已处理请求都有可追溯结果。</li>
+<li><strong>E/draft</strong>：连续10min遥测验证无无法解释的丢帧/重复/时间倒退，测量上传平均频率为1Hz、周期偏差目标±100ms；普通命令应答≤500ms。STOP动作期限仍使用独立H要求，不能套普通应答时间。</li>
+<li><strong>H</strong>：最终协议、按键50/100mA步长选择、请求上限、失联期限、STOP命令到实际输出关闭的期限。</li>
+</ul>
+<h3>证据</h3>
+<p>协议文档、测试输入与期望/实得结果、原始收发日志、请求/应用值、序列号、断线/重连记录、OLED截图、串口压力下G04回归结果。</p>
+<h3>失败回退</h3>
+<p>只有回显、只测完整理想帧、非法值导致运行、显示与应用不一致、陈旧命令重放、通信使控制失时或STOP排队等待，退回解析/调度/状态机；远程输出保持禁能。</p>
+<h2>G06：SOC 数据与标签</h2>
+<h3>前置</h3>
+<ul>
+<li>G01～G05通过；测量与协议版本冻结；完整充放电边界、容量测量及SOC初值来源确定。</li>
+<li>正式采集前完成字段/单位/时间/端口字典，明确目标工况需要的采样带宽。</li>
+</ul>
+<h3>方法</h3>
+<ol>
+<li>保存不可变原始数据，再生成清洗版本；区分实测、仿真、回放、插值和重复值。</li>
+<li>建议字段：<code>run_id, board_id, firmware_id, calibration_id, boot_id, sample_seq, t_mcu, t_pc, sample_age, valid_flags, mode, Iref, D, fault</code>，另附明确端口的V/I/T及需要的raw码。</li>
+<li>检查时间单调性、复位、乱序、缺口、重复、饱和和有效性；不同采样通路分别保留采样时刻/年龄。</li>
+<li>以实际Δt积分；课程正充负放时，SOC分数的一般表达为 <code>SOC[k]=SOC0+Σ(η[k]·Ibat[k]·Δt[k])/(3600·Cn_Ah)</code>。效率处理按方向明确，取1属于需说明的模型假设。</li>
+<li>说明SOC0、可用容量Cn和参考边界的测定方法；积分基准具有误差，不能称无误差真值。原始积分越界需分析，不以静默裁剪掩盖。</li>
+<li>按电池/完整循环/独立实验段分组，再实现8:2训练/验证；记录分组规则。归一化只拟合训练集，不让相邻重叠时窗跨集合泄漏。</li>
+<li>HPPC/DST等动态数据另冻结采样带宽；1Hz显示流不能自动视为足够的采集流。需要时记录高速区间平均/电荷增量并说明方法。</li>
+</ol>
+<h3>指标</h3>
+<ul>
+<li><strong>C</strong>：完整恒流充放电数据；CSV包含V/I/T和时间；报告SOC0与Cn；8:2划分、训练/验证RMSE和曲线。[C-P15][C-P16]</li>
+<li><strong>E/draft</strong>：所有数据行可追溯到固件与标定；重复/缺失/无效值全部有质量标记；无未解释时间倒退和未知单位。</li>
+<li><strong>E/draft</strong>：训练和验证的原始实验组ID交集为空，重叠输入窗不跨集合；划分比例偏离8:2时解释整组划分造成的差异并冻结方案。</li>
+<li><strong>E/draft</strong>：同一原始数据/配置重复生成标签得到一致结果；积分方法、SOC单位（0～1或0～100%）与效率假设明确。</li>
+<li><strong>H</strong>：容量与初始SOC、充放电终止边界、各工况采样率/允许最大缺口、缺口处理方式、温度/电池范围。未确认时不能自动补齐或假设恒定电流跨越长缺口。</li>
+</ul>
+<h3>证据</h3>
+<p>原始CSV及哈希、元数据、质量报告、标定版本、容量/初值记录、清洗/标签脚本、字段字典、划分清单、归一化参数及数据集版本。</p>
+<h3>失败回退</h3>
+<p>无时间/单位/端口、无校准来源、长缺口未标记积分、SOC0/Cn凭空设置、数据泄漏、模拟冒充实测、重复上报冒充新采样，退回采集/标签阶段；不得继续以该数据宣告模型泛化性能。</p>
+<h2>G07：模型与端侧部署</h2>
+<h3>前置</h3>
+<ul>
+<li>G06数据集通过；输入定义/窗口/归一化/标签/验证划分冻结。</li>
+<li>训练指标、模型限制、量化退化与端侧一致性判据在评估前确定。</li>
+</ul>
+<h3>方法</h3>
+<ol>
+<li>保存可复现训练脚本、随机种子、软件版本和模型；记录训练与验证结果，不只报训练误差。</li>
+<li>用训练侧代表性数据进行int8量化校准；验证集不参与归一化拟合或量化校准。</li>
+<li>固定张量顺序/形状、输入窗口、尺度、零点、单位和输出解释。</li>
+<li>用同一组黄金输入比较PC浮点、PC量化和板端输出，分离模型误差、量化退化和移植错误。</li>
+<li>测模型大小、Flash/RAM/峰值内存、推理延迟；宣称NPU执行/加速时提供实际执行或性能证据。</li>
+<li>SOC10Hz上传附输入时间和序号；1Hz新测量被重复推理时明确标记复用，不能声称10Hz新观测。</li>
+<li>推理/上传并发时回归G04/G05，确认快环、STOP、采样和协议未退化。输入无效/过期时返回明确状态。</li>
+</ol>
+<h3>指标</h3>
+<ul>
+<li><strong>C</strong>：训练与评估产物；int8量化、ST Edge AI集成；端侧模型大小、推理时间、RMSE/最大误差、量化前后/PC与端侧比较；SOC10Hz上传。[C-P16][C-P17][C-P18]</li>
+<li><strong>C-禁止误用</strong>：PPT验证RMSE约0.7%为示意，不是现成合格线；不得把示例数写成实测结果。</li>
+<li><strong>E/draft</strong>：黄金输入比较100%可追溯；PC量化与端侧输出在冻结数值容差内，报告全部不匹配而非只展示成功样本。</li>
+<li><strong>E/draft</strong>：若每个100ms上传周期要求新完成一次推理，完整推理/准备/调度路径建议≤80ms以留余量；若上传复用最新结果，分别验收推理周期与发送周期，不套用此数值。</li>
+<li><strong>E/draft</strong>：G04的控制时限、停止和G05协议用例在推理并发下仍通过。</li>
+<li><strong>H/方案待定</strong>：SOC RMSE/最大误差门限、量化退化预算、PC/板端数值容差、可用内存、真正要求的推理周期与数据新鲜度；课件未给统一数值时不得冒充课程要求。</li>
+</ul>
+<h3>证据</h3>
+<p>模型/ONNX/生成代码哈希、训练与量化配置、黄金向量及逐项输出、端侧日志、延迟和内存报告、误差曲线、并发回归、AI使用记录。</p>
+<h3>失败回退</h3>
+<p>只有编译成功、张量/归一化/量化参数错配、验证集泄漏、端侧结果不可复现、推理干扰控制或停止、无证据宣称NPU加速，退回训练/量化/集成相应部分；不得以修改验证集掩盖失败。</p>
+<h2>4. 验收记录与回归规则</h2>
+<p>每个运行记录至少包含：</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>必填信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份</td>
+<td>gate_id、run_id、判据版本、源码/固件/标定ID、板号</td>
+</tr>
+<tr>
+<td>条件</td>
+<td>测试人和时间、仪器/设置/不确定度、工况、硬件限制、测量点</td>
+</tr>
+<tr>
+<td>结果</td>
+<td>预定指标、实测值、有效样本范围、证据路径/哈希、异常和未执行项</td>
+</tr>
+<tr>
+<td>决策</td>
+<td>status、verdict、evidence_scope数组、依据、复核者、需回退的阶段；正式阶段状态仅更新STATUS.md</td>
+</tr>
+</tbody></table></div>
+<p>证据至少保留原始数据与生成结论的方法；截图便于阅读，但不替代原始波形/日志。不同固件、不同校准、不同板子的结果不能混写成一次验收。</p>
+<p>改动时钟/ADC/触发/缓存/DMA，至少回归G01、G02及下游；改动PI/输出/状态机，至少回归G02～G05；改动串口/调度，回归G04并发时序和G05；改动标定/字段/时间规则，重新审查G06标签及G07输入兼容；模型集成后必须回归实时控制与STOP。</p>
+<p>不得预填实测值，不得把<code>null</code>改成便利的默认硬限，不得把“未执行”改写成“通过”。</p>
+<h2>5. 课程原文定位索引</h2>
+<p>以下页码指PPT幻灯片序号，DOCX定位用章/小节及原文短句，不依赖Word分页。课程PPT与任务2步骤位于项目根 <code>docs/course/</code>，其他手册位于 <code>docs/manuals/</code>。</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>来源ID</th>
+<th>原文位置</th>
+<th>用于本规范的依据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>C-P07</td>
+<td>《基于STM32N6的智能BMS边缘智能系统设计.pptx》第7页“AFE采集链路”</td>
+<td>“先分别验证电压 / 电流 / 温度单点读数，再合并显示”；电流方向分别验证；PT1000分压。</td>
+</tr>
+<tr>
+<td>C-P08</td>
+<td>同PPT第8页“100 kHz互补PWM与双向功率级”</td>
+<td>100kHz、互补PWM、Buck/Boost、EG3112死区说明。</td>
+</tr>
+<tr>
+<td>C-P09</td>
+<td>同PPT第9页“开环调试”</td>
+<td>“占空比40%～90%，10%步进扫描”；记录电压/电流曲线；33Ω条件及0.5～0.8A；开环先于闭环。</td>
+</tr>
+<tr>
+<td>C-P10</td>
+<td>同PPT第10页“ADC采样时序与反馈标定”</td>
+<td>同步触发、ADC回调PI、多通道DMA、先标定再控制。周期中点/平均电流表述须实测核验。</td>
+</tr>
+<tr>
+<td>C-P11</td>
+<td>同PPT第11页“数字PI恒流闭环”</td>
+<td>控制100kHz；限幅40%～90%；积分/抗饱和；正充负放；参数为示例。</td>
+</tr>
+<tr>
+<td>C-P12</td>
+<td>同PPT第12页“模式切换、显示与上位机通信”</td>
+<td>按键50或100mA；OLED1Hz；UART115200/8N1、1Hz及远程给定。</td>
+</tr>
+<tr>
+<td>C-P13</td>
+<td>同PPT第13页“基础层调试路线与验收清单”</td>
+<td>分模块路线；开/闭环记录、OLED、串口、示波器、完整代码。</td>
+</tr>
+<tr>
+<td>C-P15</td>
+<td>同PPT第15页“数据采集与SOC标签生成”</td>
+<td>V/I/T+时间；安时积分；8:2；SOC0/Cn方法；时间和方向检查。</td>
+</tr>
+<tr>
+<td>C-P16</td>
+<td>同PPT第16页“模型训练与评估”</td>
+<td>训练/验证RMSE、模型/脚本/划分/曲线；0.7%标为示意。</td>
+</tr>
+<tr>
+<td>C-P17</td>
+<td>同PPT第17页“量化与ST Edge AI Core部署”</td>
+<td>int8、ONNX/C代码、张量/归一化/内存、量化前后比较。</td>
+</tr>
+<tr>
+<td>C-P18</td>
+<td>同PPT第18页“端侧推理验证与误差评估”</td>
+<td>测量1Hz、SOC上传10Hz；延迟、大小、RMSE/最大误差、CPU/NPU比较。</td>
+</tr>
+<tr>
+<td>C-D01</td>
+<td>《任务2恒流控制实验_实验步骤.docx》第1节</td>
+<td>100kHz/50%/互补验证；RCR=1；固定占空比启动。</td>
+</tr>
+<tr>
+<td>C-D02</td>
+<td>同DOCX第2节，尤其2.2～2.3</td>
+<td>0.90至0.40逐点；D=CCR/ARR为上管D；Boost Vout=Vin/D；Iout=Vout/R。</td>
+</tr>
+<tr>
+<td>C-D03</td>
+<td>同DOCX第3节</td>
+<td>PA1/CH1、2倍过采样右移1、触发与ADC启动。</td>
+</tr>
+<tr>
+<td>C-D04</td>
+<td>同DOCX第4节</td>
+<td>1.8V、约0.9V零点、15mΩ、零点实测及符号；INA199A2/50倍需核对。</td>
+</tr>
+<tr>
+<td>C-D06</td>
+<td>同DOCX第6节，6.1～6.3</td>
+<td>ADC完成中断控制、err=iref-imeas、CCR800～1800、约200ms到位；断点不是完整时序证据。</td>
+</tr>
+<tr>
+<td>C-D07</td>
+<td>同DOCX第7节，7.1～7.2</td>
+<td>先停再换向；20/100ms示例；D=0.90在充放电两方向电流不同。</td>
+</tr>
+<tr>
+<td>C-D08</td>
+<td>同DOCX第8节</td>
+<td>按键10ms扫描；业务动作上下文。步长在目录与清单存在差异。</td>
+</tr>
+<tr>
+<td>C-D09</td>
+<td>同DOCX第9节</td>
+<td>OLED1Hz、显示模式/设定；不在快环中刷新。</td>
+</tr>
+<tr>
+<td>C-D10</td>
+<td>同DOCX第10节</td>
+<td>UART参数、1Hz文本、set命令、回显；回调/阻塞做法需按实际并发风险审查。</td>
+</tr>
+<tr>
+<td>C-D11</td>
+<td>同DOCX第11节“验收自检清单”</td>
+<td>±0.5A稳态误差&lt;5%；CCR范围；积分饱和；OLED/上位机1Hz；先停再启；run/set及按键步长冲突。</td>
+</tr>
+</tbody></table></div>
+<p>硬件能力和器件规格还应参照ADI ADBMS1818、TI INA199及对应STM32参考资料；具体源链接与文件哈希由统一source-map记录，本文件不把讲义中存在冲突的器件描述当作硬件事实。</p>
+</article></details>
+<details class="chapter" id="measurement" ><summary><span class="index">03</span><span>驱动与测量分层</span><small>展开 / 收起</small></summary><article><h1>测量的分层、换算与标定</h1>
+<h2>两条测量路径</h2>
+<p>慢速监测：电芯端电压 / 电流调理电压 / 温度分压 → ADBMS 内部 ADC → 寄存器数字码 → SPI → MCU。</p>
+<p>快速反馈：分流电阻和放大器输出 → STM32 ADC1 → 当前控制周期的电流 → PI → TIM1 PWM。两条电流路径是否共用同一模拟节点，要用原理图和通断测量确认；各自仍需标定。共用前端时，两路一致不等于独立准确。</p>
+<h2>职责表</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>层</th>
+<th>应完成什么</th>
+<th>不在这一层实现什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>外设/HAL</td>
+<td>时钟、GPIO、SPI 传输、ADC 触发/DMA、TIM PWM</td>
+<td>电池 SOC、温度传感器模型</td>
+</tr>
+<tr>
+<td>芯片驱动</td>
+<td>唤醒、转换命令、完成确认、寄存器、PEC、raw 解码、器件规定缩放</td>
+<td>分流阻值、传感器型号、PI 参数</td>
+</tr>
+<tr>
+<td>板级测量 <code>measurement</code></td>
+<td>通道映射、raw→V、偏置/增益、V→A、分压→Ω→℃、板号/标定版本、有效性</td>
+<td>设定电流和实验工况</td>
+</tr>
+<tr>
+<td>控制/保护</td>
+<td>可信且及时的 I 与限值检查、PI、状态机、停止和换向</td>
+<td>SPI 字节拼接、CSV 格式</td>
+</tr>
+<tr>
+<td>应用/记录/估计</td>
+<td>功率、能量、SOC、HPPC/DST 编排、日志协议</td>
+<td>在 PC/MCP 中逐个 PWM 周期控制</td>
+</tr>
+</tbody></table></div>
+<p>BSP 是组织方式，不是硬性标准：板级测量可以放在 BSP/measurement，也可以独立目录。关键是<strong>器件通用驱动不绑定某块板的系数</strong>。当前 BMS_ReadReg/BMS_ReadSample 在 main.c 中，建议后续迁出，但本轮未改源码。</p>
+<h2>哪些公式要写</h2>
+<ol>
+<li>ADBMS 电芯/AUX 结果：<code>raw = lo | (hi &lt;&lt; 8)</code>，按对应寄存器定义 <code>V = raw × 0.0001 V</code>。不再套 STM32 的 <code>Vref / 4096</code>。不是所有 ADBMS 寄存器都表示普通电压，状态、阈值或特殊测量按各自定义处理。依据：<a href="https://www.analog.com/media/en/technical-documentation/data-sheets/adbms1818.pdf">ADI 数据手册</a>。</li>
+<li>STM32 ADC：若确认 12 位、右对齐且没有改变输出尺度的累加/移位，理想量化步长为 <code>Vref/4096</code>。工程用 <code>V=a·code+b</code> 或 <code>I=aI·code+bI</code> 的标定关系；端点拟合有时写 4095，必须明示约定，不在同一链混用。过采样后的最终输出位宽/移位、参考电压、校准流程均须核对。</li>
+<li>电流：<code>Vsense = Vzero + s·G·Rshunt·I</code>，故 <code>I=(Vsense−Vzero)/(s·G·Rshunt)</code>；s 为接线符号。实际可直接拟合 <code>I=a·raw+b</code>。芯片不知道外接分流阻值与电流方向，因此这部分由板级软件负责。</li>
+<li>温度：只有确认“上拉 R_up 接 Vexc、传感器接地”的拓扑才用 <code>R=R_up·V/(Vexc−V)</code>；当前代码示范 PT1000 线性近似 <code>T≈(R/R0−1)/α</code>。NTC 需另一套模型；PT1000 宽温区用适合其型号的曲线/查表。系数与适用温区必须记录，不混用教材图示和实装型号。</li>
+<li>功率、能量、SOC：在应用层计算。<code>Pbat=Vpack·Ibat</code>，充电正、放电负；输出端 <code>Pout=Vout·Iout</code>。不同端口的 V、I 不能直接相乘当某端功率。瞬态平均功率为 <code>mean(v·i)</code>，未必等于 <code>mean(v)·mean(i)</code>。</li>
+</ol>
+<p>不必用软件重做 ADBMS 内部 ADC 调制、数字滤波、硬件转换；但仍要选择模式、等待完成、读取并检查质量。芯片内部温度也不能替代电池表面温度。</p>
+<h2>当前代码不是已完成标定</h2>
+<ul>
+<li>main.c 用 <code>I=(Vgpio1−0.900)×1.3333</code>，这只是现有示例系数。</li>
+<li>课程存在 INA199A2 与增益 50 的表述冲突；TI 系列 A1/A2/A3 分别为 50/100/200。若 R=15mΩ、G=50，灵敏度为 0.75V/A；G=100 则为 1.5V/A。必须核对实装料号和完整模拟链，不可仅把乘数改一半就宣称修复。<a href="https://www.ti.com/product/INA199/part-details/INA199A2DCKTG4">TI 官方资料</a></li>
+<li>PEC 错误现在在上层置 0 并继续算电流/温度。这会把通信故障伪装成物理读数。应保留 raw 和错误码，派生值 null/无效，控制端按故障策略处理。</li>
+<li>全 AUX 转换后固定等 2ms 需修正：数据手册表 23 的相关 7kHz/3kHz 模式总时长约 3.862/5.025ms，需按实际模式确认完成及超时。滤波模式名称不等于应用层采样率。<a href="https://www.analog.com/media/en/technical-documentation/data-sheets/adbms1818.pdf#page=31">ADI 表23</a></li>
+</ul>
+<h2>标定流程</h2>
+<p>先确认量程/电路，再记录 raw 与独立参考，在覆盖工作范围的多个点拟合；独立重采其他点验证；最后检查零点回测、重复性、升降扫和温漂。不要只看 R²。</p>
+<p>零点、参考电压、电子标定与整机校准不同：STM32 内部 ADC 自校准不能消除外部放大器/分流/接线误差；一条 ADBMS 电流通道标定也不能替另一条 STM32 通道出证。</p>
+<p>正式误差判断应包含参考及方法的不确定度。建议统一用 <code>|误差| + U95 ≤ 容差</code> 才判 pass；若 <code>|误差| − U95 &gt; 容差</code> 则 fail；覆盖边界时 inconclusive。课程严格“小于”指标应相应使用严格不等式。拟合用数据与独立验证用数据分别列 ID。具体容差见 acceptance，不把分辨率、芯片典型精度或闭环误差当测量精度。</p>
+</article></details>
+<details class="chapter" id="data" ><summary><span class="index">04</span><span>数据、标定与 SOC</span><small>展开 / 收起</small></summary><article><h1>BMS 测量记录与 SOC 数据规范</h1>
+<p>版本：0.1；日期：2026-10-28；状态：执行规范草案，尚无硬件标定或采集结果。</p>
+<p>每条测量、SOC标签和训练结果须能追溯到原始数据、硬件、固件和处理方法。“必须”是项目准入要求，不代表认证。量程、容限、温度、采样率、预热等未核定参数标为 <code>TBD</code>，不得提前声明精度。</p>
+<h2>1. 原始数据、标定和派生结果分开保存</h2>
+<p>每次实验使用唯一 <code>run_id</code>。文件先用CSV/JSON即可；不强制数据库。</p>
+<pre><code class="language-text">run_&lt;id&gt;/
+  manifest.json
+  raw/device.csv                 # 板端原始码、时间和状态
+  raw/reference.csv              # 独立参考仪表读数
+  raw/events.csv                 # 复位、命令、换向、故障、停止
+  calibration/cal_&lt;id&gt;.json       # 系数、条件、来源和验证结论
+  calibration/points.csv          # 拟合与独立验证记录
+  derived/measurements.csv        # 换算、对齐后的物理量
+  derived/soc_labels.csv          # SOC参考值及质量标志
+  derived/processing.json         # 输入哈希、脚本/参数版本
+  split_manifest.csv             # 分组及训练/验证/测试归属
+</code></pre>
+<ul>
+<li><code>raw</code> 保存实际收到的原始码和状态，完成采集后固定文件哈希；不得用清洗值覆盖。</li>
+<li>原始帧可另存；记录协议/解码版本。改变标定或算法时生成新派生版本。</li>
+<li>派生文件记录输入SHA256、标定ID、脚本版本、参数和生成时间。缺失时仅归档，不作正式结果。</li>
+<li>共用标定/证书可引用，无需重复复制；目标须可获取并有哈希。</li>
+</ul>
+<h2>2. 两路电流分别标定，参考仪表独立记录</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>通道 ID</th>
+<th>测量路径</th>
+<th>要保存的原始量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>current_mcu_adc1</code></td>
+<td>电流前端 → PA1/ADC1</td>
+<td>ADC码、采样/过采样配置、参考电压信息</td>
+</tr>
+<tr>
+<td><code>current_afe_gpio1</code></td>
+<td>电流前端 → ADBMS GPIO1/AUX</td>
+<td>寄存器码、转换模式、PEC与转换状态</td>
+</tr>
+</tbody></table></div>
+<p>两路各自建立 <code>I = a × raw + b</code> 或明确等价的模型，不能直接套用对方系数。ADBMS 的结果标度与 MCU 的 <code>VREF/满量程码</code> 换算不同。<a href="https://www.analog.com/media/en/technical-documentation/data-sheets/adbms1818.pdf">ADI 数据表</a></p>
+<p>共用分流电阻或放大器时，两路可能一起偏。彼此一致只作诊断，不能代替外部参考；先核实器件型号与增益，再标定完整链路。</p>
+<p>参考仪表记录型号、序列号、量程、分辨率、校准日期、证书/规格、滤波和不确定度。无有效校准依据时标 <code>reference_grade=spec_only</code> 或 <code>unknown</code>，限定结论。仪表已校准不自动证明整套结果可溯源。<a href="https://www.nist.gov/metrology/metrological-traceability">NIST 溯源说明</a></p>
+<p>以下是建议取点，基准为<strong>已确认且不饱和的工作范围</strong>：</p>
+<ul>
+<li>拟合点：0、±10%、±25%、±50%、±75%、±100%。</li>
+<li>独立验证：重新采集零点、边界点，以及 ±15%、±40%、±65%、±90%；数据不参与拟合。</li>
+<li>建议三轮，含升降扫、前后零点回测及温漂检查；稳定阈值写入计划。</li>
+<li>同一窗口抽行不算独立验证；滤波相关样本不能按独立样本计算不确定度。</li>
+</ul>
+<p>报告保存系数/单位、适用范围、点ID、残差、零漂、不确定度和结论。高 <code>R²</code>或静态验证不能证明快环正确。</p>
+<h2>3. 精度判定必须考虑参考误差</h2>
+<p>先确定 <code>MPE(I)</code>，建议用“绝对项+读数比例项”，照顾零点；数值待硬件和实验目标确认。</p>
+<p>预算覆盖参考仪表、增益/零点/温漂、重复性、量化、标定残余误差及不同步。修正已知显著偏差，保留修正不确定度；共同参考/标定误差不能都当独立项。<a href="https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-5-combined-standard-uncertainty">NIST 合成不确定度</a></p>
+<p>建议预先约定三态保护带规则，保存各验证点结果：</p>
+<pre><code class="language-text">e = I_DUT − I_reference
+Ue = 本次误差比较的扩展不确定度
+通过：     |e| + Ue ≤ MPE
+不通过：   |e| − Ue &gt; MPE
+无法判定：其余情况
+</code></pre>
+<p><code>Ue</code>不等于显示分辨率。<code>U=k×uc</code>须记录覆盖因子；<code>k=2</code>不总是严格95%覆盖。“无法判定”不得算作通过。</p>
+<h2>4. 时间、序号与有效性</h2>
+<p>每条采样的最小字段：</p>
+<pre><code class="language-text">run_id, boot_id, stream_id, seq, channel_id,
+device_sample_ticks, host_rx_utc, raw_code,
+status_bits, valid, invalid_reason
+</code></pre>
+<p>manifest保存时钟频率/位宽、时间戳含义与采样模式。建议另存 <code>host_rx_monotonic_ns</code>分析延迟；设备时间戳指采样/转换事件，不指串口发送。</p>
+<ul>
+<li><strong>积分用采样时间</strong>：主机接收时间含串口缓存与调度抖动，不能代替采样间隔。主机 UTC 用于实验定位，不直接作为积分时钟。</li>
+<li><strong>通道分别计时</strong>：记录AFE、MCU及参考仪表时间/窗口、对齐方法与不确定度。同帧不代表同时采样。</li>
+<li><strong>区分复位与回绕</strong>：<code>boot_id + stream_id + seq</code> 标识样本。记录复位原因、计数器回绕、重复帧、丢帧和重新连接；不能把复位后的时间直接接在旧段后。</li>
+<li><strong>坏数据不作零</strong>：PEC失败、超时、饱和、陈旧值、预热未完成均保留原始记录；派生量用空值/<code>null</code>和原因。有效零电流才写数值0。</li>
+<li><strong>复用旧值要标龄期</strong>：若界面保留上一有效值，记录 <code>source_age_us</code>；不得把它当新采样参与积分。</li>
+</ul>
+<h3>一秒一个点，必须说明它是什么</h3>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th><code>value_kind</code></th>
+<th>含义</th>
+<th>可否代表整秒电荷</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>instantaneous_sample</code></td>
+<td>每秒某一时刻的读数</td>
+<td>不能直接假定；动态工况可能漏掉脉冲</td>
+</tr>
+<tr>
+<td><code>interval_mean</code></td>
+<td>明确时间区间内的平均电流</td>
+<td>有完整有效覆盖和已知平均算法时，可乘该区间长度</td>
+</tr>
+<tr>
+<td><code>interval_charge</code></td>
+<td>区间内累积电荷</td>
+<td>必须给单位、算法、校准版本和区间边界</td>
+</tr>
+</tbody></table></div>
+<p>均值/累积量补 <code>interval_start_ticks</code>、<code>interval_end_ticks</code>、<code>sample_count</code>、<code>invalid_count</code>；抽点须注明规则。低速显示不证明快环稳定，也不自动满足电荷积分要求。</p>
+<h2>5. SOC 标签的口径与不确定度</h2>
+<p>统一符号：<strong>流向电池为正，充电为正、放电为负</strong>。SOC保存为0～1；百分数仅作显示。<code>C_N</code> 单位Ah、<code>Δt</code>单位秒。</p>
+<pre><code class="language-text">q[k]   = q[k−1] + I_effective[k] × Δt[k] / 3600
+SOC[k] = SOC0 + q[k] / C_N
+</code></pre>
+<p><code>C_N</code>注明铭牌或已测容量。正式标签优先用对应电池、温度、倍率及截止条件下的已测容量，保存记录ID、日期和不确定度；不能为使终点归零而事后改容量。</p>
+<p><code>SOC0</code>记录锚定依据及不确定度，例如定义充电终止/静置条件后的满充锚点。单次端电压不等于精确SOC；OCV映射须匹配电池、温度和静置条件。</p>
+<p>效率口径写进 <code>efficiency_model</code>。例如充电时使用 <code>I_effective=ηc·I</code>；放电是否取 <code>I</code> 或另设效率，取决于参考容量的定义。不得把容量测量中已体现的损失再次重复计算。效率取1可以作为明确标注、带适用范围的近似，不代表已测得100%效率。</p>
+<h3>参考SOC不能由同一误差自证</h3>
+<p>正式精度评价优先使用<strong>独立校准的外部电流和已确认的计时基准</strong>建立参考SOC，板载电流作为输入或待测对象。参考SOC也有不确定度，不称绝对真值。</p>
+<p>若标签来自同一板载电流的安时积分，标记：</p>
+<pre><code class="language-text">label_source = same_sensor_coulomb_counting
+label_grade = proxy
+</code></pre>
+<p>代理标签可用于原型；拟合误差小或同源积分一致都不证明真实SOC精度，共同偏置会同时污染输入和标签。</p>
+<p>标签保存SOC值、有效性/等级/版本、初值锚点、容量记录、电流源、标定ID、效率模型和不确定度。</p>
+<p>未知电流缺口不得按零积分。独立参考补齐须注明来源；否则评估误差界限，无法界定时暂停后续标签有效性，直到可信锚点。保留未裁剪SOC与越界标志，不用0～1裁剪隐藏漂移。</p>
+<p>示例：1 Ah电池持续偏置1 mA，一小时累积0.1个百分点SOC偏差；不是允许指标。预算应包括零偏、增益、时钟、效率、初值和容量，共同偏置不能作为独立噪声平均掉。</p>
+<p>相关项需保留协方差或采用有依据的保守界限，区分共同偏置、增益与重复性。<a href="https://inldigitallibrary.inl.gov/content/uploads/50/2026/04/3394979.pdf">INL 原始研究</a></p>
+<h2>6. 训练划分与泄漏防止</h2>
+<p>**课程口径：**材料要求8:2训练/验证。若按此执行，如实报告“训练集/验证集”，不要把用于调参的20%改名为独立测试集。</p>
+<p>**工程建议：**条件允许时，按完整分组划分80%开发集、20%最终测试集；开发集内部再划分训练/验证或做分组交叉验证。最终测试集仅用于冻结方案后的评价。8:2是目标比例，不应为了凑行数而拆开完整循环或电池。</p>
+<p>先分组，再生成滑动窗口。分组依据对应要回答的问题：</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>想证明的能力</th>
+<th>隔离单位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>同一电池后续循环表现</td>
+<td>完整循环/运行，按时间保留后续循环</td>
+</tr>
+<tr>
+<td>对新电池泛化</td>
+<td><code>cell_id</code>，同一电池不得跨训练与测试</td>
+</tr>
+<tr>
+<td>对新工况泛化</td>
+<td>完整工况/协议族，另设留出评估</td>
+</tr>
+<tr>
+<td>对温度或老化范围外推</td>
+<td>留出对应条件，并明确外推范围</td>
+</tr>
+</tbody></table></div>
+<p><code>cell_id+cycle_id</code>组合分组仍可能让同一电池跨集合，不能证明新电池泛化。只有一节电池不得宣称跨电池泛化。<a href="https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation-iterators-for-grouped-data">分组验证说明</a></p>
+<p>必须避免：</p>
+<ul>
+<li>重叠滑动窗口、同一循环切片或同一文件副本进入不同集合。</li>
+<li>用全数据拟合归一化、缺失值估计、特征选择或模型参数；这些仅在训练侧拟合。</li>
+<li>用最终测试集调参、选模型或确定量化范围；量化代表数据从训练侧选。</li>
+<li>用未来数据做居中滤波、用循环终点修正输入，再把结果称为在线推理表现。</li>
+<li>把已知未来SOC、独立参考SOC、结束时刻等泄漏字段混入模型输入。</li>
+</ul>
+<p><code>split_manifest</code>保存 <code>dataset_version, cell_id, run_id, cycle_id, profile_id, split, split_reason</code>；另记种子、窗口、特征和预处理版本。按电池/循环/工况报告指标。<a href="https://scikit-learn.org/stable/common_pitfalls.html#data-leakage">官方泄漏说明</a></p>
+<h2>7. 最小 manifest 示例</h2>
+<p>以下仅为字段示例；<code>TBD</code>/空值须在对应准入前补齐。</p>
+<pre><code class="language-json">{
+  &quot;schema_version&quot;: &quot;bms-data-0.1&quot;,
+  &quot;run_id&quot;: &quot;TBD&quot;,
+  &quot;cell_ids&quot;: [&quot;TBD&quot;],
+  &quot;board_id&quot;: &quot;TBD&quot;,
+  &quot;hardware_revision&quot;: &quot;TBD&quot;,
+  &quot;firmware_sha256&quot;: &quot;TBD&quot;,
+  &quot;build_target&quot;: &quot;TBD&quot;,
+  &quot;protocol_version&quot;: &quot;TBD&quot;,
+  &quot;test_plan_id&quot;: &quot;TBD&quot;,
+  &quot;profile_sha256&quot;: &quot;TBD&quot;,
+  &quot;current_sign&quot;: &quot;positive_into_battery&quot;,
+  &quot;units&quot;: {&quot;current&quot;: &quot;A&quot;, &quot;voltage&quot;: &quot;V&quot;, &quot;temperature&quot;: &quot;degC&quot;},
+  &quot;clock&quot;: {&quot;tick_hz&quot;: null, &quot;timestamp_event&quot;: &quot;TBD&quot;, &quot;calibration&quot;: &quot;TBD&quot;},
+  &quot;sampling&quot;: {&quot;value_kind&quot;: &quot;TBD&quot;, &quot;rate_hz&quot;: null, &quot;filter&quot;: &quot;TBD&quot;},
+  &quot;calibration_ids&quot;: {&quot;current_mcu_adc1&quot;: &quot;TBD&quot;, &quot;current_afe_gpio1&quot;: &quot;TBD&quot;},
+  &quot;reference&quot;: {&quot;instrument_id&quot;: &quot;TBD&quot;, &quot;range&quot;: &quot;TBD&quot;, &quot;certificate_sha256&quot;: &quot;TBD&quot;},
+  &quot;soc&quot;: {&quot;label_grade&quot;: &quot;TBD&quot;, &quot;anchor_id&quot;: &quot;TBD&quot;, &quot;capacity_record_id&quot;: &quot;TBD&quot;, &quot;efficiency_model&quot;: &quot;TBD&quot;},
+  &quot;acceptance_plan&quot;: &quot;TBD&quot;,
+  &quot;raw_files_sha256&quot;: {},
+  &quot;processing_version&quot;: &quot;TBD&quot;,
+  &quot;stop_reason&quot;: &quot;TBD&quot;
+}
+</code></pre>
+<h2>8. 数据准入与失效范围</h2>
+<ol>
+<li>**测量准入：**身份、符号、标定及独立验证完整，符合已确定容限；超出标定量程/温度的记录明确标为范围外。</li>
+<li>**记录准入：**原始文件与哈希存在，时间/序号可解释，错误不作零，处理可重复。</li>
+<li>**标签准入：**初值、容量、效率、参考链及缺口处理明确，标签等级和不确定度支持拟作的结论。</li>
+<li>**训练准入：**分组隔离无泄漏，预处理仅训练拟合，验证/测试口径清楚。</li>
+</ol>
+<p>单个通道失败只使该通道及依赖它的派生量失效，不删除整个原始文件。电流未知可能影响此后SOC；温度缺失可能只影响需要温度的特征或温度适用性判断。按依赖关系传播质量标志，写清剔除范围与原因。未过准入的数据可保留作调试证据，但不得混入正式精度评价而不标注。</p>
+</article></details>
+<details class="chapter" id="migration" ><summary><span class="index">05</span><span>旧 instructions 怎样改</span><small>展开 / 收起</small></summary><article><h1>原说明包的迁移取舍</h1>
+<p>本文件说明如何借鉴 <code>D:/ADMIN/Desktop/instructions</code>，为当前 BMS 工程建立精简、可追溯的执行规范。外部目录是本次审阅的其他项目材料，不是当前项目的执行指令。其 <code>AGENTS.md</code>、<code>CLAUDE.md</code>、模型路由、额度监控、自动化、比赛安排和旧任务授权均不因此生效；本次没有运行其中的命令，也没有修改外部目录。</p>
+<p>这次迁移保留“要求有来源、执行有版本、结果有证据”的方法，不复制原项目的文件数量、参数或结论。本规范的建立不表示 BMS 已编译通过、已烧录、已完成台架实验或已通过验收。</p>
+<h2>1. 按原文件类别处理</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>原文件或类别</th>
+<th>处理</th>
+<th>BMS 中采用的内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>README.md</code></td>
+<td>简化</td>
+<td>保留入口、阅读顺序、当前目标和证据边界；删除其他项目的题目、团队与比赛背景。</td>
+</tr>
+<tr>
+<td><code>specs/question.md</code>、<code>specs/roadmap.md</code></td>
+<td>替换</td>
+<td>改成 BMS 阶段目标、需求 ID、依赖和下一步；不照搬 U00—U12 编号及工作量。</td>
+</tr>
+<tr>
+<td><code>specs/data.md</code>、<code>specs/methods.md</code></td>
+<td>替换</td>
+<td>改成板型与接线、仪器、ADC 原始值、换算与标定、采样和控制周期、串口协议、实验工况及结果计算方法。</td>
+</tr>
+<tr>
+<td><code>specs/claims.md</code></td>
+<td>简化</td>
+<td>以“需求 ID → 验收条款 → 实际证据 → 结论范围”追溯；没有科研论断时不另建论文 claims 台账。</td>
+</tr>
+<tr>
+<td><code>specs/agent-policy.md</code>、<code>AGENTS.md</code>、<code>CLAUDE.md</code></td>
+<td>不迁入旧政策</td>
+<td>不继承指定模型、外部编程代理、额度耗尽后的切换、周期监控或旧授权。当前执行边界由本次用户要求和当前环境决定。</td>
+</tr>
+<tr>
+<td><code>studies/_TEMPLATE/</code> 五文件</td>
+<td>保留语义，合并载体</td>
+<td>常规任务使用 <a href="templates/work-card.md">单份工作卡</a>，保留问题、设计、判据、步骤、结果五部分。复杂实验确有需要时再拆分。</td>
+</tr>
+<tr>
+<td><code>studies/U00—U12/</code></td>
+<td>替换</td>
+<td>依据 BMS 实际阶段建立任务，不迁移原题几何、覆盖、选参、官方比赛或其未执行槽位。</td>
+</tr>
+<tr>
+<td><code>implementation/06-validation-delivery.md</code></td>
+<td>保留机制，替换内容</td>
+<td>保留运行前固定判据、输入和代码身份、失败留存、原始/派生数据分离、复测追溯；替换为电池采样、控制、通信、启动和台架验收。</td>
+</tr>
+<tr>
+<td>其他 <code>implementation/*.md</code></td>
+<td>按需改写</td>
+<td>只有当前阶段需要的模块接口和执行步骤才写入；不提前铺开尚无事实依据的实现说明。</td>
+</tr>
+<tr>
+<td><code>prompts/03-audit.md</code></td>
+<td>保留审计方法</td>
+<td>从原始记录、规则版本、源码与实际固件复算关键结果；检查单位、标定、时间戳、遗漏失败和结论范围。删除原题证书与隐藏真值等专用条款。</td>
+</tr>
+<tr>
+<td>其他 <code>prompts/*.md</code></td>
+<td>简化</td>
+<td>将启动、实施、复核、重规划的必要提示写入统一流程，不维护多份内容重复的指令。</td>
+</tr>
+<tr>
+<td><code>references/source-map.md</code>、<code>source-manifest.json</code></td>
+<td>保留</td>
+<td>记录资料身份、核验位置、哈希和用途；区分原作者报告、源码观察、本次运行和实物测量。</td>
+</tr>
+<tr>
+<td><code>references/open-questions.md</code></td>
+<td>保留</td>
+<td>每项注明未确认事实、影响、所需证据与下一步，不把假设写成已确认硬件参数。</td>
+</tr>
+<tr>
+<td><code>STATUS.md</code></td>
+<td>保留，限制职责</td>
+<td>展示当前进度、阻塞与下一步；不代替原始数据，不以“完成”表示“性能通过”。</td>
+</tr>
+<tr>
+<td><code>RUNLOG.md</code></td>
+<td>保留，减少流水账</td>
+<td>追加影响判断的动作、版本、run ID、结果与复测关系；不逐条抄录所有读文件和工具调用。</td>
+</tr>
+<tr>
+<td><code>validation/structure-report.json</code></td>
+<td>保留范围声明</td>
+<td>静态检查只报告文件结构、链接和字段等实查结果；不得从目录齐全推断固件或实验通过。机器报告应由实际检查产生。</td>
+</tr>
+<tr>
+<td><code>validation/review-notes.md</code></td>
+<td>保留</td>
+<td>保存可定位问题、处理结果和未解决项，明确审查覆盖范围。</td>
+</tr>
+<tr>
+<td><code>validation/unit-index.json</code></td>
+<td>简化</td>
+<td>需要索引时从工作卡生成，避免与工作卡、STATUS 和路线图人工重复维护同一状态。</td>
+</tr>
+<tr>
+<td><code>validation/agent-policy-report.json</code>、<code>runtime/claude-usage*</code>、<code>runtime/automation.json</code></td>
+<td>不迁入</td>
+<td>属于其他项目的模型与行政运行记录，不是 BMS 的验证证据，也不授权创建监控或自动实施。</td>
+</tr>
+<tr>
+<td><code>variants/*.md</code></td>
+<td>按需使用思想</td>
+<td>只有任务确实转入建模、方法研究或论文阶段时才考虑相应方法，不作为日常固件修改的必填材料。</td>
+</tr>
+</tbody></table></div>
+<p>原说明包中的开发/选择/确认样本数、24 组故障场景、统计种子、bootstrap 次数、置信区间、效率提升阈值、比赛次数、加密日志规则和截止时间全部属于原项目。BMS 的数值阈值、工况、重复次数和交付内容须有自己的依据；暂未确认的项目保持待定。</p>
+<h2>2. 一份工作卡保留五个问题</h2>
+<ol>
+<li><strong>问题与范围</strong>：本次要解决什么，对应哪个需求；哪些上游事实已经确认。</li>
+<li><strong>设计与条件</strong>：用哪块板、哪些输入、变量、工况和方法验证；单位和输出位置是什么。</li>
+<li><strong>判据与版本</strong>：什么条件算通过、失败或证据不足；正式运行前固定哪些文件。</li>
+<li><strong>执行步骤</strong>：具体做什么、前置条件是什么、产物和检查点在哪里。</li>
+<li><strong>结果与结论</strong>：实际执行了什么、原始证据在哪里、按哪版规则得到什么结论，还有什么未覆盖。</li>
+</ol>
+<p>小范围注释、显示文本或低影响修复不必新建正式实验单元。只有改动触及需求、接口、测量、控制行为或交付可复现性时，才使用相应工作卡或补充已有卡的修订记录。多工况、多仪器或多人交接的正式实验可以拆成五文件，但不把文件齐全本身当成果。</p>
+<h2>3. 探索与正式验收分开</h2>
+<p>**探索（exploratory）**用于核对 ADC、排查接线、分析串口和调节 PI。允许在观察后调整候选方案；记录重要配置变化和失败，结论写成“观察”“候选”或“待复验”。探索使用过的数据不能事后改名为独立正式验收数据。探索仍须遵守实际硬件边界。</p>
+<p>**正式验收（confirmatory）**用于回答事先明确的需求。先准备可执行候选、输入、参考方法和验收规则，再在正式运行前固定其身份。冻结不要求尚未写出的代码提前存在，也不阻止前期编译、调试和测量准备。</p>
+<p>正式验收需冻结：判据版本、工况及输入、配置、待测代码/固件、测量与结果计算方法。冻结清单写入实际时间和文件哈希；清单自身的 SHA-256 记录在工作卡中，不把自身哈希写回清单造成循环。没有 Git 时可使用源码清单和哈希，不能伪填提交号。</p>
+<p>正式结果产生后改变固件、参数、工况或阈值，应保留旧版本，建立新修订及新 run ID，并说明原因。目标、硬件或方法发生实质变化时再新开工作卡。不得修改旧结果来适配新规则，不删除失败来制造连续通过；未运行的项目仍记为未运行。</p>
+<h2>4. 状态、判定与证据范围分开</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>建议值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>status</code></td>
+<td>工作推进到哪里</td>
+<td><code>not_started / in_progress / blocked / complete / skipped</code></td>
+</tr>
+<tr>
+<td><code>verdict</code></td>
+<td>正式验收得出什么结果</td>
+<td><code>null / pass / fail / inconclusive / invalid</code></td>
+</tr>
+<tr>
+<td><code>evidence_scope</code></td>
+<td>本次实际证据覆盖什么</td>
+<td><code>static / build / simulation / bench / release_boot</code> 的列表</td>
+</tr>
+</tbody></table></div>
+<p>这些证据范围不是自动递升的等级。编译通过不证明电流闭环正常，模拟通过不证明实际板卡通过，Debug 能运行不证明 Release 断电重启正常。</p>
+<ul>
+<li><code>complete + fail</code> 表示验收已执行完毕且被测对象未通过，属于有效结果。</li>
+<li><code>blocked + null</code> 表示缺少前置资料或条件，尚无最终判定。必须写明阻塞事实及所需输入。</li>
+<li><code>inconclusive</code> 表示实际证据不足以按规则完成判定；未测项目不能默认通过。</li>
+<li><code>invalid</code> 用于检验过程失效，例如原始数据损坏或参考仪器设置使记录无法解释。有效测量发现超调、误差超限或故障动作失效应判 <code>fail</code>，不能借 <code>invalid</code> 排除产品失败。</li>
+<li><code>skipped</code> 需有不适用或不启用的理由，不等于通过。</li>
+<li>探索工作可以完成并留下观察，但不把它登记为正式验收 <code>pass</code>。</li>
+</ul>
+<p>运行身份、原始数据和判定留在工作卡及对应证据目录；STATUS 只摘要和指向它们。若汇总与原始证据冲突，先核查事实并修正汇总，不能覆盖原始文件。</p>
+<h2>5. BMS 证据链的具体落点</h2>
+<p>最短链路是：<strong>需求 ID → 验收版本 → run ID → 实际源码/固件与工况 → 原始记录 → 计算方法 → 判定</strong>。</p>
+<p>每次适用运行记录源码版本或清单哈希、未提交改动状态、Debug/Release target、编译器/设备包版本、生成固件哈希和构建日志。实际烧录后再补写镜像哈希、目标地址与下载校验结果；计划烧录信息不能冒充执行记录。</p>
+<p>台架记录另外包含板型/板号、接线版本、仪器及量程、采样与控制周期、换算/标定系数、工况、开始结束时间、异常和退出原因。原始串口或仪器文件与派生 CSV、图表和统计分开保存，失败复测使用新 ID 并指向旧 run。</p>
+<p>当前工程优先建立源码、IOC、说明文档、Debug/Release 产物之间的对应关系。旧文档或旧构建日志只证明其所覆盖的历史版本；未经本次验证的现象明确标为历史报告或待复现。</p>
+<h2>6. 本次参考的关键位置</h2>
+<ul>
+<li><a href="file:///D:/ADMIN/Desktop/instructions/studies/_TEMPLATE/question.md">五部分问题模板</a>、<a href="file:///D:/ADMIN/Desktop/instructions/studies/_TEMPLATE/design.md">设计模板</a>、<a href="file:///D:/ADMIN/Desktop/instructions/studies/_TEMPLATE/decision-rule.md">判据模板</a>、<a href="file:///D:/ADMIN/Desktop/instructions/studies/_TEMPLATE/plan.md">执行计划模板</a>、<a href="file:///D:/ADMIN/Desktop/instructions/studies/_TEMPLATE/findings.md">结果模板</a>：提供语义，未继承其中模型路由。</li>
+<li><a href="file:///D:/ADMIN/Desktop/instructions/implementation/06-validation-delivery.md">原验证与交付说明</a>：参考版本冻结、唯一 run ID、原始记录和失败留存机制；其题目数值和比赛规则未迁入。</li>
+<li><a href="file:///D:/ADMIN/Desktop/instructions/prompts/03-audit.md">原独立审计提示</a>：参考从原始证据复算和限定结论范围的方法。</li>
+<li><a href="file:///D:/ADMIN/Desktop/instructions/validation/structure-report.json">原静态结构报告</a>、<a href="file:///D:/ADMIN/Desktop/instructions/validation/review-notes.md">原交叉审查记录</a>：参考“文档结构通过不等于实际实验通过”的明确范围声明。</li>
+</ul>
+</article></details>
+<details class="chapter" id="workflow" ><summary><span class="index">06</span><span>执行与证据链</span><small>展开 / 收起</small></summary><article><h1>执行与变更规则</h1>
+<h2>最短证据链</h2>
+<p><code>需求 ID → 测试/工作卡 ID → 固定判据与版本 → run_id → 原始数据 → 复算指标 → 结果 → 允许的结论</code></p>
+<p>每个正式 run 保存 <code>manifest.json</code>，证据建议存于项目根 <code>evidence/runs/&lt;run_id&gt;/</code>：<code>raw/</code> 放未经覆盖的串口、仪器、示波器导出；<code>derived/</code> 放带处理版本的 CSV、图与指标；<code>result.json</code> 写结果、规则版本和解释。这里仅定义未来路径，未生成任何实验数据。</p>
+<h2>探索与正式验收</h2>
+<ul>
+<li>探索用于调参数、发现硬件与配置问题。记录重要配置、异常和原始数据，允许修改方案，不要求在尚无可测实现时就冻结代码。</li>
+<li>正式验收前，待测固件、接线、仪器、配置、工况、指标、通过线和处理代码都已准备好。用 Git 提交或源码文件清单 SHA-256 固定身份；有未提交改动就保存 diff/文件清单，不用旧 commit 假装完整身份。</li>
+<li>冻结后改变上述任一影响结果的内容，要建立新修订与新 run。原失败保留。阈值修改说明工程原因，不能用“刚好让结果通过”作依据。</li>
+<li>调 PI、选模型、决定滤波器时看过的数据不能再冒充独立验证集。修复后重新验证受影响部分，无关项目可沿用有明确依赖说明的证据。</li>
+</ul>
+<h2>状态和结论分开</h2>
+<p><code>status</code>: <code>not_started | in_progress | blocked | complete | skipped</code>。</p>
+<p><code>verdict</code>: <code>null | pass | fail | inconclusive | invalid</code>。</p>
+<p><code>evidence_scope</code>: <code>static | build | simulation | bench | release_boot</code> 的列表，不是自动递升的等级。</p>
+<ul>
+<li><code>complete + fail</code>：测完且明确未达到要求，正常保留。</li>
+<li><code>blocked + null</code>：缺条件，尚未取得可判定结果；只阻塞依赖该条件的任务。</li>
+<li><code>invalid</code>：实验本身无法解释，例如参考接错或采集文件损坏。有效实验中的超调、超时、保护失效是 fail，不能改称 invalid。</li>
+<li><code>inconclusive</code>：证据有效但不够判定，如误差与参考不确定度覆盖验收边界。</li>
+<li>结构检查、编译、仿真、台架、断电再启动分别报告，不能彼此替代。</li>
+</ul>
+<h2>标准来源与冻结</h2>
+<p>统一标签：C=课程明确要求；E=工程建议，待正式冻结；H=硬件或需求待确认。芯片数据手册事实注明具体来源，不能把芯片指标当整机验收线。</p>
+<p>先确定边界，再定指标。额定值、推荐运行范围、允许测试范围与保护触发阈值分开；绝对最大额定值不是运行目标。硬件未知参数保留 null，禁止用 0 或示范数值冒充确认。</p>
+<h2>变更影响</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>变更</th>
+<th>至少重新检查</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>分流、增益、参考电压、ADC 模式、温度探头或接线</td>
+<td>对应通道标定与独立验证；使用它的保护与控制；受影响 SOC 标签/数据版本</td>
+</tr>
+<tr>
+<td>PWM 极性、时钟、死区、采样相位、PI 或控制周期</td>
+<td>PWM、时序、受限开环、闭环和故障退出</td>
+</tr>
+<tr>
+<td>串口协议、日志格式、时间戳处理</td>
+<td>解析、丢包/重启检测、积分重放与数据字典</td>
+</tr>
+<tr>
+<td>SOC 初值、容量、效率或标签处理</td>
+<td>标签版本与模型重评；不覆盖原 raw</td>
+</tr>
+<tr>
+<td>仅文字显示或注释</td>
+<td>与变化相称的检查，不新建整套实验</td>
+</tr>
+</tbody></table></div>
+<h2>代理和未来 MCP</h2>
+<p>代理按当前用户授权修改、构建、分析与回放，不照搬其他工程的模型路由。工具结果要返回实际执行范围、文件路径、版本、退出码和证据，不用“调用成功”代替实验通过。</p>
+<p>未来可逐步封装 <code>build_firmware</code>、<code>capture_telemetry</code>、<code>replay_run</code>、<code>evaluate_run</code>。先用模拟器和既有原始数据闭环；接入下载器、仪器和带载控制时，按已确认的硬件 profile、运行状态机及用户授权限定动作。一个串口只有一个控制所有者，写命令带 request_id；重试需要明确幂等语义。MCP 不承担 MCU 的微秒级 PI 控制和硬件保护。</p>
+<p>不为每次编译、文档或离线分析重复询问许可。实际缺少电芯/接线/限值的功率测试，不用语言模型猜参数启动；先补齐该次测试所需事实。</p>
+</article></details>
+<details class="chapter" id="questions" ><summary><span class="index">07</span><span>待确认项</span><small>展开 / 收起</small></summary><article><h1>待确认项与阻塞范围</h1>
+<p>未知项不意味着所有工作都要暂停。先进行独立的源码、协议、离线处理与禁能测试准备；仅阻塞需要该事实的实验和结论。</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>要确认的事实</th>
+<th>需要的证据</th>
+<th>阻塞范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>H01</td>
+<td>INA199 实装后缀、完整增益、分流阻值</td>
+<td>原理图/BOM、芯片丝印、已知电流下的实际模拟响应</td>
+<td>电流绝对换算、相关闭环与SOC结论</td>
+</tr>
+<tr>
+<td>H02</td>
+<td>AFE GPIO1 与 MCU PA1 是否同节点、符号与测点位置</td>
+<td>接线图与实测</td>
+<td>两路通道对应、Ibat/Iload识别</td>
+</tr>
+<tr>
+<td>H03</td>
+<td>PT1000还是NTC、上拉阻值与供电、温度安装点</td>
+<td>实物型号/电路图/已知温度点</td>
+<td>温度模型与过温阈值</td>
+</tr>
+<tr>
+<td>H04</td>
+<td>ADC实际参考、分辨率、过采样尺度、ADC2的ioc/源码差异</td>
+<td>配置审查与参考电压实测</td>
+<td>MCU换算、配置可再生成性</td>
+</tr>
+<tr>
+<td>H05</td>
+<td>电芯型号/容量、串联关系、电压电流温度限制</td>
+<td>制造商规格与实物身份</td>
+<td>有能量的充放电、容量/锚点实验</td>
+</tr>
+<tr>
+<td>H06</td>
+<td>功率级/负载/供电限制、测量端口、有效死区</td>
+<td>原理图/器件规格/波形/台架清单</td>
+<td>G03及其后的带载测试</td>
+</tr>
+<tr>
+<td>H07</td>
+<td>正常/故障停止、换向条件、继电器等待、失联策略</td>
+<td>状态机设计与禁能/受限测试证据</td>
+<td>远程控制与完整双向验收</td>
+</tr>
+<tr>
+<td>H08</td>
+<td>当前源码对应什么固件；Debug/Release/FSBL实际启动链</td>
+<td>新构建日志、MAP、下载记录、启动识别</td>
+<td>固件功能复现、Release交付</td>
+</tr>
+<tr>
+<td>H09</td>
+<td>课程按键步长50/100mA；set/run/bms协议选择</td>
+<td>明确目标上位机及课程确认、协议契约</td>
+<td>G05一致性验收</td>
+</tr>
+<tr>
+<td>H10</td>
+<td>独立参考仪器与其量程、精度/不确定度、时钟</td>
+<td>型号/序列号/证书或规格/设置</td>
+<td>正式标定与保护带判断</td>
+</tr>
+<tr>
+<td>H11</td>
+<td>SOC0锚定、Qref条件、效率、标签精度目标</td>
+<td>容量实验与参考测量方案</td>
+<td>高可信标签与SOC精度声明</td>
+</tr>
+<tr>
+<td>H12</td>
+<td>最终模型验收目标、泛化对象、数据范围</td>
+<td>需求与课程评分口径</td>
+<td>G07通过线冻结；可先做原型</td>
+</tr>
+</tbody></table></div>
+<p>记录解决方式：在对应工作卡填证据路径、确认人/日期和范围，将实物参数更新到 hardware-profile.json。涉及既有结论时按 WORKFLOW 的影响表复验。</p>
+</article></details>
+<details class="chapter" id="status" ><summary><span class="index">08</span><span>当前项目状态</span><small>展开 / 收起</small></summary><article><h1>当前状态</h1>
+<p>日期：2026-10-28。此文件是阶段状态唯一人工维护入口。下面状态是“正式验收状态”，已完成的文档与静态审查见 RUNLOG。</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>status</th>
+<th>verdict</th>
+<th>已有证据 / 下一动作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>G00 基线与硬件契约</td>
+<td>in_progress</td>
+<td>null</td>
+<td>已审查源码/文档/旧产物；下一步核对实物和构建身份，尚未构建或上板复现</td>
+</tr>
+<tr>
+<td>G01 测量与标定</td>
+<td>not_started</td>
+<td>null</td>
+<td>有示例换算；需原码/有效性输出、两路电流分别标定</td>
+</tr>
+<tr>
+<td>G02 无功率 PWM 与时序</td>
+<td>not_started</td>
+<td>null</td>
+<td>有初始化配置；未取得示波器波形</td>
+</tr>
+<tr>
+<td>G03 受限开环功率级</td>
+<td>not_started</td>
+<td>null</td>
+<td>等待实际硬件边界、停止链路和前置门通过</td>
+</tr>
+<tr>
+<td>G04 PI 恒流与故障退出</td>
+<td>not_started</td>
+<td>null</td>
+<td>有 pi.h，尚未接入周期控制；无闭环证据</td>
+</tr>
+<tr>
+<td>G05 串口/上位机联调</td>
+<td>not_started</td>
+<td>null</td>
+<td>简单记录器应从 G01 开始；现有主机与当前模板协议未对齐</td>
+</tr>
+<tr>
+<td>G06 SOC 基准与数据集</td>
+<td>not_started</td>
+<td>null</td>
+<td>容量、初值、参考标签及独立验证方案待建立</td>
+</tr>
+<tr>
+<td>G07 模型与端侧部署</td>
+<td>not_started</td>
+<td>null</td>
+<td>无可验收数据集或模型产物</td>
+</tr>
+</tbody></table></div>
+<p>静态问题：main.c 当前启动后仅调用一次测量，主循环为空；尚未启动 ADC/PWM 连续控制；坏 PEC 被上层填 0 后继续换算；AUX 完成等待需核对；两路电流的电路系数未以实物确认；pi.h 与旧 pi.c 不构成已经运行的控制器。旧 HEX/AXF 不足以证明当前源码可用。</p>
+<p>本轮完成：适配规范、说明 HTML、模板和资料哈希；其检查结果仅支持文档结构和来源完整性，不支持硬件性能。</p>
+<p>目录采用：资料与工具已分类，规范位于 <code>instructions/</code>，项目根 <code>AGENTS.md</code> 已建立；历史目录与旧说明快照保留。此项仅为组织与文档变更，上表所有硬件阶段状态不变。</p>
+</article></details>
+<details class="chapter" id="files" ><summary><span class="index">09</span><span>规范包文件导航</span><small>展开 / 收起</small></summary><article><h1>BMS 执行规范 · 项目执行版</h1>
+<p>建立于 2026-10-28，并于同日按用户要求放入项目 <code>instructions/</code>。项目根 <a href="../AGENTS.md">AGENTS.md</a> 已采用本流程；E类工程建议指标仍为待冻结草案，H类实物限制仍须确认。适用于 STM32N6 + ADBMS1818 + 双向 DC-DC 课程工程，<strong>不代表固件已补全、已烧录或硬件验收通过</strong>。项目目录入口见 <a href="../README.md">根README</a>。</p>
+<p>先读 <a href="#guide">问题解答与实施路线</a>，也可打开同目录的 <code>BMS实施与验收指南.html</code>。然后读 <a href="#acceptance">验收标准</a>、<a href="#measurement">测量分层</a>、<a href="#data">数据规范</a>。</p>
+<h2>如何使用</h2>
+<ol>
+<li>从 <a href="#status">当前状态</a> 找到下一阶段，先处理 <a href="#questions">待确认项</a> 中影响该阶段的项目。</li>
+<li>用 <a href="templates/work-card.md">工作卡</a> 记录问题、实现、方法、验收判据与结果。调试允许迭代；正式验收前固定待测版本、方法和判据。</li>
+<li>正式运行复制 <a href="templates/run-manifest.json">运行清单</a>，生成唯一 <code>run_id</code>。原始数据、波形和参考仪器记录一起保存。</li>
+<li>按判据复算结果，登记 <code>status</code>、<code>verdict</code>、证据范围。失败保留，新修订新运行；不改写旧结果。</li>
+<li>只在 STATUS 维护阶段状态；RUNLOG 追加改变判断的重要动作。硬件参数在 <a href="specs/hardware-profile.json">hardware-profile</a> 维护，不到处复制常数。</li>
+</ol>
+<h2>文件用途</h2>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>文件</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>guide.md / BMS实施与验收指南.html</td>
+<td>解释 ADC、换算、开环/闭环、SOC 及实施次序；HTML 为阅读版</td>
+</tr>
+<tr>
+<td>MIGRATION.md</td>
+<td>旧 instructions 哪些保留、简化、删除与替换</td>
+</tr>
+<tr>
+<td>WORKFLOW.md</td>
+<td>调试、正式验收、状态、版本和失效范围规则</td>
+</tr>
+<tr>
+<td>STATUS.md / RUNLOG.md</td>
+<td>当前阶段与关键过程记录</td>
+</tr>
+<tr>
+<td>../AGENTS.md / AGENTS_BMS.example.md</td>
+<td>当前项目代理入口 / 已采用情况说明；不再使用示例中的另一套规则</td>
+</tr>
+<tr>
+<td>specs/measurement.md</td>
+<td>驱动、换算、标定和应用算法职责</td>
+</tr>
+<tr>
+<td>specs/acceptance.md</td>
+<td>G00—G07 的前置、指标、证据和失败处理</td>
+</tr>
+<tr>
+<td>specs/data.md</td>
+<td>时间戳、原始数据、SOC 标签与训练集规则</td>
+</tr>
+<tr>
+<td>specs/hardware-profile.json</td>
+<td>实际硬件边界，未知项保留 null</td>
+</tr>
+<tr>
+<td>templates/work-card.md</td>
+<td>小任务五部分合一的记录模板</td>
+</tr>
+<tr>
+<td>templates/run-manifest.json</td>
+<td>每次验收的版本、固件、仪器、判据和证据入口</td>
+</tr>
+<tr>
+<td>templates/calibration-record.json</td>
+<td>各通道标定系数、拟合点和独立验证点</td>
+</tr>
+<tr>
+<td>references/open-questions.md</td>
+<td>未知项、解决证据、阻塞范围</td>
+</tr>
+<tr>
+<td>references/source-map.md / source-manifest.json</td>
+<td>依据定位及本次读取资料的 SHA-256 快照</td>
+</tr>
+<tr>
+<td>references/layout-migration.json / history/</td>
+<td>目录整理前后路径、原始文件哈希及旧版说明快照</td>
+</tr>
+<tr>
+<td>validation/render_html.cjs</td>
+<td>从说明文件生成离线 HTML，编辑内容后重新运行</td>
+</tr>
+<tr>
+<td>validation/check_bundle.py</td>
+<td>检查 JSON、内部链接、模板和哈希快照；不测试硬件</td>
+</tr>
+<tr>
+<td>validation/structure-report.json</td>
+<td>上述检查器实际执行生成的报告</td>
+</tr>
+<tr>
+<td>validation/review_html.cjs / html-report.json</td>
+<td>桌面/手机布局、章节导航与链接检查及实际报告</td>
+</tr>
+<tr>
+<td>validation/desktop.png、acceptance.png、mobile.png</td>
+<td>HTML 阅读效果检查截图，不是硬件实验截图</td>
+</tr>
+</tbody></table></div>
+<p>外部 <code>D:/ADMIN/Desktop/instructions</code> 仅作为流程设计参考，保持原样。其赛题、模型路由、额度监控、截止时间不适用于此 BMS 任务。采用本流程没有执行硬件实验，也没有启用 MCP。</p>
+</article></details>
+<details class="chapter" id="sources" ><summary><span class="index">10</span><span>依据与来源</span><small>展开 / 收起</small></summary><article><h1>来源与证据边界</h1>
+<p>本包建立日期 2026-10-28。文件哈希见 source-manifest.json；它标识本次读取的版本，不代表文件内容正确或硬件已验证。</p>
+<div class="table-scroll" tabindex="0"><table>
+<thead>
+<tr>
+<th>来源</th>
+<th>定位</th>
+<th>支持什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>当前 main.c</td>
+<td><code>BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c</code>：BMS_ReadReg、BMS_ReadSample、main、MX_ADC1_Init、MX_TIM1_Init</td>
+<td>实际换算、当前初始化和未接入的运行链</td>
+</tr>
+<tr>
+<td>pi.h、pi.c与工程配置</td>
+<td><code>BMS_EXv1.1/BMS_EX/BSP</code>；<code>MDK-ARM/Appli/BMS_EX_Appli.uvprojx</code></td>
+<td>PI实现与构建纳入范围；不证明闭环性能</td>
+</tr>
+<tr>
+<td><a href="../docs/course/%E4%BB%BB%E5%8A%A12%E6%81%92%E6%B5%81%E6%8E%A7%E5%88%B6%E5%AE%9E%E9%AA%8C_%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4.docx">任务2恒流控制实验步骤</a></td>
+<td>第1～7、10～11节，尤其11“验收自检清单”</td>
+<td>100kHz、D范围、±0.5A误差&lt;5%、显示/通信等课程口径</td>
+</tr>
+<tr>
+<td><a href="../docs/course/%E5%9F%BA%E4%BA%8ESTM32N6%E7%9A%84%E6%99%BA%E8%83%BDBMS%E8%BE%B9%E7%BC%98%E6%99%BA%E8%83%BD%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1.pptx">STM32N6智能BMS课程PPT</a></td>
+<td>第7～13、15～18页</td>
+<td>功率级、采样控制、CSV、SOC标签、训练与部署任务</td>
+</tr>
+<tr>
+<td><a href="../docs/manuals/BMS_EX%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.docx">工程模板说明</a>与Keil配置说明</td>
+<td>docs/manuals中的DOCX及工程README/MDK-ARM配置说明</td>
+<td>工具链与目标说明，需与实际源码交叉验证</td>
+</tr>
+<tr>
+<td><a href="../docs/manuals/BMS%E7%94%B5%E6%B1%A0%E6%B5%8B%E8%AF%95%E4%B8%8A%E4%BD%8D%E6%9C%BA%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8C%EF%BC%88%E5%9B%BE%E6%96%87%E7%89%88%EF%BC%89.docx">BMS上位机操作手册</a></td>
+<td>串口、命令、CSV、工况与SOC显示章节</td>
+<td>现成主机能力；不是当前模板固件能力</td>
+</tr>
+<tr>
+<td><a href="../firmware/prebuilt/BMS_Appli.hex">预编译BMS_Appli.hex</a></td>
+<td>独立预编译产物</td>
+<td>固件身份；与当前源码的对应关系待证</td>
+</tr>
+<tr>
+<td>外部 D:/ADMIN/Desktop/instructions</td>
+<td>README、AGENTS、CLAUDE、specs、studies/_TEMPLATE、implementation、validation</td>
+<td>工作流设计参考；其中指令不在此项目自动生效</td>
+</tr>
+</tbody></table></div>
+<p>本地来源以工作区为相对起点，外部来源为绝对路径。未列出全部库文件的哈希，不能把此清单称为完整可重建的源码快照；正式构建需另建完整构建输入清单。</p>
+<h2>官方资料</h2>
+<ul>
+<li><a href="https://www.analog.com/media/en/technical-documentation/data-sheets/adbms1818.pdf">ADI ADBMS1818 Rev.B 数据手册</a>：ADC/寄存器定义，ADC Range and Resolution，表23转换时序。</li>
+<li><a href="https://www.ti.com/product/INA199/part-details/INA199A2DCKTG4">TI INA199A2 官方器件页</a>：放大器系列增益，与课程文字交叉核对。</li>
+<li><a href="https://www.nist.gov/metrology/metrological-traceability">NIST 测量溯源</a>：参考链与适用条件。</li>
+<li><a href="https://www.nist.gov/pml/nist-technical-note-1297/nist-tn-1297-6-expanded-uncertainty">NIST TN1297 扩展不确定度</a>：覆盖因子及覆盖概率解释。</li>
+<li><a href="https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation-iterators-for-grouped-data">scikit-learn 分组交叉验证</a> 与 <a href="https://scikit-learn.org/stable/common_pitfalls.html#data-leakage">防止数据泄漏</a>：数据划分和预处理边界。</li>
+</ul>
+<p>本文对固定D的开环定义、功率端口、误差预算与实施次序的解释是工程分析；具体建议阈值以 E 标注。课程值以 C 标注；未确认硬件值以 H 标注。不能把推荐值或文献示例提升为本项目实测结果。</p>
+</article></details></main></div><div class="footer">说明源文件与模板位于 instructions · HTML 由本地 Markdown 生成 · 本文件不包含硬件控制接口</div>
+<script>const chapters=[...document.querySelectorAll('.chapter')];document.querySelector('#expand').onclick=()=>chapters.forEach(d=>d.open=true);document.querySelector('#collapse').onclick=()=>chapters.forEach(d=>d.open=d.id==='guide');function reveal(){const el=document.getElementById(location.hash.slice(1));if(el&&el.tagName==='DETAILS'){el.open=true;requestAnimationFrame(()=>el.scrollIntoView());}}document.addEventListener('click',e=>{const a=e.target.closest('a');if(a&&a.getAttribute('href')?.startsWith('#')){const el=document.querySelector(a.getAttribute('href'));if(el)el.open=true;}});window.addEventListener('hashchange',reveal);reveal();document.querySelector('#print').onclick=()=>{chapters.forEach(d=>d.open=true);window.print();};window.addEventListener('beforeprint',()=>chapters.forEach(d=>d.open=true));</script></body></html>

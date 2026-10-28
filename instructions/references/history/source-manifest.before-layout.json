@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "captured_at_utc": "2026-10-28T10:33:05.341030+00:00",
+  "scope": "Selected consulted inputs; not a complete build source snapshot.",
+  "files": [
+    {
+      "path": "D:/ADMIN/Desktop/WEIJI/综合实验/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+      "bytes": 1247030,
+      "sha256": "72833f0c35c861dd5d80618f4f3b6780ac4e033f694400756aac3d53da731449"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/WEIJI/综合实验/任务2恒流控制实验_实验步骤.docx",
+      "bytes": 1316254,
+      "sha256": "5f8b027080aa93b1905be925cbd0828aafd45f769110e780513fd4c380ea4a72"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/WEIJI/综合实验/BMS_EX工程模板使用说明.docx",
+      "bytes": 54545,
+      "sha256": "ebb19c3b99fe483176c5c4537f169c0684df2d2c39712d5beb97d73dd01de162"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/WEIJI/综合实验/BMS电池测试上位机操作手册（图文版）.docx",
+      "bytes": 979497,
+      "sha256": "24e4cd218052f920c7a70f49b4afe0c7334034addae7faaecfff04d485e8923a"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/WEIJI/综合实验/BMS_Appli.hex",
+      "bytes": 292771,
+      "sha256": "dd44fae11ed542ad6bcee45b35a13e93bd6632481b7d29662afda8ac7856be7f"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/WEIJI/综合实验/BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c",
+      "bytes": 40935,
+      "sha256": "4e02037224e8dc09a55f6b2a41ef9ef3d32dbe604c5084cbfe780e88b6b3609d"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/WEIJI/综合实验/BMS_EXv1.1/BMS_EX/BSP/pi.h",
+      "bytes": 1633,
+      "sha256": "9f952c3526907de06c98712625b25d225a0fe1f0989d257ebd35921f318db0de"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/WEIJI/综合实验/BMS_EXv1.1/BMS_EX/BSP/pi.c",
+      "bytes": 521,
+      "sha256": "fb4867d00737f2fdb908ab039b676afc2329715726b93ecfba27b0189932e761"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/WEIJI/综合实验/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx",
+      "bytes": 47513,
+      "sha256": "45296674d1090937c54ad5ede3a303b27613310b04acfd9ddf88918208dbc4cd"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/WEIJI/综合实验/BMS_EXv1.1/BMS_EX/README.md",
+      "bytes": 14921,
+      "sha256": "5b18e9e49e2c1d9a69e76ec304d441ca28662894e8e5145553a4f40168cda465"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/WEIJI/综合实验/BMS_EXv1.1/BMS_EX/MDK-ARM/Keil_Debug_Release_配置说明.md",
+      "bytes": 12187,
+      "sha256": "4bdedab648bd7e3b0811fbe2d25141356ae35c83704d4242daead9ee0ef39549"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/WEIJI/综合实验/BMS_EXv1.1/BMS_EX/BMS_EX.ioc",
+      "bytes": 59469,
+      "sha256": "b560a9b83b446455c3b0a9c0b981a5e394b5463174800c1683acc41a0932536a"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/README.md",
+      "bytes": 5081,
+      "sha256": "91f8c4a63ebf43a791fb99401f2596f3fd9c7f85b0c000c499a5e159af6c2ce3"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/AGENTS.md",
+      "bytes": 982,
+      "sha256": "a1ada4d00d8795ee72c52269b083d64a0f6fb9f8e817df7e4c741057bd7ab194"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/CLAUDE.md",
+      "bytes": 3446,
+      "sha256": "a96b33ff83dfd49134048254ef0471d267554c4dd3caa222e1313cd8a87adbe4"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/STATUS.md",
+      "bytes": 2639,
+      "sha256": "97cac2899298ee286f3ba8340648ebd6ff68dd00cd231e8684834ea0e7b54ebd"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/specs/agent-policy.md",
+      "bytes": 9982,
+      "sha256": "70b05e11691d85981ad9f3e9dff2b991fd279be2e2a0aa47fd2f713e59a1f6d4"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/specs/data.md",
+      "bytes": 5850,
+      "sha256": "2ae5eacc6bbcb14c906d6035f6b675579aec24138687dcf7a4c43506f1a26bad"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/specs/methods.md",
+      "bytes": 7186,
+      "sha256": "53c56a7ae02653ed9ee420574d2329d26a5e5f34bcb07ebb343a7c0ce9aa5f0a"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/specs/claims.md",
+      "bytes": 3064,
+      "sha256": "7ec171b3a00a3c09dc8b6d39f580d682872bd03650f7cee092c339682b655c29"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/specs/roadmap.md",
+      "bytes": 5235,
+      "sha256": "f85ab4d7e92edb2275c07d8e813647a1ff0601b8547998b1bd64c6dd9b79f9e2"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/implementation/00-work-breakdown.md",
+      "bytes": 6975,
+      "sha256": "95e4aa15cd3bae51f4a4c2398027371afe78442e3cfa9e87bafdf8e422c5fad8"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/implementation/05-protocol-adapter.md",
+      "bytes": 19369,
+      "sha256": "44a64f9de8924d6e2a1a860ab0f0d50292e4eba66e6fb0b955495a52cb795d74"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/implementation/06-validation-delivery.md",
+      "bytes": 12538,
+      "sha256": "84825dcd8ca4de31f225e7ed59e6dc9180941e8c1be56ab66c48ae1fe3846b24"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/prompts/03-audit.md",
+      "bytes": 904,
+      "sha256": "e3ee130c6e3443269e592c5b91eb2771a0b932b3d4209ebdb54988a40865d517"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/references/open-questions.md",
+      "bytes": 3023,
+      "sha256": "6e5aca77b47786397120825af7a811b2511a80c0baf8589e4d96687c537eac95"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/validation/structure-report.json",
+      "bytes": 2271,
+      "sha256": "5e8aa5e85428bb81679b7be786286d19914cebfcd85baedc440560ceb31880ff"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/validation/review-notes.md",
+      "bytes": 2125,
+      "sha256": "0daee5b86f25b1b22a139cf08e92755b7cfb400ab5e296b75523430556aec358"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/studies/_TEMPLATE/decision-rule.md",
+      "bytes": 795,
+      "sha256": "3772a3331d28953f7a3fcc68812efb4383c01d9a70948ed9d11f6df6a26028e4"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/studies/_TEMPLATE/design.md",
+      "bytes": 340,
+      "sha256": "96464951724a337fd01efbe8192267e9067c6f0aa5d2ccc4f55de818350ad246"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/studies/_TEMPLATE/findings.md",
+      "bytes": 497,
+      "sha256": "4cb0d5c017963569937ffc1fb56de3cb347cf03ae196cefcb0a43c2ab91d4cc6"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/studies/_TEMPLATE/plan.md",
+      "bytes": 1019,
+      "sha256": "95d6af71e24b73406d6e8ec87aabcdcfaf84477538911ff8c36b18fd0a58b856"
+    },
+    {
+      "path": "D:/ADMIN/Desktop/instructions/studies/_TEMPLATE/question.md",
+      "bytes": 399,
+      "sha256": "4412437eae68aa6ef55499afaae706fc342faeec221c800517ceda381b0ddbd4"
+    }
+  ]
+}

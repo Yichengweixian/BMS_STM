@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BMS 系统原理与开发路线</title>
+<style>
+:root{color-scheme:light;--ink:#172b3b;--muted:#536878;--blue:#165d9b;--teal:#087e80;--orange:#b45713;--paper:#fff;--line:#d8e2e9;--bg:#edf2f6}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Microsoft YaHei",sans-serif;font-size:16px;line-height:1.85}a{color:var(--blue);text-underline-offset:3px}button,input,select{font:inherit}button,select{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #f0b34f;outline-offset:3px}button{border:1px solid #a9becd;background:#fff;color:var(--ink);border-radius:5px;padding:7px 12px}button:hover{background:#edf4fa}.layout{max-width:1510px;margin:auto;display:grid;grid-template-columns:245px minmax(0,1fr);align-items:start}.toc{position:sticky;top:0;max-height:100vh;overflow:auto;padding:30px 22px;font-size:14px}.toc strong{display:block;font-size:17px;margin-bottom:12px}.toc a{display:block;padding:6px 0;text-decoration:none;color:#3b5467}.toc a:hover{color:#00579c}.toc .small{margin-top:18px}main{min-width:0;background:var(--paper);padding:44px 58px 70px}.eyebrow{font-size:13px;letter-spacing:1.5px;color:var(--teal);font-weight:600}h1{font-size:38px;line-height:1.3;margin:14px 0 20px;letter-spacing:-.5px}h2{font-size:26px;line-height:1.4;margin:0 0 20px}h3{font-size:20px;margin:26px 0 10px}p{margin:12px 0}.lead{font-size:19px;line-height:1.9}.small,figcaption{font-size:14px;color:var(--muted)}section{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}.num{font-size:14px;display:block;color:var(--teal);letter-spacing:1px;margin-bottom:7px}.important{border-left:3px solid var(--teal);padding:6px 0 6px 18px;margin:22px 0}.warn{border-left-color:var(--orange)}.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}.flow{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap;margin:18px 0}.node{padding:12px 15px;border:1px solid var(--line);border-radius:4px;flex:1;min-width:120px;background:#f6f9fc}.node b{display:block;color:var(--blue)}.arrow{align-self:center;color:var(--teal);font-size:22px}.route{margin:18px 0;padding:16px 18px;background:#f2f7fa;border-radius:4px}.route h3{margin:0 0 8px}.route .flow{margin-bottom:0}.equation{font-family:"Cambria Math",Consolas,monospace;font-size:17px;background:#f2f7fa;padding:13px 18px;overflow-wrap:anywhere;margin:14px 0;line-height:1.9}table{border-collapse:collapse;width:100%;margin:16px 0;font-size:15px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:12px 11px;vertical-align:top}th{background:#edf3f7;font-weight:600}td:first-child{font-weight:500}thead{vertical-align:bottom}.table-wrap{overflow-x:auto}code{font:14px/1.7 Consolas,monospace;overflow-wrap:anywhere;color:#215673}pre{background:#162b3c;color:#edf5fa;padding:20px;overflow:auto;border-radius:5px;line-height:1.65;font-size:14px}pre code{color:inherit;white-space:pre;overflow-wrap:normal}.control{display:grid;grid-template-columns:1fr 1fr;gap:14px 26px;margin:18px 0}.control label{display:flex;flex-direction:column;gap:5px;font-size:15px}.control label.check{flex-direction:row;align-items:center}.control input[type=range]{width:100%;accent-color:var(--blue);min-height:30px}.control select,.control input[type=number]{width:100%;padding:6px 8px;border:1px solid #aabecb;border-radius:4px;background:white;color:var(--ink)}.result{padding:12px 16px;background:#edf6f5;border-radius:4px;font-variant-numeric:tabular-nums}.result strong{color:#086b6e}.chart-wrap{position:relative;margin:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0}.chart{display:block;width:100%;height:300px}.wave{width:100%;height:210px;display:block}.legend{display:flex;gap:20px;flex-wrap:wrap;font-size:14px}.swatch{display:inline-block;width:26px;height:3px;vertical-align:middle;margin-right:7px;background:var(--blue)}.swatch.ref{background:var(--orange)}.swatch.duty{background:var(--teal)}.legend .dash{border-top:2px dashed var(--orange);height:0;background:none}figure{margin:20px 0}.circuit{width:100%;height:auto;min-height:220px}.list-tight li{margin:7px 0}details{margin:15px 0;border-top:1px solid var(--line);padding:12px 0}summary{cursor:pointer;font-weight:600;color:var(--blue)}.foot{margin-top:40px;color:var(--muted);font-size:14px}.sources li{padding:7px 0;overflow-wrap:anywhere}.tag{font-size:12px;color:var(--teal);border:1px solid #b4d7d6;border-radius:3px;padding:1px 5px;white-space:nowrap}.question{font-size:18px;font-weight:600;color:#223e54}.step{display:grid;grid-template-columns:45px 1fr;gap:12px;margin:20px 0}.step>span{font-size:24px;color:var(--teal)}.step h3{margin:0}.path{font-size:13px;overflow-wrap:anywhere}.toc-mobile{display:none}svg text{font-family:"Segoe UI","Microsoft YaHei",sans-serif}
+@media(max-width:1100px){.layout{grid-template-columns:200px minmax(0,1fr)}.toc{padding:24px 15px}main{padding:34px 32px}.two{grid-template-columns:1fr}}
+@media(max-width:760px){.layout{display:block}.toc{display:none}.toc-mobile{display:block}main{padding:26px 18px 40px}h1{font-size:30px}h2{font-size:23px}.lead{font-size:17px}.control{grid-template-columns:1fr}table{font-size:14px}th,td{padding:10px 7px}.flow{flex-direction:column}.arrow{transform:rotate(90deg)}.node{min-width:0}.chart{height:280px}.circuit{min-height:0}section{margin-top:35px;padding-top:26px}.equation{font-size:15px}}
+@media print{body{background:#fff}.layout{display:block}.toc,.toc-mobile,button{display:none}main{padding:0}.control{break-inside:avoid}section{break-before:auto}table,figure,.equation,.route{break-inside:avoid}a{color:inherit}h2,h3{break-after:avoid}pre{white-space:pre-wrap}body{font-size:11pt}.chart{height:230px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.circuit-frame{overflow-x:auto}.circuit-frame .circuit{min-width:620px}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="toc" aria-label="阅读目录">
+<strong>BMS 原理与开发</strong>
+<a href="#start">先建立整体认识</a><a href="#layers">01　系统分成哪些层</a><a href="#afe">02　ADBMS1818 与两套 ADC</a><a href="#measure">03　电压、电流、温度怎么算</a><a href="#mcu">04　主控里的外设做什么</a><a href="#power">05　PWM 与 Buck/Boost</a><a href="#pi">06　PI/PID 算法详解</a><a href="#sim">07　动手调一个虚拟 PI</a><a href="#software">08　BSP、Keil、HEX 和 RAR</a><a href="#host">09　上位机与 VOFA+</a><a href="#tests">10　HPPC 与 DST</a><a href="#goal">11　项目目标与当前进度</a><a href="#mcp">12　Codex + MCP 开发闭环</a><a href="#next">13　接下来怎样推进</a><a href="#refs">来源与核对依据</a>
+<p class="small">2026-10-28<br>基于当前目录源码与课程材料<br>交互计算全部在本页运行</p>
+<a href="目录逐文件说明.html">打开逐文件清单 ↗</a>
+</nav>
+<main>
+<header id="start">
+<div class="eyebrow">STM32N6 · 电池监测 · 功率控制 · 边缘智能</div>
+<h1>BMS 系统原理与开发路线</h1>
+<p class="lead">你要理解的是一条完整的链路：<strong>把电池的物理状态变成数字 → 根据目标计算控制量 → 用功率电路改变电流 → 再测量、再修正。</strong>电脑上的开发软件和上位机分别负责生成程序、观察与安排实验。</p>
+<p>先把最容易混在一起的四个概念放到正确位置：<strong>ADBMS1818 自带 ADC；STM32 通过 SPI 读它的数字结果。STM32 自己还有另一套 ADC。HEX 是烧入板子的固件；上位机是运行在电脑上的 EXE。</strong></p>
+<div class="important">本页解释“目标系统应该怎样工作”，同时标明“目录里现在实现到哪里”。演示中的数值是教学模型或示例，不是实测结果，也不是可直接下发到电池板的控制参数。页面不会访问串口或启动硬件输出。</div>
+<details class="toc-mobile"><summary>阅读目录</summary><p><a href="#layers">系统层次</a> · <a href="#afe">ADBMS 与 ADC</a> · <a href="#measure">测量换算</a> · <a href="#mcu">主控外设</a> · <a href="#power">功率控制</a> · <a href="#pi">PI 算法</a> · <a href="#sim">交互演示</a> · <a href="#software">软件工具链</a> · <a href="#tests">HPPC/DST</a> · <a href="#mcp">MCP 开发闭环</a></p></details>
+</header>
+
+<section id="layers"><span class="num">01 / 全局地图</span><h2>系统分成哪些层</h2>
+<p>主控是整个系统的计算与调度中心，但测量和控制还需要传感器、信号调理、功率器件、驱动和通信。软件也不是只有一个 BSP。</p>
+<table><thead><tr><th>层次</th><th>这一层有什么</th><th>它解决什么问题</th></tr></thead><tbody>
+<tr><td>① 被测对象与能量通路</td><td>三节电池、电源、负载、电感、MOSFET、继电器</td><td>电池储能；电源、负载和功率级承担实际能量流动。</td></tr>
+<tr><td>② 传感与模拟前端</td><td>分流电阻、电流放大器、PT1000 分压电路、ADBMS1818</td><td>把电压、电流、温度变成可测的模拟电压，完成部分高精度转换。</td></tr>
+<tr><td>③ 主控与硬件外设</td><td>STM32 的 CPU、ADC、TIM、DMA、GPIO、SPI、I2C、USART</td><td>读数据、精确定时、产生 PWM、搬运数据和对外通信。</td></tr>
+<tr><td>④ 底层软件</td><td>CMSIS、HAL、BSP</td><td>把寄存器和器件操作包装成可调用函数。</td></tr>
+<tr><td>⑤ 板端应用与算法</td><td>采样调度、PI、充放电状态机、保护、命令解析、SOC 推理</td><td>决定何时采、怎样控制、能否启动、遇到异常如何停止。</td></tr>
+<tr><td>⑥ 电脑端工具</td><td>Keil、CubeProgrammer、上位机、训练脚本、未来的 MCP 服务</td><td>生成和下载固件，配置实验，保存与分析数据，辅助迭代开发。</td></tr>
+</tbody></table>
+<p><strong>CPU 执行算法，外设承担精确的硬件动作。</strong>例如 CPU 不需要不停翻转引脚来“手搓”100 kHz 方波；它配置好 TIM 后，定时器硬件持续输出 PWM。CPU 只需要按控制周期更新占空比。</p>
+<p>代码中的调用关系通常是：<code>应用 main/控制任务 → BSP 器件驱动 → HAL 外设接口 → 寄存器与硬件</code>。CMSIS 提供内核、寄存器、编译器适配等基础定义。这是帮助理解的层次，实际代码也允许应用直接调用 HAL。</p>
+</section>
+
+<section id="afe"><span class="num">02 / 谁在采样</span><h2>ADBMS1818 是什么，和 STM32 ADC 是什么关系</h2>
+<p><strong>ADBMS1818 是 ADI 的多节电池监测芯片，也是一种电池监测模拟前端。</strong>它能监测最多 18 节串联电池，内部含 3 个 ADC 转换单元、测量多路选择、结果寄存器、通信接口和被动均衡控制。18 路电芯输入不等于 18 个独立 ADC。它不是负责运行整个 BMS 应用的通用主控。<a href="#r-adi">[ADI]</a></p>
+<p>ADC 的意思是“模数转换器”：把某时刻的模拟电压转成一个数字码。ADC 不会天然知道这个电压代表“安培”还是“摄氏度”；物理意义来自前面的传感电路和后面的换算公式。</p>
+<div class="route"><h3>通路 A：通过 ADBMS1818 做电池监测</h3><div class="flow"><div class="node"><b>电芯端电压 / 传感电压</b>连续的模拟信号</div><span class="arrow">→</span><div class="node"><b>ADBMS1818 内部 ADC</b>完成模数转换</div><span class="arrow">→</span><div class="node"><b>芯片结果寄存器</b>保存数字码</div><span class="arrow">→</span><div class="node"><b>SPI5 → STM32</b>读字节、校验、换算</div></div></div>
+<div class="route"><h3>通路 B：通过 STM32 自己的 ADC 做快速电流反馈</h3><p class="small">实验目标，当前源码尚未接通这条闭环。</p><div class="flow"><div class="node"><b>电流检测输出电压</b>从模拟电路引出</div><span class="arrow">→</span><div class="node"><b>PA1 → ADC1</b>TIM1 触发转换</div><span class="arrow">→</span><div class="node"><b>ADC 完成中断 → PI</b>算电流与占空比</div><span class="arrow">→</span><div class="node"><b>TIM1 → 功率级</b>改变实际电流</div></div></div>
+<div class="important"><strong>STM32 不需要用自己的 ADC 再采一次 ADBMS 的结果。</strong>ADBMS 已经把模拟量数字化，主控通过 SPI 读数字。第二条通路测的是电流放大器输出的模拟电压，不是把 SPI 数据送入 ADC。</div>
+<p class="small">代码能确认两条通路都用于电流测量，但不能仅由代码确定它们是否接在完全相同的模拟节点、是否具有相同偏置与灵敏度；这要对照原理图和实测分别确认。</p>
+<h3>ADBMS1818 内部具体做了什么</h3>
+<ul class="list-tight"><li><strong>电芯测量输入：</strong>测相邻电芯抽头之间的电压，区分每一节电池。18 通道能力不代表这个项目装了 18 节电池；当前代码使用通道 1、7、13 对应三节电池。</li><li><strong>AUX 辅助测量：</strong>芯片的一些 GPIO 可作为模拟测量输入。当前代码把 GPIO1 用于电流检测电压，GPIO2/3/4 用于温度分压电压。这些是 <em>ADBMS 的 GPIO</em>，不是 STM32 的 PA1 等引脚。</li><li><strong>通信：</strong>器件支持 SPI 与 isoSPI 等连接方式；本项目源码使用 STM32 的 SPI5。isoSPI 服务隔离/级联等系统连接需求，不等于当前项目一定用了该连接方式。</li><li><strong>PEC 校验：</strong>读回报文附有包错误校验码，用来发现通信数据是否损坏；它不能代替传感器标定。</li><li><strong>被动均衡：</strong>控制某节电池通过放电电阻释放少量能量，让较高电压电芯向其他电芯靠近。它与用大功率 DC-DC 控制整组电池电流是两件事。</li></ul>
+<h3>软件怎样完成一次 AFE 采样</h3>
+<ol><li>唤醒器件并配置所需基准、通道与转换模式。</li><li>通过 SPI 发“开始电芯转换”或“开始辅助通道转换”的命令。</li><li>等待转换完成，最好按芯片规定轮询完成状态或使用与模式匹配的等待时间。</li><li>读结果寄存器，校验 PEC，按字节序组合数字码。</li><li>按标定系数换算成伏、安培、摄氏度，并传递有效性标志。</li></ol>
+<p class="small">当前代码已有这条采样流程，但只在启动时调用一次。后续仍要核对转换等待时间、错误状态传播和传感器标定。寄存器读取的先后与转换完成条件应以数据表为准，不能只依赖源码注释。</p>
+</section>
+
+<section id="measure"><span class="num">03 / 数字怎样变成物理量</span><h2>电压直接测，电流和温度通过电路转换后测</h2>
+<table><thead><tr><th>想知道的量</th><th>前端怎么产生可测电压</th><th>软件怎么还原</th></tr></thead><tbody><tr><td>电芯电压 V</td><td>电芯抽头接到电池监测输入</td><td>ADBMS 电压码 × 对应量程系数</td></tr><tr><td>电流 I</td><td>电流经过分流电阻产生压降，再放大并加零点偏置</td><td>去掉零点电压，再除以“增益 × 分流电阻”</td></tr><tr><td>温度 T</td><td>PT1000 电阻随温度变化；分压电路把阻值变化变成电压变化</td><td>先由分压反算电阻，再由传感器模型反算温度</td></tr></tbody></table>
+<h3>电压码：注意两种 ADC 的换算不同</h3>
+<div class="equation">本项目 ADBMS 读数：V = raw × 0.0001 V<br>示例：raw = 37,000 → V = 3.7000 V<br><br>本项目 MCU 12 位 ADC 示例：V ≈ code / 4095 × V<sub>REF</sub></div>
+<p>ADBMS 数据寄存器中每个结果按 16 位值读取，但数据表规定的 100 μV/码不等于“用 VREF2 除以 65535”。STM32 的 ADC 位数、参考电压和过采样又是另一套配置。这里用 <code>4095</code> 做工程换算示例；精确标定还应考虑量化定义、参考误差、偏置和增益误差。<a href="#r-adi">[ADI]</a></p>
+<h3>电流：零点偏置让正负方向都能测</h3>
+<div class="equation">V<sub>sense</sub> = V<sub>zero</sub> + G · R<sub>shunt</sub> · I<br>I = (V<sub>sense</sub> − V<sub>zero</sub>) / (G · R<sub>shunt</sub>)</div>
+<p>按课程约定，<strong>流向电池为正，即充电为正、放电为负</strong>。资料里的零点约为 0.9 V。若假设增益 G = 50、分流电阻 R = 0.015 Ω，则灵敏度是 0.75 V/A。测到 0.525 V 时，I = (0.525 − 0.9) / 0.75 = −0.5 A。这里“50 倍”只是按资料给出的假设计算。</p>
+<div class="important warn"><strong>这份资料有一个要先核实的型号问题：</strong>它把 INA199A2 写成 50 倍，但 TI 官方规定 INA199x1 为 50、x2 为 100、x3 为 200。若实际装的是 A2，且没有其他改变比例的电路，就不能直接套 0.75 V/A。最终系数应由实物型号、原理图和已知电流的实测标定确认。<a href="#r-ti-ina">[TI]</a></div>
+<h3>试着把 MCU ADC 码换成电流</h3>
+<p class="small">固定使用 VREF = 1.8 V、Rshunt = 15 mΩ 的教学假设。改变增益，观察同一个 ADC 码会对应怎样不同的电流。</p>
+<div class="control"><label for="adcCode">ADC 码 <output id="adcCodeOut">1194</output><input type="range" id="adcCode" min="0" max="4095" value="1194"></label><label for="adcGain">电流放大器增益<select id="adcGain"><option value="50">50 倍：讲义使用的假设</option><option value="100">100 倍：INA199x2 规格</option></select></label><label for="adcZero">零电流标定码<input id="adcZero" type="number" min="0" max="4095" value="2048"></label></div>
+<div id="adcResult" class="result" aria-live="polite"></div>
+<p>标定至少要确定<strong>零点、灵敏度和方向</strong>。零电流时采样得到零点；用可靠仪表测几组已知电流，拟合码值与电流的关系；分别验证充电和放电的符号。零点不应只凭理论永远写死为 2048。</p>
+<h3>温度：当前模板按 PT1000 换算</h3>
+<div class="equation">上拉电阻 R<sub>up</sub> 接 V<sub>exc</sub>，PT1000 接地：<br>R<sub>PT</sub> = R<sub>up</sub> · V / (V<sub>exc</sub> − V)<br>T ≈ (R<sub>PT</sub> / R<sub>0</sub> − 1) / α<br>模板参数：R<sub>up</sub> = 9.1 kΩ，V<sub>exc</sub> = 3.0 V，R<sub>0</sub> = 1000 Ω，α = 0.00385 /°C</div>
+<p>例如 V ≈ 0.3226 V，对应 R ≈ 1096.25 Ω，在线性近似下约为 25 °C。VREF2 在这里是分压的激励电压。这个线性式适合解释原理，准确范围需要按传感器规格和标定确定。开路、短路、PEC 失败应返回“无效/故障”，不能照常算出一个温度。</p>
+<p class="small">模板源码使用 PT1000；上位机手册有 NTC 字样。两种传感器的阻温模型不同，属于资料需核对的地方。不能因上位机有温度栏，就认为任一传感器都能使用同一公式。</p>
+</section>
+
+<section id="mcu"><span class="num">04 / 主控不是只有 CPU</span><h2>STM32 内部各个硬件模块做什么</h2>
+<table><thead><tr><th>模块</th><th>直观理解</th><th>在当前项目中的位置</th></tr></thead><tbody>
+<tr><td>CPU / Cortex-M55</td><td>执行 C 代码编译后的机器指令</td><td>算电流、执行 PI、处理模式和协议；后续可运行模型推理。</td></tr>
+<tr><td>ADC1 / ADC2</td><td>把引脚上的模拟电压转为数字</td><td>ADC1 已配 PA1 电流通道；ADC2 源码配置了电压通道。当前都尚未启动采样。</td></tr>
+<tr><td>TIM1</td><td>有专门比较和输出逻辑的硬件计数器</td><td>产生互补 PWM；更新事件可触发 ADC。调占空比主要改比较寄存器 CCR。</td></tr>
+<tr><td>GPIO</td><td>数字引脚输入/输出</td><td>读按键，开关继电器，控制 LED、SPI 片选。</td></tr>
+<tr><td>SPI5</td><td>主控提供时钟的同步数字通信总线</td><td>对 ADBMS 发命令、读测量寄存器。</td></tr>
+<tr><td>I2C4</td><td>使用 SCL/SDA 的地址式数字总线</td><td>给 OLED 发送显示命令和像素数据。</td></tr>
+<tr><td>USART1</td><td>按约定波特率收发字节</td><td>经 USB 转串口接口连接电脑；当前 115200、8N1。</td></tr>
+<tr><td>DMA</td><td>按配置自动搬运数据</td><td>目前用于 OLED 和串口发送，减少 CPU 逐字节搬运；不替你解释物理意义。</td></tr>
+<tr><td>NVIC / 中断</td><td>在硬件事件发生时让 CPU 转去处理</td><td>ADC 转换完成后可以及时运行 PI。优先级和最坏执行时间决定能否按时完成。</td></tr>
+<tr><td>SRAM、Cache、XSPI</td><td>运行数据、加速访问、连接外部存储</td><td>程序发布到外部 NOR；HyperRAM 提供扩展内存。DMA 与 Cache 一致性需正确处理。</td></tr>
+<tr><td>NPU</td><td>专门加速兼容的神经网络运算</td><td>是后续 SOC 模型部署的可用资源；有 NPU 不等于工程已经有 AI 模型。<a href="#r-st-chip">[ST]</a></td></tr>
+</tbody></table>
+<h3>快任务和慢任务要分开安排</h3>
+<div class="flow"><div class="node"><b>TIM1 更新事件</b>硬件触发</div><span class="arrow">→</span><div class="node"><b>ADC 转换完成</b>获得这次的新采样</div><span class="arrow">→</span><div class="node"><b>中断内换算与 PI</b>计算新的 D</div><span class="arrow">→</span><div class="node"><b>写 CCR 预装载</b>按定时器配置生效</div></div>
+<p>课程目标是 PWM 和控制更新都为 100 kHz，即一轮约 10 μs；实际是否达到，必须测执行时间和触发频率。按键约 10 ms 扫描一次，OLED 和遥测约 1 s 更新一次，放在慢任务里。<strong>串口打印、屏幕刷新、延时等待不能塞进这个快速 PI 回调。</strong></p>
+<p>当前代码为中心对齐计数、ARR = 2000、RCR = 1、TRGO = UPDATE。RCR 配置用于控制更新事件的重复节奏；真正的采样相位还取决于定时器启动、触发路径和转换延迟，要用波形核对，不能仅凭一个配置名就认定“采到了理想平均值”。</p>
+</section>
+
+<section id="power"><span class="num">05 / 数字指令怎样改变能量流</span><h2>TIM 输出 PWM，功率级把它变成电流控制</h2>
+<p><strong>PWM 是“周期固定、导通时间可变”的开关信号。</strong>TIM 引脚输出的是逻辑控制信号。门极驱动器把它转换成适合驱动 MOSFET 的电压和电流；MOSFET 开关、电感储能及电容滤波共同完成能量变换。</p>
+<div class="flow"><div class="node"><b>TIM1 / PWM</b>决定开关时刻</div><span class="arrow">→</span><div class="node"><b>门极驱动器</b>驱动上下管栅极</div><span class="arrow">→</span><div class="node"><b>MOSFET + L + C</b>传递和调节能量</div><span class="arrow">→</span><div class="node"><b>电池 / 母线</b>电流与功率发生变化</div></div>
+<figure class="circuit-frame"><svg class="circuit" viewBox="0 0 840 300" role="img" aria-label="双向同步半桥功能图：母线上管下管形成开关节点，经电感接电池，正电流方向指向电池">
+<g fill="none" stroke="#4b677b" stroke-width="2.5"><path d="M130 40H240V72M240 122V168H385M240 168V205M240 255V275H700M130 275H240M585 168H700V210M700 250V275"/><rect x="215" y="72" width="50" height="50" rx="3"/><rect x="215" y="205" width="50" height="50" rx="3"/><path d="M385 168c0-35 30-35 30 0c0-35 30-35 30 0c0-35 30-35 30 0c0-35 30-35 30 0H585"/><path d="M680 211H720M687 224H713M680 237H720M700 237V250"/><path d="M552 140H635M625 134L635 140L625 146" stroke="#087e80"/></g>
+<g fill="#203c50" font-size="18"><text x="34" y="45">母线 Vbus</text><text x="30" y="280">公共参考地</text><text x="280" y="104">上管 QH</text><text x="280" y="237">下管 QL</text><text x="166" y="164">SW</text><text x="426" y="133">电感 L</text><text x="548" y="118">i &gt; 0 充电</text><text x="727" y="222">电池</text><text x="727" y="246">Vbat</text><text x="20" y="116">电源或负载</text></g>
+</svg><figcaption>功能示意，省略电容、检测与保护电路，不是接线图。反向放电时，母线侧必须有能接收能量的负载或装置。</figcaption></figure>
+<h3>同一组开关，两个能量方向</h3>
+<table><thead><tr><th>模式</th><th>能量方向</th><th>理想稳态关系与含义</th></tr></thead><tbody><tr><td>充电 Buck</td><td>较高电压母线 → 电池</td><td>Vbat ≈ D · Vbus，上管导通比例决定开关节点的平均电压。</td></tr><tr><td>放电 Boost</td><td>电池 → 较高电压母线</td><td>Vbus ≈ Vbat / D；此处仍用上管占空比 D。</td></tr></tbody></table>
+<p><strong>本页始终定义 D = 上管有效导通占空比。</strong>教材常见 Boost 公式 Vout = Vin / (1 − Dlow)，其中 Dlow 指下管占空比。在理想互补条件下 Dlow ≈ 1 − D，所以两式一致。混淆这个 D，会把调节方向判断反。以上关系是理想、连续电流、忽略损耗的近似。<a href="#r-ti-power">[TI]</a></p>
+<h3>为什么改变 D 会改变电流</h3>
+<div class="equation">开关节点平均电压：V̄<sub>SW</sub> ≈ D · V<sub>bus</sub><br>简化平均模型：L · di/dt = D · V<sub>bus</sub> − V<sub>bat</sub> − R · i</div>
+<p>电池有自己的端电压，不能像一个纯电阻一样随意把它的电压“设成任何值”。控制器改变 D，会改变电感两端的平均压差，进而改变电流增长或减小的速度。电流建立后，端口功率约为 P = V × I。电池电压、损耗和负载都在影响实际结果，因此<strong>固定占空比不能保证固定电流</strong>。</p>
+<p>例如母线 16 V、电池 12 V，忽略损耗时平衡点约为 D = 0.75。在 i 接近 0 时，把 D 略微增大，电流开始向充电方向增长；略微减小，电流朝放电方向变化。电流不会瞬间翻转，实际变化还受 L、R、初始电流和外部电路约束。</p>
+<h3>改变占空比，观察两路互补信号</h3>
+<div class="control"><label for="duty">上管占空比 D：<output id="dutyOut">75%</output><input id="duty" type="range" min="40" max="90" value="75"></label></div>
+<svg id="pwmChart" class="wave" role="img" aria-label="随占空比调整的上管与下管逻辑PWM示意"></svg>
+<div id="dutyResult" class="result" aria-live="polite"></div>
+<p class="small">波形按占空比解释互补关系，省略死区；不表示当前板子已经输出这些信号。工程目标 100 kHz 对应周期 10 μs。中心对齐时 TIM 时钟、PSC 和 ARR 共同决定频率；资料按 TIM 时钟 400 MHz、PSC=0、ARR=2000 得到约 100 kHz，真实时钟仍需核验。</p>
+<p>上下管不能同时导通。互补 PWM 通常配合死区避免直通；资料称 EG3112 驱动具有死区，当前 TIM 配置 DeadTime=0。因此需确认实际驱动输出和关断时序，不能把“逻辑互补”直接等同于功率级已经验证。<a href="#r-st-timer">[ST]</a></p>
+</section>
+
+<section id="pi"><span class="num">06 / 控制理论落到代码</span><h2>PI 就是自动控制课程里的 PI 控制器</h2>
+<p>是的，它与 P、PD、PID 属于同一套反馈控制思想。这里控制的对象是电池电流，控制器输出是 PWM 占空比。把“电流误差”转换成“占空比修正”的规则，就叫控制算法。</p>
+<div class="flow"><div class="node"><b>给定 iref</b>例如 +0.50 A</div><span class="arrow">→</span><div class="node"><b>误差 e = iref − i</b>测量 i = +0.40 A<br>所以 e = +0.10 A</div><span class="arrow">→</span><div class="node"><b>PI + 限幅</b>得到新的占空比 D</div><span class="arrow">→</span><div class="node"><b>功率级响应</b>再测 i，下一轮继续</div></div>
+<h3>P、I、D 分别在做什么</h3>
+<table><thead><tr><th>项</th><th>公式</th><th>作用与代价</th></tr></thead><tbody><tr><td>P：比例</td><td>Kp · e(t)</td><td>当前误差越大，立即修正越多。增益过大可能放大噪声，并在延迟存在时引起振荡。</td></tr><tr><td>I：积分</td><td>Ki · ∫e(t)dt</td><td>把持续偏差累积起来，逐步找到维持目标所需的输出。即使最后误差为零，积分仍能保留工作点。</td></tr><tr><td>D：微分</td><td>Kd · de(t)/dt</td><td>根据误差变化趋势作出反应，某些对象可改善阻尼；也容易放大测量噪声，需要滤波和谨慎设计。</td></tr></tbody></table>
+<div class="equation">P：u = Kp · e<br>PI：u = Kp · e + Ki · ∫e dt<br>PD：u = Kp · e + Kd · de/dt<br>PID：u = Kp · e + Ki · ∫e dt + Kd · de/dt</div>
+<p>对常见有损耗、扰动或偏置不准确的对象，P 单独控制通常需要保留一点误差，才能产生足够的修正；I 可以继续积累这点误差直到偏差减小。不能把“P 一定有稳态误差”当成对所有对象都成立的定律。</p>
+<p>电流环通常先使用 PI。增加 D 不意味着自动更好：开关纹波、ADC 噪声、采样延迟都可能被微分放大。本项目先把 PI、采样时序与功率级调通，再讨论是否需要更复杂控制。若使用 Ti、Td 的另一种 PID 参数形式，通常有 Ki = Kp/Ti、Kd = Kp·Td，不能把不同软件中的参数名直接混用。</p>
+<h3>单片机里没有连续积分，只有每一拍的加法</h3>
+<div class="equation">采样周期 Ts = 1 / fcontrol<br>e[k] = iref[k] − imeas[k]<br>P[k] = Kp · e[k]<br>J[k] = J[k−1] + Ki · Ts · e[k]<br>u[k] = P[k] + J[k]<br>D[k] = clamp(u[k], Dmin, Dmax)</div>
+<p>J 是保存下来的积分状态。下一次进入回调时要接着上一次的 J 累加，不能每次都把它清零。Kp 的量纲可理解为“占空比/A”，Ki 是“占空比/(A·s)”。<strong>Ts 变化会直接改变每拍积分量</strong>，所以把控制从 100 kHz 改成 10 kHz 后，不能仍假装 Ts 没变。</p>
+<p>另一个常见写法是加上工作点前馈：D = clamp(Dff + P + J)，其中 Dff 可以取近似 Vbat/Vbus。这时积分状态表示对工作点的修正。也可以不显式写 Dff，而把所需工作点放在积分初值里；两种写法都要确保启动和换向时的初值合理。</p>
+<h3>算一拍给你看</h3>
+<p>仅为算术示例，取 Kp=0.07、Ki=90、Ts=10 μs、上一拍 J=0.75000、目标电流0.50 A、实测0.40 A：</p>
+<table><thead><tr><th>运算</th><th>本拍结果</th></tr></thead><tbody><tr><td>误差</td><td>e = 0.50 − 0.40 = 0.10 A</td></tr><tr><td>比例项</td><td>P = 0.07 × 0.10 = 0.00700</td></tr><tr><td>积分增量</td><td>ΔJ = 90 × 0.00001 × 0.10 = 0.00009</td></tr><tr><td>积分状态</td><td>J = 0.75000 + 0.00009 = 0.75009</td></tr><tr><td>输出</td><td>u = 0.00700 + 0.75009 = 0.75709</td></tr><tr><td>写比较值</td><td>若 ARR=2000，则 CCR ≈ round(0.75709 × 2000) = 1514</td></tr></tbody></table>
+<p>下一拍再次测电流，重新计算。这个例子不证明该参数在真实硬件上稳定。充电为正、放电为负时，可以统一使用 e = iref − imeas；只要实际功率级确实满足“D 增大时，电流往更正方向变化”，负反馈方向就一致。</p>
+<h3>为什么必须处理积分饱和</h3>
+<p>假设控制器算出 D=1.30，硬件却只允许 D≤0.90。真正输出最多0.90，但误差若一直存在，普通积分会继续增大。等目标降低后，积累的状态还没退回来，输出可能仍长时间顶在上限，产生过冲或恢复迟缓。</p>
+<p><strong>仅限制最终 D 不够。</strong>常用做法是：条件积分——已经饱和且误差还把输出往更饱和方向推时，暂停累积；或者反算——用“实际受限输出与未限幅输出之差”修正积分状态。积分边界与占空比边界也不必是同一个数值范围。<a href="#r-antiwindup">[MathWorks]</a></p>
+<details><summary>展开：带条件积分的教学伪代码</summary>
+<pre><code>// 教学结构：具体数值、故障处理和时序需按实际系统设计
+float pi_step(float ref, float measured) {
+    float e = ref - measured;
+    float p = Kp * e;
+    float next_j = clamp(j + Ki * Ts * e, J_MIN, J_MAX);
+    float trial = duty_ff + p + next_j;
+
+    bool push_high = (trial > D_MAX) &amp;&amp; (e > 0);
+    bool push_low  = (trial < D_MIN) &amp;&amp; (e < 0);
+    if (push_high || push_low) {
+        next_j = j;              // 饱和时不继续朝错误方向积分
+    }
+    j = next_j;
+    return clamp(duty_ff + p + j, D_MIN, D_MAX);
+}</code></pre>
+<p>该结构假设“增大输出使被控电流更正”。测量无效、模式停止或保护触发时，应由状态机退出控制并关断，不能把异常数据继续送入 PI。换向、重启和参数切换还需要积分状态管理与电流给定斜坡。</p>
+</details>
+<details><summary>展开：位置式与增量式，以及当前 pi.h 的状态</summary>
+<p>上面的 P+积分状态写法是位置式。忽略限幅、参数固定时，可以改写成增量式：</p><div class="equation">Δu[k] = Kp · (e[k] − e[k−1]) + Ki · Ts · e[k]<br>u[k] = u[k−1] + Δu[k]</div>
+<p>当前 <a href="BMS_EXv1.1/BMS_EX/BSP/pi.h">pi.h</a> 虽然注释写“增量式”，实现实际上是位置式结构，并带输出限幅和反算。反算发生在积分限幅之后，所以最终积分值不保证仍在先前范围内；这需要按设计意图验证。<a href="BMS_EXv1.1/BMS_EX/BSP/pi.c">pi.c</a> 又是另一版不匹配的接口，尚未加入当前构建。它们目前都没有组成已运行、已验证的闭环。</p>
+</details>
+</section>
+
+<section id="sim"><span class="num">07 / 自己调参数看变化</span><h2>一个可以操作的虚拟电流环</h2>
+<p>先选 P，再选 PI，比较末段误差；提高 Ki，观察过冲；选择“占空比受限后恢复”，比较条件积分开关。这个演示只算数学模型，不发送任何硬件指令。</p>
+<div class="control">
+<label for="simMode">控制器<select id="simMode"><option value="pi">PI：比例 + 积分</option><option value="p">P：仅比例</option></select></label>
+<label for="simCase">实验情景<select id="simCase"><option value="step">0.1 s 电流阶跃</option><option value="disturbance">阶跃后，0.7 s 母线从16 V降到15 V</option><option value="saturation">0.3–0.9 s 占空比范围临时收紧，随后恢复</option></select></label>
+<label for="simRef">目标电流：<output id="simRefOut">0.50 A</output><input type="range" id="simRef" min="-1" max="1" step="0.05" value="0.5"></label>
+<label for="simKp">Kp：<output id="simKpOut">0.025 /A</output><input type="range" id="simKp" min="0" max="0.15" step="0.005" value="0.025"></label>
+<label for="simKi">Ki：<output id="simKiOut">4.0 /(A·s)</output><input type="range" id="simKi" min="0" max="40" step="0.5" value="4"></label>
+<label class="check" for="simAw"><input type="checkbox" id="simAw" checked>启用条件积分，抑制进一步饱和</label>
+</div>
+<div class="legend"><span><i class="swatch ref dash"></i>目标电流</span><span><i class="swatch"></i>模拟电流</span><span><i class="swatch duty"></i>占空比（下图）</span></div>
+<div class="chart-wrap"><svg id="simCurrent" class="chart" role="img" aria-label="虚拟电流环的目标与实测电流响应，单位安培"></svg><svg id="simDuty" class="chart" style="height:200px" role="img" aria-label="虚拟控制器输出占空比与限幅边界"></svg></div>
+<div id="simResult" class="result" aria-live="polite"></div>
+<p class="small">模型：L·di/dt = D·Vbus − 12 − 1·i；Vbus 初值16 V，L=10 mH，R=1 Ω，控制/积分步长0.5 ms，D∈[0.40,0.90]，固定前馈Dff=0.75。仿真时长1.6 s。受限情景把正向占空比上限临时降为0.77，负向则把下限临时升为0.73。J另设±1的数值边界。此处电感、控制频率等均为教学虚构参数，和实物100 μH、100 kHz的课程目标不同。</p>
+<p class="small">该平均模型省略实际开关纹波、死区、驱动传播、采样延迟、传感噪声、量化、复杂电池动态和保护。它说明 P/I/饱和的机制，不能据此确定实物增益、稳定裕量或控制极限。真实整定还需要辨识、时序分析和台架波形。</p>
+</section>
+
+<section id="software"><span class="num">08 / 软件各自在哪里运行</span><h2>BSP、Keil、HEX、上位机和三个 RAR</h2>
+<p><strong>BSP 是代码，Keil 是开发工具，HEX 是固件文件，上位机是电脑程序。</strong>它们不是同一层的几个软件。</p>
+<table><thead><tr><th>名字</th><th>是什么</th><th>在哪儿 / 怎么用</th></tr></thead><tbody>
+<tr><td>.c / .h</td><td>源代码及接口、类型、宏定义</td><td>保存在电脑里。修改它们后重新编译。</td></tr>
+<tr><td>CMSIS / HAL</td><td>内核基础与通用外设驱动</td><td>被编译进板端固件；应用调用它们来操作硬件。</td></tr>
+<tr><td>BSP</td><td>Board Support Package，板级支持代码</td><td>例如OLED、按键、ADBMS驱动；也是整个固件的一部分。</td></tr>
+<tr><td>应用层</td><td>状态机、控制、保护、通信业务</td><td>决定什么时候调用 BSP/HAL，实现实际实验目标。</td></tr>
+<tr><td>Keil / ARMCLANG</td><td>IDE与编译/链接工具链</td><td>在电脑上把源代码变成机器码，并支持在线调试。</td></tr>
+<tr><td>.o / .axf</td><td>单文件目标码 / 链接后的带符号程序</td><td>.o供链接；.axf供调试器加载和定位源码。</td></tr>
+<tr><td>.hex / .bin</td><td>可供下载的固件镜像</td><td>HEX带地址记录，BIN通常需另指定地址；它们没有电脑操作界面。</td></tr>
+<tr><td>STM32CubeProgrammer</td><td>连接和读写芯片存储器的工具</td><td>通过ST-LINK等接口下载、擦除、校验。</td></tr>
+<tr><td>FSBL</td><td>板上第一阶段启动程序</td><td>建立外部存储等环境，再转入应用；当前源码目录没有提供FSBL工程。</td></tr>
+<tr><td>上位机 .exe</td><td>电脑监控与操作程序</td><td>经串口发命令、收遥测、画曲线、保存文件。</td></tr>
+<tr><td>.ioc / CubeMX</td><td>外设、引脚和代码生成配置 / 配置工具</td><td>帮助生成初始化代码，不能自动生成完整 PI、保护和上位机协议。</td></tr>
+</tbody></table>
+<div class="route"><h3>从源码到板端运行</h3><div class="flow"><div class="node"><b>main + BSP + HAL</b>.c/.h 源码</div><span class="arrow">→</span><div class="node"><b>Keil 编译与链接</b>产生 .axf/.hex/.bin</div><span class="arrow">→</span><div class="node"><b>CubeProgrammer</b>+ .stldr + ST-LINK</div><span class="arrow">→</span><div class="node"><b>外部 Flash</b>FSBL引导应用运行</div></div></div>
+<p>另一路是 Keil 配合 .FLM 操作外部 Flash。Debug 还可以直接把 AXF 下载到内部 SRAM 运行，不必走外部 Flash 启动；断电后该调试程序就不保留。当前 Debug 地址是0x34000400，Release应用地址是0x70100400。</p>
+<h3>MX25 开头的三个 RAR，实际装了什么</h3>
+<p><strong>MX25UM25645G 是外部 NOR Flash 型号，ATK-CNN647B 是包名中的板型标识。</strong>这些文件解决的是“下载工具怎样操作这块板上的外部存储器”。</p>
+<div class="table-wrap"><table><thead><tr><th>压缩包</th><th>里面唯一的文件</th><th>交给谁用</th></tr></thead><tbody>
+<tr><td class="path">MX25UM25645G_ATK-CNN647B_ExtMe.rar</td><td class="path">MX25UM25645G_ATK-CNN647B_ExtMemLoader.stldr</td><td>CubeProgrammer 外部存储加载器</td></tr>
+<tr><td class="path">MX25UM25645G_ATK-CNN647B_ExtMemLoader.rar</td><td class="path">同一个 .stldr</td><td>与上一 RAR 完全相同，SHA256也一致</td></tr>
+<tr><td class="path">MX25UM25645G_ATK-CNN647B-FLM.rar</td><td class="path">MX25UM25645G_ATK-CNN647B.FLM</td><td>Keil 外部 Flash 下载算法</td></tr>
+</tbody></table></div>
+<p>所以它们一共对应<strong>两种工具的存储下载适配，其中一份重复打包</strong>。加载器中包含与目标存储器交互的代码/元数据；下载工具在编程过程中使用它们。它们不会自动补上BMS控制逻辑，也不代替上电运行的FSBL。</p>
+<h3>为什么顶层 HEX 和模板源码要分开看</h3>
+<p>上位机手册要求烧顶层 <a href="BMS_Appli.hex">BMS_Appli.hex</a>。它和模板 Debug/Release 的 HEX 数据不同；上位机 ZIP 里也只有 EXE，没有源码工程。当前模板只是采样和通信基础示例，不能因为另一份现成固件能配合上位机完成测试，就认定模板已经实现同样功能。</p>
+</section>
+
+<section id="host"><span class="num">09 / 电脑端的角色</span><h2>上位机在显示和通信上类似 VOFA+，还加入了电池测试流程</h2>
+<p>你的类比是合适的：两者都可以成为串口数据的观察窗口，把字节解析成变量，再画曲线。VOFA+ 是较通用的数据可视化与调试工具，需要按约定发送它能解析的数据；这个 BMS 上位机已经针对电池测试封装了操作界面和流程。<a href="#r-vofa">[VOFA+]</a></p>
+<table><thead><tr><th>能力</th><th>通用波形/串口工具</th><th>本项目 BMS 上位机</th></tr></thead><tbody><tr><td>串口收发、显示曲线</td><td>通用能力，需配置数据解析</td><td>针对电压、电流、温度等字段组织</td></tr><tr><td>记录与导出</td><td>取决于具体工具和功能</td><td>手册明确支持测量CSV和日志TXT</td></tr><tr><td>充放电操作</td><td>通常自行设计命令/按钮</td><td>已封装恒流放电、恒压放电、充电、停止</td></tr><tr><td>实验流程</td><td>通常自己编排</td><td>包含恒流循环、HPPC、DST等流程</td></tr><tr><td>快速电流闭环</td><td>不应由普通桌面程序逐拍执行</td><td>仍应交给STM32固件的实时控制环</td></tr></tbody></table>
+<h3>一条命令怎样影响电池电流</h3>
+<ol><li>在电脑界面输入目标电流并点击操作按钮。</li><li>上位机将操作编码成协议命令，通过串口发出。</li><li>板端解析并校验参数，状态机判断是否允许启动，再设置目标。</li><li>板端PI持续调PWM；每拍调节不需要电脑重新发命令。</li><li>板端低速上传测量值、模式、故障等，上位机显示和记录。</li></ol>
+<p>因此 CSV 是实验的记录结果，不是控制算法本身。上位机曲线看起来平滑，也不能单独证明100 kHz电流环没有振荡；要观察快动态，还需要示波器或固件内的高速缓冲采样。</p>
+<p class="important">现成上位机使用专用 <code>bms ...</code> 命令，讲义示例采用 <code>set ...</code>，模板目前只做原样回显。三者还没有在当前源码中统一。连接相同串口、使用相同波特率，只保证能传字节，不保证协议能互相理解。</p>
+</section>
+
+<section id="tests"><span class="num">10 / 两种测试不是两种控制器</span><h2>HPPC 和 DST 是电池测试工况</h2>
+<p>PI 解决“怎样跟踪给定电流”，HPPC/DST 解决“按什么时序给电池施加什么工况、要测什么特性”。它们处在不同层次：测试流程不断提供给定，底层控制器负责实现给定。</p>
+<h3>HPPC：混合脉冲功率特性测试</h3>
+<p>HPPC 是 Hybrid Pulse Power Characterization。在不同 SOC、温度等条件下施加规定的放电与回充脉冲，观察电压下降、恢复和上升，估计脉冲电阻与充放电功率能力。它也常为等效电路模型的参数辨识提供数据。</p>
+<p>例如INL一版PHEV测试手册给出“10 s放电脉冲 → 40 s休息 → 10 s回充脉冲”，并在不同电量状态下重复。不同版本可能采用不同幅值和时序，不能把这个例子当成所有HPPC的唯一标准。<a href="#r-hppc">[INL]</a></p>
+<figure><svg id="hppcChart" class="chart" style="height:230px" role="img" aria-label="HPPC示意：先静置，再放电脉冲、休息和充电脉冲"></svg><figcaption>图示用于解释脉冲、静置、回充的结构，纵轴为归一化电流示意，充电为正；并非本项目完整测试参数。</figcaption></figure>
+<div class="equation">指定时间点的脉冲电阻近似：R<sub>pulse</sub> ≈ |ΔV / ΔI|<br>示例：电流阶跃2 A，规定时刻电压变化0.12 V → R ≈ 0.06 Ω</div>
+<p>必须说明“在阶跃后多久测ΔV”。瞬时压降和10秒后的压降包含的极化影响不同，不能都简单叫作纯欧姆内阻。项目手册中的1.25C、1.18C、1C等倍率也要按实际设置理解。C倍率与电池容量关联，例如额定容量1 Ah的电池，1C对应1 A；不能把1C固定理解成1 A。</p>
+<h3>DST：动态应力测试</h3>
+<p>DST 是 Dynamic Stress Test，通过连续变化的工况模拟动态使用：有负载变化、静置，也可有回充阶段。它让电池经历比单一恒流更丰富的输入，用于观察动态响应、评估性能，并检验SOC模型对变化工况的适应能力。</p>
+<p>USABC原始DST包含360秒、20步骤、7个功率等级的变功率序列。本项目手册也写每轮360秒、20步，并以基础电流和倍率安排工况。<strong>按电流表执行与严格跟踪功率表不是同一件事</strong>：若目标是恒功率，通常要依据电压更新电流目标 Iref=Ptarget/V。未逐项核对映射前，应称“本项目采用的DST序列”。<a href="#r-dst">[USABC]</a></p>
+<figure><svg id="dstChart" class="chart" style="height:230px" role="img" aria-label="动态工况示意，电流按多个步骤变化且含回充阶段"></svg><figcaption>此图是自定义动态电流示意，不复制标准20步表，也不代表现成固件内部的完整序列。</figcaption></figure>
+<table><thead><tr><th>实验</th><th>主要问题</th><th>有用的记录</th></tr></thead><tbody><tr><td>恒流与电流阶跃</td><td>控制能否跟踪目标</td><td>超调、稳定时间、稳态误差、占空比</td></tr><tr><td>HPPC</td><td>电池在指定SOC下的脉冲响应如何</td><td>电流/电压瞬态、恢复过程、脉冲电阻和功率能力</td></tr><tr><td>DST</td><td>动态工况中性能与模型是否可靠</td><td>时间序列、能量、电压响应、SOC估算误差</td></tr></tbody></table>
+<p>上位机能安排这些流程，但下位机仍要可靠地实现充放电、换向、保护和协议。本目录模板还没有这套完整业务；手册描述的是配套现成HEX的使用方式。</p>
+</section>
+
+<section id="goal"><span class="num">11 / 为什么把这些东西放在一个实验里</span><h2>项目要完成“测得准、控得住、估得出”的链路</h2>
+<p>基础控制提供可靠的实验平台，实验平台产生真实数据，数据支撑SOC模型训练，最后把模型放回板端运行。每一阶段都有可以检查的产物。</p>
+<table><thead><tr><th>阶段</th><th>要完成的工作</th><th>验收证据</th><th>当前目录状态</th></tr></thead><tbody>
+<tr><td>测量</td><td>周期采集电压、电流、温度，校验、标定并显示</td><td>与仪表对照的数据、有效性/故障记录、屏幕和串口输出</td><td>有驱动和上电一次采样；持续监测待接入</td></tr>
+<tr><td>功率控制</td><td>互补PWM、开环扫描、ADC同步反馈、PI闭环</td><td>PWM与电流波形、开环表、阶跃响应和稳态误差</td><td>ADC/TIM已配置；尚未Start，PI未接入</td></tr>
+<tr><td>操作与保护</td><td>停止/充电/放电状态机、继电器互锁、按键、协议</td><td>操作、换向、失联和异常处理记录</td><td>有引脚/按键/串口基础；业务待实现</td></tr>
+<tr><td>数据与训练</td><td>记录CSV，生成SOC标签，训练/验证轻量网络</td><td>数据集、划分、脚本、模型、误差曲线</td><td>有现成上位机工具；未发现训练数据和模型</td></tr>
+<tr><td>端侧部署</td><td>量化、导出、ST Edge AI生成/集成推理，比较PC与板端</td><td>模型大小、延迟、量化前后误差、实际板端输出</td><td>属于后续任务，当前源码没有推理实现</td></tr>
+</tbody></table>
+<h3>SOC 为什么还需要算法</h3>
+<p>电压、电流和温度是测量量；SOC是内部状态的估计。电池的端电压受电流、温度、滞回、老化等影响，同一个电压不一定对应唯一SOC。单凭一次电压读数通常不足以可靠确定剩余电量。</p>
+<div class="equation">忽略效率损失的安时积分近似（充电电流为正）：<br>SOC[k] = SOC[k−1] + I[k] · Δt / (3600 · C<sub>N</sub>)<br>其中 C<sub>N</sub> 单位为Ah，Δt为秒，SOC以0～1表示。</div>
+<p>例如1 Ah电池以0.5 A充电60秒，理想SOC增加0.5×60/3600≈0.00833，即0.833个百分点。初值、有效容量、电流零点、效率和采样时间误差都会影响积分结果；它可以作为经标定的实验基准，但不是天然无误差的“真值”。</p>
+<p>课程希望利用实测V/I/T及可能的时间窗口训练CNN等轻量模型，学习它们与SOC的关系，再比较模型和基准。数据划分应防止相邻样本泄漏，例如按完整循环或工况分组划分；不能只靠训练误差低就声称泛化良好。恒流数据先建立基线，HPPC/DST可用于更丰富工况的测试或拓展。</p>
+<h3>从当前模板到这个目标，还差哪些关键连接</h3>
+<ul class="list-tight"><li>将一次采样变成周期任务，传播错误和有效性；核对AFE转换完成条件。</li><li>先统一电流比例和零点，再启动并验证MCU采样。</li><li>统一pi.c/pi.h，明确位置式结构、Ts、限幅、启动初值和停机行为。</li><li>把ADC完成回调、PI和CCR更新连接起来，并验证真实时序。</li><li>建立模式状态机、协议和保护，再接上位机测试流程。</li></ul>
+<details><summary>展开：资料和源码中的具体差异</summary><ul><li>ADC1当前已是CH1、2倍过采样右移1，TIM1 ARR=2000；旧README里的部分状态已经过时。</li><li>ADC2的.ioc与main.c配置不一致，直接重新Generate可能改掉现有设置。</li><li>电流放大器型号/增益、PT1000与NTC表述需核对实物。</li><li>当前ADAX全辅助通道转换后只等待2 ms；ADBMS数据表表23在相应模式下给出的全通道转换时间超过2 ms，应按实际模式轮询完成或设置充分等待。<a href="https://www.analog.com/media/en/technical-documentation/data-sheets/adbms1818.pdf#page=31">见数据表第31页</a>。</li><li>当前PEC失败被转成0后继续换算，可能产生错误的电流/温度；应返回无效状态。</li><li>现成HEX与模板产物不同，现成上位机协议不能默认被模板支持。</li></ul></details>
+</section>
+
+<section id="mcp"><span class="num">12 / 自动化开发的可行边界</span><h2>可以做一个 BMS MCP，让 Codex 根据测试结果迭代</h2>
+<p><strong>可行。</strong>Codex已经可以读写源码；我们再写一个运行在这台Windows电脑上的MCP服务，把编译、镜像检查、串口采集、测试结果等能力封装成明确工具，Codex就能根据工具反馈修改下一版代码。官方文档支持本地STDIO与Streamable HTTP MCP，并提供工具范围、超时等配置。<a href="#r-openai">[OpenAI Docs]</a></p>
+<p>MCP是工具接口协议，不会自动把硬件“智能化”。真正干活的仍是编译器、烧录器、串口服务和测量设备。这里的合理结构是<strong>Codex作为客户端，调用我们实现的BMS MCP服务</strong>；普通代码编辑不需要重新包装成MCP工具。</p>
+<div class="route"><h3>开发闭环</h3><div class="flow"><div class="node"><b>Codex 修改源码</b>提出可验证变化</div><span class="arrow">→</span><div class="node"><b>MCP 调开发工具</b>编译/检查/受限测试</div><span class="arrow">→</span><div class="node"><b>结构化结果</b>日志、数据、波形、指标</div><span class="arrow">→</span><div class="node"><b>判断并迭代</b>通过、修正或停止</div></div></div>
+<h3>两个闭环的时间尺度完全不同</h3>
+<table><thead><tr><th>闭环</th><th>执行者</th><th>时间尺度与职责</th></tr></thead><tbody><tr><td>电流控制闭环</td><td>STM32、ADC、TIM、中断里的PI</td><td>课程目标约10 μs一拍，确定时序，直接调PWM</td></tr><tr><td>工程开发闭环</td><td>Codex + 本地MCP + 工具/测量设备</td><td>秒到分钟，改程序、编译、安排实验、分析证据</td></tr></tbody></table>
+<p>Codex可以修改PI代码、分析波形、提出参数和安排受限试验，但它的网络与工具调用不提供10 μs实时性。<strong>不能把每个PWM周期的控制决策搬到大模型里。</strong>电流调节、保护和失联停机必须留在确定性的本地系统中。</p>
+<h3>针对本项目，MCP第一版可以暴露这些工具</h3>
+<p class="small">以下是拟议设计，不是已经实现或已安装的工具。</p>
+<table><thead><tr><th>工具</th><th>输入 / 返回</th><th>第一阶段做什么</th></tr></thead><tbody>
+<tr><td><code>project_inspect</code></td><td>target、源码版本、关键配置差异</td><td>只读检查工程</td></tr>
+<tr><td><code>firmware_build</code></td><td>target、是否clean；返回错误、警告、日志、固件ID/哈希</td><td>调用Keil构建，记录真正编译了哪些源文件</td></tr>
+<tr><td><code>firmware_inspect</code></td><td>固件ID；返回地址范围、段大小、对应源码</td><td>防止Debug镜像被当成Release烧录</td></tr>
+<tr><td><code>serial_replay</code></td><td>测试帧样本；返回解析值与错误</td><td>用模拟/录制数据验证协议</td></tr>
+<tr><td><code>telemetry_capture</code></td><td>数据源、时长；返回时间戳、单位、质量标志和数据路径</td><td>先模拟，之后接只读遥测</td></tr>
+<tr><td><code>flash_plan</code></td><td>固件ID、板型；返回算法、地址和操作计划</td><td>先只生成计划，不下载</td></tr>
+<tr><td><code>run_status</code></td><td>任务ID；返回进度、结果、是否超时</td><td>管理构建/采集等长任务</td></tr>
+</tbody></table>
+<p>第二阶段再接真实的<code>flash_execute</code>、<code>test_start</code>、<code>test_stop</code>和仪器接口。工具应使用已验证的板型、固件ID和测试配置，不应默认接受任意地址烧录、任意寄存器写入或不受约束的shell命令。上位机和MCP同时访问同一个COM口还需要统一所有权，通常不能各自直接独占打开。</p>
+<h3>怎样才算真的“闭环自我开发”</h3>
+<ol><li>固定一个明确目标，例如“错误帧必须被拒绝”或“指定工况下稳态误差低于门限”。</li><li>Codex修改一处代码，构建工具返回真实编译结果与固件哈希。</li><li>先运行离线验证；需要台架时按已定义测试执行，采集带时间戳的数据。</li><li>分析工具按预先确定的指标判定，而不是由模型看一眼就说“正常”。</li><li>未通过则保留证据，限制迭代次数，再修正；通过则保存版本与报告。</li></ol>
+<p>每次结果都要能追溯到<strong>源码 → target → 固件 → 板子 → 测量配置 → 本次数据</strong>。只有“编译成功”不能证明硬件正确；只有低速串口数据也不能证明快环稳定。若没有受控电源、负载、示波器或高速记录能力，自动化的证据范围就会受限。</p>
+<h3>接真实功率动作时，边界由本地系统强制执行</h3>
+<p>服务端和固件需要默认停止、参数边界、最大运行时间、失联超时、看门狗、异常关断和独立停止入口。台架还应有物理限流、可控能量路径与本地ARM条件。保护不能只靠模型记住提示词；Codex会改业务代码，所以关键物理限流和关断还应有独立保障。</p>
+<p class="important warn"><strong>MCP请求超时，不等于板子的PWM已经停止。</strong>必须由固件/本地控制服务规定超时后的动作，并在实际台架验证。开发闭环可以逐步自动化，但不应以无限制反复试错来替代功率系统的边界设计。</p>
+<p>本轮只说明方案，并未创建MCP、修改Codex配置、连接串口、烧录或运行电池测试。最适合下一步做的是“桌面开发验证MCP”：构建、地址检查、假串口回放和测试报告，先证明它确实能发现并定位问题。</p>
+</section>
+
+<section id="next"><span class="num">13 / 具体起点</span><h2>建议按这个顺序学习和实现</h2>
+<div class="step"><span>1</span><div><h3>先认清信号和文件</h3><p>能画出两条采样链路，知道STM32 ADC与ADBMS ADC不同；能说清.c、BSP、Keil、HEX、上位机、加载器分别是什么。读main.c的启动流程，再读ADBMS和串口驱动。</p></div></div>
+<div class="step"><span>2</span><div><h3>建立能重复验证的测量基线</h3><p>确认实际器件、传感器、参考电压、零点和增益。把采样做成周期任务，校验和错误状态完整；让屏幕/串口的数据与仪表一致。同步源码、IOC和构建结果。</p></div></div>
+<div class="step"><span>3</span><div><h3>分开验证PWM、功率级和ADC时序</h3><p>先观察驱动波形，再按实验要求做受限开环记录；核对D定义、电流方向、触发相位和实际执行时间。不能靠上位机曲线代替这些证据。</p></div></div>
+<div class="step"><span>4</span><div><h3>接入一个统一的PI与状态机</h3><p>统一pi接口，确定Ts、限幅、积分处理和给定斜坡；接通ADC→PI→CCR。再接停止、充放电换向、继电器互锁和保护。先本地稳定，再做远程设定。</p></div></div>
+<div class="step"><span>5</span><div><h3>做协议、记录与实验流程</h3><p>决定兼容现成BMS上位机，还是先使用文本/VOFA+等简单协议。完整记录数据与状态，再逐步接恒流循环、HPPC和DST。</p></div></div>
+<div class="step"><span>6</span><div><h3>把离线开发验证交给MCP，再推进SOC</h3><p>MCP先自动构建、检查、回放和出报告；硬件测试能力验证后再加入受限台架循环。与此同时积累真实数据，完成SOC标签、训练、量化和板端验证。</p></div></div>
+<p>目前最值得先做的组合是：<strong>测量常量核对 + 工程配置同步 + PI接口统一 + 周期采样。</strong>它们完成后，后面的功率闭环、测试数据和模型结果才有可解释的基础。</p>
+<details><summary>术语速查</summary><table><tbody><tr><th>BMS</th><td>Battery Management System，电池管理系统</td></tr><tr><th>AFE</th><td>Analog Front End，模拟前端</td></tr><tr><th>ADC</th><td>Analog-to-Digital Converter，模数转换器</td></tr><tr><th>PWM</th><td>Pulse Width Modulation，脉冲宽度调制</td></tr><tr><th>寄存器 / 回调</th><td>芯片内固定用途的存储位置 / 框架在特定事件后调用的用户函数</td></tr><tr><th>采样频率 / 通信速率</th><td>多久获得新测量 / 字节在总线上传输多快，两者不同</td></tr><tr><th>BSP / HAL</th><td>板级支持包 / 硬件抽象层</td></tr><tr><th>SOC / SOH</th><td>荷电状态 / 健康状态，都需要估算或测试，不是ADC直接测出的单位</td></tr><tr><th>XIP / FSBL</th><td>从映射的外部存储器原地取指执行 / 第一阶段启动程序</td></tr><tr><th>MCP</th><td>Model Context Protocol，模型客户端调用外部工具和资源的标准接口协议</td></tr></tbody></table></details>
+</section>
+
+<section id="refs"><span class="num">依据与范围</span><h2>官方资料和本地证据</h2>
+<p>器件能力、测试定义和Codex支持方式按以下原始资料核对。图和交互模型为教学说明，不能替代原理图、器件数据表、真实代码验证与台架测量。</p>
+<ol class="sources">
+<li id="r-adi"><strong>ADI ADBMS1818：</strong><a href="https://www.analog.com/en/products/adbms1818.html">产品页</a>；<a href="https://www.analog.com/media/en/technical-documentation/data-sheets/adbms1818.pdf">Rev.B数据表</a>。内部ADC、18通道、AUX、结果标度、转换时间、SPI/isoSPI、PEC与均衡。</li>
+<li id="r-ti-ina"><strong>TI INA199：</strong><a href="https://www.ti.com/product/INA199/part-details/INA199A2DCKTG4">官方器件页面</a>。x1/x2/x3增益分别50/100/200。</li>
+<li><strong>ADI RTD：</strong><a href="https://www.analog.com/en/resources/technical-articles/rtd-measurement-system-design-essentials.html">RTD Measurement System Design Essentials</a>。铂电阻测温与模型。</li>
+<li id="r-st-chip"><strong>ST STM32N647：</strong><a href="https://www.st.com/en/microcontrollers-microprocessors/stm32n647x0.html">官方产品页</a>。Cortex-M55、外设、存储与Neural-ART资源。</li>
+<li id="r-st-timer"><strong>ST 定时器：</strong><a href="https://www.st.com/content/ccc/resource/technical/document/application_note/54/0f/67/eb/47/34/45/40/DM00042534.pdf/files/DM00042534.pdf/jcr:content/translations/en.DM00042534.pdf">AN4013，Introduction to timers for STM32 MCUs</a>。互补PWM与死区等定时器概念；N6具体细节仍以对应参考手册和配置为准。</li>
+<li id="r-ti-power"><strong>TI 双向功率变换：</strong><a href="https://www.ti.com/lit/pdf/SPRABX5">SPRABX5</a>。双向Buck/Boost控制与建模。本文已明确采用本项目的上管D定义。</li>
+<li id="r-antiwindup"><strong>MathWorks：</strong><a href="https://www.mathworks.com/help/simulink/slref/anti-windup-control-using-a-pid-controller.html">Anti-Windup Control Using PID Controller Block</a>。条件积分和反算抗饱和。</li>
+<li id="r-vofa"><strong>VOFA+：</strong><a href="https://www.vofa.plus/docs/learning/start/quick_start/">官方快速开始</a>。串口、数据解析和波形绑定。</li>
+<li id="r-hppc"><strong>INL：</strong><a href="https://inldigitallibrary.inl.gov/content/uploads/50/2026/04/4655291.pdf">Battery Test Manual for Plug-In Hybrid Electric Vehicles（2010）</a>，§3.4、§4.3。HPPC步骤及结果解释。</li>
+<li id="r-dst"><strong>USABC：</strong><a href="https://uscar.org/download/50/publications/12574/manuals-electric-vehicle-battery-test-procedures-manual.pdf">Electric Vehicle Battery Test Procedures Manual（1996）</a>，Procedure5B。原始DST变功率工况。</li>
+<li id="r-openai"><strong>OpenAI Docs：</strong><a href="https://learn.chatgpt.com/docs/extend/mcp?surface=cli">MCP文档</a>。Codex连接本地/远程MCP、工具范围与超时等配置。</li>
+</ol>
+<p>本地实现依据：<a href="BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c">main.c</a>、<a href="BMS_EXv1.1/BMS_EX/BSP/adbms1818.c">adbms1818.c</a>、<a href="BMS_EXv1.1/BMS_EX/BSP/pi.h">pi.h</a>、<a href="BMS_EXv1.1/BMS_EX/BSP/pi.c">pi.c</a>、<a href="BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx">Keil工程配置</a>，以及实际归档文件清单与HEX检查。</p>
+<p>课程与操作依据：<a href="基于STM32N6的智能BMS边缘智能系统设计.pptx">课程PPT</a>、<a href="任务2恒流控制实验_实验步骤.docx">任务2/3实验步骤</a>、<a href="BMS电池测试上位机操作手册（图文版）.docx">上位机手册</a>、<a href="BMS_EX工程模板使用说明.docx">模板手册</a>、<a href="STM32N6软件安装.docx">安装说明</a>。本页指出的差异以当前源码和原始器件资料为核对依据。</p>
+<p class="foot">完成日期：2026-10-28。本页可离线阅读；外部资料链接需要联网。未修改原有固件源码、未重新编译或烧录、未连接硬件。<a href="目录逐文件说明.html">查看目录逐文件说明</a></p>
+</section>
+</main></div>
+<script>
+(function(){
+'use strict';
+var NS='http://www.w3.org/2000/svg';
+var $=function(id){return document.getElementById(id);};
+function node(tag,attrs,text){var n=document.createElementNS(NS,tag);Object.keys(attrs||{}).forEach(function(k){n.setAttribute(k,attrs[k]);});if(text!==undefined)n.textContent=text;return n;}
+function put(svg,tag,attrs,text){var n=node(tag,attrs,text);svg.appendChild(n);return n;}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function format(v,d){return (Math.abs(v)<Math.pow(10,-d)/2?0:v).toFixed(d);}
+function plot(svg,series,xmax,ymin,ymax,ylabel,options){
+ options=options||{};
+ svg.replaceChildren();
+ var W=Math.max(280,svg.clientWidth||760),H=svg.clientHeight||300;
+ svg.setAttribute('viewBox','0 0 '+W+' '+H);
+ var L=57,R=18,T=29,B=42,pw=W-L-R,ph=H-T-B;
+ var xx=function(x){return L+x/xmax*pw;};
+ var yy=function(y){return T+(ymax-y)/(ymax-ymin)*ph;};
+ if(options.shade)put(svg,'rect',{x:xx(options.shade[0]),y:T,width:xx(options.shade[1])-xx(options.shade[0]),height:ph,fill:'#f8ecdc'});
+ for(var j=0;j<=4;j++){
+  var v=ymin+(ymax-ymin)*j/4,y=yy(v);
+  put(svg,'line',{x1:L,y1:y,x2:W-R,y2:y,stroke:'#dce5eb','stroke-width':1});
+  put(svg,'text',{x:L-9,y:y+4,'text-anchor':'end',fill:'#536878','font-size':12},format(v,options.yDecimals===undefined?2:options.yDecimals));
+ }
+ for(var k=0;k<=4;k++){
+  var t=xmax*k/4,x=xx(t);
+  put(svg,'line',{x1:x,y1:T,x2:x,y2:H-B,stroke:'#edf1f5','stroke-width':1});
+  put(svg,'text',{x:x,y:H-B+21,'text-anchor':'middle',fill:'#536878','font-size':12},format(t,xmax>10?0:1));
+ }
+ put(svg,'text',{x:L,y:17,fill:'#203c50','font-size':13},ylabel);
+ put(svg,'text',{x:W-R,y:H-3,'text-anchor':'end',fill:'#536878','font-size':12},options.xlabel||'时间 / s');
+ series.forEach(function(s){
+  var d=s.points.map(function(p,i){return(i?'L':'M')+xx(p[0]).toFixed(2)+' '+yy(p[1]).toFixed(2);}).join(' ');
+  put(svg,'path',{d:d,fill:'none',stroke:s.color,'stroke-width':s.width||2,'stroke-dasharray':s.dash||'','stroke-linejoin':'round'});
+ });
+}
+function updateAdc(){
+ var code=+$('adcCode').value,G=+$('adcGain').value,z=+$('adcZero').value;
+ if(!Number.isFinite(z)||z<0||z>4095){$('adcResult').textContent='零点码应在0～4095之间。';return;}
+ var v=code*1.8/4095,s=G*.015,i=(code-z)*1.8/4095/s;
+ $('adcCodeOut').textContent=code;
+ $('adcResult').innerHTML='电压约 <strong>'+v.toFixed(4)+' V</strong>；灵敏度 <strong>'+s.toFixed(2)+' V/A</strong>；计算电流 <strong>'+i.toFixed(4)+' A</strong>。'+(Math.abs(i)<.001?'接近零电流。':i>0?'按本页符号约定为充电方向。':'按本页符号约定为放电方向。');
+}
+function updatePwm(){
+ var duty=+$('duty').value/100,svg=$('pwmChart');
+ $('dutyOut').textContent=Math.round(duty*100)+'%';
+ svg.replaceChildren();
+ var W=Math.max(280,svg.clientWidth||760),H=210,L=58,R=12,pw=W-L-R;
+ svg.setAttribute('viewBox','0 0 '+W+' '+H);
+ var period=pw/3;
+ function signal(invert,yHigh,yLow){
+  var d='';
+  for(var c=0;c<3;c++){
+   var x0=L+c*period,a=x0+(1-duty)*period/2,b=x0+(1+duty)*period/2,x1=x0+period;
+   var lo=invert?yHigh:yLow,hi=invert?yLow:yHigh;
+   d+=(c?'L':'M')+x0+' '+lo+' L'+a+' '+lo+' L'+a+' '+hi+' L'+b+' '+hi+' L'+b+' '+lo+' L'+x1+' '+lo+' ';
+  }
+  return d;
+ }
+ put(svg,'text',{x:4,y:42,fill:'#203c50','font-size':13},'上管');
+ put(svg,'text',{x:4,y:127,fill:'#203c50','font-size':13},'下管');
+ [75,160].forEach(function(y){put(svg,'line',{x1:L,y1:y,x2:W-R,y2:y,stroke:'#dce5eb'});});
+ for(var k=0;k<=3;k++){
+  var x=L+k*period;
+  put(svg,'line',{x1:x,y1:20,x2:x,y2:170,stroke:'#e3eaf0','stroke-dasharray':'3 4'});
+  put(svg,'text',{x:x,y:192,'text-anchor':k===0?'start':k===3?'end':'middle',fill:'#536878','font-size':12},k+'T');
+ }
+ put(svg,'path',{d:signal(false,28,75),fill:'none',stroke:'#165d9b','stroke-width':2.5});
+ put(svg,'path',{d:signal(true,113,160),fill:'none',stroke:'#087e80','stroke-width':2.5});
+ $('dutyResult').innerHTML='周期10 μs时，上管有效导通约 <strong>'+(duty*10).toFixed(1)+' μs</strong>，下管约 <strong>'+((1-duty)*10).toFixed(1)+' μs</strong>（忽略死区）。若母线16 V，开关节点平均电压约 <strong>'+(16*duty).toFixed(2)+' V</strong>；这不是电池端电压的任意设定值。';
+}
+function simulate(){
+ var mode=$('simMode').value,kind=$('simCase').value,ref=+$('simRef').value,kp=+$('simKp').value,ki=+$('simKi').value,aw=$('simAw').checked;
+ $('simRefOut').textContent=ref.toFixed(2)+' A';$('simKpOut').textContent=kp.toFixed(3)+' /A';$('simKiOut').textContent=ki.toFixed(1)+' /(A·s)';$('simKi').disabled=mode==='p';
+ var dt=.0005,L=.010,R=1,E=12,Dff=.75,i=0,integ=0,data=[],current=[],targets=[],duties=[],upper=[],lower=[];
+ for(var k=0;k<=3200;k++){
+  var t=k*dt,r=t>=.1?ref:0,bus=(kind==='disturbance'&&t>=.7)?15:16;
+  var dmin=.4,dmax=.9;
+  if(kind==='saturation'&&t>=.3&&t<.9){if(ref>=0)dmax=.77;else dmin=.73;}
+  var err=r-i,p=kp*err,next=mode==='pi'?clamp(integ+ki*dt*err,-1,1):0;
+  var trial=Dff+p+next;
+  if(mode==='pi'&&aw&&((trial>dmax&&err>0)||(trial<dmin&&err<0)))next=integ;
+  integ=next;
+  var d=clamp(Dff+p+integ,dmin,dmax);
+  data.push({t:t,i:i,ref:r,d:d,j:integ});
+  if(k%3===0||k===3200){current.push([t,i]);targets.push([t,r]);duties.push([t,d]);upper.push([t,dmax]);lower.push([t,dmin]);}
+  i+=dt*(d*bus-E-R*i)/L;
+ }
+ var vals=current.map(function(v){return v[1];}).concat([ref,0]),lo=Math.min.apply(null,vals),hi=Math.max.apply(null,vals),pad=Math.max(.08,(hi-lo)*.15);
+ if(hi-lo<.1){lo-=.1;hi+=.1;}
+ var opt=kind==='saturation'?{shade:[.3,.9]}:{};
+ plot($('simCurrent'),[{points:current,color:'#165d9b'},{points:targets,color:'#b45713',dash:'6 5',width:1.8}],1.6,lo-pad,hi+pad,'电流 / A',opt);
+ plot($('simDuty'),[{points:upper,color:'#8a9ca9',dash:'4 4',width:1.2},{points:lower,color:'#8a9ca9',dash:'4 4',width:1.2},{points:duties,color:'#087e80'}],1.6,.35,.95,'占空比 D',opt);
+ var tail=data.filter(function(p){return p.t>=1.5;}),avg=tail.reduce(function(a,p){return a+p.i;},0)/tail.length,end=data[data.length-1],maxabs=Math.max.apply(null,data.map(function(p){return Math.abs(p.i);}));
+ var describe=kind==='saturation'?'淡色区是占空比暂时受限时段，虚线为上下限。':kind==='disturbance'?'0.7 s后母线降低，控制器需要重新调整工作点。':'0.1 s时目标从0改变，观察电流逐渐跟随。';
+ $('simResult').innerHTML='末0.1 s平均电流 <strong>'+format(avg,3)+' A</strong>；目标减去平均电流的误差 <strong>'+format(ref-avg,3)+' A</strong>；最终D <strong>'+format(end.d,4)+'</strong>。本次最大|电流| '+format(maxabs,3)+' A。<br>'+describe;
+ window.bmsTeachingModel={mode:mode,scenario:kind,meanCurrent:avg,error:ref-avg,finalDuty:end.d,maxAbsCurrent:maxabs,samples:data.length};
+}
+function staticCharts(){
+ var hp=[[0,0],[5,0],[5,-1],[15,-1],[15,0],[55,0],[55,.75],[65,.75],[65,0],[70,0]];
+ plot($('hppcChart'),[{points:hp,color:'#165d9b'}],70,-1.25,1,'归一化电流（示意）',{yDecimals:1});
+ var levels=[0,-.2,-.6,-1,-.4,0,.3,0,-.5,-.8,-.2,0,.5,0,-.7,-.3,0],pts=[];
+ levels.forEach(function(v,k){pts.push([k*10,v],[(k+1)*10,v]);});
+ plot($('dstChart'),[{points:pts,color:'#087e80'}],170,-1.25,.75,'归一化电流（自定义示意）',{yDecimals:1});
+}
+['adcCode','adcGain','adcZero'].forEach(function(id){$(id).addEventListener('input',updateAdc);});
+$('duty').addEventListener('input',updatePwm);
+['simMode','simCase','simRef','simKp','simKi','simAw'].forEach(function(id){$(id).addEventListener('input',simulate);});
+var resizeTimer;
+window.addEventListener('resize',function(){clearTimeout(resizeTimer);resizeTimer=setTimeout(function(){updatePwm();simulate();staticCharts();},120);});
+updateAdc();updatePwm();simulate();staticCharts();
+})();
+</script>
+</body></html>
