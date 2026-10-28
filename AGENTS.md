@@ -25,4 +25,6 @@
 
 课程资料在 `docs/course`，手册在 `docs/manuals`，阅读指南在 `docs/guides`，工具安装包在 `tools`，规范在 `instructions`。保留原始资料与压缩包；未经任务需要不改Keil工程布局。
 
+按用户要求，`tools/`、`firmware/prebuilt/`、安装程序以及RAR/ZIP等压缩包仅保留本地，不加入Git或LFS。遵守`.gitignore`，不要用强制添加绕过；源码、工程配置、开发规范和说明文档继续纳入版本管理。
+
 将来实验记录放在根目录 `evidence/runs/<run_id>/`，raw与derived分开。HTML说明由 `instructions/validation/render_html.cjs` 生成，编辑对应Markdown后重生成；文档检查只能支持文档结论。

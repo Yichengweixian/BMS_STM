@@ -16,10 +16,35 @@ __pycache__/
 *.uvgui.*
 *.bak
 
-# Reproducible Keil build output; keep the supplied firmware/prebuilt image
+# Reproducible Keil build output
 /BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli/
 /BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Debug/
 /BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Release/
+
+# Tools, installers, archives and prebuilt firmware stay on this computer only.
+/tools/
+/firmware/prebuilt/
+*.[eE][xX][eE]
+*.[mM][sS][iI]
+*.[mM][sS][iI][xX]
+*.[mM][sS][iI][xX][bB][uU][nN][dD][lL][eE]
+*.[aA][pP][pP][xX]
+*.[aA][pP][pP][xX][bB][uU][nN][dD][lL][eE]
+*.[zZ][iI][pP]
+*.[rR][aA][rR]
+*.7[zZ]
+*.[tT][aA][rR]
+*.[gG][zZ]
+*.[bB][zZ]2
+*.[xX][zZ]
+*.[iI][sS][oO]
+*.[cC][aA][bB]
+*.[dD][mM][gG]
+*.[fF][lL][mM]
+*.[sS][tT][lL][dD][rR]
+*.[hH][eE][xX]
+*.[aA][xX][fF]
+*.[eE][lL][fF]
 
 # Credentials and machine-local overrides
 .env

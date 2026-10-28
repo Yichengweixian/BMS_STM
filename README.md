@@ -27,8 +27,8 @@
 │  ├─ course/                    PPT与任务2实验步骤
 │  ├─ manuals/                   工程模板、上位机、安装手册
 │  └─ guides/                    原理指南与逐文件说明HTML
-├─ firmware/prebuilt/            配套现成HEX；与模板源码单独管理
-└─ tools/
+├─ firmware/prebuilt/            配套现成HEX；仅本地，不上传GitHub
+└─ tools/                        以下工具仅本地，不上传GitHub
    ├─ host/                      BMS上位机ZIP
    ├─ flash-loaders/              三个MX25外部Flash算法/加载器RAR
    └─ installers/                STM32CubeProgrammer安装ZIP
@@ -46,17 +46,17 @@
 
 ## GitHub 同步与获取
 
-目标仓库：[Yichengweixian/BMS_STM](https://github.com/Yichengweixian/BMS_STM)。源码、课程资料、执行规范、阅读指南、配套HEX和工具压缩包纳入版本管理；ZIP/RAR通过Git LFS保存。
+目标仓库：[Yichengweixian/BMS_STM](https://github.com/Yichengweixian/BMS_STM)。仓库保留源码、工程配置、课程资料、执行规范和阅读指南。上位机、安装程序、烧录加载器、所有RAR/ZIP等压缩包及预编译HEX仅保留本地，不再加入Git或LFS。
 
 ```sh
-git lfs install
 git clone https://github.com/Yichengweixian/BMS_STM.git
 cd BMS_STM
-git lfs pull
 ```
 
-GitHub网页中的HTML通常显示源码，克隆后用浏览器打开即可阅读。只下载普通源码ZIP可能没有完整LFS内容；以Git LFS获取工具包。
+GitHub网页中的HTML通常显示源码，克隆后用浏览器打开即可阅读。当前版本无需Git LFS；克隆不会带上开发工具或预编译固件。本地`tools/`与`firmware/prebuilt/`仍保留原文件，其他电脑所需工具自行安装。
 
-`.gitignore`排除Office锁文件、临时/备份、个人Keil界面配置、`.workbuddy`本地记录和可再生成的编译输出，原文件仍留在本机。`firmware/prebuilt/BMS_Appli.hex`单独保留。
+`.gitignore`同时排除Office锁文件、临时/备份、个人Keil界面配置、`.workbuddy`本地记录和可再生成的编译输出。安装包与压缩包的排除规则不区分扩展名大小写；原文件仍留在本机。
+
+初始提交曾包含LFS工具包；本次通过后续提交从当前版本移除，历史提交仍有原记录，未重写历史或清除GitHub端旧LFS对象。
 
 `instructions/references/history`与目录迁移报告记录原机器上的历史状态，可能引用本机路径、外部参考目录及未上传的缓存；它们不是新克隆环境的构建或硬件通过证明。正式基线仍需按G00重新建立。
