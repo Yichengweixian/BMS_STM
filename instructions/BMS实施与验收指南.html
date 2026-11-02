@@ -4,7 +4,7 @@
 @media(max-width:1000px){.layout{grid-template-columns:190px minmax(0,1fr);gap:18px;padding:0 18px}.sidebar a{font-size:12px}article{padding:12px 22px 24px}.milestones{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:720px){header{padding:30px 21px}.layout{display:block;margin-top:18px;padding:0 12px}.sidebar{position:static;margin-bottom:20px}.sidebar nav{display:grid;grid-template-columns:1fr 1fr}.sidebar a{font-size:12px;padding:7px}.smallnote{display:none}.chapter summary{font-size:16px;padding:16px 13px;gap:8px}summary small{font-size:10px}article{padding:9px 17px 21px;font-size:15px}article h1{font-size:23px}article h2{font-size:20px}.milestones{gap:7px}.milestones div{padding:11px}.table-scroll{margin-left:0;margin-right:0}pre{font-size:12px;padding:13px}code{font-size:12px}.toolbar{margin:9px 0 17px}}
 @media print{.sidebar,.toolbar,summary small{display:none}.layout{display:block;margin:0;padding:0}header{background:white;color:#142c3a;padding:15px;border-top:3px solid #142c3a}header p,.eyebrow{color:#234}header .tag{color:#234;border-color:#ccc}details{break-inside:auto}.chapter{border:0}article{padding:0}.table-scroll{overflow:visible}table{min-width:0;font-size:10px}pre{white-space:pre-wrap;background:#eee;color:#111}.chapter summary{padding:12px 0}body{font-size:11px}.milestones{display:none}a{color:#123;text-decoration:none}}
-</style></head><body><header><div class="hero"><div class="eyebrow">BMS ENGINEERING NOTE · 2026.10.28</div><h1>从读数到闭环，再到可信数据</h1><p>把 ADC、标定、PWM、PI 与 SOC 放回同一条可追溯链路。先弄清每一层负责什么，再为每一步规定可测量的完成标准。</p><span class="tag">依据当前工程与课程资料</span><span class="tag">验收草案 · 硬件尚未实测</span><span class="tag">离线阅读 · 无外部依赖</span></div></header><div class="layout"><aside class="sidebar"><nav><a href="#guide"><span>01</span>问题解答与路线</a><a href="#acceptance"><span>02</span>G00—G07 验收标准</a><a href="#measurement"><span>03</span>驱动与测量分层</a><a href="#data"><span>04</span>数据、标定与 SOC</a><a href="#migration"><span>05</span>旧 instructions 怎样改</a><a href="#workflow"><span>06</span>执行与证据链</a><a href="#questions"><span>07</span>待确认项</a><a href="#status"><span>08</span>当前项目状态</a><a href="#files"><span>09</span>规范包文件导航</a><a href="#sources"><span>10</span>依据与来源</a></nav><div class="smallnote">C · 课程明确要求<br>E · 工程建议，正式验收前冻结<br>H · 硬件待确认，不代入猜测值<br><br>正式结果仍须回到原始数据。说明包完整不等于系统验收通过。</div></aside><main><div class="milestones"><div><b>01 测得可信</b><span>原码 / 标定 / 独立验证</span></div><div><b>02 控得稳定</b><span>PWM / 功率级 / PI</span></div><div><b>03 数据可追溯</b><span>时间 / 版本 / 参考 SOC</span></div><div><b>04 模型可复现</b><span>分组 / 评估 / 端侧一致</span></div></div><div class="statusnote">已完成：代码与资料审查、流程适配、文档和模板。尚未执行：新固件构建、烧录、台架标定、功率实验或模型训练。</div><div class="toolbar"><button id="expand">展开全部章节</button><button id="collapse">收起附录</button><button id="print">打印 / 保存 PDF</button><a href="README.md">打开规范包入口</a></div><details class="chapter" id="guide" open><summary><span class="index">01</span><span>问题解答与路线</span><small>展开 / 收起</small></summary><article><h1>从“能读数”到“可信数据集”：BMS 实施与验收指南</h1>
+</style></head><body><header><div class="hero"><div class="eyebrow">BMS ENGINEERING NOTE · 2026.10.28</div><h1>从读数到闭环，再到可信数据</h1><p>把 ADC、标定、PWM、PI 与 SOC 放回同一条可追溯链路。先弄清每一层负责什么，再为每一步规定可测量的完成标准。</p><span class="tag">依据当前工程与课程资料</span><span class="tag">验收草案 · 硬件尚未实测</span><span class="tag">离线阅读 · 无外部依赖</span></div></header><div class="layout"><aside class="sidebar"><nav><a href="#guide"><span>01</span>问题解答与路线</a><a href="#acceptance"><span>02</span>G00—G07 验收标准</a><a href="#measurement"><span>03</span>驱动与测量分层</a><a href="#data"><span>04</span>数据、标定与 SOC</a><a href="#migration"><span>05</span>旧 instructions 怎样改</a><a href="#workflow"><span>06</span>执行与证据链</a><a href="#questions"><span>07</span>待确认项</a><a href="#status"><span>08</span>当前项目状态</a><a href="#files"><span>09</span>规范包文件导航</a><a href="#sources"><span>10</span>依据与来源</a></nav><div class="smallnote">C · 课程明确要求<br>E · 工程建议，正式验收前冻结<br>H · 硬件待确认，不代入猜测值<br><br>正式结果仍须回到原始数据。说明包完整不等于系统验收通过。</div></aside><main><div class="milestones"><div><b>01 测得可信</b><span>原码 / 标定 / 独立验证</span></div><div><b>02 控得稳定</b><span>PWM / 功率级 / PI</span></div><div><b>03 数据可追溯</b><span>时间 / 版本 / 参考 SOC</span></div><div><b>04 模型可复现</b><span>分组 / 评估 / 端侧一致</span></div></div><div class="statusnote">阶段进度、固件身份和证据范围见下方“当前项目状态”；软件构建和模拟检查不能代替硬件实测。</div><div class="toolbar"><button id="expand">展开全部章节</button><button id="collapse">收起附录</button><button id="print">打印 / 保存 PDF</button><a href="README.md">打开规范包入口</a></div><details class="chapter" id="guide" open><summary><span class="index">01</span><span>问题解答与路线</span><small>展开 / 收起</small></summary><article><h1>从“能读数”到“可信数据集”：BMS 实施与验收指南</h1>
 <p><strong>你的主线是对的：先把测量做可信，再验证功率级，然后闭环控制，最后积累可用于 SOC 的数据。</strong> 需要修正的是：ADBMS 不会替你算好外接电路的电流和温度；占空比到功率不是固定的一条标定曲线；数据记录要从第一阶段开始；SOC 的参考依据需要单独建立。</p>
 <p>本指南依据当前源码、课件、实验步骤、官方器件资料及你提供的其他工程 instructions。这里提出的是下一步执行方案，尚未完成任何硬件验收。</p>
 <h2>1. ADBMS 已经做了什么，MCU 还要算什么</h2>
@@ -745,7 +745,7 @@
 <td>在 PC/MCP 中逐个 PWM 周期控制</td>
 </tr>
 </tbody></table></div>
-<p>BSP 是组织方式，不是硬性标准：板级测量可以放在 BSP/measurement，也可以独立目录。关键是<strong>器件通用驱动不绑定某块板的系数</strong>。当前 BMS_ReadReg/BMS_ReadSample 在 main.c 中，建议后续迁出，但本轮未改源码。</p>
+<p>BSP 是组织方式，不是硬性标准：板级测量可以放在 BSP/measurement，也可以独立目录。关键是<strong>器件通用驱动不绑定某块板的系数</strong>。G01 已将当前采集迁至 BSP/adbms_acquisition.c、measurement_core.c 与 measurement.c；main.c 只调度。详细通道、状态和记录方法见 <a href="specs/G01-software.md">G01软件采集说明</a>。</p>
 <h2>哪些公式要写</h2>
 <ol>
 <li>ADBMS 电芯/AUX 结果：<code>raw = lo | (hi &lt;&lt; 8)</code>，按对应寄存器定义 <code>V = raw × 0.0001 V</code>。不再套 STM32 的 <code>Vref / 4096</code>。不是所有 ADBMS 寄存器都表示普通电压，状态、阈值或特殊测量按各自定义处理。依据：<a href="https://www.analog.com/media/en/technical-documentation/data-sheets/adbms1818.pdf">ADI 数据手册</a>。</li>
@@ -757,15 +757,23 @@
 <p>不必用软件重做 ADBMS 内部 ADC 调制、数字滤波、硬件转换；但仍要选择模式、等待完成、读取并检查质量。芯片内部温度也不能替代电池表面温度。</p>
 <h2>当前代码不是已完成标定</h2>
 <ul>
-<li>main.c 用 <code>I=(Vgpio1−0.900)×1.3333</code>，这只是现有示例系数。</li>
+<li>G01 的 estimate 保留 <code>I=(Vgpio1−0.900)×1.3333</code> 作为未标定诊断示例；正式 physical_value 留空。MCU电流estimate无独立系数，留空。</li>
 <li>课程存在 INA199A2 与增益 50 的表述冲突；TI 系列 A1/A2/A3 分别为 50/100/200。若 R=15mΩ、G=50，灵敏度为 0.75V/A；G=100 则为 1.5V/A。必须核对实装料号和完整模拟链，不可仅把乘数改一半就宣称修复。<a href="https://www.ti.com/product/INA199/part-details/INA199A2DCKTG4">TI 官方资料</a></li>
-<li>PEC 错误现在在上层置 0 并继续算电流/温度。这会把通信故障伪装成物理读数。应保留 raw 和错误码，派生值 null/无效，控制端按故障策略处理。</li>
-<li>全 AUX 转换后固定等 2ms 需修正：数据手册表 23 的相关 7kHz/3kHz 模式总时长约 3.862/5.025ms，需按实际模式确认完成及超时。滤波模式名称不等于应用层采样率。<a href="https://www.analog.com/media/en/technical-documentation/data-sheets/adbms1818.pdf#page=31">ADI 表23</a></li>
+<li>G01 已修复当前采集路径的坏PEC填零：保留收到的原码和原帧，置无效，所有派生量留空；超时/不完整传输不复用旧原码。旧驱动接口不作为当前采集入口。</li>
+<li>G01 已将原先全 AUX 固定等待2ms改为PLADC完成查询及20ms超时；Release r2已取得实板连续完成/原码证据；该证据不等于模拟输入精度标定。原问题依据：数据手册表 23 的相关 7kHz/3kHz 模式总时长约 3.862/5.025ms，需按实际模式确认完成及超时。滤波模式名称不等于应用层采样率。<a href="https://www.analog.com/media/en/technical-documentation/data-sheets/adbms1818.pdf#page=31">ADI 表23</a></li>
 </ul>
 <h2>标定流程</h2>
 <p>先确认量程/电路，再记录 raw 与独立参考，在覆盖工作范围的多个点拟合；独立重采其他点验证；最后检查零点回测、重复性、升降扫和温漂。不要只看 R²。</p>
 <p>零点、参考电压、电子标定与整机校准不同：STM32 内部 ADC 自校准不能消除外部放大器/分流/接线误差；一条 ADBMS 电流通道标定也不能替另一条 STM32 通道出证。</p>
 <p>正式误差判断应包含参考及方法的不确定度。建议统一用 <code>|误差| + U95 ≤ 容差</code> 才判 pass；若 <code>|误差| − U95 &gt; 容差</code> 则 fail；覆盖边界时 inconclusive。课程严格“小于”指标应相应使用严格不等式。拟合用数据与独立验证用数据分别列 ID。具体容差见 acceptance，不把分辨率、芯片典型精度或闭环误差当测量精度。</p>
+<h2>当前执行方式：外部参考到串口原码的整链标定</h2>
+<p>2026-10-31按用户提出的简化方式，优先直接建立物理量与原码的对应，暂停要求用户探测U5细脚。逐个测量分流阻值、放大器增益、内部REF不是整链经验标定的先决条件；内部节点诊断保留在两路不一致、非线性或饱和等异常出现时使用。上文实装料号核对要求针对解释/采用理论系数，不阻止在安全工况下直接进行整链实测。</p>
+<p>电流模型分别拟合 I_AFE=a_AFE<em>raw_AFE+b_AFE、I_MCU=a_MCU</em>raw_MCU+b_MCU。参考仪表必须测量与板载分流器相同支路的电流；DC-DC输入电源表显电流、负载端电流、设定电流不能直接代替电池侧参考。外部大端子是否处于该支路仍需确认，尚未指定接线。</p>
+<p>以确认的零电流点和至少两个不同非零参考点作初步拟合，再取未参与拟合的点独立检查，并回测零点；两点只能确定直线，不能验证线性。充放电分别覆盖实际需要使用的方向和范围，参考量程/环境/采样设置记录随数据保存。未经测量不预填电流值、零点或系数。</p>
+<p>固定偏置/比例误差可合并到系数。模型不充分、量程外外推、温漂、自热、饱和、迟滞、噪声及参考仪表误差不能靠一组常数自动消除。板端与参考需要时间配对和稳定工况；只在验证覆盖的电流、温度、供电与采样配置范围内报告误差。</p>
+<p>温度也可使用外部独立温度参考作整链标定，但需多个温度点并验证曲线，不将单点平移作为全温区校准。电芯电压已有约3.9V单工况对照，保持既有原始证据，不宣称多点标定已完成。</p>
+<p>软件系数的经验拟合不取消功率试验的接线/限值要求。当前仅调整方法，固件仍为r2、uncalibrated-v1；未启用充放电，未写系数。</p>
+<p>方法依据：<a href="https://www.analog.com/en/resources/app-notes/an-1464.html">ADI AN-1464整条信号链增益/偏置校准</a>。这里只引用系统校准原理，不声称本项目芯片具有文中同名硬件校准模式。</p>
 </article></details>
 <details class="chapter" id="data" ><summary><span class="index">04</span><span>数据、标定与 SOC</span><small>展开 / 收起</small></summary><article><h1>BMS 测量记录与 SOC 数据规范</h1>
 <p>版本：0.1；日期：2026-10-28；状态：执行规范草案，尚无硬件标定或采集结果。</p>
@@ -1284,59 +1292,62 @@ label_grade = proxy
 </tr>
 </tbody></table></div>
 <p>记录解决方式：在对应工作卡填证据路径、确认人/日期和范围，将实物参数更新到 hardware-profile.json。涉及既有结论时按 WORKFLOW 的影响表复验。</p>
+<h2>2026-10-31 G00资料核对更新</h2>
+<p>H08的Release镜像、烧录和基础自主启动/OLED/UART已有证据；Debug仅构建验证。H01的INA199A2/50倍冲突已由TI资料确认，实装器件仍未知；H03的PT1000模型已确认是源码假设，物理探头未确认。H05/H06/H10仅待实物标签和台架登记，不能用课程示例补齐。H07已完成静态缺项审查，尚无停机状态机或实物停止验证。详见 ../../evidence/runs/20261031-G00-hardware-audit/review.md 。</p>
 </article></details>
 <details class="chapter" id="status" ><summary><span class="index">08</span><span>当前项目状态</span><small>展开 / 收起</small></summary><article><h1>当前状态</h1>
-<p>日期：2026-10-28。此文件是阶段状态唯一人工维护入口。下面状态是“正式验收状态”，已完成的文档与静态审查见 RUNLOG。</p>
+<p>日期：2026-11-02。本轮已完成真实固定D0.90/0.80各2秒放电、电压表测与自动停止恢复。当前固件g03-power-points-r4，最终串口核对faults0/bits0/owned0/restored1/used1，用户已确认三路电源OFF。G03全项尚未完成。</p>
+<p>当前交付：<a href="../evidence/runs/20261102-G03-discharge-sprint-r4/report.md">现场报告</a>、<a href="../evidence/runs/20261102-G03-discharge-sprint-r4/operation-guide.md">操作步骤</a>、<a href="../evidence/runs/20261102-G03-discharge-sprint-r4/completed-points.csv">完成点CSV</a>。CH1/A=cell13、CH2/B=cell7、CH3/C=cell1已静态辨识，A接触问题已处理后验证。</p>
 <div class="table-scroll" tabindex="0"><table>
 <thead>
 <tr>
 <th>阶段</th>
 <th>status</th>
 <th>verdict</th>
-<th>已有证据 / 下一动作</th>
+<th>已有证据 / 剩余工作</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>G00 基线与硬件契约</td>
 <td>in_progress</td>
 <td>null</td>
-<td>已审查源码/文档/旧产物；下一步核对实物和构建身份，尚未构建或上板复现</td>
+<td>构建/烧录及历史冷启动基础项完成，三节14500、33Ω负载、充电口开路已登记；物理额定值、散热和仪器校准缺项保留</td>
 </tr>
 <tr>
 <td>G01 测量与标定</td>
-<td>not_started</td>
+<td>in_progress</td>
 <td>null</td>
-<td>有示例换算；需原码/有效性输出、两路电流分别标定</td>
+<td>本轮有效性/完成/错误传播/时间戳/序号/复算与快速AFE时序补测完成；真实动作后264条有效原码、29完整组；物理V/I/T标定和MCU电流路径问题仍未闭合；追加448点禁能输入交叉检查及新PWM版本270条/30组常规采集恢复验证</td>
 </tr>
 <tr>
-<td>G02 无功率 PWM 与时序</td>
-<td>not_started</td>
+<td>G02 无功率PWM与时序</td>
+<td>in_progress</td>
 <td>null</td>
-<td>有初始化配置；未取得示波器波形</td>
+<td>受影响软件回归、13组禁能板测、STOP/锁存/协议异常/资源互斥完成；新增单次PWM禁能15项及采集恢复通过；物理波形、有效死区与电气停止时间缺测</td>
 </tr>
 <tr>
 <td>G03 受限开环功率级</td>
-<td>not_started</td>
+<td>in_progress</td>
 <td>null</td>
-<td>等待实际硬件边界、停止链路和前置门通过</td>
+<td>2026-11-02完成r4真实固定D0.90/0.80各2s，负载表测10.916/12.152V，电池标称I−0.3566/−0.4444A，自动停止恢复通过；其余课程点、电流范围、精度/热稳态/波形和充电侧仍缺</td>
 </tr>
 <tr>
-<td>G04 PI 恒流与故障退出</td>
+<td>G04 PI恒流与故障退出</td>
 <td>not_started</td>
 <td>null</td>
-<td>有 pi.h，尚未接入周期控制；无闭环证据</td>
+<td>尚无闭环实物证据</td>
 </tr>
 <tr>
 <td>G05 串口/上位机联调</td>
-<td>not_started</td>
+<td>in_progress</td>
 <td>null</td>
-<td>简单记录器应从 G01 开始；现有主机与当前模板协议未对齐</td>
+<td>CRC/id/防重放、专用采集读回、停止与单次命令工具完成；真实恢复未确认先提示现场停止；完整功率业务仍未验收</td>
 </tr>
 <tr>
-<td>G06 SOC 基准与数据集</td>
+<td>G06 SOC基准与数据集</td>
 <td>not_started</td>
 <td>null</td>
-<td>容量、初值、参考标签及独立验证方案待建立</td>
+<td>容量、初值、参考标签及独立验证尚待建立</td>
 </tr>
 <tr>
 <td>G07 模型与端侧部署</td>
@@ -1345,13 +1356,34 @@ label_grade = proxy
 <td>无可验收数据集或模型产物</td>
 </tr>
 </tbody></table></div>
-<p>静态问题：main.c 当前启动后仅调用一次测量，主循环为空；尚未启动 ADC/PWM 连续控制；坏 PEC 被上层填 0 后继续换算；AUX 完成等待需核对；两路电流的电路系数未以实物确认；pi.h 与旧 pi.c 不构成已经运行的控制器。旧 HEX/AXF 不足以证明当前源码可用。</p>
-<p>本轮完成：适配规范、说明 HTML、模板和资料哈希；其检查结果仅支持文档结构和来源完整性，不支持硬件性能。</p>
-<p>目录采用：资料与工具已分类，规范位于 <code>instructions/</code>，项目根 <code>AGENTS.md</code> 已建立；历史目录与旧说明快照保留。此项仅为组织与文档变更，上表所有硬件阶段状态不变。</p>
+<h2>历史过程记录</h2>
+<p>以下保存各阶段当时状态；当前状态以上方汇总为准。</p>
+<p>历史禁能阶段实板运行 <code>g03-pwm-disabled-r1</code>，Release HEX SHA256为<code>9126778404c6f9a9890ab729522f7fbd9fe7fe0a380436694494ebecde81f9fb</code>。ROM下载写入/读回成功，用户恢复BOOT1=0/BOOT0=0并RESET后COM11核对默认禁能及身份。单次PWM禁能15项全部取得通过结果，G01恢复270条/30完整组，G02 1秒更新/完成99997无错误，relay DRY102组。最终PWM IDLE、used1、faults0、owned0、timer_running0、actual_bits0；物理量有效标志保持0。本版不能开启真实PWM或继电器。</p>
+<p>核心21组、port寄存器模型15组、主机19项及受影响旧回归通过；Release0错0警告、Debug原有EXTRAM警告1。一次软件复位接口Error32保留，独立串口证实默认启动后继续未执行场景，无复位/启动自动重试。详见<a href="../evidence/runs/20261101-G03-pwm-disabled-r1/work-card.md">禁能工作卡</a>、<a href="../evidence/runs/20261101-G03-pwm-disabled-r1/report.md">最终报告</a>。未新增断电冷启动或电气关断结论。</p>
+<p>历史真实继电器镜像 <code>g03-relay-r2</code> / <code>8ff78e03997c4a5facd8f6feade09024fdd4721a3f0e32fc3531312bf1598c49</code> 与三次观察数据保留。此版下载后不再把旧固件的live_used状态当作当前运行状态。</p>
+<p>此前完成r1禁能实测及G01/G02补测，固定r2观察边界并完成首次真实命令；用户继续G03后，沿用同一条件追加两次独立记录。三路电芯与AFE均观察到相关响应，AFE恢复；软件窗口不是触点测量。未知制造商硬限和实际电流标定仍留空，观察区间仅属于本次工程探索。</p>
+<p>此前继电器交付：<a href="../evidence/runs/20261101-G03-relay-r2/work-card.md">工作卡</a>、<a href="../evidence/runs/20261101-G03-relay-r2/retest-matrix.md">补测表</a>、<a href="../evidence/runs/20261101-G03-relay-r2/first-experiment-report.md">首次报告</a>、<a href="../evidence/runs/20261101-G03-relay-r2/conditions-table.md">冻结工况</a>。失败历史与已完成动作见RUNLOG和各run。r1恢复采集的截断位于开头；r2恢复采集为末尾9字节截断，均保留且不参与有效样本判定。</p>
+<p>此前交付：<a href="../evidence/runs/20261101-G03-relay-repeat-r1/work-card.md">重复性工作卡</a>、<a href="../evidence/runs/20261101-G03-relay-repeat-r1/comparison/aligned-responses.png">三次曲线</a>、<a href="../evidence/runs/20261101-G03-relay-repeat-r1/pwm-preparation.md">PWM准备</a>。AFE三次中位响应−2492.5/−2493/−2491码；MCU为+0.5/−1/0码，不能作为已验证的快速反馈。手动RESET后曾停留ROM且串口无响应，软件复位恢复；该启动问题保留，未新增冷启动通过结论。禁能适配器已接入；下一项落实本次PWM路径的反馈或快速保护、实装驱动及有限工况，随后接真实输出版本。EG3112资料支持内部死区，DTG0不单独否决，不要求完整原理图作为禁能工作的前提。</p>
+<p>此前输入诊断：<a href="../evidence/runs/20261101-G03-current-path-r1/work-card.md">MCU电流输入工作卡</a>。7组448点完成并核对原始CRC/聚合值，PA1原采样/长采样/恢复后的尾段中位数1272/1232/1271码；模拟供电有效位、模拟引脚模式和通道配置读回符合源码，寄存器与ADC状态全部恢复，第三次继电器记录保留，输出0。静态检查未定位I_ADA至PA1的实际连接或传递关系，根因仍inconclusive，真实PWM未执行；用户确认没有完整原理图，需要板厂资料或具备条件的路径确认，不以修改系数替代。</p>
+<p>2026-11-02 G03冲刺：真实输出适配层g03-power-d90-r1已完成双构建、读回和COM12默认关闭确认；Release SHA256 <code>a5a0c5c300c089828f1056fb37ac1f5beb96fefeef421361ab34a490a2cedea9</code>。新镜像必要禁能核对105组、100074us、faults0、恢复通过；三路电源替代实电池。该历史记录冻结后已执行r1空载失败，随后r2修复并完成带载首点，见下文。入口：<a href="../evidence/runs/20261102-G03-discharge-sprint-r1/work-card.md">冲刺工作卡</a>。旧三次继电器、15项禁能结果沿用。</p>
+<p>2026-11-02 当前实板为 <code>g03-power-d90-r2</code>，一次带载单点已完成，used1/输出0/故障0/资源恢复。PWM100072us，继电器延迟20100us，4个完整活动样本，电池端标称电流−0.35528A、串电压10.34835V；本次raw physical_valid=0，非最终精度、非稳态。r1空载/停止顺序失败完整保留。<a href="../evidence/runs/20261102-G03-discharge-sprint-r2/report.md">r2报告</a>。r3离线22项及主机12项通过、双构建完成，尚未烧录，不混作当前固件。</p>
+<p>当前更新：r3已写入且读回通过，尚待正常运行身份核对。r2实测首点仍为已取得的有效结果，r3未执行点保持null。</p>
+<p>2026-11-02 扩点更新：r3 D0.80请求在PWM开启前因cell13欠压退出，故障锁存、输出0、资源恢复；不计入有效开环点。静态通道辨识已确认CH1/A→cell13，CH2/B→cell7，CH3/C→cell1。用户已纠正CH1/A接触问题；r4恢复计数修正已构建，待运行验证。<a href="../evidence/runs/20261102-G03-discharge-sprint-r3/report.md">r3异常与映射报告</a>。</p>
+<p>当前更新：r4镜像d2485461…已烧录读回，等待用户正常运行档确认；CH1/A接触处理已由用户确认，尚未进行处理后的实功率验证。</p>
+<p>2026-11-02 冲刺最终状态：实板g03-power-points-r4，Release SHA256 <code>d24854613869c973c3483ebc7ca7d973fb5bf2ca67e75ca8789ff454b5703784</code>；D0.80短点及D0.90/0.80两笔2s带载点全部通过，197组/95完整PWM样本各点，PWM2000072us、继电器后保持20100us，输出0/故障0/资源恢复/used1。用户已确认三路OFF。D减小时放电幅值与负载电压增加，仅作局部关系；未把标称换算写成精度验收。<a href="../evidence/runs/20261102-G03-discharge-sprint-r4/report.md">现场报告</a> · <a href="../evidence/runs/20261102-G03-discharge-sprint-r4/operation-guide.md">操作步骤</a>。r1/r3失败保留，r4端口23项与最终主机13项检查通过。</p>
 </article></details>
 <details class="chapter" id="files" ><summary><span class="index">09</span><span>规范包文件导航</span><small>展开 / 收起</small></summary><article><h1>BMS 执行规范 · 项目执行版</h1>
 <p>建立于 2026-10-28，并于同日按用户要求放入项目 <code>instructions/</code>。项目根 <a href="../AGENTS.md">AGENTS.md</a> 已采用本流程；E类工程建议指标仍为待冻结草案，H类实物限制仍须确认。适用于 STM32N6 + ADBMS1818 + 双向 DC-DC 课程工程，<strong>不代表固件已补全、已烧录或硬件验收通过</strong>。项目目录入口见 <a href="../README.md">根README</a>。</p>
 <p>先读 <a href="#guide">问题解答与实施路线</a>，也可打开同目录的 <code>BMS实施与验收指南.html</code>。然后读 <a href="#acceptance">验收标准</a>、<a href="#measurement">测量分层</a>、<a href="#data">数据规范</a>。</p>
+<h2>分阶段提示词</h2>
+<p>从 <a href="prompts/README.md">prompts/README.md</a> 进入，选择 G00—G07 的独立提示词。每阶段分成 5 个可单独推进的子任务，包含阅读入口、实现、验证、交付与缺条件时的后续动作。例如：“读取 instructions/prompts/G01-measurement.md，先完成 G01.1—G01.3。”</p>
+<p>提示词安排执行，specs 保留技术与验收标准，工作卡保存本次范围和结果。提示词中的子任务编号不另设一套验收门，当前状态仍以 STATUS 为准。</p>
+<h2>当前任务计划</h2>
+<ul>
+<li><a href="G03-%E6%97%A0%E6%8E%A2%E5%A4%B4%E6%9D%A1%E4%BB%B6%E4%B8%8B%E7%9A%84%E6%8E%A8%E8%BF%9B%E8%AE%A1%E5%88%92.md">无探头条件下的后续任务总计划</a>：已对齐r4结果；安排首次实物通路观察及G03—G07的后续顺序、分支和交付。</li>
+<li><a href="G03-%E5%8D%95%E6%AC%A1100ms%E7%BB%A7%E7%94%B5%E5%99%A8%E6%94%BE%E7%94%B5%E6%B5%8B%E8%AF%95%E6%96%B9%E6%A1%88.md">单次100ms继电器放电测试方案</a>：总计划任务1—2的详细方案；当前实现与首次探索结果见STATUS及对应工作卡。</li>
+</ul>
+<p>总计划决定下一项任务，详细方案规定首次测试动作；正式阶段状态仍见<a href="#status">STATUS</a>。</p>
 <h2>如何使用</h2>
 <ol>
 <li>从 <a href="#status">当前状态</a> 找到下一阶段，先处理 <a href="#questions">待确认项</a> 中影响该阶段的项目。</li>
@@ -1373,6 +1405,10 @@ label_grade = proxy
 <td>解释 ADC、换算、开环/闭环、SOC 及实施次序；HTML 为阅读版</td>
 </tr>
 <tr>
+<td>prompts/README.md / G00—G07 提示词</td>
+<td>启动、细分实施与复核各阶段任务</td>
+</tr>
+<tr>
 <td>MIGRATION.md</td>
 <td>旧 instructions 哪些保留、简化、删除与替换</td>
 </tr>
@@ -1387,6 +1423,26 @@ label_grade = proxy
 <tr>
 <td>../AGENTS.md / AGENTS_BMS.example.md</td>
 <td>当前项目代理入口 / 已采用情况说明；不再使用示例中的另一套规则</td>
+</tr>
+<tr>
+<td>specs/G02-pwm-timing.md</td>
+<td>G02诊断入口、配置推导、时序观测边界与待执行波形/停止清单</td>
+</tr>
+<tr>
+<td>specs/G02-host-diagnostics.md</td>
+<td>无需探头的串口内部采样、STOP/故障诊断与证据边界</td>
+</tr>
+<tr>
+<td>specs/prepower-host-validation.md</td>
+<td>扩展板测、固定工况离线准备、功率数据检查和本轮跳过项</td>
+</tr>
+<tr>
+<td>specs/G03-disabled.md</td>
+<td>MCU充放电影子状态机、本地保护、禁能接口与合成故障验证</td>
+</tr>
+<tr>
+<td>specs/G03-real-adc-disabled.md</td>
+<td>真实ADC配置对照、HEX标称换算、本地窗口保护与禁能扫描记录</td>
 </tr>
 <tr>
 <td>specs/measurement.md</td>
@@ -1450,6 +1506,9 @@ label_grade = proxy
 </tr>
 </tbody></table></div>
 <p>外部 <code>D:/ADMIN/Desktop/instructions</code> 仅作为流程设计参考，保持原样。其赛题、模型路由、额度监控、截止时间不适用于此 BMS 任务。采用本流程没有执行硬件实验，也没有启用 MCP。</p>
+<ul>
+<li>2026-11-01实现入口：<a href="specs/G03-relay-single.md">G03单次继电器接口</a>，实际进展以STATUS和本轮工作卡为准。</li>
+</ul>
 </article></details>
 <details class="chapter" id="sources" ><summary><span class="index">10</span><span>依据与来源</span><small>展开 / 收起</small></summary><article><h1>来源与证据边界</h1>
 <p>本包建立日期 2026-10-28。文件哈希见 source-manifest.json；它标识本次读取的版本，不代表文件内容正确或硬件已验证。</p>

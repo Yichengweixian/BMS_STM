@@ -1,0 +1,900 @@
+diff --git a/BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c b/BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c
+index e15c417..bd0d298 100644
+--- a/BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c
++++ b/BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c
+@@ -22,7 +22,7 @@
+ /* Private includes ----------------------------------------------------------*/
+ /* USER CODE BEGIN Includes */
+ #include "uart.h"
+-#include "adbms1818.h"
++#include "measurement.h"
+ #include "oled_driver.h"
+ #include "oled_font.h"
+ 
+@@ -37,9 +37,6 @@
+ 
+ /* Private define ------------------------------------------------------------*/
+ /* USER CODE BEGIN PD */
+-/* ===== 采样示例参数：按实测改这两个就够了 ===== */
+-#define BMS_I_ZERO_V        0.900f          /* 零电流时 GPIO1 的电压（静置读实测值替换） */
+-#define BMS_I_AMP_PER_V     1.3333f         /* 电流灵敏度 A/V = 1/0.75，方向反了取负 */
+ /* USER CODE END PD */
+ 
+ /* Private macro -------------------------------------------------------------*/
+@@ -84,71 +81,11 @@ static void MX_XSPI1_Init(void);
+ static void MX_XSPI2_Init(void);
+ static void SystemIsolation_Config(void);
+ /* USER CODE BEGIN PFP */
+-static uint8_t BMS_ReadReg(uint16_t cmd, float v[3]);
+-static void    BMS_ReadSample(float *v1, float *v7, float *v13,
+-                              float *i, float *t1, float *t2, float *t3);
+ static void system_clock_config(void);
+ /* USER CODE END PFP */
+ 
+ /* Private user code ---------------------------------------------------------*/
+ /* USER CODE BEGIN 0 */
+-/* ===== 最简采样示例：电池电压 / 母线电流 / 温度 =====
+- * 通路：单体电压 RDCVA/C/E，母线电流 GPIO1，温度 GPIO2/3/4（PT1000 + 9.1k 分压）
+- * 唯一的顺序要求：先发 ADCV 读电压，再发 ADAX 读 AUX —— 反了 AUX 会顶掉电压结果。
+- */
+-
+-/* 读一个寄存器组：PEC 通过则把 3 个 16bit 值换算成电压(V)并返回 1，否则返回 0 */
+-static uint8_t BMS_ReadReg(uint16_t cmd, float v[3])
+-{
+-    uint8_t buf[8] = {0};
+-
+-    ADBMS181x_read_reg(cmd, buf, 0);
+-    if (ADBMS_CalcPEC(buf, 6) != (((uint16_t)buf[6] << 8) | buf[7])) {
+-        return 0;
+-    }
+-    v[0] = (float)(buf[0] | (buf[1] << 8)) * 0.0001f;   /* LSB = 100 µV */
+-    v[1] = (float)(buf[2] | (buf[3] << 8)) * 0.0001f;
+-    v[2] = (float)(buf[4] | (buf[5] << 8)) * 0.0001f;
+-    return 1;
+-}
+-
+-/* 采样一次：v1/v7/v13 = 三节单体电压(V)，i = 母线电流(A)，t1~t3 = 温度(℃) */
+-static void BMS_ReadSample(float *v1, float *v7, float *v13,
+-                           float *i, float *t1, float *t2, float *t3)
+-{
+-    float a[3] = {0.0f, 0.0f, 0.0f};
+-    float b[3] = {0.0f, 0.0f, 0.0f};
+-    float r;
+-
+-    /* 唤醒 + 打开基准（休眠后 CFGA 会复位，REFON 得重写） */
+-    wakeup_sleep_cmd(1);
+-    HAL_Delay(1);
+-    ADBMS1818_EnableVREF2();
+-    HAL_Delay(2);
+-
+-    /* 1) 单体电压：只选通 V1/V7/V13，转换约 0.8ms */
+-    ADBMS181x_write_cmd(ADCV | CH_V1_7_13 | (MD_7KHZ_3KHZ << 7), 0);
+-    HAL_Delay(2);
+-    *v1  = BMS_ReadReg(RDCVA, a) ? a[0] : 0.0f;
+-    *v7  = BMS_ReadReg(RDCVC, a) ? a[0] : 0.0f;
+-    *v13 = BMS_ReadReg(RDCVE, a) ? a[0] : 0.0f;
+-
+-    /* 2) AUX：GPIO1=电流，GPIO2/3/4=三路 PT1000 */
+-    ADBMS181x_write_cmd(ADAX | (MD_7KHZ_3KHZ << 7), 0);
+-    HAL_Delay(2);
+-    if (!BMS_ReadReg(RDAUXA, a)) { a[0] = a[1] = a[2] = 0.0f; }
+-    if (!BMS_ReadReg(RDAUXB, b)) { b[0] = b[1] = b[2] = 0.0f; }
+-
+-    /* 3) 换算：电流 =（GPIO1 − 零点）× 灵敏度；温度 = 分压 → PT1000 阻值 → 温度 */
+-    *i = (a[0] - BMS_I_ZERO_V) * BMS_I_AMP_PER_V;
+-
+-    r = (a[1] < (VREF2_VOLT - 0.001f)) ? a[1] * R_UP / (VREF2_VOLT - a[1]) : 0.0f;
+-    *t1 = (r / PT_R0 - 1.0f) / PT_ALPHA;
+-    r = (a[2] < (VREF2_VOLT - 0.001f)) ? a[2] * R_UP / (VREF2_VOLT - a[2]) : 0.0f;
+-    *t2 = (r / PT_R0 - 1.0f) / PT_ALPHA;
+-    r = (b[0] < (VREF2_VOLT - 0.001f)) ? b[0] * R_UP / (VREF2_VOLT - b[0]) : 0.0f;
+-    *t3 = (r / PT_R0 - 1.0f) / PT_ALPHA;
+-}
+ /* USER CODE END 0 */
+ 
+ /**
+@@ -262,28 +199,9 @@ OLED_FONT_8x16	8×16	16 字符	4 行（y=0,16,32,48）
+ 	OLED_ShowString(0, 0, "BMS_EX", OLED_FONT_8x16);
+ 	OLED_Refresh();
+ 
+-	/* UART 初始化：启动 IDLE 断帧接收（内部调 HAL_UARTEx_ReceiveToIdle_IT） */
++	/* G01 acquisition only. TIM1/TIM2 and relay outputs are never started. */
+ 	uart_init(115200);
+-
+-	/* UART 发送示例，115200 8N1
+-	   本帧约 40 字节，约 3.5ms 发完；uart_printf 会等到发完才返回。 */
+-	uart_printf("BMS_EX UART ready, tick=%u ms\r\n", (unsigned)HAL_GetTick());
+-
+-	/* ===== UART 接收 =====
+-	   uart_init() 已启动 IDLE 断帧接收；
+-	   命令处理在本文件末尾的 HAL_UARTEx_RxEventCallback() 里（当前示例是原样回发）。 */
+-
+-	/* ===== 采样示例：上电读一次电池电压 / 电流 / 温度 =====
+-	 * 主循环里按需周期调用即可；ADBMS1818 空闲约 2s 会自动休眠，
+-	 * 所以 BMS_ReadSample() 内部每轮都先唤醒并补写 REFON。 */
+-	{
+-		float v1, v7, v13, i, t1, t2, t3;
+-
+-		BMS_ReadSample(&v1, &v7, &v13, &i, &t1, &t2, &t3);
+-
+-		uart_printf("V1=%.3f V7=%.3f V13=%.3f I=%.2fA T1=%.1f T2=%.1f T3=%.1fC\r\n",
+-		            v1, v7, v13, i, t1, t2, t3);
+-	}
++	Measurement_Init();
+ 
+   /* USER CODE END 2 */
+ 
+@@ -294,7 +212,8 @@ OLED_FONT_8x16	8×16	16 字符	4 行（y=0,16,32,48）
+     /* USER CODE END WHILE */
+ 
+     /* USER CODE BEGIN 3 */
+-
++    Measurement_Task();
++    HAL_Delay(1);
+   }
+   /* USER CODE END 3 */
+ }
+@@ -348,8 +267,8 @@ static void MX_ADC1_Init(void)
+   hadc1.Init.ContinuousConvMode = DISABLE;
+   hadc1.Init.NbrOfConversion = 1;
+   hadc1.Init.DiscontinuousConvMode = DISABLE;
+-  hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIG_T1_TRGO;
+-  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
++  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
++  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+   hadc1.Init.ConversionDataManagement = ADC_CONVERSIONDATA_DR;
+   hadc1.Init.Overrun = ADC_OVR_DATA_PRESERVED;
+   hadc1.Init.LeftBitShift = ADC_LEFTBITSHIFT_NONE;
+@@ -1060,15 +979,8 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
+     return;
+   }
+ 
+-  if (Size > 0U)
+-  {
+-    /* 命令处理示例：收到什么原样发回。
+-       真实业务在这里解析 uart_rx_data() 的 Size 个字节，再决定应答或执行动作。 */
+-    if (uart_tx_is_busy() == 0U)
+-    {
+-      (void)uart_send_dma(uart_rx_data(), Size);
+-    }
+-  }
++  /* Measurement stream owns TX. Never interleave ISR echo into CSV frames. */
++  UNUSED(Size);
+ 
+   uart_rx_restart();
+ }
+diff --git a/BMS_EXv1.1/BMS_EX/BMS_EX.ioc b/BMS_EXv1.1/BMS_EX/BMS_EX.ioc
+index 98da5c9..70015db 100644
+--- a/BMS_EXv1.1/BMS_EX/BMS_EX.ioc
++++ b/BMS_EXv1.1/BMS_EX/BMS_EX.ioc
+@@ -2,8 +2,8 @@
+ ADC1.Channel-0\#ChannelRegularConversion=ADC_CHANNEL_1
+ ADC1.CommonPathInternal=ADC_INTERNAL_NONE
+ ADC1.EOCSelection=ADC_EOC_SEQ_CONV
+-ADC1.ExternalTrigConv=ADC_EXTERNALTRIG_T1_TRGO
+-ADC1.ExternalTrigConvEdge=ADC_EXTERNALTRIGCONVEDGE_RISING
++ADC1.ExternalTrigConv=ADC_SOFTWARE_START
++ADC1.ExternalTrigConvEdge=ADC_EXTERNALTRIGCONVEDGE_NONE
+ ADC1.IPParameters=Rank-0\#ChannelRegularConversion,Channel-0\#ChannelRegularConversion,SamplingTime-0\#ChannelRegularConversion,OffsetNumber-0\#ChannelRegularConversion,NbrOfConversionFlag,EOCSelection,OversamplingMode,RightBitShift,Ratio,ExternalTrigConv,ExternalTrigConvEdge,master,CommonPathInternal
+ ADC1.NbrOfConversionFlag=1
+ ADC1.OffsetNumber-0\#ChannelRegularConversion=ADC_OFFSET_NONE
+diff --git a/BMS_EXv1.1/BMS_EX/BSP/uart.h b/BMS_EXv1.1/BMS_EX/BSP/uart.h
+index 6d3affa..3a41dba 100644
+--- a/BMS_EXv1.1/BMS_EX/BSP/uart.h
++++ b/BMS_EXv1.1/BMS_EX/BSP/uart.h
+@@ -19,7 +19,7 @@
+ 
+ /* 发送参数 */
+ #define UART_TX_TIMEOUT_MS      100         /* 单次发送超时（ms），不要用 0xFFFF */
+-#define UART_PRINTF_BUF_SIZE    128         /* uart_printf 单次格式化缓冲（字节） */
++#define UART_PRINTF_BUF_SIZE    512         /* uart_printf 单次格式化缓冲（字节） */
+ 
+ /* 函数声明 */
+ void uart_init(uint32_t baudrate);             /* 初始化串口并启动接收 */
+diff --git a/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx b/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx
+index 1761899..b509f2f 100644
+--- a/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx
++++ b/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx
+@@ -10,7 +10,7 @@
+       <TargetName>BMS_EX_Debug</TargetName>
+       <ToolsetNumber>0x4</ToolsetNumber>
+       <ToolsetName>ARM-ADS</ToolsetName>
+-      <pCCUsed>6230000::V6.23::ARMCLANG</pCCUsed>
++      <pCCUsed>6240000::V6.24::ARMCLANG</pCCUsed>
+       <uAC6>1</uAC6>
+       <TargetOption>
+         <TargetCommonOption>
+@@ -544,6 +544,36 @@
+         <Group>
+           <GroupName>BSP</GroupName>
+           <Files>
++            <File>
++              <FileName>measurement.c</FileName>
++              <FileType>1</FileType>
++              <FilePath>..\..\BSP\measurement.c</FilePath>
++            </File>
++            <File>
++              <FileName>measurement.h</FileName>
++              <FileType>5</FileType>
++              <FilePath>..\..\BSP\measurement.h</FilePath>
++            </File>
++            <File>
++              <FileName>measurement_core.c</FileName>
++              <FileType>1</FileType>
++              <FilePath>..\..\BSP\measurement_core.c</FilePath>
++            </File>
++            <File>
++              <FileName>measurement_core.h</FileName>
++              <FileType>5</FileType>
++              <FilePath>..\..\BSP\measurement_core.h</FilePath>
++            </File>
++            <File>
++              <FileName>adbms_acquisition.c</FileName>
++              <FileType>1</FileType>
++              <FilePath>..\..\BSP\adbms_acquisition.c</FilePath>
++            </File>
++            <File>
++              <FileName>adbms_acquisition.h</FileName>
++              <FileType>5</FileType>
++              <FilePath>..\..\BSP\adbms_acquisition.h</FilePath>
++            </File>
+             <File>
+               <FileName>adbms1818.c</FileName>
+               <FileType>1</FileType>
+@@ -1166,6 +1196,36 @@
+         <Group>
+           <GroupName>BSP</GroupName>
+           <Files>
++            <File>
++              <FileName>measurement.c</FileName>
++              <FileType>1</FileType>
++              <FilePath>..\..\BSP\measurement.c</FilePath>
++            </File>
++            <File>
++              <FileName>measurement.h</FileName>
++              <FileType>5</FileType>
++              <FilePath>..\..\BSP\measurement.h</FilePath>
++            </File>
++            <File>
++              <FileName>measurement_core.c</FileName>
++              <FileType>1</FileType>
++              <FilePath>..\..\BSP\measurement_core.c</FilePath>
++            </File>
++            <File>
++              <FileName>measurement_core.h</FileName>
++              <FileType>5</FileType>
++              <FilePath>..\..\BSP\measurement_core.h</FilePath>
++            </File>
++            <File>
++              <FileName>adbms_acquisition.c</FileName>
++              <FileType>1</FileType>
++              <FilePath>..\..\BSP\adbms_acquisition.c</FilePath>
++            </File>
++            <File>
++              <FileName>adbms_acquisition.h</FileName>
++              <FileType>5</FileType>
++              <FilePath>..\..\BSP\adbms_acquisition.h</FilePath>
++            </File>
+             <File>
+               <FileName>adbms1818.c</FileName>
+               <FileType>1</FileType>
+diff --git a/BMS_EXv1.1/BMS_EX/Secure_nsclib/secure_nsclib.o b/BMS_EXv1.1/BMS_EX/Secure_nsclib/secure_nsclib.o
+index b81314f..09798e6 100644
+Binary files a/BMS_EXv1.1/BMS_EX/Secure_nsclib/secure_nsclib.o and b/BMS_EXv1.1/BMS_EX/Secure_nsclib/secure_nsclib.o differ
+diff --git a/README.md b/README.md
+index 44a7ad1..d9a5034 100644
+--- a/README.md
++++ b/README.md
+@@ -5,6 +5,7 @@
+ ## 从这里进入
+ 
+ - **执行规范**：[instructions/README.md](instructions/README.md)；当前进度：[STATUS](instructions/STATUS.md)。
++- **分阶段提示词**：[G00—G07 执行入口](instructions/prompts/README.md)，支持指定阶段或子任务。
+ - **系统解释与验收路线**：[BMS实施与验收指南](instructions/BMS实施与验收指南.html)。
+ - **硬件、软件与PI原理**：[BMS系统原理与开发路线](docs/guides/BMS系统原理与开发路线.html)。
+ - **每个文件的用途**：[目录逐文件说明](docs/guides/目录逐文件说明.html)。
+diff --git a/instructions/README.md b/instructions/README.md
+index ff5872b..1f14e10 100644
+--- a/instructions/README.md
++++ b/instructions/README.md
+@@ -4,6 +4,12 @@
+ 
+ 先读 [问题解答与实施路线](guide.md)，也可打开同目录的 `BMS实施与验收指南.html`。然后读 [验收标准](specs/acceptance.md)、[测量分层](specs/measurement.md)、[数据规范](specs/data.md)。
+ 
++## 分阶段提示词
++
++从 [prompts/README.md](prompts/README.md) 进入，选择 G00—G07 的独立提示词。每阶段分成 5 个可单独推进的子任务，包含阅读入口、实现、验证、交付与缺条件时的后续动作。例如：“读取 instructions/prompts/G01-measurement.md，先完成 G01.1—G01.3。”
++
++提示词安排执行，specs 保留技术与验收标准，工作卡保存本次范围和结果。提示词中的子任务编号不另设一套验收门，当前状态仍以 STATUS 为准。
++
+ ## 如何使用
+ 
+ 1. 从 [当前状态](STATUS.md) 找到下一阶段，先处理 [待确认项](references/open-questions.md) 中影响该阶段的项目。
+@@ -17,6 +23,7 @@
+ | 文件 | 用途 |
+ |---|---|
+ | guide.md / BMS实施与验收指南.html | 解释 ADC、换算、开环/闭环、SOC 及实施次序；HTML 为阅读版 |
++| prompts/README.md / G00—G07 提示词 | 启动、细分实施与复核各阶段任务 |
+ | MIGRATION.md | 旧 instructions 哪些保留、简化、删除与替换 |
+ | WORKFLOW.md | 调试、正式验收、状态、版本和失效范围规则 |
+ | STATUS.md / RUNLOG.md | 当前阶段与关键过程记录 |
+diff --git a/instructions/RUNLOG.md b/instructions/RUNLOG.md
+index a1ca3f9..4b0d8b0 100644
+--- a/instructions/RUNLOG.md
++++ b/instructions/RUNLOG.md
+@@ -31,3 +31,55 @@
+ - 源码、工程配置、开发规范和说明文档继续保留。更新根AGENTS与README，避免后续重新上传工具包。
+ - 范围为当前分支的后续提交，不重写已发布历史；初始提交和GitHub端旧LFS对象仍可能保留原记录。
+ - 无软件卸载、固件构建或硬件实验；实验状态不变。
++
++## 2026-10-30 · 当前基础源码烧录
++
++- 安装用户提供的 MX25UM25645G_ATK-CNN647B.FLM 至 Keil；解压配套 CubeProgrammer stldr。
++- 用户切换开发启动模式后识别 STM32N647。ST-Link V2J37S7 未升级。
++- BMS_EX_Release 构建 0 错误、0 警告；SWD 100 kHz Under Reset 写入 0x70100400，Download verified successfully。
++- 首次 HotPlug 擦除失败与成功重试日志均保留于 evidence/runs/20261030-basic-flash；镜像 SHA256 与工作卡同目录。
++- 证据范围 build、bench；独立启动正在等待实物确认，未进行测量/功率级验收。
++
++- 后续启动确认：BOOTSR 实测 0x3，用户反向切换两个 BOOT 开关并复位后确认 OLED 显示 BMS_EX；Flash 复位启动已跑通。最终纠正开关后的全断电重启未另行观察。保存复用脚本 tools/flash-loaders/flash-current-release.ps1，已检查语法。
++
++
++## 2026-10-30 · G00 软件基线核验
++
++- 当前源码/配置快照、Git差异、工具哈希、材料清单和双target干净构建归档于 evidence/runs/20261030-G00-baseline。
++- Release 0错误0警告，HEX与实际烧录镜像完全一致；Debug 0错误1条空EXTRAM警告，已分析并记录外部堆依赖。源码未修改。
++- ADC2 ioc/源码差异、PI旧接口、默认输出/停止设计、实物资料适配均已登记。
++- G00整体尚未宣告通过：等待冷启动重复记录、串口通路与实物登记。
++
++- G00启动复测：用户确认完全断电重启3次均显示BMS_EX，已逐次登记为用户报告证据。Keil型号STM32N647X0HxQ与实测STM32N647对应；不据此推断板卡版本、供电和仪器。最新串口枚举仍只有蓝牙COM3–COM8，基础UART实测待接入。
++
++## 2026-10-31 · 分阶段提示词
++
++- 按用户要求新增 prompts/README.md 与 G00—G07 八份独立提示词；每阶段细分五个子任务，允许按范围实施或复核。
++- 通用要求集中在 prompts/README.md，阶段文件引用现有验收、数据和硬件规范，不复制数值阈值或维护第二套阶段状态。
++- 新增根 README 与规范 README 的导航。提示词要求核对已有工作卡和实际代码，复用有效证据，明确离线/台架及正式验收边界。
++- 本次为提示词与入口文档变更，没有执行固件构建、烧录或硬件实验，不改变阶段验收状态。
++
++## 2026-10-31 · G00 串口 USB 识别排查
++
++- 用户报告独立 CH340 模块，换数据线直连电脑并断开所有板侧杜邦线后，仍为 VID_0000/PID_0002、设备描述符请求失败、Code 43，未生成串口。
++- 已存在 CH341 驱动文件与驱动仓库记录。指定设备的软件重启被 Windows 拒绝访问，未执行成功。
++- 当前 Release HEX 哈希仍与已烧录基线一致。串口测试尚未执行，等待可正常枚举的模块；原三次冷启动结果保留。证据：evidence/runs/20261031-G00-uart。
++
++- CH340恢复：用户再次换线后识别为USB-SERIAL CH340(COM10)，VID_1A86/PID_7523，状态OK。115200/8N1成功打开，被动接收2秒0字节，未发送数据。USB/驱动通路恢复，等待接线确认后进行板端日志/回显测试；G00尚未整体通过。
++
++- 照片补充：核心板丝印CNN647B、AFE丝印ADBMS1818可见。用户只展示底板/核心板，CH340可能为板载接口，先前按独立模块理解的接线隔离证据不能当作已验证物理事实。
++- 例程确认USART1 PE5/PE6、115200/8N1；说明书关于ST-Link提供串口的描述与实物CH340枚举不一致。COM10短帧回显收到非匹配字节，未通过；保持原固件，抓取复位启动数据定位。
++
++- G00基础UART通过：RST后COM10以115200/8N1捕获两次BMS_EX UART ready与测量文本；3组短帧逐字节回显一致。证据见evidence/runs/20261031-G00-uart。应用代码未改动，测量数据未标定。G00总体硬件契约待实物登记。
++
++
++## 2026-10-31 G00硬件资料审查
++
++- 对照课件、任务2步骤、模板说明、现成上位机说明和当前源码，补齐已确认身份、软件配置、资料标称以及冲突来源。
++- profile_id=cnn647b-bms-baseline-20261031-r1；实测值和硬限没有从示例自动填充。未改固件或执行功率动作。
++- 实物供电/电池/负载/仪器仍需用户只看标签确认；分流器、增益和传感器属于后续测量前核对。G00整体保持in_progress/null。
++- 记录及参数变更前后快照：evidence/runs/20261031-G00-hardware-audit。
++
++- 全板照片补充：实装3节14500标签Li-ion电芯（3.7V、800mAh标签值），金色铝壳外接电阻可见但参数不清。电源可能12V仅用户未确认估计，不填实际值；当前无万用表。照片原件和参数快照已归档。
++
++- 用户确认外接电阻标签25W33ΩJ，已登记33Ω/25W/±5%标称规格；未执行功率测试。
+diff --git a/instructions/STATUS.md b/instructions/STATUS.md
+index 742c65b..1e8ecdc 100644
+--- a/instructions/STATUS.md
++++ b/instructions/STATUS.md
+@@ -1,20 +1,28 @@
+-# 当前状态
+-
+-日期：2026-10-28。此文件是阶段状态唯一人工维护入口。下面状态是“正式验收状态”，已完成的文档与静态审查见 RUNLOG。
+-
+-| 阶段 | status | verdict | 已有证据 / 下一动作 |
+-|---|---|---|---|
+-| G00 基线与硬件契约 | in_progress | null | 已审查源码/文档/旧产物；下一步核对实物和构建身份，尚未构建或上板复现 |
+-| G01 测量与标定 | not_started | null | 有示例换算；需原码/有效性输出、两路电流分别标定 |
+-| G02 无功率 PWM 与时序 | not_started | null | 有初始化配置；未取得示波器波形 |
+-| G03 受限开环功率级 | not_started | null | 等待实际硬件边界、停止链路和前置门通过 |
+-| G04 PI 恒流与故障退出 | not_started | null | 有 pi.h，尚未接入周期控制；无闭环证据 |
+-| G05 串口/上位机联调 | not_started | null | 简单记录器应从 G01 开始；现有主机与当前模板协议未对齐 |
+-| G06 SOC 基准与数据集 | not_started | null | 容量、初值、参考标签及独立验证方案待建立 |
+-| G07 模型与端侧部署 | not_started | null | 无可验收数据集或模型产物 |
+-
+-静态问题：main.c 当前启动后仅调用一次测量，主循环为空；尚未启动 ADC/PWM 连续控制；坏 PEC 被上层填 0 后继续换算；AUX 完成等待需核对；两路电流的电路系数未以实物确认；pi.h 与旧 pi.c 不构成已经运行的控制器。旧 HEX/AXF 不足以证明当前源码可用。
+-
+-本轮完成：适配规范、说明 HTML、模板和资料哈希；其检查结果仅支持文档结构和来源完整性，不支持硬件性能。
+-
+-目录采用：资料与工具已分类，规范位于 `instructions/`，项目根 `AGENTS.md` 已建立；历史目录与旧说明快照保留。此项仅为组织与文档变更，上表所有硬件阶段状态不变。
++# 当前状态
++
++日期：2026-10-31。此文件是阶段状态唯一人工维护入口。下面状态是“正式验收状态”，已完成的文档与静态审查见 RUNLOG。
++
++| 阶段 | status | verdict | 已有证据 / 下一动作 |
++|---|---|---|---|
++| G00 基线与硬件契约 | in_progress | null | 构建/烧录/3次冷启动/OLED/UART基础项完成，资料标称、实物已知、配置冲突和停止设计缺项已登记；已登记3节14500电芯标签；电阻标签33Ω/25W/±5%已登记；实际供电、负载接线/散热和仪器待补，目前无万用表。见 evidence/runs/20261031-G00-hardware-audit/review.md |
++| G01 测量与标定 | in_progress | null | G01.1—G01.3 软件部分已实现：2Hz原码/状态流、独立ADC1软件触发、AFE完成查询和错误传播、记录器与离线异常检查；见 evidence/runs/20261031-G01-software/work-card.md。新固件尚未烧录，板端持续采样及G01.4/G01.5实物标定/独立验证待执行 |
++| G02 无功率 PWM 与时序 | not_started | null | 有初始化配置；未取得示波器波形 |
++| G03 受限开环功率级 | not_started | null | 等待实际硬件边界、停止链路和前置门通过 |
++| G04 PI 恒流与故障退出 | not_started | null | 有 pi.h，尚未接入周期控制；无闭环证据 |
++| G05 串口/上位机联调 | not_started | null | 简单记录器应从 G01 开始；现有主机与当前模板协议未对齐 |
++| G06 SOC 基准与数据集 | not_started | null | 容量、初值、参考标签及独立验证方案待建立 |
++| G07 模型与端侧部署 | not_started | null | 无可验收数据集或模型产物 |
++
++当前源码：G01 主循环周期采集，ADC1软件触发，不启动PWM；AFE错误不再填零、转换完成使用PLADC查询。两路电流系数、温度模型和实物量程仍未确认；新固件板端运行待验证。G00已烧录/启动证据对应旧镜像，不能移作新固件启动证明；pi.h 与旧 pi.c 尚未形成运行控制器。
++
++本轮完成：适配规范、说明 HTML、模板和资料哈希；其检查结果仅支持文档结构和来源完整性，不支持硬件性能。
++
++目录采用：资料与工具已分类，规范位于 `instructions/`，项目根 `AGENTS.md` 已建立；历史目录与旧说明快照保留。此项仅为组织与文档变更，上表所有硬件阶段状态不变。
++
++
++
++
++
++
++
++
+diff --git a/instructions/references/open-questions.md b/instructions/references/open-questions.md
+index 9be2a9e..4955833 100644
+--- a/instructions/references/open-questions.md
++++ b/instructions/references/open-questions.md
+@@ -18,3 +18,8 @@
+ | H12 | 最终模型验收目标、泛化对象、数据范围 | 需求与课程评分口径 | G07通过线冻结；可先做原型 |
+ 
+ 记录解决方式：在对应工作卡填证据路径、确认人/日期和范围，将实物参数更新到 hardware-profile.json。涉及既有结论时按 WORKFLOW 的影响表复验。
++
++
++## 2026-10-31 G00资料核对更新
++
++H08的Release镜像、烧录和基础自主启动/OLED/UART已有证据；Debug仅构建验证。H01的INA199A2/50倍冲突已由TI资料确认，实装器件仍未知；H03的PT1000模型已确认是源码假设，物理探头未确认。H05/H06/H10仅待实物标签和台架登记，不能用课程示例补齐。H07已完成静态缺项审查，尚无停机状态机或实物停止验证。详见 ../../evidence/runs/20261031-G00-hardware-audit/review.md 。
+diff --git a/instructions/specs/hardware-profile.json b/instructions/specs/hardware-profile.json
+index be277fe..a0030a9 100644
+--- a/instructions/specs/hardware-profile.json
++++ b/instructions/specs/hardware-profile.json
+@@ -1,54 +1,302 @@
+-{
+-  "schema_version": "1.0-draft",
+-  "profile_id": null,
+-  "status": "draft_unconfirmed",
+-  "note": "null means unconfirmed, never zero or unlimited. This is not permission to energize hardware.",
+-  "board_id": null,
+-  "hardware_revision": null,
+-  "schematic_sha256": null,
+-  "mcu_from_project": "STM32N647X0HxQ",
+-  "afe_from_project": "ADBMS1818",
+-  "current_sign_proposed": "positive_into_battery_pack",
+-  "amplifier_actual_part": null,
+-  "amplifier_gain_V_per_V": null,
+-  "shunt_ohm_measured": null,
+-  "adc_reference_V_measured": null,
+-  "mcu_and_afe_current_same_node": null,
+-  "temperature_sensor_actual_part": null,
+-  "sensor_divider_topology": null,
+-  "cell_model": null,
+-  "cell_ids": [],
+-  "capacity_reference_Ah": null,
+-  "limits": {
+-    "cell_voltage_min_V": null,
+-    "cell_voltage_max_V": null,
+-    "charge_current_max_A": null,
+-    "discharge_current_max_A": null,
+-    "charge_temperature_min_C": null,
+-    "charge_temperature_max_C": null,
+-    "discharge_temperature_min_C": null,
+-    "discharge_temperature_max_C": null,
+-    "converter_voltage_max_V": null,
+-    "converter_current_max_A": null,
+-    "converter_power_max_W": null,
+-    "load_power_continuous_W": null,
+-    "supply_current_limit_A": null
+-  },
+-  "control": {
+-    "pwm_frequency_Hz_course": 100000,
+-    "upper_switch_duty_min_course": 0.4,
+-    "upper_switch_duty_max_course": 0.9,
+-    "permitted_test_duty_min": null,
+-    "permitted_test_duty_max": null,
+-    "feedback_sign_charge": null,
+-    "feedback_sign_discharge": null,
+-    "effective_deadtime_min_ns": null,
+-    "relay_change_conditions": null,
+-    "stop_delay_limit_us": null,
+-    "communication_loss_action": null,
+-    "default_power_disabled_verified_run_id": null
+-  },
+-  "confirmed_by": null,
+-  "confirmed_at_utc": null,
+-  "evidence": []
+-}
++{
++  "schema_version": "1.0-draft",
++  "profile_id": "cnn647b-bms-g01-20261031-r2",
++  "status": "partially_confirmed",
++  "note": "Confirmed facts, document nominal values and code assumptions are separate below. Unknown physical parameters and limits remain null. No power-stage acceptance is implied.",
++  "board_id": null,
++  "hardware_revision": null,
++  "schematic_sha256": null,
++  "mcu_from_project": "STM32N647X0HxQ",
++  "afe_from_project": "ADBMS1818",
++  "current_sign_proposed": "positive_into_battery_pack",
++  "amplifier_actual_part": null,
++  "amplifier_gain_V_per_V": null,
++  "shunt_ohm_measured": null,
++  "adc_reference_V_measured": null,
++  "mcu_and_afe_current_same_node": null,
++  "temperature_sensor_actual_part": null,
++  "sensor_divider_topology": null,
++  "cell_model": null,
++  "cell_ids": [],
++  "capacity_reference_Ah": null,
++  "limits": {
++    "cell_voltage_min_V": null,
++    "cell_voltage_max_V": null,
++    "charge_current_max_A": null,
++    "discharge_current_max_A": null,
++    "charge_temperature_min_C": null,
++    "charge_temperature_max_C": null,
++    "discharge_temperature_min_C": null,
++    "discharge_temperature_max_C": null,
++    "converter_voltage_max_V": null,
++    "converter_current_max_A": null,
++    "converter_power_max_W": null,
++    "load_power_continuous_W": null,
++    "supply_current_limit_A": null
++  },
++  "control": {
++    "pwm_frequency_Hz_course": 100000,
++    "upper_switch_duty_min_course": 0.4,
++    "upper_switch_duty_max_course": 0.9,
++    "permitted_test_duty_min": null,
++    "permitted_test_duty_max": null,
++    "feedback_sign_charge": null,
++    "feedback_sign_discharge": null,
++    "effective_deadtime_min_ns": null,
++    "relay_change_conditions": null,
++    "stop_delay_limit_us": null,
++    "communication_loss_action": null,
++    "default_power_disabled_verified_run_id": null
++  },
++  "confirmed_by": null,
++  "confirmed_at_utc": null,
++  "evidence": [
++    {
++      "source": "Keil project and STM32CubeProgrammer connection",
++      "scope": "MCU identity only; board revision and connected power hardware not established",
++      "path": "evidence/runs/20261030-basic-flash/flash-release-20261030-ur.log"
++    },
++    {
++      "source": "User-provided board photographs 2026-10-31",
++      "path": "D:/ADMIN/Temp/codex-clipboard-37d4c8f1-d9de-4232-8a27-6712bfe3ba9d.jpg",
++      "scope": "Visible CNN647B core-board silkscreen and ADBMS1818 chip marking; carrier revision and UART wiring not established"
++    },
++    {
++      "source": "2026-10-31 source and course-material audit",
++      "path": "evidence/runs/20261031-G00-hardware-audit/document-excerpts.json",
++      "scope": "Document nominal information and code configuration, not measured limits"
++    },
++    {
++      "source": "User full-board photo and text confirmation",
++      "path": "evidence/runs/20261031-G00-hardware-audit/board-cells-load-photo.jpg",
++      "sha256": "6f2b705a26d78cc4b9430c4938b33881e570dcb9a33b9fc97494bd74be43ceb6",
++      "scope": "3 installed cells, visible 14500/3.7V/800mAh/Li-ion markings, power plug, external resistor appearance; actual voltage/load rating not established"
++    },
++    {
++      "source": "User message 2026-10-31",
++      "scope": "External resistor marking transcribed as 25W33ΩJ; label rating only, not measured resistance or installed thermal capability"
++    },
++    {
++      "source": "G01.1-G01.3 software implementation and offline fault injection",
++      "path": "evidence/runs/20261031-G01-software/work-card.md",
++      "scope": "software/build/simulation only; actual calibration and hardware limits unchanged"
++    }
++  ],
++  "mcu_detected": "STM32N647 (Device ID 0x486)",
++  "mcu_user_reported": "stm32N647X",
++  "core_board_marking": "CNN647B",
++  "afe_marking_observed": "ADBMS1818",
++  "registration_id": "local-bms-board-01",
++  "registration_id_note": "Administrative identifier for the board in this chat; not a manufacturer serial number.",
++  "verified_identity": {
++    "core_board_marking": "CNN647B",
++    "mcu_project": "STM32N647X0HxQ",
++    "mcu_device_id": "0x486",
++    "afe_photo_marking": "ADBMS1818",
++    "uart_usb_device": "CH340 VID_1A86 PID_7523",
++    "uart_last_port": "COM10",
++    "source": "Existing photographs, programmer log, USB enumeration; see evidence entries"
++  },
++  "software_configuration": {
++    "source": "BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c and Appli/Core/Inc/main.h",
++    "uart": {
++      "peripheral": "USART1",
++      "tx": "PE5",
++      "rx": "PE6",
++      "baud": 115200,
++      "format": "8N1",
++      "validation": "G00 startup/echo validated on old firmware; G01 stream software-tested, not yet flashed/captured"
++    },
++    "relays": {
++      "discharge": "PG5/SWL",
++      "charge": "PB5/SWS",
++      "initialized_gpio_level": "LOW",
++      "physical_open_state_verified": false
++    },
++    "pwm": {
++      "timer": "TIM1",
++      "channel": "CH2/CH2N",
++      "pins": [
++        "PA9",
++        "PF7"
++      ],
++      "prescaler": 0,
++      "period": 2000,
++      "repetition_counter": 1,
++      "counter_mode": "CENTERALIGNED1",
++      "programmed_deadtime": 0,
++      "break_enabled": false,
++      "start_call_present": false,
++      "actual_frequency_measured_Hz": null
++    },
++    "adc_start_call_present": true,
++    "adc_signal_labels": {
++      "PA0": "VB_AD",
++      "PA1": "I_AD",
++      "PA2": "VS_AD",
++      "PA10": "VL_AD"
++    },
++    "afe": {
++      "selected_cell_channels": [
++        1,
++        7,
++        13
++      ],
++      "current": "GPIO1",
++      "temperature": [
++        "GPIO2",
++        "GPIO3",
++        "GPIO4"
++      ],
++      "output_cadence": "attempted every 500ms; PLADC completion poll, 20ms conversion timeout"
++    },
++    "measurement_assumptions": {
++      "current_zero_V": 0.9,
++      "current_A_per_V": 1.3333,
++      "temperature_model": "PT1000 linear approximation",
++      "pullup_ohm": 9100,
++      "excitation_V": 3.0,
++      "R0_ohm": 1000,
++      "alpha_per_C": 0.00385,
++      "physical_calibration_verified": false
++    },
++    "stop_design": "G01 receive-only measurement stream; no power-control commands; PWM not started; relay GPIO LOW; physical isolation unverified",
++    "adc1_acquisition": {
++      "trigger": "software",
++      "period_ms": 500,
++      "resolution_bits": 12,
++      "oversampling_ratio": 2,
++      "right_shift": 1,
++      "internal_self_calibration": "not_enabled",
++      "actual_sampling_verified": false
++    },
++    "adc2_acquisition": "not_started; existing initialization retained",
++    "measurement_firmware": "g01-sw-r1; uncalibrated-v1; separate raw_valid and physical_valid"
++  },
++  "document_nominal": {
++    "source_ppt": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
++    "board_supply": {
++      "adapter_V": 18,
++      "source": "slide4",
++      "actual_connected_value_confirmed": false
++    },
++    "cells": {
++      "series_count": 3,
++      "source": "任务2恒流控制实验_实验步骤.docx paragraph169",
++      "actual_cells_confirmed": false
++    },
++    "current_frontend": {
++      "part_claim": "INA199A2",
++      "gain_claim": 50,
++      "shunt_ohm": 0.015,
++      "source": "PPT slide4/7; task2 paragraphs213-215",
++      "conflict": "TI INA199x2 nominal gain is 100 V/V; actual installed suffix and full signal chain unknown"
++    },
++    "temperature": {
++      "sensor_claim": "PT1000",
++      "pullup_ohm": 9100,
++      "excitation_V": 3.0,
++      "topology_claim": "pull-up divider into AFE GPIO",
++      "source": "PPT slide7; main.c and adbms1818.h",
++      "actual_sensor_confirmed": false
++    },
++    "mcu_adc_reference_V": {
++      "value": 1.8,
++      "source": "task2 paragraph201",
++      "measured": false
++    },
++    "relays": {
++      "claim": "LOW=open, HIGH=energized",
++      "source": "PPT slide6; task2 paragraph126",
++      "actual_polarity_confirmed": false
++    },
++    "power_stage": {
++      "driver_claim": "EG3112 with internal deadtime",
++      "mosfet_claim": "SiZ998DT",
++      "source": "PPT slide8; task2 paragraphs18/102",
++      "actual_verified": false
++    },
++    "examples_not_limits": {
++      "load_ohm": 33,
++      "load_rating_W": 25,
++      "charge_supply_V": 15,
++      "charge_supply_A": 1,
++      "source": "task2 paragraphs80/82",
++      "note": "Illustrative conditions only; not actual equipment or permitted limits"
++    }
++  },
++  "conflicts": [
++    {
++      "id": "G00-C01",
++      "item": "INA199A2 versus gain50",
++      "resolution": "Do not set actual gain. Confirm fitted device/complete chain then calibrate.",
++      "source": "https://www.ti.com/product/INA199"
++    },
++    {
++      "id": "G00-C02",
++      "item": "Temperature PT1000 template versus NTC host software terminology",
++      "resolution": "Use PT1000 only as current code model; physical sensor unknown."
++    },
++    {
++      "id": "G00-C03",
++      "item": "ADC2 ioc one channel versus source three channels",
++      "resolution": "Current source is build baseline. Reconcile before regeneration/ADC measurement."
++    },
++    {
++      "id": "G00-C04",
++      "item": "Template manual claims ST-Link virtual COM; actual device CH340",
++      "resolution": "Use observed CH340 COM10 and actual echo/startup evidence."
++    },
++    {
++      "id": "G00-C05",
++      "item": "F4 schematic in repository versus N647 hardware",
++      "resolution": "F4 PDF is not an accepted circuit source for this carrier."
++    },
++    {
++      "id": "G00-C06",
++      "item": "pi.c and pi.h types differ",
++      "resolution": "pi.c excluded from targets; controller is not active."
++    }
++  ],
++  "physical_setup": {
++    "board_supply_source": null,
++    "adapter_label": null,
++    "bench_supply_connected": null,
++    "installed_cell_count": 3,
++    "installed_cell_markings": [
++      "14500",
++      "3.7 V",
++      "800 mAh",
++      "Li-ion"
++    ],
++    "load_connected": null,
++    "load_label": "25W33ΩJ",
++    "reference_instruments": null,
++    "user_action_needed": "Visual inspection only; do not rewire or energize a new circuit for registration.",
++    "supply_user_estimate_unverified": "User thinks possibly 12 V; not confirmed; do not use as measured voltage or allowed input rating.",
++    "supply_photo_observation": "Barrel power plug is connected; adapter label is outside photo; board USB and ribbon cable also connected.",
++    "multimeter_available": false,
++    "oscilloscope_available": null,
++    "external_resistor_observation": "Gold aluminum-housed resistor visible left of board; red/black wires present at lower terminal; resistor resistance and power label unreadable, full electrical route not established.",
++    "load_label_specification": {
++      "resistance_nominal_ohm": 33,
++      "power_rating_label_W": 25,
++      "tolerance_code": "J",
++      "tolerance_percent": 5,
++      "source": "User transcription of resistor marking",
++      "resistance_measured_ohm": null,
++      "continuous_power_in_actual_mounting_W": null
++    }
++  },
++  "cell_label_specification": {
++    "designation": "14500",
++    "chemistry_label": "Li-ion",
++    "nominal_voltage_V": 3.7,
++    "capacity_label_mAh": 800,
++    "manufacturer_confirmed": null,
++    "actual_capacity_measured_Ah": null,
++    "series_wiring_verified": false,
++    "note": "Printed label values only; not a measured capacity or charge/discharge limit."
++  },
++  "previous_profile_id": "cnn647b-bms-baseline-20261031-r1"
++}
+diff --git a/instructions/specs/measurement.md b/instructions/specs/measurement.md
+index d78094d..66cfe88 100644
+--- a/instructions/specs/measurement.md
++++ b/instructions/specs/measurement.md
+@@ -1,44 +1,44 @@
+-# 测量的分层、换算与标定
+-
+-## 两条测量路径
+-
+-慢速监测：电芯端电压 / 电流调理电压 / 温度分压 → ADBMS 内部 ADC → 寄存器数字码 → SPI → MCU。
+-
+-快速反馈：分流电阻和放大器输出 → STM32 ADC1 → 当前控制周期的电流 → PI → TIM1 PWM。两条电流路径是否共用同一模拟节点，要用原理图和通断测量确认；各自仍需标定。共用前端时，两路一致不等于独立准确。
+-
+-## 职责表
+-
+-| 层 | 应完成什么 | 不在这一层实现什么 |
+-|---|---|---|
+-| 外设/HAL | 时钟、GPIO、SPI 传输、ADC 触发/DMA、TIM PWM | 电池 SOC、温度传感器模型 |
+-| 芯片驱动 | 唤醒、转换命令、完成确认、寄存器、PEC、raw 解码、器件规定缩放 | 分流阻值、传感器型号、PI 参数 |
+-| 板级测量 `measurement` | 通道映射、raw→V、偏置/增益、V→A、分压→Ω→℃、板号/标定版本、有效性 | 设定电流和实验工况 |
+-| 控制/保护 | 可信且及时的 I 与限值检查、PI、状态机、停止和换向 | SPI 字节拼接、CSV 格式 |
+-| 应用/记录/估计 | 功率、能量、SOC、HPPC/DST 编排、日志协议 | 在 PC/MCP 中逐个 PWM 周期控制 |
+-
+-BSP 是组织方式，不是硬性标准：板级测量可以放在 BSP/measurement，也可以独立目录。关键是**器件通用驱动不绑定某块板的系数**。当前 BMS_ReadReg/BMS_ReadSample 在 main.c 中，建议后续迁出，但本轮未改源码。
+-
+-## 哪些公式要写
+-
+-1. ADBMS 电芯/AUX 结果：`raw = lo | (hi << 8)`，按对应寄存器定义 `V = raw × 0.0001 V`。不再套 STM32 的 `Vref / 4096`。不是所有 ADBMS 寄存器都表示普通电压，状态、阈值或特殊测量按各自定义处理。依据：[ADI 数据手册](https://www.analog.com/media/en/technical-documentation/data-sheets/adbms1818.pdf)。
+-2. STM32 ADC：若确认 12 位、右对齐且没有改变输出尺度的累加/移位，理想量化步长为 `Vref/4096`。工程用 `V=a·code+b` 或 `I=aI·code+bI` 的标定关系；端点拟合有时写 4095，必须明示约定，不在同一链混用。过采样后的最终输出位宽/移位、参考电压、校准流程均须核对。
+-3. 电流：`Vsense = Vzero + s·G·Rshunt·I`，故 `I=(Vsense−Vzero)/(s·G·Rshunt)`；s 为接线符号。实际可直接拟合 `I=a·raw+b`。芯片不知道外接分流阻值与电流方向，因此这部分由板级软件负责。
+-4. 温度：只有确认“上拉 R_up 接 Vexc、传感器接地”的拓扑才用 `R=R_up·V/(Vexc−V)`；当前代码示范 PT1000 线性近似 `T≈(R/R0−1)/α`。NTC 需另一套模型；PT1000 宽温区用适合其型号的曲线/查表。系数与适用温区必须记录，不混用教材图示和实装型号。
+-5. 功率、能量、SOC：在应用层计算。`Pbat=Vpack·Ibat`，充电正、放电负；输出端 `Pout=Vout·Iout`。不同端口的 V、I 不能直接相乘当某端功率。瞬态平均功率为 `mean(v·i)`，未必等于 `mean(v)·mean(i)`。
+-
+-不必用软件重做 ADBMS 内部 ADC 调制、数字滤波、硬件转换；但仍要选择模式、等待完成、读取并检查质量。芯片内部温度也不能替代电池表面温度。
+-
+-## 当前代码不是已完成标定
+-
+-- main.c 用 `I=(Vgpio1−0.900)×1.3333`，这只是现有示例系数。
+-- 课程存在 INA199A2 与增益 50 的表述冲突；TI 系列 A1/A2/A3 分别为 50/100/200。若 R=15mΩ、G=50，灵敏度为 0.75V/A；G=100 则为 1.5V/A。必须核对实装料号和完整模拟链，不可仅把乘数改一半就宣称修复。[TI 官方资料](https://www.ti.com/product/INA199/part-details/INA199A2DCKTG4)
+-- PEC 错误现在在上层置 0 并继续算电流/温度。这会把通信故障伪装成物理读数。应保留 raw 和错误码，派生值 null/无效，控制端按故障策略处理。
+-- 全 AUX 转换后固定等 2ms 需修正：数据手册表 23 的相关 7kHz/3kHz 模式总时长约 3.862/5.025ms，需按实际模式确认完成及超时。滤波模式名称不等于应用层采样率。[ADI 表23](https://www.analog.com/media/en/technical-documentation/data-sheets/adbms1818.pdf#page=31)
+-
+-## 标定流程
+-
+-先确认量程/电路，再记录 raw 与独立参考，在覆盖工作范围的多个点拟合；独立重采其他点验证；最后检查零点回测、重复性、升降扫和温漂。不要只看 R²。
+-
+-零点、参考电压、电子标定与整机校准不同：STM32 内部 ADC 自校准不能消除外部放大器/分流/接线误差；一条 ADBMS 电流通道标定也不能替另一条 STM32 通道出证。
+-
+-正式误差判断应包含参考及方法的不确定度。建议统一用 `|误差| + U95 ≤ 容差` 才判 pass；若 `|误差| − U95 > 容差` 则 fail；覆盖边界时 inconclusive。课程严格“小于”指标应相应使用严格不等式。拟合用数据与独立验证用数据分别列 ID。具体容差见 acceptance，不把分辨率、芯片典型精度或闭环误差当测量精度。
++# 测量的分层、换算与标定
++
++## 两条测量路径
++
++慢速监测：电芯端电压 / 电流调理电压 / 温度分压 → ADBMS 内部 ADC → 寄存器数字码 → SPI → MCU。
++
++快速反馈：分流电阻和放大器输出 → STM32 ADC1 → 当前控制周期的电流 → PI → TIM1 PWM。两条电流路径是否共用同一模拟节点，要用原理图和通断测量确认；各自仍需标定。共用前端时，两路一致不等于独立准确。
++
++## 职责表
++
++| 层 | 应完成什么 | 不在这一层实现什么 |
++|---|---|---|
++| 外设/HAL | 时钟、GPIO、SPI 传输、ADC 触发/DMA、TIM PWM | 电池 SOC、温度传感器模型 |
++| 芯片驱动 | 唤醒、转换命令、完成确认、寄存器、PEC、raw 解码、器件规定缩放 | 分流阻值、传感器型号、PI 参数 |
++| 板级测量 `measurement` | 通道映射、raw→V、偏置/增益、V→A、分压→Ω→℃、板号/标定版本、有效性 | 设定电流和实验工况 |
++| 控制/保护 | 可信且及时的 I 与限值检查、PI、状态机、停止和换向 | SPI 字节拼接、CSV 格式 |
++| 应用/记录/估计 | 功率、能量、SOC、HPPC/DST 编排、日志协议 | 在 PC/MCP 中逐个 PWM 周期控制 |
++
++BSP 是组织方式，不是硬性标准：板级测量可以放在 BSP/measurement，也可以独立目录。关键是**器件通用驱动不绑定某块板的系数**。G01 已将当前采集迁至 BSP/adbms_acquisition.c、measurement_core.c 与 measurement.c；main.c 只调度。详细通道、状态和记录方法见 [G01软件采集说明](G01-software.md)。
++
++## 哪些公式要写
++
++1. ADBMS 电芯/AUX 结果：`raw = lo | (hi << 8)`，按对应寄存器定义 `V = raw × 0.0001 V`。不再套 STM32 的 `Vref / 4096`。不是所有 ADBMS 寄存器都表示普通电压，状态、阈值或特殊测量按各自定义处理。依据：[ADI 数据手册](https://www.analog.com/media/en/technical-documentation/data-sheets/adbms1818.pdf)。
++2. STM32 ADC：若确认 12 位、右对齐且没有改变输出尺度的累加/移位，理想量化步长为 `Vref/4096`。工程用 `V=a·code+b` 或 `I=aI·code+bI` 的标定关系；端点拟合有时写 4095，必须明示约定，不在同一链混用。过采样后的最终输出位宽/移位、参考电压、校准流程均须核对。
++3. 电流：`Vsense = Vzero + s·G·Rshunt·I`，故 `I=(Vsense−Vzero)/(s·G·Rshunt)`；s 为接线符号。实际可直接拟合 `I=a·raw+b`。芯片不知道外接分流阻值与电流方向，因此这部分由板级软件负责。
++4. 温度：只有确认“上拉 R_up 接 Vexc、传感器接地”的拓扑才用 `R=R_up·V/(Vexc−V)`；当前代码示范 PT1000 线性近似 `T≈(R/R0−1)/α`。NTC 需另一套模型；PT1000 宽温区用适合其型号的曲线/查表。系数与适用温区必须记录，不混用教材图示和实装型号。
++5. 功率、能量、SOC：在应用层计算。`Pbat=Vpack·Ibat`，充电正、放电负；输出端 `Pout=Vout·Iout`。不同端口的 V、I 不能直接相乘当某端功率。瞬态平均功率为 `mean(v·i)`，未必等于 `mean(v)·mean(i)`。
++
++不必用软件重做 ADBMS 内部 ADC 调制、数字滤波、硬件转换；但仍要选择模式、等待完成、读取并检查质量。芯片内部温度也不能替代电池表面温度。
++
++## 当前代码不是已完成标定
++
++- G01 的 estimate 保留 `I=(Vgpio1−0.900)×1.3333` 作为未标定诊断示例；正式 physical_value 留空。MCU电流estimate无独立系数，留空。
++- 课程存在 INA199A2 与增益 50 的表述冲突；TI 系列 A1/A2/A3 分别为 50/100/200。若 R=15mΩ、G=50，灵敏度为 0.75V/A；G=100 则为 1.5V/A。必须核对实装料号和完整模拟链，不可仅把乘数改一半就宣称修复。[TI 官方资料](https://www.ti.com/product/INA199/part-details/INA199A2DCKTG4)
++- G01 已修复当前采集路径的坏PEC填零：保留收到的原码和原帧，置无效，所有派生量留空；超时/不完整传输不复用旧原码。旧驱动接口不作为当前采集入口。
++- G01 已将原先全 AUX 固定等待2ms改为PLADC完成查询及20ms超时；板端时序仍待验证。原问题依据：数据手册表 23 的相关 7kHz/3kHz 模式总时长约 3.862/5.025ms，需按实际模式确认完成及超时。滤波模式名称不等于应用层采样率。[ADI 表23](https://www.analog.com/media/en/technical-documentation/data-sheets/adbms1818.pdf#page=31)
++
++## 标定流程
++
++先确认量程/电路，再记录 raw 与独立参考，在覆盖工作范围的多个点拟合；独立重采其他点验证；最后检查零点回测、重复性、升降扫和温漂。不要只看 R²。
++
++零点、参考电压、电子标定与整机校准不同：STM32 内部 ADC 自校准不能消除外部放大器/分流/接线误差；一条 ADBMS 电流通道标定也不能替另一条 STM32 通道出证。
++
++正式误差判断应包含参考及方法的不确定度。建议统一用 `|误差| + U95 ≤ 容差` 才判 pass；若 `|误差| − U95 > 容差` 则 fail；覆盖边界时 inconclusive。课程严格“小于”指标应相应使用严格不等式。拟合用数据与独立验证用数据分别列 ID。具体容差见 acceptance，不把分辨率、芯片典型精度或闭环误差当测量精度。

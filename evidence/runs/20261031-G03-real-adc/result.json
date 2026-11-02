@@ -1,0 +1,21 @@
+{
+  "implementation_checks": "passed",
+  "evidence_scope": [
+    "static",
+    "simulation",
+    "build"
+  ],
+  "bench_executed": false,
+  "power_enabled": false,
+  "formula_physical_calibration": false,
+  "firmware": {
+    "BMS_EX_Release": {
+      "sha256": "5e128db566340ec4539e07efd6f2921baa1ebafea7c058d6bf0f69c629cc520e",
+      "path": "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\evidence\\runs\\20261031-G03-real-adc\\firmware\\BMS_EX_Release\\BMS_EX_Release.hex"
+    },
+    "BMS_EX_Debug": {
+      "sha256": "2226784f2c4585e104417f3fd4c8fbc8eb7b628e6cf012186441f20a707937c9",
+      "path": "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\evidence\\runs\\20261031-G03-real-adc\\firmware\\BMS_EX_Debug\\BMS_EX_Debug.hex"
+    }
+  }
+}

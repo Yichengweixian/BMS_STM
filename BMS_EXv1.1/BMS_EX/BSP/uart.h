@@ -19,7 +19,7 @@
 
 /* 发送参数 */
 #define UART_TX_TIMEOUT_MS      100         /* 单次发送超时（ms），不要用 0xFFFF */
-#define UART_PRINTF_BUF_SIZE    128         /* uart_printf 单次格式化缓冲（字节） */
+#define UART_PRINTF_BUF_SIZE    1024         /* uart_printf 单次格式化缓冲（字节） */
 
 /* 函数声明 */
 void uart_init(uint32_t baudrate);             /* 初始化串口并启动接收 */

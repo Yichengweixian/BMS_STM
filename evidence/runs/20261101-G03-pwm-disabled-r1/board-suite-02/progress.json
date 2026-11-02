@@ -1,0 +1,42 @@
+[
+  {
+    "case": "cache-full",
+    "verdict": "pass",
+    "error": null
+  },
+  {
+    "case": "heartbeat-expiry",
+    "verdict": "pass",
+    "error": null
+  },
+  {
+    "case": "explicit-stop",
+    "verdict": "pass",
+    "error": null
+  },
+  {
+    "case": "foreground-stall",
+    "verdict": "pass",
+    "error": null
+  },
+  {
+    "case": "bad-crc",
+    "verdict": "pass",
+    "error": null
+  },
+  {
+    "case": "rx-pressure",
+    "verdict": "pass",
+    "error": null
+  },
+  {
+    "case": "duplicate-start",
+    "verdict": "pass",
+    "error": null
+  },
+  {
+    "case": "conflicting-start",
+    "verdict": "pass",
+    "error": null
+  }
+]

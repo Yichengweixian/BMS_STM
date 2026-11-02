@@ -1,0 +1,122 @@
+[
+  {
+    "name": "pwr_svmcr3",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x5602483c",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "gpioa_moder",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x56020000",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "gpioa_pupdr",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x5602000c",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "tim1_cr1",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x52000000",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "tim1_ccer",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x52000020",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "tim1_bdtr",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x52000044",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "gpiob_odr",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x56020414",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "gpiog_odr",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x56021814",
+      "4"
+    ],
+    "exit_code": 0
+  }
+]

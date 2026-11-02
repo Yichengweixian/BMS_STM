@@ -1,0 +1,18 @@
+{
+  "source": "user display observation, not synchronized instrument log",
+  "source_currents_A": [
+    0.433,
+    0.433,
+    0.433
+  ],
+  "DMM_voltage_V": null,
+  "DMM_missing_reason": "user did not see reading",
+  "CC_trip_or_other_anomaly": false,
+  "sources_off_confirmed": true,
+  "boot_download_confirmed": true,
+  "Ibat_nominal_active_median_A": -0.4450966687997182,
+  "Ibat_nominal_active_mean_A": -0.4450463951152668,
+  "predicted_source_current_D74_A": 0.5060628195763331,
+  "source_reference_calibrated_here": false,
+  "AFE_coefficients_changed": false
+}

@@ -1,0 +1,9 @@
+{
+  "firmware": "g03-power-points-r3",
+  "image_sha256": "09ebe375c8daebbfaf6075e1e2ad21a47338492d17e2cfba5c321b22a8510785",
+  "mode": "query",
+  "profile": 1345925889,
+  "physical_valid": 0,
+  "created_utc": "2026-11-02T05:37:32.155596+00:00",
+  "start_retries": 0
+}

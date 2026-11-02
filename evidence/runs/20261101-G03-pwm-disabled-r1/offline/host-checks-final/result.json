@@ -1,0 +1,9 @@
+{
+  "verdict": "pass",
+  "exit_code": 0,
+  "source_sha256": {
+    "scripts/g03/pwm_disabled.py": "8324f898014198d1f0d4af803cbe570d6f24ced7a7b46b35808488b989f272f9",
+    "tests/g03/test_pwm_disabled_host.py": "346a6ecf5fe604d758162aceddf28e1a0f2fd9150783dd93da33efac80247143"
+  },
+  "tests": 19
+}

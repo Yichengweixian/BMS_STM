@@ -1,0 +1,27 @@
+{
+  "schema": "g01-recorder-v1",
+  "session": "1d88254329cd43018957dd03cee948c9",
+  "evidence_scope": "bench",
+  "source": "COM11",
+  "simulated": false,
+  "baud": 115200,
+  "started_utc": "2026-11-01T08:45:00.687422+00:00",
+  "physical_calibration_verified": false,
+  "firmware_sha256": "8ff78e03997c4a5facd8f6feade09024fdd4721a3f0e32fc3531312bf1598c49",
+  "verdict": null,
+  "rows": 0,
+  "errors": 0,
+  "tick_hz": 1000,
+  "tick_bits": 32,
+  "sample_time": "conversion bracket; not UART transmit time",
+  "boot_id_policy": "host session:segment; reconnect starts a new session",
+  "metadata": [],
+  "exit_reason": "completed",
+  "ended_utc": "2026-11-01T08:45:05.866284+00:00",
+  "sha256": {
+    "derived\\device.csv": "25e9ee260a9f62a3d58b2e9947e1fbefdbd8848ced8ae8651bc8231d9973b418",
+    "raw\\events.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw\\serial.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "recorder_sha256": "d704d126a518a4d130c28ab087052bd87c7c5f431b263b2b58701f0a1256bd84"
+}

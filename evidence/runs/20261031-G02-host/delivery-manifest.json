@@ -1,0 +1,77 @@
+[
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/g02_link.c",
+    "before_sha256": null,
+    "after_sha256": "20122dbc99660456f3001c3b5600de0e8e018a111940627d18ac565bc1322b97"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/g02_link.h",
+    "before_sha256": null,
+    "after_sha256": "bed3fc0a9e8cc8f7bd17a51b32ffdc39ea7bf5bcc0fdd76d37943a45f898a97d"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c",
+    "before_sha256": "daff4e8fcdc3ef7526249334bd1d223d275e4cf3fb673ec685b040cea3d2626e",
+    "after_sha256": "d1bc1e16d2d21851689081a801eb7b8937b53c76214c664f7f582f94da7b3393"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/uart.c",
+    "before_sha256": "925c59dedb80248dd9c3e952ca1d9142fdd795fa973d8e3b73c5a4cb1eb2022f",
+    "after_sha256": "14c7f0a0682a0a1c4a29dbf0899cb96edbc0f06dc0d2444f121defec1cf954da"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/measurement.c",
+    "before_sha256": "e3c95890a16720fabb505a3fb77d495db59c56b410ab920dbdb3a95fc6a3f339",
+    "after_sha256": "cc7f1a22772182bd16214578755aba52212a265677a4f2c4bf864696340cc681"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx",
+    "before_sha256": "0902f840a88c26ade5836bb47d535ec366ce60c0169ef5d45c0321d09e49d01b",
+    "after_sha256": "39a75a9b3c9fe6a775e32d5159551192235492ea53c5c8565b1fe6d1d1fbf8cb"
+  },
+  {
+    "path": "tests/g02/test_link.c",
+    "before_sha256": null,
+    "after_sha256": "949ca228847c60be100fdf1ee956432ea881ef1e920bef54a19bf855718cad15"
+  },
+  {
+    "path": "scripts/g02/host_diagnostics.py",
+    "before_sha256": null,
+    "after_sha256": "1c8734e6e172d0a21934474fd80c161a9a0ba32372e5d12f98ab3a85b9e886de"
+  },
+  {
+    "path": "scripts/g02/run_checks.py",
+    "before_sha256": "2bdc390429957059377357c6d243acb31c13ba80a02d55044d22dbcdff4c4e1f",
+    "after_sha256": "033224b9d19c239bc9121bfaa07e04d9f73f32d98cdffb8e238b42dea3c55818"
+  },
+  {
+    "path": "instructions/specs/G02-host-diagnostics.md",
+    "before_sha256": null,
+    "after_sha256": "f74de04376680a830c94f49657d4cb42e4094ace4b561cec2507fdbd89ce51fb"
+  },
+  {
+    "path": "instructions/specs/G02-pwm-timing.md",
+    "before_sha256": "749dc70b0b7faf4a06558bd8dda3434248d6bd0c708c25db2ea340614c775d9a",
+    "after_sha256": "c2665ba21de956bf58a3d0a3f54d4e84c9bd1d5031bb80d20f21a14a2229dfa1"
+  },
+  {
+    "path": "instructions/README.md",
+    "before_sha256": "922dfd78972d9f5296422fde195a4bbd0e5a2b7fd95ec448c0b26b1cefe0f2ec",
+    "after_sha256": "55e7b9d2e7852ef478a00c509c7ec14262f727929b899142fbccf2fabeda2d3a"
+  },
+  {
+    "path": "instructions/STATUS.md",
+    "before_sha256": "3a999ceaf049fa0feeac28fc6494d7735ab0d47a0e2de6ce50d680cf345b7b17",
+    "after_sha256": "a8c8f95f5755704daaf6fb7c5c985433982dcaa31d9545346d73c9c99dca4c49"
+  },
+  {
+    "path": "instructions/RUNLOG.md",
+    "before_sha256": "fb1ed8de2eda9a463a5b5b4653694ca5cc7cddd0cdb8201d3fafd4b5f5bb2fd4",
+    "after_sha256": "94307ae5b876516e748b67c035ede75d52fd56b85c525d5ec4302d298c994284"
+  },
+  {
+    "path": "instructions/specs/hardware-profile.json",
+    "before_sha256": "f9db156b78b57c0970473a1e0990f1b9e9d4a88bcd74c70d3426b05701b1b9ee",
+    "after_sha256": "3bd008207ae4def6d57f31252e2bc10f017d5a4a383948d5014a6ddcacecdd65"
+  }
+]

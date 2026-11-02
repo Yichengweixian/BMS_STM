@@ -1,0 +1,4 @@
+PASS: production G02 port/register model; default gate, pair release (if enabled), ADC ownership, callbacks, failures, cancellation, cleanup and stop. Simulation only.
+#G02,g02-host-r1,12,0,12,0,0,0,800000000,400000000,64000000,1005,1015,0,0,0,0,0,0,0,0,0,1500,0,4,1,2,0*0C82
+
+PASS: CRC/fragments/overflow/replay/quiet-run/STOP/fault/clear/timeout transport using production core+port+link.

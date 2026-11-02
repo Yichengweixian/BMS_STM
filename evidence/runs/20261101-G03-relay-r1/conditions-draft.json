@@ -1,0 +1,26 @@
+{
+  "status": "draft",
+  "live_ready": false,
+  "firmware_sha256": "529e6b83280d724f226e462dad59624f39552d640ba0eb9ec3366ccc694895bf",
+  "physical_valid": 0,
+  "battery_disconnect_confirmed": true,
+  "battery_disconnect": "User can remove cells on site if response does not recover",
+  "cells": 3,
+  "load_nominal_ohm": 33,
+  "charge_port": "open",
+  "sample_period_ms": 20,
+  "sample_stale_ms": 40,
+  "baseline_samples": 50,
+  "baseline_peak_to_peak_max_codes": 100,
+  "baseline_tolerance": "max(20,3*peak_to_peak)",
+  "command_deadline_ms": 99,
+  "command_high_acceptance_max_ms": 100,
+  "post_observation_ms": 1000,
+  "cell_enter_exit_low_code": null,
+  "cell_enter_exit_high_code": null,
+  "blocked_by": [
+    "External flash erase failed twice; new firmware has no board identity/readback confirmation",
+    "Dedicated capture latency and window coverage require disabled board rehearsal",
+    "Run-specific cell entry/exit bounds are not frozen"
+  ]
+}

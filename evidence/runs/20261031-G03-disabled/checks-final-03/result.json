@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "verdict": null,
+  "evidence_scope": [
+    "static",
+    "simulation"
+  ],
+  "checks": "passed",
+  "physical_outputs_verified": false,
+  "sha256": {
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.c": "83224dd8f78336a5ec052cb574ac052a3a2444a30ca3fc724586d7fb8a6c0ad1",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.h": "885a41928344bf0008b39e1d8f6be7246362c54a4b7a5e2eb38684177cc8ccd4",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.c": "45befe864e21392193fba8ea92dd12a7ed6136b2b85368341f74e6107c9eabb2",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.h": "36f8a5c43046ffe2843cd5a75f9eb9b3122f02850cfed0faf88fb77a122b29a7",
+    "tests\\g03\\test_control.c": "181a5b216d1619a1bad20ba7498034770d7e9c21f0992222a966bfebb367d5ef",
+    "tests\\g03\\test_link.c": "4eaf32fb3a61570b3c3307c527b85c1e78b4707cacda019dfab827524b1db042",
+    "tests\\g03\\test_port.c": "4afd501cd93b61f9129dfbe0677a937c733cabd493ba26d227b756a2044c5a6e",
+    "tests\\g03\\test_host.py": "684ec559883a1f67d9a10e9eebe45633fa56595276615293980908d7535780eb",
+    "scripts\\g03\\disabled_diagnostics.py": "72194152eadb23a246a4de745cce19e6961057770cc7a0bc76391b622c644583",
+    "scripts\\g03\\run_checks.py": "7a4d8ee872c7d84cba3b67a137c2f5163719fec91f5e10b2a7b0bba03f1d21ef"
+  }
+}

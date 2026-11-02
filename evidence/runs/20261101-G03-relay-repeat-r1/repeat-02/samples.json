@@ -1,0 +1,5918 @@
+[
+  {
+    "id": 2521445084,
+    "result": 0,
+    "seq": 0,
+    "phase": 2,
+    "at_ms": 18618,
+    "done_ms": 18627,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18618,
+        "end_ms": 18620,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 18618,
+        "end_ms": 18620,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 18618,
+        "end_ms": 18620,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 18621,
+        "end_ms": 18627,
+        "raw": 9003,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2B23AF0CB60CFAB6"
+      },
+      {
+        "start_ms": 18627,
+        "end_ms": 18627,
+        "raw": 1042,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445085,
+    "result": 0,
+    "seq": 1,
+    "phase": 2,
+    "at_ms": 18639,
+    "done_ms": 18648,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18639,
+        "end_ms": 18641,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 18639,
+        "end_ms": 18641,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 18639,
+        "end_ms": 18641,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 18642,
+        "end_ms": 18648,
+        "raw": 8994,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2223AF0CB50CBCFA"
+      },
+      {
+        "start_ms": 18648,
+        "end_ms": 18648,
+        "raw": 1250,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445086,
+    "result": 0,
+    "seq": 2,
+    "phase": 2,
+    "at_ms": 18660,
+    "done_ms": 18669,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18660,
+        "end_ms": 18662,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 18660,
+        "end_ms": 18662,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 18660,
+        "end_ms": 18662,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 18663,
+        "end_ms": 18669,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623B00CB50C519C"
+      },
+      {
+        "start_ms": 18669,
+        "end_ms": 18669,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445087,
+    "result": 0,
+    "seq": 3,
+    "phase": 2,
+    "at_ms": 18681,
+    "done_ms": 18690,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18681,
+        "end_ms": 18683,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 18681,
+        "end_ms": 18683,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 18681,
+        "end_ms": 18683,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 18684,
+        "end_ms": 18690,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2923AF0CB50C91E0"
+      },
+      {
+        "start_ms": 18690,
+        "end_ms": 18690,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445088,
+    "result": 0,
+    "seq": 4,
+    "phase": 2,
+    "at_ms": 18702,
+    "done_ms": 18711,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18702,
+        "end_ms": 18704,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 18702,
+        "end_ms": 18704,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 18702,
+        "end_ms": 18704,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 18705,
+        "end_ms": 18711,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623B00CB50C519C"
+      },
+      {
+        "start_ms": 18711,
+        "end_ms": 18711,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445089,
+    "result": 0,
+    "seq": 5,
+    "phase": 2,
+    "at_ms": 18723,
+    "done_ms": 18732,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18723,
+        "end_ms": 18725,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 18723,
+        "end_ms": 18725,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 18723,
+        "end_ms": 18725,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 18726,
+        "end_ms": 18732,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B00CB50C6DC4"
+      },
+      {
+        "start_ms": 18732,
+        "end_ms": 18732,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445090,
+    "result": 0,
+    "seq": 6,
+    "phase": 2,
+    "at_ms": 18744,
+    "done_ms": 18753,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18744,
+        "end_ms": 18746,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 18744,
+        "end_ms": 18746,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 18744,
+        "end_ms": 18746,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 18747,
+        "end_ms": 18753,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2523B00CB50C1574"
+      },
+      {
+        "start_ms": 18753,
+        "end_ms": 18753,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445091,
+    "result": 0,
+    "seq": 7,
+    "phase": 2,
+    "at_ms": 18765,
+    "done_ms": 18774,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18765,
+        "end_ms": 18767,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 18765,
+        "end_ms": 18767,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 18765,
+        "end_ms": 18767,
+        "raw": 38872,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D897FFFFFFFF6072"
+      },
+      {
+        "start_ms": 18768,
+        "end_ms": 18774,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B00CB50C6DC4"
+      },
+      {
+        "start_ms": 18774,
+        "end_ms": 18774,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445092,
+    "result": 0,
+    "seq": 8,
+    "phase": 2,
+    "at_ms": 18786,
+    "done_ms": 18795,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18786,
+        "end_ms": 18788,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 18786,
+        "end_ms": 18788,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 18786,
+        "end_ms": 18788,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 18789,
+        "end_ms": 18795,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623B00CB50C519C"
+      },
+      {
+        "start_ms": 18795,
+        "end_ms": 18795,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445093,
+    "result": 0,
+    "seq": 9,
+    "phase": 2,
+    "at_ms": 18807,
+    "done_ms": 18816,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18807,
+        "end_ms": 18809,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 18807,
+        "end_ms": 18809,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 18807,
+        "end_ms": 18809,
+        "raw": 38872,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D897FFFFFFFF6072"
+      },
+      {
+        "start_ms": 18810,
+        "end_ms": 18816,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B00CB50C6DC4"
+      },
+      {
+        "start_ms": 18816,
+        "end_ms": 18816,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445094,
+    "result": 0,
+    "seq": 10,
+    "phase": 2,
+    "at_ms": 18828,
+    "done_ms": 18837,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18828,
+        "end_ms": 18830,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 18828,
+        "end_ms": 18830,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 18828,
+        "end_ms": 18830,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 18831,
+        "end_ms": 18837,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723AF0CB50C71C2"
+      },
+      {
+        "start_ms": 18837,
+        "end_ms": 18837,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445095,
+    "result": 0,
+    "seq": 11,
+    "phase": 2,
+    "at_ms": 18849,
+    "done_ms": 18858,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18849,
+        "end_ms": 18851,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 18849,
+        "end_ms": 18851,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 18849,
+        "end_ms": 18851,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 18852,
+        "end_ms": 18858,
+        "raw": 9002,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2A23AF0CB50CD508"
+      },
+      {
+        "start_ms": 18858,
+        "end_ms": 18858,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445096,
+    "result": 0,
+    "seq": 12,
+    "phase": 2,
+    "at_ms": 18870,
+    "done_ms": 18879,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18870,
+        "end_ms": 18872,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 18870,
+        "end_ms": 18872,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 18870,
+        "end_ms": 18872,
+        "raw": 38872,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D897FFFFFFFF6072"
+      },
+      {
+        "start_ms": 18873,
+        "end_ms": 18879,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2423AF0CB60C26CC"
+      },
+      {
+        "start_ms": 18879,
+        "end_ms": 18879,
+        "raw": 1262,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445097,
+    "result": 0,
+    "seq": 13,
+    "phase": 2,
+    "at_ms": 18891,
+    "done_ms": 18900,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18891,
+        "end_ms": 18893,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 18891,
+        "end_ms": 18893,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 18891,
+        "end_ms": 18893,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 18894,
+        "end_ms": 18900,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2823AE0CB50C9048"
+      },
+      {
+        "start_ms": 18900,
+        "end_ms": 18900,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445098,
+    "result": 0,
+    "seq": 14,
+    "phase": 2,
+    "at_ms": 18912,
+    "done_ms": 18921,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18912,
+        "end_ms": 18914,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 18912,
+        "end_ms": 18914,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 18912,
+        "end_ms": 18914,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 18915,
+        "end_ms": 18921,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B00CB60C7E22"
+      },
+      {
+        "start_ms": 18921,
+        "end_ms": 18921,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445099,
+    "result": 0,
+    "seq": 15,
+    "phase": 2,
+    "at_ms": 18933,
+    "done_ms": 18942,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18933,
+        "end_ms": 18935,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 18933,
+        "end_ms": 18935,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 18933,
+        "end_ms": 18935,
+        "raw": 38872,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D897FFFFFFFF6072"
+      },
+      {
+        "start_ms": 18936,
+        "end_ms": 18942,
+        "raw": 8994,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2223B00CB50CA0FC"
+      },
+      {
+        "start_ms": 18942,
+        "end_ms": 18942,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445100,
+    "result": 0,
+    "seq": 16,
+    "phase": 2,
+    "at_ms": 18954,
+    "done_ms": 18963,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18954,
+        "end_ms": 18956,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 18954,
+        "end_ms": 18956,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 18954,
+        "end_ms": 18956,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 18957,
+        "end_ms": 18963,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B00CB40CE588"
+      },
+      {
+        "start_ms": 18963,
+        "end_ms": 18963,
+        "raw": 1263,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445101,
+    "result": 0,
+    "seq": 17,
+    "phase": 2,
+    "at_ms": 18975,
+    "done_ms": 18984,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18975,
+        "end_ms": 18977,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 18975,
+        "end_ms": 18977,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 18975,
+        "end_ms": 18977,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 18978,
+        "end_ms": 18984,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623AF0CB50C4D9A"
+      },
+      {
+        "start_ms": 18984,
+        "end_ms": 18984,
+        "raw": 1262,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445102,
+    "result": 0,
+    "seq": 18,
+    "phase": 2,
+    "at_ms": 18996,
+    "done_ms": 19005,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 18996,
+        "end_ms": 18998,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 18996,
+        "end_ms": 18998,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 18996,
+        "end_ms": 18998,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 18999,
+        "end_ms": 19005,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623B10CB50C6C6C"
+      },
+      {
+        "start_ms": 19005,
+        "end_ms": 19005,
+        "raw": 1262,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445103,
+    "result": 0,
+    "seq": 19,
+    "phase": 2,
+    "at_ms": 19017,
+    "done_ms": 19026,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19017,
+        "end_ms": 19019,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19017,
+        "end_ms": 19019,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19017,
+        "end_ms": 19019,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 19020,
+        "end_ms": 19026,
+        "raw": 8995,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2323B00CB60C8F42"
+      },
+      {
+        "start_ms": 19026,
+        "end_ms": 19026,
+        "raw": 1262,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445104,
+    "result": 0,
+    "seq": 20,
+    "phase": 2,
+    "at_ms": 19038,
+    "done_ms": 19047,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19038,
+        "end_ms": 19040,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19038,
+        "end_ms": 19040,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19038,
+        "end_ms": 19040,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 19041,
+        "end_ms": 19047,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B10CB50C5034"
+      },
+      {
+        "start_ms": 19047,
+        "end_ms": 19047,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445105,
+    "result": 0,
+    "seq": 21,
+    "phase": 2,
+    "at_ms": 19059,
+    "done_ms": 19068,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19059,
+        "end_ms": 19061,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 19059,
+        "end_ms": 19061,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19059,
+        "end_ms": 19061,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 19062,
+        "end_ms": 19068,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B00CB50C6DC4"
+      },
+      {
+        "start_ms": 19068,
+        "end_ms": 19068,
+        "raw": 1263,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445106,
+    "result": 0,
+    "seq": 22,
+    "phase": 2,
+    "at_ms": 19080,
+    "done_ms": 19089,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19080,
+        "end_ms": 19082,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19080,
+        "end_ms": 19082,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19080,
+        "end_ms": 19082,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 19083,
+        "end_ms": 19089,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623B00CB50C519C"
+      },
+      {
+        "start_ms": 19089,
+        "end_ms": 19089,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445107,
+    "result": 0,
+    "seq": 23,
+    "phase": 2,
+    "at_ms": 19101,
+    "done_ms": 19110,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19101,
+        "end_ms": 19103,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19101,
+        "end_ms": 19103,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19101,
+        "end_ms": 19103,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 19104,
+        "end_ms": 19110,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2923AF0CB50C91E0"
+      },
+      {
+        "start_ms": 19110,
+        "end_ms": 19110,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445108,
+    "result": 0,
+    "seq": 24,
+    "phase": 2,
+    "at_ms": 19122,
+    "done_ms": 19131,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19122,
+        "end_ms": 19124,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19122,
+        "end_ms": 19124,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19122,
+        "end_ms": 19124,
+        "raw": 38872,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D897FFFFFFFF6072"
+      },
+      {
+        "start_ms": 19125,
+        "end_ms": 19131,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2423AF0CB50C352A"
+      },
+      {
+        "start_ms": 19131,
+        "end_ms": 19131,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445109,
+    "result": 0,
+    "seq": 25,
+    "phase": 2,
+    "at_ms": 19143,
+    "done_ms": 19152,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19143,
+        "end_ms": 19145,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19143,
+        "end_ms": 19145,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 19143,
+        "end_ms": 19145,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 19146,
+        "end_ms": 19152,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2923B00CB50C8DE6"
+      },
+      {
+        "start_ms": 19152,
+        "end_ms": 19152,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445110,
+    "result": 0,
+    "seq": 26,
+    "phase": 2,
+    "at_ms": 19164,
+    "done_ms": 19173,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19164,
+        "end_ms": 19166,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19164,
+        "end_ms": 19166,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19164,
+        "end_ms": 19166,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 19167,
+        "end_ms": 19173,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2523B10CB50C2884"
+      },
+      {
+        "start_ms": 19173,
+        "end_ms": 19173,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445111,
+    "result": 0,
+    "seq": 27,
+    "phase": 2,
+    "at_ms": 19185,
+    "done_ms": 19194,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19185,
+        "end_ms": 19187,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19185,
+        "end_ms": 19187,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19185,
+        "end_ms": 19187,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 19188,
+        "end_ms": 19194,
+        "raw": 9002,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2A23B00CB60CDAE8"
+      },
+      {
+        "start_ms": 19194,
+        "end_ms": 19194,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445112,
+    "result": 0,
+    "seq": 28,
+    "phase": 2,
+    "at_ms": 19206,
+    "done_ms": 19215,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19206,
+        "end_ms": 19208,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19206,
+        "end_ms": 19208,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19206,
+        "end_ms": 19208,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 19209,
+        "end_ms": 19215,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723AF0CB60C6224"
+      },
+      {
+        "start_ms": 19215,
+        "end_ms": 19215,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445113,
+    "result": 0,
+    "seq": 29,
+    "phase": 2,
+    "at_ms": 19227,
+    "done_ms": 19236,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19227,
+        "end_ms": 19229,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19227,
+        "end_ms": 19229,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19227,
+        "end_ms": 19229,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 19230,
+        "end_ms": 19236,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2423B00CB50C292C"
+      },
+      {
+        "start_ms": 19236,
+        "end_ms": 19236,
+        "raw": 1262,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445114,
+    "result": 0,
+    "seq": 30,
+    "phase": 2,
+    "at_ms": 19248,
+    "done_ms": 19257,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19248,
+        "end_ms": 19250,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19248,
+        "end_ms": 19250,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19248,
+        "end_ms": 19250,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 19251,
+        "end_ms": 19257,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2823B10CB50C8C4E"
+      },
+      {
+        "start_ms": 19257,
+        "end_ms": 19257,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445115,
+    "result": 0,
+    "seq": 31,
+    "phase": 2,
+    "at_ms": 19269,
+    "done_ms": 19278,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19269,
+        "end_ms": 19271,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 19269,
+        "end_ms": 19271,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19269,
+        "end_ms": 19271,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 19272,
+        "end_ms": 19278,
+        "raw": 9003,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2B23B00CB40C7D1A"
+      },
+      {
+        "start_ms": 19278,
+        "end_ms": 19278,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445116,
+    "result": 0,
+    "seq": 32,
+    "phase": 2,
+    "at_ms": 19290,
+    "done_ms": 19299,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19290,
+        "end_ms": 19292,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 19290,
+        "end_ms": 19292,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19290,
+        "end_ms": 19292,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19293,
+        "end_ms": 19299,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2423B00CB60C3ACA"
+      },
+      {
+        "start_ms": 19299,
+        "end_ms": 19299,
+        "raw": 1258,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445117,
+    "result": 0,
+    "seq": 33,
+    "phase": 2,
+    "at_ms": 19311,
+    "done_ms": 19320,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19311,
+        "end_ms": 19313,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19311,
+        "end_ms": 19313,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19311,
+        "end_ms": 19313,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 19314,
+        "end_ms": 19320,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623AF0CB50C4D9A"
+      },
+      {
+        "start_ms": 19320,
+        "end_ms": 19320,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445118,
+    "result": 0,
+    "seq": 34,
+    "phase": 2,
+    "at_ms": 19332,
+    "done_ms": 19341,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19332,
+        "end_ms": 19334,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19332,
+        "end_ms": 19334,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19332,
+        "end_ms": 19334,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 19335,
+        "end_ms": 19341,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623B00CB50C519C"
+      },
+      {
+        "start_ms": 19341,
+        "end_ms": 19341,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445119,
+    "result": 0,
+    "seq": 35,
+    "phase": 2,
+    "at_ms": 19353,
+    "done_ms": 19362,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19353,
+        "end_ms": 19355,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19353,
+        "end_ms": 19355,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19353,
+        "end_ms": 19355,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 19356,
+        "end_ms": 19362,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623AF0CB50C4D9A"
+      },
+      {
+        "start_ms": 19362,
+        "end_ms": 19362,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445120,
+    "result": 0,
+    "seq": 36,
+    "phase": 2,
+    "at_ms": 19374,
+    "done_ms": 19383,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19374,
+        "end_ms": 19376,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19374,
+        "end_ms": 19376,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19374,
+        "end_ms": 19376,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 19377,
+        "end_ms": 19383,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623AF0CB50C4D9A"
+      },
+      {
+        "start_ms": 19383,
+        "end_ms": 19383,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445121,
+    "result": 0,
+    "seq": 37,
+    "phase": 2,
+    "at_ms": 19395,
+    "done_ms": 19404,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19395,
+        "end_ms": 19397,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 19395,
+        "end_ms": 19397,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19395,
+        "end_ms": 19397,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 19398,
+        "end_ms": 19404,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623AF0CB50C4D9A"
+      },
+      {
+        "start_ms": 19404,
+        "end_ms": 19404,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445122,
+    "result": 0,
+    "seq": 38,
+    "phase": 2,
+    "at_ms": 19416,
+    "done_ms": 19425,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19416,
+        "end_ms": 19418,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19416,
+        "end_ms": 19418,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19416,
+        "end_ms": 19418,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 19419,
+        "end_ms": 19425,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2923AF0CB50C91E0"
+      },
+      {
+        "start_ms": 19425,
+        "end_ms": 19425,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445123,
+    "result": 0,
+    "seq": 39,
+    "phase": 2,
+    "at_ms": 19437,
+    "done_ms": 19446,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19437,
+        "end_ms": 19439,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19437,
+        "end_ms": 19439,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19437,
+        "end_ms": 19439,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 19440,
+        "end_ms": 19446,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623AF0CB50C4D9A"
+      },
+      {
+        "start_ms": 19446,
+        "end_ms": 19446,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445124,
+    "result": 0,
+    "seq": 40,
+    "phase": 2,
+    "at_ms": 19458,
+    "done_ms": 19467,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19458,
+        "end_ms": 19460,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 19458,
+        "end_ms": 19460,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19458,
+        "end_ms": 19460,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19461,
+        "end_ms": 19467,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B00CB50C6DC4"
+      },
+      {
+        "start_ms": 19467,
+        "end_ms": 19467,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445125,
+    "result": 0,
+    "seq": 41,
+    "phase": 2,
+    "at_ms": 19479,
+    "done_ms": 19488,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19479,
+        "end_ms": 19481,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19479,
+        "end_ms": 19481,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19479,
+        "end_ms": 19481,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 19482,
+        "end_ms": 19488,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2923B00CB40C05AA"
+      },
+      {
+        "start_ms": 19488,
+        "end_ms": 19488,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445126,
+    "result": 0,
+    "seq": 42,
+    "phase": 2,
+    "at_ms": 19500,
+    "done_ms": 19509,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19500,
+        "end_ms": 19502,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19500,
+        "end_ms": 19502,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19500,
+        "end_ms": 19502,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 19503,
+        "end_ms": 19509,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B00CB50C6DC4"
+      },
+      {
+        "start_ms": 19509,
+        "end_ms": 19509,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445127,
+    "result": 0,
+    "seq": 43,
+    "phase": 2,
+    "at_ms": 19521,
+    "done_ms": 19530,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19521,
+        "end_ms": 19523,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 19521,
+        "end_ms": 19523,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19521,
+        "end_ms": 19523,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 19524,
+        "end_ms": 19530,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2523AE0CB50C3482"
+      },
+      {
+        "start_ms": 19530,
+        "end_ms": 19530,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445128,
+    "result": 0,
+    "seq": 44,
+    "phase": 2,
+    "at_ms": 19542,
+    "done_ms": 19551,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19542,
+        "end_ms": 19544,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19542,
+        "end_ms": 19544,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19542,
+        "end_ms": 19544,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 19545,
+        "end_ms": 19551,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B10CB50C5034"
+      },
+      {
+        "start_ms": 19551,
+        "end_ms": 19551,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445129,
+    "result": 0,
+    "seq": 45,
+    "phase": 2,
+    "at_ms": 19563,
+    "done_ms": 19572,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19563,
+        "end_ms": 19565,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 19563,
+        "end_ms": 19565,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19563,
+        "end_ms": 19565,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 19566,
+        "end_ms": 19572,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623B00CB60C427A"
+      },
+      {
+        "start_ms": 19572,
+        "end_ms": 19572,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445130,
+    "result": 0,
+    "seq": 46,
+    "phase": 2,
+    "at_ms": 19584,
+    "done_ms": 19593,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19584,
+        "end_ms": 19586,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 19584,
+        "end_ms": 19586,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19584,
+        "end_ms": 19586,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 19587,
+        "end_ms": 19593,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B00CB60C7E22"
+      },
+      {
+        "start_ms": 19593,
+        "end_ms": 19593,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445131,
+    "result": 0,
+    "seq": 47,
+    "phase": 2,
+    "at_ms": 19605,
+    "done_ms": 19614,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19605,
+        "end_ms": 19607,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 19605,
+        "end_ms": 19607,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19605,
+        "end_ms": 19607,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 19608,
+        "end_ms": 19614,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623AF0CB60C5E7C"
+      },
+      {
+        "start_ms": 19614,
+        "end_ms": 19614,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445132,
+    "result": 0,
+    "seq": 48,
+    "phase": 2,
+    "at_ms": 19626,
+    "done_ms": 19635,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19626,
+        "end_ms": 19628,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19626,
+        "end_ms": 19628,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19626,
+        "end_ms": 19628,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 19629,
+        "end_ms": 19635,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B00CB60C7E22"
+      },
+      {
+        "start_ms": 19635,
+        "end_ms": 19635,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445133,
+    "result": 0,
+    "seq": 49,
+    "phase": 2,
+    "at_ms": 19647,
+    "done_ms": 19656,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19647,
+        "end_ms": 19649,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19647,
+        "end_ms": 19649,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19647,
+        "end_ms": 19649,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 19650,
+        "end_ms": 19656,
+        "raw": 9002,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2A23AF0CB50CD508"
+      },
+      {
+        "start_ms": 19656,
+        "end_ms": 19656,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445134,
+    "result": 0,
+    "seq": 50,
+    "phase": 3,
+    "at_ms": 19668,
+    "done_ms": 19677,
+    "bits": 16,
+    "samples": [
+      {
+        "start_ms": 19668,
+        "end_ms": 19670,
+        "raw": 38550,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "9696FFFFFFFF1674"
+      },
+      {
+        "start_ms": 19668,
+        "end_ms": 19670,
+        "raw": 38558,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "9E96FFFFFFFF7F86"
+      },
+      {
+        "start_ms": 19668,
+        "end_ms": 19670,
+        "raw": 38555,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "9B96FFFFFFFFB2BE"
+      },
+      {
+        "start_ms": 19671,
+        "end_ms": 19677,
+        "raw": 6507,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "6B19AF0CB50C90FC"
+      },
+      {
+        "start_ms": 19677,
+        "end_ms": 19677,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445135,
+    "result": 0,
+    "seq": 51,
+    "phase": 3,
+    "at_ms": 19689,
+    "done_ms": 19698,
+    "bits": 16,
+    "samples": [
+      {
+        "start_ms": 19689,
+        "end_ms": 19691,
+        "raw": 38541,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "8D96FFFFFFFFE88A"
+      },
+      {
+        "start_ms": 19689,
+        "end_ms": 19691,
+        "raw": 38550,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "9696FFFFFFFF1674"
+      },
+      {
+        "start_ms": 19689,
+        "end_ms": 19691,
+        "raw": 38546,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "9296FFFFFFFFE714"
+      },
+      {
+        "start_ms": 19692,
+        "end_ms": 19698,
+        "raw": 6505,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "6919B00CB50CF44A"
+      },
+      {
+        "start_ms": 19698,
+        "end_ms": 19698,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445136,
+    "result": 0,
+    "seq": 52,
+    "phase": 3,
+    "at_ms": 19710,
+    "done_ms": 19719,
+    "bits": 16,
+    "samples": [
+      {
+        "start_ms": 19710,
+        "end_ms": 19712,
+        "raw": 38539,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "8B96FFFFFFFF615A"
+      },
+      {
+        "start_ms": 19710,
+        "end_ms": 19712,
+        "raw": 38549,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "9596FFFFFFFF529C"
+      },
+      {
+        "start_ms": 19710,
+        "end_ms": 19712,
+        "raw": 38543,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "8F96FFFFFFFF903A"
+      },
+      {
+        "start_ms": 19713,
+        "end_ms": 19719,
+        "raw": 6504,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "6819B00CB50CC812"
+      },
+      {
+        "start_ms": 19719,
+        "end_ms": 19719,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445137,
+    "result": 0,
+    "seq": 53,
+    "phase": 3,
+    "at_ms": 19731,
+    "done_ms": 19740,
+    "bits": 16,
+    "samples": [
+      {
+        "start_ms": 19731,
+        "end_ms": 19733,
+        "raw": 38536,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "8896FFFFFFFF25B2"
+      },
+      {
+        "start_ms": 19731,
+        "end_ms": 19733,
+        "raw": 38548,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "9496FFFFFFFF6EC4"
+      },
+      {
+        "start_ms": 19731,
+        "end_ms": 19733,
+        "raw": 38542,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "8E96FFFFFFFFAC62"
+      },
+      {
+        "start_ms": 19734,
+        "end_ms": 19740,
+        "raw": 6507,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "6B19B00CB50C8CFA"
+      },
+      {
+        "start_ms": 19740,
+        "end_ms": 19740,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445138,
+    "result": 0,
+    "seq": 54,
+    "phase": 3,
+    "at_ms": 19752,
+    "done_ms": 19761,
+    "bits": 16,
+    "samples": [
+      {
+        "start_ms": 19752,
+        "end_ms": 19754,
+        "raw": 38536,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "8896FFFFFFFF25B2"
+      },
+      {
+        "start_ms": 19752,
+        "end_ms": 19754,
+        "raw": 38547,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "9396FFFFFFFFDB4C"
+      },
+      {
+        "start_ms": 19752,
+        "end_ms": 19754,
+        "raw": 38542,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "8E96FFFFFFFFAC62"
+      },
+      {
+        "start_ms": 19755,
+        "end_ms": 19761,
+        "raw": 6507,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "6B19AF0CB50C90FC"
+      },
+      {
+        "start_ms": 19761,
+        "end_ms": 19761,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445139,
+    "result": 0,
+    "seq": 55,
+    "phase": 4,
+    "at_ms": 19773,
+    "done_ms": 19782,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19773,
+        "end_ms": 19775,
+        "raw": 38857,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "C997FFFFFFFF8FCE"
+      },
+      {
+        "start_ms": 19773,
+        "end_ms": 19775,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 19773,
+        "end_ms": 19775,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 19776,
+        "end_ms": 19782,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2523B10CB50C2884"
+      },
+      {
+        "start_ms": 19782,
+        "end_ms": 19782,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445140,
+    "result": 0,
+    "seq": 56,
+    "phase": 4,
+    "at_ms": 19794,
+    "done_ms": 19803,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19794,
+        "end_ms": 19796,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 19794,
+        "end_ms": 19796,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 19794,
+        "end_ms": 19796,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 19797,
+        "end_ms": 19803,
+        "raw": 9002,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2A23AF0CB60CC6EE"
+      },
+      {
+        "start_ms": 19803,
+        "end_ms": 19803,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445141,
+    "result": 0,
+    "seq": 57,
+    "phase": 4,
+    "at_ms": 19815,
+    "done_ms": 19824,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19815,
+        "end_ms": 19817,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 19815,
+        "end_ms": 19817,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 19815,
+        "end_ms": 19817,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 19818,
+        "end_ms": 19824,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623B00CB40CD9D0"
+      },
+      {
+        "start_ms": 19824,
+        "end_ms": 19824,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445142,
+    "result": 0,
+    "seq": 58,
+    "phase": 4,
+    "at_ms": 19836,
+    "done_ms": 19845,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19836,
+        "end_ms": 19838,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 19836,
+        "end_ms": 19838,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 19836,
+        "end_ms": 19838,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 19839,
+        "end_ms": 19845,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2823B00CB50CB1BE"
+      },
+      {
+        "start_ms": 19845,
+        "end_ms": 19845,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445143,
+    "result": 0,
+    "seq": 59,
+    "phase": 4,
+    "at_ms": 19857,
+    "done_ms": 19866,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19857,
+        "end_ms": 19859,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 19857,
+        "end_ms": 19859,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 19857,
+        "end_ms": 19859,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19860,
+        "end_ms": 19866,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B00CB50C6DC4"
+      },
+      {
+        "start_ms": 19866,
+        "end_ms": 19866,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445144,
+    "result": 0,
+    "seq": 60,
+    "phase": 4,
+    "at_ms": 19878,
+    "done_ms": 19887,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19878,
+        "end_ms": 19880,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 19878,
+        "end_ms": 19880,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 19878,
+        "end_ms": 19880,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19881,
+        "end_ms": 19887,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2823B00CB60CA258"
+      },
+      {
+        "start_ms": 19887,
+        "end_ms": 19887,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445145,
+    "result": 0,
+    "seq": 61,
+    "phase": 4,
+    "at_ms": 19899,
+    "done_ms": 19908,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19899,
+        "end_ms": 19901,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 19899,
+        "end_ms": 19901,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 19899,
+        "end_ms": 19901,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19902,
+        "end_ms": 19908,
+        "raw": 9002,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2A23B10CB50CF4FE"
+      },
+      {
+        "start_ms": 19908,
+        "end_ms": 19908,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445146,
+    "result": 0,
+    "seq": 62,
+    "phase": 4,
+    "at_ms": 19920,
+    "done_ms": 19929,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19920,
+        "end_ms": 19922,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 19920,
+        "end_ms": 19922,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 19920,
+        "end_ms": 19922,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19923,
+        "end_ms": 19929,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2423B00CB50C292C"
+      },
+      {
+        "start_ms": 19929,
+        "end_ms": 19929,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445147,
+    "result": 0,
+    "seq": 63,
+    "phase": 4,
+    "at_ms": 19941,
+    "done_ms": 19950,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19941,
+        "end_ms": 19943,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 19941,
+        "end_ms": 19943,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 19941,
+        "end_ms": 19943,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 19944,
+        "end_ms": 19950,
+        "raw": 9002,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2A23B00CB50CC90E"
+      },
+      {
+        "start_ms": 19950,
+        "end_ms": 19950,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445148,
+    "result": 0,
+    "seq": 64,
+    "phase": 4,
+    "at_ms": 19962,
+    "done_ms": 19971,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19962,
+        "end_ms": 19964,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 19962,
+        "end_ms": 19964,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 19962,
+        "end_ms": 19964,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 19965,
+        "end_ms": 19971,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2423AF0CB50C352A"
+      },
+      {
+        "start_ms": 19971,
+        "end_ms": 19971,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445149,
+    "result": 0,
+    "seq": 65,
+    "phase": 4,
+    "at_ms": 19983,
+    "done_ms": 19992,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 19983,
+        "end_ms": 19985,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 19983,
+        "end_ms": 19985,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 19983,
+        "end_ms": 19985,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 19986,
+        "end_ms": 19992,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2423B00CB40CA160"
+      },
+      {
+        "start_ms": 19992,
+        "end_ms": 19992,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445150,
+    "result": 0,
+    "seq": 66,
+    "phase": 4,
+    "at_ms": 20004,
+    "done_ms": 20013,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20004,
+        "end_ms": 20006,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 20004,
+        "end_ms": 20006,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20004,
+        "end_ms": 20006,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 20007,
+        "end_ms": 20013,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2823B00CB50CB1BE"
+      },
+      {
+        "start_ms": 20013,
+        "end_ms": 20013,
+        "raw": 1258,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445151,
+    "result": 0,
+    "seq": 67,
+    "phase": 4,
+    "at_ms": 20025,
+    "done_ms": 20034,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20025,
+        "end_ms": 20027,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 20025,
+        "end_ms": 20027,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20025,
+        "end_ms": 20027,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 20028,
+        "end_ms": 20034,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623B00CB50C519C"
+      },
+      {
+        "start_ms": 20034,
+        "end_ms": 20034,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445152,
+    "result": 0,
+    "seq": 68,
+    "phase": 4,
+    "at_ms": 20046,
+    "done_ms": 20055,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20046,
+        "end_ms": 20048,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20046,
+        "end_ms": 20048,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 20046,
+        "end_ms": 20048,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 20049,
+        "end_ms": 20055,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2523AF0CB50C0972"
+      },
+      {
+        "start_ms": 20055,
+        "end_ms": 20055,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445153,
+    "result": 0,
+    "seq": 69,
+    "phase": 4,
+    "at_ms": 20067,
+    "done_ms": 20076,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20067,
+        "end_ms": 20069,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 20067,
+        "end_ms": 20069,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20067,
+        "end_ms": 20069,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 20070,
+        "end_ms": 20076,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B00CB60C7E22"
+      },
+      {
+        "start_ms": 20076,
+        "end_ms": 20076,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445154,
+    "result": 0,
+    "seq": 70,
+    "phase": 4,
+    "at_ms": 20088,
+    "done_ms": 20097,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20088,
+        "end_ms": 20090,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 20088,
+        "end_ms": 20090,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20088,
+        "end_ms": 20090,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 20091,
+        "end_ms": 20097,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2923B00CB40C05AA"
+      },
+      {
+        "start_ms": 20097,
+        "end_ms": 20097,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445155,
+    "result": 0,
+    "seq": 71,
+    "phase": 4,
+    "at_ms": 20109,
+    "done_ms": 20118,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20109,
+        "end_ms": 20111,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20109,
+        "end_ms": 20111,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20109,
+        "end_ms": 20111,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 20112,
+        "end_ms": 20118,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623AF0CB50C4D9A"
+      },
+      {
+        "start_ms": 20118,
+        "end_ms": 20118,
+        "raw": 1258,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445156,
+    "result": 0,
+    "seq": 72,
+    "phase": 4,
+    "at_ms": 20130,
+    "done_ms": 20139,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20130,
+        "end_ms": 20132,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 20130,
+        "end_ms": 20132,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20130,
+        "end_ms": 20132,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 20133,
+        "end_ms": 20139,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723AF0CB50C71C2"
+      },
+      {
+        "start_ms": 20139,
+        "end_ms": 20139,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445157,
+    "result": 0,
+    "seq": 73,
+    "phase": 4,
+    "at_ms": 20151,
+    "done_ms": 20160,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20151,
+        "end_ms": 20153,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 20151,
+        "end_ms": 20153,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20151,
+        "end_ms": 20153,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 20154,
+        "end_ms": 20160,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2823B10CB50C8C4E"
+      },
+      {
+        "start_ms": 20160,
+        "end_ms": 20160,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445158,
+    "result": 0,
+    "seq": 74,
+    "phase": 4,
+    "at_ms": 20172,
+    "done_ms": 20181,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20172,
+        "end_ms": 20174,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20172,
+        "end_ms": 20174,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 20172,
+        "end_ms": 20174,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 20175,
+        "end_ms": 20181,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723AF0CB60C6224"
+      },
+      {
+        "start_ms": 20181,
+        "end_ms": 20181,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445159,
+    "result": 0,
+    "seq": 75,
+    "phase": 4,
+    "at_ms": 20193,
+    "done_ms": 20202,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20193,
+        "end_ms": 20195,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20193,
+        "end_ms": 20195,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20193,
+        "end_ms": 20195,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 20196,
+        "end_ms": 20202,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623B00CB50C519C"
+      },
+      {
+        "start_ms": 20202,
+        "end_ms": 20202,
+        "raw": 1258,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445160,
+    "result": 0,
+    "seq": 76,
+    "phase": 4,
+    "at_ms": 20214,
+    "done_ms": 20223,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20214,
+        "end_ms": 20216,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20214,
+        "end_ms": 20216,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20214,
+        "end_ms": 20216,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 20217,
+        "end_ms": 20223,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2523B00CB50C1574"
+      },
+      {
+        "start_ms": 20223,
+        "end_ms": 20223,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445161,
+    "result": 0,
+    "seq": 77,
+    "phase": 4,
+    "at_ms": 20235,
+    "done_ms": 20244,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20235,
+        "end_ms": 20237,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 20235,
+        "end_ms": 20237,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 20235,
+        "end_ms": 20237,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 20238,
+        "end_ms": 20244,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2523B10CB50C2884"
+      },
+      {
+        "start_ms": 20244,
+        "end_ms": 20244,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445162,
+    "result": 0,
+    "seq": 78,
+    "phase": 4,
+    "at_ms": 20256,
+    "done_ms": 20265,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20256,
+        "end_ms": 20258,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 20256,
+        "end_ms": 20258,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20256,
+        "end_ms": 20258,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 20259,
+        "end_ms": 20265,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623AF0CB50C4D9A"
+      },
+      {
+        "start_ms": 20265,
+        "end_ms": 20265,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445163,
+    "result": 0,
+    "seq": 79,
+    "phase": 4,
+    "at_ms": 20277,
+    "done_ms": 20286,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20277,
+        "end_ms": 20279,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 20277,
+        "end_ms": 20279,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20277,
+        "end_ms": 20279,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 20280,
+        "end_ms": 20286,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B00CB50C6DC4"
+      },
+      {
+        "start_ms": 20286,
+        "end_ms": 20286,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445164,
+    "result": 0,
+    "seq": 80,
+    "phase": 4,
+    "at_ms": 20298,
+    "done_ms": 20307,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20298,
+        "end_ms": 20300,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20298,
+        "end_ms": 20300,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 20298,
+        "end_ms": 20300,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 20301,
+        "end_ms": 20307,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2423B00CB50C292C"
+      },
+      {
+        "start_ms": 20307,
+        "end_ms": 20307,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445165,
+    "result": 0,
+    "seq": 81,
+    "phase": 4,
+    "at_ms": 20319,
+    "done_ms": 20328,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20319,
+        "end_ms": 20321,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20319,
+        "end_ms": 20321,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20319,
+        "end_ms": 20321,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 20322,
+        "end_ms": 20328,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2523AF0CB60C1A94"
+      },
+      {
+        "start_ms": 20328,
+        "end_ms": 20328,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445166,
+    "result": 0,
+    "seq": 82,
+    "phase": 4,
+    "at_ms": 20340,
+    "done_ms": 20349,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20340,
+        "end_ms": 20342,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 20340,
+        "end_ms": 20342,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20340,
+        "end_ms": 20342,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 20343,
+        "end_ms": 20349,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2523AF0CB50C0972"
+      },
+      {
+        "start_ms": 20349,
+        "end_ms": 20349,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445167,
+    "result": 0,
+    "seq": 83,
+    "phase": 4,
+    "at_ms": 20361,
+    "done_ms": 20370,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20361,
+        "end_ms": 20363,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20361,
+        "end_ms": 20363,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20361,
+        "end_ms": 20363,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 20364,
+        "end_ms": 20370,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623B00CB50C519C"
+      },
+      {
+        "start_ms": 20370,
+        "end_ms": 20370,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445168,
+    "result": 0,
+    "seq": 84,
+    "phase": 4,
+    "at_ms": 20382,
+    "done_ms": 20391,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20382,
+        "end_ms": 20384,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20382,
+        "end_ms": 20384,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 20382,
+        "end_ms": 20384,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 20385,
+        "end_ms": 20391,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B00CB50C6DC4"
+      },
+      {
+        "start_ms": 20391,
+        "end_ms": 20391,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445169,
+    "result": 0,
+    "seq": 85,
+    "phase": 4,
+    "at_ms": 20403,
+    "done_ms": 20412,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20403,
+        "end_ms": 20405,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20403,
+        "end_ms": 20405,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20403,
+        "end_ms": 20405,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 20406,
+        "end_ms": 20412,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623B00CB50C519C"
+      },
+      {
+        "start_ms": 20412,
+        "end_ms": 20412,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445170,
+    "result": 0,
+    "seq": 86,
+    "phase": 4,
+    "at_ms": 20424,
+    "done_ms": 20433,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20424,
+        "end_ms": 20426,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20424,
+        "end_ms": 20426,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 20424,
+        "end_ms": 20426,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 20427,
+        "end_ms": 20433,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2823B00CB60CA258"
+      },
+      {
+        "start_ms": 20433,
+        "end_ms": 20433,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445171,
+    "result": 0,
+    "seq": 87,
+    "phase": 4,
+    "at_ms": 20445,
+    "done_ms": 20454,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20445,
+        "end_ms": 20447,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20445,
+        "end_ms": 20447,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 20445,
+        "end_ms": 20447,
+        "raw": 38871,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D797FFFFFFFFBC08"
+      },
+      {
+        "start_ms": 20448,
+        "end_ms": 20454,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623AE0CB50C706A"
+      },
+      {
+        "start_ms": 20454,
+        "end_ms": 20454,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445172,
+    "result": 0,
+    "seq": 88,
+    "phase": 4,
+    "at_ms": 20466,
+    "done_ms": 20475,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20466,
+        "end_ms": 20468,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 20466,
+        "end_ms": 20468,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 20466,
+        "end_ms": 20468,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 20469,
+        "end_ms": 20475,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2923B10CB50CB016"
+      },
+      {
+        "start_ms": 20475,
+        "end_ms": 20475,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445173,
+    "result": 0,
+    "seq": 89,
+    "phase": 4,
+    "at_ms": 20487,
+    "done_ms": 20496,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20487,
+        "end_ms": 20489,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20487,
+        "end_ms": 20489,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20487,
+        "end_ms": 20489,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 20490,
+        "end_ms": 20496,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623B00CB40CD9D0"
+      },
+      {
+        "start_ms": 20496,
+        "end_ms": 20496,
+        "raw": 1263,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445174,
+    "result": 0,
+    "seq": 90,
+    "phase": 4,
+    "at_ms": 20508,
+    "done_ms": 20517,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20508,
+        "end_ms": 20510,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20508,
+        "end_ms": 20510,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 20508,
+        "end_ms": 20510,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 20511,
+        "end_ms": 20517,
+        "raw": 9003,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2B23AF0CB50CE950"
+      },
+      {
+        "start_ms": 20517,
+        "end_ms": 20517,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445175,
+    "result": 0,
+    "seq": 91,
+    "phase": 4,
+    "at_ms": 20529,
+    "done_ms": 20538,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20529,
+        "end_ms": 20531,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 20529,
+        "end_ms": 20531,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20529,
+        "end_ms": 20531,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 20532,
+        "end_ms": 20538,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2523B00CB60C0692"
+      },
+      {
+        "start_ms": 20538,
+        "end_ms": 20538,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445176,
+    "result": 0,
+    "seq": 92,
+    "phase": 4,
+    "at_ms": 20550,
+    "done_ms": 20559,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20550,
+        "end_ms": 20552,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20550,
+        "end_ms": 20552,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 20550,
+        "end_ms": 20552,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 20553,
+        "end_ms": 20559,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2823AF0CB60CBE5E"
+      },
+      {
+        "start_ms": 20559,
+        "end_ms": 20559,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445177,
+    "result": 0,
+    "seq": 93,
+    "phase": 4,
+    "at_ms": 20571,
+    "done_ms": 20580,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20571,
+        "end_ms": 20573,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20571,
+        "end_ms": 20573,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20571,
+        "end_ms": 20573,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 20574,
+        "end_ms": 20580,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2423AF0CB50C352A"
+      },
+      {
+        "start_ms": 20580,
+        "end_ms": 20580,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445178,
+    "result": 0,
+    "seq": 94,
+    "phase": 4,
+    "at_ms": 20592,
+    "done_ms": 20601,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20592,
+        "end_ms": 20594,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20592,
+        "end_ms": 20594,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 20592,
+        "end_ms": 20594,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 20595,
+        "end_ms": 20601,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723AF0CB40CF98E"
+      },
+      {
+        "start_ms": 20601,
+        "end_ms": 20601,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445179,
+    "result": 0,
+    "seq": 95,
+    "phase": 4,
+    "at_ms": 20613,
+    "done_ms": 20622,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20613,
+        "end_ms": 20615,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20613,
+        "end_ms": 20615,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20613,
+        "end_ms": 20615,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 20616,
+        "end_ms": 20622,
+        "raw": 9002,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2A23AE0CB50CE8F8"
+      },
+      {
+        "start_ms": 20622,
+        "end_ms": 20622,
+        "raw": 1263,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445180,
+    "result": 0,
+    "seq": 96,
+    "phase": 4,
+    "at_ms": 20634,
+    "done_ms": 20643,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20634,
+        "end_ms": 20636,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20634,
+        "end_ms": 20636,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20634,
+        "end_ms": 20636,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 20637,
+        "end_ms": 20643,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723B00CB60C7E22"
+      },
+      {
+        "start_ms": 20643,
+        "end_ms": 20643,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445181,
+    "result": 0,
+    "seq": 97,
+    "phase": 4,
+    "at_ms": 20655,
+    "done_ms": 20664,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20655,
+        "end_ms": 20657,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20655,
+        "end_ms": 20657,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 20655,
+        "end_ms": 20657,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 20658,
+        "end_ms": 20664,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2623AF0CB50C4D9A"
+      },
+      {
+        "start_ms": 20664,
+        "end_ms": 20664,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445182,
+    "result": 0,
+    "seq": 98,
+    "phase": 4,
+    "at_ms": 20676,
+    "done_ms": 20685,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20676,
+        "end_ms": 20678,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20676,
+        "end_ms": 20678,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20676,
+        "end_ms": 20678,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 20679,
+        "end_ms": 20685,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723AF0CB50C71C2"
+      },
+      {
+        "start_ms": 20685,
+        "end_ms": 20685,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445183,
+    "result": 0,
+    "seq": 99,
+    "phase": 4,
+    "at_ms": 20697,
+    "done_ms": 20706,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20697,
+        "end_ms": 20699,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20697,
+        "end_ms": 20699,
+        "raw": 38868,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D497FFFFFFFFF8E0"
+      },
+      {
+        "start_ms": 20697,
+        "end_ms": 20699,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 20700,
+        "end_ms": 20706,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2523B10CB60C3B62"
+      },
+      {
+        "start_ms": 20706,
+        "end_ms": 20706,
+        "raw": 1258,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445184,
+    "result": 0,
+    "seq": 100,
+    "phase": 4,
+    "at_ms": 20718,
+    "done_ms": 20727,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20718,
+        "end_ms": 20720,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20718,
+        "end_ms": 20720,
+        "raw": 38866,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D297FFFFFFFF7130"
+      },
+      {
+        "start_ms": 20718,
+        "end_ms": 20720,
+        "raw": 38869,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D597FFFFFFFFC4B8"
+      },
+      {
+        "start_ms": 20721,
+        "end_ms": 20727,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2423B10CB60C073A"
+      },
+      {
+        "start_ms": 20727,
+        "end_ms": 20727,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  },
+  {
+    "id": 2521445185,
+    "result": 0,
+    "seq": 101,
+    "phase": 4,
+    "at_ms": 20739,
+    "done_ms": 20748,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 20739,
+        "end_ms": 20741,
+        "raw": 38865,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "D197FFFFFFFF35D8"
+      },
+      {
+        "start_ms": 20739,
+        "end_ms": 20741,
+        "raw": 38867,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "D397FFFFFFFF4D68"
+      },
+      {
+        "start_ms": 20739,
+        "end_ms": 20741,
+        "raw": 38870,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D697FFFFFFFF8050"
+      },
+      {
+        "start_ms": 20742,
+        "end_ms": 20748,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2723AF0CB60C6224"
+      },
+      {
+        "start_ms": 20748,
+        "end_ms": 20748,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-relay-r2"
+  }
+]

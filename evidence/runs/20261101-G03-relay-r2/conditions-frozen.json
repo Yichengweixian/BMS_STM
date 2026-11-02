@@ -1,0 +1,39 @@
+{
+  "profile_id": "relay-exploration-20261101-r2",
+  "frozen_at_utc": "2026-11-01T08:16:58.053370+00:00",
+  "live_ready": false,
+  "firmware_sha256": "8ff78e03997c4a5facd8f6feade09024fdd4721a3f0e32fc3531312bf1598c49",
+  "battery_disconnect_confirmed": true,
+  "wiring": {
+    "cells": 3,
+    "load_nominal_ohm": 33,
+    "charge_port": "open"
+  },
+  "source_disabled_run": "20261101-G03-relay-r1/board-rehearsal-01",
+  "cell_code_low": 38365,
+  "cell_code_high": 39372,
+  "cell_rule": "Observed 38865..38872 across three cells, with an engineering +/-500 code (~50mV nominal) departure envelope. This is NOT a manufacturer operating rating.",
+  "afe_baseline_code_low": 8958,
+  "afe_baseline_code_high": 9042,
+  "afe_rule": "Observed 8994..9006, fixed +/-36 code (3x measured peak-to-peak) drift margin; reject a shifted baseline before any GPIO rise.",
+  "baseline_samples": 50,
+  "baseline_peak_to_peak_max_codes": 100,
+  "response_band_rule": "max(20,3*preaction peak_to_peak)",
+  "sample_period_ms": 20,
+  "required_sample_max_age_ms": 40,
+  "command_deadline_ms": 99,
+  "command_high_acceptance_max_ms": 100,
+  "post_observation_ms": 1000,
+  "valid_window_min_complete_samples": 3,
+  "recovery_consecutive_samples": 5,
+  "physical_current_calibrated": false,
+  "manufacturer_cell_limits_verified": false,
+  "pwm_enabled": false,
+  "charge_relay_enabled": false,
+  "actual_attempt_limit": 1,
+  "automatic_retry": false,
+  "pending": [
+    "r2 flash/readback and normal boot identity",
+    "r2 disabled rehearsal passes before any real trigger"
+  ]
+}

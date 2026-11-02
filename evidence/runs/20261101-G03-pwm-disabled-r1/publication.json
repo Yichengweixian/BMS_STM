@@ -1,0 +1,113 @@
+{
+  "completed_utc": "2026-11-01T10:46:01.329428+00:00",
+  "changed": [
+    {
+      "path": "BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c",
+      "before_sha256": "40fbd27d41e27e48ed48f3acfa8ef2d5a9fcbcfa9544f46967c25592e0ef2cf9",
+      "after_sha256": "829027a3b7e076233d78c8dd5df055e3de4172c78f062fa08e7af8ae192eaf5a"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/Appli/Core/Src/stm32n6xx_it.c",
+      "before_sha256": "78917a1de89690c0e7d98f0d0c1d005a26cb47365aa115ae8594b92d1de2a8b3",
+      "after_sha256": "7bb2bbef96804821d21c59185d35576366e03ecea6b798ffeaa02c623d8607d5"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/firmware_identity.h",
+      "before_sha256": null,
+      "after_sha256": "451dbb08458e37158e0ccaf31c1998bdc4b2736e03bcba90852417f4d3c1e3ab"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/g02_link.c",
+      "before_sha256": "603ec904bedfe7bb459aafe5f2b71179ae0a52e293dc860f667d797783cee4a0",
+      "after_sha256": "82f0291b4d4b2bdddc986bdf369a7b12192721812dba1308a5addf6d86b613ec"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/g02_port.c",
+      "before_sha256": "0f38e34e9dfff5e1f51b348c7dc36a1e5f1bd100b77a5ba9152fa22ee6d68b11",
+      "after_sha256": "8ca16a9a88c3c29c878c7a51a3e7e261ab75108d8192b643978034c992f88b53"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/g03_adc_port.c",
+      "before_sha256": "85fc9f228a5cfc80e4756d4419dcf474c304682b45e90175402a67b2f897da26",
+      "after_sha256": "144874b1a34e0974118e066247663947a4edaddd40d642b6221321e792a9c08a"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/g03_port.c",
+      "before_sha256": "d84ea9e052b11ffeb57b2745157b4c3e7e102ea1110b508e50eb068655b38d98",
+      "after_sha256": "d040f857033e7e5f10b5e052264971d9857ec1a197b2a9074ae0167375fb9b63"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/g03_pwm_port.c",
+      "before_sha256": null,
+      "after_sha256": "002bb9fe7cc32ccc830aad54b15c5e74c220e08215b86f36a6614a3b45531651"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/g03_pwm_port.h",
+      "before_sha256": null,
+      "after_sha256": "d858b87c1800f8919296609f3426824fd753e05e7da2ff0d1b9e83043bc2d59e"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/g03_relay_port.c",
+      "before_sha256": "c63d6b0a52a89556f81ab952cab6aeaf4ec17a9a7a361b42c0e1adac6b10481b",
+      "after_sha256": "e09e8fbccdefbdd6d273179064ee0bde98aa0cc943356b5227e85dae3e27c2f3"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/g03_relay_profile.h",
+      "before_sha256": "d709288fd934542d1c368220bc5f7310ae3fc04788d35cbd4119c7d421992a1d",
+      "after_sha256": "34177a4ff2e7edad5937308d9c2a4ae0fdda7cb7f0b3003e0d785749f7636634"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/measurement.c",
+      "before_sha256": "609bde6ddc7979ffc96cc3770d1289659af0fd08899f1ff1c1a9d95a39b01958",
+      "after_sha256": "f369ad14a133c00f0dee76d9b373d3520d90fe07f70e7c9c8596eb943fa764a1"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/pwm_oneshot.c",
+      "before_sha256": null,
+      "after_sha256": "dafe719d57b41f00062d87ace7a976721cd600b91ecb5f58348282eceb83878b"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/pwm_oneshot.h",
+      "before_sha256": null,
+      "after_sha256": "371e1f019dae6e66c61adbbbb18de04a2de2c47e69c87d9c2608848e8a5d73a3"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx",
+      "before_sha256": "af0825d5a9ccbbac2f785906f2d199de5c787ef6538d286e997bff4d398926c2",
+      "after_sha256": "99af128c688af898406a552f3da896bd3f6ee01e29ee93ebc4d9b72382b1c384"
+    },
+    {
+      "path": "scripts/g03/pwm_disabled.py",
+      "before_sha256": null,
+      "after_sha256": "8324f898014198d1f0d4af803cbe570d6f24ced7a7b46b35808488b989f272f9"
+    },
+    {
+      "path": "scripts/g03/run_pwm_checks.py",
+      "before_sha256": null,
+      "after_sha256": "6d5e0cc41b49f0a32acca6ba8ec3791a2338355a8f42605b48138ada4d230fbe"
+    },
+    {
+      "path": "tests/g03/test_pwm_oneshot.c",
+      "before_sha256": null,
+      "after_sha256": "8c92895ef8dba8eaa4a819f9ff3288c1ad5a491b5dfc41fb3fecf5bc25c505f4"
+    },
+    {
+      "path": "tests/g03/test_pwm_port.c",
+      "before_sha256": null,
+      "after_sha256": "4c3eadea05640b3e233228d9080aadd47f5bfa0d8f950226972be567404254e2"
+    },
+    {
+      "path": "tests/g03/pwm_port_fixture/main.h",
+      "before_sha256": null,
+      "after_sha256": "202ddf15452dcafa44d46e540de39de8fc88ccfe5b7dd083df14588c35463db5"
+    },
+    {
+      "path": "tests/g03/test_pwm_disabled_host.py",
+      "before_sha256": null,
+      "after_sha256": "346a6ecf5fe604d758162aceddf28e1a0f2fd9150783dd93da33efac80247143"
+    }
+  ],
+  "baseline_files_verified": 171,
+  "production_files": 176,
+  "old_generated_cmse_object_preserved": true
+}

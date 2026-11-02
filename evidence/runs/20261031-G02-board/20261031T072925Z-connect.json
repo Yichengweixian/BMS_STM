@@ -1,0 +1,19 @@
+{
+  "step": "connect",
+  "command": [
+    "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+    "-c",
+    "port=SWD",
+    "sn=16004A002933353739303541",
+    "freq=100",
+    "mode=UR",
+    "reset=HWrst"
+  ],
+  "start_utc": "2026-10-31T07:29:25.374374+00:00",
+  "end_utc": "2026-10-31T07:29:25.955717+00:00",
+  "exit_code": 0,
+  "log": "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261031-G02-board\\raw\\20261031T072925Z-connect.log",
+  "firmware_sha256": "fd1d2a84a43fefde8e265cc879757e15c06babe2efd019f9fcf76bdb8ed4013f",
+  "loader_sha256": "0bce846a1f25e4e967d572efb5a3f97f8a839817b53bf60d837aadfee740dcb5",
+  "download_verified": false
+}

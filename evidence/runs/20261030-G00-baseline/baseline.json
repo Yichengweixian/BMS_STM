@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-10-30T12:49:55.336962+00:00",
+  "git_commit": "23b2d805aceaef41035ec7a86fe448862731adfb",
+  "git_status": " M BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx\n M BMS_EXv1.1/BMS_EX/Secure_nsclib/secure_nsclib.o\n M instructions/RUNLOG.md\n M instructions/STATUS.md\n?? ALIENTEK探索者STM32F4开发板原理图.pdf\n?? evidence/\n?? 课堂复习重点.pptx\n",
+  "source_manifest_sha256": "9b7ad021dddb60d4556f5ca22d9c50a54d911da3426ece1f839bc0cd1b038c60",
+  "scope": "Release no-power basic startup; both targets clean build; Debug runtime not yet qualified",
+  "criteria": {
+    "build_errors": 0,
+    "all_warnings_reviewed": true,
+    "release_cold_boot_count": 3,
+    "uart_required": true,
+    "hardware_registration_required": true
+  },
+  "prior_flashed_hex_sha256": "4979c23cb90efa5efb74ecb7af30af43cb5c57619d3b8fe74be92bb4e6bcdc2b"
+}

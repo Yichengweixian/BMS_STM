@@ -1,0 +1,2 @@
+{"monotonic": 96269.921, "tx_attempt": "4730322c323630313339373739342c34302c302a373133430a", "op": 40, "id": 2601397794}
+{"monotonic": 96269.937, "report": {"id": 2601397794, "result": 0, "phase": 6, "faults": 2228232, "used": 1, "owned": 0, "live": 0, "start_id": 2601329570, "profile": 1345926145, "ccr": 1480, "arr": 2000, "run_us": 100000, "rows": 49, "bits": 0, "restored": 1, "pwm_on_us": 0, "pwm_off_us": 0, "relay_on_us": 0, "relay_off_us": 0, "max_irq_gap_us": 101, "zero": 0, "recovery_good": 0, "power_capable": 1, "physical_valid": 0, "core_state": 4, "kind": "#G3Q"}}

@@ -1,0 +1,41 @@
+{
+  "evidence_scope": [
+    "static"
+  ],
+  "verdict": null,
+  "power_execution_available": false,
+  "missing": [
+    "limits.cell_voltage_min_V",
+    "limits.cell_voltage_max_V",
+    "limits.charge_current_max_A",
+    "limits.discharge_current_max_A",
+    "limits.charge_temperature_min_C",
+    "limits.charge_temperature_max_C",
+    "limits.discharge_temperature_min_C",
+    "limits.discharge_temperature_max_C",
+    "limits.converter_voltage_max_V",
+    "limits.converter_current_max_A",
+    "limits.converter_power_max_W",
+    "limits.load_power_continuous_W",
+    "limits.supply_current_limit_A",
+    "control.permitted_test_duty_min",
+    "control.permitted_test_duty_max",
+    "control.stop_delay_limit_us",
+    "control.effective_deadtime_min_ns",
+    "control.open_loop_point_max_ms",
+    "control.communication_timeout_ms",
+    "control.relay_change_conditions",
+    "control.communication_loss_action",
+    "control.default_power_disabled_verified_run_id",
+    "verified pin/driver/Vgs waveforms and stop response",
+    "calibrated battery-branch current and voltage with sign/range",
+    "confirmed direction-specific wiring, energy sink, load and thermal conditions",
+    "MCU-local powered-mode interlocks, communication timeout and protection integration"
+  ],
+  "input_sha256": {
+    "instructions\\specs\\hardware-profile.json": "3bd008207ae4def6d57f31252e2bc10f017d5a4a383948d5014a6ddcacecdd65",
+    "scripts\\g02\\open-loop-plan.template.json": "22042f4bc5ba86b55a87f26a1d234ee59be68c22d0ac12ee0a422c00f75e0159",
+    "scripts\\g02\\prepower_plan.py": "bb39f6b63cdb3478535c337bf876e0aceeeca499969d8df5b378c1fdcefc5864"
+  },
+  "plan_error": "Unknown/invalid permitted duty or duration in hardware profile"
+}

@@ -1,0 +1,19 @@
+test_crc_reference (test_host.HostTests) ... ok
+test_crc_schema_and_nonfinite_rejected (test_host.HostTests) ... ok
+test_fragmented_coalesced_and_stale_responses (test_host.HostTests) ... ok
+test_oversized_stream_and_counter_exhaustion (test_host.HostTests) ... ok
+test_reboot_cancels_without_replay (test_host.HostTests) ... ok
+test_timeout_does_not_retry (test_host.HostTests) ... ok
+test_unsigned_request_bounds (test_host.HostTests) ... ok
+test_wrong_firmware_and_output_gate (test_host.HostTests) ... ok
+test_invalid_duty_duration_and_closed_loop (test_host.PlanTests) ... ok
+test_order_quantization_and_final_stop (test_host.PlanTests) ... ok
+test_power_sign_and_quality (test_host.PlanTests) ... ok
+test_quantization_cannot_escape_limits (test_host.PlanTests) ... ok
+test_stop_fault_cancel_remaining_points (test_host.PlanTests) ... ok
+test_unknown_limits_not_course_defaults (test_host.PlanTests) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.085s
+
+OK

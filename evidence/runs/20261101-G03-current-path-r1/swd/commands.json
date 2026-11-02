@@ -1,0 +1,1429 @@
+[
+  {
+    "name": "initial-0-halt",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-halt"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "initial-0-cr",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022008",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "saved-50022030",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022030",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "saved-50022014",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022014",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "saved-50022018",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022018",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "saved-5002201c",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x5002201c",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "saved-50022308",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022308",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "adc-option",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x500220d0",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-before-write-50022030",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022030",
+      "0x40"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-before-verify-50022030",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022030",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-before-write-50022014",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022014",
+      "0x18"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-before-verify-50022014",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022014",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-before-write-50022018",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022018",
+      "0x0"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-before-verify-50022018",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022018",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-before-write-5002201c",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x5002201c",
+      "0x2"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-before-verify-5002201c",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x5002201c",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-before-write-50022308",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022308",
+      "0x0"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-before-verify-50022308",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022308",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-before-run",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-run"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-0-0-halt",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-halt"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-0-0-cr",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022008",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-0-write-50022030",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022030",
+      "0x0"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-0-verify-50022030",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022030",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-0-write-50022014",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022014",
+      "0x1f"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-0-verify-50022014",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022014",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-0-write-50022018",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022018",
+      "0x0"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-0-verify-50022018",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022018",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-0-write-5002201c",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x5002201c",
+      "0x1"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-0-verify-5002201c",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x5002201c",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-0-write-50022308",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022308",
+      "0x0"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-0-verify-50022308",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022308",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-0-run",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-run"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-11-0-halt",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-halt"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-11-0-cr",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022008",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-11-write-50022030",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022030",
+      "0x2c0"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-11-verify-50022030",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022030",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-11-write-50022014",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022014",
+      "0x18"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-11-verify-50022014",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022014",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-11-write-50022018",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022018",
+      "0x38"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-11-verify-50022018",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022018",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-11-write-5002201c",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x5002201c",
+      "0x800"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-11-verify-5002201c",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x5002201c",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-11-write-50022308",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022308",
+      "0x0"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-11-verify-50022308",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022308",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-11-run",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-run"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-14-0-halt",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-halt"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-14-0-cr",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022008",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-14-write-50022030",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022030",
+      "0x380"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-14-verify-50022030",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022030",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-14-write-50022014",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022014",
+      "0x18"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-14-verify-50022014",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022014",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-14-write-50022018",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022018",
+      "0x7000"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-14-verify-50022018",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022018",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-14-write-5002201c",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x5002201c",
+      "0x4000"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-14-verify-5002201c",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x5002201c",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-14-write-50022308",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022308",
+      "0x0"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-14-verify-50022308",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022308",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "input-14-run",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-run"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "internal-vref-0-halt",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-halt"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "internal-vref-0-cr",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022008",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "internal-vref-write-50022030",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022030",
+      "0x440"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "internal-vref-verify-50022030",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022030",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "internal-vref-write-50022014",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022014",
+      "0x18"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "internal-vref-verify-50022014",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022014",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "internal-vref-write-50022018",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022018",
+      "0xe00000"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "internal-vref-verify-50022018",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022018",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "internal-vref-write-5002201c",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x5002201c",
+      "0x20000"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "internal-vref-verify-5002201c",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x5002201c",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "internal-vref-write-50022308",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022308",
+      "0x400000"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "internal-vref-verify-50022308",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022308",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "internal-vref-run",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-run"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-long-0-halt",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-halt"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-long-0-cr",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022008",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-long-write-50022030",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022030",
+      "0x40"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-long-verify-50022030",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022030",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-long-write-50022014",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022014",
+      "0x38"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-long-verify-50022014",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022014",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-long-write-50022018",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022018",
+      "0x0"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-long-verify-50022018",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022018",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-long-write-5002201c",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x5002201c",
+      "0x2"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-long-verify-5002201c",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x5002201c",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-long-write-50022308",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022308",
+      "0x0"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-long-verify-50022308",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022308",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "current-long-run",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-run"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "restore-0-halt",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-halt"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "restore-0-cr",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022008",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "restore-write-50022030",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022030",
+      "0x40"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "restore-verify-50022030",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022030",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "restore-write-50022014",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022014",
+      "0x18"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "restore-verify-50022014",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022014",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "restore-write-50022018",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022018",
+      "0x0"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "restore-verify-50022018",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022018",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "restore-write-5002201c",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x5002201c",
+      "0x2"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "restore-verify-5002201c",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x5002201c",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "restore-write-50022308",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-w32",
+      "0x50022308",
+      "0x0"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "restore-verify-50022308",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-r32",
+      "0x50022308",
+      "4"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "final-run",
+    "command": [
+      "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+      "-c",
+      "port=SWD",
+      "sn=16004A002933353739303541",
+      "freq=100",
+      "mode=HOTPLUG",
+      "-run"
+    ],
+    "exit_code": 0
+  }
+]

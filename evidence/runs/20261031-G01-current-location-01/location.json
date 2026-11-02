@@ -1,0 +1,35 @@
+{
+  "record_created_utc": "2026-10-31T05:01:42.618127+00:00",
+  "user_observation": "No I_AD/I_ADA/PA1/0.9REF markings found; user requests localization from images and existing sources",
+  "photo_observations": {
+    "candidate": "U5, six-lead device right of 1.8V silkscreen, left of ADBMS1818; adjacent C24/R18/R5/R3",
+    "actual_device_marking": null,
+    "pin1_orientation": null,
+    "verified_probe_pad": null
+  },
+  "course_evidence": "PPT slide7 amplifier diagram labels U5 INA199A1DCKR, supply decoupler C24, output I_ADA, REF0.9REF; device text elsewhere says A2. Component references alone do not prove fitted identity.",
+  "source_code_evidence": "Appli/Core/Inc/main.h I_AD_Pin GPIO_PIN_1, I_AD_GPIO_Port GPIOA; software label is not a physical test-point label.",
+  "datasheet_reference": {
+    "url": "https://www.ti.com/lit/ds/symlink/ina199.pdf",
+    "identity": "SBOS469H, page3 Figure5-1/Table5-1",
+    "conditional_DCK_pinout": {
+      "1": "REF",
+      "2": "GND",
+      "3": "V+",
+      "4": "IN+",
+      "5": "IN-",
+      "6": "OUT"
+    },
+    "applicability": "only if fitted component and orientation are verified; no photo pad assigned"
+  },
+  "not_established": [
+    "actual part suffix/gain",
+    "chip orientation",
+    "connected MCU versus AFE output nodes",
+    "safe accessible measurement pad"
+  ],
+  "next_action": "Request sharp close-up of U5 and C24/R18/R5/R3 to read package marking and follow short traces; no probing small pins yet",
+  "firmware_changed": false,
+  "power_control_changed": false,
+  "verdict": null
+}

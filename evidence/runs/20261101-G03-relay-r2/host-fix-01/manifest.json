@@ -1,0 +1,16 @@
+{
+  "reason": "Distinguish baseline rejection from a real PG5 command interval; host-only, firmware unchanged",
+  "tests": "4 host unit tests passed in staging",
+  "changes": [
+    {
+      "path": "scripts/g03/relay_capture.py",
+      "before_sha256": "c440190ddeff157b5dfd01bc586a2bd8a865421ebbf99f0075c685367c27c64b",
+      "after_sha256": "552a1df3b63ddd241febeedf85d6ebf653d4f748f3db2576f87120ca26fc3576"
+    },
+    {
+      "path": "tests/g03/test_relay_host.py",
+      "before_sha256": "399d920df1ea95ef3d02857881b8248122e09f0bb2245377a360534cb69f14dd",
+      "after_sha256": "1bafca0108975819a3b664f7013ed59e86bb598965b0f717379e3c3f5a8b8fe3"
+    }
+  ]
+}

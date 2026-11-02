@@ -1,0 +1,27 @@
+{
+  "status": "complete",
+  "verdict": null,
+  "evidence_scope": [
+    "bench"
+  ],
+  "checks": [
+    "power-rejected-unknown-config-rejected",
+    "charge-compare-busy-reversal-stop",
+    "discharge-duration-stop",
+    "ten-sensor-interlock-decay-faults-latched",
+    "heartbeat-and-local-timeout-after-host-close",
+    "duplicate-heartbeat-does-not-renew",
+    "clear-does-not-bypass-persistent-bad-input",
+    "final-stopped-unconfigured"
+  ],
+  "sensor_inputs": "synthetic fixture only",
+  "physical_power_enabled": false,
+  "physical_waveforms_verified": false,
+  "software_checks": "passed",
+  "sha256": {
+    "serial.bin": "1a7fdc2c8eef3a5661293a06bf2bca907923bc262ec708630f8043930e8a10a1",
+    "events.jsonl": "ba697ba352d680ff8c0eff0aef391c4675c7e9cf5d2ddf9bc6e417b937a7de5d",
+    "reports.csv": "75fa5c10349ea929d44411a818c28d03af66feb9090ceb158b87ae30c95776a0",
+    "disabled_diagnostics.py": "6027f904fe9ec980ed39d5003c56ea0efd73e704421439332e849e1562a9d645"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "D:/K5/UV4/UV4.exe",
+    "-r",
+    "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\BMS_EXv1.1\\BMS_EX\\MDK-ARM\\Appli\\BMS_EX_Appli.uvprojx",
+    "-t",
+    "BMS_PWM_Power_Debug",
+    "-o",
+    "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261102-G03-discharge-sprint-r1\\build\\BMS_PWM_Power_Debug-01.log"
+  ],
+  "exit_code": 1
+}

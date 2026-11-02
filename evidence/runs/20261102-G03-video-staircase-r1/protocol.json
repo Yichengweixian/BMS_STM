@@ -1,0 +1,40 @@
+{
+  "firmware": "g03-power-d74-c1",
+  "image_sha256": "001577eeccc6ab3d264283cb4d85be17e19051a08dccc2eb983f02fd9da2d4ab",
+  "points": {
+    "D90": [
+      1345925891,
+      1800
+    ],
+    "D80": [
+      1345925892,
+      1600
+    ],
+    "D74": [
+      1345926146,
+      1480
+    ]
+  },
+  "ARR": 2000,
+  "window_us": 2000000,
+  "minimum_off_gap_s": 30,
+  "gap_basis": "recording/handling interval; not a claimed thermal reset time",
+  "no_continuous_D_step": true,
+  "video_suggested_pre_s": 3,
+  "video_suggested_post_s": 5,
+  "preferred_reading_window_s_after_pwm_start": [
+    0.5,
+    1.5
+  ],
+  "reading_rule": "use visibly refreshed stable plateau; do not assume settling from elapsed time; unobserved values stay null",
+  "source_settings": {
+    "each_V": 3.5,
+    "CC_A": 0.6,
+    "OCP_A": 0.55,
+    "OVP_V": 3.65
+  },
+  "reference_scope": "PSU current display crosscheck and DMM voltage via user video; not final G01 same-shunt calibrated reference",
+  "automatic_retry": false,
+  "calibration_coefficients_changed": false,
+  "thermal_steady_state_claim": false
+}

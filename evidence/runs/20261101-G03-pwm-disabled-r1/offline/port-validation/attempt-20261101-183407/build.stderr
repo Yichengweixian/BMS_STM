@@ -1,0 +1,8 @@
+C:\Users\ADMIN\.codex\visualizations\2026\11\01\01a195e9-9166-7063-a043-ddd6a0d0d237\g03-pwm-disabled-work\workspace\BMS_EXv1.1\BMS_EX\BSP\g03_pwm_port.c: In function 'int G03_PWM_ADCIRQ()':
+C:\Users\ADMIN\.codex\visualizations\2026\11\01\01a195e9-9166-7063-a043-ddd6a0d0d237\g03-pwm-disabled-work\workspace\BMS_EXv1.1\BMS_EX\BSP\g03_pwm_port.c:236:52: error: enumerated and non-enumerated type in conditional expression [-Werror=extra]
+  236 |         PWM_OneShot_Trip(&shot,(flags&ADC_FLAG_AWD1?PWM_F_OVERCURRENT:0U)|(flags&ADC_FLAG_OVR?PWM_F_OVERRUN:0U));
+      |                                 ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+C:\Users\ADMIN\.codex\visualizations\2026\11\01\01a195e9-9166-7063-a043-ddd6a0d0d237\g03-pwm-disabled-work\workspace\BMS_EXv1.1\BMS_EX\BSP\g03_pwm_port.c:236:94: error: enumerated and non-enumerated type in conditional expression [-Werror=extra]
+  236 |         PWM_OneShot_Trip(&shot,(flags&ADC_FLAG_AWD1?PWM_F_OVERCURRENT:0U)|(flags&ADC_FLAG_OVR?PWM_F_OVERRUN:0U));
+      |                                                                            ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+cc1plus.exe: all warnings being treated as errors

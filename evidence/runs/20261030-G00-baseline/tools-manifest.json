@@ -1,0 +1,22 @@
+[
+  {
+    "path": "D:\\K5\\UV4\\UV4.exe",
+    "sha256": "428baf13d15e6760af1618def9c9815c97f0321cc5e459ec7adc4dde41c42f89"
+  },
+  {
+    "path": "D:\\K5\\ARM\\ARMCLANG\\bin\\armclang.exe",
+    "sha256": "ad5afaace02844fad6631ebe77d5a995a72f79555ebfa52ce969e735a4d46f91"
+  },
+  {
+    "path": "D:\\K5\\ARM\\ARMCLANG\\bin\\armlink.exe",
+    "sha256": "f63cf864edbf904e7db98647038ec8e75894a216c7fabc179277874ea6050f08"
+  },
+  {
+    "path": "D:\\K5\\ARM\\Flash\\MX25UM25645G_ATK-CNN647B.FLM",
+    "sha256": "4d0930697f33272788cc6e3b1c12f83be103ed2b64ec0b40380ebada4d7fd704"
+  },
+  {
+    "path": "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\tools\\flash-loaders\\MX25UM25645G_ATK-CNN647B_ExtMemLoader.stldr",
+    "sha256": "0bce846a1f25e4e967d572efb5a3f97f8a839817b53bf60d837aadfee740dcb5"
+  }
+]

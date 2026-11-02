@@ -1,0 +1,22 @@
+{
+  "firmware": "g03-adc-r4",
+  "channel": "ADC1 internal VREFINT channel17",
+  "external_channel_data_during_override_invalid": true,
+  "sampling_cycles": 1499.5,
+  "saved": {
+    "1342316592": 64,
+    "1342316568": 0,
+    "1342316572": 2,
+    "1342317320": 0
+  },
+  "override": {
+    "1342316592": 1088,
+    "1342316568": 14680064,
+    "1342316572": 131072,
+    "1342317320": 4194304
+  },
+  "adc_or": 0,
+  "no_OTP_write": true,
+  "no_VREFBUF_output_enable": true,
+  "no_power_enable": true
+}

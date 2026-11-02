@@ -1,0 +1,8 @@
+{
+  "verdict": "pass",
+  "hardware_access": false,
+  "serial_import_forbidden": true,
+  "scope": "AST/import, identity/schema/closed-output guards, empty-invalid G01, default plan only",
+  "production_sequence_executed": false,
+  "source_sha256": "d74ebbd67ddb72ec41d91be9615d75d75c566a672147b45db95be43e5b067d01"
+}

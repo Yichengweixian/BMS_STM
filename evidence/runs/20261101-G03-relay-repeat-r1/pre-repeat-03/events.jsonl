@@ -1,0 +1,2 @@
+{"host_monotonic": 16506.0, "tx_hex": "4730322c323532313633333838332c33302c302a304642360a", "op": 30}
+{"host_monotonic": 16506.015, "report": {"id": 2521633883, "result": 0, "state": 0, "faults": 0, "reason": 0, "live": 0, "written": 0, "base_count": 0, "center": 0, "tolerance": 0, "on_ms": 0, "off_ms": 0, "recover_count": 0, "actual_bits": 0, "on_cycles": 0, "off_cycles": 0, "irq_max_cycles": 0, "cpu_hz": 800000000, "live_gate": 1, "live_used": 0, "period_ms": 20, "stale_ms": 40, "physical_valid": 0, "kind": "#G3R", "firmware": "g03-relay-r2"}}

@@ -1,0 +1,6 @@
+{
+  "mode": "fixed-duty",
+  "direction": "discharge",
+  "points": [{"duty": null, "duration_ms": null}],
+  "note": "Preparation only. Unknown values deliberately unset; no serial/power executor. Use hardware-profile confirmed limits."
+}

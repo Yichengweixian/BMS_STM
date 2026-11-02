@@ -1,0 +1,129 @@
+[
+  {
+    "name": "compiler",
+    "command": [
+      "gcc",
+      "--version"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "build-control",
+    "command": [
+      "gcc",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\tests\\g02\\test_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_control.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\evidence\\runs\\20261031-prepower-host\\checks-final\\control.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "control",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\evidence\\runs\\20261031-prepower-host\\checks-final\\control.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "build-default",
+    "command": [
+      "gcc",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\tests\\g02\\stubs",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\tests\\g02\\test_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_port.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\evidence\\runs\\20261031-prepower-host\\checks-final\\default.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "default",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\evidence\\runs\\20261031-prepower-host\\checks-final\\default.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "build-pins-simulated",
+    "command": [
+      "gcc",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-DG02_ALLOW_PIN_OUTPUT=1",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\tests\\g02\\stubs",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\tests\\g02\\test_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_port.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\evidence\\runs\\20261031-prepower-host\\checks-final\\pins-simulated.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "pins-simulated",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\evidence\\runs\\20261031-prepower-host\\checks-final\\pins-simulated.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "build-link",
+    "command": [
+      "gcc",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\tests\\g02\\stubs",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\tests\\g02\\test_link.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_link.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\evidence\\runs\\20261031-prepower-host\\checks-final\\link.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "link",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\evidence\\runs\\20261031-prepower-host\\checks-final\\link.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "host-python",
+    "command": [
+      "C:\\Users\\ADMIN\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-prepower\\tests\\g02",
+      "-p",
+      "test_host.py",
+      "-v"
+    ],
+    "exit_code": 0
+  }
+]

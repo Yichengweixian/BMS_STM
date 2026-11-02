@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0-draft",
+  "is_template": false,
+  "run_id": "20261031-G02-software",
+  "gate_id": "G02",
+  "requirement_ids": [
+    "G02.1",
+    "G02.2",
+    "G02.3",
+    "G02.4 preparation",
+    "G02.5 software review"
+  ],
+  "test_ids": [
+    "native-control",
+    "native-port-default",
+    "native-port-pins-simulation",
+    "G01-regression",
+    "Release-build",
+    "Debug-build",
+    "HEX-check"
+  ],
+  "mode": "exploratory",
+  "status": "complete",
+  "verdict": null,
+  "evidence_scope": [
+    "static",
+    "build",
+    "simulation"
+  ],
+  "start_utc": "2026-10-31T07:24:20.7098373Z",
+  "end_utc": "2026-10-31T07:25:46.243692+00:00",
+  "operator": "Codex",
+  "source": {
+    "git_commit": null,
+    "dirty": true,
+    "snapshot_manifest_sha256": "de6df24bdce41cbb10c67426905645c4224e9196bf67949952d2d1879485c740",
+    "diff_path": "changes.diff",
+    "note": "Build uses staged copy of current uncommitted project; hashes, not old Git HEAD, identify inputs."
+  },
+  "build": {
+    "target": [
+      "BMS_EX_Release",
+      "BMS_EX_Debug"
+    ],
+    "compiler_version": "ARMClang 6.24",
+    "device_pack_version": "Keil.STM32N6xx_DFP.1.2.0",
+    "log_path": "build-results.json",
+    "exit_code": [
+      0,
+      1
+    ]
+  },
+  "firmware": {
+    "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Release/BMS_EX_Release.hex",
+    "sha256": "fd1d2a84a43fefde8e265cc879757e15c06babe2efd019f9fcf76bdb8ed4013f",
+    "load_address": "0x70100400",
+    "actually_flashed": false,
+    "flash_verification_path": null,
+    "runtime_id": null,
+    "candidate_id": "g02-sw-r1"
+  },
+  "freeze": {
+    "status": "exploratory_snapshot",
+    "rule_version": "draft-0.1 (not frozen for bench)",
+    "rule_sha256": "8b79a6910ed80f22fee95c15fe81ac59a4f3552b12a5f083093a3335a0772bfd",
+    "config_sha256": "1a62b377cbc368633e5bb95e938d60148d03ebb5eed33d7ca4b7cd3d03fc8600",
+    "frozen_at_utc": null
+  },
+  "hardware": {
+    "board_id": null,
+    "profile_sha256": "1a62b377cbc368633e5bb95e938d60148d03ebb5eed33d7ca4b7cd3d03fc8600",
+    "wiring_revision": null,
+    "cell_ids": [],
+    "reference_instruments": []
+  },
+  "measurement": {
+    "calibration_ids": [],
+    "sample_schedule": "Default G01 SW500ms; explicit G02 TIM1 TRGO diagnostic only",
+    "clock_definition": "Runtime clock reads required; static nominal TIMG400MHz/ADC64MHz",
+    "current_sign": null,
+    "reference_sync": null
+  },
+  "conditions": {
+    "input_V": null,
+    "load": null,
+    "ambient_C": null,
+    "initial_SOC": null,
+    "warmup_rule": null,
+    "stable_window_rule": null
+  },
+  "artifacts": {
+    "raw": [
+      "raw/",
+      "checks-01/",
+      "checks-02/",
+      "g01-regression-02/replay/raw/"
+    ],
+    "derived": [
+      "build-results.json",
+      "configuration-derivation.json",
+      "checks-02/result.json",
+      "g01-regression-02/result.json"
+    ],
+    "processing_code_sha256": "2bdc390429957059377357c6d243acb31c13ba80a02d55044d22dbcdff4c4e1f",
+    "result_path": "result.json"
+  },
+  "stop_reason": "All currently supported software/build checks completed; no hardware session opened",
+  "anomalies": [
+    "Release-01: sandbox could not launch ArmLink; old compiler registration warning was also shown; no firmware produced by that attempt.",
+    "checks-01: C tests passed, Python3.8 relative __file__ path prevented report generation; preserved, fixed, rerun checks-02."
+  ],
+  "retest_of_run_id": null,
+  "limitations": [
+    "No new firmware flashed; last verified board image remains G01 r2.",
+    "No oscilloscope/raw board data, driver/Vgs/deadtime/reset pin levels/physical relay isolation or STOP deadline verified.",
+    "Current load-connected record is not a no-power test setup; no power authorization inferred.",
+    "ISR service counts can coalesce; stopped boundary may discard UIF/in-flight ADC; CCR observation is conservative software only.",
+    "Both delivered targets have G02_ALLOW_PIN_OUTPUT=0; pins-enabled variant was HOST SIMULATION ONLY."
+  ],
+  "reviewer": null
+}

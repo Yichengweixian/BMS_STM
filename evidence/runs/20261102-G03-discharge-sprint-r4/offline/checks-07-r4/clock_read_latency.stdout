@@ -1,0 +1,1 @@
+PASS clock_read_latency: outputs off; once token retained; independent timer and resource restore

@@ -1,0 +1,25 @@
+{
+  "profile": 1345925890,
+  "firmware_sha256": "09ebe375c8daebbfaf6075e1e2ad21a47338492d17e2cfba5c321b22a8510785",
+  "source_wiring_confirmed": true,
+  "source_settings_confirmed": true,
+  "source_cv_confirmed": true,
+  "no_real_cells": true,
+  "load_connected": true,
+  "charge_port_open": true,
+  "new_image_default_off_verified": true,
+  "dry_run_passed": true,
+  "source_paths_reviewed": true,
+  "hardware_profile_sha256": "84da28f616892ad4e96eec57763a3f2711234e71b530d86f0091bab85e1b5c29",
+  "point": {
+    "D": 0.8,
+    "CCR": 1600,
+    "ARR": 2000,
+    "run_us": 100000
+  },
+  "user_confirmation": "See run user-observations.jsonl; wiring and 100V DCV front input connected by user; sources stable and no trip.",
+  "default_off_evidence": "pre-d80-query-01",
+  "dry_evidence": "new-image-dry-long-01",
+  "physical_short_current_ceiling_confirmed": false,
+  "frozen_utc": "2026-11-02T05:38:59.586720+00:00"
+}

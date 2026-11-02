@@ -1,0 +1,17 @@
+{
+  "checks": "passed",
+  "evidence_scope": [
+    "static",
+    "simulation"
+  ],
+  "bench": false,
+  "source_sha256": {
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_core.c": "4503548f0ab1464aa5b50ba2ad70864edad0a6614717bd58bbfdb66b6cc35a95",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_core.h": "8c8d46022fc918461eedbbf7bd115f46ef8ea6b557b744747e6f54081eef1861",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.c": "8fe43627253312c165bcf3c69d5e7b4bfa24e1b7a1e31991d027e4cd317abed5",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.h": "2a34efac64d63168cd6bbef22b0fd676d03b235649bf93fd622d7b8633f23fd2",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\nominal_current.h": "d9ac27703fb2cace17f2bf0393e69fd08dfc3c23f9061e7fd5e3d87071c6afaf",
+    "tests\\g03\\test_adc_core.c": "423fc033309460f5c9a207bd2cb081bcd4708b1bdeb444db181067c04a5b26cd",
+    "tests\\g03\\test_adc_port.c": "7058d290d6c0bcba68bd167ab8e4d2b3cee452f6b18a256e32ea43a09d0989e3"
+  }
+}

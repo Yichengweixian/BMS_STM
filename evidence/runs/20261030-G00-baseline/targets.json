@@ -1,0 +1,358 @@
+[
+  {
+    "target": "BMS_EX_Debug",
+    "device": "STM32N647X0HxQ",
+    "pack": "Keil.STM32N6xx_DFP.1.2.0",
+    "compiler": "6240000::V6.24::ARMCLANG",
+    "define": "USE_HAL_DRIVER,STM32N647xx,DEBUG,USE_FULL_ASSERT",
+    "scatter": "stm32n647xx_LRUN_RAMxspi1.sct",
+    "files": [
+      {
+        "path": "../startup_stm32n647xx.c",
+        "include": null
+      },
+      {
+        "path": "../../Appli/Core/Src/main.c",
+        "include": null
+      },
+      {
+        "path": "../../Appli/Core/Src/stm32n6xx_it.c",
+        "include": null
+      },
+      {
+        "path": "../../Appli/Core/Src/stm32n6xx_hal_msp.c",
+        "include": null
+      },
+      {
+        "path": "../../Appli/Core/Src/secure_nsc.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_adc.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_adc_ex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma_ex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rcc.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rcc_ex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_pwr.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_pwr_ex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_cortex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_exti.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_i2c.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_i2c_ex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_spi.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_spi_ex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_tim.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_tim_ex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_uart.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_uart_ex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_xspi.c",
+        "include": null
+      },
+      {
+        "path": "../../Appli/Core/Src/system_stm32n6xx_s.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\adbms1818.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\key.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\oled_driver.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\oled_font.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\uart.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\adbms1818.h",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\oled_driver.h",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\oled_font.h",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\uart.h",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\HyperRAM\\hyperram.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\NORFlash\\norflash_xspi.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\NORFlash\\norflash.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\NORFlash\\norflash_by25fq128el.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\NORFlash\\norflash_mx25um25645g.c",
+        "include": null
+      }
+    ]
+  },
+  {
+    "target": "BMS_EX_Release",
+    "device": "STM32N647X0HxQ",
+    "pack": "Keil.STM32N6xx_DFP.1.2.0",
+    "compiler": "6230000::V6.23::ARMCLANG",
+    "define": "USE_HAL_DRIVER,STM32N647xx,NDEBUG",
+    "scatter": "stm32n647xx_ROMxspi2_RAMxspi1.sct",
+    "files": [
+      {
+        "path": "../startup_stm32n647xx.c",
+        "include": null
+      },
+      {
+        "path": "../../Appli/Core/Src/main.c",
+        "include": null
+      },
+      {
+        "path": "../../Appli/Core/Src/stm32n6xx_it.c",
+        "include": null
+      },
+      {
+        "path": "../../Appli/Core/Src/stm32n6xx_hal_msp.c",
+        "include": null
+      },
+      {
+        "path": "../../Appli/Core/Src/secure_nsc.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_adc.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_adc_ex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_dma_ex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rcc.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rcc_ex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_gpio.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_pwr.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_pwr_ex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_cortex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_exti.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_i2c.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_i2c_ex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_rif.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_spi.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_spi_ex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_tim.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_tim_ex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_uart.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_uart_ex.c",
+        "include": null
+      },
+      {
+        "path": "../../Drivers/STM32N6xx_HAL_Driver/Src/stm32n6xx_hal_xspi.c",
+        "include": null
+      },
+      {
+        "path": "../../Appli/Core/Src/system_stm32n6xx_s.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\adbms1818.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\key.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\oled_driver.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\oled_font.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\uart.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\adbms1818.h",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\oled_driver.h",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\oled_font.h",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\uart.h",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\HyperRAM\\hyperram.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\NORFlash\\norflash_xspi.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\NORFlash\\norflash.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\NORFlash\\norflash_by25fq128el.c",
+        "include": null
+      },
+      {
+        "path": "..\\..\\BSP\\NORFlash\\norflash_mx25um25645g.c",
+        "include": null
+      }
+    ]
+  }
+]

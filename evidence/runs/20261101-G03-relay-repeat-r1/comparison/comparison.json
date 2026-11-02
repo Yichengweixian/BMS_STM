@@ -1,0 +1,357 @@
+{
+  "status": "complete",
+  "verdict": "pass",
+  "scope": "same-condition response direction and recovery only; magnitude spread descriptive",
+  "runs": [
+    {
+      "path": "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261101-G03-relay-r2\\live-01",
+      "request_id": 2520201630,
+      "firmware_sha256": "8ff78e03997c4a5facd8f6feade09024fdd4721a3f0e32fc3531312bf1598c49",
+      "rules": {
+        "firmware_sha256": "8ff78e03997c4a5facd8f6feade09024fdd4721a3f0e32fc3531312bf1598c49",
+        "cell_code_low": 38365,
+        "cell_code_high": 39372,
+        "afe_baseline_code_low": 8958,
+        "afe_baseline_code_high": 9042,
+        "baseline_samples": 50,
+        "baseline_peak_to_peak_max_codes": 100,
+        "response_band_rule": "max(20,3*preaction peak_to_peak)",
+        "sample_period_ms": 20,
+        "required_sample_max_age_ms": 40,
+        "command_deadline_ms": 99,
+        "command_high_acceptance_max_ms": 100,
+        "post_observation_ms": 1000,
+        "valid_window_min_complete_samples": 3,
+        "recovery_consecutive_samples": 5,
+        "wiring": {
+          "cells": 3,
+          "load_nominal_ohm": 33,
+          "charge_port": "open"
+        }
+      },
+      "analysis": {
+        "conclusion": "response_and_recovery",
+        "valid_window_samples": 4,
+        "response_codes": [
+          -2494,
+          -2493,
+          -2492,
+          -2494
+        ],
+        "recovered": true,
+        "capture_max_ms": 9,
+        "start_gap_max_ms": 21,
+        "baseline_min": 8995,
+        "baseline_max": 9005,
+        "software_window_ms": 98.528565,
+        "command_high_ms": 98.528565,
+        "observation_ready": true,
+        "physical_current_calibrated": false
+      },
+      "channels": {
+        "cell1": {
+          "baseline_n": 50,
+          "baseline_median": 38867.0,
+          "baseline_min": 38864,
+          "baseline_max": 38868,
+          "window_n": 4,
+          "window_mean": 38542.25,
+          "window_median": 38540.5,
+          "delta_median": -326.5,
+          "last5_median": 38865
+        },
+        "cell7": {
+          "baseline_n": 50,
+          "baseline_median": 38869.0,
+          "baseline_min": 38867,
+          "baseline_max": 38870,
+          "window_n": 4,
+          "window_mean": 38549.25,
+          "window_median": 38547.5,
+          "delta_median": -321.5,
+          "last5_median": 38867
+        },
+        "cell13": {
+          "baseline_n": 50,
+          "baseline_median": 38871.0,
+          "baseline_min": 38869,
+          "baseline_max": 38874,
+          "window_n": 4,
+          "window_mean": 38544,
+          "window_median": 38541.5,
+          "delta_median": -329.5,
+          "last5_median": 38869
+        },
+        "afe_current": {
+          "baseline_n": 50,
+          "baseline_median": 8998.0,
+          "baseline_min": 8995,
+          "baseline_max": 9005,
+          "window_n": 4,
+          "window_mean": 6505.75,
+          "window_median": 6505.5,
+          "delta_median": -2492.5,
+          "last5_median": 9000
+        },
+        "mcu_current": {
+          "baseline_n": 50,
+          "baseline_median": 1259.0,
+          "baseline_min": 1118,
+          "baseline_max": 1263,
+          "window_n": 4,
+          "window_mean": 1259.5,
+          "window_median": 1259.5,
+          "delta_median": 0.5,
+          "last5_median": 1258
+        }
+      },
+      "actual_bits_final": 0,
+      "faults": 0,
+      "physical_valid": 0,
+      "input_hashes": {
+        "result.json": "f3ee3723a2f1c7b8c934d688da66be7a7d5b2c17eecf62ace674f0982c6fe171",
+        "samples.json": "37ee4ab33b24c599239555ed8ae463b92196be8553697b5ff682a146ffc6a846",
+        "serial.bin": "752d7512b8c5fbc8648abc49d827cebeaa9637b96e1e3971d6d9d3c9383c793c",
+        "events.jsonl": "4b5219cf6ee8cbafcb73e053c820087fecd34123b26566d799714aa3ad58fe78",
+        "manifest.json": "dc3fe28fe8f4c33ff3d454263eb77f9d3318ad47a3fae60381fac2fcf79f6f64"
+      }
+    },
+    {
+      "path": "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261101-G03-relay-repeat-r1\\repeat-02",
+      "request_id": 2521445083,
+      "firmware_sha256": "8ff78e03997c4a5facd8f6feade09024fdd4721a3f0e32fc3531312bf1598c49",
+      "rules": {
+        "firmware_sha256": "8ff78e03997c4a5facd8f6feade09024fdd4721a3f0e32fc3531312bf1598c49",
+        "cell_code_low": 38365,
+        "cell_code_high": 39372,
+        "afe_baseline_code_low": 8958,
+        "afe_baseline_code_high": 9042,
+        "baseline_samples": 50,
+        "baseline_peak_to_peak_max_codes": 100,
+        "response_band_rule": "max(20,3*preaction peak_to_peak)",
+        "sample_period_ms": 20,
+        "required_sample_max_age_ms": 40,
+        "command_deadline_ms": 99,
+        "command_high_acceptance_max_ms": 100,
+        "post_observation_ms": 1000,
+        "valid_window_min_complete_samples": 3,
+        "recovery_consecutive_samples": 5,
+        "wiring": {
+          "cells": 3,
+          "load_nominal_ohm": 33,
+          "charge_port": "open"
+        }
+      },
+      "analysis": {
+        "conclusion": "response_and_recovery",
+        "valid_window_samples": 4,
+        "response_codes": [
+          -2492,
+          -2494,
+          -2495,
+          -2492
+        ],
+        "recovered": true,
+        "capture_max_ms": 9,
+        "start_gap_max_ms": 21,
+        "baseline_min": 8994,
+        "baseline_max": 9003,
+        "software_window_ms": 98.53029,
+        "command_high_ms": 98.53029,
+        "observation_ready": true,
+        "physical_current_calibrated": false
+      },
+      "channels": {
+        "cell1": {
+          "baseline_n": 50,
+          "baseline_median": 38867.0,
+          "baseline_min": 38865,
+          "baseline_max": 38868,
+          "window_n": 4,
+          "window_mean": 38541.5,
+          "window_median": 38540.0,
+          "delta_median": -327.0,
+          "last5_median": 38865
+        },
+        "cell7": {
+          "baseline_n": 50,
+          "baseline_median": 38869.0,
+          "baseline_min": 38867,
+          "baseline_max": 38870,
+          "window_n": 4,
+          "window_mean": 38551.25,
+          "window_median": 38549.5,
+          "delta_median": -319.5,
+          "last5_median": 38867
+        },
+        "cell13": {
+          "baseline_n": 50,
+          "baseline_median": 38871.0,
+          "baseline_min": 38869,
+          "baseline_max": 38872,
+          "window_n": 4,
+          "window_mean": 38546.5,
+          "window_median": 38544.5,
+          "delta_median": -326.5,
+          "last5_median": 38870
+        },
+        "afe_current": {
+          "baseline_n": 50,
+          "baseline_median": 8999.0,
+          "baseline_min": 8994,
+          "baseline_max": 9003,
+          "window_n": 4,
+          "window_mean": 6505.75,
+          "window_median": 6506.0,
+          "delta_median": -2493.0,
+          "last5_median": 8998
+        },
+        "mcu_current": {
+          "baseline_n": 50,
+          "baseline_median": 1261.0,
+          "baseline_min": 1042,
+          "baseline_max": 1263,
+          "window_n": 4,
+          "window_mean": 1260,
+          "window_median": 1260.0,
+          "delta_median": -1.0,
+          "last5_median": 1260
+        }
+      },
+      "actual_bits_final": 0,
+      "faults": 0,
+      "physical_valid": 0,
+      "input_hashes": {
+        "result.json": "497265a9edaa2ef72120ef220abcc9bcafa0fcc60863ae5f5d234f18e9d7d725",
+        "samples.json": "ab700eef1936daf2b9beeb696342f3d4e17837566f8e53a2ed97e1e7943517a2",
+        "serial.bin": "c2415479d74aee0445b7afab3418c54be7e692bd3d74b003c29d0b7c5541483d",
+        "events.jsonl": "fca35aa7f7bb6ebf53add58f017b740ff021f89b31489a368d26934c61e5dcb1",
+        "manifest.json": "b71fd602d5a2f4264a13667fa10aa703e6f2a01bc3a5af90116d248045b9231a"
+      }
+    },
+    {
+      "path": "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261101-G03-relay-repeat-r1\\repeat-03",
+      "request_id": 2521666429,
+      "firmware_sha256": "8ff78e03997c4a5facd8f6feade09024fdd4721a3f0e32fc3531312bf1598c49",
+      "rules": {
+        "firmware_sha256": "8ff78e03997c4a5facd8f6feade09024fdd4721a3f0e32fc3531312bf1598c49",
+        "cell_code_low": 38365,
+        "cell_code_high": 39372,
+        "afe_baseline_code_low": 8958,
+        "afe_baseline_code_high": 9042,
+        "baseline_samples": 50,
+        "baseline_peak_to_peak_max_codes": 100,
+        "response_band_rule": "max(20,3*preaction peak_to_peak)",
+        "sample_period_ms": 20,
+        "required_sample_max_age_ms": 40,
+        "command_deadline_ms": 99,
+        "command_high_acceptance_max_ms": 100,
+        "post_observation_ms": 1000,
+        "valid_window_min_complete_samples": 3,
+        "recovery_consecutive_samples": 5,
+        "wiring": {
+          "cells": 3,
+          "load_nominal_ohm": 33,
+          "charge_port": "open"
+        }
+      },
+      "analysis": {
+        "conclusion": "response_and_recovery",
+        "valid_window_samples": 4,
+        "response_codes": [
+          -2494,
+          -2488,
+          -2489,
+          -2494
+        ],
+        "recovered": true,
+        "capture_max_ms": 9,
+        "start_gap_max_ms": 21,
+        "baseline_min": 8994,
+        "baseline_max": 9004,
+        "software_window_ms": 98.5303,
+        "command_high_ms": 98.5303,
+        "observation_ready": true,
+        "physical_current_calibrated": false
+      },
+      "channels": {
+        "cell1": {
+          "baseline_n": 50,
+          "baseline_median": 38867.0,
+          "baseline_min": 38865,
+          "baseline_max": 38869,
+          "window_n": 4,
+          "window_mean": 38542.75,
+          "window_median": 38541.0,
+          "delta_median": -326.0,
+          "last5_median": 38865
+        },
+        "cell7": {
+          "baseline_n": 50,
+          "baseline_median": 38868.0,
+          "baseline_min": 38867,
+          "baseline_max": 38870,
+          "window_n": 4,
+          "window_mean": 38552.25,
+          "window_median": 38550.5,
+          "delta_median": -317.5,
+          "last5_median": 38867
+        },
+        "cell13": {
+          "baseline_n": 50,
+          "baseline_median": 38871.0,
+          "baseline_min": 38869,
+          "baseline_max": 38872,
+          "window_n": 4,
+          "window_mean": 38547.5,
+          "window_median": 38546.0,
+          "delta_median": -325.0,
+          "last5_median": 38869
+        },
+        "afe_current": {
+          "baseline_n": 50,
+          "baseline_median": 8998.5,
+          "baseline_min": 8994,
+          "baseline_max": 9004,
+          "window_n": 4,
+          "window_mean": 6507.75,
+          "window_median": 6507.5,
+          "delta_median": -2491.0,
+          "last5_median": 8996
+        },
+        "mcu_current": {
+          "baseline_n": 50,
+          "baseline_median": 1259.0,
+          "baseline_min": 1020,
+          "baseline_max": 1261,
+          "window_n": 4,
+          "window_mean": 1259,
+          "window_median": 1259.0,
+          "delta_median": 0.0,
+          "last5_median": 1259
+        }
+      },
+      "actual_bits_final": 0,
+      "faults": 0,
+      "physical_valid": 0,
+      "input_hashes": {
+        "result.json": "9bfe8ea0c8198c2833a534ba77729d091f19453926b4cb01a4b89a3f0b63133b",
+        "samples.json": "3930bf47613d81b91d3f43320f109d18cc277aed6659fe70c00253a1309034be",
+        "serial.bin": "93c7de5fa848fbb99949639194a0c408a58d1d57f1d1d9ae0c17ef76a9f53cff",
+        "events.jsonl": "908d21a9e04bb701b524582c11285a50895997ff60f84bdbd1c05569ca962a6a",
+        "manifest.json": "c50f5b34b4733192447df9ef63438ce92c697ae3ae2fd7ee25a87140166bde8d"
+      }
+    }
+  ],
+  "run_count": 3,
+  "all_response_and_recovery": true,
+  "afe_delta_median_codes": [
+    -2492.5,
+    -2493.0,
+    -2491.0
+  ],
+  "afe_delta_spread_codes": 2.0,
+  "afe_delta_mean_codes": -2492.1666666666665,
+  "physical_valid": 0,
+  "formal_G03_verdict": null
+}

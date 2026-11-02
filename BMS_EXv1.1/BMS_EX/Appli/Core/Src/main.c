@@ -22,7 +22,13 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "uart.h"
-#include "adbms1818.h"
+#include "measurement.h"
+#include "g02_port.h"
+#include "g02_link.h"
+#include "g03_port.h"
+#include "g03_adc_port.h"
+#include "g03_relay_port.h"
+#include "g03_pwm_port.h"
 #include "oled_driver.h"
 #include "oled_font.h"
 
@@ -37,9 +43,6 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-/* ===== 采样示例参数：按实测改这两个就够了 ===== */
-#define BMS_I_ZERO_V        0.900f          /* 零电流时 GPIO1 的电压（静置读实测值替换） */
-#define BMS_I_AMP_PER_V     1.3333f         /* 电流灵敏度 A/V = 1/0.75，方向反了取负 */
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -84,71 +87,12 @@ static void MX_XSPI1_Init(void);
 static void MX_XSPI2_Init(void);
 static void SystemIsolation_Config(void);
 /* USER CODE BEGIN PFP */
-static uint8_t BMS_ReadReg(uint16_t cmd, float v[3]);
-static void    BMS_ReadSample(float *v1, float *v7, float *v13,
-                              float *i, float *t1, float *t2, float *t3);
 static void system_clock_config(void);
+void PeriphCommonClock_Config(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-/* ===== 最简采样示例：电池电压 / 母线电流 / 温度 =====
- * 通路：单体电压 RDCVA/C/E，母线电流 GPIO1，温度 GPIO2/3/4（PT1000 + 9.1k 分压）
- * 唯一的顺序要求：先发 ADCV 读电压，再发 ADAX 读 AUX —— 反了 AUX 会顶掉电压结果。
- */
-
-/* 读一个寄存器组：PEC 通过则把 3 个 16bit 值换算成电压(V)并返回 1，否则返回 0 */
-static uint8_t BMS_ReadReg(uint16_t cmd, float v[3])
-{
-    uint8_t buf[8] = {0};
-
-    ADBMS181x_read_reg(cmd, buf, 0);
-    if (ADBMS_CalcPEC(buf, 6) != (((uint16_t)buf[6] << 8) | buf[7])) {
-        return 0;
-    }
-    v[0] = (float)(buf[0] | (buf[1] << 8)) * 0.0001f;   /* LSB = 100 µV */
-    v[1] = (float)(buf[2] | (buf[3] << 8)) * 0.0001f;
-    v[2] = (float)(buf[4] | (buf[5] << 8)) * 0.0001f;
-    return 1;
-}
-
-/* 采样一次：v1/v7/v13 = 三节单体电压(V)，i = 母线电流(A)，t1~t3 = 温度(℃) */
-static void BMS_ReadSample(float *v1, float *v7, float *v13,
-                           float *i, float *t1, float *t2, float *t3)
-{
-    float a[3] = {0.0f, 0.0f, 0.0f};
-    float b[3] = {0.0f, 0.0f, 0.0f};
-    float r;
-
-    /* 唤醒 + 打开基准（休眠后 CFGA 会复位，REFON 得重写） */
-    wakeup_sleep_cmd(1);
-    HAL_Delay(1);
-    ADBMS1818_EnableVREF2();
-    HAL_Delay(2);
-
-    /* 1) 单体电压：只选通 V1/V7/V13，转换约 0.8ms */
-    ADBMS181x_write_cmd(ADCV | CH_V1_7_13 | (MD_7KHZ_3KHZ << 7), 0);
-    HAL_Delay(2);
-    *v1  = BMS_ReadReg(RDCVA, a) ? a[0] : 0.0f;
-    *v7  = BMS_ReadReg(RDCVC, a) ? a[0] : 0.0f;
-    *v13 = BMS_ReadReg(RDCVE, a) ? a[0] : 0.0f;
-
-    /* 2) AUX：GPIO1=电流，GPIO2/3/4=三路 PT1000 */
-    ADBMS181x_write_cmd(ADAX | (MD_7KHZ_3KHZ << 7), 0);
-    HAL_Delay(2);
-    if (!BMS_ReadReg(RDAUXA, a)) { a[0] = a[1] = a[2] = 0.0f; }
-    if (!BMS_ReadReg(RDAUXB, b)) { b[0] = b[1] = b[2] = 0.0f; }
-
-    /* 3) 换算：电流 =（GPIO1 − 零点）× 灵敏度；温度 = 分压 → PT1000 阻值 → 温度 */
-    *i = (a[0] - BMS_I_ZERO_V) * BMS_I_AMP_PER_V;
-
-    r = (a[1] < (VREF2_VOLT - 0.001f)) ? a[1] * R_UP / (VREF2_VOLT - a[1]) : 0.0f;
-    *t1 = (r / PT_R0 - 1.0f) / PT_ALPHA;
-    r = (a[2] < (VREF2_VOLT - 0.001f)) ? a[2] * R_UP / (VREF2_VOLT - a[2]) : 0.0f;
-    *t2 = (r / PT_R0 - 1.0f) / PT_ALPHA;
-    r = (b[0] < (VREF2_VOLT - 0.001f)) ? b[0] * R_UP / (VREF2_VOLT - b[0]) : 0.0f;
-    *t3 = (r / PT_R0 - 1.0f) / PT_ALPHA;
-}
 /* USER CODE END 0 */
 
 /**
@@ -189,6 +133,8 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  G02_EmergencyOff();
+  PeriphCommonClock_Config();
   MX_GPDMA1_Init();
   MX_USART1_UART_Init();
   MX_SPI5_Init();
@@ -262,28 +208,13 @@ OLED_FONT_8x16	8×16	16 字符	4 行（y=0,16,32,48）
 	OLED_ShowString(0, 0, "BMS_EX", OLED_FONT_8x16);
 	OLED_Refresh();
 
-	/* UART 初始化：启动 IDLE 断帧接收（内部调 HAL_UARTEx_ReceiveToIdle_IT） */
+	/* Default: G01 acquisition. G02 starts only via an explicit diagnostic request. */
 	uart_init(115200);
-
-	/* UART 发送示例，115200 8N1
-	   本帧约 40 字节，约 3.5ms 发完；uart_printf 会等到发完才返回。 */
-	uart_printf("BMS_EX UART ready, tick=%u ms\r\n", (unsigned)HAL_GetTick());
-
-	/* ===== UART 接收 =====
-	   uart_init() 已启动 IDLE 断帧接收；
-	   命令处理在本文件末尾的 HAL_UARTEx_RxEventCallback() 里（当前示例是原样回发）。 */
-
-	/* ===== 采样示例：上电读一次电池电压 / 电流 / 温度 =====
-	 * 主循环里按需周期调用即可；ADBMS1818 空闲约 2s 会自动休眠，
-	 * 所以 BMS_ReadSample() 内部每轮都先唤醒并补写 REFON。 */
-	{
-		float v1, v7, v13, i, t1, t2, t3;
-
-		BMS_ReadSample(&v1, &v7, &v13, &i, &t1, &t2, &t3);
-
-		uart_printf("V1=%.3f V7=%.3f V13=%.3f I=%.2fA T1=%.1f T2=%.1f T3=%.1fC\r\n",
-		            v1, v7, v13, i, t1, t2, t3);
-	}
+	G02_PortInit();
+    G03_PortInit();
+    G03_RelayInit();
+    G03_PWM_Init();
+	Measurement_Init();
 
   /* USER CODE END 2 */
 
@@ -294,7 +225,13 @@ OLED_FONT_8x16	8×16	16 字符	4 行（y=0,16,32,48）
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
+    G03_PWM_Task();
+    G03_ADC_Task();
+    G02_Task();
+    G02_LinkTask();
+    G03_RelayTask();
+    if (G02_MeasurementAllowed()) Measurement_Task();
+    HAL_Delay(1);
   }
   /* USER CODE END 3 */
 }
@@ -348,8 +285,8 @@ static void MX_ADC1_Init(void)
   hadc1.Init.ContinuousConvMode = DISABLE;
   hadc1.Init.NbrOfConversion = 1;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
-  hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIG_T1_TRGO;
-  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
+  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
   hadc1.Init.ConversionDataManagement = ADC_CONVERSIONDATA_DR;
   hadc1.Init.Overrun = ADC_OVR_DATA_PRESERVED;
   hadc1.Init.LeftBitShift = ADC_LEFTBITSHIFT_NONE;
@@ -730,7 +667,7 @@ static void MX_TIM1_Init(void)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 500;
+  sConfigOC.Pulse = G02_INITIAL_COMPARE;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -761,7 +698,7 @@ static void MX_TIM1_Init(void)
   /* USER CODE BEGIN TIM1_Init 2 */
 
   /* USER CODE END TIM1_Init 2 */
-  HAL_TIM_MspPostInit(&htim1);
+  G02_EmergencyOff(); /* PA9/PF7 stay GPIO LOW until a gated test start. */
 
 }
 
@@ -1060,15 +997,8 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
     return;
   }
 
-  if (Size > 0U)
-  {
-    /* 命令处理示例：收到什么原样发回。
-       真实业务在这里解析 uart_rx_data() 的 Size 个字节，再决定应答或执行动作。 */
-    if (uart_tx_is_busy() == 0U)
-    {
-      (void)uart_send_dma(uart_rx_data(), Size);
-    }
-  }
+  /* Measurement stream owns TX. Never interleave ISR echo into CSV frames. */
+  G02_LinkRx(uart_rx_data(), Size);
 
   uart_rx_restart();
 }
@@ -1194,7 +1124,7 @@ static void system_clock_config(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
+  G02_CPUFault();
   __disable_irq();
   while (1)
   {

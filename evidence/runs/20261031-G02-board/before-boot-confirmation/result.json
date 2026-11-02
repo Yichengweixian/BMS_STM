@@ -1,0 +1,20 @@
+{
+  "status": "in_progress",
+  "verdict": null,
+  "evidence_scope": [
+    "bench"
+  ],
+  "firmware_sha256": "fd1d2a84a43fefde8e265cc879757e15c06babe2efd019f9fcf76bdb8ed4013f",
+  "actually_flashed": true,
+  "download_verified": true,
+  "flash_command_exit_code": 0,
+  "firmware_runtime_id": null,
+  "serial_rows": 0,
+  "serial_errors": 0,
+  "complete_groups": 0,
+  "all_recorded_raw_valid": false,
+  "user_normal_boot_confirmation": null,
+  "pwm_or_relay_enabled": false,
+  "timing_diagnostic_executed": false,
+  "limitation": "Awaiting normal-BOOT/reset confirmation and no-power measurement setup; no waveform or STOP deadline result."
+}

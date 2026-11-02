@@ -1,0 +1,37 @@
+{
+  "status": "complete",
+  "verdict": null,
+  "evidence_scope": [
+    "static",
+    "build",
+    "simulation"
+  ],
+  "observations": {
+    "g02_checks": "checks-02/result.json",
+    "control_groups": 10,
+    "port_variants": 2,
+    "g01_regression": "g01-regression-02/result.json",
+    "python_tests": 16,
+    "synthetic_rows": 36,
+    "release_errors": 0,
+    "release_warnings": 0,
+    "debug_errors": 0,
+    "debug_existing_warnings": 1
+  },
+  "bench_results": {
+    "pwm_Hz": null,
+    "duty_error": null,
+    "driver_deadtime_ns": null,
+    "adc_trigger_completion_10s": null,
+    "stop_delay_us": null,
+    "reset_output": null
+  },
+  "G03_released": false,
+  "limitations": [
+    "No new firmware flashed; last verified board image remains G01 r2.",
+    "No oscilloscope/raw board data, driver/Vgs/deadtime/reset pin levels/physical relay isolation or STOP deadline verified.",
+    "Current load-connected record is not a no-power test setup; no power authorization inferred.",
+    "ISR service counts can coalesce; stopped boundary may discard UIF/in-flight ADC; CCR observation is conservative software only.",
+    "Both delivered targets have G02_ALLOW_PIN_OUTPUT=0; pins-enabled variant was HOST SIMULATION ONLY."
+  ]
+}

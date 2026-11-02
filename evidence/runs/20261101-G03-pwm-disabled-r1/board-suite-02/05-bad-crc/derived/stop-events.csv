@@ -1,0 +1,5 @@
+suite,case,scenario,start_id,start_us,terminal_state,faults,stop_reason,sample_count,fast_retained,trace_overflow,restored,physical_valid,source,event,seq,timestamp_us,relative_us,raw,flags,flags_meaning,actual_bits
+board-suite-02,05-bad-crc,0,2538802661,63998,4,2,protocol,2598,89,0,1,0,status,stop_us,,89988,25990,,,,0
+board-suite-02,05-bad-crc,0,2538802661,63998,4,2,protocol,2598,89,0,1,0,trace,off,154,89989,25991,1287,3,ADC_ISR_bits,0
+board-suite-02,05-bad-crc,0,2538802661,63998,4,2,protocol,2598,89,0,1,0,trace,fault record,155,91985,27987,1287,2,core_fault_mask,0
+board-suite-02,05-bad-crc,0,2538802661,63998,4,2,protocol,2598,89,0,1,0,trace,cleanup,156,91987,27989,1287,0,cleanup_flags,0

@@ -1,0 +1,34 @@
+{
+  "scope": "static",
+  "measured": false,
+  "nominal_debug": {
+    "hsi_Hz": 64000000,
+    "pll1_div": 2,
+    "pll1_mul": 25,
+    "ic2_div": 2,
+    "sysclk_Hz": 400000000
+  },
+  "timer": {
+    "kernel_formula": "SYSCLK / 2^TIMPRE (N6)",
+    "expected_kernel_Hz": 400000000,
+    "PSC": 0,
+    "ARR": 2000,
+    "RCR": 1,
+    "CMS": "CENTERALIGNED1",
+    "CCR2": 1000,
+    "pwm_Hz": 100000,
+    "duty_logic": 0.5,
+    "deadtime_ticks": 0,
+    "update_Hz": 100000,
+    "actual_frequency_Hz": null
+  },
+  "adc": {
+    "expected_kernel_Hz": 64000000,
+    "sample_cycles": 11.5,
+    "sar_cycles": 12.5,
+    "oversampling_ratio": 2,
+    "nominal_core_us": 0.75,
+    "measured_latency_us": null
+  },
+  "source": "Project HAL RCCEx GetTIMGFreq / LL formula / ADC conversion-time comments; see specs/G02-pwm-timing.md"
+}

@@ -1,0 +1,6 @@
+{
+  "staging_sha256": "d74ebbd67ddb72ec41d91be9615d75d75c566a672147b45db95be43e5b067d01",
+  "published_sha256": "0c10372893da78adb9c817e776da9ac52a2497bc229bee8aa2979af46269e088",
+  "change": "Resolve production root from scripts/g03; execution logic unchanged",
+  "hardware_executed": false
+}

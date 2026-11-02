@@ -1,0 +1,17 @@
+test_corruption (test_adc_host.Tests) ... FAIL
+test_diagnostic_aggregate (test_adc_host.Tests) ... ok
+test_status_and_signed_current (test_adc_host.Tests) ... ok
+test_unsigned_and_length (test_adc_host.Tests) ... ok
+
+======================================================================
+FAIL: test_corruption (test_adc_host.Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\.codex\visualizations\2026\10\31\01a190c5-3850-70d2-9a03-6e23ce232c1f\g03-adc-work\tests\g03\test_adc_host.py", line 15, in test_corruption
+    with self.assertRaises(ValueError):a.parse(v)
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.002s
+
+FAILED (failures=1)

@@ -1,0 +1,22 @@
+{
+  "created_utc": "2026-11-01T08:54:26.376188+00:00",
+  "files": {
+    "scripts/g03/compare_relay_runs.py": "c6779c6a949d2ccd0bdf5bca9d27c559a2f5db78105d2d63806ef6e540bc70de",
+    "scripts/g03/pwm_point_plan.py": "901a40b4a26b8ac8d0c96e74458ee08128b0f71f9bda6bbfddb7a4d8626de391",
+    "scripts/g03/plot_relay_comparison.py": "1fdf0f5d44f1d5b420f6458c1d07a27d203ca05c73f2abbbc23e5877160536d1",
+    "tests/g03/test_followup_tools.py": "9464fd1a4f8218742f0634df913b39083738d5da8a4b9babd4eb9b16a0edeb40"
+  },
+  "test_command": [
+    "C:\\Users\\ADMIN\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\tests\\g03",
+    "-p",
+    "test_followup_tools.py",
+    "-v"
+  ],
+  "test_exit_code": 0,
+  "firmware_changed": false
+}

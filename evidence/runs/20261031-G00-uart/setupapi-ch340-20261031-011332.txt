@@ -1,0 +1,42 @@
+
+> C:\Windows\INF\setupapi.dev.log:83150:     dvi:      {Install Device - USB\VID_1A86&PID_7523\6&3007E47C&1&2} 00:38:48.754
+  C:\Windows\INF\setupapi.dev.log:83151:     dvi:           Device Status: 0x01806400 [0x01 - 0xc0000493]
+  C:\Windows\INF\setupapi.dev.log:83152:     dvi:           Config Flags: 0x00000000
+  C:\Windows\INF\setupapi.dev.log:83153:     dvi:           Parent Device: USB\VID_05E3&PID_0610\5&1423acb5&0&2
+  C:\Windows\INF\setupapi.dev.log:83154:     dvi:           {DIF_ALLOW_INSTALL} 00:38:48.765
+  C:\Windows\INF\setupapi.dev.log:83155:     dvi:                Using exported function 'PortsClassInstaller' in module 'C:\WINDOWS\system32\MsPorts.Dll'.
+  C:\Windows\INF\setupapi.dev.log:83156:     dvi:                Class installer == MsPorts.Dll,PortsClassInstaller
+  C:\Windows\INF\setupapi.dev.log:83157:     dvi:                Class installer: Enter 00:38:48.786
+  C:\Windows\INF\setupapi.dev.log:83158:     dvi:                Class installer: Exit
+  C:\Windows\INF\setupapi.dev.log:83159:     dvi:                Default installer: Enter 00:38:48.791
+  C:\Windows\INF\setupapi.dev.log:83160:     dvi:                Default installer: Exit
+  C:\Windows\INF\setupapi.dev.log:83161:     dvi:           {DIF_ALLOW_INSTALL - exit(0xe000020e)} 00:38:48.794
+  C:\Windows\INF\setupapi.dev.log:83162:     dvi:           {DIF_INSTALLDEVICEFILES} 00:38:48.799
+  C:\Windows\INF\setupapi.dev.log:83204:     inf:                          {Install from INF Section - exit(0x00000000)} 00:38:48.997
+  C:\Windows\INF\setupapi.dev.log:83205:     dvi:                          {Writing Device Properties}
+> C:\Windows\INF\setupapi.dev.log:83206:     dvi:                               Strong Name=oem138.inf:2ff6f3e22e1c126b:CH341SER_Inst.NTamd64:3.9.2024.9:usb\vid_1a86&pid_7523
+  C:\Windows\INF\setupapi.dev.log:83207:     dvi:                          {Writing Device Properties - Complete}
+  C:\Windows\INF\setupapi.dev.log:83208:     inf:                          AddService=CH341SER_A64,2,CH341SER.ServiceA64  (ch341ser.inf line 193)
+  C:\Windows\INF\setupapi.dev.log:83209:     dvi:                          Add Service: Modified existing service 'CH341SER_A64'.
+  C:\Windows\INF\setupapi.dev.log:83210:     inf:                          {Install from INF Section - CH341SER.ServiceA64} 00:38:49.027
+  C:\Windows\INF\setupapi.dev.log:83211:     inf:                               Flags         - 0x00100004
+  C:\Windows\INF\setupapi.dev.log:83212:     inf:                          {Install from INF Section - exit(0x00000000)} 00:38:49.033
+  C:\Windows\INF\setupapi.dev.log:83213:     dvi:                     {Install DEVICE exit (0x00000000)}
+  C:\Windows\INF\setupapi.dev.log:83214:     dvi:                     Install Device: Configuring device class. 00:38:49.041
+  C:\Windows\INF\setupapi.dev.log:83215:     dvi:                     Install Device: Configuring device class completed. 00:38:49.045
+  C:\Windows\INF\setupapi.dev.log:83216:     dvi:                     Device Status: 0x01806400 [0x01 - 0xc0000493]
+> C:\Windows\INF\setupapi.dev.log:83217:     dvi:                     Install Device: Starting device 'USB\VID_1A86&PID_7523\6&3007E47C&1&2'. 00:38:49.051
+  C:\Windows\INF\setupapi.dev.log:83218:     dvi:                     Install Device: Starting device completed. 00:38:49.117
+  C:\Windows\INF\setupapi.dev.log:83219:     dvi:                Class installer: Exit
+  C:\Windows\INF\setupapi.dev.log:83220:     dvi:           {DIF_INSTALLDEVICE - exit(0x00000000)} 00:38:49.134
+  C:\Windows\INF\setupapi.dev.log:83221:     dvi:           {DIF_NEWDEVICEWIZARD_FINISHINSTALL} 00:38:49.136
+  C:\Windows\INF\setupapi.dev.log:83222:     dvi:                Class installer: Enter 00:38:49.138
+  C:\Windows\INF\setupapi.dev.log:83223:     dvi:                Class installer: Exit
+  C:\Windows\INF\setupapi.dev.log:83224:     dvi:                Default installer: Enter 00:38:49.143
+  C:\Windows\INF\setupapi.dev.log:83225:     dvi:                Default installer: Exit
+  C:\Windows\INF\setupapi.dev.log:83226:     dvi:           {DIF_NEWDEVICEWIZARD_FINISHINSTALL - exit(0xe000020e)} 00:38:49.146
+  C:\Windows\INF\setupapi.dev.log:83227:     dvi:      {Install Device - exit(0x00000000)} 00:38:49.150
+  C:\Windows\INF\setupapi.dev.log:83228:     dvi: {Core Device Install - exit(0x00000000)} 00:38:49.153
+  C:\Windows\INF\setupapi.dev.log:83229:     dvi: {DIF_DESTROYPRIVATEDATA} 00:38:49.155
+
+

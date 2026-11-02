@@ -1,0 +1,38 @@
+{
+  "captured_at": "2026-10-31T01:13:32.8859270+08:00",
+  "history": [
+    {
+      "KeyName": "DEVPKEY_Device_DriverInfPath",
+      "Data": "oem138.inf"
+    },
+    {
+      "KeyName": "DEVPKEY_Device_DriverVersion",
+      "Data": "3.9.2024.9"
+    },
+    {
+      "KeyName": "DEVPKEY_Device_DriverProvider",
+      "Data": "wch.cn"
+    },
+    {
+      "KeyName": "DEVPKEY_Device_LastArrivalDate",
+      "Data": "2026-10-31T00:39:51.147819+08:00"
+    },
+    {
+      "KeyName": "DEVPKEY_Device_LastRemovalDate",
+      "Data": "2026-10-31T00:40:37.707576+08:00"
+    }
+  ],
+  "files": [
+    {
+      "name": "CH341S64.SYS",
+      "version": "3.90",
+      "signature": "Valid"
+    },
+    {
+      "name": "CH341SER.SYS",
+      "version": "3.90",
+      "signature": "Valid"
+    }
+  ],
+  "conclusion": "Historical COM9 with successful driver installation/start; current descriptor failure precedes CH340 function driver binding. Does not prove permanent module damage."
+}

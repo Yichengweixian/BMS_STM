@@ -1,0 +1,6 @@
+{
+  "reset_performed": false,
+  "attempts": 0,
+  "independent_boot_evidence": "evidence\\runs\\20261101-G03-pwm-disabled-r1\\reset-failure-query-01\\result.json",
+  "basis": "operator-reviewed query after reset API error; fresh wire state still required"
+}

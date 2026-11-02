@@ -1,0 +1,114 @@
+{
+  "simulated": true,
+  "not_hardware_limits": true,
+  "profile_fixture": {
+    "control": {
+      "permitted_test_duty_min": 0.2,
+      "permitted_test_duty_max": 0.8,
+      "open_loop_point_max_ms": 100
+    },
+    "software_configuration": {
+      "pwm": {
+        "period": 2000
+      }
+    }
+  },
+  "plan": {
+    "mode": "fixed-duty",
+    "direction": "discharge",
+    "points": [
+      {
+        "duty": 0.4,
+        "duration_ms": 100
+      },
+      {
+        "duty": 0.5,
+        "duration_ms": 100
+      }
+    ]
+  },
+  "compiled": {
+    "direction": "discharge",
+    "points": [
+      {
+        "index": 0,
+        "at_ms": 0,
+        "duration_ms": 100,
+        "requested_duty": 0.4,
+        "ccr": 800,
+        "quantized_duty": 0.4
+      },
+      {
+        "index": 1,
+        "at_ms": 100,
+        "duration_ms": 100,
+        "requested_duty": 0.5,
+        "ccr": 1000,
+        "quantized_duty": 0.5
+      }
+    ],
+    "stop_at_ms": 200
+  },
+  "normal": {
+    "simulated": true,
+    "physical_model": false,
+    "events": [
+      {
+        "at_ms": 0,
+        "event": "apply_fixed_ccr",
+        "ccr": 800
+      },
+      {
+        "at_ms": 100,
+        "event": "apply_fixed_ccr",
+        "ccr": 1000
+      },
+      {
+        "at_ms": 200,
+        "event": "schedule_end",
+        "output_enabled": false
+      }
+    ],
+    "final_state": "STOPPED",
+    "output_enabled": false,
+    "automatic_restart": false
+  },
+  "stop": {
+    "simulated": true,
+    "physical_model": false,
+    "events": [
+      {
+        "at_ms": 0,
+        "event": "apply_fixed_ccr",
+        "ccr": 800
+      },
+      {
+        "at_ms": 50,
+        "event": "STOP",
+        "output_enabled": false
+      }
+    ],
+    "final_state": "STOPPED",
+    "output_enabled": false,
+    "automatic_restart": false
+  },
+  "fault": {
+    "simulated": true,
+    "physical_model": false,
+    "events": [
+      {
+        "at_ms": 0,
+        "event": "apply_fixed_ccr",
+        "ccr": 800
+      },
+      {
+        "at_ms": 100,
+        "event": "latched_fault",
+        "output_enabled": false
+      }
+    ],
+    "final_state": "FAULT",
+    "output_enabled": false,
+    "automatic_restart": false
+  }
+}

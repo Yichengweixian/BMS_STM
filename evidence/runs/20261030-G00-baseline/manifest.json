@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0-draft",
+  "is_template": false,
+  "run_id": "20261030-G00-baseline",
+  "gate_id": "G00",
+  "mode": "exploratory",
+  "status": "in_progress",
+  "verdict": null,
+  "evidence_scope": [
+    "static",
+    "build",
+    "bench",
+    "release_boot"
+  ],
+  "source": {
+    "git_commit": "23b2d805aceaef41035ec7a86fe448862731adfb",
+    "dirty": true,
+    "snapshot_manifest_sha256": "9b7ad021dddb60d4556f5ca22d9c50a54d911da3426ece1f839bc0cd1b038c60",
+    "diff_path": "working-tree.diff"
+  },
+  "firmware": {
+    "target": "BMS_EX_Release",
+    "path": "BMS_EX_Release.hex",
+    "sha256": "4979c23cb90efa5efb74ecb7af30af43cb5c57619d3b8fe74be92bb4e6bcdc2b",
+    "actually_flashed": true,
+    "flash_verification_path": "../20261030-basic-flash/flash-release-20261030-ur.log",
+    "runtime_id": "BMS_EX (not unique; identity bound by verified flash hash)"
+  },
+  "freeze": {
+    "status": "provisional_software_baseline",
+    "rule_version": "acceptance.md draft-0.1 G00",
+    "rule_sha256": "8b79a6910ed80f22fee95c15fe81ac59a4f3552b12a5f083093a3335a0772bfd",
+    "frozen_at_utc": "2026-10-30T20:49:55.336962+08:00"
+  },
+  "hardware": {
+    "profile_sha256": "a4ae786032fd55502b1a92584226978ce2c9f1657b0cdc118e5d2f20e54fcfdd",
+    "board_id": null
+  },
+  "startup": {
+    "previous_reset_boot": "user_confirmed_BMS_EX",
+    "release_cold_boot_trials": [
+      {
+        "trial": 1,
+        "result": "pass",
+        "observed": "OLED BMS_EX",
+        "evidence_type": "user_report",
+        "observed_at": null
+      },
+      {
+        "trial": 2,
+        "result": "pass",
+        "observed": "OLED BMS_EX",
+        "evidence_type": "user_report",
+        "observed_at": null
+      },
+      {
+        "trial": 3,
+        "result": "pass",
+        "observed": "OLED BMS_EX",
+        "evidence_type": "user_report",
+        "observed_at": null
+      }
+    ],
+    "debug_runtime": "not_tested"
+  },
+  "uart": {
+    "status": "pass",
+    "baud": 115200,
+    "format": "8N1",
+    "source_tx": "PE5",
+    "source_rx": "PE6",
+    "detected_ports": "USB-SERIAL CH340 (COM10)",
+    "evidence": "../20261031-G00-uart/result.json"
+  },
+  "limitations": [
+    "Hardware facts pending user confirmation",
+    "No power-stage tests or safety validation",
+    "Debug runtime not qualified"
+  ]
+}

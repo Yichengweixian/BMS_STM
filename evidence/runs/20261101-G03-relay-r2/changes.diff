@@ -1,0 +1,399 @@
+--- before/BMS_EXv1.1\BMS_EX\BSP\g02_link.c
++++ after/BMS_EXv1.1\BMS_EX\BSP\g02_link.c
+@@ -105,7 +105,7 @@
+     /* Called only when TIM session stopped, including failed ADC cleanup.
+      * No TX/formatting in fast ISRs or in the sampling window. */
+     n=snprintf(out,sizeof out,
+-        "#G02,g03-relay-r1,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu",
++        "#G02,g03-relay-r2,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu",
+         (unsigned long)reply_id,(unsigned long)reply_code,(unsigned long)start_id,
+         (unsigned long)g02_control.state,(unsigned long)g02_control.faults,
+         (unsigned long)G02_OwnsADC(&g02_control),(unsigned long)g02_telemetry.cpu_hz,
+--- before/BMS_EXv1.1\BMS_EX\BSP\g03_adc_port.c
++++ after/BMS_EXv1.1\BMS_EX\BSP\g03_adc_port.c
+@@ -220,7 +220,7 @@
+ {
+     uint32_t k,i;int n,m;G3AEvent e;
+     if(op==21U){
+-        n=snprintf(out,size,"#G3D,g03-relay-r1,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu",
++        n=snprintf(out,size,"#G3D,g03-relay-r2,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu",
+             (unsigned long)id,(unsigned long)result,(unsigned long)profile,(unsigned long)calibrated,
+             (unsigned long)(diag_valid?64U:0U),(unsigned long)diag_min,(unsigned long)diag_max,(unsigned long)diag_sum);
+         for(i=0;i<12U+(diag_valid?64U:0U);++i){
+@@ -232,7 +232,7 @@
+     }
+     if(op==28U){
+         k=lock();memset(&e,0,sizeof e);(void)G3A_Read(&core,arg,&e);unlock(k);
+-        return snprintf(out,size,"#G3T,g03-relay-r1,%lu,%lu,%lu,%lu,%lu,%lu,%ld,%lu,%lu,%lu",
++        return snprintf(out,size,"#G3T,g03-relay-r2,%lu,%lu,%lu,%lu,%lu,%lu,%ld,%lu,%lu,%lu",
+             (unsigned long)id,(unsigned long)result,(unsigned long)e.seq,(unsigned long)e.ms,(unsigned long)e.cycles,
+             (unsigned long)e.raw,(long)e.ua,(unsigned long)e.ccr,(unsigned long)e.event,(unsigned long)e.faults);
+     }
+@@ -245,7 +245,7 @@
+       v[20]=hw_low;v[21]=hw_high;v[22]=core.trip_ms;v[23]=core.trip_cycles;v[24]=off_cycles;
+       v[25]=ADC1->CFGR1;v[26]=ADC1->CFGR2;v[27]=ADC1->CALFACT;
+       v[28]=core.reason;v[29]=core.start_ms;v[30]=core.last_ms;v[31]=core.heartbeat_ms;v[32]=core.duration_ms;unlock(k);
+-      n=snprintf(out,size,"#G3A,g03-relay-r1,%lu,%lu,%ld",(unsigned long)id,(unsigned long)result,(long)ua);
++      n=snprintf(out,size,"#G3A,g03-relay-r2,%lu,%lu,%ld",(unsigned long)id,(unsigned long)result,(long)ua);
+       for(i=0;i<33U;++i){if(n<0||n>=(int)size)return -1;
+           m=snprintf(out+n,size-(unsigned)n,",%lu",(unsigned long)v[i]);if(m<0)return -1;
+             n+=m;}
+--- before/BMS_EXv1.1\BMS_EX\BSP\g03_port.c
++++ after/BMS_EXv1.1\BMS_EX\BSP\g03_port.c
+@@ -94,7 +94,7 @@
+ {
+     G03Control c;uint32_t k=lock(),bits=output_bits(),ticks=tick_count,gap=max_tick_gap,sc=scenario,fs=fixture_selected;
+     c=control;unlock(k);
+-    return snprintf(out,size,"#G03,g03-relay-r1,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,1,0",
++    return snprintf(out,size,"#G03,g03-relay-r2,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,1,0",
+         (unsigned long)id,(unsigned long)result,(unsigned long)c.state,(unsigned long)c.direction,
+         (unsigned long)c.faults,(unsigned long)c.reason,(unsigned long)c.configured,(unsigned long)fs,
+         (unsigned long)c.ccr,(unsigned long)c.shadow_relays,(unsigned long)c.shadow_pwm,(unsigned long)bits,
+--- before/BMS_EXv1.1\BMS_EX\BSP\g03_relay_port.c
++++ after/BMS_EXv1.1\BMS_EX\BSP\g03_relay_port.c
+@@ -116,7 +116,9 @@
+     if(valid)last_data_cycle=DWT->CYCCNT;
+     if(old_state==G3R_BASELINE && core.state==G3R_PULSE){
+         on_cycles=DWT->CYCCNT;window_started=1U; /* arm deadline before setting GPIO */
+-        if(bits())G3R_Trip(&core,G3R_INTERLOCK,working.done_ms);
++        if(core.live && (core.base_min<G3R_BASE_LOW_CODE || core.base_max>G3R_BASE_HIGH_CODE))
++            G3R_Trip(&core,G3R_BASE,working.done_ms);
++        else if(bits())G3R_Trip(&core,G3R_INTERLOCK,working.done_ms);
+         else if(core.live){
+             if(!G3R_LIVE_PROFILE_VERIFIED || live_used)G3R_Trip(&core,G3R_INTERLOCK,working.done_ms);
+             else{live_used=1U;actual_high=1U;GPIOG->BSRR=SWL_Relay_Pin;__DSB();}
+--- before/BMS_EXv1.1\BMS_EX\BSP\g03_relay_profile.h
++++ after/BMS_EXv1.1\BMS_EX\BSP\g03_relay_profile.h
+@@ -1,16 +1,21 @@
+ #ifndef G03_RELAY_PROFILE_H
+ #define G03_RELAY_PROFILE_H
+-/* Live gate remains closed until a run-specific evidence-backed profile exists.
+- * Zero is absence of a limit, never a physical rating or acceptable cell value. */
++/* Frozen exploratory raw-code envelope, derived from board-rehearsal-01.
++ * NOT manufacturer cell limits or calibrated absolute-current protection.
++ * 38865..38872 cell codes observed; stop on a 500-code (~50 mV nominal)
++ * departure from that measured envelope. GPIO1 baseline 8994..9006,
++ * with 36-code (3x observed peak-to-peak) drift margin fixed before live. */
+ #ifndef G3R_LIVE_PROFILE_VERIFIED
+-#define G3R_LIVE_PROFILE_VERIFIED 0U
++#define G3R_LIVE_PROFILE_VERIFIED 1U
+ #endif
+ #ifndef G3R_CELL_LOW_CODE
+-#define G3R_CELL_LOW_CODE 0U
++#define G3R_CELL_LOW_CODE 38365U
+ #endif
+ #ifndef G3R_CELL_HIGH_CODE
+-#define G3R_CELL_HIGH_CODE 0U
++#define G3R_CELL_HIGH_CODE 39372U
+ #endif
+-#define G3R_PROFILE_ID "relay-observation-draft-v1"
+-#define G3R_FIRMWARE "g03-relay-r1"
++#define G3R_BASE_LOW_CODE 8958U
++#define G3R_BASE_HIGH_CODE 9042U
++#define G3R_PROFILE_ID "relay-exploration-20261101-r2"
++#define G3R_FIRMWARE "g03-relay-r2"
+ #endif
+--- before/BMS_EXv1.1\BMS_EX\BSP\measurement.c
++++ after/BMS_EXv1.1\BMS_EX\BSP\measurement.c
+@@ -12,9 +12,9 @@
+ static uint32_t metadata_profile,metadata_selfcal;
+ static void metadata(void)
+ {
+-    uart_printf("#META,schema=%s,fw=g03-relay-r1,build=%s %s,cal=%s,period_ms=500,kind=instantaneous_sample\r\n",
++    uart_printf("#META,schema=%s,fw=g03-relay-r2,build=%s %s,cal=%s,period_ms=500,kind=instantaneous_sample\r\n",
+                 MEAS_SCHEMA,__DATE__,__TIME__,MEAS_CAL_ID);
+-    uart_printf("#CONFIG,profile=cnn647b-g03-relay-r1,ADC_profile=%lu,ADC_selfcal=%lu,VREF_nominal=1.8,current_model=%s,zero_nominal_V=0.9,physical_valid=0,sign=unconfirmed\r\n",
++    uart_printf("#CONFIG,profile=cnn647b-g03-relay-r2,ADC_profile=%lu,ADC_selfcal=%lu,VREF_nominal=1.8,current_model=%s,zero_nominal_V=0.9,physical_valid=0,sign=unconfirmed\r\n",
+         (unsigned long)G03_ADC_Profile(),(unsigned long)G03_ADC_Calibrated(),CURRENT_MODEL_ID);
+     uart_printf("#FIELDS,type,seq,channel,start_ms,end_ms,age_ms,raw,status,raw_valid,sensor_V_nominal,estimate,unit,physical_value,physical_valid,reference,cal_id,frame_hex,wire_pec15\r\n");
+     metadata_profile=G03_ADC_Profile();metadata_selfcal=G03_ADC_Calibrated();
+@@ -22,7 +22,7 @@
+ void Measurement_Init(void)
+ {
+     seq=0; first=1; last_start=HAL_GetTick();
+-    uart_printf("#BOOT,g03-relay-r1,tick=%lu\r\n",(unsigned long)last_start);
++    uart_printf("#BOOT,g03-relay-r2,tick=%lu\r\n",(unsigned long)last_start);
+     metadata();
+ }
+ static void adc_sample(MeasSample *s)
+--- before/instructions\RUNLOG.md
++++ after/instructions\RUNLOG.md
+@@ -248,3 +248,8 @@
+ ## 2026-11-01 G01/G02补测与G03单次继电器r1
+ 
+ 用户授权完成无需硬件配合的补测后推进首次100ms探索，确认原接线和现场断开电池能力。实现与相关离线验证通过；旧r4在COM11补采179条有效原码，保留截断。Release0错0警告，Debug原有警告1。两次外部Flash擦除失败，未取得新镜像烧录/读回和启动证据；新镜像真实动作门保持0。已请求按现有下载流程切换BOOT。实物脉冲未执行，阶段正式判定未变。证据：evidence/runs/20261101-G03-relay-r1/。
++
++
++## 2026-11-01 r1下载恢复与板测，准备r2
++
++ROM下载恢复，r1写入/读回和正常启动确认。专用采集、G02十三组、禁能STOP/重放和G01恢复采集完成；证据在20261101-G03-relay-r1。r2固定实测基线的工程观察区间，未冒充物理额定值；构建和离线检查通过，待下载及本镜像禁能演练。
+--- before/instructions\specs\G03-relay-single.md
++++ after/instructions\specs\G03-relay-single.md
+@@ -38,3 +38,8 @@
+ 默认工具不清故障、不重试启动、不重放重连命令。真实运行结束后若恢复计数不足或有故障，会在下载缓存前提示现场断开电池供能。所有原始数据保留；无窗口内有效样本时结论为观测不足。
+ 
+ 每轮冻结工况须补齐电芯进入/退出依据、禁能测得的采集覆盖和实际停止办法。当前草案电芯界限为缺失值，不能用于真实运行。当前进度以STATUS和本轮工作卡为准。
++
++
++## r2冻结补充
++
++g03-relay-r2使用conditions-frozen.json中固定的本次工程观察边界：电芯38365—39372码，启动前AFE基线8958—9042码。数值来源为r1禁能实测包络及明确记录的观察余量，非制造商硬限。引入独立基线漂移拒绝，避免在改变后的AFE输入上重新归零并放行。r1/r2旧记录均可解析。
+--- before/instructions\specs\hardware-profile.json
++++ after/instructions\specs\hardware-profile.json
+@@ -753,9 +753,30 @@
+     "live_gate": false,
+     "wiring_reconfirmed_by_user": true,
+     "battery_disconnect_available_per_user": true,
+-    "new_firmware_flashed_verified": false,
++    "new_firmware_flashed_verified": true,
+     "physical_pulse_executed": false,
+     "evidence_run_id": "20261101-G03-relay-r1",
+-    "physical_limits_unchanged": true
++    "physical_limits_unchanged": true,
++    "normal_boot_confirmed": true,
++    "disabled_capture_verified": true,
++    "verified_firmware": "g03-relay-r1",
++    "verified_sha256": "529e6b83280d724f226e462dad59624f39552d640ba0eb9ec3366ccc694895bf"
++  },
++  "g03_relay_exploratory_profile": {
++    "profile_id": "relay-exploration-20261101-r2",
++    "source_run": "20261101-G03-relay-r1/board-rehearsal-01",
++    "cell_code_band": [
++      38365,
++      39372
++    ],
++    "afe_start_baseline_band": [
++      8958,
++      9042
++    ],
++    "basis": "E: frozen observed-envelope departure checks, not H physical ratings",
++    "cell_margin_codes": 500,
++    "afe_margin_codes": 36,
++    "physical_limits_unchanged": true,
++    "pulse_executed": false
+   }
+ }
+--- before/instructions\STATUS.md
++++ after/instructions\STATUS.md
+@@ -31,3 +31,10 @@
+ COM11已采到旧g03-adc-r4有效原码179条（19完整组，末尾截断保留）。新固件两次下载都在外部Flash擦除阶段失败，尚未写入/读回验证；下载失败后的实际启动状态待确认。新采集的禁能板测、工况冻结及首次100ms真实脉冲未执行。G01/G02/G03正式验收状态仍为in_progress、verdict=null。
+ 
+ 下一步：按既有下载流程恢复BOOT下载模式，完成写入与读回校验后，继续新固件禁能演练。见[本轮工作卡](../evidence/runs/20261101-G03-relay-r1/work-card.md)、[补测矩阵](../evidence/runs/20261101-G03-relay-r1/retest-matrix.md)和[单次接口规范](specs/G03-relay-single.md)。
++
++
++## 2026-11-01 续接：r1板测通过，r2单次镜像就绪
++
++用户切换ROM下载模式后，r1 Release（529e6b83…）写入及读回校验成功；恢复正常BOOT后串口确认g03-relay-r1。禁能演练102组有效数据，窗口内4组，最长采集9ms，软件窗口98.53ms，故障/输出位0。G02的13组板测通过；禁能重复请求、STOP和显式清锁存通过，G01常规采集恢复266条，末尾截断保留。
++
++r2已根据实测基线固定本次原码异常退出区间与启动漂移检查，并通过构建及离线验证。尚待r2下载/禁能演练及一次真实触发；真实功率尚未执行。阶段正式验收状态仍未判定。见[当前r2工作卡](../evidence/runs/20261101-G03-relay-r2/work-card.md)。
+--- before/scripts\g02\extended_diagnostics.py
++++ after/scripts\g02\extended_diagnostics.py
+@@ -58,7 +58,7 @@
+                 r=parse(line)
+                 self.event(report=r)
+                 self.reports.append(r)
+-                require(r['firmware'] in ('g02-host-r2','g03-adc-r4','g03-relay-r1') and r['pins_gate']==0,
++                require(r['firmware'] in ('g02-host-r2','g03-adc-r4','g03-relay-r1','g03-relay-r2') and r['pins_gate']==0,
+                         'Require fixed r2 firmware with pin output disabled')
+                 if r['id']==wanted:
+                     return r
+--- before/scripts\g02\host_diagnostics.py
++++ after/scripts\g02\host_diagnostics.py
+@@ -18,7 +18,7 @@
+     body, check = line.rstrip(b'\r\n').rsplit(b'*',1)
+     if not re.fullmatch(b'[0-9A-F]{4}',check) or int(check,16)!=binascii.crc_hqx(body,65535): raise ValueError('CRC')
+     parts=body.decode('ascii').split(',')
+-    if parts[0]!='#G02' or parts[1] not in ('g02-host-r1','g02-host-r2','g03-adc-r4','g03-relay-r1') or len(parts)!=len(FIELDS)+2: raise ValueError('schema/firmware')
++    if parts[0]!='#G02' or parts[1] not in ('g02-host-r1','g02-host-r2','g03-adc-r4','g03-relay-r1','g03-relay-r2') or len(parts)!=len(FIELDS)+2: raise ValueError('schema/firmware')
+     if any(not re.fullmatch('[0-9]+',x) for x in parts[2:]): raise ValueError('unsigned decimal fields')
+     values=[int(x) for x in parts[2:]]
+     if any(x<0 or x>0xffffffff for x in values): raise ValueError('range')
+--- before/scripts\g03\adc_diagnostics.py
++++ after/scripts\g03\adc_diagnostics.py
+@@ -16,7 +16,7 @@
+     body,crc=line.rstrip(b'\r\n').rsplit(b'*',1)
+     if not re.fullmatch(b'[0-9A-F]{4}',crc) or int(crc,16)!=binascii.crc_hqx(body,65535):raise ValueError('CRC')
+     v=body.decode('ascii').split(',');kind=v[0]
+-    if v[1] not in ('g03-adc-r4','g03-relay-r1') or kind not in ('#G3A','#G3D','#G3T'):raise ValueError('Identity/schema')
++    if v[1] not in ('g03-adc-r4','g03-relay-r1','g03-relay-r2') or kind not in ('#G3A','#G3D','#G3T'):raise ValueError('Identity/schema')
+     if any(not re.fullmatch('-?[0-9]+',x) or not -2147483648<=int(x)<=0xffffffff for x in v[2:]):raise ValueError('Range')
+     nums=list(map(int,v[2:]));fields={'#G3A':STATUS,'#G3T':TRACE,'#G3D':DIAG+REGS}[kind]
+     if kind!='#G3D' and len(nums)!=len(fields):raise ValueError('Length')
+--- before/scripts\g03\disabled_diagnostics.py
++++ after/scripts\g03\disabled_diagnostics.py
+@@ -10,7 +10,7 @@
+     body,crc=line.rstrip(b'\r\n').rsplit(b'*',1)
+     if not re.fullmatch(b'[0-9A-F]{4}',crc) or int(crc,16)!=binascii.crc_hqx(body,65535):raise ValueError('CRC')
+     fields=body.decode('ascii').split(',')
+-    if len(fields)!=len(FIELDS)+2 or fields[0]!='#G03' or fields[1] not in ('g03-adc-r4','g03-relay-r1'):raise ValueError('Firmware/schema')
++    if len(fields)!=len(FIELDS)+2 or fields[0]!='#G03' or fields[1] not in ('g03-adc-r4','g03-relay-r1','g03-relay-r2'):raise ValueError('Firmware/schema')
+     if any(not re.fullmatch('[0-9]+',x) or int(x)>0xffffffff for x in fields[2:]):raise ValueError('Range')
+     return dict(zip(FIELDS,map(int,fields[2:])))
+ 
+--- before/scripts\g03\relay_capture.py
++++ after/scripts\g03\relay_capture.py
+@@ -11,7 +11,7 @@
+     body,crc=line.rstrip(b'\r\n').rsplit(b'*',1)
+     if not re.fullmatch(b'[0-9A-F]{4}',crc) or int(crc,16)!=binascii.crc_hqx(body,65535):raise ValueError('CRC')
+     parts=body.decode('ascii').split(',');kind,firmware=parts[:2];v=parts[2:]
+-    if firmware!='g03-relay-r1':raise ValueError('Firmware identity')
++    if firmware not in ('g03-relay-r1','g03-relay-r2'):raise ValueError('Firmware identity')
+     def num(s):
+         if not re.fullmatch('[0-9]+',s) or int(s)>0xffffffff:raise ValueError('uint32')
+         return int(s)
+--- before/scripts\g03\run_relay_checks.py
++++ after/scripts\g03\run_relay_checks.py
+@@ -16,7 +16,7 @@
+     run('core',[out/'core.exe'])
+     run('adapter-stack-frame',flags+['-Wframe-larger-than=512','-I'+str(root/'tests/g02/stubs'),'-c',bsp/'g03_relay_port.c','-o',out/'relay.o'])
+     sources=[test/'test_relay_port.c']+[bsp/n for n in ['g02_control.c','g02_port.c','g02_link.c','g03_control.c','g03_port.c','g03_adc_core.c','g03_adc_port.c','g03_relay_core.c','g03_relay_port.c','measurement_core.c']]
+-    for name,defs in [('disabled',[]),('live-register-fixture',['-DG3R_LIVE_PROFILE_VERIFIED=1','-DG3R_CELL_LOW_CODE=36000','-DG3R_CELL_HIGH_CODE=41000'])]:
++    for name,defs in [('disabled',['-DG3R_LIVE_PROFILE_VERIFIED=0']),('live-register-fixture',['-DG3R_LIVE_PROFILE_VERIFIED=1','-DG3R_CELL_LOW_CODE=36000','-DG3R_CELL_HIGH_CODE=41000'])]:
+         run('build-'+name,flags+defs+['-include','stdlib.h','-I'+str(root/'tests/g02/stubs')]+sources+['-lm','-o',out/(name+'.exe')])
+         run(name,[out/(name+'.exe')])
+     run('host',[sys.executable,'-m','unittest','discover','-s',test,'-p','test_relay_host.py','-v'])
+--- before/tests\g02\test_link.c
++++ after/tests\g02\test_link.c
+@@ -11,7 +11,7 @@
+ {char s[80],frame[100];unsigned i;snprintf(s,sizeof s,"G02,%u,%u,%u",id,op,arg);snprintf(frame,sizeof frame,"%s*%04X\n",s,checksum(s));reply[0]=0;
+  for(i=0;frame[i];i++){G02_LinkRx((const uint8_t *)&frame[i],1);G02_LinkTask();}}
+ static void expect(unsigned id,unsigned result)
+-{char prefix[70];snprintf(prefix,sizeof prefix,"#G02,g03-relay-r1,%u,%u,",id,result);assert(strncmp(reply,prefix,strlen(prefix))==0);}
++{char prefix[70];snprintf(prefix,sizeof prefix,"#G02,g03-relay-r2,%u,%u,",id,result);assert(strncmp(reply,prefix,strlen(prefix))==0);}
+ #ifndef G02_LINK_MAIN
+ #define G02_LINK_MAIN main
+ #endif
+--- before/tests\g03\test_adc_host.py
++++ after/tests\g03\test_adc_host.py
+@@ -7,20 +7,20 @@
+ class Tests(unittest.TestCase):
+     def test_status_and_signed_current(self):
+         n=[0]*len(a.STATUS);n[2]=-1200
+-        r=a.parse(wire('#G3A,g03-relay-r1,'+','.join(map(str,n))))
++        r=a.parse(wire('#G3A,g03-relay-r2,'+','.join(map(str,n))))
+         self.assertEqual(r['ua'],-1200);self.assertEqual(r['power_capable'],0)
+     def test_corruption(self):
+-        b=wire('#G3A,g03-relay-r1,'+','.join(['0']*len(a.STATUS)))
++        b=wire('#G3A,g03-relay-r2,'+','.join(['0']*len(a.STATUS)))
+         for v in [b[:-4],b.replace(b'g03-relay-',b'g03-bad-'),b.replace(b',0',b',1',1)]:
+             with self.assertRaises(ValueError):a.parse(v)
+     def test_diagnostic_aggregate(self):
+         nums=[1,0,3,1,64,2048,2048,131072]+[0]*12+[2048]*64
+-        body='#G3D,g03-relay-r1,'+','.join(map(str,nums));r=a.parse(wire(body))
++        body='#G3D,g03-relay-r2,'+','.join(map(str,nums));r=a.parse(wire(body))
+         self.assertEqual(len(r['samples']),64)
+         nums[-1]=2049
+-        with self.assertRaises(ValueError):a.parse(wire('#G3D,g03-relay-r1,'+','.join(map(str,nums))))
++        with self.assertRaises(ValueError):a.parse(wire('#G3D,g03-relay-r2,'+','.join(map(str,nums))))
+     def test_unsigned_and_length(self):
+         nums=[0]*len(a.STATUS);nums[0]=-1
+         for n in (nums,nums[:-1]):
+-            with self.assertRaises(ValueError):a.parse(wire('#G3A,g03-relay-r1,'+','.join(map(str,n))))
++            with self.assertRaises(ValueError):a.parse(wire('#G3A,g03-relay-r2,'+','.join(map(str,n))))
+ if __name__=='__main__':unittest.main()
+--- before/tests\g03\test_adc_link.c
++++ after/tests\g03\test_adc_link.c
+@@ -12,7 +12,7 @@
+ {char b[80],w[90];snprintf(b,sizeof b,"G02,%u,%u,%u",id,op,arg);snprintf(w,sizeof w,"%s*%04X\n",b,crc(b));
+  G02_LinkRx((const uint8_t *)w,(uint16_t)strlen(w));G02_LinkTask();}
+ static void expect(unsigned id,unsigned code,const char *kind)
+-{char b[90];snprintf(b,sizeof b,"%s,g03-relay-r1,%u,%u,",kind,id,code);assert(strncmp(reply,b,strlen(b))==0);puts(reply);}
++{char b[90];snprintf(b,sizeof b,"%s,g03-relay-r2,%u,%u,",kind,id,code);assert(strncmp(reply,b,strlen(b))==0);puts(reply);}
+ #ifndef ADC_LINK_MAIN
+ #define ADC_LINK_MAIN main
+ #endif
+--- before/tests\g03\test_adc_port.c
++++ after/tests\g03\test_adc_port.c
+@@ -22,7 +22,7 @@
+ static unsigned status_fault(void)
+ {char r[1024];unsigned id,result,state,fault;long ua;
+  G03_ADC_Report(r,sizeof r,1,0,20,0);
+- assert(sscanf(r,"#G3A,g03-relay-r1,%u,%u,%ld,%u,%u",&id,&result,&ua,&state,&fault)==5);
++ assert(sscanf(r,"#G3A,g03-relay-r2,%u,%u,%ld,%u,%u",&id,&result,&ua,&state,&fault)==5);
+  assert_off();return fault;}
+ static void conversion(uint32_t raw)
+ {
+--- before/tests\g03\test_host.py
++++ after/tests\g03\test_host.py
+@@ -4,7 +4,7 @@
+ from disabled_diagnostics import Session,parse,FIELDS
+ def reply(**values):
+     d=dict.fromkeys(FIELDS,0);d.update(id=1,synthetic=1);d.update(values)
+-    body=('#G03,g03-relay-r1,'+','.join(str(d[x]) for x in FIELDS)).encode()
++    body=('#G03,g03-relay-r2,'+','.join(str(d[x]) for x in FIELDS)).encode()
+     return body+('*%04X\n'%binascii.crc_hqx(body,65535)).encode()
+ class Link:
+     def __init__(self,parts):self.parts=list(parts);self.is_open=True;self.writes=[]
+@@ -19,7 +19,7 @@
+         s=Session(Link(parts),Path(temp.name));self.addCleanup(s.finish);return s
+     def test_crc_numeric_schema(self):
+         self.assertEqual(parse(reply())['synthetic'],1)
+-        body=reply().split(b'*')[0].replace(b'g03-relay-r1',b'g03-adc-r4')
++        body=reply().split(b'*')[0].replace(b'g03-relay-r2',b'g03-adc-r4')
+         self.assertEqual(parse(body+b'*%04X\n'%binascii.crc_hqx(body,65535))['synthetic'],1)
+         for b in (reply().replace(b'*',b'*0'),reply(state='NaN'),reply(state=-1),reply(state=2**32)):
+             with self.assertRaises(ValueError):parse(b)
+--- before/tests\g03\test_link.c
++++ after/tests\g03\test_link.c
+@@ -2,7 +2,7 @@
+ #include "../g02/test_link.c"
+ #include "g03_port.h"
+ static void g03_expect(unsigned id,unsigned code)
+-{char prefix[80];snprintf(prefix,sizeof prefix,"#G03,g03-relay-r1,%u,%u,",id,code);assert(strncmp(reply,prefix,strlen(prefix))==0);puts(reply);}
++{char prefix[80];snprintf(prefix,sizeof prefix,"#G03,g03-relay-r2,%u,%u,",id,code);assert(strncmp(reply,prefix,strlen(prefix))==0);puts(reply);}
+ static void advance(unsigned n){while(n--){++tick;G03_TickIRQ();assert_off();}}
+ int main(void)
+ {
+--- before/tests\g03\test_relay_host.py
++++ after/tests\g03\test_relay_host.py
+@@ -7,16 +7,16 @@
+ class Tests(unittest.TestCase):
+     def test_status_crc_shape_and_output(self):
+         v=[0]*len(r.STATUS);v[0]=1;v[17]=800000000
+-        body='#G3R,g03-relay-r1,'+','.join(map(str,v))
++        body='#G3R,g03-relay-r2,'+','.join(map(str,v))
+         self.assertEqual(r.parse(wire(body))['cpu_hz'],800000000)
+-        for bad in [wire(body)[:-4],wire(body.replace('relay-r1','bad-r1')),wire(body+',0')]:
++        for bad in [wire(body)[:-4],wire(body.replace('relay-r2','bad-r2')),wire(body+',0')]:
+             with self.assertRaises(ValueError):r.parse(bad)
+         v[13]=1
+-        with self.assertRaises(ValueError):r.parse(wire('#G3R,g03-relay-r1,'+','.join(map(str,v))))
++        with self.assertRaises(ValueError):r.parse(wire('#G3R,g03-relay-r2,'+','.join(map(str,v))))
+     def test_quality_not_zero(self):
+         start=['1','0','0','3','1000','1010','16']
+         samples=['1000','1007','0','4','1','0000000000000000']*5
+-        with self.assertRaises(ValueError):r.parse(wire('#G3S,g03-relay-r1,'+','.join(start+samples)))
++        with self.assertRaises(ValueError):r.parse(wire('#G3S,g03-relay-r2,'+','.join(start+samples)))
+     def test_window_coverage_and_recovery(self):
+         s=dict(live=1,faults=0,state=5,on_ms=1000,off_ms=1099,on_cycles=100,off_cycles=79200100,cpu_hz=800000000,center=9000,tolerance=20)
+         rows=[]
+--- before/tests\g03\test_relay_port.c
++++ after/tests\g03\test_relay_port.c
+@@ -5,7 +5,7 @@
+ #include "g03_relay_core.h"
+ #include "adbms_acquisition.h"
+ TIM_TypeDef test_tim2;
+-static unsigned afe_fault,spi_stall;
++static unsigned afe_fault,spi_stall,afe_raw=9000;
+ static void elapsed(unsigned ms)
+ {
+     while(ms--){++tick;DWT->CYCCNT+=800000U;
+@@ -18,7 +18,7 @@
+ void Afe_PulseAcquire(MeasSample s[4])
+ {
+     unsigned i;memset(s,0,4*sizeof *s);
+-    for(i=0;i<4;++i){s[i].start_ms=tick;s[i].raw=(uint16_t)(i<3?38900:9000);s[i].has_raw=1;
++    for(i=0;i<4;++i){s[i].start_ms=tick;s[i].raw=(uint16_t)(i<3?38900:afe_raw);s[i].has_raw=1;
+         s[i].status=afe_fault?MEAS_PEC:0;}
+     elapsed(spi_stall?60:7);
+     for(i=0;i<4;++i)s[i].end_ms=tick;
+@@ -47,6 +47,9 @@
+     G02_LinkTask();expect(1,0,"#G3R");send(2,31,0);expect(2,G02_NOT_READY,"#G3R");
+     send(3,35,0);expect(3,0,"#G3R");
+ #if G3R_LIVE_PROFILE_VERIFIED
++    afe_raw=9200;G03_RelayCommand(32,0);run_until(G3R_FAULT,1800);
++    assert(relay_field(3)&G3R_BASE);assert_off();assert(relay_field(19)==0);
++    afe_raw=9000;G03_RelayCommand(35,0);
+     send(4,32,0);run_until(G3R_PULSE,1500);on=tick;assert(GPIOG->ODR&SWL_Relay_Pin);
+     send(4,32,0); /* same request must not retrigger */
+     spi_stall=1;elapsed(20);G03_RelayTask();spi_stall=0;

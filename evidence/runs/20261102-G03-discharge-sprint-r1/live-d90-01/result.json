@@ -1,0 +1,11 @@
+{
+  "samples": 105,
+  "active_complete_samples": 4,
+  "stopped": true,
+  "software_pwm_us": 100073,
+  "real_power_command_sent": true,
+  "faults": 0,
+  "physical_valid": 0,
+  "steady_state_claim": false,
+  "verdict": "pass"
+}

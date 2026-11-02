@@ -1,0 +1,283 @@
+{
+  "scope": "disabled board evidence; no physical current calibration",
+  "physical_valid": 0,
+  "firmware_sha256": "9126778404c6f9a9890ab729522f7fbd9fe7fe0a380436694494ebecde81f9fb",
+  "input_sha256": {
+    "board-suite-01\\01-normal\\result.json": "8add2ccfc889dac61e7ab361ba40a1cdb4e38cdbaea13bb7231340c2c4a419ff",
+    "board-suite-01\\01-normal\\manifest.json": "083bdeeebcc937f76ae084971e54c573f4a9df095545473844056feaba9b39c2",
+    "board-suite-01\\01-normal\\trace.json": "2a97633fe4b500ebf18ee5d70eaccc570472883ad7f0f9084b991980e015ab14",
+    "board-suite-01\\01-normal\\serial.bin": "174c7016a440ff5e38025e27259645a1785252202302dec322a0fb5b88ed1398",
+    "board-suite-01\\02-sample-6p5\\result.json": "f58f6ec4c4fcf92590a57050479a2f28f30329d3681f1311b61cedb7aac34c63",
+    "board-suite-01\\02-sample-6p5\\manifest.json": "ac77361e10a8fe5729e3834900fd5644a3b5f71b89da6d57195d3b80a2c7998e",
+    "board-suite-01\\02-sample-6p5\\trace.json": "28fcfac4a853e382974a1a4eb47d5ef3840dfd76b8c74179fba9db044f92fe5c",
+    "board-suite-01\\02-sample-6p5\\serial.bin": "860332820dc0d8bcc8b16e317ab64dbb944d4f8587055a057a50150186c39ee5",
+    "resource-recovery-01\\g01.csv": "ddbdbb13a836a995493ddd8a58c5290a3bc690927c9e8432ad016d83c0f0171e"
+  },
+  "parser_sha256": "8324f898014198d1f0d4af803cbe570d6f24ced7a7b46b35808488b989f272f9",
+  "cases": [
+    {
+      "case": "01-normal",
+      "scenario": 0,
+      "sampling_cycles_selected": 11.5,
+      "firmware_sha256": "9126778404c6f9a9890ab729522f7fbd9fe7fe0a380436694494ebecde81f9fb",
+      "status": {
+        "id": 2538647506,
+        "result": 0,
+        "state": 3,
+        "faults": 0,
+        "used": 1,
+        "owned": 0,
+        "scenario": 0,
+        "start_id": 2538647505,
+        "start_us": 63997,
+        "stop_us": 163999,
+        "now_us": 165985,
+        "run_us": 100000,
+        "sample_count": 9999,
+        "raw": 1282,
+        "raw_min": 1265,
+        "raw_max": 1294,
+        "last_sample_us": 163991,
+        "max_sample_gap_us": 10,
+        "max_irq_gap_us": 100,
+        "irq_count": 1000,
+        "trace_written": 230,
+        "trace_overflow": 0,
+        "tim_hz": 400000000,
+        "adc_hz": 64000000,
+        "timer_hz": 1000000,
+        "arr": 2000,
+        "ccr": 1000,
+        "dtg": 0,
+        "actual_bits": 0,
+        "timer_running": 0,
+        "restored": 1,
+        "power_capable": 0,
+        "physical_valid": 0,
+        "kind": "#G3P",
+        "firmware": "g03-pwm-disabled-r1"
+      },
+      "stats": {
+        "preflight_all": {
+          "n": 64,
+          "minimum": 1070,
+          "maximum": 1412,
+          "peak_to_peak": 342,
+          "mean": 1400.28125,
+          "median": 1406.0,
+          "population_sd": 42.139822596179734
+        },
+        "preflight_tail48": {
+          "n": 48,
+          "minimum": 1402,
+          "maximum": 1408,
+          "peak_to_peak": 6,
+          "mean": 1405.6666666666667,
+          "median": 1406.0,
+          "population_sd": 1.4337208778404378
+        },
+        "fast_first64": {
+          "n": 64,
+          "minimum": 1265,
+          "maximum": 1294,
+          "peak_to_peak": 29,
+          "mean": 1286.28125,
+          "median": 1287.0,
+          "population_sd": 3.5287601841865084
+        },
+        "fast_decimated99": {
+          "n": 99,
+          "minimum": 1280,
+          "maximum": 1287,
+          "peak_to_peak": 7,
+          "mean": 1283.8484848484848,
+          "median": 1284,
+          "population_sd": 1.2741694570684023
+        },
+        "fast_retained163": {
+          "n": 163,
+          "minimum": 1265,
+          "maximum": 1294,
+          "peak_to_peak": 29,
+          "mean": 1284.803680981595,
+          "median": 1285,
+          "population_sd": 2.6993725599193716
+        }
+      },
+      "software_window_us": 100002,
+      "preflight_span_us": 62973,
+      "preflight_to_start_us": 63988,
+      "preflight_gaps_us": {
+        "n": 63,
+        "minimum": 974,
+        "maximum": 1000,
+        "peak_to_peak": 26,
+        "mean": 999.5714285714286,
+        "median": 1000,
+        "population_sd": 3.2499781963336294
+      },
+      "fast_first64_gaps_us": {
+        "n": 63,
+        "minimum": 9,
+        "maximum": 10,
+        "peak_to_peak": 1,
+        "mean": 9.968253968253968,
+        "median": 10,
+        "population_sd": 0.17532319074900413
+      },
+      "decimated_gaps_us": {
+        "n": 98,
+        "minimum": 1000,
+        "maximum": 1000,
+        "peak_to_peak": 0,
+        "mean": 1000,
+        "median": 1000.0,
+        "population_sd": 0.0
+      },
+      "first_fast_irq_offset_us": 16
+    },
+    {
+      "case": "02-sample-6p5",
+      "scenario": 8,
+      "sampling_cycles_selected": 6.5,
+      "firmware_sha256": "9126778404c6f9a9890ab729522f7fbd9fe7fe0a380436694494ebecde81f9fb",
+      "status": {
+        "id": 2538653903,
+        "result": 0,
+        "state": 3,
+        "faults": 0,
+        "used": 1,
+        "owned": 0,
+        "scenario": 8,
+        "start_id": 2538653902,
+        "start_us": 63998,
+        "stop_us": 163999,
+        "now_us": 165985,
+        "run_us": 100000,
+        "sample_count": 9999,
+        "raw": 1283,
+        "raw_min": 1265,
+        "raw_max": 1294,
+        "last_sample_us": 163991,
+        "max_sample_gap_us": 10,
+        "max_irq_gap_us": 100,
+        "irq_count": 1000,
+        "trace_written": 230,
+        "trace_overflow": 0,
+        "tim_hz": 400000000,
+        "adc_hz": 64000000,
+        "timer_hz": 1000000,
+        "arr": 2000,
+        "ccr": 1000,
+        "dtg": 0,
+        "actual_bits": 0,
+        "timer_running": 0,
+        "restored": 1,
+        "power_capable": 0,
+        "physical_valid": 0,
+        "kind": "#G3P",
+        "firmware": "g03-pwm-disabled-r1"
+      },
+      "stats": {
+        "preflight_all": {
+          "n": 64,
+          "minimum": 1098,
+          "maximum": 1409,
+          "peak_to_peak": 311,
+          "mean": 1399.0625,
+          "median": 1404.0,
+          "population_sd": 38.350307609587695
+        },
+        "preflight_tail48": {
+          "n": 48,
+          "minimum": 1401,
+          "maximum": 1408,
+          "peak_to_peak": 7,
+          "mean": 1404.0625,
+          "median": 1404.0,
+          "population_sd": 1.4347800354061246
+        },
+        "fast_first64": {
+          "n": 64,
+          "minimum": 1265,
+          "maximum": 1294,
+          "peak_to_peak": 29,
+          "mean": 1284.859375,
+          "median": 1285.0,
+          "population_sd": 3.5127766238938394
+        },
+        "fast_decimated99": {
+          "n": 99,
+          "minimum": 1280,
+          "maximum": 1287,
+          "peak_to_peak": 7,
+          "mean": 1283.5454545454545,
+          "median": 1284,
+          "population_sd": 1.1657808522225057
+        },
+        "fast_retained163": {
+          "n": 163,
+          "minimum": 1265,
+          "maximum": 1294,
+          "peak_to_peak": 29,
+          "mean": 1284.0613496932515,
+          "median": 1284,
+          "population_sd": 2.4661966234852586
+        }
+      },
+      "software_window_us": 100001,
+      "preflight_span_us": 62974,
+      "preflight_to_start_us": 63990,
+      "preflight_gaps_us": {
+        "n": 63,
+        "minimum": 975,
+        "maximum": 1000,
+        "peak_to_peak": 25,
+        "mean": 999.5873015873016,
+        "median": 1000,
+        "population_sd": 3.125090071768196
+      },
+      "fast_first64_gaps_us": {
+        "n": 63,
+        "minimum": 8,
+        "maximum": 10,
+        "peak_to_peak": 2,
+        "mean": 9.952380952380953,
+        "median": 10,
+        "population_sd": 0.2776643759450143
+      },
+      "decimated_gaps_us": {
+        "n": 98,
+        "minimum": 1000,
+        "maximum": 1000,
+        "peak_to_peak": 0,
+        "mean": 1000,
+        "median": 1000.0,
+        "population_sd": 0.0
+      },
+      "first_fast_irq_offset_us": 16
+    }
+  ],
+  "regular_g01_context": {
+    "source": "resource-recovery-01\\g01.csv",
+    "raw": {
+      "n": 30,
+      "minimum": 986,
+      "maximum": 991,
+      "peak_to_peak": 5,
+      "mean": 989.0333333333333,
+      "median": 989.0,
+      "population_sd": 1.3535960336164634
+    },
+    "start_interval_ms": {
+      "n": 29,
+      "minimum": 500,
+      "maximum": 500,
+      "peak_to_peak": 0,
+      "mean": 500,
+      "median": 500,
+      "population_sd": 0.0
+    }
+  },
+  "statistics_note": "Population SD describes retained codes only, not calibrated current noise. Full 9999-result means/SD are unavailable."
+}

@@ -1,0 +1,22 @@
+In file included from C:\Users\ADMIN\.codex\visualizations\2026\10\31\01a190c5-3850-70d2-9a03-6e23ce232c1f\g03-adc-work\tests\g03\test_adc_link.c:2:
+C:\Users\ADMIN\.codex\visualizations\2026\10\31\01a190c5-3850-70d2-9a03-6e23ce232c1f\g03-adc-work\tests\g03\test_adc_port.c:1: error: "main" redefined [-Werror]
+ #define main baseline_main
+ 
+C:\Users\ADMIN\.codex\visualizations\2026\10\31\01a190c5-3850-70d2-9a03-6e23ce232c1f\g03-adc-work\tests\g03\test_adc_link.c:1: note: this is the location of the previous definition
+ #define main adc_port_main
+ 
+C:\Users\ADMIN\.codex\visualizations\2026\10\31\01a190c5-3850-70d2-9a03-6e23ce232c1f\g03-adc-work\tests\g03\test_adc_link.c:16:5: error: redefinition of 'main'
+ int main(void)
+     ^~~~
+In file included from C:\Users\ADMIN\.codex\visualizations\2026\10\31\01a190c5-3850-70d2-9a03-6e23ce232c1f\g03-adc-work\tests\g03\test_adc_link.c:2:
+C:\Users\ADMIN\.codex\visualizations\2026\10\31\01a190c5-3850-70d2-9a03-6e23ce232c1f\g03-adc-work\tests\g03\test_adc_port.c:35:5: note: previous definition of 'main' was here
+ int main(void)
+     ^~~~
+In file included from C:/Users/ADMIN/.codex/visualizations/2026/10/31/01a190c5-3850-70d2-9a03-6e23ce232c1f/g03-adc-work/tests/g02/test_port.c:3,
+                 from C:\Users\ADMIN\.codex\visualizations\2026\10\31\01a190c5-3850-70d2-9a03-6e23ce232c1f\g03-adc-work\tests\g03\test_adc_port.c:2,
+                 from C:\Users\ADMIN\.codex\visualizations\2026\10\31\01a190c5-3850-70d2-9a03-6e23ce232c1f\g03-adc-work\tests\g03\test_adc_link.c:2:
+C:\Users\ADMIN\.codex\visualizations\2026\10\31\01a190c5-3850-70d2-9a03-6e23ce232c1f\g03-adc-work\tests\g03\test_adc_link.c: In function 'main':
+C:\Users\ADMIN\.codex\visualizations\2026\10\31\01a190c5-3850-70d2-9a03-6e23ce232c1f\g03-adc-work\tests\g03\test_adc_link.c:18:20: error: implicit declaration of function 'adc_port_main' [-Werror=implicit-function-declaration]
+  unsigned i;assert(adc_port_main()==0);
+                    ^~~~~~~~~~~~~
+cc1.exe: all warnings being treated as errors

@@ -1,0 +1,7 @@
+/local-only/
+/tools/
+/scripts/RM0486*.pdf
+/scripts/RM0486-*.txt
+/candidate/*.exe
+/candidate/*.o
+**/__pycache__/

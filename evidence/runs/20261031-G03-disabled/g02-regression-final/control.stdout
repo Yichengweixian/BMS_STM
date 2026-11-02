@@ -1,0 +1,11 @@
+PASS: test_default_and_invalid_api
+PASS: test_gate_and_modes
+PASS: test_stop_idempotence_and_cleanup
+PASS: test_fault_latching_and_explicit_clear
+PASS: test_prepare_faults_and_interlocks
+PASS: test_prepare_cancellation_and_reentrancy
+PASS: test_enable_cancellation
+PASS: test_compare_range_and_faults
+PASS: test_reinit_preserves_fault_and_ownership
+PASS: test_cleanup_failure_and_fault_during_cleanup
+PASS: 10 production-control host test groups; SIMULATION ONLY.

@@ -1,0 +1,19 @@
+{
+  "case": "duplicate-start",
+  "scenario": 0,
+  "run_us": 200000,
+  "action": "duplicate",
+  "evidence_scope": [
+    "bench"
+  ],
+  "verdict": null,
+  "started_utc": "2026-11-01T13:36:13.405060+00:00",
+  "accepted_start_requests_planned": 1,
+  "reset_attempts_planned": 1,
+  "physical_valid": 0,
+  "power_capable": 0,
+  "firmware": "g03-pwm-disabled-r1",
+  "firmware_sha256": "9126778404c6f9a9890ab729522f7fbd9fe7fe0a380436694494ebecde81f9fb",
+  "expected_boot": "normal BOOT1=0 BOOT0=0",
+  "port": "COM11"
+}

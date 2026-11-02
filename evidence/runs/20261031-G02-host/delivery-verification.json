@@ -1,0 +1,23 @@
+{
+  "time_utc": "2026-10-31T08:22:38.421897+00:00",
+  "files_verified": [
+    "BMS_EXv1.1/BMS_EX/BSP/g02_link.c",
+    "BMS_EXv1.1/BMS_EX/BSP/g02_link.h",
+    "BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c",
+    "BMS_EXv1.1/BMS_EX/BSP/uart.c",
+    "BMS_EXv1.1/BMS_EX/BSP/measurement.c",
+    "BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx",
+    "tests/g02/test_link.c",
+    "scripts/g02/host_diagnostics.py",
+    "scripts/g02/run_checks.py",
+    "instructions/specs/G02-host-diagnostics.md",
+    "instructions/specs/G02-pwm-timing.md",
+    "instructions/README.md",
+    "instructions/STATUS.md",
+    "instructions/RUNLOG.md",
+    "instructions/specs/hardware-profile.json"
+  ],
+  "all_compiled_source_hashes_match": true,
+  "render_exit": 0,
+  "html_sha256": "2ef329f3c9d1b4d90899080f224022582bf0ab9af672681cc521357acfd08070"
+}

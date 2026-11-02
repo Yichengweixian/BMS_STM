@@ -1,0 +1,1 @@
+PASS heartbeat_lost: outputs off; once token retained; independent timer and resource restore

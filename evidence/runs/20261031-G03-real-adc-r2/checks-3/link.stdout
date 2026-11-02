@@ -1,0 +1,25 @@
+PASS: production G02 port/register model; default gate, pair release (if enabled), ADC ownership, callbacks, failures, cancellation, cleanup and stop. Simulation only.
+#G02,g03-adc-r2,13,2,12,0,0,0,800000000,400000000,64000000,1005,1015,0,0,0,0,0,0,0,0,0,1500,0,4,1,2,0*AC73
+
+PASS: CRC/fragments/overflow/replay/quiet-run/STOP/fault/clear/timeout transport using production core+port+link.
+#G03,g03-adc-r2,20,0,0,0,0,0,1,1,1000,0,0,0,0,0,0,0,0,0,0,0,1,0*BE91
+
+#G03,g03-adc-r2,21,0,1,1,0,0,1,1,1000,0,0,0,1015,0,1015,1,1,0,0,0,1,0*0D3E
+
+#G03,g03-adc-r2,23,0,3,1,0,0,1,1,1000,1,1,0,1015,0,1075,3,1,60,1,0,1,0*E721
+
+#G03,g03-adc-r2,23,0,3,1,0,0,1,1,1000,1,1,0,1015,0,1075,3,1,460,1,0,1,0*E2C2
+
+#G03,g03-adc-r2,24,0,6,1,128,3,1,1,1000,0,0,0,1015,1875,1075,4,1,860,1,0,1,0*3A01
+
+#G03,g03-adc-r2,25,5,6,1,128,3,1,1,1000,0,0,0,1015,1875,1075,4,1,860,1,0,1,0*5F6C
+
+#G03,g03-adc-r2,26,0,0,1,0,0,1,1,1000,0,0,0,1015,1875,1075,5,1,860,1,0,1,0*6298
+
+#G03,g03-adc-r2,27,4,0,1,0,0,1,1,1000,0,0,0,1015,1875,1075,5,1,860,1,0,1,0*69A9
+
+#G03,g03-adc-r2,28,0,1,1,0,0,1,1,1000,0,0,0,1875,0,1875,6,2,0,0,0,1,0*8F66
+
+#G03,g03-adc-r2,30,0,0,1,0,2,1,1,1000,0,0,0,1875,1935,1875,10,2,80,1,0,1,0*0D6A
+
+PASS: production UART G03 dispatch, replay does not heartbeat, G02 exclusion and shared STOP.

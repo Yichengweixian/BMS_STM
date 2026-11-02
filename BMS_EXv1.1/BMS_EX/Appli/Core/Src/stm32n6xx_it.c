@@ -19,7 +19,12 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "g03_adc_port.h"
+#include "g03_relay_port.h"
+#include "g03_pwm_port.h"
 #include "stm32n6xx_it.h"
+#include "g02_port.h"
+#include "g03_port.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
@@ -74,6 +79,7 @@ extern UART_HandleTypeDef huart1;
   */
 void NMI_Handler(void)
 {
+  G02_CPUFault();
   /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
 
   /* USER CODE END NonMaskableInt_IRQn 0 */
@@ -89,6 +95,7 @@ void NMI_Handler(void)
   */
 void HardFault_Handler(void)
 {
+  G02_CPUFault();
   /* USER CODE BEGIN HardFault_IRQn 0 */
 
   /* USER CODE END HardFault_IRQn 0 */
@@ -104,6 +111,7 @@ void HardFault_Handler(void)
   */
 void MemManage_Handler(void)
 {
+  G02_CPUFault();
   /* USER CODE BEGIN MemoryManagement_IRQn 0 */
 
   /* USER CODE END MemoryManagement_IRQn 0 */
@@ -119,6 +127,7 @@ void MemManage_Handler(void)
   */
 void BusFault_Handler(void)
 {
+  G02_CPUFault();
   /* USER CODE BEGIN BusFault_IRQn 0 */
 
   /* USER CODE END BusFault_IRQn 0 */
@@ -134,6 +143,7 @@ void BusFault_Handler(void)
   */
 void UsageFault_Handler(void)
 {
+  G02_CPUFault();
   /* USER CODE BEGIN UsageFault_IRQn 0 */
 
   /* USER CODE END UsageFault_IRQn 0 */
@@ -149,6 +159,7 @@ void UsageFault_Handler(void)
   */
 void SecureFault_Handler(void)
 {
+  G02_CPUFault();
   /* USER CODE BEGIN SecureFault_IRQn 0 */
 
   /* USER CODE END SecureFault_IRQn 0 */
@@ -207,6 +218,8 @@ void SysTick_Handler(void)
 
   /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick();
+  G03_TickIRQ();
+  G03_ADC_TickIRQ();
   /* USER CODE BEGIN SysTick_IRQn 1 */
 
   /* USER CODE END SysTick_IRQn 1 */
@@ -227,7 +240,7 @@ void ADC1_2_IRQHandler(void)
   /* USER CODE BEGIN ADC1_2_IRQn 0 */
 
   /* USER CODE END ADC1_2_IRQn 0 */
-  HAL_ADC_IRQHandler(&hadc1);
+  if (!G02_ADC_IRQHandler()) HAL_ADC_IRQHandler(&hadc1);
   HAL_ADC_IRQHandler(&hadc2);
   /* USER CODE BEGIN ADC1_2_IRQn 1 */
 
@@ -298,7 +311,7 @@ void TIM2_IRQHandler(void)
   /* USER CODE BEGIN TIM2_IRQn 0 */
 
   /* USER CODE END TIM2_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim2);
+  if (!G03_PWM_TimerIRQ()) G03_RelayTickIRQ();
   /* USER CODE BEGIN TIM2_IRQn 1 */
 
   /* USER CODE END TIM2_IRQn 1 */
@@ -319,5 +332,10 @@ void USART1_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
+void TIM1_UP_IRQHandler(void)
+{
+  G02_TIM1_IRQHandler();
+}
+
 
 /* USER CODE END 1 */

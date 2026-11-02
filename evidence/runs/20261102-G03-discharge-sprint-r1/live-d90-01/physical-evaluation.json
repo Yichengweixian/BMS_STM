@@ -1,0 +1,12 @@
+{
+  "verdict": "fail",
+  "execution_and_recovery": "completed",
+  "valid_loaded_discharge_point": false,
+  "user_report": "Load was not plugged in; connected after this run.",
+  "nominal_current_median_A": -0.0011276666720708211,
+  "relay_hold_measured_us": 1,
+  "relay_hold_required_us": 20000,
+  "original_result_note": "result.json pass was transaction-only and insufficient. Preserve it; this assessment is the experiment verdict.",
+  "root_cause": "Output-stage acquisition showed missing load; independent timer reused earlier IRQ timestamp after callback transition, unsigned underflow bypassed coast.",
+  "retry_performed": false
+}

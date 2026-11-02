@@ -1,0 +1,23 @@
+{
+  "evidence_scope": [
+    "simulation",
+    "build"
+  ],
+  "hardware_access": false,
+  "source_sha256": {
+    "BMS_EXv1.1\\BMS_EX\\BSP\\pwm_oneshot.c": "dafe719d57b41f00062d87ace7a976721cd600b91ecb5f58348282eceb83878b",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\pwm_oneshot.h": "371e1f019dae6e66c61adbbbb18de04a2de2c47e69c87d9c2608848e8a5d73a3",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_pwm_port.c": "002bb9fe7cc32ccc830aad54b15c5e74c220e08215b86f36a6614a3b45531651",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_pwm_port.h": "d858b87c1800f8919296609f3426824fd753e05e7da2ff0d1b9e83043bc2d59e",
+    "tests\\g03\\test_pwm_oneshot.c": "8c92895ef8dba8eaa4a819f9ff3288c1ad5a491b5dfc41fb3fecf5bc25c505f4",
+    "tests\\g03\\test_pwm_port.c": "4c3eadea05640b3e233228d9080aadd47f5bfa0d8f950226972be567404254e2",
+    "tests\\g03\\pwm_port_fixture\\main.h": "202ddf15452dcafa44d46e540de39de8fc88ccfe5b7dd083df14588c35463db5",
+    "scripts\\g03\\pwm_disabled.py": "a977eca43a2582eb0c86418b829851f69eaedc14f226bccb0121b23650216c9f",
+    "tests\\g03\\test_pwm_disabled_host.py": "52128aff1b8a088450f13bbaa7e48c21f8c01e11bc9fffdd00a72de3fa2a9b47"
+  },
+  "verdict": "pass",
+  "core_groups": 21,
+  "port_groups": 15,
+  "target_object_compiled": true,
+  "caveat": "Port model compiles unchanged .c files as C++ for side-effect registers. Keil C build and physical peripheral tests are separate."
+}

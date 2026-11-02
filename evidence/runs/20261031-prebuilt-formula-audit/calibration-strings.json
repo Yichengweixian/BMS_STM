@@ -1,0 +1,30 @@
+[
+  {
+    "address": "0x7011827c",
+    "text": "[CAL] I_ZERO %.3f V out of [%.2f, %.2f] -> keep default %.2f V"
+  },
+  {
+    "address": "0x701182bc",
+    "text": "[CAL] I_ZERO_MCU %.3f V out of [%.2f, %.2f] -> keep default %.2f V"
+  },
+  {
+    "address": "0x70118300",
+    "text": "[CAL] I_ZERO(ADBMS)=%.4f V  I_ZERO_MCU(MCU)=%.4f V  delta=%.1f mV"
+  },
+  {
+    "address": "0x7011860c",
+    "text": "[AWD] charge OC threshold %.3f A beyond I-channel range (I_ZERO_MCU=%.3f V): threshold CLAMPED, protection INACTIVE"
+  },
+  {
+    "address": "0x70118680",
+    "text": "[AWD] charge OC threshold margin < %.2f V (I_ZERO_MCU=%.3f V, thr=%.3f A)"
+  },
+  {
+    "address": "0x701186cc",
+    "text": "[AWD] discharge OC threshold %.3f A beyond I-channel range (I_ZERO_MCU=%.3f V): threshold CLAMPED, protection INACTIVE"
+  },
+  {
+    "address": "0x70118744",
+    "text": "[AWD] discharge OC threshold margin < %.2f V (I_ZERO_MCU=%.3f V, thr=%.3f A)"
+  }
+]

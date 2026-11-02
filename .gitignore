@@ -57,3 +57,14 @@ __pycache__/
 # Locally installed documentation dependencies
 node_modules/
 .venv/
+
+# G03 power targets and generated object files (keep local).
+/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_PWM_Power_Debug/
+/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_PWM_Power_Release/
+*.[oO]
+*.[oO][bB][jJ]
+
+# Firmware BIN images/backups only; UART raw .bin evidence remains versioned.
+BMS_*.[bB][iI][nN]
+/evidence/runs/20261030-basic-flash/existing-fsbl-backup.bin
+/evidence/**/firmware*/**/*.[bB][iI][nN]

@@ -1,0 +1,14 @@
+{
+  "instructions/STATUS.md": {
+    "before_sha256": "ca39a4f0be08e38bbab0e6bc1f5f08ef10626428fe3e96af8af1b1cbe4073132",
+    "after_sha256": "00337eba0a577b8a76a4b9e8d8c60465ed810318bb9f4b82a78ad30c1bcdf3af"
+  },
+  "instructions/RUNLOG.md": {
+    "before_sha256": "36e373f4b80e0edd5f83fcb50e0971106f8622630cfbf7f6e30117a754810924",
+    "after_sha256": "86939426f895b148fac1ff642262fb59a65ad541d6d80e4bd04fa4292ec6d6bc"
+  },
+  "instructions/specs/hardware-profile.json": {
+    "before_sha256": "221bcf61f586e5228cff89fdb7a9a48699947e5f4a2074ffd3ff4c19f8de92af",
+    "after_sha256": "457c26a53da9f306daa117c8abbb0410f7838f10705bf4929dbf45e796e5efac"
+  }
+}

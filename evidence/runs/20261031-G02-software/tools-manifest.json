@@ -1,0 +1,22 @@
+[
+  {
+    "path": "D:\\K5\\UV4\\UV4.exe",
+    "sha256": "428baf13d15e6760af1618def9c9815c97f0321cc5e459ec7adc4dde41c42f89"
+  },
+  {
+    "path": "D:\\K5\\ARM\\ARMCLANG\\bin\\armclang.exe",
+    "sha256": "ad5afaace02844fad6631ebe77d5a995a72f79555ebfa52ce969e735a4d46f91"
+  },
+  {
+    "path": "D:\\K5\\ARM\\ARMCLANG\\bin\\armlink.exe",
+    "sha256": "f63cf864edbf904e7db98647038ec8e75894a216c7fabc179277874ea6050f08"
+  },
+  {
+    "path": "D:\\ADMIN\\mingw64\\bin\\gcc.exe",
+    "sha256": "c5f0953f7a71ddcdf0852e1e44a43cef9b8fe121beba4d4202bfe6d405de47c0"
+  },
+  {
+    "path": "C:\\Users\\ADMIN\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "sha256": "052f8b35eee3a2b59ca479cf5a9f2d95c08f2394f1730d0233cc79c5cebaa3df"
+  }
+]

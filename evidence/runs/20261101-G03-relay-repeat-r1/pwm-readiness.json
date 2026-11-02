@@ -1,0 +1,112 @@
+{
+  "scope": "static/offline preparation; no board PWM operation",
+  "power_ready": false,
+  "firmware_changed": false,
+  "firmware_timing": {
+    "OffStateRunMode": "TIM_OSSR_DISABLE",
+    "OffStateIDLEMode": "TIM_OSSI_DISABLE",
+    "LockLevel": "TIM_LOCKLEVEL_OFF",
+    "DeadTime": "0",
+    "BreakState": "TIM_BREAK_DISABLE",
+    "BreakPolarity": "TIM_BREAKPOLARITY_HIGH",
+    "BreakFilter": "0",
+    "BreakAFMode": "TIM_BREAK_AFMODE_INPUT",
+    "Break2State": "TIM_BREAK2_DISABLE",
+    "Break2Polarity": "TIM_BREAK2POLARITY_HIGH",
+    "Break2Filter": "0",
+    "Break2AFMode": "TIM_BREAK_AFMODE_INPUT",
+    "AutomaticOutput": "TIM_AUTOMATICOUTPUT_DISABLE"
+  },
+  "course_points_only": [
+    {
+      "requested_duty": 0.9,
+      "ccr": 1800,
+      "arr": 2000,
+      "actual_timer_duty": 0.9,
+      "center_aligned_frequency_Hz": 100000.0,
+      "upper_switch_mapping_verified": false
+    },
+    {
+      "requested_duty": 0.8,
+      "ccr": 1600,
+      "arr": 2000,
+      "actual_timer_duty": 0.8,
+      "center_aligned_frequency_Hz": 100000.0,
+      "upper_switch_mapping_verified": false
+    },
+    {
+      "requested_duty": 0.7,
+      "ccr": 1400,
+      "arr": 2000,
+      "actual_timer_duty": 0.7,
+      "center_aligned_frequency_Hz": 100000.0,
+      "upper_switch_mapping_verified": false
+    },
+    {
+      "requested_duty": 0.6,
+      "ccr": 1200,
+      "arr": 2000,
+      "actual_timer_duty": 0.6,
+      "center_aligned_frequency_Hz": 100000.0,
+      "upper_switch_mapping_verified": false
+    },
+    {
+      "requested_duty": 0.5,
+      "ccr": 1000,
+      "arr": 2000,
+      "actual_timer_duty": 0.5,
+      "center_aligned_frequency_Hz": 100000.0,
+      "upper_switch_mapping_verified": false
+    },
+    {
+      "requested_duty": 0.4,
+      "ccr": 800,
+      "arr": 2000,
+      "actual_timer_duty": 0.4,
+      "center_aligned_frequency_Hz": 100000.0,
+      "upper_switch_mapping_verified": false
+    }
+  ],
+  "candidate_start_duty": null,
+  "candidate_deadtime_ns": null,
+  "fast_feedback_observation": {
+    "afe_delta_codes": [
+      -2492.5,
+      -2493.0,
+      -2491.0
+    ],
+    "mcu_delta_codes": [
+      0.5,
+      -1.0,
+      0.0
+    ],
+    "physical_valid": 0
+  },
+  "gaps": [
+    "Current TIM1 programmed deadtime is zero; physical driver/MOS turn-off overlap has no board evidence",
+    "TIM1 Break is disabled; no verified hardware fault source/polarity/routing",
+    "Missing physical/control bound: control.permitted_test_duty_min",
+    "Missing physical/control bound: control.permitted_test_duty_max",
+    "Missing physical/control bound: control.effective_deadtime_min_ns",
+    "Missing physical/control bound: control.stop_delay_limit_us",
+    "Missing physical/control bound: control.open_loop_point_max_ms",
+    "Missing energy/limit evidence: limits.converter_current_max_A",
+    "Missing energy/limit evidence: limits.converter_voltage_max_V",
+    "Missing energy/limit evidence: limits.supply_current_limit_A",
+    "MCU ADC1/PA1 response path is not verified; see observed AFE versus MCU deltas, not a calibrated fast protection signal",
+    "PA9/PF7 to high/low gate driver mapping and effective deadtime require board-specific evidence",
+    "Existing g03_adc_port.c is explicitly output-disabled; a reviewed real PWM execution/protection adapter is still required"
+  ],
+  "source_hashes": {
+    "BMS_EXv1.1\\BMS_EX\\Appli\\Core\\Src\\main.c": "40fbd27d41e27e48ed48f3acfa8ef2d5a9fcbcfa9544f46967c25592e0ef2cf9",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g02_port.h": "c0abd65e7efa6f5f40e169b1e04ee163f2a2bf9b610d7a5ad824325e53fd2b68",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.c": "85fc9f228a5cfc80e4756d4419dcf474c304682b45e90175402a67b2f897da26",
+    "instructions\\specs\\hardware-profile.json": "497e7b327e9a0d8186c3c46dd1e99169bac6eae333de486ab0878aac930057ae",
+    "BMS_EXv1.1\\BMS_EX\\Drivers\\STM32N6xx_HAL_Driver\\Inc\\stm32n6xx_ll_tim.h": "a9d2c8f0bee55daf32b39cb7bca06898739ff93284ce8b7a0770a42fd57dccb7"
+  },
+  "notes": [
+    "33 ohm load and a short command window do not bound internal half-bridge shoot-through current",
+    "DTG calculator follows the bundled ST LL_TIM four-range encoding and rounds upward; it does not choose a board-safe deadtime",
+    "No loop, serial write, reset, or power enable is implemented by this tool"
+  ]
+}

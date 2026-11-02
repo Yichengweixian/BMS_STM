@@ -1,0 +1,53 @@
+[
+  {
+    "name": "g02-board",
+    "command": [
+      "C:\\Users\\ADMIN\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+      "scripts/g02/host_diagnostics.py",
+      "--port",
+      "COM9",
+      "--out",
+      "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261031-G03-real-adc-r4\\g02-board"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "g03-synthetic-board",
+    "command": [
+      "C:\\Users\\ADMIN\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+      "scripts/g03/disabled_diagnostics.py",
+      "--port",
+      "COM9",
+      "--out",
+      "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261031-G03-real-adc-r4\\g03-synthetic-board"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "g01-capture",
+    "command": [
+      "C:\\Users\\ADMIN\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+      "scripts/g01/g01_capture.py",
+      "--port",
+      "COM9",
+      "--out",
+      "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261031-G03-real-adc-r4\\g01-capture",
+      "--seconds",
+      "30",
+      "--firmware-sha256",
+      "b9ffb2024a164cc299b6edbeb1644bd1f64b5815854195ffed84aaa0502dda26"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "g01-analyze",
+    "command": [
+      "C:\\Users\\ADMIN\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+      "scripts/g01/analyze_capture.py",
+      "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261031-G03-real-adc-r4\\g01-capture",
+      "--out",
+      "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261031-G03-real-adc-r4\\g01-analysis.json"
+    ],
+    "exit_code": 0
+  }
+]

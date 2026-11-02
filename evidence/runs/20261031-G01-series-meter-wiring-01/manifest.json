@@ -1,0 +1,13 @@
+{
+  "evidence_scope": [
+    "static"
+  ],
+  "verdict": null,
+  "connection_performed": false,
+  "sha256": {
+    "course-labelled-connectors.jpg": "854933ecafa5e7988ac931f253f6c0ba8107d1fe11842451279fba6517da63b4",
+    "course-power-topology.png": "2880552960d70d14518438a1efaef5293e232f88903daa36261b7ea9fed8718b",
+    "hardware-profile-before.json": "552f9e141bf64ae1702753403ec3b24de199eb149a6b3b0e3b2f24f568fb4ca6",
+    "wiring-review.md": "25ac1510f974c8a9179c38b203ee4287f76db0c1779656b42e7c10ba33e2ee09"
+  }
+}

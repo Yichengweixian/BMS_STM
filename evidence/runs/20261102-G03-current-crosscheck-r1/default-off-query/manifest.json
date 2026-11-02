@@ -1,0 +1,10 @@
+{
+  "firmware": "g03-power-points-r4",
+  "image_sha256": "d24854613869c973c3483ebc7ca7d973fb5bf2ca67e75ca8789ff454b5703784",
+  "recorder_sha256": "7ae7a36f2e9414bbd805d018b4e5af3195ccc2f0c931ff4c4e176a8b5d71f766",
+  "mode": "query",
+  "profile": 1345925889,
+  "physical_valid": 0,
+  "created_utc": "2026-11-02T06:42:01.139512+00:00",
+  "start_retries": 0
+}

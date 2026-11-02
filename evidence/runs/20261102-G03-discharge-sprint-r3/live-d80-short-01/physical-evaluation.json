@@ -1,0 +1,16 @@
+{
+  "verdict": "fail",
+  "actual_pwm_started": false,
+  "command_D": 0.8,
+  "completed_open_loop_point": false,
+  "first_trip": "F_VOLTAGE: cell13/A/CH1=3.2207V <3.30V",
+  "relay_on_us": 1010119,
+  "relay_off_us": 1031122,
+  "additional_faults": "ADC_STALE and RECOVERY were caused by stale last_data not refreshed after initial fault; raw recovery samples are present.",
+  "observed_recovery_nominal_V": 10.4983,
+  "observed_recovery_nominal_A": 0.0,
+  "automatic_retry": false,
+  "user_followup": "CH1/A contact problem found and resecured after static channel mapping. CH3 had no reported issue.",
+  "mapping_correction": "Earlier assistant attribution to CH3 was incorrect. cell13 is CH1/A, confirmed by distinct voltages.",
+  "misleading_legacy_field": "relay_hold_after_pwm_us=1031122 in original result is not meaningful because PWM never started; r4 host reports null for this case."
+}

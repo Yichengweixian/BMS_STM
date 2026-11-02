@@ -1,0 +1,17 @@
+{
+  "samples": 197,
+  "active_complete_samples": 95,
+  "stopped": true,
+  "software_pwm_us": 2000072,
+  "relay_hold_after_pwm_us": 20100,
+  "timing_sequence_ok": true,
+  "pwm_increment_Ibat_nominal_A": -0.14951533404986067,
+  "load_response_observed": true,
+  "actual_ccr_arr_constant": true,
+  "real_power_command_sent": true,
+  "actual_pwm_started": true,
+  "faults": 0,
+  "physical_valid": 0,
+  "steady_state_claim": false,
+  "verdict": "pass"
+}

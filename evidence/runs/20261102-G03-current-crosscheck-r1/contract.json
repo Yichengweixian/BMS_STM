@@ -1,0 +1,18 @@
+{
+  "profile": 1345925892,
+  "firmware_sha256": "d24854613869c973c3483ebc7ca7d973fb5bf2ca67e75ca8789ff454b5703784",
+  "source_wiring_confirmed": true,
+  "source_settings_confirmed": true,
+  "source_cv_confirmed": true,
+  "no_real_cells": true,
+  "load_connected": true,
+  "charge_port_open": true,
+  "new_image_default_off_verified": true,
+  "dry_run_passed": true,
+  "source_paths_reviewed": true,
+  "default_off_evidence": "default-off-query-02/result.json",
+  "prior_same_D_short_evidence": "evidence/runs/20261102-G03-discharge-sprint-r4/live-d80-short-01/result.json",
+  "user_confirmation": "User confirmed original wiring, running boot mode/reset, idle normal and ready to observe PSU current; no new wiring",
+  "purpose": "Independent PSU current display crosscheck, not a new D point",
+  "physical_short_current_ceiling_confirmed": false
+}

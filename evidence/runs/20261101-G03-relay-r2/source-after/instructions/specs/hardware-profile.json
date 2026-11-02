@@ -1,0 +1,782 @@
+{
+  "schema_version": "1.0-draft",
+  "profile_id": "cnn647b-bms-g02-20261031-r1",
+  "status": "partially_confirmed",
+  "note": "Confirmed facts, document nominal values and code assumptions are separate below. Unknown physical parameters and limits remain null. No power-stage acceptance is implied.",
+  "board_id": null,
+  "hardware_revision": null,
+  "schematic_sha256": null,
+  "mcu_from_project": "STM32N647X0HxQ",
+  "afe_from_project": "ADBMS1818",
+  "current_sign_proposed": "positive_into_battery_pack",
+  "amplifier_actual_part": null,
+  "amplifier_gain_V_per_V": null,
+  "shunt_ohm_measured": null,
+  "adc_reference_V_measured": null,
+  "mcu_and_afe_current_same_node": null,
+  "temperature_sensor_actual_part": null,
+  "sensor_divider_topology": null,
+  "cell_model": null,
+  "cell_ids": [],
+  "capacity_reference_Ah": null,
+  "limits": {
+    "cell_voltage_min_V": null,
+    "cell_voltage_max_V": null,
+    "charge_current_max_A": null,
+    "discharge_current_max_A": null,
+    "charge_temperature_min_C": null,
+    "charge_temperature_max_C": null,
+    "discharge_temperature_min_C": null,
+    "discharge_temperature_max_C": null,
+    "converter_voltage_max_V": null,
+    "converter_current_max_A": null,
+    "converter_power_max_W": null,
+    "load_power_continuous_W": null,
+    "supply_current_limit_A": null
+  },
+  "control": {
+    "pwm_frequency_Hz_course": 100000,
+    "upper_switch_duty_min_course": 0.4,
+    "upper_switch_duty_max_course": 0.9,
+    "permitted_test_duty_min": null,
+    "permitted_test_duty_max": null,
+    "feedback_sign_charge": null,
+    "feedback_sign_discharge": null,
+    "effective_deadtime_min_ns": null,
+    "relay_change_conditions": null,
+    "stop_delay_limit_us": null,
+    "communication_loss_action": null,
+    "default_power_disabled_verified_run_id": null,
+    "open_loop_point_max_ms": null,
+    "communication_timeout_ms": null
+  },
+  "confirmed_by": null,
+  "confirmed_at_utc": null,
+  "evidence": [
+    {
+      "source": "Keil project and STM32CubeProgrammer connection",
+      "scope": "MCU identity only; board revision and connected power hardware not established",
+      "path": "evidence/runs/20261030-basic-flash/flash-release-20261030-ur.log"
+    },
+    {
+      "source": "User-provided board photographs 2026-10-31",
+      "path": "D:/ADMIN/Temp/codex-clipboard-37d4c8f1-d9de-4232-8a27-6712bfe3ba9d.jpg",
+      "scope": "Visible CNN647B core-board silkscreen and ADBMS1818 chip marking; carrier revision and UART wiring not established"
+    },
+    {
+      "source": "2026-10-31 source and course-material audit",
+      "path": "evidence/runs/20261031-G00-hardware-audit/document-excerpts.json",
+      "scope": "Document nominal information and code configuration, not measured limits"
+    },
+    {
+      "source": "User full-board photo and text confirmation",
+      "path": "evidence/runs/20261031-G00-hardware-audit/board-cells-load-photo.jpg",
+      "sha256": "6f2b705a26d78cc4b9430c4938b33881e570dcb9a33b9fc97494bd74be43ceb6",
+      "scope": "3 installed cells, visible 14500/3.7V/800mAh/Li-ion markings, power plug, external resistor appearance; actual voltage/load rating not established"
+    },
+    {
+      "source": "User message 2026-10-31",
+      "scope": "External resistor marking transcribed as 25W33ΩJ; label rating only, not measured resistance or installed thermal capability"
+    },
+    {
+      "source": "G01.1-G01.3 software implementation and offline fault injection",
+      "path": "evidence/runs/20261031-G01-software/work-card.md",
+      "scope": "software/build/simulation only; actual calibration and hardware limits unchanged"
+    },
+    {
+      "source": "G01 actual Release r2 flash/readback and 9-channel serial capture",
+      "path": "evidence/runs/20261031-G01-board/result.json",
+      "scope": "real raw acquisition and reset startup only; no accuracy/calibration/power-stage acceptance"
+    },
+    {
+      "source": "User equipment photo 2026-10-31",
+      "path": "evidence/runs/20261031-instrument-registration/multimeter.jpg",
+      "sha256": "05b19c06ec322b12abd807cc2669057a926dbf0f5a5a09f6a600532689bf5f09",
+      "scope": "front-panel identity and printed nominal specifications only"
+    },
+    {
+      "source": "User equipment photo 2026-10-31",
+      "path": "evidence/runs/20261031-instrument-registration/oscilloscope.jpg",
+      "sha256": "0f2edfa84c9aaf9979b35b68a87983a48acbc88dbdae7500a53845704055119c",
+      "scope": "front-panel identity and printed nominal specifications only"
+    },
+    {
+      "source": "User manual voltage readings and COM9 capture 2026-10-31",
+      "path": "evidence\\runs\\20261031-G01-voltage-reference-01\\work-card.md",
+      "scope": "single-point exploratory voltage comparison; physical channel mapping and exact timing unconfirmed; no calibration fit"
+    },
+    {
+      "source": "User supply measurements and course slide7 figures",
+      "path": "evidence\\runs\\20261031-G01-supply-observation-01\\user-observation.json",
+      "scope": "18V reported measurement, unidentified3V node, charger not connected, holders have no identifiers; not power-stage acceptance"
+    },
+    {
+      "source": "User cell negative-terminal voltages to board GND",
+      "path": "evidence\\runs\\20261031-G01-cell-position-01\\user-measurements.json",
+      "scope": "supports C/B/A low-to-high stack positions; no direct AFE channel correspondence or current zero verification"
+    },
+    {
+      "source": "User full-board photo and course slide7 comparison",
+      "path": "evidence\\runs\\20261031-G01-current-location-01\\review.md",
+      "scope": "U5 region localization only; fitted identity/orientation and probing pad unverified"
+    },
+    {
+      "source": "User photos and explicit current setup confirmation 2026-10-31",
+      "path": "evidence/runs/20261031-G01-voltage-source-settings-02/work-card.md",
+      "scope": "CH1/A CH2/B CH3/C; real cells removed, board adapter retained, charge/load ports empty; no live output or accuracy measurement"
+    }
+  ],
+  "mcu_detected": "STM32N647 (Device ID 0x486)",
+  "mcu_user_reported": "stm32N647X",
+  "core_board_marking": "CNN647B",
+  "afe_marking_observed": "ADBMS1818",
+  "registration_id": "local-bms-board-01",
+  "registration_id_note": "Administrative identifier for the board in this chat; not a manufacturer serial number.",
+  "verified_identity": {
+    "core_board_marking": "CNN647B",
+    "mcu_project": "STM32N647X0HxQ",
+    "mcu_device_id": "0x486",
+    "afe_photo_marking": "ADBMS1818",
+    "uart_usb_device": "CH340 VID_1A86 PID_7523",
+    "uart_last_port": "COM11",
+    "source": "Existing photographs, programmer log, USB enumeration; see evidence entries"
+  },
+  "software_configuration": {
+    "source": "BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c and Appli/Core/Inc/main.h",
+    "uart": {
+      "peripheral": "USART1",
+      "tx": "PE5",
+      "rx": "PE6",
+      "baud": 115200,
+      "format": "8N1",
+      "validation": "G01 Release r2 COM9: normal BOOT/reset, 9-channel continuous raw stream and wire/AFE PEC verified; calibration pending"
+    },
+    "relays": {
+      "discharge": "PG5/SWL",
+      "charge": "PB5/SWS",
+      "initialized_gpio_level": "LOW",
+      "physical_open_state_verified": false
+    },
+    "pwm": {
+      "timer": "TIM1",
+      "channel": "CH2/CH2N",
+      "pins": [
+        "PA9",
+        "PF7"
+      ],
+      "prescaler": 0,
+      "period": 2000,
+      "repetition_counter": 1,
+      "counter_mode": "CENTERALIGNED1",
+      "programmed_deadtime": 0,
+      "break_enabled": false,
+      "start_call_present": true,
+      "actual_frequency_measured_Hz": null,
+      "initial_compare": 1000,
+      "start_on_boot": false,
+      "pin_output_compiled": false,
+      "idle_gpio_level": "PA9/PF7 GPIO push-pull LOW after application GPIO init; physical driver state unverified"
+    },
+    "adc_start_call_present": true,
+    "adc_signal_labels": {
+      "PA0": "VB_AD",
+      "PA1": "I_AD",
+      "PA2": "VS_AD",
+      "PA10": "VL_AD"
+    },
+    "afe": {
+      "selected_cell_channels": [
+        1,
+        7,
+        13
+      ],
+      "current": "GPIO1",
+      "temperature": [
+        "GPIO2",
+        "GPIO3",
+        "GPIO4"
+      ],
+      "output_cadence": "attempted every 500ms; PLADC completion poll, 20ms conversion timeout"
+    },
+    "measurement_assumptions": {
+      "current_zero_V": 0.9,
+      "current_A_per_V": 1.3333,
+      "temperature_model": "PT1000 linear approximation",
+      "pullup_ohm": 9100,
+      "excitation_V": 3.0,
+      "R0_ohm": 1000,
+      "alpha_per_C": 0.00385,
+      "physical_calibration_verified": false
+    },
+    "stop_design": "G02 source candidate: immediate MOE/AOE/CEN/CCER off, PA9/PF7 and relay commands LOW, latched faults, deferred ADC cleanup; no hardware STOP/reset timing verified",
+    "adc1_acquisition": {
+      "trigger": "software",
+      "period_ms": 500,
+      "resolution_bits": 12,
+      "oversampling_ratio": 2,
+      "right_shift": 1,
+      "internal_self_calibration": "not_enabled",
+      "actual_sampling_verified": true,
+      "verified_run_id": "20261031-G03-disabled",
+      "actual_sampling_verified_firmware": "g03-disabled-r1; G01 restored after G02 diagnostic"
+    },
+    "adc2_acquisition": "not_started; existing initialization retained",
+    "measurement_firmware": "g03-disabled-r1 flashed/readback verified; normal BOOT reset, G03 disabled logic and G02 sampling, resumed 30s/531 valid raw records; uncalibrated",
+    "g02_diagnostic": {
+      "source_firmware": "g03-disabled-r1",
+      "actually_flashed": true,
+      "evidence_run_id": "20261031-G03-disabled",
+      "evidence_scope": [
+        "static",
+        "build",
+        "simulation",
+        "bench",
+        "release_boot"
+      ],
+      "internal_trigger": "TIM1 TRGO update, ADC1 exclusive session; G01 SW trigger restored only after successful cleanup",
+      "clock_policy": "Explicit TIMPRE DIV1/CKPER HSI; diagnostic requires runtime TIMG=400MHz and ADC=64MHz",
+      "adc2": "not started",
+      "auto_start": false,
+      "pin_output_compile_gate": false,
+      "window_max_ms": 10000,
+      "window_note": "software observation cap, not a verified power safety limit",
+      "measured_pwm_Hz": null,
+      "measured_stop_us": null,
+      "measured_driver_deadtime_ns": null,
+      "flash_verified_run_id": "20261031-G03-disabled",
+      "normal_boot_verified": true,
+      "normal_boot_verified_run_id": "20261031-G03-disabled",
+      "normal_boot_basis": "User restored BOOT00/reset; G03/G02 protocol identity and G01 metadata match; not repeated cold boots",
+      "actual_release_hex_sha256": "d94e10e2f5cc144a495125e9461abb4d570af8afcf9daf6567aa4b732ce763a6",
+      "internal_diagnostic_verified": true,
+      "internal_diagnostic_result": "evidence/runs/20261031-G03-disabled/g02-board-regression/result.json",
+      "uart_operations": "status/sample/stop/fault/clear/compare only; no pin-output or relay operation",
+      "host_disconnect_test": "Host serial handle closed without STOP, local 1000ms window expired; query-only reconnect; no physical cable removal or communication watchdog test"
+    },
+    "g03_disabled": {
+      "firmware": "g03-disabled-r1",
+      "power_capable": false,
+      "actual_power_execution": false,
+      "sensor_source": "synthetic fixture v1, separate from actual uncalibrated G01 samples",
+      "fixture_definition": "BMS_EXv1.1/BMS_EX/BSP/g03_port.c:fixture; software test numbers, not physical limits",
+      "local_protection_executor": "G03_TickIRQ after HAL_IncTick in SysTick_Handler; no foreground or host dependency while interrupts run",
+      "independent_hardware_watchdog_verified": false,
+      "physical_protection_thresholds_verified": false,
+      "state_machine_verified_with_synthetic_inputs": true,
+      "bench_run_id": "20261031-G03-disabled",
+      "final_state": "STOPPED, unconfigured, no shadow or actual output-enable bits",
+      "physical_calibration_and_probe_tasks": "skipped per user; unverified"
+    }
+  },
+  "document_nominal": {
+    "source_ppt": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "board_supply": {
+      "adapter_V": 18,
+      "source": "slide4",
+      "actual_connected_value_confirmed": false
+    },
+    "cells": {
+      "series_count": 3,
+      "source": "任务2恒流控制实验_实验步骤.docx paragraph169",
+      "actual_cells_confirmed": false
+    },
+    "current_frontend": {
+      "part_claim": "INA199A2",
+      "gain_claim": 50,
+      "shunt_ohm": 0.015,
+      "source": "PPT slide4/7; task2 paragraphs213-215",
+      "conflict": "TI INA199x2 nominal gain is 100 V/V; actual installed suffix and full signal chain unknown"
+    },
+    "temperature": {
+      "sensor_claim": "PT1000",
+      "pullup_ohm": 9100,
+      "excitation_V": 3.0,
+      "topology_claim": "pull-up divider into AFE GPIO",
+      "source": "PPT slide7; main.c and adbms1818.h",
+      "actual_sensor_confirmed": false
+    },
+    "mcu_adc_reference_V": {
+      "value": 1.8,
+      "source": "task2 paragraph201",
+      "measured": false
+    },
+    "relays": {
+      "claim": "LOW=open, HIGH=energized",
+      "source": "PPT slide6; task2 paragraph126",
+      "actual_polarity_confirmed": false
+    },
+    "power_stage": {
+      "driver_claim": "EG3112 with internal deadtime",
+      "mosfet_claim": "SiZ998DT",
+      "source": "PPT slide8; task2 paragraphs18/102",
+      "actual_verified": false
+    },
+    "examples_not_limits": {
+      "load_ohm": 33,
+      "load_rating_W": 25,
+      "charge_supply_V": 15,
+      "charge_supply_A": 1,
+      "source": "task2 paragraphs80/82",
+      "note": "Illustrative conditions only; not actual equipment or permitted limits"
+    },
+    "hex_current_model": {
+      "model_id": "hex-dd44fae1-nominal-v1",
+      "source_sha256": "dd44fae11ed542ad6bcee45b35a13e93bd6632481b7d29662afda8ac7856be7f",
+      "gain_A_per_V": 1.3266666730244954,
+      "mcu_V_per_code": 0.0004395604191813618,
+      "afe_V_per_code": 0.0001,
+      "default_zero_V": 0.9,
+      "physical_calibration_verified": false,
+      "actual_polarity_verified": false,
+      "evidence": "evidence/runs/20261031-prebuilt-formula-audit/review.md"
+    }
+  },
+  "conflicts": [
+    {
+      "id": "G00-C01",
+      "item": "INA199A2 versus gain50",
+      "resolution": "Do not set actual gain. Confirm fitted device/complete chain then calibrate.",
+      "source": "https://www.ti.com/product/INA199",
+      "additional_document_evidence": "Course slide7 embedded amplifier schematic labeled INA199A1DCKR (text says A2); drawn 0.9REF. Complete physical circuit remains unverified."
+    },
+    {
+      "id": "G00-C02",
+      "item": "Temperature PT1000 template versus NTC host software terminology",
+      "resolution": "Use PT1000 only as current code model; physical sensor unknown.",
+      "additional_document_evidence": "Course slide7 embedded divider schematic labels R31/R32/R33 NTC while displayed formula/code uses PT1000 approximation."
+    },
+    {
+      "id": "G00-C03",
+      "item": "ADC2 ioc one channel versus source three channels",
+      "resolution": "Current source is build baseline. Reconcile before regeneration/ADC measurement."
+    },
+    {
+      "id": "G00-C04",
+      "item": "Template manual claims ST-Link virtual COM; actual device CH340",
+      "resolution": "Use observed CH340 COM10 and actual echo/startup evidence."
+    },
+    {
+      "id": "G00-C05",
+      "item": "F4 schematic in repository versus N647 hardware",
+      "resolution": "F4 PDF is not an accepted circuit source for this carrier."
+    },
+    {
+      "id": "G00-C06",
+      "item": "pi.c and pi.h types differ",
+      "resolution": "pi.c excluded from targets; controller is not active."
+    }
+  ],
+  "physical_setup": {
+    "board_supply_source": "barrel-jack adapter; user measured approximately 18 V",
+    "adapter_label": null,
+    "bench_supply_connected": false,
+    "installed_cell_count": 3,
+    "installed_cell_markings": [
+      "14500",
+      "3.7 V",
+      "800 mAh",
+      "Li-ion"
+    ],
+    "load_connected": true,
+    "load_label": "25W33ΩJ",
+    "reference_instruments": [
+      {
+        "instrument_id": "dmm-ca5212-01",
+        "type": "digital_multimeter",
+        "manufacturer": "Chauvin Arnoux",
+        "model": "C.A 5212",
+        "identification_basis": "user photo front-panel marking",
+        "available": true,
+        "serial_number": null,
+        "calibration_date": null,
+        "calibration_certificate": null,
+        "reference_grade": "manufacturer_spec_only_calibration_unverified",
+        "accuracy_specification": {
+          "source": "evidence\\runs\\20261031-instrument-registration\\CA5212-manual-cn.pdf",
+          "sha256": "f40d807f8b6183b1b9c555fa87bbbf943051e177505225e3145032a3df70e792",
+          "source_url": "https://exp-seee.hust.edu.cn/__local/1/75/9B/0D723459EA09AFD8721611C9444_3B733295_C0A90.pdf",
+          "document_identity": "Chauvin Arnoux C.A 5212/5215/5217 Chinese manufacturer manual, 03-2014 C00097 Ed.1",
+          "pages_visually_checked": [
+            14,
+            15
+          ],
+          "dc_voltage_4V": {
+            "range_V": 4,
+            "resolution_V": 0.001,
+            "reading_percent": 0.2,
+            "counts": 2
+          },
+          "dc_current_4A": {
+            "range_A": 4,
+            "resolution_A": 0.001,
+            "reading_percent": 1,
+            "counts": 5
+          },
+          "dc_current_10A": {
+            "range_A": 10,
+            "resolution_A": 0.01,
+            "reading_percent": 0.5,
+            "counts": 5
+          },
+          "dedicated_temperature_function": false,
+          "reference_conditions": "23 +/-3 degC, RH45-75%; DC AC component <0.1%; other manual reference conditions apply",
+          "accuracy_bound_at_3_896V": 0.009792,
+          "scope": "manufacturer specification only; not a calibration certificate or U95; actual environment and calibration validity unknown"
+        },
+        "selected_reference_range": null,
+        "reference_uncertainty": null,
+        "panel_markings": [
+          "TRMS MULTIMETER",
+          "600V CAT III"
+        ],
+        "photo_observation": "Display in DC voltage mode; black lead at COM, red lead at +. No test point is established; display value is not registered as a board measurement.",
+        "photo": "evidence/runs/20261031-instrument-registration/multimeter.jpg",
+        "selected_reference_range_assessment": {
+          "range_V": 4,
+          "basis": "inferred from reported 3.xxx digits",
+          "explicitly_confirmed": false
+        }
+      },
+      {
+        "instrument_id": "scope-mso3034hd-01",
+        "type": "mixed_signal_oscilloscope",
+        "manufacturer": "UNI-T",
+        "model": "MSO3034HD",
+        "identification_basis": "user photo front-panel marking",
+        "available": true,
+        "serial_number": null,
+        "calibration_date": null,
+        "calibration_certificate": null,
+        "reference_grade": "unknown",
+        "front_panel_nominal": {
+          "bandwidth_Hz": 350000000,
+          "sample_rate_Sa_per_s": 2500000000,
+          "resolution_bits": 12
+        },
+        "actual_acquisition_settings": null,
+        "probe_models": null,
+        "probe_attenuation": null,
+        "differential_probe_available": null,
+        "note": "Printed nominal specifications; not verified per-channel acquisition performance or probe capability.",
+        "photo": "evidence/runs/20261031-instrument-registration/oscilloscope.jpg"
+      }
+    ],
+    "user_action_needed": "Verify polarity/secure contacts; follow voltage-only work card. No formal calibration result yet.",
+    "supply_user_estimate_unverified": null,
+    "supply_photo_observation": "Barrel power plug is connected; adapter label is outside photo; board USB and ribbon cable also connected.",
+    "multimeter_available": true,
+    "oscilloscope_available": true,
+    "external_resistor_observation": "Gold aluminum-housed resistor visible left of board; red/black wires present at lower terminal; resistor resistance and power label unreadable, full electrical route not established.",
+    "load_label_specification": {
+      "resistance_nominal_ohm": 33,
+      "power_rating_label_W": 25,
+      "tolerance_code": "J",
+      "tolerance_percent": 5,
+      "source": "User transcription of resistor marking",
+      "resistance_measured_ohm": null,
+      "continuous_power_in_actual_mounting_W": null
+    },
+    "board_adapter_measurement": {
+      "voltage_V": 18.0,
+      "source": "evidence\\runs\\20261031-G01-supply-observation-01\\user-observation.json",
+      "measurement_time_utc": null,
+      "exact_probe_points": null,
+      "load_state": null,
+      "current_rating_A": null
+    },
+    "charge_supply_connected": false,
+    "cell_holder_position_labels": {
+      "A": null,
+      "B": null,
+      "C": null,
+      "observation": "no printed identifiers reported by user"
+    },
+    "unidentified_voltage_observation": {
+      "voltage_V": 3.0,
+      "node_identity": null,
+      "reference_node": null,
+      "user_guess": "OLED supply; not verified"
+    },
+    "supply_history": "Earlier unverified estimate 12 V superseded by user-reported multimeter measurement 18 V on 2026-10-31; rating and probe points remain unknown.",
+    "cell_stack_position_observation": {
+      "source": "evidence\\runs\\20261031-G01-cell-position-01\\user-measurements.json",
+      "negative_terminal_to_board_GND_V": {
+        "A": 7.77,
+        "B": 3.895,
+        "C": 0.0
+      },
+      "inferred_order_low_to_high": [
+        "C",
+        "B",
+        "A"
+      ],
+      "basis": "user-reported voltage measurements; not continuity verification",
+      "position_definition": "OLED above, battery holder below: A left, B middle, C right",
+      "physical_position_to_afe_channel": {
+        "A": null,
+        "B": null,
+        "C": null
+      }
+    },
+    "current_frontend_location_candidate": {
+      "reference_designator": "U5",
+      "nearby_designators": [
+        "C24",
+        "R18",
+        "R5",
+        "R3"
+      ],
+      "location": "right of1.8V silkscreen, left ofADBMS1818",
+      "basis": "photo designator match to course slide7",
+      "actual_part_confirmed": false,
+      "verified_probe_pad": null,
+      "evidence": "evidence\\runs\\20261031-G01-current-location-01\\location.json"
+    },
+    "external_connector_identification": {
+      "basis": "Course labelled photo and user close-up silkscreen: yellow P_VS/充电, green P_LOAD/放电; continuity still unverified.",
+      "yellow": "external charge DC supply input",
+      "green": "external load connection",
+      "board_continuity_verified": false,
+      "source": "evidence\\runs\\20261031-G01-series-meter-wiring-01\\course-labelled-connectors.jpg"
+    },
+    "current_reference_series_connection": {
+      "status": "electrical position identified; physical break and fixture unverified",
+      "target": "battery-side current path in series with onboard current shunt, not DC-DC external supply/load side",
+      "battery_high_terminal_candidate": "A cell positive; A is left with OLED up; inferred from earlier cell/GND potentials",
+      "confirmed_removable_wire": null,
+      "fixture_available": false,
+      "same_current_as_shunt_verified": false,
+      "connection_performed": false,
+      "meter_polarity_for_positive_charge": {
+        "red_10A": "board/shunt side of verified break",
+        "black_COM": "battery positive side of verified break"
+      },
+      "next": "Ask laboratory technician for a verified battery-branch series test break and insulated fixture in the same current path as R1; do not cut sensor wires or bypass the shunt.",
+      "fixture_availability_basis": "User reports only supplied photographed leads; ordinary probes/crocodile clips/scope probes visible, no battery series interposer identified.",
+      "photo_review": "evidence\\runs\\20261031-G01-series-fixture-review-02/review.md"
+    },
+    "stimulus_instruments": [
+      {
+        "instrument_id": "psu-udp3305s-01",
+        "manufacturer": "UNI-T",
+        "model": "UDP3305S",
+        "available": true,
+        "role": "candidate voltage stimulus, DMM remains independent reference",
+        "identification_basis": "user front-panel photo 2026-10-31",
+        "serial_number": null,
+        "calibration_status": null,
+        "adjustable_channels": [
+          "CH1",
+          "CH2",
+          "CH3"
+        ],
+        "channel_isolation_documented": true,
+        "channel_isolation_basis": "https://uni-trendus.com/products/udp3305s",
+        "unit_wiring_verified": false,
+        "output_state_verified": null,
+        "current_limits_A": null,
+        "connected_to_board": null,
+        "lead_observation": "CH1 red/black leads inserted; remote ends unknown; three-pair fixture availability pending",
+        "photo_evidence": "evidence/runs/20261031-G01-voltage-source-preparation-01/user-UDP3305S.jpg",
+        "manual_url": "https://storage.googleapis.com/uni-tdocuments/Library/UDP3000S%20Series%20DC%20Power%20Supplies%20-%20User%20Manual.pdf"
+      }
+    ],
+    "voltage_source_current_session": {
+      "run_id": "20261031-G01-voltage-source-settings-02",
+      "user_confirmed": {
+        "source_to_holder": {
+          "CH1": "A",
+          "CH2": "B",
+          "CH3": "C"
+        },
+        "real_cells_removed": true,
+        "original_approximately_18V_board_supply_retained": true,
+        "charge_port_empty": true,
+        "load_port_empty": true
+      },
+      "source_photo": {
+        "all_outputs_off": true,
+        "voltage_set_V": {
+          "CH1": 3.5,
+          "CH2": 3.5,
+          "CH3": 3.5
+        },
+        "current_set_A": {
+          "CH1": 0.5,
+          "CH2": 0.5,
+          "CH3": 0.5
+        },
+        "ovp_V": 3.5,
+        "ovp_enabled": false,
+        "ocp_A": 1,
+        "ocp_enabled": true,
+        "scope": "Latest user photo, settings only; output display zero while Off"
+      },
+      "proposed_settings_not_measured": {
+        "mode": "independent",
+        "start_voltage_V": 3.9,
+        "current_set_A": 0.05,
+        "ovp_V": 4.05,
+        "ovp_enabled": true,
+        "ocp_A": 0.06,
+        "ocp_enabled": true,
+        "note": "Engineering starting settings only. Stop on CC, trip or droop; do not increase current blindly. Not board hard ratings."
+      },
+      "afe_supply": {
+        "actual_Vplus_V": null,
+        "actual_Vreg_V": null,
+        "note": "Original 18 V adapter retained by user. Actual AFE rails not established; do not equate adapter voltage to V+. Datasheet Table 3 TME conditions V+16–90 V, VREG4.5–5.5 V."
+      },
+      "note": "Source-to-holder mapping confirmed; holder-to-AFE mapping remains unverified.",
+      "latest_setup_change": {
+        "source": "latest user message",
+        "load_connected": true,
+        "load_identity": null,
+        "actual_load_current_A": null,
+        "user_report": "Load now connected, no current observed; charge/discharge needs software control.",
+        "firmware_review": "g01-sw-r2: Measurement_Task only; relay outputs initialized LOW; no PWM start or charge/discharge command implementation.",
+        "scope": "user observation plus source review; no proof of relay contact state"
+      },
+      "historical_only": true,
+      "superseded_by": "20261031-G03-real-cells-baseline"
+    },
+    "latest_load_observation": {
+      "source": "latest user report",
+      "load_connected": true,
+      "load_identity": "25W33ΩJ previously registered",
+      "actual_load_current_A": null,
+      "user_report": "Three actual cells; 33 ohm discharge load connected; charging port open",
+      "firmware_review": "g03-disabled-r1; no actual PWM/relay enable; only STATUS queried",
+      "evidence_run_id": "20261031-G03-real-cells-baseline"
+    },
+    "g02_setup_pending_note": "Current user confirms three real cells, 33 ohm load and open charge port. Previous three-source session is historical; real-current calibration and physical driver/stop evidence pending.",
+    "charge_source_connected": false,
+    "charge_port_open": true,
+    "current_energy_source": "three real cells, user confirmed 2026-10-31",
+    "latest_setup_confirmation": {
+      "date": "2026-10-31",
+      "source": "latest user report",
+      "installed_real_cells": 3,
+      "discharge_load": "previously identified 33 ohm / 25 W label load",
+      "load_connected": true,
+      "charge_port_open": true,
+      "charge_source_connected": false,
+      "power_start_requested": true,
+      "power_start_executed": false,
+      "note": "User confirms present setup; former three-channel source session is historical. No contact/wiring continuity or thermal measurement inferred."
+    }
+  },
+  "cell_label_specification": {
+    "designation": "14500",
+    "chemistry_label": "Li-ion",
+    "nominal_voltage_V": 3.7,
+    "capacity_label_mAh": 800,
+    "manufacturer_confirmed": null,
+    "actual_capacity_measured_Ah": null,
+    "series_wiring_verified": false,
+    "note": "Printed label values only; not a measured capacity or charge/discharge limit."
+  },
+  "previous_profile_id": "cnn647b-bms-g01-20261031-r2",
+  "voltage_only_followup_observation": {
+    "source": "evidence/runs/20261031-G01-VT-followup-01/raw/user-voltage-reference.json",
+    "load_connected": false,
+    "load_basis": "user report 2026-10-31",
+    "independent_temperature_reference_available": false,
+    "reference_time_alignment_verified": false,
+    "physical_position_to_afe_channel": {
+      "A": null,
+      "B": null,
+      "C": null
+    }
+  },
+  "g02_user_assistance_constraint": {
+    "source": "User message 2026-10-31",
+    "cannot_assist": [
+      "PWM/scope probing",
+      "hardware calibration before open-loop charge/discharge"
+    ],
+    "available_user_actions": [
+      "replace three cells with three DC source outputs",
+      "remove cells"
+    ],
+    "current_work": "Host-only internal diagnostics with pin-output gate closed; no battery rewiring required",
+    "ordinary_dc_source_charge_sink_verified": false
+  },
+  "g03_document_review": {
+    "run_id": "20261031-G03-disabled",
+    "path": "evidence/runs/20261031-G03-disabled/document-review.md",
+    "matched_carrier_schematic_found": false,
+    "f4_schematic_applied_to_n647": false,
+    "relay_stop_sequence_conflict_resolved_by_measurement": false,
+    "ina199_actual_gain_verified": false,
+    "scope": "local course/manual and official component documentation, not measured board limits"
+  },
+  "g03_disabled_adc_software_fixture": {
+    "firmware": "g03-adc-r4",
+    "power_capable": false,
+    "scan_ccr": [
+      1800,
+      1700,
+      1600,
+      1500,
+      1400
+    ],
+    "duration_ms": [
+      100,
+      2000
+    ],
+    "heartbeat_ms": 800,
+    "sample_stale_ms": 5,
+    "initial_relative_limit_mA": 50,
+    "zero_source": "Last 48 of 64 recorded samples, first 16 explicit disabled startup; persistent ADEN at 1 ms, static assumed zero only",
+    "physical_limits_unchanged": true,
+    "note": "Software exercise values only; not power authorization or electrical ratings",
+    "baseline_peak_to_peak_max_codes": 32,
+    "preflight_drift_rejected": true,
+    "board_evidence": "evidence/runs/20261031-G03-real-adc-r4/work-card.md",
+    "adc_difference_investigation": {
+      "verdict": "inconclusive",
+      "root_cause_confirmed": false,
+      "whole_adc_factor_two_supported": false,
+      "internal_reference_nominal_check_V": [
+        1.8012990137118114,
+        1.8015466575012888
+      ],
+      "reference_calibrated": false,
+      "external_path_mode_dependence_observed": true,
+      "physical_current_limits_changed": false
+    }
+  },
+  "g03_relay_preparation": {
+    "date": "2026-11-01",
+    "firmware": "g03-relay-r1",
+    "live_gate": false,
+    "wiring_reconfirmed_by_user": true,
+    "battery_disconnect_available_per_user": true,
+    "new_firmware_flashed_verified": true,
+    "physical_pulse_executed": false,
+    "evidence_run_id": "20261101-G03-relay-r1",
+    "physical_limits_unchanged": true,
+    "normal_boot_confirmed": true,
+    "disabled_capture_verified": true,
+    "verified_firmware": "g03-relay-r1",
+    "verified_sha256": "529e6b83280d724f226e462dad59624f39552d640ba0eb9ec3366ccc694895bf"
+  },
+  "g03_relay_exploratory_profile": {
+    "profile_id": "relay-exploration-20261101-r2",
+    "source_run": "20261101-G03-relay-r1/board-rehearsal-01",
+    "cell_code_band": [
+      38365,
+      39372
+    ],
+    "afe_start_baseline_band": [
+      8958,
+      9042
+    ],
+    "basis": "E: frozen observed-envelope departure checks, not H physical ratings",
+    "cell_margin_codes": 500,
+    "afe_margin_codes": 36,
+    "physical_limits_unchanged": true,
+    "pulse_executed": false
+  }
+}

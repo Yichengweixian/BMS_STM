@@ -1,0 +1,1 @@
+Assertion failed: fields[16]-fields[15]>=100000&&fields[16]-fields[15]<=100100, file C:\Users\ADMIN\.codex\visualizations\2026\11\02\01a19a8a-4630-7842-89f5-2b0cccea4066\g03-sprint-work\workspace\tests\g03\test_power_port.cpp, line 88

@@ -1,0 +1,10 @@
+{
+  "completed_utc": "2026-11-01T08:37:00.856872+00:00",
+  "published_files": 44,
+  "all_changed_file_hashes_match": true,
+  "all_recorded_raw_hashes_match": true,
+  "firmware_hashes_match": true,
+  "actual_trigger_count": 1,
+  "final_output_bits": 0,
+  "formal_G03_verdict": null
+}

@@ -1,0 +1,132 @@
+[
+  {
+    "name": "compile",
+    "argv": [
+      "D:\\Program Files\\JetBrains\\CLion 2025.2.3\\bin\\mingw\\bin\\g++.exe",
+      "-x",
+      "c++",
+      "-std=c++17",
+      "-O2",
+      "-Wall",
+      "-Werror",
+      "-Wno-missing-field-initializers",
+      "-Wno-misleading-indentation",
+      "-DG03_PWM_LIVE_BUILD=1",
+      "-DG3R_LIVE_PROFILE_VERIFIED=0",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\workspace\\tests\\g03\\power_port_fixture",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\workspace\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "-include",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\workspace\\tests\\g03\\power_port_fixture\\main.h",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\workspace\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_power_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\workspace\\BMS_EXv1.1\\BMS_EX\\BSP\\pwm_oneshot.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\workspace\\tests\\g03\\test_power_port.cpp",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\offline\\power.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "normal",
+    "argv": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\offline\\power.exe",
+      "normal"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "d80",
+    "argv": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\offline\\power.exe",
+      "d80"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "long90",
+    "argv": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\offline\\power.exe",
+      "long90"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "long80",
+    "argv": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\offline\\power.exe",
+      "long80"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "74_normal",
+    "argv": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\offline\\power.exe",
+      "74_normal"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "74_long90",
+    "argv": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\offline\\power.exe",
+      "74_long90"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "74_dry",
+    "argv": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\offline\\power.exe",
+      "74_dry"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "74_heartbeat_lost",
+    "argv": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\offline\\power.exe",
+      "74_heartbeat_lost"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "74_stop",
+    "argv": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\offline\\power.exe",
+      "74_stop"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "74_overcurrent",
+    "argv": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\offline\\power.exe",
+      "74_overcurrent"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "74_ccr",
+    "argv": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\offline\\power.exe",
+      "74_ccr"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "74_point_mutation",
+    "argv": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\offline\\power.exe",
+      "74_point_mutation"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "host",
+    "argv": [
+      "C:\\Users\\ADMIN\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\d74-candidate-r1\\workspace\\tests\\g03\\test_power_host.py"
+    ],
+    "exit_code": 0
+  }
+]

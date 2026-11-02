@@ -1,0 +1,37 @@
+{
+  "schema": "post-pwm-disabled-recovery-v1",
+  "firmware": "g03-pwm-disabled-r1",
+  "firmware_sha256": "9126778404c6f9a9890ab729522f7fbd9fe7fe0a380436694494ebecde81f9fb",
+  "image_hash_is_caller_supplied": true,
+  "port": "COM11",
+  "baud": 115200,
+  "first_request_id": 2538821432,
+  "started_utc": "2026-11-01T13:36:51.084948+00:00",
+  "evidence_scope": [
+    "bench"
+  ],
+  "physical_valid": 0,
+  "physical_calibration_changed": false,
+  "power_output_requested": false,
+  "reset_or_flash_performed": false,
+  "allowed_ops": [
+    0,
+    1,
+    2,
+    30,
+    31,
+    34,
+    36,
+    40,
+    42,
+    44
+  ],
+  "explicit_clear_mask": null,
+  "source_sha256": {
+    "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\scripts\\g03\\post_pwm_recovery.py": "0c10372893da78adb9c817e776da9ac52a2497bc229bee8aa2979af46269e088",
+    "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\scripts\\g01\\g01_capture.py": "d704d126a518a4d130c28ab087052bd87c7c5f431b263b2b58701f0a1256bd84",
+    "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\scripts\\g02\\host_diagnostics.py": "e50c41a458c9b8cfdd07ca86d334f38718c86a10e3fde12a8d0d1fc7ee5a0203",
+    "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\scripts\\g03\\pwm_disabled.py": "8324f898014198d1f0d4af803cbe570d6f24ced7a7b46b35808488b989f272f9",
+    "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\scripts\\g03\\relay_capture.py": "552a1df3b63ddd241febeedf85d6ebf653d4f748f3db2576f87120ca26fc3576"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "recomputed_analysis": {
+    "conclusion": "response_and_recovery",
+    "valid_window_samples": 4,
+    "response_codes": [
+      -2494,
+      -2493,
+      -2492,
+      -2494
+    ],
+    "recovered": true,
+    "capture_max_ms": 9,
+    "start_gap_max_ms": 21,
+    "baseline_min": 8995,
+    "baseline_max": 9005,
+    "software_window_ms": 98.528565,
+    "command_high_ms": 98.528565,
+    "observation_ready": true,
+    "physical_current_calibrated": false
+  },
+  "channels": {
+    "cell1": {
+      "raw_valid": 102,
+      "raw_min": 38536,
+      "raw_max": 38868,
+      "conversion_ms_min": 2,
+      "conversion_ms_max": 2,
+      "conversion_ms_mean": 2,
+      "start_interval_ms_min": 21,
+      "start_interval_ms_max": 21,
+      "start_interval_ms_median": 21,
+      "baseline_min": 38864,
+      "baseline_max": 38868,
+      "baseline_mean": 38866.82,
+      "baseline_stddev_codes": 0.8646386528486915,
+      "pulse_min": 38536,
+      "pulse_max": 38551,
+      "post_min": 38857,
+      "post_max": 38866
+    },
+    "cell7": {
+      "raw_valid": 102,
+      "raw_min": 38543,
+      "raw_max": 38870,
+      "conversion_ms_min": 2,
+      "conversion_ms_max": 2,
+      "conversion_ms_mean": 2,
+      "start_interval_ms_min": 21,
+      "start_interval_ms_max": 21,
+      "start_interval_ms_median": 21,
+      "baseline_min": 38867,
+      "baseline_max": 38870,
+      "baseline_mean": 38868.64,
+      "baseline_stddev_codes": 0.6858571279792899,
+      "pulse_min": 38543,
+      "pulse_max": 38557,
+      "post_min": 38859,
+      "post_max": 38868
+    },
+    "cell13": {
+      "raw_valid": 102,
+      "raw_min": 38539,
+      "raw_max": 38874,
+      "conversion_ms_min": 2,
+      "conversion_ms_max": 2,
+      "conversion_ms_mean": 2,
+      "start_interval_ms_min": 21,
+      "start_interval_ms_max": 21,
+      "start_interval_ms_median": 21,
+      "baseline_min": 38869,
+      "baseline_max": 38874,
+      "baseline_mean": 38870.96,
+      "baseline_stddev_codes": 0.7735631842325487,
+      "pulse_min": 38539,
+      "pulse_max": 38553,
+      "post_min": 38861,
+      "post_max": 38870
+    },
+    "afe_current": {
+      "raw_valid": 102,
+      "raw_min": 6505,
+      "raw_max": 9005,
+      "conversion_ms_min": 6,
+      "conversion_ms_max": 6,
+      "conversion_ms_mean": 6,
+      "start_interval_ms_min": 21,
+      "start_interval_ms_max": 21,
+      "start_interval_ms_median": 21,
+      "baseline_min": 8995,
+      "baseline_max": 9005,
+      "baseline_mean": 8998.64,
+      "baseline_stddev_codes": 2.397999165971498,
+      "pulse_min": 6505,
+      "pulse_max": 6507,
+      "post_min": 8994,
+      "post_max": 9005
+    },
+    "mcu_current": {
+      "raw_valid": 102,
+      "raw_min": 1118,
+      "raw_max": 1263,
+      "conversion_ms_min": 0,
+      "conversion_ms_max": 0,
+      "conversion_ms_mean": 0,
+      "start_interval_ms_min": 21,
+      "start_interval_ms_max": 21,
+      "start_interval_ms_median": 21,
+      "baseline_min": 1118,
+      "baseline_max": 1263,
+      "baseline_mean": 1256.32,
+      "baseline_stddev_codes": 19.788319787187593,
+      "pulse_min": 1259,
+      "pulse_max": 1260,
+      "post_min": 1257,
+      "post_max": 1261
+    }
+  },
+  "phase_counts": {
+    "2": 50,
+    "3": 5,
+    "4": 47
+  },
+  "bits_seen": [
+    0,
+    16
+  ],
+  "max_irq_gap_ms": 1.00066,
+  "first_in_band_post_conversion_ms": [
+    21,
+    27
+  ],
+  "physical_valid": 0
+}

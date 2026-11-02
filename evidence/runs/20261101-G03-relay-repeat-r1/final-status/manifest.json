@@ -1,0 +1,10 @@
+{
+  "created_utc": "2026-11-01T08:56:03.478030+00:00",
+  "operation": "query only",
+  "firmware_sha256": "8ff78e03997c4a5facd8f6feade09024fdd4721a3f0e32fc3531312bf1598c49",
+  "files": {
+    "events.jsonl": "ed8672aecf8cabc4ccdca0f489ebc9f6e2e9694c00814f207d0c6ab0977fa235",
+    "result.json": "1ad6c941f35b039fa08a70b56f5bb4ccc6e2eda88d1b372dd9740521315706a3",
+    "serial.bin": "931f2ae24a7ba007db12f675f2d64186367e720f49cd6dd725b1a7fbdc106a0b"
+  }
+}

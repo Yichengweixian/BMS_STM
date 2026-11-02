@@ -1,0 +1,30 @@
+{
+  "schema": "g01-recorder-v1",
+  "session": "3a9cee48a1bc4aa0b055f25191faffe5",
+  "evidence_scope": "simulation",
+  "source": "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261031-G01-VT-followup-01\\software-checks\\simulated-uart.bin",
+  "simulated": true,
+  "baud": 115200,
+  "started_utc": "2026-10-31T06:00:48.285995+00:00",
+  "physical_calibration_verified": false,
+  "firmware_sha256": null,
+  "verdict": null,
+  "rows": 36,
+  "errors": 0,
+  "tick_hz": 1000,
+  "tick_bits": 32,
+  "sample_time": "conversion bracket; not UART transmit time",
+  "boot_id_policy": "host session:segment; reconnect starts a new session",
+  "metadata": [
+    "#META,schema=g01-v1,fw=g01-sw-r2,build=Oct 31 2026 14:00:46,cal=uncalibrated-v1,period_ms=500,kind=instantaneous_sample",
+    "#CONFIG,profile=cnn647b-bms-g01-20261031-r2,ADC1=PA1_12bit_SW_OS2_shift1,VREF_nominal=1.8,ADC_selfcal=off,AFE_MD=2_ADCOPT0,sign=unconfirmed"
+  ],
+  "exit_reason": "completed",
+  "ended_utc": "2026-10-31T06:00:48.316325+00:00",
+  "sha256": {
+    "derived\\device.csv": "7ab595aea6782dcb2c4a0e7df39f07a0517cb766352c1a3410df4976f82767e2",
+    "raw\\events.jsonl": "468bc1ab8080dd8fb9032b25130abf6854c32ee783638bacc0c8d98bdf1d44cf",
+    "raw\\serial.bin": "c025325f3d80d434302c1921f8b6b05ba61ca74aefe773ce2cf098b6f29293f8"
+  },
+  "recorder_sha256": "fa391af37180247c3fc9e536316a05115ef4476aad0d18d6e65221550b84fd05"
+}

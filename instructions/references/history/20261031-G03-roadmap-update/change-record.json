@@ -1,0 +1,22 @@
+{
+  "scope": "documentation-only",
+  "hardware_actions": false,
+  "firmware_changed": false,
+  "formal_stage_verdicts_changed": false,
+  "local_links_checked": 36,
+  "issues": [],
+  "before_sha256": {
+    "G03-无探头条件下的推进计划.md": "2958081926219ecff5ef730ab8856ea51821d7e441d45e221706e359099efd83",
+    "G03-单次100ms继电器放电测试方案.md": "4fd54788f51623eb7e72c340cf774fbf5698a69999ff17d2764619d2f2e283d6",
+    "README.md": "68b7e3a59fd45ac358a2357b500e207a486fe63bd3dacd8a78788f975991e6cd",
+    "STATUS.md": "160cdee0d9e21013cae2f1020e21582407ec600a8043d6a14758a98e70c9501e",
+    "RUNLOG.md": "25a3d34b2dae02b3c6699ee880b566a1e85d0874f746ec9a18dafd53213d877d"
+  },
+  "after_sha256": {
+    "G03-无探头条件下的推进计划.md": "b0e29ad68f386079cac54e5de02d48747c400ad02558ca1886abdcfa27dba2e5",
+    "G03-单次100ms继电器放电测试方案.md": "d3675ae2a14ce00f4f780505e1af949b18c31e7d412f460508774761eebc3699",
+    "README.md": "6c0d4443ca641ac4beb82c3ebaa8abda702bfda7b04855f8a79034da81b37e54",
+    "STATUS.md": "24d1ffcc852d20fccb84ce5e0de1874cf62c8a19e8367d372597bc3802b186d6",
+    "RUNLOG.md": "bac29aa1cd3dc4fb4df0360bd5cab2ecb8e42db828f25bd71621b24bc67b86b9"
+  }
+}

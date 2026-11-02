@@ -1,0 +1,32 @@
+{
+  "scope": "Unmodified production adapter and core compiled as C++ against side-effect register/HAL model; no hardware",
+  "verdict": "pass",
+  "test_groups": 15,
+  "cases": [
+    "deadline",
+    "wrap",
+    "stop",
+    "protocol",
+    "preflight",
+    "clock",
+    "preflight_protocol",
+    "fault_flags",
+    "fifo",
+    "buffer",
+    "overrun_scenario",
+    "awd_low",
+    "awd_high",
+    "cleanup_failure",
+    "cleanup_failure_readback"
+  ],
+  "source_sha256": {
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_pwm_port.c": "002bb9fe7cc32ccc830aad54b15c5e74c220e08215b86f36a6614a3b45531651",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_pwm_port.h": "d858b87c1800f8919296609f3426824fd753e05e7da2ff0d1b9e83043bc2d59e",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\pwm_oneshot.c": "dafe719d57b41f00062d87ace7a976721cd600b91ecb5f58348282eceb83878b",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\pwm_oneshot.h": "371e1f019dae6e66c61adbbbb18de04a2de2c47e69c87d9c2608848e8a5d73a3",
+    "tests\\g03\\test_pwm_port.c": "4c3eadea05640b3e233228d9080aadd47f5bfa0d8f950226972be567404254e2",
+    "tests\\g03\\pwm_port_fixture\\main.h": "202ddf15452dcafa44d46e540de39de8fc88ccfe5b7dd083df14588c35463db5"
+  },
+  "sources_unchanged_during_test": true,
+  "caveat": "Model exercises register semantics and adapter integration; real peripheral timing/NVIC effects remain board tests."
+}

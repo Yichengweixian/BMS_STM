@@ -1,0 +1,15 @@
+{
+  "command": [
+    "E:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107/tools/bin/STM32_Programmer_CLI.exe",
+    "-c",
+    "port=SWD",
+    "sn=16004A002933353739303541",
+    "freq=100",
+    "mode=HOTPLUG",
+    "-rst"
+  ],
+  "exit_code": 0,
+  "verdict": "pass",
+  "attempts": 1,
+  "independent_serial_query_required": true
+}

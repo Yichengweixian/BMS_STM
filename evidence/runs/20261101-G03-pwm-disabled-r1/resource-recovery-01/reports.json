@@ -1,0 +1,6173 @@
+[
+  {
+    "id": 2538821432,
+    "result": 0,
+    "state": 0,
+    "faults": 0,
+    "used": 1,
+    "owned": 0,
+    "scenario": 0,
+    "start_id": 2538821269,
+    "start_us": 63999,
+    "stop_us": 89989,
+    "now_us": 91988,
+    "run_us": 200000,
+    "sample_count": 2598,
+    "raw": 1284,
+    "raw_min": 1262,
+    "raw_max": 1294,
+    "last_sample_us": 89982,
+    "max_sample_gap_us": 12,
+    "max_irq_gap_us": 100,
+    "irq_count": 259,
+    "trace_written": 157,
+    "trace_overflow": 0,
+    "tim_hz": 400000000,
+    "adc_hz": 64000000,
+    "timer_hz": 1000000,
+    "arr": 2000,
+    "ccr": 1000,
+    "dtg": 0,
+    "actual_bits": 0,
+    "timer_running": 0,
+    "restored": 1,
+    "power_capable": 0,
+    "physical_valid": 0,
+    "kind": "#G3P",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821433,
+    "result": 0,
+    "start_id": 0,
+    "state": 0,
+    "faults": 0,
+    "owns_adc": 0,
+    "cpu_hz": 0,
+    "tim_hz": 0,
+    "adc_hz": 0,
+    "start_ms": 0,
+    "stop_ms": 0,
+    "updates": 0,
+    "completions": 0,
+    "overruns": 0,
+    "adc_errors": 0,
+    "gap_max_cycles": 0,
+    "tim_isr_max_cycles": 0,
+    "adc_isr_max_cycles": 0,
+    "late_irqs": 0,
+    "ccr_writes": 0,
+    "ccr_requested": 0,
+    "ccr_observed": 0,
+    "stop_software_cycles": 0,
+    "bad_frames": 0,
+    "rx_errors": 0,
+    "pins_gate": 0,
+    "kind": "#G02",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821434,
+    "result": 0,
+    "start_id": 2538821434,
+    "state": 0,
+    "faults": 0,
+    "owns_adc": 0,
+    "cpu_hz": 800000000,
+    "tim_hz": 400000000,
+    "adc_hz": 64000000,
+    "start_ms": 44073,
+    "stop_ms": 45073,
+    "updates": 99997,
+    "completions": 99997,
+    "overruns": 0,
+    "adc_errors": 0,
+    "gap_max_cycles": 8000,
+    "tim_isr_max_cycles": 1686,
+    "adc_isr_max_cycles": 2544,
+    "late_irqs": 0,
+    "ccr_writes": 0,
+    "ccr_requested": 1000,
+    "ccr_observed": 0,
+    "stop_software_cycles": 602,
+    "bad_frames": 0,
+    "rx_errors": 0,
+    "pins_gate": 0,
+    "kind": "#G02",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821435,
+    "result": 0,
+    "state": 0,
+    "faults": 0,
+    "used": 1,
+    "owned": 0,
+    "scenario": 0,
+    "start_id": 2538821269,
+    "start_us": 63999,
+    "stop_us": 89989,
+    "now_us": 91988,
+    "run_us": 200000,
+    "sample_count": 2598,
+    "raw": 1284,
+    "raw_min": 1262,
+    "raw_max": 1294,
+    "last_sample_us": 89982,
+    "max_sample_gap_us": 12,
+    "max_irq_gap_us": 100,
+    "irq_count": 259,
+    "trace_written": 157,
+    "trace_overflow": 0,
+    "tim_hz": 400000000,
+    "adc_hz": 64000000,
+    "timer_hz": 1000000,
+    "arr": 2000,
+    "ccr": 1000,
+    "dtg": 0,
+    "actual_bits": 0,
+    "timer_running": 0,
+    "restored": 1,
+    "power_capable": 0,
+    "physical_valid": 0,
+    "kind": "#G3P",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821436,
+    "result": 0,
+    "state": 0,
+    "faults": 0,
+    "reason": 0,
+    "live": 0,
+    "written": 0,
+    "base_count": 0,
+    "center": 0,
+    "tolerance": 0,
+    "on_ms": 0,
+    "off_ms": 0,
+    "recover_count": 0,
+    "actual_bits": 0,
+    "on_cycles": 0,
+    "off_cycles": 0,
+    "irq_max_cycles": 0,
+    "cpu_hz": 800000000,
+    "live_gate": 0,
+    "live_used": 0,
+    "period_ms": 20,
+    "stale_ms": 40,
+    "physical_valid": 0,
+    "kind": "#G3R",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821437,
+    "result": 0,
+    "state": 5,
+    "faults": 0,
+    "reason": 1,
+    "live": 0,
+    "written": 102,
+    "base_count": 50,
+    "center": 8998,
+    "tolerance": 27,
+    "on_ms": 46277,
+    "off_ms": 46376,
+    "recover_count": 48,
+    "actual_bits": 0,
+    "on_cycles": 3387175984,
+    "off_cycles": 3466002422,
+    "irq_max_cycles": 801015,
+    "cpu_hz": 800000000,
+    "live_gate": 0,
+    "live_used": 0,
+    "period_ms": 20,
+    "stale_ms": 40,
+    "physical_valid": 0,
+    "kind": "#G3R",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821438,
+    "result": 0,
+    "seq": 0,
+    "phase": 2,
+    "at_ms": 45239,
+    "done_ms": 45248,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45239,
+        "end_ms": 45241,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45239,
+        "end_ms": 45241,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45239,
+        "end_ms": 45241,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 45242,
+        "end_ms": 45248,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239C0CA10C0BBC"
+      },
+      {
+        "start_ms": 45248,
+        "end_ms": 45248,
+        "raw": 1166,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821439,
+    "result": 0,
+    "seq": 1,
+    "phase": 2,
+    "at_ms": 45260,
+    "done_ms": 45269,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45260,
+        "end_ms": 45262,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45260,
+        "end_ms": 45262,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 45260,
+        "end_ms": 45262,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45263,
+        "end_ms": 45269,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "27239C0CA10C37E4"
+      },
+      {
+        "start_ms": 45269,
+        "end_ms": 45269,
+        "raw": 1250,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821440,
+    "result": 0,
+    "seq": 2,
+    "phase": 2,
+    "at_ms": 45281,
+    "done_ms": 45290,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45281,
+        "end_ms": 45283,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45281,
+        "end_ms": 45283,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 45281,
+        "end_ms": 45283,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45284,
+        "end_ms": 45290,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239D0CA20C6142"
+      },
+      {
+        "start_ms": 45290,
+        "end_ms": 45290,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821441,
+    "result": 0,
+    "seq": 3,
+    "phase": 2,
+    "at_ms": 45302,
+    "done_ms": 45311,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45302,
+        "end_ms": 45304,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45302,
+        "end_ms": 45304,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45302,
+        "end_ms": 45304,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 45305,
+        "end_ms": 45311,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239C0CA20C5CB2"
+      },
+      {
+        "start_ms": 45311,
+        "end_ms": 45311,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821442,
+    "result": 0,
+    "seq": 4,
+    "phase": 2,
+    "at_ms": 45323,
+    "done_ms": 45332,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45323,
+        "end_ms": 45325,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45323,
+        "end_ms": 45325,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45323,
+        "end_ms": 45325,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45326,
+        "end_ms": 45332,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "27239D0CA10C0A14"
+      },
+      {
+        "start_ms": 45332,
+        "end_ms": 45332,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821443,
+    "result": 0,
+    "seq": 5,
+    "phase": 2,
+    "at_ms": 45344,
+    "done_ms": 45353,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45344,
+        "end_ms": 45346,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45344,
+        "end_ms": 45346,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45344,
+        "end_ms": 45346,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 45347,
+        "end_ms": 45353,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "27239D0CA30C91BE"
+      },
+      {
+        "start_ms": 45353,
+        "end_ms": 45353,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821444,
+    "result": 0,
+    "seq": 6,
+    "phase": 2,
+    "at_ms": 45365,
+    "done_ms": 45374,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45365,
+        "end_ms": 45367,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45365,
+        "end_ms": 45367,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 45365,
+        "end_ms": 45367,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45368,
+        "end_ms": 45374,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "28239B0CA10C5A4E"
+      },
+      {
+        "start_ms": 45374,
+        "end_ms": 45374,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821445,
+    "result": 0,
+    "seq": 7,
+    "phase": 2,
+    "at_ms": 45386,
+    "done_ms": 45395,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45386,
+        "end_ms": 45388,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45386,
+        "end_ms": 45388,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45386,
+        "end_ms": 45388,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45389,
+        "end_ms": 45395,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239C0CA10C0BBC"
+      },
+      {
+        "start_ms": 45395,
+        "end_ms": 45395,
+        "raw": 1257,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821446,
+    "result": 0,
+    "seq": 8,
+    "phase": 2,
+    "at_ms": 45407,
+    "done_ms": 45416,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45407,
+        "end_ms": 45409,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45407,
+        "end_ms": 45409,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45407,
+        "end_ms": 45409,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 45410,
+        "end_ms": 45416,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239C0CA20C185A"
+      },
+      {
+        "start_ms": 45416,
+        "end_ms": 45416,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821447,
+    "result": 0,
+    "seq": 9,
+    "phase": 2,
+    "at_ms": 45428,
+    "done_ms": 45437,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45428,
+        "end_ms": 45430,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45428,
+        "end_ms": 45430,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 45428,
+        "end_ms": 45430,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 45431,
+        "end_ms": 45437,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "24239E0CA20C1B0A"
+      },
+      {
+        "start_ms": 45437,
+        "end_ms": 45437,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821448,
+    "result": 0,
+    "seq": 10,
+    "phase": 2,
+    "at_ms": 45449,
+    "done_ms": 45458,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45449,
+        "end_ms": 45451,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 45449,
+        "end_ms": 45451,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 45449,
+        "end_ms": 45451,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 45452,
+        "end_ms": 45458,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239D0CA20C6142"
+      },
+      {
+        "start_ms": 45458,
+        "end_ms": 45458,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821449,
+    "result": 0,
+    "seq": 11,
+    "phase": 2,
+    "at_ms": 45470,
+    "done_ms": 45479,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45470,
+        "end_ms": 45472,
+        "raw": 38856,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "C897FFFFFFFFB396"
+      },
+      {
+        "start_ms": 45470,
+        "end_ms": 45472,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 45470,
+        "end_ms": 45472,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45473,
+        "end_ms": 45479,
+        "raw": 9002,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2A239C0CA10C932E"
+      },
+      {
+        "start_ms": 45479,
+        "end_ms": 45479,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821450,
+    "result": 0,
+    "seq": 12,
+    "phase": 2,
+    "at_ms": 45491,
+    "done_ms": 45500,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45491,
+        "end_ms": 45493,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45491,
+        "end_ms": 45493,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 45491,
+        "end_ms": 45493,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45494,
+        "end_ms": 45500,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "27239E0CA10C4C04"
+      },
+      {
+        "start_ms": 45500,
+        "end_ms": 45500,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821451,
+    "result": 0,
+    "seq": 13,
+    "phase": 2,
+    "at_ms": 45512,
+    "done_ms": 45521,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45512,
+        "end_ms": 45514,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 45512,
+        "end_ms": 45514,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45512,
+        "end_ms": 45514,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 45515,
+        "end_ms": 45521,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239C0CA20C5CB2"
+      },
+      {
+        "start_ms": 45521,
+        "end_ms": 45521,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821452,
+    "result": 0,
+    "seq": 14,
+    "phase": 2,
+    "at_ms": 45533,
+    "done_ms": 45542,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45533,
+        "end_ms": 45535,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45533,
+        "end_ms": 45535,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45533,
+        "end_ms": 45535,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 45536,
+        "end_ms": 45542,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "24239C0CA10C730C"
+      },
+      {
+        "start_ms": 45542,
+        "end_ms": 45542,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821453,
+    "result": 0,
+    "seq": 15,
+    "phase": 2,
+    "at_ms": 45554,
+    "done_ms": 45563,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45554,
+        "end_ms": 45556,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45554,
+        "end_ms": 45556,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45554,
+        "end_ms": 45556,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45557,
+        "end_ms": 45563,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239C0CA10C0BBC"
+      },
+      {
+        "start_ms": 45563,
+        "end_ms": 45563,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821454,
+    "result": 0,
+    "seq": 16,
+    "phase": 2,
+    "at_ms": 45575,
+    "done_ms": 45584,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45575,
+        "end_ms": 45577,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45575,
+        "end_ms": 45577,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 45575,
+        "end_ms": 45577,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45578,
+        "end_ms": 45584,
+        "raw": 9004,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2C239D0CA20C34E8"
+      },
+      {
+        "start_ms": 45584,
+        "end_ms": 45584,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821455,
+    "result": 0,
+    "seq": 17,
+    "phase": 2,
+    "at_ms": 45596,
+    "done_ms": 45605,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45596,
+        "end_ms": 45598,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45596,
+        "end_ms": 45598,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45596,
+        "end_ms": 45598,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 45599,
+        "end_ms": 45605,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239C0CA10C0BBC"
+      },
+      {
+        "start_ms": 45605,
+        "end_ms": 45605,
+        "raw": 1254,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821456,
+    "result": 0,
+    "seq": 18,
+    "phase": 2,
+    "at_ms": 45617,
+    "done_ms": 45626,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45617,
+        "end_ms": 45619,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45617,
+        "end_ms": 45619,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45617,
+        "end_ms": 45619,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45620,
+        "end_ms": 45626,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239C0CA20C5CB2"
+      },
+      {
+        "start_ms": 45626,
+        "end_ms": 45626,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821457,
+    "result": 0,
+    "seq": 19,
+    "phase": 2,
+    "at_ms": 45638,
+    "done_ms": 45647,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45638,
+        "end_ms": 45640,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45638,
+        "end_ms": 45640,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 45638,
+        "end_ms": 45640,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45641,
+        "end_ms": 45647,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "28239C0CA10CEB9E"
+      },
+      {
+        "start_ms": 45647,
+        "end_ms": 45647,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821458,
+    "result": 0,
+    "seq": 20,
+    "phase": 2,
+    "at_ms": 45659,
+    "done_ms": 45668,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45659,
+        "end_ms": 45661,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45659,
+        "end_ms": 45661,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45659,
+        "end_ms": 45661,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45662,
+        "end_ms": 45668,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239C0CA20C185A"
+      },
+      {
+        "start_ms": 45668,
+        "end_ms": 45668,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821459,
+    "result": 0,
+    "seq": 21,
+    "phase": 2,
+    "at_ms": 45680,
+    "done_ms": 45689,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45680,
+        "end_ms": 45682,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 45680,
+        "end_ms": 45682,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 45680,
+        "end_ms": 45682,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45683,
+        "end_ms": 45689,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239D0CA20C6142"
+      },
+      {
+        "start_ms": 45689,
+        "end_ms": 45689,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821460,
+    "result": 0,
+    "seq": 22,
+    "phase": 2,
+    "at_ms": 45701,
+    "done_ms": 45710,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45701,
+        "end_ms": 45703,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 45701,
+        "end_ms": 45703,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45701,
+        "end_ms": 45703,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 45704,
+        "end_ms": 45710,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "28239D0CA10CD66E"
+      },
+      {
+        "start_ms": 45710,
+        "end_ms": 45710,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821461,
+    "result": 0,
+    "seq": 23,
+    "phase": 2,
+    "at_ms": 45722,
+    "done_ms": 45731,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45722,
+        "end_ms": 45724,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45722,
+        "end_ms": 45724,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45722,
+        "end_ms": 45724,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 45725,
+        "end_ms": 45731,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239B0CA10CBA6C"
+      },
+      {
+        "start_ms": 45731,
+        "end_ms": 45731,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821462,
+    "result": 0,
+    "seq": 24,
+    "phase": 2,
+    "at_ms": 45743,
+    "done_ms": 45752,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45743,
+        "end_ms": 45745,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45743,
+        "end_ms": 45745,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45743,
+        "end_ms": 45745,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 45746,
+        "end_ms": 45752,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "29239D0CA20CF9D0"
+      },
+      {
+        "start_ms": 45752,
+        "end_ms": 45752,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821463,
+    "result": 0,
+    "seq": 25,
+    "phase": 2,
+    "at_ms": 45764,
+    "done_ms": 45773,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45764,
+        "end_ms": 45766,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45764,
+        "end_ms": 45766,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 45764,
+        "end_ms": 45766,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 45767,
+        "end_ms": 45773,
+        "raw": 8995,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "23239E0CA20CAE82"
+      },
+      {
+        "start_ms": 45773,
+        "end_ms": 45773,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821464,
+    "result": 0,
+    "seq": 26,
+    "phase": 2,
+    "at_ms": 45785,
+    "done_ms": 45794,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45785,
+        "end_ms": 45787,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 45785,
+        "end_ms": 45787,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45785,
+        "end_ms": 45787,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45788,
+        "end_ms": 45794,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "24239C0CA10C730C"
+      },
+      {
+        "start_ms": 45794,
+        "end_ms": 45794,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821465,
+    "result": 0,
+    "seq": 27,
+    "phase": 2,
+    "at_ms": 45806,
+    "done_ms": 45815,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45806,
+        "end_ms": 45808,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 45806,
+        "end_ms": 45808,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45806,
+        "end_ms": 45808,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 45809,
+        "end_ms": 45815,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239C0CA10C0BBC"
+      },
+      {
+        "start_ms": 45815,
+        "end_ms": 45815,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821466,
+    "result": 0,
+    "seq": 28,
+    "phase": 2,
+    "at_ms": 45827,
+    "done_ms": 45836,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45827,
+        "end_ms": 45829,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 45827,
+        "end_ms": 45829,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45827,
+        "end_ms": 45829,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 45830,
+        "end_ms": 45836,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239C0CA10C4F54"
+      },
+      {
+        "start_ms": 45836,
+        "end_ms": 45836,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821467,
+    "result": 0,
+    "seq": 29,
+    "phase": 2,
+    "at_ms": 45848,
+    "done_ms": 45857,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45848,
+        "end_ms": 45850,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45848,
+        "end_ms": 45850,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 45848,
+        "end_ms": 45850,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45851,
+        "end_ms": 45857,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "27239C0CA10C37E4"
+      },
+      {
+        "start_ms": 45857,
+        "end_ms": 45857,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821468,
+    "result": 0,
+    "seq": 30,
+    "phase": 2,
+    "at_ms": 45869,
+    "done_ms": 45878,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45869,
+        "end_ms": 45871,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 45869,
+        "end_ms": 45871,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 45869,
+        "end_ms": 45871,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 45872,
+        "end_ms": 45878,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "27239E0CA20C5FE2"
+      },
+      {
+        "start_ms": 45878,
+        "end_ms": 45878,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821469,
+    "result": 0,
+    "seq": 31,
+    "phase": 2,
+    "at_ms": 45890,
+    "done_ms": 45899,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45890,
+        "end_ms": 45892,
+        "raw": 38857,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "C997FFFFFFFF8FCE"
+      },
+      {
+        "start_ms": 45890,
+        "end_ms": 45892,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45890,
+        "end_ms": 45892,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45893,
+        "end_ms": 45899,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "27239C0CA10C37E4"
+      },
+      {
+        "start_ms": 45899,
+        "end_ms": 45899,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821470,
+    "result": 0,
+    "seq": 32,
+    "phase": 2,
+    "at_ms": 45911,
+    "done_ms": 45920,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45911,
+        "end_ms": 45913,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45911,
+        "end_ms": 45913,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 45911,
+        "end_ms": 45913,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45914,
+        "end_ms": 45920,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "29239D0CA20CF9D0"
+      },
+      {
+        "start_ms": 45920,
+        "end_ms": 45920,
+        "raw": 1257,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821471,
+    "result": 0,
+    "seq": 33,
+    "phase": 2,
+    "at_ms": 45932,
+    "done_ms": 45941,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45932,
+        "end_ms": 45934,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 45932,
+        "end_ms": 45934,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45932,
+        "end_ms": 45934,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45935,
+        "end_ms": 45941,
+        "raw": 9003,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2B239D0CA20C8160"
+      },
+      {
+        "start_ms": 45941,
+        "end_ms": 45941,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821472,
+    "result": 0,
+    "seq": 34,
+    "phase": 2,
+    "at_ms": 45953,
+    "done_ms": 45962,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45953,
+        "end_ms": 45955,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 45953,
+        "end_ms": 45955,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45953,
+        "end_ms": 45955,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45956,
+        "end_ms": 45962,
+        "raw": 8995,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "23239D0CA20CE892"
+      },
+      {
+        "start_ms": 45962,
+        "end_ms": 45962,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821473,
+    "result": 0,
+    "seq": 35,
+    "phase": 2,
+    "at_ms": 45974,
+    "done_ms": 45983,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45974,
+        "end_ms": 45976,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 45974,
+        "end_ms": 45976,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45974,
+        "end_ms": 45976,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 45977,
+        "end_ms": 45983,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239D0CA10C72A4"
+      },
+      {
+        "start_ms": 45983,
+        "end_ms": 45983,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821474,
+    "result": 0,
+    "seq": 36,
+    "phase": 2,
+    "at_ms": 45995,
+    "done_ms": 46004,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 45995,
+        "end_ms": 45997,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 45995,
+        "end_ms": 45997,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 45995,
+        "end_ms": 45997,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 45998,
+        "end_ms": 46004,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "27239D0CA20C19F2"
+      },
+      {
+        "start_ms": 46004,
+        "end_ms": 46004,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821475,
+    "result": 0,
+    "seq": 37,
+    "phase": 2,
+    "at_ms": 46016,
+    "done_ms": 46025,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46016,
+        "end_ms": 46018,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46016,
+        "end_ms": 46018,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46016,
+        "end_ms": 46018,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 46019,
+        "end_ms": 46025,
+        "raw": 8995,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "23239D0CA20CE892"
+      },
+      {
+        "start_ms": 46025,
+        "end_ms": 46025,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821476,
+    "result": 0,
+    "seq": 38,
+    "phase": 2,
+    "at_ms": 46037,
+    "done_ms": 46046,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46037,
+        "end_ms": 46039,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46037,
+        "end_ms": 46039,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46037,
+        "end_ms": 46039,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 46040,
+        "end_ms": 46046,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239C0CA10C0BBC"
+      },
+      {
+        "start_ms": 46046,
+        "end_ms": 46046,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821477,
+    "result": 0,
+    "seq": 39,
+    "phase": 2,
+    "at_ms": 46058,
+    "done_ms": 46067,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46058,
+        "end_ms": 46060,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46058,
+        "end_ms": 46060,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46058,
+        "end_ms": 46060,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 46061,
+        "end_ms": 46067,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239C0CA10C4F54"
+      },
+      {
+        "start_ms": 46067,
+        "end_ms": 46067,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821478,
+    "result": 0,
+    "seq": 40,
+    "phase": 2,
+    "at_ms": 46079,
+    "done_ms": 46088,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46079,
+        "end_ms": 46081,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46079,
+        "end_ms": 46081,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46079,
+        "end_ms": 46081,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46082,
+        "end_ms": 46088,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "28239D0CA20CC588"
+      },
+      {
+        "start_ms": 46088,
+        "end_ms": 46088,
+        "raw": 1258,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821479,
+    "result": 0,
+    "seq": 41,
+    "phase": 2,
+    "at_ms": 46100,
+    "done_ms": 46109,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46100,
+        "end_ms": 46102,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46100,
+        "end_ms": 46102,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46100,
+        "end_ms": 46102,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46103,
+        "end_ms": 46109,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "29239C0CA20CC420"
+      },
+      {
+        "start_ms": 46109,
+        "end_ms": 46109,
+        "raw": 1254,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821480,
+    "result": 0,
+    "seq": 42,
+    "phase": 2,
+    "at_ms": 46121,
+    "done_ms": 46130,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46121,
+        "end_ms": 46123,
+        "raw": 38857,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "C997FFFFFFFF8FCE"
+      },
+      {
+        "start_ms": 46121,
+        "end_ms": 46123,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46121,
+        "end_ms": 46123,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46124,
+        "end_ms": 46130,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "29239D0CA20CF9D0"
+      },
+      {
+        "start_ms": 46130,
+        "end_ms": 46130,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821481,
+    "result": 0,
+    "seq": 43,
+    "phase": 2,
+    "at_ms": 46142,
+    "done_ms": 46151,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46142,
+        "end_ms": 46144,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46142,
+        "end_ms": 46144,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46142,
+        "end_ms": 46144,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46145,
+        "end_ms": 46151,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "28239C0CA20CF878"
+      },
+      {
+        "start_ms": 46151,
+        "end_ms": 46151,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821482,
+    "result": 0,
+    "seq": 44,
+    "phase": 2,
+    "at_ms": 46163,
+    "done_ms": 46172,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46163,
+        "end_ms": 46165,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46163,
+        "end_ms": 46165,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46163,
+        "end_ms": 46165,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46166,
+        "end_ms": 46172,
+        "raw": 8995,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "23239E0CA20CAE82"
+      },
+      {
+        "start_ms": 46172,
+        "end_ms": 46172,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821483,
+    "result": 0,
+    "seq": 45,
+    "phase": 2,
+    "at_ms": 46184,
+    "done_ms": 46193,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46184,
+        "end_ms": 46186,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46184,
+        "end_ms": 46186,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46184,
+        "end_ms": 46186,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46187,
+        "end_ms": 46193,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239D0CA00CBE00"
+      },
+      {
+        "start_ms": 46193,
+        "end_ms": 46193,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821484,
+    "result": 0,
+    "seq": 46,
+    "phase": 2,
+    "at_ms": 46205,
+    "done_ms": 46214,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46205,
+        "end_ms": 46207,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46205,
+        "end_ms": 46207,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46205,
+        "end_ms": 46207,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 46208,
+        "end_ms": 46214,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239C0CA10C4F54"
+      },
+      {
+        "start_ms": 46214,
+        "end_ms": 46214,
+        "raw": 1257,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821485,
+    "result": 0,
+    "seq": 47,
+    "phase": 2,
+    "at_ms": 46226,
+    "done_ms": 46235,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46226,
+        "end_ms": 46228,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46226,
+        "end_ms": 46228,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46226,
+        "end_ms": 46228,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46229,
+        "end_ms": 46235,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239C0CA20C185A"
+      },
+      {
+        "start_ms": 46235,
+        "end_ms": 46235,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821486,
+    "result": 0,
+    "seq": 48,
+    "phase": 2,
+    "at_ms": 46247,
+    "done_ms": 46256,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46247,
+        "end_ms": 46249,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46247,
+        "end_ms": 46249,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46247,
+        "end_ms": 46249,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46250,
+        "end_ms": 46256,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "28239D0CA20CC588"
+      },
+      {
+        "start_ms": 46256,
+        "end_ms": 46256,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821487,
+    "result": 0,
+    "seq": 49,
+    "phase": 2,
+    "at_ms": 46268,
+    "done_ms": 46277,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46268,
+        "end_ms": 46270,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46268,
+        "end_ms": 46270,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46268,
+        "end_ms": 46270,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 46271,
+        "end_ms": 46277,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239C0CA20C5CB2"
+      },
+      {
+        "start_ms": 46277,
+        "end_ms": 46277,
+        "raw": 1257,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821488,
+    "result": 0,
+    "seq": 50,
+    "phase": 3,
+    "at_ms": 46289,
+    "done_ms": 46298,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46289,
+        "end_ms": 46291,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46289,
+        "end_ms": 46291,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46289,
+        "end_ms": 46291,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46292,
+        "end_ms": 46298,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "28239C0CA20CF878"
+      },
+      {
+        "start_ms": 46298,
+        "end_ms": 46298,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821489,
+    "result": 0,
+    "seq": 51,
+    "phase": 3,
+    "at_ms": 46310,
+    "done_ms": 46319,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46310,
+        "end_ms": 46312,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46310,
+        "end_ms": 46312,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46310,
+        "end_ms": 46312,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46313,
+        "end_ms": 46319,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "24239D0CA10C4EFC"
+      },
+      {
+        "start_ms": 46319,
+        "end_ms": 46319,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821490,
+    "result": 0,
+    "seq": 52,
+    "phase": 3,
+    "at_ms": 46331,
+    "done_ms": 46340,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46331,
+        "end_ms": 46333,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46331,
+        "end_ms": 46333,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46331,
+        "end_ms": 46333,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46334,
+        "end_ms": 46340,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "24239C0CA20C60EA"
+      },
+      {
+        "start_ms": 46340,
+        "end_ms": 46340,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821491,
+    "result": 0,
+    "seq": 53,
+    "phase": 3,
+    "at_ms": 46352,
+    "done_ms": 46361,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46352,
+        "end_ms": 46354,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46352,
+        "end_ms": 46354,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46352,
+        "end_ms": 46354,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46355,
+        "end_ms": 46361,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "24239C0CA20C60EA"
+      },
+      {
+        "start_ms": 46361,
+        "end_ms": 46361,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821492,
+    "result": 0,
+    "seq": 54,
+    "phase": 3,
+    "at_ms": 46373,
+    "done_ms": 46382,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46373,
+        "end_ms": 46375,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46373,
+        "end_ms": 46375,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46373,
+        "end_ms": 46375,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46376,
+        "end_ms": 46382,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "28239D0CA10CD66E"
+      },
+      {
+        "start_ms": 46382,
+        "end_ms": 46382,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821493,
+    "result": 0,
+    "seq": 55,
+    "phase": 4,
+    "at_ms": 46394,
+    "done_ms": 46403,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46394,
+        "end_ms": 46396,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46394,
+        "end_ms": 46396,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46394,
+        "end_ms": 46396,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46397,
+        "end_ms": 46403,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "29239C0CA20CC420"
+      },
+      {
+        "start_ms": 46403,
+        "end_ms": 46403,
+        "raw": 1257,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821494,
+    "result": 0,
+    "seq": 56,
+    "phase": 4,
+    "at_ms": 46415,
+    "done_ms": 46424,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46415,
+        "end_ms": 46417,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46415,
+        "end_ms": 46417,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46415,
+        "end_ms": 46417,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 46418,
+        "end_ms": 46424,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239E0CA20C2752"
+      },
+      {
+        "start_ms": 46424,
+        "end_ms": 46424,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821495,
+    "result": 0,
+    "seq": 57,
+    "phase": 4,
+    "at_ms": 46436,
+    "done_ms": 46445,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46436,
+        "end_ms": 46438,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46436,
+        "end_ms": 46438,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46436,
+        "end_ms": 46438,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46439,
+        "end_ms": 46445,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239C0CA10C0BBC"
+      },
+      {
+        "start_ms": 46445,
+        "end_ms": 46445,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821496,
+    "result": 0,
+    "seq": 58,
+    "phase": 4,
+    "at_ms": 46457,
+    "done_ms": 46466,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46457,
+        "end_ms": 46459,
+        "raw": 38857,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "C997FFFFFFFF8FCE"
+      },
+      {
+        "start_ms": 46457,
+        "end_ms": 46459,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46457,
+        "end_ms": 46459,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46460,
+        "end_ms": 46466,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239C0CA10C0BBC"
+      },
+      {
+        "start_ms": 46466,
+        "end_ms": 46466,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821497,
+    "result": 0,
+    "seq": 59,
+    "phase": 4,
+    "at_ms": 46478,
+    "done_ms": 46487,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46478,
+        "end_ms": 46480,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46478,
+        "end_ms": 46480,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46478,
+        "end_ms": 46480,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46481,
+        "end_ms": 46487,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239C0CA20C5CB2"
+      },
+      {
+        "start_ms": 46487,
+        "end_ms": 46487,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821498,
+    "result": 0,
+    "seq": 60,
+    "phase": 4,
+    "at_ms": 46499,
+    "done_ms": 46508,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46499,
+        "end_ms": 46501,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46499,
+        "end_ms": 46501,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46499,
+        "end_ms": 46501,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46502,
+        "end_ms": 46508,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "27239C0CA10C37E4"
+      },
+      {
+        "start_ms": 46508,
+        "end_ms": 46508,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821499,
+    "result": 0,
+    "seq": 61,
+    "phase": 4,
+    "at_ms": 46520,
+    "done_ms": 46529,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46520,
+        "end_ms": 46522,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46520,
+        "end_ms": 46522,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46520,
+        "end_ms": 46522,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 46523,
+        "end_ms": 46529,
+        "raw": 9002,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2A239C0CA20C80C8"
+      },
+      {
+        "start_ms": 46529,
+        "end_ms": 46529,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821500,
+    "result": 0,
+    "seq": 62,
+    "phase": 4,
+    "at_ms": 46541,
+    "done_ms": 46550,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46541,
+        "end_ms": 46543,
+        "raw": 38856,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "C897FFFFFFFFB396"
+      },
+      {
+        "start_ms": 46541,
+        "end_ms": 46543,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46541,
+        "end_ms": 46543,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46544,
+        "end_ms": 46550,
+        "raw": 8995,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "23239D0CA20CE892"
+      },
+      {
+        "start_ms": 46550,
+        "end_ms": 46550,
+        "raw": 1257,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821501,
+    "result": 0,
+    "seq": 63,
+    "phase": 4,
+    "at_ms": 46562,
+    "done_ms": 46571,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46562,
+        "end_ms": 46564,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46562,
+        "end_ms": 46564,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46562,
+        "end_ms": 46564,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46565,
+        "end_ms": 46571,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239C0CA20C5CB2"
+      },
+      {
+        "start_ms": 46571,
+        "end_ms": 46571,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821502,
+    "result": 0,
+    "seq": 64,
+    "phase": 4,
+    "at_ms": 46583,
+    "done_ms": 46592,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46583,
+        "end_ms": 46585,
+        "raw": 38857,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "C997FFFFFFFF8FCE"
+      },
+      {
+        "start_ms": 46583,
+        "end_ms": 46585,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46583,
+        "end_ms": 46585,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46586,
+        "end_ms": 46592,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239C0CA20C5CB2"
+      },
+      {
+        "start_ms": 46592,
+        "end_ms": 46592,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821503,
+    "result": 0,
+    "seq": 65,
+    "phase": 4,
+    "at_ms": 46604,
+    "done_ms": 46613,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46604,
+        "end_ms": 46606,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46604,
+        "end_ms": 46606,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46604,
+        "end_ms": 46606,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46607,
+        "end_ms": 46613,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239C0CA10C0BBC"
+      },
+      {
+        "start_ms": 46613,
+        "end_ms": 46613,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821504,
+    "result": 0,
+    "seq": 66,
+    "phase": 4,
+    "at_ms": 46625,
+    "done_ms": 46634,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46625,
+        "end_ms": 46627,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46625,
+        "end_ms": 46627,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46625,
+        "end_ms": 46627,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 46628,
+        "end_ms": 46634,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "29239E0CA20CBFC0"
+      },
+      {
+        "start_ms": 46634,
+        "end_ms": 46634,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821505,
+    "result": 0,
+    "seq": 67,
+    "phase": 4,
+    "at_ms": 46646,
+    "done_ms": 46655,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46646,
+        "end_ms": 46648,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46646,
+        "end_ms": 46648,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46646,
+        "end_ms": 46648,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46649,
+        "end_ms": 46655,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "28239C0CA20CF878"
+      },
+      {
+        "start_ms": 46655,
+        "end_ms": 46655,
+        "raw": 1257,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821506,
+    "result": 0,
+    "seq": 68,
+    "phase": 4,
+    "at_ms": 46667,
+    "done_ms": 46676,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46667,
+        "end_ms": 46669,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46667,
+        "end_ms": 46669,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46667,
+        "end_ms": 46669,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46670,
+        "end_ms": 46676,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239C0CA20C5CB2"
+      },
+      {
+        "start_ms": 46676,
+        "end_ms": 46676,
+        "raw": 1262,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821507,
+    "result": 0,
+    "seq": 69,
+    "phase": 4,
+    "at_ms": 46688,
+    "done_ms": 46697,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46688,
+        "end_ms": 46690,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46688,
+        "end_ms": 46690,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46688,
+        "end_ms": 46690,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46691,
+        "end_ms": 46697,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239C0CA20C185A"
+      },
+      {
+        "start_ms": 46697,
+        "end_ms": 46697,
+        "raw": 1257,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821508,
+    "result": 0,
+    "seq": 70,
+    "phase": 4,
+    "at_ms": 46709,
+    "done_ms": 46718,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46709,
+        "end_ms": 46711,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46709,
+        "end_ms": 46711,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46709,
+        "end_ms": 46711,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46712,
+        "end_ms": 46718,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239C0CA10C0BBC"
+      },
+      {
+        "start_ms": 46718,
+        "end_ms": 46718,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821509,
+    "result": 0,
+    "seq": 71,
+    "phase": 4,
+    "at_ms": 46730,
+    "done_ms": 46739,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46730,
+        "end_ms": 46732,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46730,
+        "end_ms": 46732,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46730,
+        "end_ms": 46732,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 46733,
+        "end_ms": 46739,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239E0CA20C2752"
+      },
+      {
+        "start_ms": 46739,
+        "end_ms": 46739,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821510,
+    "result": 0,
+    "seq": 72,
+    "phase": 4,
+    "at_ms": 46751,
+    "done_ms": 46760,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46751,
+        "end_ms": 46753,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46751,
+        "end_ms": 46753,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46751,
+        "end_ms": 46753,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46754,
+        "end_ms": 46760,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239C0CA20C185A"
+      },
+      {
+        "start_ms": 46760,
+        "end_ms": 46760,
+        "raw": 1254,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821511,
+    "result": 0,
+    "seq": 73,
+    "phase": 4,
+    "at_ms": 46772,
+    "done_ms": 46781,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46772,
+        "end_ms": 46774,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46772,
+        "end_ms": 46774,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46772,
+        "end_ms": 46774,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46775,
+        "end_ms": 46781,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "27239D0CA20C19F2"
+      },
+      {
+        "start_ms": 46781,
+        "end_ms": 46781,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821512,
+    "result": 0,
+    "seq": 74,
+    "phase": 4,
+    "at_ms": 46793,
+    "done_ms": 46802,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46793,
+        "end_ms": 46795,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46793,
+        "end_ms": 46795,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46793,
+        "end_ms": 46795,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46796,
+        "end_ms": 46802,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239C0CA10C4F54"
+      },
+      {
+        "start_ms": 46802,
+        "end_ms": 46802,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821513,
+    "result": 0,
+    "seq": 75,
+    "phase": 4,
+    "at_ms": 46814,
+    "done_ms": 46823,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46814,
+        "end_ms": 46816,
+        "raw": 38857,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "C997FFFFFFFF8FCE"
+      },
+      {
+        "start_ms": 46814,
+        "end_ms": 46816,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46814,
+        "end_ms": 46816,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46817,
+        "end_ms": 46823,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239D0CA10C72A4"
+      },
+      {
+        "start_ms": 46823,
+        "end_ms": 46823,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821514,
+    "result": 0,
+    "seq": 76,
+    "phase": 4,
+    "at_ms": 46835,
+    "done_ms": 46844,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46835,
+        "end_ms": 46837,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46835,
+        "end_ms": 46837,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46835,
+        "end_ms": 46837,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46838,
+        "end_ms": 46844,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "27239D0CA20C19F2"
+      },
+      {
+        "start_ms": 46844,
+        "end_ms": 46844,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821515,
+    "result": 0,
+    "seq": 77,
+    "phase": 4,
+    "at_ms": 46856,
+    "done_ms": 46865,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46856,
+        "end_ms": 46858,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46856,
+        "end_ms": 46858,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46856,
+        "end_ms": 46858,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 46859,
+        "end_ms": 46865,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239C0CA20C185A"
+      },
+      {
+        "start_ms": 46865,
+        "end_ms": 46865,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821516,
+    "result": 0,
+    "seq": 78,
+    "phase": 4,
+    "at_ms": 46877,
+    "done_ms": 46886,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46877,
+        "end_ms": 46879,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46877,
+        "end_ms": 46879,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46877,
+        "end_ms": 46879,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46880,
+        "end_ms": 46886,
+        "raw": 9005,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2D239C0CA20C3540"
+      },
+      {
+        "start_ms": 46886,
+        "end_ms": 46886,
+        "raw": 1257,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821517,
+    "result": 0,
+    "seq": 79,
+    "phase": 4,
+    "at_ms": 46898,
+    "done_ms": 46907,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46898,
+        "end_ms": 46900,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46898,
+        "end_ms": 46900,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46898,
+        "end_ms": 46900,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 46901,
+        "end_ms": 46907,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "29239D0CA20CF9D0"
+      },
+      {
+        "start_ms": 46907,
+        "end_ms": 46907,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821518,
+    "result": 0,
+    "seq": 80,
+    "phase": 4,
+    "at_ms": 46919,
+    "done_ms": 46928,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46919,
+        "end_ms": 46921,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46919,
+        "end_ms": 46921,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46919,
+        "end_ms": 46921,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 46922,
+        "end_ms": 46928,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239C0CA10C4F54"
+      },
+      {
+        "start_ms": 46928,
+        "end_ms": 46928,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821519,
+    "result": 0,
+    "seq": 81,
+    "phase": 4,
+    "at_ms": 46940,
+    "done_ms": 46949,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46940,
+        "end_ms": 46942,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 46940,
+        "end_ms": 46942,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46940,
+        "end_ms": 46942,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46943,
+        "end_ms": 46949,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "27239C0CA20C2402"
+      },
+      {
+        "start_ms": 46949,
+        "end_ms": 46949,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821520,
+    "result": 0,
+    "seq": 82,
+    "phase": 4,
+    "at_ms": 46961,
+    "done_ms": 46970,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46961,
+        "end_ms": 46963,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46961,
+        "end_ms": 46963,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 46961,
+        "end_ms": 46963,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 46964,
+        "end_ms": 46970,
+        "raw": 8999,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "27239C0CA10C37E4"
+      },
+      {
+        "start_ms": 46970,
+        "end_ms": 46970,
+        "raw": 1257,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821521,
+    "result": 0,
+    "seq": 83,
+    "phase": 4,
+    "at_ms": 46982,
+    "done_ms": 46991,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 46982,
+        "end_ms": 46984,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 46982,
+        "end_ms": 46984,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 46982,
+        "end_ms": 46984,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 46985,
+        "end_ms": 46991,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239C0CA20C5CB2"
+      },
+      {
+        "start_ms": 46991,
+        "end_ms": 46991,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821522,
+    "result": 0,
+    "seq": 84,
+    "phase": 4,
+    "at_ms": 47003,
+    "done_ms": 47012,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47003,
+        "end_ms": 47005,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 47003,
+        "end_ms": 47005,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 47003,
+        "end_ms": 47005,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 47006,
+        "end_ms": 47012,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "28239C0CA10CEB9E"
+      },
+      {
+        "start_ms": 47012,
+        "end_ms": 47012,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821523,
+    "result": 0,
+    "seq": 85,
+    "phase": 4,
+    "at_ms": 47024,
+    "done_ms": 47033,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47024,
+        "end_ms": 47026,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 47024,
+        "end_ms": 47026,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 47024,
+        "end_ms": 47026,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 47027,
+        "end_ms": 47033,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "29239C0CA20CC420"
+      },
+      {
+        "start_ms": 47033,
+        "end_ms": 47033,
+        "raw": 1258,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821524,
+    "result": 0,
+    "seq": 86,
+    "phase": 4,
+    "at_ms": 47045,
+    "done_ms": 47054,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47045,
+        "end_ms": 47047,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 47045,
+        "end_ms": 47047,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 47045,
+        "end_ms": 47047,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 47048,
+        "end_ms": 47054,
+        "raw": 8995,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "23239D0CA20CE892"
+      },
+      {
+        "start_ms": 47054,
+        "end_ms": 47054,
+        "raw": 1254,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821525,
+    "result": 0,
+    "seq": 87,
+    "phase": 4,
+    "at_ms": 47066,
+    "done_ms": 47075,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47066,
+        "end_ms": 47068,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 47066,
+        "end_ms": 47068,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 47066,
+        "end_ms": 47068,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 47069,
+        "end_ms": 47075,
+        "raw": 8995,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "23239D0CA10CFB74"
+      },
+      {
+        "start_ms": 47075,
+        "end_ms": 47075,
+        "raw": 1258,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821526,
+    "result": 0,
+    "seq": 88,
+    "phase": 4,
+    "at_ms": 47087,
+    "done_ms": 47096,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47087,
+        "end_ms": 47089,
+        "raw": 38858,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CA97FFFFFFFFCB26"
+      },
+      {
+        "start_ms": 47087,
+        "end_ms": 47089,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 47087,
+        "end_ms": 47089,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 47090,
+        "end_ms": 47096,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239C0CA20C5CB2"
+      },
+      {
+        "start_ms": 47096,
+        "end_ms": 47096,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821527,
+    "result": 0,
+    "seq": 89,
+    "phase": 4,
+    "at_ms": 47108,
+    "done_ms": 47117,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47108,
+        "end_ms": 47110,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 47108,
+        "end_ms": 47110,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 47108,
+        "end_ms": 47110,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 47111,
+        "end_ms": 47117,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "24239D0CA20C5D1A"
+      },
+      {
+        "start_ms": 47117,
+        "end_ms": 47117,
+        "raw": 1259,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821528,
+    "result": 0,
+    "seq": 90,
+    "phase": 4,
+    "at_ms": 47129,
+    "done_ms": 47138,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47129,
+        "end_ms": 47131,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 47129,
+        "end_ms": 47131,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 47129,
+        "end_ms": 47131,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 47132,
+        "end_ms": 47138,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239D0CA10C72A4"
+      },
+      {
+        "start_ms": 47138,
+        "end_ms": 47138,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821529,
+    "result": 0,
+    "seq": 91,
+    "phase": 4,
+    "at_ms": 47150,
+    "done_ms": 47159,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47150,
+        "end_ms": 47152,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 47150,
+        "end_ms": 47152,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 47150,
+        "end_ms": 47152,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 47153,
+        "end_ms": 47159,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239D0CA20C6142"
+      },
+      {
+        "start_ms": 47159,
+        "end_ms": 47159,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821530,
+    "result": 0,
+    "seq": 92,
+    "phase": 4,
+    "at_ms": 47171,
+    "done_ms": 47180,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47171,
+        "end_ms": 47173,
+        "raw": 38857,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "C997FFFFFFFF8FCE"
+      },
+      {
+        "start_ms": 47171,
+        "end_ms": 47173,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 47171,
+        "end_ms": 47173,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 47174,
+        "end_ms": 47180,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "28239C0CA10CEB9E"
+      },
+      {
+        "start_ms": 47180,
+        "end_ms": 47180,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821531,
+    "result": 0,
+    "seq": 93,
+    "phase": 4,
+    "at_ms": 47192,
+    "done_ms": 47201,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47192,
+        "end_ms": 47194,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 47192,
+        "end_ms": 47194,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 47192,
+        "end_ms": 47194,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 47195,
+        "end_ms": 47201,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "28239C0CA20CF878"
+      },
+      {
+        "start_ms": 47201,
+        "end_ms": 47201,
+        "raw": 1258,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821532,
+    "result": 0,
+    "seq": 94,
+    "phase": 4,
+    "at_ms": 47213,
+    "done_ms": 47222,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47213,
+        "end_ms": 47215,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 47213,
+        "end_ms": 47215,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 47213,
+        "end_ms": 47215,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 47216,
+        "end_ms": 47222,
+        "raw": 9000,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "28239C0CA20CF878"
+      },
+      {
+        "start_ms": 47222,
+        "end_ms": 47222,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821533,
+    "result": 0,
+    "seq": 95,
+    "phase": 4,
+    "at_ms": 47234,
+    "done_ms": 47243,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47234,
+        "end_ms": 47236,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 47234,
+        "end_ms": 47236,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 47234,
+        "end_ms": 47236,
+        "raw": 38864,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "D097FFFFFFFF0980"
+      },
+      {
+        "start_ms": 47237,
+        "end_ms": 47243,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239C0CA20C5CB2"
+      },
+      {
+        "start_ms": 47243,
+        "end_ms": 47243,
+        "raw": 1262,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821534,
+    "result": 0,
+    "seq": 96,
+    "phase": 4,
+    "at_ms": 47255,
+    "done_ms": 47264,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47255,
+        "end_ms": 47257,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 47255,
+        "end_ms": 47257,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 47255,
+        "end_ms": 47257,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 47258,
+        "end_ms": 47264,
+        "raw": 9002,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "2A239D0CA20CBD38"
+      },
+      {
+        "start_ms": 47264,
+        "end_ms": 47264,
+        "raw": 1256,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821535,
+    "result": 0,
+    "seq": 97,
+    "phase": 4,
+    "at_ms": 47276,
+    "done_ms": 47285,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47276,
+        "end_ms": 47278,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 47276,
+        "end_ms": 47278,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 47276,
+        "end_ms": 47278,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 47279,
+        "end_ms": 47285,
+        "raw": 8998,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "26239D0CA20C25AA"
+      },
+      {
+        "start_ms": 47285,
+        "end_ms": 47285,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821536,
+    "result": 0,
+    "seq": 98,
+    "phase": 4,
+    "at_ms": 47297,
+    "done_ms": 47306,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47297,
+        "end_ms": 47299,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 47297,
+        "end_ms": 47299,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 47297,
+        "end_ms": 47299,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 47300,
+        "end_ms": 47306,
+        "raw": 8997,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "25239D0CA10C72A4"
+      },
+      {
+        "start_ms": 47306,
+        "end_ms": 47306,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821537,
+    "result": 0,
+    "seq": 99,
+    "phase": 4,
+    "at_ms": 47318,
+    "done_ms": 47327,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47318,
+        "end_ms": 47320,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 47318,
+        "end_ms": 47320,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 47318,
+        "end_ms": 47320,
+        "raw": 38863,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CF97FFFFFFFF061E"
+      },
+      {
+        "start_ms": 47321,
+        "end_ms": 47327,
+        "raw": 8996,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "24239C0CA20C60EA"
+      },
+      {
+        "start_ms": 47327,
+        "end_ms": 47327,
+        "raw": 1260,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821538,
+    "result": 0,
+    "seq": 100,
+    "phase": 4,
+    "at_ms": 47339,
+    "done_ms": 47348,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47339,
+        "end_ms": 47341,
+        "raw": 38860,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CC97FFFFFFFF42F6"
+      },
+      {
+        "start_ms": 47339,
+        "end_ms": 47341,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 47339,
+        "end_ms": 47341,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 47342,
+        "end_ms": 47348,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "29239D0CA20CF9D0"
+      },
+      {
+        "start_ms": 47348,
+        "end_ms": 47348,
+        "raw": 1255,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821539,
+    "result": 0,
+    "seq": 101,
+    "phase": 4,
+    "at_ms": 47360,
+    "done_ms": 47369,
+    "bits": 0,
+    "samples": [
+      {
+        "start_ms": 47360,
+        "end_ms": 47362,
+        "raw": 38859,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell1",
+        "frame_hex": "CB97FFFFFFFFF77E"
+      },
+      {
+        "start_ms": 47360,
+        "end_ms": 47362,
+        "raw": 38861,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell7",
+        "frame_hex": "CD97FFFFFFFF7EAE"
+      },
+      {
+        "start_ms": 47360,
+        "end_ms": 47362,
+        "raw": 38862,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "cell13",
+        "frame_hex": "CE97FFFFFFFF3A46"
+      },
+      {
+        "start_ms": 47363,
+        "end_ms": 47369,
+        "raw": 9001,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "afe_current",
+        "frame_hex": "29239C0CA10CD7C6"
+      },
+      {
+        "start_ms": 47369,
+        "end_ms": 47369,
+        "raw": 1261,
+        "status": 128,
+        "raw_valid": 1,
+        "channel": "mcu_current",
+        "frame_hex": "0000000000000000"
+      }
+    ],
+    "kind": "#G3S",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821540,
+    "result": 0,
+    "state": 0,
+    "faults": 0,
+    "used": 1,
+    "owned": 0,
+    "scenario": 0,
+    "start_id": 2538821269,
+    "start_us": 63999,
+    "stop_us": 89989,
+    "now_us": 91988,
+    "run_us": 200000,
+    "sample_count": 2598,
+    "raw": 1284,
+    "raw_min": 1262,
+    "raw_max": 1294,
+    "last_sample_us": 89982,
+    "max_sample_gap_us": 12,
+    "max_irq_gap_us": 100,
+    "irq_count": 259,
+    "trace_written": 157,
+    "trace_overflow": 0,
+    "tim_hz": 400000000,
+    "adc_hz": 64000000,
+    "timer_hz": 1000000,
+    "arr": 2000,
+    "ccr": 1000,
+    "dtg": 0,
+    "actual_bits": 0,
+    "timer_running": 0,
+    "restored": 1,
+    "power_capable": 0,
+    "physical_valid": 0,
+    "kind": "#G3P",
+    "firmware": "g03-pwm-disabled-r1"
+  },
+  {
+    "id": 2538821541,
+    "result": 0,
+    "start_id": 2538821434,
+    "state": 0,
+    "faults": 0,
+    "owns_adc": 0,
+    "cpu_hz": 800000000,
+    "tim_hz": 400000000,
+    "adc_hz": 64000000,
+    "start_ms": 44073,
+    "stop_ms": 45073,
+    "updates": 99997,
+    "completions": 99997,
+    "overruns": 0,
+    "adc_errors": 0,
+    "gap_max_cycles": 8000,
+    "tim_isr_max_cycles": 1686,
+    "adc_isr_max_cycles": 2544,
+    "late_irqs": 0,
+    "ccr_writes": 0,
+    "ccr_requested": 1000,
+    "ccr_observed": 0,
+    "stop_software_cycles": 602,
+    "bad_frames": 0,
+    "rx_errors": 0,
+    "pins_gate": 0,
+    "kind": "#G02",
+    "firmware": "g03-pwm-disabled-r1"
+  }
+]

@@ -1,0 +1,10 @@
+test_crc_numeric_schema (test_host.TestHost) ... ok
+test_fail_closed_on_capability_or_real_output (test_host.TestHost) ... ok
+test_fragment_and_metadata (test_host.TestHost) ... ok
+test_reboot_no_replay (test_host.TestHost) ... ok
+test_timeout_and_id_exhaustion (test_host.TestHost) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.043s
+
+OK

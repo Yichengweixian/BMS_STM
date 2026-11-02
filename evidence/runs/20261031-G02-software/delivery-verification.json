@@ -1,0 +1,709 @@
+{
+  "applied_utc": "2026-10-31T07:26:13.266592+00:00",
+  "destination": "D:\\ADMIN\\Desktop\\WEIJI\\zonghe",
+  "files_verified": 140,
+  "sha256_plan": "0a1d73ab12bf0cbadbff6af3da84b35d8fbc86f3455422e6aefb57de261cb746",
+  "no_hardware_access": true,
+  "files": [
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/g02_control.c",
+      "expected_before_sha256": null,
+      "sha256": "25a1cd48ec3d4e84839ba703bb9877034916a0794265fdb5f21aed6a2636b8b9"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/g02_control.h",
+      "expected_before_sha256": null,
+      "sha256": "94c09b7f0d5ad55971a9fcc9b5375e7ab7fe588d8e92df335d74a63ac0ec7e18"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/g02_port.c",
+      "expected_before_sha256": null,
+      "sha256": "9543248ff891079c99380999a1ea9c6cc608e7ddf739b7a7bfb9f2a31af13b08"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/g02_port.h",
+      "expected_before_sha256": null,
+      "sha256": "c0abd65e7efa6f5f40e169b1e04ee163f2a2bf9b610d7a5ad824325e53fd2b68"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/measurement.c",
+      "expected_before_sha256": "022834fc800f8d958f6ccc320f273b4e2c55092b9542f0832d45bbdd4b3730c6",
+      "sha256": "e3c95890a16720fabb505a3fb77d495db59c56b410ab920dbdb3a95fc6a3f339"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c",
+      "expected_before_sha256": "1495c0d43a74a1b3fc251af27214da5c95aa6c61c944d2c80e390645ce1aa56e",
+      "sha256": "daff4e8fcdc3ef7526249334bd1d223d275e4cf3fb673ec685b040cea3d2626e"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/Appli/Core/Src/stm32n6xx_it.c",
+      "expected_before_sha256": "776a5ac01cc52240889f3e2bdd228fb5e79a71fb3b92d820f3e9f123ad10bcc5",
+      "sha256": "774ddbf98a0891e91d927e9e953d62db28ed088bdf042bf6483cd3a38429746d"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/Appli/Core/Inc/stm32n6xx_it.h",
+      "expected_before_sha256": "2414a5056b48c42fe2e552477e3822140ef7c8c959efa78d17e2b3ca821b3c6d",
+      "sha256": "ffdda7db661821d838380b79c7b9383d71a5e343d3e81c1383f759c98a4dc6a6"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx",
+      "expected_before_sha256": "a78d0ab53fa003224158aa0cb3154917f607d3ccf36e22326143410f1db02cd2",
+      "sha256": "0902f840a88c26ade5836bb47d535ec366ce60c0169ef5d45c0321d09e49d01b"
+    },
+    {
+      "path": "tests/g02/test_control.c",
+      "expected_before_sha256": null,
+      "sha256": "f23be0a5206b74e88b74303ad4b1f63e3a234b827de62a05519fe2fc88f470e0"
+    },
+    {
+      "path": "tests/g02/test_port.c",
+      "expected_before_sha256": null,
+      "sha256": "90b8b017c1b6eabdc549fd327b4744906f0e87cd549d4ecc450dd02f6baaeac5"
+    },
+    {
+      "path": "tests/g02/stubs/main.h",
+      "expected_before_sha256": null,
+      "sha256": "a2acc5bdcedcb0ab62342038f202a452edf27f5c92b4957c61f71467d2218975"
+    },
+    {
+      "path": "scripts/g02/run_checks.py",
+      "expected_before_sha256": null,
+      "sha256": "2bdc390429957059377357c6d243acb31c13ba80a02d55044d22dbcdff4c4e1f"
+    },
+    {
+      "path": "instructions/specs/G02-pwm-timing.md",
+      "expected_before_sha256": null,
+      "sha256": "749dc70b0b7faf4a06558bd8dda3434248d6bd0c708c25db2ea340614c775d9a"
+    },
+    {
+      "path": "instructions/specs/hardware-profile.json",
+      "expected_before_sha256": "2d5b3f2dfdc9d8bf823658e7345b28223321f514cfbfcfa9bcc2d27c77d2b21d",
+      "sha256": "1a62b377cbc368633e5bb95e938d60148d03ebb5eed33d7ca4b7cd3d03fc8600"
+    },
+    {
+      "path": "instructions/STATUS.md",
+      "expected_before_sha256": "6203ba18c994d279aeae9e48101c9be3dc25884875b5234139cfbf6327a26102",
+      "sha256": "7c484e27947ec4afe8cf3f7d0289637851e00b64235aea3aa246272a4193dc59"
+    },
+    {
+      "path": "instructions/RUNLOG.md",
+      "expected_before_sha256": "c86b98f144a27491b2cc8f4172c7d5921386e544403707b7e6cf85ffa4c899a9",
+      "sha256": "e93ce48967567ea19cf41558e15408c72d36b56f3acaa252974473ab6be55256"
+    },
+    {
+      "path": "instructions/README.md",
+      "expected_before_sha256": "9dd50818b7b6a13628ff3b9e6dd597c68644255ebb9b4dfe12766ea1ac134cbf",
+      "sha256": "922dfd78972d9f5296422fde195a4bbd0e5a2b7fd95ec448c0b26b1cefe0f2ec"
+    },
+    {
+      "path": "instructions/validation/render_html.cjs",
+      "expected_before_sha256": "6fd4bb8061e5deebc2b261fd8ade1f904f03238f205536c8d6d0aeffad44f643",
+      "sha256": "563e16cc6b793118a94ae55c2fd561c07916d59c41b771d9eabef852537934e0"
+    },
+    {
+      "path": "instructions/BMS实施与验收指南.html",
+      "expected_before_sha256": "2634777c92c0a99c3749fe24507a0711b697c5a1f6e251404664c9d935c8cf6d",
+      "sha256": "a0dea5711b610f809b99ab3267f30823f3246f97d58049967cfb819bb4a5182b"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Release/BMS_EX_Release.hex",
+      "expected_before_sha256": "dfe902bbf676e214cdf41f4a3a7bab6f1217e6b6506359a93a3a99bfe7d39dd5",
+      "sha256": "fd1d2a84a43fefde8e265cc879757e15c06babe2efd019f9fcf76bdb8ed4013f"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Release/BMS_EX_Release.bin",
+      "expected_before_sha256": "4bd259be19393731e9f5a7388173e2419639786eedf654cfdc983539ae45638e",
+      "sha256": "895076cf3ccfbce3bd42c2660d41a16de91ae5dfa6004ee5529ec54ae4fa4715"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Release/BMS_EX_Release.axf",
+      "expected_before_sha256": "fa8ae9c35e3c253f222bea337c3a74859204df03a8d1055ae6ea9ee81b265bbc",
+      "sha256": "048aaf8121bb394d059462a9e25ae987cfeddf21c2a3aaf920b956f30f03b22d"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Release/BMS_EX_Release.map",
+      "expected_before_sha256": "25cd114743aea5e19a8af892f7123589966a421e860c352bad0b2f19c504477d",
+      "sha256": "d4a33b5946b8a3798b3025e911d12a2ded5c58d527c0132027c863772bd64fa5"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Debug/BMS_EX_Debug.hex",
+      "expected_before_sha256": "2085c01df5061d5166d00566ed5f7327958e3ec677f94980661be5177f576118",
+      "sha256": "1ee4384484f1ca39aade63cdaab80a437c209e79e22bc611583485373d986126"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Debug/BMS_EX_Debug.bin",
+      "expected_before_sha256": "75ad48a7f5fb59117e2e38f42e88671891462add353580f5c5271f6645a6da9f",
+      "sha256": "1fe542764de0a84c5bde584e590750daa0066d611fae497f33caa2c2005f9193"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Debug/BMS_EX_Debug.axf",
+      "expected_before_sha256": "aabb9192e42105e8e1f61606bc20ebb891b15d07c4ad4de5d392b04a987d1cc6",
+      "sha256": "23199fe69753ee665858ef0b2f60ceaa354eed72500713ad6eff571b0dbad75e"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Debug/BMS_EX_Debug.map",
+      "expected_before_sha256": "8a2499c4e82f233fc8a110d100533696531e8f2c7a57ed8926fe4abc05c5e752",
+      "sha256": "1ad209d6cad182b1c17a203de4cf26134bd9e1598a27374a3f7168cb7451a15e"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/BMS_EXv1.1/BMS_EX/Appli/Core/Inc/stm32n6xx_it.h",
+      "expected_before_sha256": null,
+      "sha256": "2414a5056b48c42fe2e552477e3822140ef7c8c959efa78d17e2b3ca821b3c6d"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c",
+      "expected_before_sha256": null,
+      "sha256": "1495c0d43a74a1b3fc251af27214da5c95aa6c61c944d2c80e390645ce1aa56e"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/BMS_EXv1.1/BMS_EX/Appli/Core/Src/stm32n6xx_it.c",
+      "expected_before_sha256": null,
+      "sha256": "776a5ac01cc52240889f3e2bdd228fb5e79a71fb3b92d820f3e9f123ad10bcc5"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/BMS_EXv1.1/BMS_EX/BSP/measurement.c",
+      "expected_before_sha256": null,
+      "sha256": "022834fc800f8d958f6ccc320f273b4e2c55092b9542f0832d45bbdd4b3730c6"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx",
+      "expected_before_sha256": null,
+      "sha256": "a78d0ab53fa003224158aa0cb3154917f607d3ccf36e22326143410f1db02cd2"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Debug/BMS_EX_Debug.axf",
+      "expected_before_sha256": null,
+      "sha256": "aabb9192e42105e8e1f61606bc20ebb891b15d07c4ad4de5d392b04a987d1cc6"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Debug/BMS_EX_Debug.bin",
+      "expected_before_sha256": null,
+      "sha256": "75ad48a7f5fb59117e2e38f42e88671891462add353580f5c5271f6645a6da9f"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Debug/BMS_EX_Debug.hex",
+      "expected_before_sha256": null,
+      "sha256": "2085c01df5061d5166d00566ed5f7327958e3ec677f94980661be5177f576118"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Debug/BMS_EX_Debug.map",
+      "expected_before_sha256": null,
+      "sha256": "8a2499c4e82f233fc8a110d100533696531e8f2c7a57ed8926fe4abc05c5e752"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Release/BMS_EX_Release.axf",
+      "expected_before_sha256": null,
+      "sha256": "fa8ae9c35e3c253f222bea337c3a74859204df03a8d1055ae6ea9ee81b265bbc"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Release/BMS_EX_Release.bin",
+      "expected_before_sha256": null,
+      "sha256": "4bd259be19393731e9f5a7388173e2419639786eedf654cfdc983539ae45638e"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Release/BMS_EX_Release.hex",
+      "expected_before_sha256": null,
+      "sha256": "dfe902bbf676e214cdf41f4a3a7bab6f1217e6b6506359a93a3a99bfe7d39dd5"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Release/BMS_EX_Release.map",
+      "expected_before_sha256": null,
+      "sha256": "25cd114743aea5e19a8af892f7123589966a421e860c352bad0b2f19c504477d"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/instructions/BMS实施与验收指南.html",
+      "expected_before_sha256": null,
+      "sha256": "2634777c92c0a99c3749fe24507a0711b697c5a1f6e251404664c9d935c8cf6d"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/instructions/README.md",
+      "expected_before_sha256": null,
+      "sha256": "9dd50818b7b6a13628ff3b9e6dd597c68644255ebb9b4dfe12766ea1ac134cbf"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/instructions/RUNLOG.md",
+      "expected_before_sha256": null,
+      "sha256": "c86b98f144a27491b2cc8f4172c7d5921386e544403707b7e6cf85ffa4c899a9"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/instructions/specs/hardware-profile.json",
+      "expected_before_sha256": null,
+      "sha256": "2d5b3f2dfdc9d8bf823658e7345b28223321f514cfbfcfa9bcc2d27c77d2b21d"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/instructions/STATUS.md",
+      "expected_before_sha256": null,
+      "sha256": "6203ba18c994d279aeae9e48101c9be3dc25884875b5234139cfbf6327a26102"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/before/instructions/validation/render_html.cjs",
+      "expected_before_sha256": null,
+      "sha256": "6fd4bb8061e5deebc2b261fd8ade1f904f03238f205536c8d6d0aeffad44f643"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/build-execution-r2.json",
+      "expected_before_sha256": null,
+      "sha256": "7f2f209da8ee63080efd112f95bbc40b467e5e2d14249bb5953f858be6be8f3c"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/build-execution.json",
+      "expected_before_sha256": null,
+      "sha256": "2206700780be1b0d66d11de14e767c7b68ebf6b2bdfba29cef56a8d1c556a493"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/build-results.json",
+      "expected_before_sha256": null,
+      "sha256": "16bc91e150e5ad83e1dfdf4181a35e047ece94fd7d0470191e6ba172c72355fa"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/changes.diff",
+      "expected_before_sha256": null,
+      "sha256": "da69381fd38cbf882120c853498b0a4ba1a39dc14f65f302b9ec5d69f8cd200f"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-01/build-control.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-01/build-control.stdout",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-01/build-default.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-01/build-default.stdout",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-01/build-pins-simulated.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-01/build-pins-simulated.stdout",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-01/checks.json",
+      "expected_before_sha256": null,
+      "sha256": "d672d73324c44a423b86fd4c20cb178b6ed35693a96d5ce1193a7d219705564f"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-01/compiler.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-01/compiler.stdout",
+      "expected_before_sha256": null,
+      "sha256": "417bdda5393c97776ee8ccb9e2bcdbcc5654b70f5d7624d053081cc5d8618727"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-01/control.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-01/control.stdout",
+      "expected_before_sha256": null,
+      "sha256": "2dc845c206d3622e21b40a348168c1ec649da4f2f58b4799df17fcb6ee4df92f"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-01/default.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-01/default.stdout",
+      "expected_before_sha256": null,
+      "sha256": "2b09ea1fd817157e8dd1a95bf67362bb2dbf323d45803f0f0080817fd022de2c"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-01/pins-simulated.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-01/pins-simulated.stdout",
+      "expected_before_sha256": null,
+      "sha256": "2b09ea1fd817157e8dd1a95bf67362bb2dbf323d45803f0f0080817fd022de2c"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-02/build-control.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-02/build-control.stdout",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-02/build-default.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-02/build-default.stdout",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-02/build-pins-simulated.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-02/build-pins-simulated.stdout",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-02/checks.json",
+      "expected_before_sha256": null,
+      "sha256": "bf51716ca50183709e90bf967924a6b088a6318d8a341f2bf23c2296896f6640"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-02/compiler.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-02/compiler.stdout",
+      "expected_before_sha256": null,
+      "sha256": "417bdda5393c97776ee8ccb9e2bcdbcc5654b70f5d7624d053081cc5d8618727"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-02/control.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-02/control.stdout",
+      "expected_before_sha256": null,
+      "sha256": "2dc845c206d3622e21b40a348168c1ec649da4f2f58b4799df17fcb6ee4df92f"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-02/default.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-02/default.stdout",
+      "expected_before_sha256": null,
+      "sha256": "2b09ea1fd817157e8dd1a95bf67362bb2dbf323d45803f0f0080817fd022de2c"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-02/pins-simulated.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-02/pins-simulated.stdout",
+      "expected_before_sha256": null,
+      "sha256": "2b09ea1fd817157e8dd1a95bf67362bb2dbf323d45803f0f0080817fd022de2c"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/checks-02/result.json",
+      "expected_before_sha256": null,
+      "sha256": "e025495621f7a43a246273ddb62b052d7f76cc3e282be50650877ea620abe8a3"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/configuration-derivation.json",
+      "expected_before_sha256": null,
+      "sha256": "3876dad3a07c7adebcf26f812703496281adc2a8dc657a6462e9f81490c166f6"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/documentation-check.json",
+      "expected_before_sha256": null,
+      "sha256": "20978353bd37c90d82d41af456efe1a5eb5ba810ea8f37daa33704c8020ad35a"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/firmware/BMS_EX_Debug/BMS_EX_Debug.axf",
+      "expected_before_sha256": null,
+      "sha256": "0fe75494ba63a8bde0e67f87f011c78b53272e5dc6128fc9e4e362803f861fb8"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/firmware/BMS_EX_Debug/BMS_EX_Debug.bin",
+      "expected_before_sha256": null,
+      "sha256": "16f072566bc403ec98f95e5b9bc367a0f093fe5799881d0c61783dc044389f15"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/firmware/BMS_EX_Debug/BMS_EX_Debug.hex",
+      "expected_before_sha256": null,
+      "sha256": "e3180837c69dc758db8ba92145cd3a2e44c19031b328110ea2a6c7184a4b2f0f"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/firmware/BMS_EX_Debug/BMS_EX_Debug.map",
+      "expected_before_sha256": null,
+      "sha256": "9315bbbb76da8d1cdb9231825a552320b22901a1283bf4a7cb21f0445dbacdd8"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/firmware/BMS_EX_Release/BMS_EX_Release.axf",
+      "expected_before_sha256": null,
+      "sha256": "bf43f63f4558aa11fc244b9a417feb7aa576856547db8fecb256cb6c5381c54b"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/firmware/BMS_EX_Release/BMS_EX_Release.bin",
+      "expected_before_sha256": null,
+      "sha256": "8426b331f9c970bd7ea304df8a8f6fca21428e7d55eb24148c2edabd8316dbf6"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/firmware/BMS_EX_Release/BMS_EX_Release.hex",
+      "expected_before_sha256": null,
+      "sha256": "ecaf428518dc499dd486d750c61aca7e7d64054b037e44c979d5ec6864b84edc"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/firmware/BMS_EX_Release/BMS_EX_Release.map",
+      "expected_before_sha256": null,
+      "sha256": "9802cf724c1fe5b497bd51d4cccbe70cfea32a3b7e03f26d6e683a4bbf2f0ab3"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Debug/BMS_EX_Debug.axf",
+      "expected_before_sha256": null,
+      "sha256": "23199fe69753ee665858ef0b2f60ceaa354eed72500713ad6eff571b0dbad75e"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Debug/BMS_EX_Debug.bin",
+      "expected_before_sha256": null,
+      "sha256": "1fe542764de0a84c5bde584e590750daa0066d611fae497f33caa2c2005f9193"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Debug/BMS_EX_Debug.hex",
+      "expected_before_sha256": null,
+      "sha256": "1ee4384484f1ca39aade63cdaab80a437c209e79e22bc611583485373d986126"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Debug/BMS_EX_Debug.map",
+      "expected_before_sha256": null,
+      "sha256": "1ad209d6cad182b1c17a203de4cf26134bd9e1598a27374a3f7168cb7451a15e"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Release/BMS_EX_Release.axf",
+      "expected_before_sha256": null,
+      "sha256": "048aaf8121bb394d059462a9e25ae987cfeddf21c2a3aaf920b956f30f03b22d"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Release/BMS_EX_Release.bin",
+      "expected_before_sha256": null,
+      "sha256": "895076cf3ccfbce3bd42c2660d41a16de91ae5dfa6004ee5529ec54ae4fa4715"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Release/BMS_EX_Release.hex",
+      "expected_before_sha256": null,
+      "sha256": "fd1d2a84a43fefde8e265cc879757e15c06babe2efd019f9fcf76bdb8ed4013f"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Release/BMS_EX_Release.map",
+      "expected_before_sha256": null,
+      "sha256": "d4a33b5946b8a3798b3025e911d12a2ded5c58d527c0132027c863772bd64fa5"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-01/checks.json",
+      "expected_before_sha256": null,
+      "sha256": "bdf2c82812833b5922af874b92f1d088b1a8a55265fae5b5fab950fcbe845749"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-01/gcc.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-01/gcc.stdout",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-01/native.stderr",
+      "expected_before_sha256": null,
+      "sha256": "6193b51e3ddeb0862e951982b72a879627020e7b9be8bfa6f2ac82aab80a4336"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-01/python-tests.stderr",
+      "expected_before_sha256": null,
+      "sha256": "a901ae858ac771213345a467b3b5474e757ac0f4dfb472c09c6a5b57bb20df65"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-01/python-tests.stdout",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-01/replay/derived/device.csv",
+      "expected_before_sha256": null,
+      "sha256": "0e5ac4008005ed89eea311a059b0b4a3251923617053e55261c725fd0472c3bb"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-01/replay/manifest.json",
+      "expected_before_sha256": null,
+      "sha256": "30c1a1b2330aac27adc28a4ca9f08b96dc921c36de4563472589d6a237ce4176"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-01/replay/raw/events.jsonl",
+      "expected_before_sha256": null,
+      "sha256": "62c5767960589248adb3e6623c07a7e36213217abe6f1895b75f6e1c65aa0b62"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-01/replay/raw/serial.bin",
+      "expected_before_sha256": null,
+      "sha256": "8dbbba5385cbf0e0b7038c7ccb8a646ff9d33cc285672c2484f635c23be4b2cf"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-01/replay.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-01/replay.stdout",
+      "expected_before_sha256": null,
+      "sha256": "c94907919878a19ed0a9237e35113eecc10bc7de0f5167ecdafd65863d2e98fb"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-01/result.json",
+      "expected_before_sha256": null,
+      "sha256": "e7660e4db6bb58afca53277ed53e40834b7ce16aafabc85e6e5e10820df2ca54"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-01/simulated-uart.bin",
+      "expected_before_sha256": null,
+      "sha256": "8dbbba5385cbf0e0b7038c7ccb8a646ff9d33cc285672c2484f635c23be4b2cf"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-02/checks.json",
+      "expected_before_sha256": null,
+      "sha256": "a2e283c8b67c92c4bc81946d46085f0ba1d695b3fd71673f36a5c221002c101f"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-02/gcc.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-02/gcc.stdout",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-02/native.stderr",
+      "expected_before_sha256": null,
+      "sha256": "6193b51e3ddeb0862e951982b72a879627020e7b9be8bfa6f2ac82aab80a4336"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-02/python-tests.stderr",
+      "expected_before_sha256": null,
+      "sha256": "0234d89d72cebfeec413efa8e7a3302105611423ba8d5b10d7b2f320163ca051"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-02/python-tests.stdout",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-02/replay/derived/device.csv",
+      "expected_before_sha256": null,
+      "sha256": "e7e5a1d83ed1f5334253288abf90cb2f8a3173f0a9cc22a8ffc3fe05aa6fd366"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-02/replay/manifest.json",
+      "expected_before_sha256": null,
+      "sha256": "0163bb93181ca7bb2d34bca2f0e85c965cf5b54f254d3c6170e05bfb13f7f7a9"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-02/replay/raw/events.jsonl",
+      "expected_before_sha256": null,
+      "sha256": "136db69e61f05f49871f44b8fba246e8e3c7089607fe5273329cf1c5cf5884ad"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-02/replay/raw/serial.bin",
+      "expected_before_sha256": null,
+      "sha256": "dbba39a8b8baceb076fd7cde09a7c6ba82c3f63d9aef40451eca8a1d6be88b13"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-02/replay.stderr",
+      "expected_before_sha256": null,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-02/replay.stdout",
+      "expected_before_sha256": null,
+      "sha256": "69a13c7c99fcec8c13e34cb03dff3b8f4258e0e6af9ba6b0cfdf1c3544aee777"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-02/result.json",
+      "expected_before_sha256": null,
+      "sha256": "b585caf72904ab9cec36dea6fcf7cb1edf1854638f2bc4b07e6d3fad923f75b4"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/g01-regression-02/simulated-uart.bin",
+      "expected_before_sha256": null,
+      "sha256": "dbba39a8b8baceb076fd7cde09a7c6ba82c3f63d9aef40451eca8a1d6be88b13"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/manifest.json",
+      "expected_before_sha256": null,
+      "sha256": "4efc8bf3a5d530c07900d4682db3920b9739b5e82f29726000825f6ffd3390c8"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/raw/BMS_EX_Debug-final.log",
+      "expected_before_sha256": null,
+      "sha256": "a4c703bd2d8853eef886bb210a454648429025150498c3a5b64050e7ba3eca08"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/raw/BMS_EX_Debug-r2.log",
+      "expected_before_sha256": null,
+      "sha256": "efa59065ada39f37ccae599f27bd943e5442da5fdee0825b10708f7ec7543740"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/raw/BMS_EX_Release-final.log",
+      "expected_before_sha256": null,
+      "sha256": "d8ab80b17f96e6b9901c40a306e4f3a7a85f7e859850739deaed2bbad82608ac"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/raw/BMS_EX_Release-r2.log",
+      "expected_before_sha256": null,
+      "sha256": "532c6078f04f9c09f5a85be0af8d4b24ad49c67bb1775e08bdbc9008611f87b1"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/raw/Release-01.log",
+      "expected_before_sha256": null,
+      "sha256": "92ed76c97e38d81d1e7e52e31429b8459f71bbcc6c87b2be292e8d5e316314e7"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/raw/Release-02.log",
+      "expected_before_sha256": null,
+      "sha256": "8b7fc2e6d226f6843fa0e3919738f5c006f10e005f0cf46b91a5d30be8e37df5"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/result.json",
+      "expected_before_sha256": null,
+      "sha256": "55705a570d8c3ce72162f090ba2d0438d18d3bebf69ebdb8acd3f196614221bd"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/source-manifest.json",
+      "expected_before_sha256": null,
+      "sha256": "de6df24bdce41cbb10c67426905645c4224e9196bf67949952d2d1879485c740"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/source-snapshot.zip",
+      "expected_before_sha256": null,
+      "sha256": "4e3ec84f1f4c44b1962ee3cef6cab5834c53f047e6db65888f7d4bd68e071e37"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/tools-manifest.json",
+      "expected_before_sha256": null,
+      "sha256": "a4c644c52efc958f1de6736afb83fd01ac195431d6aa64538dbf1005c9a0e838"
+    },
+    {
+      "path": "evidence/runs/20261031-G02-software/work-card.md",
+      "expected_before_sha256": null,
+      "sha256": "15bf034e7adb6164062d8507d604c46f92150528d995262e886c7bad5ef94cc1"
+    }
+  ]
+}

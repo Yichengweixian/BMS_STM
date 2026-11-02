@@ -1,0 +1,208 @@
+[
+  {
+    "name": "build-core",
+    "command": [
+      "D:\\Program Files\\JetBrains\\CLion 2025.2.3\\bin\\mingw\\bin\\gcc.exe",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wshadow",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\BMS_EXv1.1\\BMS_EX\\BSP\\pwm_oneshot.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\tests\\g03\\test_pwm_oneshot.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\core.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "core",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\core.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "m55-object",
+    "command": [
+      "D:\\K5\\ARM\\ARMCLANG\\bin\\armclang.exe",
+      "--target=arm-arm-none-eabi",
+      "-mcpu=cortex-m55",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\BMS_EXv1.1\\BMS_EX\\BSP\\pwm_oneshot.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\core_m55.o"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "build-port-model",
+    "command": [
+      "D:\\Program Files\\JetBrains\\CLion 2025.2.3\\bin\\mingw\\bin\\g++.exe",
+      "-x",
+      "c++",
+      "-std=c++17",
+      "-O2",
+      "-Wall",
+      "-Werror",
+      "-Wno-missing-field-initializers",
+      "-Wno-misleading-indentation",
+      "-DG03_PWM_DISABLED_BUILD=1",
+      "-DG3R_LIVE_PROFILE_VERIFIED=0",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\tests\\g03\\pwm_port_fixture",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "-include",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\tests\\g03\\pwm_port_fixture\\main.h",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_pwm_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\BMS_EXv1.1\\BMS_EX\\BSP\\pwm_oneshot.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\tests\\g03\\test_pwm_port.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\port.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port-deadline",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\port.exe",
+      "deadline"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port-wrap",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\port.exe",
+      "wrap"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port-stop",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\port.exe",
+      "stop"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port-protocol",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\port.exe",
+      "protocol"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port-preflight",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\port.exe",
+      "preflight"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port-clock",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\port.exe",
+      "clock"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port-preflight_protocol",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\port.exe",
+      "preflight_protocol"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port-fault_flags",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\port.exe",
+      "fault_flags"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port-fifo",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\port.exe",
+      "fifo"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port-buffer",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\port.exe",
+      "buffer"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port-overrun_scenario",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\port.exe",
+      "overrun_scenario"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port-awd_low",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\port.exe",
+      "awd_low"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port-awd_high",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\port.exe",
+      "awd_high"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port-cleanup_failure",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\port.exe",
+      "cleanup_failure"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port-cleanup_failure_readback",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\pwm-checks-final\\port.exe",
+      "cleanup_failure_readback"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "host",
+    "command": [
+      "C:\\Users\\ADMIN\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\tests\\g03",
+      "-p",
+      "test_pwm_disabled_host.py",
+      "-v"
+    ],
+    "exit_code": 0
+  }
+]

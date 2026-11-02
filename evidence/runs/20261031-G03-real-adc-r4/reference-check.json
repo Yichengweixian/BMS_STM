@@ -1,0 +1,9 @@
+{
+  "source": "https://www.st.com/resource/en/datasheet/stm32n647i0.pdf",
+  "document": "DS14791 Rev11 September2026",
+  "page": 145,
+  "table": 30,
+  "VREFINT_nominal_V": 0.8,
+  "factory_shadow_not_read": true,
+  "external_reference_calibrated": false
+}

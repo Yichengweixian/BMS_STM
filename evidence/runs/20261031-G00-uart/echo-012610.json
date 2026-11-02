@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-10-31T01:26:10.3155398+08:00",
+  "port": "COM10",
+  "parameters": "115200 8N1",
+  "before": "",
+  "sent": "G00_ECHO_7319",
+  "received": "y\u001f",
+  "exact_echo": false
+}

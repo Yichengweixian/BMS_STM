@@ -1,0 +1,12 @@
+{
+  "firmware": "g03-pwm-disabled-r1",
+  "firmware_sha256": "9126778404c6f9a9890ab729522f7fbd9fe7fe0a380436694494ebecde81f9fb",
+  "mode": "disabled_pwm",
+  "explicit_start": false,
+  "run_us": 100000,
+  "scenario": 0,
+  "power_capable": 0,
+  "physical_valid": 0,
+  "tool_sha256": "8324f898014198d1f0d4af803cbe570d6f24ced7a7b46b35808488b989f272f9",
+  "reset_or_flash_performed": false
+}

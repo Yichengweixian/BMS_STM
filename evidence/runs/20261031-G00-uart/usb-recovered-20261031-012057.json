@@ -1,0 +1,14 @@
+{
+  "captured_at": "2026-10-31T01:20:57.3557029+08:00",
+  "device": "USB-SERIAL CH340 (COM10)",
+  "instance": "USB\\VID_1A86&PID_7523\\5&1423ACB5&0&3",
+  "status": "OK",
+  "user_action": "Changed USB cable",
+  "serial_open": "pass",
+  "parameters": "115200 8N1 DTR=false RTS=false",
+  "passive_read_seconds": 2,
+  "received_chars": 0,
+  "transmitted_bytes": 0,
+  "board_wiring": "awaiting_confirmation",
+  "board_uart_verdict": null
+}

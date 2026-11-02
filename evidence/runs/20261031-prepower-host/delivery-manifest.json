@@ -1,0 +1,82 @@
+[
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/g02_link.c",
+    "before_sha256": "20122dbc99660456f3001c3b5600de0e8e018a111940627d18ac565bc1322b97",
+    "after_sha256": "b905c3df65ad18935e709124c5b66aa5c4834d67f46ef6b690e43a6acd48a5ef"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/measurement.c",
+    "before_sha256": "cc7f1a22772182bd16214578755aba52212a265677a4f2c4bf864696340cc681",
+    "after_sha256": "fead0787e5d2c0774f084e6b2beeefe2dea1e541305469f99fe1709f7fbcda96"
+  },
+  {
+    "path": "tests/g02/test_link.c",
+    "before_sha256": "949ca228847c60be100fdf1ee956432ea881ef1e920bef54a19bf855718cad15",
+    "after_sha256": "5871faf2fa80159c8969172fbd73e1b8186471de0423bcd1efd06bd42863095d"
+  },
+  {
+    "path": "tests/g02/test_host.py",
+    "before_sha256": null,
+    "after_sha256": "05d61d0942fc4bbb0e51b4acb98ff62adcff06d8794593693b55f2f21bd7085b"
+  },
+  {
+    "path": "scripts/g02/host_diagnostics.py",
+    "before_sha256": "1c8734e6e172d0a21934474fd80c161a9a0ba32372e5d12f98ab3a85b9e886de",
+    "after_sha256": "7a2d1a25340087b648afdc499fbd0ff8636dab57cd2e51afb3387f11879f5cf2"
+  },
+  {
+    "path": "scripts/g02/extended_diagnostics.py",
+    "before_sha256": null,
+    "after_sha256": "3b9445b73b7f1dc53ded9a7429751f17bc7f9bb35823c04cf73205257f5d63a5"
+  },
+  {
+    "path": "scripts/g02/prepower_plan.py",
+    "before_sha256": null,
+    "after_sha256": "bb39f6b63cdb3478535c337bf876e0aceeeca499969d8df5b378c1fdcefc5864"
+  },
+  {
+    "path": "scripts/g02/open-loop-plan.template.json",
+    "before_sha256": null,
+    "after_sha256": "22042f4bc5ba86b55a87f26a1d234ee59be68c22d0ac12ee0a422c00f75e0159"
+  },
+  {
+    "path": "scripts/g02/run_checks.py",
+    "before_sha256": "033224b9d19c239bc9121bfaa07e04d9f73f32d98cdffb8e238b42dea3c55818",
+    "after_sha256": "823e0ff45f7f675f9338cc3cf9c799dd59bfec167381158f70ce22725df7fb1c"
+  },
+  {
+    "path": "scripts/g01/run_checks.py",
+    "before_sha256": "b77ec53a14dc6770f944eb3d3d410d1cb0a4c472b60cd0d5a59d361e68e11468",
+    "after_sha256": "a2256a6166477fd7b57efd3cf03107221d7c4a8694a9011de862ec7757380fae"
+  },
+  {
+    "path": "instructions/specs/G02-host-diagnostics.md",
+    "before_sha256": "f74de04376680a830c94f49657d4cb42e4094ace4b561cec2507fdbd89ce51fb",
+    "after_sha256": "9671b41136a992b9bb0033ed77556a9f4dca2ec53e3e156c266f989a9fe43d2d"
+  },
+  {
+    "path": "instructions/specs/prepower-host-validation.md",
+    "before_sha256": null,
+    "after_sha256": "8a4e8d7b4c16d051ec1ba966789aab6b1d9a52fc7221ac48cfd830f175b4f759"
+  },
+  {
+    "path": "instructions/README.md",
+    "before_sha256": "55e7b9d2e7852ef478a00c509c7ec14262f727929b899142fbccf2fabeda2d3a",
+    "after_sha256": "00ab6ce273ebe9f1071743bd2b1d9e4e43449a45f9f8e6c063413f9107141923"
+  },
+  {
+    "path": "instructions/STATUS.md",
+    "before_sha256": "a8c8f95f5755704daaf6fb7c5c985433982dcaa31d9545346d73c9c99dca4c49",
+    "after_sha256": "711a2763f6b32c73b7ad381a5bbb5ad2beee4753412aef2c5c54c1a2347d8196"
+  },
+  {
+    "path": "instructions/RUNLOG.md",
+    "before_sha256": "94307ae5b876516e748b67c035ede75d52fd56b85c525d5ec4302d298c994284",
+    "after_sha256": "2c5337388bd219be8f1816ef1a54a261768790612619e1a0f902adc4a13ac4b6"
+  },
+  {
+    "path": "instructions/specs/hardware-profile.json",
+    "before_sha256": "3bd008207ae4def6d57f31252e2bc10f017d5a4a383948d5014a6ddcacecdd65",
+    "after_sha256": "63da6b4f90cd99670a3a80d500296aab2699e2bd83e570a5656d20cef311314e"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "status": "in_progress",
+  "verdict": null,
+  "evidence_scope": [
+    "bench",
+    "release_boot"
+  ],
+  "firmware_sha256": "fd1d2a84a43fefde8e265cc879757e15c06babe2efd019f9fcf76bdb8ed4013f",
+  "actually_flashed": true,
+  "download_verified": true,
+  "flash_command_exit_code": 0,
+  "firmware_runtime_id": "g02-sw-r1",
+  "serial_rows": 1071,
+  "serial_errors": 0,
+  "complete_groups": 119,
+  "all_recorded_raw_valid": true,
+  "user_normal_boot_confirmation": "Reset then BMS_EX displayed; user report",
+  "pwm_or_relay_enabled": false,
+  "timing_diagnostic_executed": false,
+  "limitation": "Normal BOOT reset and raw acquisition verified, not repeated cold boots or calibrated accuracy. PWM/ADC timing diagnostic and oscilloscope measurements still pending."
+}

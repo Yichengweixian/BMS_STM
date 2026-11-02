@@ -1,0 +1,32 @@
+{
+  "source": "evidence\\runs\\20261031-instrument-registration\\CA5212-manual-cn.pdf",
+  "sha256": "f40d807f8b6183b1b9c555fa87bbbf943051e177505225e3145032a3df70e792",
+  "source_url": "https://exp-seee.hust.edu.cn/__local/1/75/9B/0D723459EA09AFD8721611C9444_3B733295_C0A90.pdf",
+  "document_identity": "Chauvin Arnoux C.A 5212/5215/5217 Chinese manufacturer manual, 03-2014 C00097 Ed.1",
+  "pages_visually_checked": [
+    14,
+    15
+  ],
+  "dc_voltage_4V": {
+    "range_V": 4,
+    "resolution_V": 0.001,
+    "reading_percent": 0.2,
+    "counts": 2
+  },
+  "dc_current_4A": {
+    "range_A": 4,
+    "resolution_A": 0.001,
+    "reading_percent": 1,
+    "counts": 5
+  },
+  "dc_current_10A": {
+    "range_A": 10,
+    "resolution_A": 0.01,
+    "reading_percent": 0.5,
+    "counts": 5
+  },
+  "dedicated_temperature_function": false,
+  "reference_conditions": "23 +/-3 degC, RH45-75%; DC AC component <0.1%; other manual reference conditions apply",
+  "accuracy_bound_at_3_896V": 0.009792,
+  "scope": "manufacturer specification only; not a calibration certificate or U95; actual environment and calibration validity unknown"
+}

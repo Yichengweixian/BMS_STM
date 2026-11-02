@@ -1,0 +1,17 @@
+{
+  "run_id": "20261101-HEX-baseline-followup",
+  "artifacts_sha256": {
+    ".gitignore": "fa6b3cd8170a536359aa7d645a43794189cc26a01007b941b99a54fab5968894",
+    "baseline-plan.md": "c0d9bd2c2626c39b4258a96ccd5b2925621ac4506f250db8f03845e679475cde",
+    "result.json": "8e4ecd8703478e8356b18a8538136ba651a51654ebb1e8b45c9c1f52a6c30e52",
+    "candidate/build.ps1": "b1e1ea7ae542fd7195411773e6c67f2a06669276a577a0a927c6a3fa308cf73f",
+    "candidate/pwm_oneshot.c": "eafa6d36c090af812ae71f45c625dc2c900ddc8857183942fed24c1ea8ef6ff9",
+    "candidate/pwm_oneshot.h": "0be238329a554c7b1f3d7dc97820c4f184fd6e6fdab55a30370a9961f06d14f7",
+    "candidate/README.md": "b82f2f36f2bef1a127220de9d772bcaaeb2b850cda43f53e54fdeb5b4061d9e0",
+    "candidate/test-results.txt": "1e1001bfa5a057bfa7c28ea3fe1cf0fd35f96f5250822a45db0f05aa438a02b2",
+    "candidate/test_pwm_oneshot.c": "7e223ac4e48213510a86209d0bdd43ba60cd328a02e9bbcf8e5358d634ecc68f",
+    "candidate/validation.json": "f9055da0cef2cbb918e02c8f077ba9f133fa0ffb4efb9c7dc378dee0d0883100"
+  },
+  "previous_run": "20261101-HEX-power-gap-audit",
+  "previous_run_preserved": true
+}

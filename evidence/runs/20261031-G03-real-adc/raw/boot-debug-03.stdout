@@ -1,0 +1,77 @@
+      -------------------------------------------------------------------
+                       STM32CubeProgrammer v2.20.0                  
+      -------------------------------------------------------------------
+
+ST-LINK SN  : 16004A002933353739303541
+ST-LINK FW  : V2J37S7
+Board       : --
+Voltage     : 3.16V
+SWD freq    : 100 KHz
+Connect mode: Hot Plug
+Reset mode  : Software reset
+Device ID   : 0x486
+Revision ID : Rev B
+Device name : ST32N647
+Device type : MCU
+Device CPU  : Cortex-M55
+BL Version  : --
+
+Core halted
+R0       = 0x340826E4
+R1       = 0x00000040
+R2       = 0x56021400
+R3       = 0x03DF7FFF
+R4       = 0x340FF828
+R5       = 0x00000075
+R6       = 0x340FF884
+R7       = 0x0000006C
+R8       = 0x00000000
+R9       = 0x340FF884
+R10      = 0x00000000
+R11      = 0x70115826
+R12      = 0x56020000
+SP       = 0x340FF7F8
+LR       = 0x7010D189
+PC       = 0xEFFFFFFE
+XPSR     = 0x21000003
+MSP      = 0x340FF7F8
+PSP      = 0x341037F0
+PRIMASK  = 0x00
+FAULTMASK= 0x00
+BASEPRI  = 0x00
+CONTROL  = 0x00
+
+Reading 32-bit memory content
+  Size          : 64 Bytes
+  Address:      : 0xE000ED00
+
+0xE000ED00 : 411FD221 0440F803 70100400 FA050300
+0xE000ED10 : 00000000 00030201 00000000 00000000
+0xE000ED20 : F0000000 00000004 00100000 40000000
+0xE000ED30 : 0000000B 1618A2A1 1618A2A1 00000000
+
+Reading 32-bit memory content
+  Size          : 32 Bytes
+  Address:      : 0x340834C0
+
+0x340834C0 : 00000000 00000000 00000019 56001C00
+0x340834D0 : 30C0EDFF 00000000 00000001 00000000
+
+Reading 32-bit memory content
+  Size          : 112 Bytes
+  Address:      : 0x34083880
+
+0x34083880 : 00000000 00000000 00000000 00000000
+0x34083890 : 00000000 00000000 00000000 00000000
+0x340838A0 : 00000000 00000000 00000000 00000000
+0x340838B0 : 00000000 00000000 00000000 00000000
+0x340838C0 : 00000000 00000000 00000000 00000000
+0x340838D0 : 00000000 00000000 00000000 00000088
+0x340838E0 : 00000000 00000019 00000000 00000000
+
+Reading 32-bit memory content
+  Size          : 16 Bytes
+  Address:      : 0x34083D00
+
+0x34083D00 : 00000000 00000000 00010929 00000000
+Core run

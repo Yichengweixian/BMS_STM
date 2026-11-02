@@ -1,0 +1,4 @@
+reference_id,position,reported_local_time,value_V,instrument_id,afe_channel,synchronized_seq,U95_V
+voltage-followup-1,A,14:05:05,3.895,dmm-ca5212-01,,,
+voltage-followup-2,B,14:06:09,3.894,dmm-ca5212-01,,,
+voltage-followup-3,C,14:07:00,3.894,dmm-ca5212-01,,,

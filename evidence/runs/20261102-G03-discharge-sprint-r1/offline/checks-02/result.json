@@ -1,0 +1,6 @@
+{
+  "verdict": "pass",
+  "scope": "register_model",
+  "cases": 13,
+  "hardware_access": false
+}

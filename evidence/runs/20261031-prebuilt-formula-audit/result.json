@@ -1,0 +1,26 @@
+{
+  "evidence_scope": [
+    "static"
+  ],
+  "bench_executed": false,
+  "firmware_changed": false,
+  "power_enabled": false,
+  "formula_recovered": true,
+  "recovery_scope": "Arithmetic and threshold construction; not original C source or validated board transfer function",
+  "gain_A_per_V": 1.3266666730244954,
+  "mcu_V_per_code": 0.0004395604191813618,
+  "afe_V_per_code": 9.999999747378752e-05,
+  "mcu_zero_runtime_address": "0x34000058",
+  "afe_zero_runtime_address": "0x3400005c",
+  "current_mcu_expression": "(code * mcu_V_per_code - zero_mcu_V) * gain_A_per_V",
+  "current_afe_expression": "(code * afe_V_per_code - zero_afe_V) * gain_A_per_V; abs < 0.0008 A displayed as zero",
+  "threshold_expression": "clamp_truncate((zero_mcu_V +/- limit_A/gain_A_per_V)/mcu_V_per_code, 0, 4095)",
+  "default_zero_hypothetical_MCU_current_A": -0.6063450118358872,
+  "default_zero_hypothetical_AFE_current_A": -0.00021561349189761612,
+  "warning": "Hypothetical outputs are NOT measured battery current. Threshold clamp can eliminate detection in one direction.",
+  "checks": {
+    "four_gain_copies_equal": true,
+    "three_LSB_copies_equal": true
+  },
+  "source_sha256": "dd44fae11ed542ad6bcee45b35a13e93bd6632481b7d29662afda8ac7856be7f"
+}

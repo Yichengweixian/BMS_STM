@@ -1,0 +1,500 @@
+{"host_monotonic": 33693.39, "tx_attempt_hex": "4730322c323533383832313236362c34302c302a313938380a", "id": 2538821266, "op": 40, "arg": 0}
+{"host_monotonic": 33693.39, "tx_hex": "4730322c323533383832313236362c34302c302a313938380a", "id": 2538821266, "op": 40, "arg": 0, "bytes_written": 25}
+{"host_monotonic": 33693.406, "report": {"id": 2538821266, "result": 0, "state": 0, "faults": 0, "used": 0, "owned": 0, "scenario": 0, "start_id": 0, "start_us": 0, "stop_us": 0, "now_us": 0, "run_us": 0, "sample_count": 0, "raw": 0, "raw_min": 0, "raw_max": 0, "last_sample_us": 0, "max_sample_gap_us": 0, "max_irq_gap_us": 0, "irq_count": 0, "trace_written": 0, "trace_overflow": 0, "tim_hz": 0, "adc_hz": 0, "timer_hz": 0, "arr": 2000, "ccr": 1000, "dtg": 0, "actual_bits": 0, "timer_running": 0, "restored": 0, "power_capable": 0, "physical_valid": 0, "kind": "#G3P", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.406, "tx_attempt_hex": "4730322c323533383832313236372c34392c302a433242390a", "id": 2538821267, "op": 49, "arg": 0}
+{"host_monotonic": 33693.406, "tx_hex": "4730322c323533383832313236372c34392c302a433242390a", "id": 2538821267, "op": 49, "arg": 0, "bytes_written": 25}
+{"host_monotonic": 33693.421, "report": {"id": 2538821267, "result": 4, "state": 0, "faults": 0, "used": 0, "owned": 0, "scenario": 0, "start_id": 0, "start_us": 0, "stop_us": 0, "now_us": 0, "run_us": 0, "sample_count": 0, "raw": 0, "raw_min": 0, "raw_max": 0, "last_sample_us": 0, "max_sample_gap_us": 0, "max_irq_gap_us": 0, "irq_count": 0, "trace_written": 0, "trace_overflow": 0, "tim_hz": 0, "adc_hz": 0, "timer_hz": 0, "arr": 2000, "ccr": 1000, "dtg": 0, "actual_bits": 0, "timer_running": 0, "restored": 0, "power_capable": 0, "physical_valid": 0, "kind": "#G3P", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.421, "tx_attempt_hex": "4730322c323533383832313236382c34362c302a324238420a", "id": 2538821268, "op": 46, "arg": 0}
+{"host_monotonic": 33693.421, "tx_hex": "4730322c323533383832313236382c34362c302a324238420a", "id": 2538821268, "op": 46, "arg": 0, "bytes_written": 25}
+{"host_monotonic": 33693.437, "report": {"id": 2538821268, "result": 0, "state": 0, "faults": 0, "used": 0, "owned": 0, "scenario": 0, "start_id": 0, "start_us": 0, "stop_us": 0, "now_us": 0, "run_us": 0, "sample_count": 0, "raw": 0, "raw_min": 0, "raw_max": 0, "last_sample_us": 0, "max_sample_gap_us": 0, "max_irq_gap_us": 0, "irq_count": 0, "trace_written": 0, "trace_overflow": 0, "tim_hz": 0, "adc_hz": 0, "timer_hz": 0, "arr": 2000, "ccr": 1000, "dtg": 0, "actual_bits": 0, "timer_running": 0, "restored": 0, "power_capable": 0, "physical_valid": 0, "kind": "#G3P", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.437, "tx_attempt_hex": "4730322c323533383832313236392c34312c3230303030302a363531390a", "id": 2538821269, "op": 41, "arg": 200000}
+{"host_monotonic": 33693.437, "tx_hex": "4730322c323533383832313236392c34312c3230303030302a363531390a", "id": 2538821269, "op": 41, "arg": 200000, "bytes_written": 30}
+{"host_monotonic": 33693.515, "test_tx_hex": "4730322c323533383832313236392c34312c3139393939392a343544320a", "negative_test": "conflicting-start-request"}
+{"host_monotonic": 33693.515, "test_tx_completed": "conflicting-start-request", "bytes_written": 30}
+{"host_monotonic": 33693.546, "report": {"id": 2538821269, "result": 8, "state": 4, "faults": 2, "used": 1, "owned": 0, "scenario": 0, "start_id": 2538821269, "start_us": 63999, "stop_us": 89989, "now_us": 91988, "run_us": 200000, "sample_count": 2598, "raw": 1284, "raw_min": 1262, "raw_max": 1294, "last_sample_us": 89982, "max_sample_gap_us": 12, "max_irq_gap_us": 100, "irq_count": 259, "trace_written": 157, "trace_overflow": 0, "tim_hz": 400000000, "adc_hz": 64000000, "timer_hz": 1000000, "arr": 2000, "ccr": 1000, "dtg": 0, "actual_bits": 0, "timer_running": 0, "restored": 1, "power_capable": 0, "physical_valid": 0, "kind": "#G3P", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.546, "tx_attempt_hex": "4730322c323533383832313237302c34302c302a324330380a", "id": 2538821270, "op": 40, "arg": 0}
+{"host_monotonic": 33693.546, "tx_hex": "4730322c323533383832313237302c34302c302a324330380a", "id": 2538821270, "op": 40, "arg": 0, "bytes_written": 25}
+{"host_monotonic": 33693.562, "report": {"id": 2538821270, "result": 0, "state": 4, "faults": 2, "used": 1, "owned": 0, "scenario": 0, "start_id": 2538821269, "start_us": 63999, "stop_us": 89989, "now_us": 91988, "run_us": 200000, "sample_count": 2598, "raw": 1284, "raw_min": 1262, "raw_max": 1294, "last_sample_us": 89982, "max_sample_gap_us": 12, "max_irq_gap_us": 100, "irq_count": 259, "trace_written": 157, "trace_overflow": 0, "tim_hz": 400000000, "adc_hz": 64000000, "timer_hz": 1000000, "arr": 2000, "ccr": 1000, "dtg": 0, "actual_bits": 0, "timer_running": 0, "restored": 1, "power_capable": 0, "physical_valid": 0, "kind": "#G3P", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.562, "tx_attempt_hex": "4730322c323533383832313237312c34322c302a303743380a", "id": 2538821271, "op": 42, "arg": 0}
+{"host_monotonic": 33693.562, "tx_hex": "4730322c323533383832313237312c34322c302a303743380a", "id": 2538821271, "op": 42, "arg": 0, "bytes_written": 25}
+{"host_monotonic": 33693.578, "report": {"id": 2538821271, "result": 0, "seq": 0, "event": 0, "us": 8, "raw": 1096, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.578, "tx_attempt_hex": "4730322c323533383832313237322c34322c312a443930390a", "id": 2538821272, "op": 42, "arg": 1}
+{"host_monotonic": 33693.578, "tx_hex": "4730322c323533383832313237322c34322c312a443930390a", "id": 2538821272, "op": 42, "arg": 1, "bytes_written": 25}
+{"host_monotonic": 33693.593, "report": {"id": 2538821272, "result": 0, "seq": 1, "event": 0, "us": 984, "raw": 1364, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.593, "tx_attempt_hex": "4730322c323533383832313237332c34322c322a414343410a", "id": 2538821273, "op": 42, "arg": 2}
+{"host_monotonic": 33693.593, "tx_hex": "4730322c323533383832313237332c34322c322a414343410a", "id": 2538821273, "op": 42, "arg": 2, "bytes_written": 25}
+{"host_monotonic": 33693.593, "report": {"id": 2538821273, "result": 0, "seq": 2, "event": 0, "us": 1983, "raw": 1404, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.609, "tx_attempt_hex": "4730322c323533383832313237342c34322c332a373441410a", "id": 2538821274, "op": 42, "arg": 3}
+{"host_monotonic": 33693.609, "tx_hex": "4730322c323533383832313237342c34322c332a373441410a", "id": 2538821274, "op": 42, "arg": 3, "bytes_written": 25}
+{"host_monotonic": 33693.609, "report": {"id": 2538821274, "result": 0, "seq": 3, "event": 0, "us": 2983, "raw": 1410, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.609, "tx_attempt_hex": "4730322c323533383832313237352c34322c342a343145440a", "id": 2538821275, "op": 42, "arg": 4}
+{"host_monotonic": 33693.609, "tx_hex": "4730322c323533383832313237352c34322c342a343145440a", "id": 2538821275, "op": 42, "arg": 4, "bytes_written": 25}
+{"host_monotonic": 33693.625, "report": {"id": 2538821275, "result": 0, "seq": 4, "event": 0, "us": 3983, "raw": 1414, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.625, "tx_attempt_hex": "4730322c323533383832313237362c34322c352a394632430a", "id": 2538821276, "op": 42, "arg": 5}
+{"host_monotonic": 33693.625, "tx_hex": "4730322c323533383832313237362c34322c352a394632430a", "id": 2538821276, "op": 42, "arg": 5, "bytes_written": 25}
+{"host_monotonic": 33693.64, "report": {"id": 2538821276, "result": 0, "seq": 5, "event": 0, "us": 4983, "raw": 1409, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.64, "tx_attempt_hex": "4730322c323533383832313237372c34322c362a454145460a", "id": 2538821277, "op": 42, "arg": 6}
+{"host_monotonic": 33693.64, "tx_hex": "4730322c323533383832313237372c34322c362a454145460a", "id": 2538821277, "op": 42, "arg": 6, "bytes_written": 25}
+{"host_monotonic": 33693.75, "report": {"id": 2538821277, "result": 0, "seq": 6, "event": 0, "us": 5983, "raw": 1410, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.75, "tx_attempt_hex": "4730322c323533383832313237382c34322c372a334643440a", "id": 2538821278, "op": 42, "arg": 7}
+{"host_monotonic": 33693.75, "tx_hex": "4730322c323533383832313237382c34322c372a334643440a", "id": 2538821278, "op": 42, "arg": 7, "bytes_written": 25}
+{"host_monotonic": 33693.765, "report": {"id": 2538821278, "result": 0, "seq": 7, "event": 0, "us": 6983, "raw": 1408, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.765, "tx_attempt_hex": "4730322c323533383832313237392c34322c382a384238320a", "id": 2538821279, "op": 42, "arg": 8}
+{"host_monotonic": 33693.765, "tx_hex": "4730322c323533383832313237392c34322c382a384238320a", "id": 2538821279, "op": 42, "arg": 8, "bytes_written": 25}
+{"host_monotonic": 33693.781, "report": {"id": 2538821279, "result": 0, "seq": 8, "event": 0, "us": 7983, "raw": 1409, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.781, "tx_attempt_hex": "4730322c323533383832313238302c34322c392a353941380a", "id": 2538821280, "op": 42, "arg": 9}
+{"host_monotonic": 33693.781, "tx_hex": "4730322c323533383832313238302c34322c392a353941380a", "id": 2538821280, "op": 42, "arg": 9, "bytes_written": 25}
+{"host_monotonic": 33693.796, "report": {"id": 2538821280, "result": 0, "seq": 9, "event": 0, "us": 8983, "raw": 1409, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.796, "tx_attempt_hex": "4730322c323533383832313238312c34322c31302a363434370a", "id": 2538821281, "op": 42, "arg": 10}
+{"host_monotonic": 33693.796, "tx_hex": "4730322c323533383832313238312c34322c31302a363434370a", "id": 2538821281, "op": 42, "arg": 10, "bytes_written": 26}
+{"host_monotonic": 33693.796, "report": {"id": 2538821281, "result": 0, "seq": 10, "event": 0, "us": 9983, "raw": 1408, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.796, "tx_attempt_hex": "4730322c323533383832313238322c34322c31312a414345340a", "id": 2538821282, "op": 42, "arg": 11}
+{"host_monotonic": 33693.796, "tx_hex": "4730322c323533383832313238322c34322c31312a414345340a", "id": 2538821282, "op": 42, "arg": 11, "bytes_written": 26}
+{"host_monotonic": 33693.812, "report": {"id": 2538821282, "result": 0, "seq": 11, "event": 0, "us": 10983, "raw": 1408, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.812, "tx_attempt_hex": "4730322c323533383832313238332c34322c31322a323445360a", "id": 2538821283, "op": 42, "arg": 12}
+{"host_monotonic": 33693.812, "tx_hex": "4730322c323533383832313238332c34322c31322a323445360a", "id": 2538821283, "op": 42, "arg": 12, "bytes_written": 26}
+{"host_monotonic": 33693.828, "report": {"id": 2538821283, "result": 0, "seq": 12, "event": 0, "us": 11983, "raw": 1409, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.828, "tx_attempt_hex": "4730322c323533383832313238342c34322c31332a324438330a", "id": 2538821284, "op": 42, "arg": 13}
+{"host_monotonic": 33693.828, "tx_hex": "4730322c323533383832313238342c34322c31332a324438330a", "id": 2538821284, "op": 42, "arg": 13, "bytes_written": 26}
+{"host_monotonic": 33693.843, "report": {"id": 2538821284, "result": 0, "seq": 13, "event": 0, "us": 12983, "raw": 1408, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.843, "tx_attempt_hex": "4730322c323533383832313238352c34322c31342a453530350a", "id": 2538821285, "op": 42, "arg": 14}
+{"host_monotonic": 33693.843, "tx_hex": "4730322c323533383832313238352c34322c31342a453530350a", "id": 2538821285, "op": 42, "arg": 14, "bytes_written": 26}
+{"host_monotonic": 33693.843, "report": {"id": 2538821285, "result": 0, "seq": 14, "event": 0, "us": 13983, "raw": 1409, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.843, "tx_attempt_hex": "4730322c323533383832313238362c34322c31352a324441360a", "id": 2538821286, "op": 42, "arg": 15}
+{"host_monotonic": 33693.843, "tx_hex": "4730322c323533383832313238362c34322c31352a324441360a", "id": 2538821286, "op": 42, "arg": 15, "bytes_written": 26}
+{"host_monotonic": 33693.859, "report": {"id": 2538821286, "result": 0, "seq": 15, "event": 0, "us": 14983, "raw": 1406, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.859, "tx_attempt_hex": "4730322c323533383832313238372c34322c31362a413541340a", "id": 2538821287, "op": 42, "arg": 16}
+{"host_monotonic": 33693.859, "tx_hex": "4730322c323533383832313238372c34322c31362a413541340a", "id": 2538821287, "op": 42, "arg": 16, "bytes_written": 26}
+{"host_monotonic": 33693.875, "report": {"id": 2538821287, "result": 0, "seq": 16, "event": 0, "us": 15983, "raw": 1407, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.875, "tx_attempt_hex": "4730322c323533383832313238382c34322c31372a334636430a", "id": 2538821288, "op": 42, "arg": 17}
+{"host_monotonic": 33693.875, "tx_hex": "4730322c323533383832313238382c34322c31372a334636430a", "id": 2538821288, "op": 42, "arg": 17, "bytes_written": 26}
+{"host_monotonic": 33693.89, "report": {"id": 2538821288, "result": 0, "seq": 17, "event": 0, "us": 16983, "raw": 1407, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.89, "tx_attempt_hex": "4730322c323533383832313238392c34322c31382a373645320a", "id": 2538821289, "op": 42, "arg": 18}
+{"host_monotonic": 33693.89, "tx_hex": "4730322c323533383832313238392c34322c31382a373645320a", "id": 2538821289, "op": 42, "arg": 18, "bytes_written": 26}
+{"host_monotonic": 33693.906, "report": {"id": 2538821289, "result": 0, "seq": 18, "event": 0, "us": 17983, "raw": 1407, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.906, "tx_attempt_hex": "4730322c323533383832313239302c34322c31392a304144430a", "id": 2538821290, "op": 42, "arg": 19}
+{"host_monotonic": 33693.906, "tx_hex": "4730322c323533383832313239302c34322c31392a304144430a", "id": 2538821290, "op": 42, "arg": 19, "bytes_written": 26}
+{"host_monotonic": 33693.906, "report": {"id": 2538821290, "result": 0, "seq": 19, "event": 0, "us": 18983, "raw": 1408, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.906, "tx_attempt_hex": "4730322c323533383832313239312c34322c32302a373643370a", "id": 2538821291, "op": 42, "arg": 20}
+{"host_monotonic": 33693.906, "tx_hex": "4730322c323533383832313239312c34322c32302a373643370a", "id": 2538821291, "op": 42, "arg": 20, "bytes_written": 26}
+{"host_monotonic": 33693.921, "report": {"id": 2538821291, "result": 0, "seq": 20, "event": 0, "us": 19983, "raw": 1409, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.921, "tx_attempt_hex": "4730322c323533383832313239322c34322c32312a424536340a", "id": 2538821292, "op": 42, "arg": 21}
+{"host_monotonic": 33693.921, "tx_hex": "4730322c323533383832313239322c34322c32312a424536340a", "id": 2538821292, "op": 42, "arg": 21, "bytes_written": 26}
+{"host_monotonic": 33693.937, "report": {"id": 2538821292, "result": 0, "seq": 21, "event": 0, "us": 20983, "raw": 1408, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.937, "tx_attempt_hex": "4730322c323533383832313239332c34322c32322a333636360a", "id": 2538821293, "op": 42, "arg": 22}
+{"host_monotonic": 33693.937, "tx_hex": "4730322c323533383832313239332c34322c32322a333636360a", "id": 2538821293, "op": 42, "arg": 22, "bytes_written": 26}
+{"host_monotonic": 33693.953, "report": {"id": 2538821293, "result": 0, "seq": 22, "event": 0, "us": 21983, "raw": 1405, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.953, "tx_attempt_hex": "4730322c323533383832313239342c34322c32332a334630330a", "id": 2538821294, "op": 42, "arg": 23}
+{"host_monotonic": 33693.953, "tx_hex": "4730322c323533383832313239342c34322c32332a334630330a", "id": 2538821294, "op": 42, "arg": 23, "bytes_written": 26}
+{"host_monotonic": 33693.953, "report": {"id": 2538821294, "result": 0, "seq": 23, "event": 0, "us": 22983, "raw": 1410, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.953, "tx_attempt_hex": "4730322c323533383832313239352c34322c32342a463738350a", "id": 2538821295, "op": 42, "arg": 24}
+{"host_monotonic": 33693.953, "tx_hex": "4730322c323533383832313239352c34322c32342a463738350a", "id": 2538821295, "op": 42, "arg": 24, "bytes_written": 26}
+{"host_monotonic": 33693.968, "report": {"id": 2538821295, "result": 0, "seq": 24, "event": 0, "us": 23983, "raw": 1407, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.968, "tx_attempt_hex": "4730322c323533383832313239362c34322c32352a334632360a", "id": 2538821296, "op": 42, "arg": 25}
+{"host_monotonic": 33693.968, "tx_hex": "4730322c323533383832313239362c34322c32352a334632360a", "id": 2538821296, "op": 42, "arg": 25, "bytes_written": 26}
+{"host_monotonic": 33693.984, "report": {"id": 2538821296, "result": 0, "seq": 25, "event": 0, "us": 24983, "raw": 1406, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33693.984, "tx_attempt_hex": "4730322c323533383832313239372c34322c32362a423732340a", "id": 2538821297, "op": 42, "arg": 26}
+{"host_monotonic": 33693.984, "tx_hex": "4730322c323533383832313239372c34322c32362a423732340a", "id": 2538821297, "op": 42, "arg": 26, "bytes_written": 26}
+{"host_monotonic": 33694.0, "report": {"id": 2538821297, "result": 0, "seq": 26, "event": 0, "us": 25983, "raw": 1404, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.0, "tx_attempt_hex": "4730322c323533383832313239382c34322c32372a324445430a", "id": 2538821298, "op": 42, "arg": 27}
+{"host_monotonic": 33694.0, "tx_hex": "4730322c323533383832313239382c34322c32372a324445430a", "id": 2538821298, "op": 42, "arg": 27, "bytes_written": 26}
+{"host_monotonic": 33694.015, "report": {"id": 2538821298, "result": 0, "seq": 27, "event": 0, "us": 26983, "raw": 1407, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.015, "tx_attempt_hex": "4730322c323533383832313239392c34322c32382a363436320a", "id": 2538821299, "op": 42, "arg": 28}
+{"host_monotonic": 33694.015, "tx_hex": "4730322c323533383832313239392c34322c32382a363436320a", "id": 2538821299, "op": 42, "arg": 28, "bytes_written": 26}
+{"host_monotonic": 33694.015, "report": {"id": 2538821299, "result": 0, "seq": 28, "event": 0, "us": 27983, "raw": 1407, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.015, "tx_attempt_hex": "4730322c323533383832313330302c34322c32392a454441350a", "id": 2538821300, "op": 42, "arg": 29}
+{"host_monotonic": 33694.015, "tx_hex": "4730322c323533383832313330302c34322c32392a454441350a", "id": 2538821300, "op": 42, "arg": 29, "bytes_written": 26}
+{"host_monotonic": 33694.031, "report": {"id": 2538821300, "result": 0, "seq": 29, "event": 0, "us": 28983, "raw": 1406, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.031, "tx_attempt_hex": "4730322c323533383832313330312c34322c33302a463744430a", "id": 2538821301, "op": 42, "arg": 30}
+{"host_monotonic": 33694.031, "tx_hex": "4730322c323533383832313330312c34322c33302a463744430a", "id": 2538821301, "op": 42, "arg": 30, "bytes_written": 26}
+{"host_monotonic": 33694.046, "report": {"id": 2538821301, "result": 0, "seq": 30, "event": 0, "us": 29983, "raw": 1406, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.046, "tx_attempt_hex": "4730322c323533383832313330322c34322c33312a334637460a", "id": 2538821302, "op": 42, "arg": 31}
+{"host_monotonic": 33694.046, "tx_hex": "4730322c323533383832313330322c34322c33312a334637460a", "id": 2538821302, "op": 42, "arg": 31, "bytes_written": 26}
+{"host_monotonic": 33694.062, "report": {"id": 2538821302, "result": 0, "seq": 31, "event": 0, "us": 30983, "raw": 1407, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.062, "tx_attempt_hex": "4730322c323533383832313330332c34322c33322a423737440a", "id": 2538821303, "op": 42, "arg": 32}
+{"host_monotonic": 33694.062, "tx_hex": "4730322c323533383832313330332c34322c33322a423737440a", "id": 2538821303, "op": 42, "arg": 32, "bytes_written": 26}
+{"host_monotonic": 33694.062, "report": {"id": 2538821303, "result": 0, "seq": 32, "event": 0, "us": 31983, "raw": 1407, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.062, "tx_attempt_hex": "4730322c323533383832313330342c34322c33332a424531380a", "id": 2538821304, "op": 42, "arg": 33}
+{"host_monotonic": 33694.062, "tx_hex": "4730322c323533383832313330342c34322c33332a424531380a", "id": 2538821304, "op": 42, "arg": 33, "bytes_written": 26}
+{"host_monotonic": 33694.078, "report": {"id": 2538821304, "result": 0, "seq": 33, "event": 0, "us": 32983, "raw": 1406, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.078, "tx_attempt_hex": "4730322c323533383832313330352c34322c33342a373639450a", "id": 2538821305, "op": 42, "arg": 34}
+{"host_monotonic": 33694.078, "tx_hex": "4730322c323533383832313330352c34322c33342a373639450a", "id": 2538821305, "op": 42, "arg": 34, "bytes_written": 26}
+{"host_monotonic": 33694.093, "report": {"id": 2538821305, "result": 0, "seq": 34, "event": 0, "us": 33983, "raw": 1408, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.093, "tx_attempt_hex": "4730322c323533383832313330362c34322c33352a424533440a", "id": 2538821306, "op": 42, "arg": 35}
+{"host_monotonic": 33694.093, "tx_hex": "4730322c323533383832313330362c34322c33352a424533440a", "id": 2538821306, "op": 42, "arg": 35, "bytes_written": 26}
+{"host_monotonic": 33694.109, "report": {"id": 2538821306, "result": 0, "seq": 35, "event": 0, "us": 34983, "raw": 1406, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.109, "tx_attempt_hex": "4730322c323533383832313330372c34322c33362a333633460a", "id": 2538821307, "op": 42, "arg": 36}
+{"host_monotonic": 33694.109, "tx_hex": "4730322c323533383832313330372c34322c33362a333633460a", "id": 2538821307, "op": 42, "arg": 36, "bytes_written": 26}
+{"host_monotonic": 33694.125, "report": {"id": 2538821307, "result": 0, "seq": 36, "event": 0, "us": 35983, "raw": 1407, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.125, "tx_attempt_hex": "4730322c323533383832313330382c34322c33372a414346370a", "id": 2538821308, "op": 42, "arg": 37}
+{"host_monotonic": 33694.125, "tx_hex": "4730322c323533383832313330382c34322c33372a414346370a", "id": 2538821308, "op": 42, "arg": 37, "bytes_written": 26}
+{"host_monotonic": 33694.125, "report": {"id": 2538821308, "result": 0, "seq": 37, "event": 0, "us": 36983, "raw": 1407, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.125, "tx_attempt_hex": "4730322c323533383832313330392c34322c33382a453537390a", "id": 2538821309, "op": 42, "arg": 38}
+{"host_monotonic": 33694.125, "tx_hex": "4730322c323533383832313330392c34322c33382a453537390a", "id": 2538821309, "op": 42, "arg": 38, "bytes_written": 26}
+{"host_monotonic": 33694.14, "report": {"id": 2538821309, "result": 0, "seq": 38, "event": 0, "us": 37983, "raw": 1407, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.14, "tx_attempt_hex": "4730322c323533383832313331302c34322c33392a393934370a", "id": 2538821310, "op": 42, "arg": 39}
+{"host_monotonic": 33694.14, "tx_hex": "4730322c323533383832313331302c34322c33392a393934370a", "id": 2538821310, "op": 42, "arg": 39, "bytes_written": 26}
+{"host_monotonic": 33694.156, "report": {"id": 2538821310, "result": 0, "seq": 39, "event": 0, "us": 38983, "raw": 1406, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.156, "tx_attempt_hex": "4730322c323533383832313331312c34322c34302a323939380a", "id": 2538821311, "op": 42, "arg": 40}
+{"host_monotonic": 33694.156, "tx_hex": "4730322c323533383832313331312c34322c34302a323939380a", "id": 2538821311, "op": 42, "arg": 40, "bytes_written": 26}
+{"host_monotonic": 33694.265, "report": {"id": 2538821311, "result": 0, "seq": 40, "event": 0, "us": 39983, "raw": 1405, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.265, "tx_attempt_hex": "4730322c323533383832313331322c34322c34312a453133420a", "id": 2538821312, "op": 42, "arg": 41}
+{"host_monotonic": 33694.265, "tx_hex": "4730322c323533383832313331322c34322c34312a453133420a", "id": 2538821312, "op": 42, "arg": 41, "bytes_written": 26}
+{"host_monotonic": 33694.281, "report": {"id": 2538821312, "result": 0, "seq": 41, "event": 0, "us": 40983, "raw": 1409, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.281, "tx_attempt_hex": "4730322c323533383832313331332c34322c34322a363933390a", "id": 2538821313, "op": 42, "arg": 42}
+{"host_monotonic": 33694.281, "tx_hex": "4730322c323533383832313331332c34322c34322a363933390a", "id": 2538821313, "op": 42, "arg": 42, "bytes_written": 26}
+{"host_monotonic": 33694.296, "report": {"id": 2538821313, "result": 0, "seq": 42, "event": 0, "us": 41983, "raw": 1406, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.296, "tx_attempt_hex": "4730322c323533383832313331342c34322c34332a363035430a", "id": 2538821314, "op": 42, "arg": 43}
+{"host_monotonic": 33694.296, "tx_hex": "4730322c323533383832313331342c34322c34332a363035430a", "id": 2538821314, "op": 42, "arg": 43, "bytes_written": 26}
+{"host_monotonic": 33694.312, "report": {"id": 2538821314, "result": 0, "seq": 43, "event": 0, "us": 42983, "raw": 1406, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.312, "tx_attempt_hex": "4730322c323533383832313331352c34322c34342a413844410a", "id": 2538821315, "op": 42, "arg": 44}
+{"host_monotonic": 33694.312, "tx_hex": "4730322c323533383832313331352c34322c34342a413844410a", "id": 2538821315, "op": 42, "arg": 44, "bytes_written": 26}
+{"host_monotonic": 33694.312, "report": {"id": 2538821315, "result": 0, "seq": 44, "event": 0, "us": 43983, "raw": 1406, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.312, "tx_attempt_hex": "4730322c323533383832313331362c34322c34352a363037390a", "id": 2538821316, "op": 42, "arg": 45}
+{"host_monotonic": 33694.312, "tx_hex": "4730322c323533383832313331362c34322c34352a363037390a", "id": 2538821316, "op": 42, "arg": 45, "bytes_written": 26}
+{"host_monotonic": 33694.328, "report": {"id": 2538821316, "result": 0, "seq": 45, "event": 0, "us": 44983, "raw": 1405, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.328, "tx_attempt_hex": "4730322c323533383832313331372c34322c34362a453837420a", "id": 2538821317, "op": 42, "arg": 46}
+{"host_monotonic": 33694.328, "tx_hex": "4730322c323533383832313331372c34322c34362a453837420a", "id": 2538821317, "op": 42, "arg": 46, "bytes_written": 26}
+{"host_monotonic": 33694.343, "report": {"id": 2538821317, "result": 0, "seq": 46, "event": 0, "us": 45983, "raw": 1408, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.343, "tx_attempt_hex": "4730322c323533383832313331382c34322c34372a373242330a", "id": 2538821318, "op": 42, "arg": 47}
+{"host_monotonic": 33694.343, "tx_hex": "4730322c323533383832313331382c34322c34372a373242330a", "id": 2538821318, "op": 42, "arg": 47, "bytes_written": 26}
+{"host_monotonic": 33694.359, "report": {"id": 2538821318, "result": 0, "seq": 47, "event": 0, "us": 46983, "raw": 1405, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.359, "tx_attempt_hex": "4730322c323533383832313331392c34322c34382a334233440a", "id": 2538821319, "op": 42, "arg": 48}
+{"host_monotonic": 33694.359, "tx_hex": "4730322c323533383832313331392c34322c34382a334233440a", "id": 2538821319, "op": 42, "arg": 48, "bytes_written": 26}
+{"host_monotonic": 33694.375, "report": {"id": 2538821319, "result": 0, "seq": 48, "event": 0, "us": 47983, "raw": 1405, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.375, "tx_attempt_hex": "4730322c323533383832313332302c34322c34392a433841350a", "id": 2538821320, "op": 42, "arg": 49}
+{"host_monotonic": 33694.375, "tx_hex": "4730322c323533383832313332302c34322c34392a433841350a", "id": 2538821320, "op": 42, "arg": 49, "bytes_written": 26}
+{"host_monotonic": 33694.375, "report": {"id": 2538821320, "result": 0, "seq": 49, "event": 0, "us": 48983, "raw": 1407, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.375, "tx_attempt_hex": "4730322c323533383832313332312c34322c35302a443244430a", "id": 2538821321, "op": 42, "arg": 50}
+{"host_monotonic": 33694.375, "tx_hex": "4730322c323533383832313332312c34322c35302a443244430a", "id": 2538821321, "op": 42, "arg": 50, "bytes_written": 26}
+{"host_monotonic": 33694.39, "report": {"id": 2538821321, "result": 0, "seq": 50, "event": 0, "us": 49983, "raw": 1405, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.39, "tx_attempt_hex": "4730322c323533383832313332322c34322c35312a314137460a", "id": 2538821322, "op": 42, "arg": 51}
+{"host_monotonic": 33694.39, "tx_hex": "4730322c323533383832313332322c34322c35312a314137460a", "id": 2538821322, "op": 42, "arg": 51, "bytes_written": 26}
+{"host_monotonic": 33694.406, "report": {"id": 2538821322, "result": 0, "seq": 51, "event": 0, "us": 50983, "raw": 1405, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.406, "tx_attempt_hex": "4730322c323533383832313332332c34322c35322a393237440a", "id": 2538821323, "op": 42, "arg": 52}
+{"host_monotonic": 33694.406, "tx_hex": "4730322c323533383832313332332c34322c35322a393237440a", "id": 2538821323, "op": 42, "arg": 52, "bytes_written": 26}
+{"host_monotonic": 33694.421, "report": {"id": 2538821323, "result": 0, "seq": 52, "event": 0, "us": 51983, "raw": 1406, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.421, "tx_attempt_hex": "4730322c323533383832313332342c34322c35332a394231380a", "id": 2538821324, "op": 42, "arg": 53}
+{"host_monotonic": 33694.421, "tx_hex": "4730322c323533383832313332342c34322c35332a394231380a", "id": 2538821324, "op": 42, "arg": 53, "bytes_written": 26}
+{"host_monotonic": 33694.421, "report": {"id": 2538821324, "result": 0, "seq": 53, "event": 0, "us": 52983, "raw": 1403, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.421, "tx_attempt_hex": "4730322c323533383832313332352c34322c35342a353339450a", "id": 2538821325, "op": 42, "arg": 54}
+{"host_monotonic": 33694.437, "tx_hex": "4730322c323533383832313332352c34322c35342a353339450a", "id": 2538821325, "op": 42, "arg": 54, "bytes_written": 26}
+{"host_monotonic": 33694.437, "report": {"id": 2538821325, "result": 0, "seq": 54, "event": 0, "us": 53983, "raw": 1404, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.437, "tx_attempt_hex": "4730322c323533383832313332362c34322c35352a394233440a", "id": 2538821326, "op": 42, "arg": 55}
+{"host_monotonic": 33694.437, "tx_hex": "4730322c323533383832313332362c34322c35352a394233440a", "id": 2538821326, "op": 42, "arg": 55, "bytes_written": 26}
+{"host_monotonic": 33694.453, "report": {"id": 2538821326, "result": 0, "seq": 55, "event": 0, "us": 54983, "raw": 1407, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.453, "tx_attempt_hex": "4730322c323533383832313332372c34322c35362a313333460a", "id": 2538821327, "op": 42, "arg": 56}
+{"host_monotonic": 33694.453, "tx_hex": "4730322c323533383832313332372c34322c35362a313333460a", "id": 2538821327, "op": 42, "arg": 56, "bytes_written": 26}
+{"host_monotonic": 33694.468, "report": {"id": 2538821327, "result": 0, "seq": 56, "event": 0, "us": 55983, "raw": 1406, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.468, "tx_attempt_hex": "4730322c323533383832313332382c34322c35372a383946370a", "id": 2538821328, "op": 42, "arg": 57}
+{"host_monotonic": 33694.468, "tx_hex": "4730322c323533383832313332382c34322c35372a383946370a", "id": 2538821328, "op": 42, "arg": 57, "bytes_written": 26}
+{"host_monotonic": 33694.484, "report": {"id": 2538821328, "result": 0, "seq": 57, "event": 0, "us": 56983, "raw": 1404, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.484, "tx_attempt_hex": "4730322c323533383832313332392c34322c35382a433037390a", "id": 2538821329, "op": 42, "arg": 58}
+{"host_monotonic": 33694.484, "tx_hex": "4730322c323533383832313332392c34322c35382a433037390a", "id": 2538821329, "op": 42, "arg": 58, "bytes_written": 26}
+{"host_monotonic": 33694.484, "report": {"id": 2538821329, "result": 0, "seq": 58, "event": 0, "us": 57983, "raw": 1403, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.484, "tx_attempt_hex": "4730322c323533383832313333302c34322c35392a424334370a", "id": 2538821330, "op": 42, "arg": 59}
+{"host_monotonic": 33694.484, "tx_hex": "4730322c323533383832313333302c34322c35392a424334370a", "id": 2538821330, "op": 42, "arg": 59, "bytes_written": 26}
+{"host_monotonic": 33694.5, "report": {"id": 2538821330, "result": 0, "seq": 59, "event": 0, "us": 58983, "raw": 1405, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.5, "tx_attempt_hex": "4730322c323533383832313333312c34322c36302a433035430a", "id": 2538821331, "op": 42, "arg": 60}
+{"host_monotonic": 33694.5, "tx_hex": "4730322c323533383832313333312c34322c36302a433035430a", "id": 2538821331, "op": 42, "arg": 60, "bytes_written": 26}
+{"host_monotonic": 33694.515, "report": {"id": 2538821331, "result": 0, "seq": 60, "event": 0, "us": 59983, "raw": 1406, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.515, "tx_attempt_hex": "4730322c323533383832313333322c34322c36312a303846460a", "id": 2538821332, "op": 42, "arg": 61}
+{"host_monotonic": 33694.515, "tx_hex": "4730322c323533383832313333322c34322c36312a303846460a", "id": 2538821332, "op": 42, "arg": 61, "bytes_written": 26}
+{"host_monotonic": 33694.531, "report": {"id": 2538821332, "result": 0, "seq": 61, "event": 0, "us": 60983, "raw": 1405, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.531, "tx_attempt_hex": "4730322c323533383832313333332c34322c36322a383046440a", "id": 2538821333, "op": 42, "arg": 62}
+{"host_monotonic": 33694.531, "tx_hex": "4730322c323533383832313333332c34322c36322a383046440a", "id": 2538821333, "op": 42, "arg": 62, "bytes_written": 26}
+{"host_monotonic": 33694.531, "report": {"id": 2538821333, "result": 0, "seq": 62, "event": 0, "us": 61983, "raw": 1405, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.531, "tx_attempt_hex": "4730322c323533383832313333342c34322c36332a383939380a", "id": 2538821334, "op": 42, "arg": 63}
+{"host_monotonic": 33694.531, "tx_hex": "4730322c323533383832313333342c34322c36332a383939380a", "id": 2538821334, "op": 42, "arg": 63, "bytes_written": 26}
+{"host_monotonic": 33694.546, "report": {"id": 2538821334, "result": 0, "seq": 63, "event": 0, "us": 62983, "raw": 1405, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.546, "tx_attempt_hex": "4730322c323533383832313333352c34322c36342a343131450a", "id": 2538821335, "op": 42, "arg": 64}
+{"host_monotonic": 33694.546, "tx_hex": "4730322c323533383832313333352c34322c36342a343131450a", "id": 2538821335, "op": 42, "arg": 64, "bytes_written": 26}
+{"host_monotonic": 33694.562, "report": {"id": 2538821335, "result": 0, "seq": 64, "event": 1, "us": 64000, "raw": 1405, "flags": 0, "ccr": 1000, "cnt": 0, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.562, "tx_attempt_hex": "4730322c323533383832313333362c34322c36352a383942440a", "id": 2538821336, "op": 42, "arg": 65}
+{"host_monotonic": 33694.562, "tx_hex": "4730322c323533383832313333362c34322c36352a383942440a", "id": 2538821336, "op": 42, "arg": 65, "bytes_written": 26}
+{"host_monotonic": 33694.578, "report": {"id": 2538821336, "result": 0, "seq": 65, "event": 2, "us": 64015, "raw": 1262, "flags": 15, "ccr": 1000, "cnt": 261, "phase": 1, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.578, "tx_attempt_hex": "4730322c323533383832313333372c34322c36362a303142460a", "id": 2538821337, "op": 42, "arg": 66}
+{"host_monotonic": 33694.578, "tx_hex": "4730322c323533383832313333372c34322c36362a303142460a", "id": 2538821337, "op": 42, "arg": 66, "bytes_written": 26}
+{"host_monotonic": 33694.593, "report": {"id": 2538821337, "result": 0, "seq": 66, "event": 2, "us": 64024, "raw": 1274, "flags": 15, "ccr": 1000, "cnt": 1235, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.593, "tx_attempt_hex": "4730322c323533383832313333382c34322c36372a394237370a", "id": 2538821338, "op": 42, "arg": 67}
+{"host_monotonic": 33694.593, "tx_hex": "4730322c323533383832313333382c34322c36372a394237370a", "id": 2538821338, "op": 42, "arg": 67, "bytes_written": 26}
+{"host_monotonic": 33694.593, "report": {"id": 2538821338, "result": 0, "seq": 67, "event": 2, "us": 64032, "raw": 1292, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.593, "tx_attempt_hex": "4730322c323533383832313333392c34322c36382a443246390a", "id": 2538821339, "op": 42, "arg": 68}
+{"host_monotonic": 33694.593, "tx_hex": "4730322c323533383832313333392c34322c36382a443246390a", "id": 2538821339, "op": 42, "arg": 68, "bytes_written": 26}
+{"host_monotonic": 33694.609, "report": {"id": 2538821339, "result": 0, "seq": 68, "event": 2, "us": 64042, "raw": 1287, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.609, "tx_attempt_hex": "4730322c323533383832313334302c34322c36392a324530430a", "id": 2538821340, "op": 42, "arg": 69}
+{"host_monotonic": 33694.609, "tx_hex": "4730322c323533383832313334302c34322c36392a324530430a", "id": 2538821340, "op": 42, "arg": 69, "bytes_written": 26}
+{"host_monotonic": 33694.625, "report": {"id": 2538821340, "result": 0, "seq": 69, "event": 2, "us": 64052, "raw": 1286, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.625, "tx_attempt_hex": "4730322c323533383832313334312c34322c37302a333437350a", "id": 2538821341, "op": 42, "arg": 70}
+{"host_monotonic": 33694.625, "tx_hex": "4730322c323533383832313334312c34322c37302a333437350a", "id": 2538821341, "op": 42, "arg": 70, "bytes_written": 26}
+{"host_monotonic": 33694.64, "report": {"id": 2538821341, "result": 0, "seq": 70, "event": 2, "us": 64062, "raw": 1285, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.64, "tx_attempt_hex": "4730322c323533383832313334322c34322c37312a464344360a", "id": 2538821342, "op": 42, "arg": 71}
+{"host_monotonic": 33694.64, "tx_hex": "4730322c323533383832313334322c34322c37312a464344360a", "id": 2538821342, "op": 42, "arg": 71, "bytes_written": 26}
+{"host_monotonic": 33694.64, "report": {"id": 2538821342, "result": 0, "seq": 71, "event": 2, "us": 64072, "raw": 1285, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.64, "tx_attempt_hex": "4730322c323533383832313334332c34322c37322a373444340a", "id": 2538821343, "op": 42, "arg": 72}
+{"host_monotonic": 33694.64, "tx_hex": "4730322c323533383832313334332c34322c37322a373444340a", "id": 2538821343, "op": 42, "arg": 72, "bytes_written": 26}
+{"host_monotonic": 33694.656, "report": {"id": 2538821343, "result": 0, "seq": 72, "event": 2, "us": 64082, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.656, "tx_attempt_hex": "4730322c323533383832313334342c34322c37332a374442310a", "id": 2538821344, "op": 42, "arg": 73}
+{"host_monotonic": 33694.656, "tx_hex": "4730322c323533383832313334342c34322c37332a374442310a", "id": 2538821344, "op": 42, "arg": 73, "bytes_written": 26}
+{"host_monotonic": 33694.781, "report": {"id": 2538821344, "result": 0, "seq": 73, "event": 2, "us": 64092, "raw": 1285, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.781, "tx_attempt_hex": "4730322c323533383832313334352c34322c37342a423533370a", "id": 2538821345, "op": 42, "arg": 74}
+{"host_monotonic": 33694.781, "tx_hex": "4730322c323533383832313334352c34322c37342a423533370a", "id": 2538821345, "op": 42, "arg": 74, "bytes_written": 26}
+{"host_monotonic": 33694.781, "report": {"id": 2538821345, "result": 0, "seq": 74, "event": 2, "us": 64102, "raw": 1276, "flags": 15, "ccr": 1000, "cnt": 751, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.781, "tx_attempt_hex": "4730322c323533383832313334362c34322c37352a374439340a", "id": 2538821346, "op": 42, "arg": 75}
+{"host_monotonic": 33694.781, "tx_hex": "4730322c323533383832313334362c34322c37352a374439340a", "id": 2538821346, "op": 42, "arg": 75, "bytes_written": 26}
+{"host_monotonic": 33694.796, "report": {"id": 2538821346, "result": 0, "seq": 75, "event": 2, "us": 64112, "raw": 1294, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.796, "tx_attempt_hex": "4730322c323533383832313334372c34322c37362a463539360a", "id": 2538821347, "op": 42, "arg": 76}
+{"host_monotonic": 33694.796, "tx_hex": "4730322c323533383832313334372c34322c37362a463539360a", "id": 2538821347, "op": 42, "arg": 76, "bytes_written": 26}
+{"host_monotonic": 33694.812, "report": {"id": 2538821347, "result": 0, "seq": 76, "event": 2, "us": 64122, "raw": 1287, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.812, "tx_attempt_hex": "4730322c323533383832313334382c34322c37372a364635450a", "id": 2538821348, "op": 42, "arg": 77}
+{"host_monotonic": 33694.812, "tx_hex": "4730322c323533383832313334382c34322c37372a364635450a", "id": 2538821348, "op": 42, "arg": 77, "bytes_written": 26}
+{"host_monotonic": 33694.828, "report": {"id": 2538821348, "result": 0, "seq": 77, "event": 2, "us": 64132, "raw": 1285, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.828, "tx_attempt_hex": "4730322c323533383832313334392c34322c37382a323644300a", "id": 2538821349, "op": 42, "arg": 78}
+{"host_monotonic": 33694.828, "tx_hex": "4730322c323533383832313334392c34322c37382a323644300a", "id": 2538821349, "op": 42, "arg": 78, "bytes_written": 26}
+{"host_monotonic": 33694.828, "report": {"id": 2538821349, "result": 0, "seq": 78, "event": 2, "us": 64142, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.828, "tx_attempt_hex": "4730322c323533383832313335302c34322c37392a354145450a", "id": 2538821350, "op": 42, "arg": 79}
+{"host_monotonic": 33694.828, "tx_hex": "4730322c323533383832313335302c34322c37392a354145450a", "id": 2538821350, "op": 42, "arg": 79, "bytes_written": 26}
+{"host_monotonic": 33694.843, "report": {"id": 2538821350, "result": 0, "seq": 79, "event": 2, "us": 64152, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.843, "tx_attempt_hex": "4730322c323533383832313335312c34322c38302a363339380a", "id": 2538821351, "op": 42, "arg": 80}
+{"host_monotonic": 33694.843, "tx_hex": "4730322c323533383832313335312c34322c38302a363339380a", "id": 2538821351, "op": 42, "arg": 80, "bytes_written": 26}
+{"host_monotonic": 33694.859, "report": {"id": 2538821351, "result": 0, "seq": 80, "event": 2, "us": 64162, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.859, "tx_attempt_hex": "4730322c323533383832313335322c34322c38312a414233420a", "id": 2538821352, "op": 42, "arg": 81}
+{"host_monotonic": 33694.859, "tx_hex": "4730322c323533383832313335322c34322c38312a414233420a", "id": 2538821352, "op": 42, "arg": 81, "bytes_written": 26}
+{"host_monotonic": 33694.875, "report": {"id": 2538821352, "result": 0, "seq": 81, "event": 2, "us": 64172, "raw": 1285, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.875, "tx_attempt_hex": "4730322c323533383832313335332c34322c38322a323333390a", "id": 2538821353, "op": 42, "arg": 82}
+{"host_monotonic": 33694.875, "tx_hex": "4730322c323533383832313335332c34322c38322a323333390a", "id": 2538821353, "op": 42, "arg": 82, "bytes_written": 26}
+{"host_monotonic": 33694.875, "report": {"id": 2538821353, "result": 0, "seq": 82, "event": 2, "us": 64182, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.875, "tx_attempt_hex": "4730322c323533383832313335342c34322c38332a324135430a", "id": 2538821354, "op": 42, "arg": 83}
+{"host_monotonic": 33694.875, "tx_hex": "4730322c323533383832313335342c34322c38332a324135430a", "id": 2538821354, "op": 42, "arg": 83, "bytes_written": 26}
+{"host_monotonic": 33694.89, "report": {"id": 2538821354, "result": 0, "seq": 83, "event": 2, "us": 64192, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.89, "tx_attempt_hex": "4730322c323533383832313335352c34322c38342a453244410a", "id": 2538821355, "op": 42, "arg": 84}
+{"host_monotonic": 33694.89, "tx_hex": "4730322c323533383832313335352c34322c38342a453244410a", "id": 2538821355, "op": 42, "arg": 84, "bytes_written": 26}
+{"host_monotonic": 33694.906, "report": {"id": 2538821355, "result": 0, "seq": 84, "event": 2, "us": 64202, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.906, "tx_attempt_hex": "4730322c323533383832313335362c34322c38352a324137390a", "id": 2538821356, "op": 42, "arg": 85}
+{"host_monotonic": 33694.906, "tx_hex": "4730322c323533383832313335362c34322c38352a324137390a", "id": 2538821356, "op": 42, "arg": 85, "bytes_written": 26}
+{"host_monotonic": 33694.921, "report": {"id": 2538821356, "result": 0, "seq": 85, "event": 2, "us": 64212, "raw": 1285, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.921, "tx_attempt_hex": "4730322c323533383832313335372c34322c38362a413237420a", "id": 2538821357, "op": 42, "arg": 86}
+{"host_monotonic": 33694.921, "tx_hex": "4730322c323533383832313335372c34322c38362a413237420a", "id": 2538821357, "op": 42, "arg": 86, "bytes_written": 26}
+{"host_monotonic": 33694.937, "report": {"id": 2538821357, "result": 0, "seq": 86, "event": 2, "us": 64222, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.937, "tx_attempt_hex": "4730322c323533383832313335382c34322c38372a333842330a", "id": 2538821358, "op": 42, "arg": 87}
+{"host_monotonic": 33694.937, "tx_hex": "4730322c323533383832313335382c34322c38372a333842330a", "id": 2538821358, "op": 42, "arg": 87, "bytes_written": 26}
+{"host_monotonic": 33694.937, "report": {"id": 2538821358, "result": 0, "seq": 87, "event": 2, "us": 64232, "raw": 1285, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.937, "tx_attempt_hex": "4730322c323533383832313335392c34322c38382a373133440a", "id": 2538821359, "op": 42, "arg": 88}
+{"host_monotonic": 33694.937, "tx_hex": "4730322c323533383832313335392c34322c38382a373133440a", "id": 2538821359, "op": 42, "arg": 88, "bytes_written": 26}
+{"host_monotonic": 33694.953, "report": {"id": 2538821359, "result": 0, "seq": 88, "event": 2, "us": 64242, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.953, "tx_attempt_hex": "4730322c323533383832313336302c34322c38392a383241350a", "id": 2538821360, "op": 42, "arg": 89}
+{"host_monotonic": 33694.953, "tx_hex": "4730322c323533383832313336302c34322c38392a383241350a", "id": 2538821360, "op": 42, "arg": 89, "bytes_written": 26}
+{"host_monotonic": 33694.968, "report": {"id": 2538821360, "result": 0, "seq": 89, "event": 2, "us": 64252, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.968, "tx_attempt_hex": "4730322c323533383832313336312c34322c39302a393844430a", "id": 2538821361, "op": 42, "arg": 90}
+{"host_monotonic": 33694.968, "tx_hex": "4730322c323533383832313336312c34322c39302a393844430a", "id": 2538821361, "op": 42, "arg": 90, "bytes_written": 26}
+{"host_monotonic": 33694.984, "report": {"id": 2538821361, "result": 0, "seq": 90, "event": 2, "us": 64262, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.984, "tx_attempt_hex": "4730322c323533383832313336322c34322c39312a353037460a", "id": 2538821362, "op": 42, "arg": 91}
+{"host_monotonic": 33694.984, "tx_hex": "4730322c323533383832313336322c34322c39312a353037460a", "id": 2538821362, "op": 42, "arg": 91, "bytes_written": 26}
+{"host_monotonic": 33694.984, "report": {"id": 2538821362, "result": 0, "seq": 91, "event": 2, "us": 64272, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33694.984, "tx_attempt_hex": "4730322c323533383832313336332c34322c39322a443837440a", "id": 2538821363, "op": 42, "arg": 92}
+{"host_monotonic": 33694.984, "tx_hex": "4730322c323533383832313336332c34322c39322a443837440a", "id": 2538821363, "op": 42, "arg": 92, "bytes_written": 26}
+{"host_monotonic": 33695.0, "report": {"id": 2538821363, "result": 0, "seq": 92, "event": 2, "us": 64282, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.0, "tx_attempt_hex": "4730322c323533383832313336342c34322c39332a443131380a", "id": 2538821364, "op": 42, "arg": 93}
+{"host_monotonic": 33695.0, "tx_hex": "4730322c323533383832313336342c34322c39332a443131380a", "id": 2538821364, "op": 42, "arg": 93, "bytes_written": 26}
+{"host_monotonic": 33695.015, "report": {"id": 2538821364, "result": 0, "seq": 93, "event": 2, "us": 64292, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.015, "tx_attempt_hex": "4730322c323533383832313336352c34322c39342a313939450a", "id": 2538821365, "op": 42, "arg": 94}
+{"host_monotonic": 33695.015, "tx_hex": "4730322c323533383832313336352c34322c39342a313939450a", "id": 2538821365, "op": 42, "arg": 94, "bytes_written": 26}
+{"host_monotonic": 33695.031, "report": {"id": 2538821365, "result": 0, "seq": 94, "event": 2, "us": 64302, "raw": 1286, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.031, "tx_attempt_hex": "4730322c323533383832313336362c34322c39352a443133440a", "id": 2538821366, "op": 42, "arg": 95}
+{"host_monotonic": 33695.031, "tx_hex": "4730322c323533383832313336362c34322c39352a443133440a", "id": 2538821366, "op": 42, "arg": 95, "bytes_written": 26}
+{"host_monotonic": 33695.046, "report": {"id": 2538821366, "result": 0, "seq": 95, "event": 2, "us": 64312, "raw": 1282, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.046, "tx_attempt_hex": "4730322c323533383832313336372c34322c39362a353933460a", "id": 2538821367, "op": 42, "arg": 96}
+{"host_monotonic": 33695.046, "tx_hex": "4730322c323533383832313336372c34322c39362a353933460a", "id": 2538821367, "op": 42, "arg": 96, "bytes_written": 26}
+{"host_monotonic": 33695.046, "report": {"id": 2538821367, "result": 0, "seq": 96, "event": 2, "us": 64322, "raw": 1282, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.046, "tx_attempt_hex": "4730322c323533383832313336382c34322c39372a433346370a", "id": 2538821368, "op": 42, "arg": 97}
+{"host_monotonic": 33695.046, "tx_hex": "4730322c323533383832313336382c34322c39372a433346370a", "id": 2538821368, "op": 42, "arg": 97, "bytes_written": 26}
+{"host_monotonic": 33695.062, "report": {"id": 2538821368, "result": 0, "seq": 97, "event": 2, "us": 64332, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.062, "tx_attempt_hex": "4730322c323533383832313336392c34322c39382a384137390a", "id": 2538821369, "op": 42, "arg": 98}
+{"host_monotonic": 33695.062, "tx_hex": "4730322c323533383832313336392c34322c39382a384137390a", "id": 2538821369, "op": 42, "arg": 98, "bytes_written": 26}
+{"host_monotonic": 33695.078, "report": {"id": 2538821369, "result": 0, "seq": 98, "event": 2, "us": 64342, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.078, "tx_attempt_hex": "4730322c323533383832313337302c34322c39392a463634370a", "id": 2538821370, "op": 42, "arg": 99}
+{"host_monotonic": 33695.078, "tx_hex": "4730322c323533383832313337302c34322c39392a463634370a", "id": 2538821370, "op": 42, "arg": 99, "bytes_written": 26}
+{"host_monotonic": 33695.093, "report": {"id": 2538821370, "result": 0, "seq": 99, "event": 2, "us": 64352, "raw": 1286, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.093, "tx_attempt_hex": "4730322c323533383832313337312c34322c3130302a414136300a", "id": 2538821371, "op": 42, "arg": 100}
+{"host_monotonic": 33695.093, "tx_hex": "4730322c323533383832313337312c34322c3130302a414136300a", "id": 2538821371, "op": 42, "arg": 100, "bytes_written": 27}
+{"host_monotonic": 33695.093, "report": {"id": 2538821371, "result": 0, "seq": 100, "event": 2, "us": 64362, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.093, "tx_attempt_hex": "4730322c323533383832313337322c34322c3130312a373233340a", "id": 2538821372, "op": 42, "arg": 101}
+{"host_monotonic": 33695.093, "tx_hex": "4730322c323533383832313337322c34322c3130312a373233340a", "id": 2538821372, "op": 42, "arg": 101, "bytes_written": 27}
+{"host_monotonic": 33695.109, "report": {"id": 2538821372, "result": 0, "seq": 101, "event": 2, "us": 64372, "raw": 1285, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.109, "tx_attempt_hex": "4730322c323533383832313337332c34322c3130322a303538340a", "id": 2538821373, "op": 42, "arg": 102}
+{"host_monotonic": 33695.109, "tx_hex": "4730322c323533383832313337332c34322c3130322a303538340a", "id": 2538821373, "op": 42, "arg": 102, "bytes_written": 27}
+{"host_monotonic": 33695.125, "report": {"id": 2538821373, "result": 0, "seq": 102, "event": 2, "us": 64382, "raw": 1282, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.125, "tx_attempt_hex": "4730322c323533383832313337342c34322c3130332a443242440a", "id": 2538821374, "op": 42, "arg": 103}
+{"host_monotonic": 33695.125, "tx_hex": "4730322c323533383832313337342c34322c3130332a443242440a", "id": 2538821374, "op": 42, "arg": 103, "bytes_written": 27}
+{"host_monotonic": 33695.14, "report": {"id": 2538821374, "result": 0, "seq": 103, "event": 2, "us": 64392, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.14, "tx_attempt_hex": "4730322c323533383832313337352c34322c3130342a453538390a", "id": 2538821375, "op": 42, "arg": 104}
+{"host_monotonic": 33695.14, "tx_hex": "4730322c323533383832313337352c34322c3130342a453538390a", "id": 2538821375, "op": 42, "arg": 104, "bytes_written": 27}
+{"host_monotonic": 33695.156, "report": {"id": 2538821375, "result": 0, "seq": 104, "event": 2, "us": 64402, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.156, "tx_attempt_hex": "4730322c323533383832313337362c34322c3130352a334444440a", "id": 2538821376, "op": 42, "arg": 105}
+{"host_monotonic": 33695.156, "tx_hex": "4730322c323533383832313337362c34322c3130352a334444440a", "id": 2538821376, "op": 42, "arg": 105, "bytes_written": 27}
+{"host_monotonic": 33695.156, "report": {"id": 2538821376, "result": 0, "seq": 105, "event": 2, "us": 64412, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.156, "tx_attempt_hex": "4730322c323533383832313337372c34322c3130362a344136440a", "id": 2538821377, "op": 42, "arg": 106}
+{"host_monotonic": 33695.156, "tx_hex": "4730322c323533383832313337372c34322c3130362a344136440a", "id": 2538821377, "op": 42, "arg": 106, "bytes_written": 27}
+{"host_monotonic": 33695.171, "report": {"id": 2538821377, "result": 0, "seq": 106, "event": 2, "us": 64422, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.171, "tx_attempt_hex": "4730322c323533383832313337382c34322c3130372a383338450a", "id": 2538821378, "op": 42, "arg": 107}
+{"host_monotonic": 33695.171, "tx_hex": "4730322c323533383832313337382c34322c3130372a383338450a", "id": 2538821378, "op": 42, "arg": 107, "bytes_written": 27}
+{"host_monotonic": 33695.281, "report": {"id": 2538821378, "result": 0, "seq": 107, "event": 2, "us": 64432, "raw": 1282, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.281, "tx_attempt_hex": "4730322c323533383832313337392c34322c3130382a333542320a", "id": 2538821379, "op": 42, "arg": 108}
+{"host_monotonic": 33695.281, "tx_hex": "4730322c323533383832313337392c34322c3130382a333542320a", "id": 2538821379, "op": 42, "arg": 108, "bytes_written": 27}
+{"host_monotonic": 33695.296, "report": {"id": 2538821379, "result": 0, "seq": 108, "event": 2, "us": 64442, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.296, "tx_attempt_hex": "4730322c323533383832313338302c34322c3130392a453443450a", "id": 2538821380, "op": 42, "arg": 109}
+{"host_monotonic": 33695.296, "tx_hex": "4730322c323533383832313338302c34322c3130392a453443450a", "id": 2538821380, "op": 42, "arg": 109, "bytes_written": 27}
+{"host_monotonic": 33695.312, "report": {"id": 2538821380, "result": 0, "seq": 109, "event": 2, "us": 64452, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.312, "tx_attempt_hex": "4730322c323533383832313338312c34322c3131302a303130350a", "id": 2538821381, "op": 42, "arg": 110}
+{"host_monotonic": 33695.312, "tx_hex": "4730322c323533383832313338312c34322c3131302a303130350a", "id": 2538821381, "op": 42, "arg": 110, "bytes_written": 27}
+{"host_monotonic": 33695.328, "report": {"id": 2538821381, "result": 0, "seq": 110, "event": 2, "us": 64462, "raw": 1288, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.328, "tx_attempt_hex": "4730322c323533383832313338322c34322c3131312a443935310a", "id": 2538821382, "op": 42, "arg": 111}
+{"host_monotonic": 33695.328, "tx_hex": "4730322c323533383832313338322c34322c3131312a443935310a", "id": 2538821382, "op": 42, "arg": 111, "bytes_written": 27}
+{"host_monotonic": 33695.328, "report": {"id": 2538821382, "result": 0, "seq": 111, "event": 2, "us": 64472, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.328, "tx_attempt_hex": "4730322c323533383832313338332c34322c3131322a414545310a", "id": 2538821383, "op": 42, "arg": 112}
+{"host_monotonic": 33695.328, "tx_hex": "4730322c323533383832313338332c34322c3131322a414545310a", "id": 2538821383, "op": 42, "arg": 112, "bytes_written": 27}
+{"host_monotonic": 33695.343, "report": {"id": 2538821383, "result": 0, "seq": 112, "event": 2, "us": 64482, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.343, "tx_attempt_hex": "4730322c323533383832313338342c34322c3131332a373944380a", "id": 2538821384, "op": 42, "arg": 113}
+{"host_monotonic": 33695.343, "tx_hex": "4730322c323533383832313338342c34322c3131332a373944380a", "id": 2538821384, "op": 42, "arg": 113, "bytes_written": 27}
+{"host_monotonic": 33695.359, "report": {"id": 2538821384, "result": 0, "seq": 113, "event": 2, "us": 64492, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.359, "tx_attempt_hex": "4730322c323533383832313338352c34322c3131342a344545430a", "id": 2538821385, "op": 42, "arg": 114}
+{"host_monotonic": 33695.359, "tx_hex": "4730322c323533383832313338352c34322c3131342a344545430a", "id": 2538821385, "op": 42, "arg": 114, "bytes_written": 27}
+{"host_monotonic": 33695.375, "report": {"id": 2538821385, "result": 0, "seq": 114, "event": 2, "us": 64502, "raw": 1285, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.375, "tx_attempt_hex": "4730322c323533383832313338362c34322c3131352a393642380a", "id": 2538821386, "op": 42, "arg": 115}
+{"host_monotonic": 33695.375, "tx_hex": "4730322c323533383832313338362c34322c3131352a393642380a", "id": 2538821386, "op": 42, "arg": 115, "bytes_written": 27}
+{"host_monotonic": 33695.39, "report": {"id": 2538821386, "result": 0, "seq": 115, "event": 2, "us": 64512, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.39, "tx_attempt_hex": "4730322c323533383832313338372c34322c3131362a453130380a", "id": 2538821387, "op": 42, "arg": 116}
+{"host_monotonic": 33695.39, "tx_hex": "4730322c323533383832313338372c34322c3131362a453130380a", "id": 2538821387, "op": 42, "arg": 116, "bytes_written": 27}
+{"host_monotonic": 33695.39, "report": {"id": 2538821387, "result": 0, "seq": 116, "event": 2, "us": 64522, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.39, "tx_attempt_hex": "4730322c323533383832313338382c34322c3131372a323845420a", "id": 2538821388, "op": 42, "arg": 117}
+{"host_monotonic": 33695.39, "tx_hex": "4730322c323533383832313338382c34322c3131372a323845420a", "id": 2538821388, "op": 42, "arg": 117, "bytes_written": 27}
+{"host_monotonic": 33695.406, "report": {"id": 2538821388, "result": 0, "seq": 117, "event": 2, "us": 64532, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.406, "tx_attempt_hex": "4730322c323533383832313338392c34322c3131382a394544370a", "id": 2538821389, "op": 42, "arg": 118}
+{"host_monotonic": 33695.406, "tx_hex": "4730322c323533383832313338392c34322c3131382a394544370a", "id": 2538821389, "op": 42, "arg": 118, "bytes_written": 27}
+{"host_monotonic": 33695.421, "report": {"id": 2538821389, "result": 0, "seq": 118, "event": 2, "us": 64542, "raw": 1285, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.421, "tx_attempt_hex": "4730322c323533383832313339302c34322c3131392a334344430a", "id": 2538821390, "op": 42, "arg": 119}
+{"host_monotonic": 33695.421, "tx_hex": "4730322c323533383832313339302c34322c3131392a334344430a", "id": 2538821390, "op": 42, "arg": 119, "bytes_written": 27}
+{"host_monotonic": 33695.437, "report": {"id": 2538821390, "result": 0, "seq": 119, "event": 2, "us": 64552, "raw": 1287, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.437, "tx_attempt_hex": "4730322c323533383832313339312c34322c3132302a424637350a", "id": 2538821391, "op": 42, "arg": 120}
+{"host_monotonic": 33695.437, "tx_hex": "4730322c323533383832313339312c34322c3132302a424637350a", "id": 2538821391, "op": 42, "arg": 120, "bytes_written": 27}
+{"host_monotonic": 33695.437, "report": {"id": 2538821391, "result": 0, "seq": 120, "event": 2, "us": 64562, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.437, "tx_attempt_hex": "4730322c323533383832313339322c34322c3132312a363732310a", "id": 2538821392, "op": 42, "arg": 121}
+{"host_monotonic": 33695.437, "tx_hex": "4730322c323533383832313339322c34322c3132312a363732310a", "id": 2538821392, "op": 42, "arg": 121, "bytes_written": 27}
+{"host_monotonic": 33695.453, "report": {"id": 2538821392, "result": 0, "seq": 121, "event": 2, "us": 64572, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.453, "tx_attempt_hex": "4730322c323533383832313339332c34322c3132322a313039310a", "id": 2538821393, "op": 42, "arg": 122}
+{"host_monotonic": 33695.453, "tx_hex": "4730322c323533383832313339332c34322c3132322a313039310a", "id": 2538821393, "op": 42, "arg": 122, "bytes_written": 27}
+{"host_monotonic": 33695.468, "report": {"id": 2538821393, "result": 0, "seq": 122, "event": 2, "us": 64582, "raw": 1285, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.468, "tx_attempt_hex": "4730322c323533383832313339342c34322c3132332a433741380a", "id": 2538821394, "op": 42, "arg": 123}
+{"host_monotonic": 33695.468, "tx_hex": "4730322c323533383832313339342c34322c3132332a433741380a", "id": 2538821394, "op": 42, "arg": 123, "bytes_written": 27}
+{"host_monotonic": 33695.484, "report": {"id": 2538821394, "result": 0, "seq": 123, "event": 2, "us": 64592, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.484, "tx_attempt_hex": "4730322c323533383832313339352c34322c3132342a463039430a", "id": 2538821395, "op": 42, "arg": 124}
+{"host_monotonic": 33695.484, "tx_hex": "4730322c323533383832313339352c34322c3132342a463039430a", "id": 2538821395, "op": 42, "arg": 124, "bytes_written": 27}
+{"host_monotonic": 33695.484, "report": {"id": 2538821395, "result": 0, "seq": 124, "event": 2, "us": 64602, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.484, "tx_attempt_hex": "4730322c323533383832313339362c34322c3132352a323843380a", "id": 2538821396, "op": 42, "arg": 125}
+{"host_monotonic": 33695.484, "tx_hex": "4730322c323533383832313339362c34322c3132352a323843380a", "id": 2538821396, "op": 42, "arg": 125, "bytes_written": 27}
+{"host_monotonic": 33695.5, "report": {"id": 2538821396, "result": 0, "seq": 125, "event": 2, "us": 64612, "raw": 1285, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.5, "tx_attempt_hex": "4730322c323533383832313339372c34322c3132362a354637380a", "id": 2538821397, "op": 42, "arg": 126}
+{"host_monotonic": 33695.5, "tx_hex": "4730322c323533383832313339372c34322c3132362a354637380a", "id": 2538821397, "op": 42, "arg": 126, "bytes_written": 27}
+{"host_monotonic": 33695.515, "report": {"id": 2538821397, "result": 0, "seq": 126, "event": 2, "us": 64622, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.515, "tx_attempt_hex": "4730322c323533383832313339382c34322c3132372a393639420a", "id": 2538821398, "op": 42, "arg": 127}
+{"host_monotonic": 33695.515, "tx_hex": "4730322c323533383832313339382c34322c3132372a393639420a", "id": 2538821398, "op": 42, "arg": 127, "bytes_written": 27}
+{"host_monotonic": 33695.531, "report": {"id": 2538821398, "result": 0, "seq": 127, "event": 2, "us": 64632, "raw": 1286, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.531, "tx_attempt_hex": "4730322c323533383832313339392c34322c3132382a323041370a", "id": 2538821399, "op": 42, "arg": 128}
+{"host_monotonic": 33695.531, "tx_hex": "4730322c323533383832313339392c34322c3132382a323041370a", "id": 2538821399, "op": 42, "arg": 128, "bytes_written": 27}
+{"host_monotonic": 33695.546, "report": {"id": 2538821399, "result": 0, "seq": 128, "event": 2, "us": 64642, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 561, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.546, "tx_attempt_hex": "4730322c323533383832313430302c34322c3132392a423741390a", "id": 2538821400, "op": 42, "arg": 129}
+{"host_monotonic": 33695.546, "tx_hex": "4730322c323533383832313430302c34322c3132392a423741390a", "id": 2538821400, "op": 42, "arg": 129, "bytes_written": 27}
+{"host_monotonic": 33695.546, "report": {"id": 2538821400, "result": 0, "seq": 129, "event": 2, "us": 65642, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.546, "tx_attempt_hex": "4730322c323533383832313430312c34322c3133302a353236320a", "id": 2538821401, "op": 42, "arg": 130}
+{"host_monotonic": 33695.546, "tx_hex": "4730322c323533383832313430312c34322c3133302a353236320a", "id": 2538821401, "op": 42, "arg": 130, "bytes_written": 27}
+{"host_monotonic": 33695.562, "report": {"id": 2538821401, "result": 0, "seq": 130, "event": 2, "us": 66642, "raw": 1282, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.562, "tx_attempt_hex": "4730322c323533383832313430322c34322c3133312a384133360a", "id": 2538821402, "op": 42, "arg": 131}
+{"host_monotonic": 33695.562, "tx_hex": "4730322c323533383832313430322c34322c3133312a384133360a", "id": 2538821402, "op": 42, "arg": 131, "bytes_written": 27}
+{"host_monotonic": 33695.578, "report": {"id": 2538821402, "result": 0, "seq": 131, "event": 2, "us": 67642, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.578, "tx_attempt_hex": "4730322c323533383832313430332c34322c3133322a464438360a", "id": 2538821403, "op": 42, "arg": 132}
+{"host_monotonic": 33695.578, "tx_hex": "4730322c323533383832313430332c34322c3133322a464438360a", "id": 2538821403, "op": 42, "arg": 132, "bytes_written": 27}
+{"host_monotonic": 33695.593, "report": {"id": 2538821403, "result": 0, "seq": 132, "event": 2, "us": 68642, "raw": 1285, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.593, "tx_attempt_hex": "4730322c323533383832313430342c34322c3133332a324142460a", "id": 2538821404, "op": 42, "arg": 133}
+{"host_monotonic": 33695.593, "tx_hex": "4730322c323533383832313430342c34322c3133332a324142460a", "id": 2538821404, "op": 42, "arg": 133, "bytes_written": 27}
+{"host_monotonic": 33695.593, "report": {"id": 2538821404, "result": 0, "seq": 133, "event": 2, "us": 69642, "raw": 1282, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.593, "tx_attempt_hex": "4730322c323533383832313430352c34322c3133342a314438420a", "id": 2538821405, "op": 42, "arg": 134}
+{"host_monotonic": 33695.609, "tx_hex": "4730322c323533383832313430352c34322c3133342a314438420a", "id": 2538821405, "op": 42, "arg": 134, "bytes_written": 27}
+{"host_monotonic": 33695.609, "report": {"id": 2538821405, "result": 0, "seq": 134, "event": 2, "us": 70642, "raw": 1282, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.609, "tx_attempt_hex": "4730322c323533383832313430362c34322c3133352a433544460a", "id": 2538821406, "op": 42, "arg": 135}
+{"host_monotonic": 33695.609, "tx_hex": "4730322c323533383832313430362c34322c3133352a433544460a", "id": 2538821406, "op": 42, "arg": 135, "bytes_written": 27}
+{"host_monotonic": 33695.625, "report": {"id": 2538821406, "result": 0, "seq": 135, "event": 2, "us": 71642, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.625, "tx_attempt_hex": "4730322c323533383832313430372c34322c3133362a423236460a", "id": 2538821407, "op": 42, "arg": 136}
+{"host_monotonic": 33695.625, "tx_hex": "4730322c323533383832313430372c34322c3133362a423236460a", "id": 2538821407, "op": 42, "arg": 136, "bytes_written": 27}
+{"host_monotonic": 33695.64, "report": {"id": 2538821407, "result": 0, "seq": 136, "event": 2, "us": 72642, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.64, "tx_attempt_hex": "4730322c323533383832313430382c34322c3133372a374238430a", "id": 2538821408, "op": 42, "arg": 137}
+{"host_monotonic": 33695.64, "tx_hex": "4730322c323533383832313430382c34322c3133372a374238430a", "id": 2538821408, "op": 42, "arg": 137, "bytes_written": 27}
+{"host_monotonic": 33695.656, "report": {"id": 2538821408, "result": 0, "seq": 137, "event": 2, "us": 73642, "raw": 1286, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.656, "tx_attempt_hex": "4730322c323533383832313430392c34322c3133382a434442300a", "id": 2538821409, "op": 42, "arg": 138}
+{"host_monotonic": 33695.656, "tx_hex": "4730322c323533383832313430392c34322c3133382a434442300a", "id": 2538821409, "op": 42, "arg": 138, "bytes_written": 27}
+{"host_monotonic": 33695.656, "report": {"id": 2538821409, "result": 0, "seq": 138, "event": 2, "us": 74642, "raw": 1282, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.656, "tx_attempt_hex": "4730322c323533383832313431302c34322c3133392a364642420a", "id": 2538821410, "op": 42, "arg": 139}
+{"host_monotonic": 33695.656, "tx_hex": "4730322c323533383832313431302c34322c3133392a364642420a", "id": 2538821410, "op": 42, "arg": 139, "bytes_written": 27}
+{"host_monotonic": 33695.671, "report": {"id": 2538821410, "result": 0, "seq": 139, "event": 2, "us": 75642, "raw": 1282, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.671, "tx_attempt_hex": "4730322c323533383832313431312c34322c3134302a323044360a", "id": 2538821411, "op": 42, "arg": 140}
+{"host_monotonic": 33695.671, "tx_hex": "4730322c323533383832313431312c34322c3134302a323044360a", "id": 2538821411, "op": 42, "arg": 140, "bytes_written": 27}
+{"host_monotonic": 33695.687, "report": {"id": 2538821411, "result": 0, "seq": 140, "event": 2, "us": 76642, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.687, "tx_attempt_hex": "4730322c323533383832313431322c34322c3134312a463838320a", "id": 2538821412, "op": 42, "arg": 141}
+{"host_monotonic": 33695.687, "tx_hex": "4730322c323533383832313431322c34322c3134312a463838320a", "id": 2538821412, "op": 42, "arg": 141, "bytes_written": 27}
+{"host_monotonic": 33695.796, "report": {"id": 2538821412, "result": 0, "seq": 141, "event": 2, "us": 77642, "raw": 1282, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.796, "tx_attempt_hex": "4730322c323533383832313431332c34322c3134322a384633320a", "id": 2538821413, "op": 42, "arg": 142}
+{"host_monotonic": 33695.796, "tx_hex": "4730322c323533383832313431332c34322c3134322a384633320a", "id": 2538821413, "op": 42, "arg": 142, "bytes_written": 27}
+{"host_monotonic": 33695.812, "report": {"id": 2538821413, "result": 0, "seq": 142, "event": 2, "us": 78642, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.812, "tx_attempt_hex": "4730322c323533383832313431342c34322c3134332a353830420a", "id": 2538821414, "op": 42, "arg": 143}
+{"host_monotonic": 33695.812, "tx_hex": "4730322c323533383832313431342c34322c3134332a353830420a", "id": 2538821414, "op": 42, "arg": 143, "bytes_written": 27}
+{"host_monotonic": 33695.828, "report": {"id": 2538821414, "result": 0, "seq": 143, "event": 2, "us": 79642, "raw": 1281, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.828, "tx_attempt_hex": "4730322c323533383832313431352c34322c3134342a364633460a", "id": 2538821415, "op": 42, "arg": 144}
+{"host_monotonic": 33695.828, "tx_hex": "4730322c323533383832313431352c34322c3134342a364633460a", "id": 2538821415, "op": 42, "arg": 144, "bytes_written": 27}
+{"host_monotonic": 33695.828, "report": {"id": 2538821415, "result": 0, "seq": 144, "event": 2, "us": 80642, "raw": 1285, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.828, "tx_attempt_hex": "4730322c323533383832313431362c34322c3134352a423736420a", "id": 2538821416, "op": 42, "arg": 145}
+{"host_monotonic": 33695.828, "tx_hex": "4730322c323533383832313431362c34322c3134352a423736420a", "id": 2538821416, "op": 42, "arg": 145, "bytes_written": 27}
+{"host_monotonic": 33695.843, "report": {"id": 2538821416, "result": 0, "seq": 145, "event": 2, "us": 81642, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.843, "tx_attempt_hex": "4730322c323533383832313431372c34322c3134362a433044420a", "id": 2538821417, "op": 42, "arg": 146}
+{"host_monotonic": 33695.843, "tx_hex": "4730322c323533383832313431372c34322c3134362a433044420a", "id": 2538821417, "op": 42, "arg": 146, "bytes_written": 27}
+{"host_monotonic": 33695.859, "report": {"id": 2538821417, "result": 0, "seq": 146, "event": 2, "us": 82642, "raw": 1282, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.859, "tx_attempt_hex": "4730322c323533383832313431382c34322c3134372a303933380a", "id": 2538821418, "op": 42, "arg": 147}
+{"host_monotonic": 33695.859, "tx_hex": "4730322c323533383832313431382c34322c3134372a303933380a", "id": 2538821418, "op": 42, "arg": 147, "bytes_written": 27}
+{"host_monotonic": 33695.875, "report": {"id": 2538821418, "result": 0, "seq": 147, "event": 2, "us": 83642, "raw": 1284, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.875, "tx_attempt_hex": "4730322c323533383832313431392c34322c3134382a424630340a", "id": 2538821419, "op": 42, "arg": 148}
+{"host_monotonic": 33695.875, "tx_hex": "4730322c323533383832313431392c34322c3134382a424630340a", "id": 2538821419, "op": 42, "arg": 148, "bytes_written": 27}
+{"host_monotonic": 33695.89, "report": {"id": 2538821419, "result": 0, "seq": 148, "event": 2, "us": 84642, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.89, "tx_attempt_hex": "4730322c323533383832313432302c34322c3134392a444236380a", "id": 2538821420, "op": 42, "arg": 149}
+{"host_monotonic": 33695.89, "tx_hex": "4730322c323533383832313432302c34322c3134392a444236380a", "id": 2538821420, "op": 42, "arg": 149, "bytes_written": 27}
+{"host_monotonic": 33695.89, "report": {"id": 2538821420, "result": 0, "seq": 149, "event": 2, "us": 85642, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.89, "tx_attempt_hex": "4730322c323533383832313432312c34322c3135302a334541330a", "id": 2538821421, "op": 42, "arg": 150}
+{"host_monotonic": 33695.89, "tx_hex": "4730322c323533383832313432312c34322c3135302a334541330a", "id": 2538821421, "op": 42, "arg": 150, "bytes_written": 27}
+{"host_monotonic": 33695.906, "report": {"id": 2538821421, "result": 0, "seq": 150, "event": 2, "us": 86642, "raw": 1282, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.906, "tx_attempt_hex": "4730322c323533383832313432322c34322c3135312a453646370a", "id": 2538821422, "op": 42, "arg": 151}
+{"host_monotonic": 33695.906, "tx_hex": "4730322c323533383832313432322c34322c3135312a453646370a", "id": 2538821422, "op": 42, "arg": 151, "bytes_written": 27}
+{"host_monotonic": 33695.921, "report": {"id": 2538821422, "result": 0, "seq": 151, "event": 2, "us": 87642, "raw": 1283, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.921, "tx_attempt_hex": "4730322c323533383832313432332c34322c3135322a393134370a", "id": 2538821423, "op": 42, "arg": 152}
+{"host_monotonic": 33695.921, "tx_hex": "4730322c323533383832313432332c34322c3135322a393134370a", "id": 2538821423, "op": 42, "arg": 152, "bytes_written": 27}
+{"host_monotonic": 33695.937, "report": {"id": 2538821423, "result": 0, "seq": 152, "event": 2, "us": 88642, "raw": 1282, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.937, "tx_attempt_hex": "4730322c323533383832313432342c34322c3135332a343637450a", "id": 2538821424, "op": 42, "arg": 153}
+{"host_monotonic": 33695.937, "tx_hex": "4730322c323533383832313432342c34322c3135332a343637450a", "id": 2538821424, "op": 42, "arg": 153, "bytes_written": 27}
+{"host_monotonic": 33695.937, "report": {"id": 2538821424, "result": 0, "seq": 153, "event": 2, "us": 89642, "raw": 1282, "flags": 15, "ccr": 1000, "cnt": 563, "phase": 0, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.937, "tx_attempt_hex": "4730322c323533383832313432352c34322c3135342a373134410a", "id": 2538821425, "op": 42, "arg": 154}
+{"host_monotonic": 33695.937, "tx_hex": "4730322c323533383832313432352c34322c3135342a373134410a", "id": 2538821425, "op": 42, "arg": 154, "bytes_written": 27}
+{"host_monotonic": 33695.953, "report": {"id": 2538821425, "result": 0, "seq": 154, "event": 3, "us": 89990, "raw": 1284, "flags": 3, "ccr": 1000, "cnt": 862, "phase": 1, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.953, "tx_attempt_hex": "4730322c323533383832313432362c34322c3135352a413931450a", "id": 2538821426, "op": 42, "arg": 155}
+{"host_monotonic": 33695.953, "tx_hex": "4730322c323533383832313432362c34322c3135352a413931450a", "id": 2538821426, "op": 42, "arg": 155, "bytes_written": 27}
+{"host_monotonic": 33695.968, "report": {"id": 2538821426, "result": 0, "seq": 155, "event": 4, "us": 91985, "raw": 1284, "flags": 2, "ccr": 1000, "cnt": 862, "phase": 1, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.968, "tx_attempt_hex": "4730322c323533383832313432372c34322c3135362a444541450a", "id": 2538821427, "op": 42, "arg": 156}
+{"host_monotonic": 33695.968, "tx_hex": "4730322c323533383832313432372c34322c3135362a444541450a", "id": 2538821427, "op": 42, "arg": 156, "bytes_written": 27}
+{"host_monotonic": 33695.984, "report": {"id": 2538821427, "result": 0, "seq": 156, "event": 5, "us": 91987, "raw": 1284, "flags": 0, "ccr": 1000, "cnt": 862, "phase": 1, "actual_bits": 0, "kind": "#G3E", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33695.984, "test_tx_hex": "4730322c323533383832313432382c34312c3230303030302a334645460a", "negative_test": "new-start-with-consumed-token"}
+{"host_monotonic": 33695.984, "test_tx_completed": "new-start-with-consumed-token", "bytes_written": 30}
+{"host_monotonic": 33696.0, "report": {"id": 2538821428, "result": 4, "state": 4, "faults": 2, "used": 1, "owned": 0, "scenario": 0, "start_id": 2538821269, "start_us": 63999, "stop_us": 89989, "now_us": 91988, "run_us": 200000, "sample_count": 2598, "raw": 1284, "raw_min": 1262, "raw_max": 1294, "last_sample_us": 89982, "max_sample_gap_us": 12, "max_irq_gap_us": 100, "irq_count": 259, "trace_written": 157, "trace_overflow": 0, "tim_hz": 400000000, "adc_hz": 64000000, "timer_hz": 1000000, "arr": 2000, "ccr": 1000, "dtg": 0, "actual_bits": 0, "timer_running": 0, "restored": 1, "power_capable": 0, "physical_valid": 0, "kind": "#G3P", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33696.0, "tx_attempt_hex": "4730322c323533383832313432392c34342c302a343134360a", "id": 2538821429, "op": 44, "arg": 0}
+{"host_monotonic": 33696.0, "tx_hex": "4730322c323533383832313432392c34342c302a343134360a", "id": 2538821429, "op": 44, "arg": 0, "bytes_written": 25}
+{"host_monotonic": 33696.031, "report": {"id": 2538821429, "result": 0, "state": 0, "faults": 0, "used": 1, "owned": 0, "scenario": 0, "start_id": 2538821269, "start_us": 63999, "stop_us": 89989, "now_us": 91988, "run_us": 200000, "sample_count": 2598, "raw": 1284, "raw_min": 1262, "raw_max": 1294, "last_sample_us": 89982, "max_sample_gap_us": 12, "max_irq_gap_us": 100, "irq_count": 259, "trace_written": 157, "trace_overflow": 0, "tim_hz": 400000000, "adc_hz": 64000000, "timer_hz": 1000000, "arr": 2000, "ccr": 1000, "dtg": 0, "actual_bits": 0, "timer_running": 0, "restored": 1, "power_capable": 0, "physical_valid": 0, "kind": "#G3P", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33696.031, "test_tx_hex": "4730322c323533383832313433302c34312c3230303030302a394531340a", "negative_test": "new-start-with-consumed-token"}
+{"host_monotonic": 33696.031, "test_tx_completed": "new-start-with-consumed-token", "bytes_written": 30}
+{"host_monotonic": 33696.046, "report": {"id": 2538821430, "result": 4, "state": 0, "faults": 0, "used": 1, "owned": 0, "scenario": 0, "start_id": 2538821269, "start_us": 63999, "stop_us": 89989, "now_us": 91988, "run_us": 200000, "sample_count": 2598, "raw": 1284, "raw_min": 1262, "raw_max": 1294, "last_sample_us": 89982, "max_sample_gap_us": 12, "max_irq_gap_us": 100, "irq_count": 259, "trace_written": 157, "trace_overflow": 0, "tim_hz": 400000000, "adc_hz": 64000000, "timer_hz": 1000000, "arr": 2000, "ccr": 1000, "dtg": 0, "actual_bits": 0, "timer_running": 0, "restored": 1, "power_capable": 0, "physical_valid": 0, "kind": "#G3P", "firmware": "g03-pwm-disabled-r1"}}
+{"host_monotonic": 33696.046, "tx_attempt_hex": "4730322c323533383832313433312c34302c302a323841350a", "id": 2538821431, "op": 40, "arg": 0}
+{"host_monotonic": 33696.046, "tx_hex": "4730322c323533383832313433312c34302c302a323841350a", "id": 2538821431, "op": 40, "arg": 0, "bytes_written": 25}
+{"host_monotonic": 33696.062, "report": {"id": 2538821431, "result": 0, "state": 0, "faults": 0, "used": 1, "owned": 0, "scenario": 0, "start_id": 2538821269, "start_us": 63999, "stop_us": 89989, "now_us": 91988, "run_us": 200000, "sample_count": 2598, "raw": 1284, "raw_min": 1262, "raw_max": 1294, "last_sample_us": 89982, "max_sample_gap_us": 12, "max_irq_gap_us": 100, "irq_count": 259, "trace_written": 157, "trace_overflow": 0, "tim_hz": 400000000, "adc_hz": 64000000, "timer_hz": 1000000, "arr": 2000, "ccr": 1000, "dtg": 0, "actual_bits": 0, "timer_running": 0, "restored": 1, "power_capable": 0, "physical_valid": 0, "kind": "#G3P", "firmware": "g03-pwm-disabled-r1"}}

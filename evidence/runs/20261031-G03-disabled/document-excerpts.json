@@ -1,0 +1,398 @@
+[
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 17,
+    "text": "STM32N647X0HxQ + SiZ998DT 半桥 + INA199A2 电流检测"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 21,
+    "text": "TIM1 互补 PWM 100 kHz / 死区插入 / 周期中点采样 / 数字 PI 双环"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 32,
+    "text": "1.  第一步：TIM1 互补 PWM（100 kHz + 死区）    ARR/RCR/空闲电平/死区换算"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 71,
+    "text": "继电器"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 73,
+    "text": "在 MX_GPIO_Init 后手动配 PG5/PB5"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 82,
+    "text": "继电器"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 83,
+    "text": "PG5 = 放电（SWL），PB5 = 充电（SWS），高电平吸合"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 85,
+    "text": "接 PA9（上管驱动），PF7（下管驱动），查看互补PWM信号"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 94,
+    "text": "目标：示波器上看到 PA9 / PF7 一对互补方波，频率 100 kHz。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 100,
+    "text": "1.2 死区"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 101,
+    "text": "本板驱动芯片 EG3112 自带死区，程序可不设死区。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 109,
+    "text": "PA9 频率"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 111,
+    "text": "PA9 占空比"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 113,
+    "text": "PA9 (PWM)与PF7(PWMN)"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 123,
+    "text": "断电状态下接好：装上电池 → 半桥 → 功率电阻负载（如 33Ω / 25 W）。然后上电。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 124,
+    "text": "在 USER CODE BEGIN 2 里、PWM 启动之前合放电继电器。把第 1.4 步的启动代码和这里合起来，顺序应该是这样："
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 125,
+    "text": "/* USER CODE BEGIN 2 *//* ① 先合放电继电器，等触点稳定 */HAL_GPIO_WritePin(GPIOG, GPIO_PIN_5,  GPIO_PIN_SET);    /* SWL 放电吸合 */HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5,  GPIO_PIN_RESET);  /* SWS 充电断开（互锁） */HAL_Delay(100); /* ② 再启动 PWM（第 1.4 步那三行放这里） */__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, TEST_CCR);HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 126,
+    "text": "顺序不能反：先启动 PWM 再合继电器，等于让半桥带着占空比去接通负载，合闸瞬间会有电流冲击。先合继电器、等 100 ms 触点稳定，再让 PWM 输出。 每次下载重启都会重新执行这段，听到继电器\"咔哒\"一声是正常的。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 174,
+    "text": "检查：继电器是否吸合、PA9 是否真有波形、电感/驱动供电"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 212,
+    "text": "电池电流 ──► 采样电阻 R_sh ──► INA199A2（增益 50）──► PA1 (ADC1_INP1)"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 214,
+    "text": "· INA199A2 是电流检测放大器，增益 G = 50"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 216,
+    "text": "· 零点为什么是 0.9 V：INA199 的 REF 引脚接在 VREF/2 = 1.8/2 = 0.9 V，这样正负电流都能测（双极性）。零点不是 0 V。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 230,
+    "text": "INA199 增益 50 × 15 mΩ"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 240,
+    "text": "在继电器全断、PWM 不输出的时刻，对电流进行ADC采样，得到CODE_zero。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 246,
+    "text": "· INA199 的输出 = 0.9 + 0.75 × I"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 281,
+    "text": "占空比 D ──► 电感电流 i_L ──► 电池电流（= INA199 采到的值）"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 318,
+    "text": "2. 反馈链：i_L 经 INA199 变成电压、ADC1 采成码、再换算成安培，回到比较点与给定相减。减法就是\"负反馈\"，符号错了会变成正反馈（电流一路冲到限幅）"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 364,
+    "text": "TIM1 + EG3112 + 半桥"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 366,
+    "text": "100 kHz，含死区"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 401,
+    "text": "7. 第七步：充放电切换（继电器 + 给定符号）"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 403,
+    "text": "t = 0     两路继电器全断t = 20ms  合方向继电器（放电 → PG5；充电 → PB5）t = 120ms 使能 PWM，PI 从 0.90 起，指令从 0 斜坡t ≈ 320ms 斜坡到目标值"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 404,
+    "text": "停机顺序相反：先关 PWM → 等 20 ms 让电流衰减 → 再断继电器（带载断触点会拉弧）。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 406,
+    "text": "static void SetMode(int8_t dir)      /* dir: -1 放电, +1 充电 */{  /* 1. 先停 */  HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_2);  HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);  HAL_GPIO_WritePin(GPIOG, GPIO_PIN_5, GPIO_PIN_RESET);  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);  HAL_Delay(20);   /* 2. 合方向继电器（互锁：先断对面） */  if (dir < 0) { HAL_GPIO_WritePin(GPIOG, GPIO_PIN_5, GPIO_PIN_SET); }  else         { HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET); }  HAL_Delay(100);   /* 3. 重启 PWM，PI 从安全端起步 */  g_i_ramp = 0.0f;  g_i_ref  = (float)dir * g_i_set;            /* 设定量 */  PI_Init(&g_pi, 0.07f, 90.0f, 1.0e-5f, 0.40f, 0.90f, 0.90f);  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 1800);   /* 0.90 */  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);  HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);}"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 445,
+    "text": "3. 动作的后果不能在中断里发生。按键最终要改 g_i_ref、甚至调 SetMode（里面有 HAL_Delay 和继电器时序），这些只能在主循环上下文执行。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 466,
+    "text": "2. 物理限制：OLED_Refresh 走 I2C DMA，整屏 1024 字节在当前 SCL 频率下约需 100 ms。也就是一帧占掉 1/10 秒的总线时间——刷 10 Hz 就是总线 100% 占用"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 468,
+    "text": "绝对不要放进 100 kHz 控制中断。100 ms 的 I2C 传输对 10 µs 的控制周期来说等于环直接停摆，而且会长期占着 I2C 总线。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 529,
+    "text": "题面要求 1 Hz，且整屏要 100 ms"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 531,
+    "text": "建议把两个 1 Hz 任务错开（比如 OLED 在 0 ms 触发、串口在 500 ms 触发）。否则同一圈主循环里既推屏又发串口，会叠出 100 ms 以上的连续占用。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 564,
+    "text": "5. 应用：方向变了就走 SetMode 的完整时序（停 → 等 → 换继电器 → 重启），方向没变就直接写 g_i_ref，靠斜坡平滑过渡"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 571,
+    "text": "PA9/PF7 波形"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide2.xml",
+    "paragraph": 11,
+    "text": "继电器时序、越限保护"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide4.xml",
+    "paragraph": 12,
+    "text": "INA199A2 + 0.015 Ω 采样电阻（增益 ×50）"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide4.xml",
+    "paragraph": 17,
+    "text": "实物标注：18 V 电源适配器 · 串口 · 接仿真器 · 接负载 · 接直流电源（含充/放电继电器）"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide6.xml",
+    "paragraph": 9,
+    "text": "放电继电器"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide6.xml",
+    "paragraph": 11,
+    "text": "PG5"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide6.xml",
+    "paragraph": 12,
+    "text": "推挽输出 · 上电 RESET（低），继电器断开"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide6.xml",
+    "paragraph": 13,
+    "text": "充电继电器"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide6.xml",
+    "paragraph": 15,
+    "text": "PB5"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide6.xml",
+    "paragraph": 35,
+    "text": "PA9 / PF7"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide7.xml",
+    "paragraph": 10,
+    "text": "电流换算（INA199，增益 ×50，R = 0.015 Ω）"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide7.xml",
+    "paragraph": 14,
+    "text": "0.015 Ω 采样电阻（左）与 INA199 放大（右），输出 I_AD"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide8.xml",
+    "paragraph": 18,
+    "text": "死区说明"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide8.xml",
+    "paragraph": 19,
+    "text": "EG3112 半桥驱动芯片自带死区，TIM1_CH2 / CH2N 可不设死区。"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide20.xml",
+    "paragraph": 12,
+    "text": "ADBMS1818 / ADC / DMA / OLED 驱动；TIM1 互补 PWM 与死区配置；开环占空比扫描"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide23.xml",
+    "paragraph": 7,
+    "text": "继电器顺序：充电先闭合充电继电器、断开放电继电器；放电反之"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide23.xml",
+    "paragraph": 10,
+    "text": "示波器观察点：PWM 互补波形、死区 / 驱动波形、电感电流纹波"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 47,
+    "text": "继电器、串口、SPI5、OLED 等引脚总表"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 106,
+    "text": "继电器控制"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 257,
+    "text": "继电器"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 259,
+    "text": "PG5"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 262,
+    "text": "继电器"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 264,
+    "text": "PB5"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 266,
+    "text": "上电默认低；PB5 = JTDO/TRACESWO，与 SWO 调试冲突"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 319,
+    "text": "PA9 / PF7"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 328,
+    "text": "注意：两个继电器（PG5 / PB5）目前只有初始化，没有任何控制逻辑：全工程没有驱动函数、没有按键联动、没有互锁。要接功率回路请先确认\"高电平吸合还是低电平吸合\"，并自己做互锁。"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 385,
+    "text": "2) 每轮之间至少间隔 1 s 的唤醒，或保持 100 ms~1 s 周期——ADBMS1818 空闲约 2 s 会自动休眠并丢失配置，`BMS_ReadSample()` 内部每轮都先唤醒并补写 REFON，所以周期调用是安全的。"
+  }
+]

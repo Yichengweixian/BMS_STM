@@ -1,0 +1,27 @@
+{
+  "created_utc": "2026-11-01T10:46:40.928385+00:00",
+  "scope": [
+    "static",
+    "build",
+    "simulation"
+  ],
+  "hardware_actions": false,
+  "files": [
+    {
+      "path": "instructions/STATUS.md",
+      "sha256": "bac976d01c6081bc77369d396d5de243b0e0cb445157c3992342121ade14b618"
+    },
+    {
+      "path": "instructions/RUNLOG.md",
+      "sha256": "a226fabd407bf45570c024f17d83165b7d200c44cbe6b555539a008aea2c675d"
+    },
+    {
+      "path": "instructions/specs/hardware-profile.json",
+      "sha256": "a369d43a1844b8deafdd2ffc42f08c8376b8d19afbc84cadbaccfdc478b97738"
+    },
+    {
+      "path": "scripts/g03/bench_pwm_disabled.py",
+      "sha256": "520a5229b79ca21af260de749ca3f1bcaa0b75328442f17bfcdfe64c084b51b1"
+    }
+  ]
+}

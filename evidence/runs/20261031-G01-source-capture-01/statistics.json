@@ -1,0 +1,109 @@
+{
+  "schema": "g01-raw-statistics-v1",
+  "source": "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261031-G01-source-capture-01\\capture",
+  "capture_manifest_sha256": "4b29bbbbb623dffe5fe2908666dca6560425f017b869fbfa20fdbcbba9d22ee3",
+  "evidence_scope": "bench",
+  "simulated": false,
+  "rows": 1071,
+  "channels": {
+    "cell1": {
+      "records": 119,
+      "valid": 119,
+      "invalid": 0,
+      "mean": 23911.44537815126,
+      "stddev": 16274.85147980736,
+      "minimum": 12,
+      "maximum": 35002,
+      "peak_to_peak": 34990,
+      "nominal_voltage_mean_V": 2.391144537815126,
+      "nominal_voltage_stddev_V": 1.627485147980736
+    },
+    "cell7": {
+      "records": 119,
+      "valid": 119,
+      "invalid": 0,
+      "mean": 23290.798319327732,
+      "stddev": 16523.367753732346,
+      "minimum": 0,
+      "maximum": 34998,
+      "peak_to_peak": 34998,
+      "nominal_voltage_mean_V": 2.3290798319327735,
+      "nominal_voltage_stddev_V": 1.6523367753732345
+    },
+    "cell13": {
+      "records": 119,
+      "valid": 119,
+      "invalid": 0,
+      "mean": 23565.756302521007,
+      "stddev": 16444.45530580186,
+      "minimum": 0,
+      "maximum": 34999,
+      "peak_to_peak": 34999,
+      "nominal_voltage_mean_V": 2.356575630252101,
+      "nominal_voltage_stddev_V": 1.6444455305801862
+    },
+    "current_afe_gpio1": {
+      "records": 119,
+      "valid": 119,
+      "invalid": 0,
+      "mean": 8999.100840336134,
+      "stddev": 2.3047296910630717,
+      "minimum": 8994,
+      "maximum": 9007,
+      "peak_to_peak": 13
+    },
+    "temperature_gpio2": {
+      "records": 119,
+      "valid": 119,
+      "invalid": 0,
+      "mean": 3219.621848739496,
+      "stddev": 0.8436361638327057,
+      "minimum": 3218,
+      "maximum": 3222,
+      "peak_to_peak": 4
+    },
+    "temperature_gpio3": {
+      "records": 119,
+      "valid": 119,
+      "invalid": 0,
+      "mean": 3225.294117647059,
+      "stddev": 0.7740816448033989,
+      "minimum": 3223,
+      "maximum": 3227,
+      "peak_to_peak": 4
+    },
+    "temperature_gpio4": {
+      "records": 119,
+      "valid": 119,
+      "invalid": 0,
+      "mean": 3219.5546218487393,
+      "stddev": 0.8506974107186014,
+      "minimum": 3218,
+      "maximum": 3222,
+      "peak_to_peak": 4
+    },
+    "current_mcu_adc1": {
+      "records": 119,
+      "valid": 119,
+      "invalid": 0,
+      "mean": 1007.5966386554621,
+      "stddev": 1.354961552591647,
+      "minimum": 1004,
+      "maximum": 1011,
+      "peak_to_peak": 7
+    },
+    "afe_vref2": {
+      "records": 119,
+      "valid": 119,
+      "invalid": 0,
+      "mean": 30015.66386554622,
+      "stddev": 0.885641689459096,
+      "minimum": 30014,
+      "maximum": 30018,
+      "peak_to_peak": 4
+    }
+  },
+  "calibration_verified": false,
+  "formal_G01_verdict": null,
+  "note": "Standard deviation describes this capture, including drift; not accuracy or U95."
+}

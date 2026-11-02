@@ -1,0 +1,25 @@
+{
+  "case": "cache-full",
+  "scenario": 6,
+  "run_us": 100000,
+  "action": null,
+  "evidence_scope": [
+    "bench"
+  ],
+  "verdict": "fail",
+  "started_utc": "2026-11-01T13:34:02.143812+00:00",
+  "accepted_start_requests_planned": 1,
+  "reset_attempts_planned": 1,
+  "physical_valid": 0,
+  "power_capable": 0,
+  "error": "RuntimeError('SWD reset failed; no repeated reset or start')",
+  "finished_utc": "2026-11-01T13:34:02.444232+00:00",
+  "sha256": {
+    "manifest.json": "90e29b023073b1f45c603361d5cd37f77ffabf539719055fcc7f84ea3d5bdc3b",
+    "reset.json": "bee36a62fe21b2b47842dcc736a984b266a80dd3839fe7ec6b923f8ab99f761e",
+    "reset.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reset.stdout": "4e68ed07ddcd6efbdbfdbbee180aa98a8855540133cd9a65e0e65c4bc00f6b08",
+    "trace.csv": "d1e00c1ee3cae94f604a71edab1eb060c1da6d68e72a497b50f68ad0961a27cc",
+    "trace.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  }
+}

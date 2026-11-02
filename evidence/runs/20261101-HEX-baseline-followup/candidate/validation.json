@@ -1,0 +1,25 @@
+{
+  "scope": "host C simulation; no MCU adapter, power output, flashing or board validation",
+  "compiler": "D:\\Program Files\\JetBrains\\CLion 2025.2.3\\bin\\mingw\\bin\\gcc.exe",
+  "compiler_version": "gcc.exe (GCC) 13.1.0",
+  "flags": [
+    "-std=c11",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wconversion",
+    "-Wshadow",
+    "-pedantic",
+    "-O2"
+  ],
+  "compile_exit_code": 0,
+  "test_exit_code": 0,
+  "test_groups": 16,
+  "source_sha256": {
+    "pwm_oneshot.c": "eafa6d36c090af812ae71f45c625dc2c900ddc8857183942fed24c1ea8ef6ff9",
+    "pwm_oneshot.h": "0be238329a554c7b1f3d7dc97820c4f184fd6e6fdab55a30370a9961f06d14f7",
+    "test_pwm_oneshot.c": "7e223ac4e48213510a86209d0bdd43ba60cd328a02e9bbcf8e5358d634ecc68f",
+    "build.ps1": "b1e1ea7ae542fd7195411773e6c67f2a06669276a577a0a927c6a3fa308cf73f"
+  },
+  "board_profile_provided": false
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "path": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "sha256": "72833f0c35c861dd5d80618f4f3b6780ac4e033f694400756aac3d53da731449"
+  },
+  {
+    "path": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "sha256": "5f8b027080aa93b1905be925cbd0828aafd45f769110e780513fd4c380ea4a72"
+  },
+  {
+    "path": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "sha256": "ebb19c3b99fe483176c5c4537f169c0684df2d2c39712d5beb97d73dd01de162"
+  },
+  {
+    "path": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "sha256": "24e4cd218052f920c7a70f49b4afe0c7334034addae7faaecfff04d485e8923a"
+  },
+  {
+    "path": "课堂复习重点.pptx",
+    "sha256": "e5f6ecb49397a00675162bff23dd973207dae852c5dcde94bf4f2bf90a2395ce"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c",
+    "sha256": "4e02037224e8dc09a55f6b2a41ef9ef3d32dbe604c5084cbfe780e88b6b3609d"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/Appli/Core/Inc/main.h",
+    "sha256": "003911d0696c909acda01b6ffc0cb72371c8e2d63989108524ecfcab6ec7e4f4"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/adbms1818.h",
+    "sha256": "5d9dccad06f895601dcbcd94dc51648e24e9592c75ebfe3e0fe722079465ba29"
+  }
+]

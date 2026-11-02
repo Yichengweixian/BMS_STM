@@ -1,0 +1,43 @@
+{
+  "status": "complete",
+  "verdict": null,
+  "evidence_scope": [
+    "static",
+    "simulation"
+  ],
+  "checks": "passed",
+  "physical_outputs_verified": false,
+  "sha256": {
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_core.c": "a6c8cd0caaf21660077441bebba0f492b1c3d529ca07d57c75f2a408db37b90c",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_core.h": "8c8d46022fc918461eedbbf7bd115f46ef8ea6b557b744747e6f54081eef1861",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.c": "330f8c51c3057ba48e8d257ea6ab00ba094440400a9437639380fbf256e05dc1",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.h": "2a34efac64d63168cd6bbef22b0fd676d03b235649bf93fd622d7b8633f23fd2",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.c": "83224dd8f78336a5ec052cb574ac052a3a2444a30ca3fc724586d7fb8a6c0ad1",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.h": "885a41928344bf0008b39e1d8f6be7246362c54a4b7a5e2eb38684177cc8ccd4",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.c": "7a9639565a210760896637bbb16795e9a4347c5b1cd578379621a57c635a5306",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.h": "6b92449c4757d7f3caa8a5e428e254e2d7e1a4f150a4c949edac37bfdc054aa0",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_core.c": "535ee3337be108edbbf2550de22dc8dfea1d27750324afd5096a729795b127dc",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_core.h": "52ae2ab25d7c52cb14cc52441692f19654c4f097c86ba03467eb77a24bce0151",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_port.c": "e99373376e6f5d3bce21355363560d3f2e8de72ddd6014f27e5feab7ba317dc5",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_port.h": "5f1786e1b9cce3cfc5f09cc9c8cee9e4d2ba1a6344ca8cf7e8c5b4188b142100",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_profile.h": "0f2e07a14d204b765b6b6733cd2f5af2752c2a8d71ba40f7795a4d7dc36d5f42",
+    "tests\\g03\\adc_bridge_stub.c": "42ec203dff970ea487e0390f372165e52b0e9b8c6ef1b90439758d0eab324132",
+    "tests\\g03\\relay_bridge_stub.c": "59567ada5c88ed57a4207d1db635bdb6c8aa48a6d35802c473f6e09dc05129f8",
+    "tests\\g03\\test_adc_core.c": "423fc033309460f5c9a207bd2cb081bcd4708b1bdeb444db181067c04a5b26cd",
+    "tests\\g03\\test_adc_link.c": "c0428dda08239153fc4d81468a8754b4b0283e63eae3a6273bbc4438bb3621be",
+    "tests\\g03\\test_adc_port.c": "adabfc5540b9f4008e3166c33816dbe2834abb73a367331816578bc27139c513",
+    "tests\\g03\\test_control.c": "181a5b216d1619a1bad20ba7498034770d7e9c21f0992222a966bfebb367d5ef",
+    "tests\\g03\\test_link.c": "9978f4d64653d50edeaf8080299ed6ef9acde91797fe3ccb546200ddfc56ac39",
+    "tests\\g03\\test_port.c": "4afd501cd93b61f9129dfbe0677a937c733cabd493ba26d227b756a2044c5a6e",
+    "tests\\g03\\test_relay_core.c": "c75851191924b5382fdec132cf79d08accce6fdc18761ee1620ad308b7ef0790",
+    "tests\\g03\\test_relay_port.c": "37ba61b12aa798035ef1038fa46f83bf72c9381a7bfb633976765d675be2e3c5",
+    "tests\\g03\\test_adc_host.py": "c9bde466b5bffa9c3d18ea6455e885694efdc360d49addb90186e591d1bb752c",
+    "tests\\g03\\test_host.py": "1e073fa19379225018e82ac0424608d72aae8ba093b96e288183c8f0484bda47",
+    "scripts\\g03\\adc_diagnostics.py": "6d4df1388bc6fc9fab594e597375170793355db5b026efe4438f049930a53c9c",
+    "scripts\\g03\\disabled_diagnostics.py": "1c0fa2f509bca3a9475d8fafef294ff3b2bed515c726b23a9e3cd6b8d674e8de",
+    "scripts\\g03\\relay_capture.py": "8fb519af3823adca1c9b7afc3f7505956abfce249e7ccdb5606be8c2157cecdc",
+    "scripts\\g03\\run_adc_checks.py": "3d1f969a34dbf146632e64c40b2556b2881c65a4bf3140dd504e93de52e14dca",
+    "scripts\\g03\\run_checks.py": "fd20bd60eae7829f694d19273385d93ad6649fbc0bee5733d0e23ee21559b51d",
+    "scripts\\g03\\run_relay_checks.py": "13d74b8ad848afaa364f33b2375fe2b267ba941b01cf74e81c65792bc4fdd577"
+  }
+}

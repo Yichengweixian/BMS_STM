@@ -1,0 +1,63 @@
+[
+  {
+    "name": "gcc-version",
+    "command": [
+      "D:\\Program Files\\JetBrains\\CLion 2025.2.3\\bin\\mingw\\bin\\gcc.exe",
+      "--version"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "gcc-build",
+    "command": [
+      "D:\\Program Files\\JetBrains\\CLion 2025.2.3\\bin\\mingw\\bin\\gcc.exe",
+      "-std=c11",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wconversion",
+      "-Wshadow",
+      "-pedantic",
+      "-O2",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\BMS_EXv1.1\\BMS_EX\\BSP\\pwm_oneshot.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\tests\\g03\\test_pwm_oneshot.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\core-validation\\test_pwm_oneshot.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "host-tests",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\core-validation\\test_pwm_oneshot.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "armclang-version",
+    "command": [
+      "D:\\K5\\ARM\\ARMCLANG\\bin\\armclang.exe",
+      "--version"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "cortex-m55-object",
+    "command": [
+      "D:\\K5\\ARM\\ARMCLANG\\bin\\armclang.exe",
+      "--target=arm-arm-none-eabi",
+      "-mcpu=cortex-m55",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\BMS_EXv1.1\\BMS_EX\\BSP\\pwm_oneshot.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\core-validation\\pwm_oneshot_m55.o"
+    ],
+    "exit_code": 0
+  }
+]

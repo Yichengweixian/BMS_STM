@@ -1,0 +1,16 @@
+In file included from C:\Users\ADMIN\.codex\visualizations\2026\11\01\01a195e9-9166-7063-a043-ddd6a0d0d237\g03-work\tests\g03\test_adc_link.c:2,
+                 from C:\Users\ADMIN\.codex\visualizations\2026\11\01\01a195e9-9166-7063-a043-ddd6a0d0d237\g03-work\tests\g03\test_relay_port.c:2:
+C:\Users\ADMIN\.codex\visualizations\2026\11\01\01a195e9-9166-7063-a043-ddd6a0d0d237\g03-work\tests\g03\test_adc_port.c:1: error: "main" redefined [-Werror]
+ #define main baseline_main
+ 
+C:\Users\ADMIN\.codex\visualizations\2026\11\01\01a195e9-9166-7063-a043-ddd6a0d0d237\g03-work\tests\g03\test_relay_port.c:1: note: this is the location of the previous definition
+ #define main previous_adc_link_main
+ 
+C:\Users\ADMIN\.codex\visualizations\2026\11\01\01a195e9-9166-7063-a043-ddd6a0d0d237\g03-work\tests\g03\test_relay_port.c:35:5: error: redefinition of 'main'
+ int main(void)
+     ^~~~
+In file included from C:\Users\ADMIN\.codex\visualizations\2026\11\01\01a195e9-9166-7063-a043-ddd6a0d0d237\g03-work\tests\g03\test_relay_port.c:2:
+C:\Users\ADMIN\.codex\visualizations\2026\11\01\01a195e9-9166-7063-a043-ddd6a0d0d237\g03-work\tests\g03\test_adc_link.c:16:5: note: previous definition of 'main' was here
+ int main(void)
+     ^~~~
+cc1.exe: all warnings being treated as errors

@@ -1,0 +1,15 @@
+{
+  "created_utc": "2026-11-01T08:28:17.256110+00:00",
+  "analysis_script_sha256": "a078deb67bc1f5fbe10885b180acdcdf51e4b03f927c0fa216f3704ab7a0c9d6",
+  "input_hashes": {
+    "serial.bin": "752d7512b8c5fbc8648abc49d827cebeaa9637b96e1e3971d6d9d3c9383c793c",
+    "samples.json": "37ee4ab33b24c599239555ed8ae463b92196be8553697b5ff682a146ffc6a846",
+    "result.json": "f3ee3723a2f1c7b8c934d688da66be7a7d5b2c17eecf62ace674f0982c6fe171"
+  },
+  "output_hashes": {
+    "gpio-stop-events.json": "6adb0c1491514ca6145109e53c600684ca337283a3b8084b13ce83e1f1a85112",
+    "metrics.json": "267cba9308552161f5803f7a0d38c16e23c88e0388eb6936ad2b07d73b9c5c4b",
+    "nominal.csv": "a769318c19b03f753db56d2e93f4eb58fa51994f9539b6333c9f32818fa6065c"
+  },
+  "nominal_note": "Uncalibrated host double-precision evaluation of the documented nominal model; separate from raw and not measured physical current. No invalid value is replaced with zero."
+}

@@ -1,0 +1,18 @@
+{
+  "scope": [
+    "static",
+    "simulation"
+  ],
+  "verdict": null,
+  "checks": "passed",
+  "rows": 36,
+  "channels": 9,
+  "raw_source": "synthetic HAL fault injection; not board capture",
+  "hardware_verified": false,
+  "sha256": {
+    "BMS_EXv1.1\\BMS_EX\\BSP\\measurement_core.c": "d538110e60a7844154841be706359bcc18f0438e1a6cbcd5b7adb606ba039c44",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\adbms_acquisition.c": "2601f91b998943f65b8993a007911d8a53440a0c0d5a45f58082c8150bf449c8",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\measurement.c": "112e1621552d9d5d1158bdeb1bccb161071b92334da372b9a0c94b826702906f",
+    "tests\\g01\\test_measurement.c": "9df6e90b04682ef9549eedc7fb756a75e3944d870db56a4bfa43bb407cee8f03"
+  }
+}

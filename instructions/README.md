@@ -4,6 +4,21 @@
 
 先读 [问题解答与实施路线](guide.md)，也可打开同目录的 `BMS实施与验收指南.html`。然后读 [验收标准](specs/acceptance.md)、[测量分层](specs/measurement.md)、[数据规范](specs/data.md)。
 
+## 分阶段提示词
+
+从 [prompts/README.md](prompts/README.md) 进入，选择 G00—G07 的独立提示词。每阶段分成 5 个可单独推进的子任务，包含阅读入口、实现、验证、交付与缺条件时的后续动作。例如：“读取 instructions/prompts/G01-measurement.md，先完成 G01.1—G01.3。”
+
+提示词安排执行，specs 保留技术与验收标准，工作卡保存本次范围和结果。提示词中的子任务编号不另设一套验收门，当前状态仍以 STATUS 为准。
+
+## 当前任务计划
+
+- [录像阶梯、电流标定与热稳态补测设计](G01-G03-录像阶梯与热稳态补测设计.md)：2026-11-02当前续做入口，含c1已完成结果、录像时序、标定/验证分工、热试验条件及Git同步说明；录像新阶梯尚未执行。
+
+- [无探头条件下的后续任务总计划](G03-无探头条件下的推进计划.md)：已对齐r4结果；安排首次实物通路观察及G03—G07的后续顺序、分支和交付。
+- [单次100ms继电器放电测试方案](G03-单次100ms继电器放电测试方案.md)：总计划任务1—2的详细方案；当前实现与首次探索结果见STATUS及对应工作卡。
+
+总计划决定下一项任务，详细方案规定首次测试动作；正式阶段状态仍见[STATUS](STATUS.md)。
+
 ## 如何使用
 
 1. 从 [当前状态](STATUS.md) 找到下一阶段，先处理 [待确认项](references/open-questions.md) 中影响该阶段的项目。
@@ -17,10 +32,16 @@
 | 文件 | 用途 |
 |---|---|
 | guide.md / BMS实施与验收指南.html | 解释 ADC、换算、开环/闭环、SOC 及实施次序；HTML 为阅读版 |
+| prompts/README.md / G00—G07 提示词 | 启动、细分实施与复核各阶段任务 |
 | MIGRATION.md | 旧 instructions 哪些保留、简化、删除与替换 |
 | WORKFLOW.md | 调试、正式验收、状态、版本和失效范围规则 |
 | STATUS.md / RUNLOG.md | 当前阶段与关键过程记录 |
 | ../AGENTS.md / AGENTS_BMS.example.md | 当前项目代理入口 / 已采用情况说明；不再使用示例中的另一套规则 |
+| specs/G02-pwm-timing.md | G02诊断入口、配置推导、时序观测边界与待执行波形/停止清单 |
+| specs/G02-host-diagnostics.md | 无需探头的串口内部采样、STOP/故障诊断与证据边界 |
+| specs/prepower-host-validation.md | 扩展板测、固定工况离线准备、功率数据检查和本轮跳过项 |
+| specs/G03-disabled.md | MCU充放电影子状态机、本地保护、禁能接口与合成故障验证 |
+| specs/G03-real-adc-disabled.md | 真实ADC配置对照、HEX标称换算、本地窗口保护与禁能扫描记录 |
 | specs/measurement.md | 驱动、换算、标定和应用算法职责 |
 | specs/acceptance.md | G00—G07 的前置、指标、证据和失败处理 |
 | specs/data.md | 时间戳、原始数据、SOC 标签与训练集规则 |
@@ -38,3 +59,6 @@
 | validation/desktop.png、acceptance.png、mobile.png | HTML 阅读效果检查截图，不是硬件实验截图 |
 
 外部 `D:/ADMIN/Desktop/instructions` 仅作为流程设计参考，保持原样。其赛题、模型路由、额度监控、截止时间不适用于此 BMS 任务。采用本流程没有执行硬件实验，也没有启用 MCP。
+
+
+- 2026-11-01实现入口：[G03单次继电器接口](specs/G03-relay-single.md)，实际进展以STATUS和本轮工作卡为准。

@@ -1,0 +1,73 @@
+{
+  "created_utc": "2026-11-01T13:35:37.674087+00:00",
+  "firmware": "g03-pwm-disabled-r1",
+  "firmware_sha256": "9126778404c6f9a9890ab729522f7fbd9fe7fe0a380436694494ebecde81f9fb",
+  "cases": [
+    [
+      "cache-full",
+      6,
+      100000,
+      null
+    ],
+    [
+      "heartbeat-expiry",
+      7,
+      100000,
+      null
+    ],
+    [
+      "explicit-stop",
+      0,
+      200000,
+      "stop"
+    ],
+    [
+      "foreground-stall",
+      0,
+      100000,
+      "stall"
+    ],
+    [
+      "bad-crc",
+      0,
+      200000,
+      "bad-crc"
+    ],
+    [
+      "rx-pressure",
+      0,
+      200000,
+      "rx-pressure"
+    ],
+    [
+      "duplicate-start",
+      0,
+      200000,
+      "duplicate"
+    ],
+    [
+      "conflicting-start",
+      0,
+      200000,
+      "conflict"
+    ]
+  ],
+  "evidence_scope": [
+    "bench"
+  ],
+  "physical_valid": 0,
+  "power_capable": 0,
+  "one_independent_boot_per_case": true,
+  "first_boot_evidence": "evidence\\runs\\20261101-G03-pwm-disabled-r1\\reset-failure-query-01\\result.json",
+  "reset_retries": 0,
+  "start_retries": 0,
+  "flash_performed": false,
+  "real_power_operation": false,
+  "scenario3": "ADC NVIC masked for 200 us after 5 ms to create real FIFO overrun; no running IER write",
+  "cleanup_failure": "FAULT may retain owned=1; stopped stable trace is saved and suite fails",
+  "trace_flags": "event2/event3 ADC ISR bits; event4 core fault mask",
+  "action_delay_s": 0.09,
+  "preflight_timing_basis": "64 HAL_Delay(0) calls at default 1 kHz: nominal 63--64 ms plus setup/IRQ latency; not a host-to-arm bound",
+  "action_timing_method": "Fixed host delay and saved timestamps; post-check MCU preflight/on/off trace; no automatic retiming",
+  "max_electrical_on_time_claimed": false
+}

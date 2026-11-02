@@ -1,0 +1,16 @@
+{
+  "report.md": "ac156f67d91263acf7f34ec8887ac895e613d34f9be1998ec4cdcbffb98c30c0",
+  "operation-guide.md": "0fed4c57d2315effe01d3212d2049bf4116e109832c8717323cc43c24e2adcc8",
+  "completed-points.csv": "959661a526a208162c93321f45953b33da4eca0f16bc4915cc5a6298adfd64dc",
+  "course-points-theory.csv": "f04c4925505e562ecba3f6aafeaebb6894514175a455709d100bb036aca97743",
+  "dv-di.png": "d8ebf42146b95c7cc84265eb712fb3d4a12323d0e19813216330d65107dc14a9",
+  "stop-and-recovery.png": "301305ccd088f426555dead6fd7d809aa3844cda7b06ffe12bc3b0b094eff935",
+  "user-observations.json": "11aa741d3df70f3e331fa1d4215635bed5100e2ccdfe6cebd745e92d11caa0d3",
+  "local-direction.json": "5b6e0fb3b4f1a2d247c1f339328e94afd377f706a9bec0fdfe8d120c4ee3ab77",
+  "production-source-manifest.json": "7ea989509872c4be239d540d4c2af7c1b154a96cdb006f073c8bbf5e31202945",
+  "firmware-hashes.json": "5ac02185652cab84ae001853bfad3511bbb75e07efa2f5d226488669fccc026b",
+  "deployed_host_sha256": "7ae7a36f2e9414bbd805d018b4e5af3195ccc2f0c931ff4c4e176a8b5d71f766",
+  "capture_host_archived_sha256": "d7789ef90220a38a60fcff3f63365457f2c978479ccd22921a78265e2ea370ca",
+  "demo_launcher_sha256": "ceaa18c55f3773ade8dd7b9ed11e199c7477212ad0cca7c6772c1eaa43ee5dfa",
+  "final-off-query-01/result.json": "aa83ea37eb76a7472d6e2d8a12cfbf54d09bddf32890168e8203da280f6819d4"
+}

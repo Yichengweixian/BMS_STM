@@ -1,0 +1,21 @@
+test_bad_pec_retained (test_recorder.RecorderTests) ... ok
+test_gaps_reset_wrap (test_recorder.RecorderTests) ... ok
+test_known_pec (test_recorder.RecorderTests) ... ok
+test_nominal_and_invalid (test_recorder.RecorderTests) ... ok
+test_reject_semantic_conflicts (test_recorder.RecorderTests) ... ok
+test_sequence_wrap_is_not_reset (test_recorder.RecorderTests) ... ok
+test_tamper_and_truncate (test_recorder.RecorderTests) ... ok
+test_affine_vector_and_simulation_never_passes (test_voltage_calibration.CalibrationTests) ... ok
+test_extrapolation_not_accepted (test_voltage_calibration.CalibrationTests) ... ok
+test_guardband (test_voltage_calibration.CalibrationTests) ... ok
+test_hash_tamper (test_voltage_calibration.CalibrationTests) ... ok
+test_insufficient_points_and_unknown_mapping (test_voltage_calibration.CalibrationTests) ... ok
+test_missing_duplicate_and_time_discontinuity (test_voltage_calibration.CalibrationTests) ... ok
+test_no_current_or_temperature_coefficients (test_voltage_calibration.CalibrationTests) ... ok
+test_overlap_and_reused_condition (test_voltage_calibration.CalibrationTests) ... ok
+test_stale_retained_in_statistics_but_rejected_for_fit (test_voltage_calibration.CalibrationTests) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.333s
+
+OK

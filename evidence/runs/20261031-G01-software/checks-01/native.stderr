@@ -1,0 +1,6 @@
+Assertion failed!
+
+Program: D:\ADMIN\Desktop\WEIJI\zonghe\evidence\runs\20261031-G01-software\checks-01\native-tests.exe
+File: D:\ADMIN\Desktop\WEIJI\zonghe\tests\g01\test_measurement.c, Line 86
+
+Expression: Meas_Format(small,sizeof small,0,MEAS_CELL1,&s,0)>=(int)sizeof small

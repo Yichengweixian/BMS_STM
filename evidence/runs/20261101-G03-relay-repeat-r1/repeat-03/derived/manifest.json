@@ -1,0 +1,13 @@
+{
+  "inputs": {
+    "result.json": "9bfe8ea0c8198c2833a534ba77729d091f19453926b4cb01a4b89a3f0b63133b",
+    "samples.json": "3930bf47613d81b91d3f43320f109d18cc277aed6659fe70c00253a1309034be",
+    "serial.bin": "93c7de5fa848fbb99949639194a0c408a58d1d57f1d1d9ae0c17ef76a9f53cff"
+  },
+  "files": {
+    "gpio-stop-events.json": "446b4f641d01e2ef664b1a6fc8e53b62550c14df0619514d4963ce005bfc85f2",
+    "nominal.csv": "57b26be41fb770c17a17961eb8a22294086fb38d4156d0500c5ce594d7417ca0"
+  },
+  "analysis_script_sha256": "28d9c8f215d809ffacf1e20ec69c602d7e1d03cf3e2cc32934da0f6e0d6ed4da",
+  "nominal_model": "hex-dd44fae1-nominal-v1, host double precision; not calibrated physical values"
+}

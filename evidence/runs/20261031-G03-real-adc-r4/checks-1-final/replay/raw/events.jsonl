@@ -1,0 +1,5 @@
+{"event": "boot_marker", "boot_id": "5bbd5aae2e1748fc9468c057388b64f6:0", "host_rx_utc": "2026-10-31T11:11:42.964761+00:00"}
+{"event": "device_metadata", "text": "#BOOT,g03-adc-r4,tick=0", "host_rx_utc": "2026-10-31T11:11:42.964761+00:00", "boot_id": "5bbd5aae2e1748fc9468c057388b64f6:0"}
+{"event": "device_metadata", "text": "#META,schema=g01-v1,fw=g03-adc-r4,build=Oct 31 2026 19:11:41,cal=uncalibrated-v1,period_ms=500,kind=instantaneous_sample", "host_rx_utc": "2026-10-31T11:11:42.964761+00:00", "boot_id": "5bbd5aae2e1748fc9468c057388b64f6:0"}
+{"event": "device_metadata", "text": "#CONFIG,profile=cnn647b-g03-adc-r4,ADC_profile=0,ADC_selfcal=0,VREF_nominal=1.8,current_model=hex-dd44fae1-nominal-v1,zero_nominal_V=0.9,physical_valid=0,sign=unconfirmed", "host_rx_utc": "2026-10-31T11:11:42.964761+00:00", "boot_id": "5bbd5aae2e1748fc9468c057388b64f6:0"}
+{"event": "device_metadata", "text": "#FIELDS,type,seq,channel,start_ms,end_ms,age_ms,raw,status,raw_valid,sensor_V_nominal,estimate,unit,physical_value,physical_valid,reference,cal_id,frame_hex,wire_pec15", "host_rx_utc": "2026-10-31T11:11:42.964761+00:00", "boot_id": "5bbd5aae2e1748fc9468c057388b64f6:0"}

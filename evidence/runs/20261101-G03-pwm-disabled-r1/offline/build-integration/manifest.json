@@ -1,0 +1,28 @@
+{
+  "project": "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\BMS_EXv1.1\\BMS_EX\\MDK-ARM\\Appli\\BMS_EX_Appli.uvprojx",
+  "preserved_targets": [
+    "BMS_EX_Debug",
+    "BMS_EX_Release"
+  ],
+  "new_targets": [
+    "BMS_PWM_Disabled_Debug",
+    "BMS_PWM_Disabled_Release"
+  ],
+  "definitions": [
+    "G03_PWM_DISABLED_BUILD=1",
+    "G3R_LIVE_PROFILE_VERIFIED=0"
+  ],
+  "added_sources": [
+    "pwm_oneshot.c",
+    "g03_pwm_port.c"
+  ],
+  "cmse_outputs_isolated": true,
+  "before_sha256": "af0825d5a9ccbbac2f785906f2d199de5c787ef6538d286e997bff4d398926c2",
+  "after_sha256": "99af128c688af898406a552f3da896bd3f6ee01e29ee93ebc4d9b72382b1c384",
+  "build_invoked": false,
+  "hardware_access": false,
+  "outputs": {
+    "BMS_PWM_Disabled_Debug": "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\BMS_EXv1.1\\BMS_EX\\MDK-ARM\\Appli\\BMS_PWM_Disabled_Debug\\BMS_PWM_Disabled_Debug.hex",
+    "BMS_PWM_Disabled_Release": "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-pwm-disabled-work\\workspace\\BMS_EXv1.1\\BMS_EX\\MDK-ARM\\Appli\\BMS_PWM_Disabled_Release\\BMS_PWM_Disabled_Release.hex"
+  }
+}

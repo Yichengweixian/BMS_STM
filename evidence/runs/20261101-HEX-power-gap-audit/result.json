@@ -1,0 +1,32 @@
+{
+  "task": "Focused teacher HEX recovery for three power-test gaps",
+  "date": "2026-11-01",
+  "status": "complete",
+  "status_scope": "static investigation and offline candidate delivery only",
+  "evidence_scope": [
+    "static",
+    "build",
+    "simulation"
+  ],
+  "static_recovery_verdict": "pass",
+  "candidate_host_tests": {
+    "verdict": "pass",
+    "groups": 16
+  },
+  "hal_constant_assertions": 18,
+  "candidate_cortex_m55_compile": "pass",
+  "hardware_verdict": null,
+  "power_ready": false,
+  "physical_gaps": {
+    "current_path": "unresolved; teacher also selects PA1/ADC1_CH1",
+    "independent_overcurrent": "not established; teacher uses 8-sample AWD plus CPU ISR",
+    "high_low_mapping_and_effective_deadtime": "unresolved; teacher DTG=0, Break/Break2 disabled",
+    "single_pwm_board_port": "not implemented; standalone candidate core delivered",
+    "duty_duration_energy_limits": "pending-profile.json retains unknowns"
+  },
+  "hardware_access_performed": false,
+  "flashed": false,
+  "existing_firmware_source_changed": false,
+  "ghidra_executed": false,
+  "finding": "Teacher firmware is not evidence that these physical conditions are satisfied"
+}

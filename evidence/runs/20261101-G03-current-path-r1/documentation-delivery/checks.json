@@ -1,0 +1,30 @@
+{
+  "register-mask-check": {
+    "command": [
+      "C:\\Users\\ADMIN\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-current-path-work\\check_probe.py"
+    ],
+    "exit_code": 0
+  },
+  "render-html": {
+    "command": [
+      "D:\\Program Files\\nodejs\\node.exe",
+      "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\instructions\\validation\\render_html.cjs"
+    ],
+    "exit_code": 0
+  },
+  "new_document_links": "pass",
+  "production_sources_unchanged": 171,
+  "images_unchanged": {
+    "BMS_EX_Release": {
+      "path": "evidence\\runs\\20261101-G03-relay-r2\\firmware\\BMS_EX_Release\\BMS_EX_Release.hex",
+      "sha256": "8ff78e03997c4a5facd8f6feade09024fdd4721a3f0e32fc3531312bf1598c49"
+    },
+    "BMS_EX_Debug": {
+      "path": "evidence\\runs\\20261101-G03-relay-r2\\firmware\\BMS_EX_Debug\\BMS_EX_Debug.hex",
+      "sha256": "460c8e260582eb9bf7299f1c9662a5eb0f78db0e90181ae17e6dd5092e639b51"
+    }
+  },
+  "original_capture_artifacts_unchanged": 237,
+  "unknown_connection_and_power_gate_preserved": true
+}

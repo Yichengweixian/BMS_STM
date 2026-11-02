@@ -1,0 +1,9 @@
+{
+  "source_manifest": "../../../time-curves/manifest.json",
+  "physical_valid": 0,
+  "raw_unchanged": true,
+  "sha256": {
+    "stop-events.csv": "128f4198ec6e8692067a9bc4850c7ed2c9eaed56542025aeb64007a8a3bb1989",
+    "timeline.png": "487c800f6abf2e9d02fe378055f6b5347f41f62b420c0873104dd2cdd16117de"
+  }
+}

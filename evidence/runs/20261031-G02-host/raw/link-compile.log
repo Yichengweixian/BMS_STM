@@ -1,0 +1,5 @@
+BMS_EXv1.1/BMS_EX/BSP/g02_link.c: In function 'crc16':
+BMS_EXv1.1/BMS_EX/BSP/g02_link.c:18:73: error: operand of ?: changes signedness from 'int' to 'unsigned int' due to unsignedness of other operand [-Werror=sign-compare]
+         for(i=0;i<8U;++i) crc=(uint16_t)((crc&0x8000U)?(crc<<1)^0x1021U:crc<<1); }
+                                                                         ^~~~~~
+cc1.exe: all warnings being treated as errors

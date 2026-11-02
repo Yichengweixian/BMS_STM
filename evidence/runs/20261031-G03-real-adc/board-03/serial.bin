@@ -1,0 +1,7 @@
+Ó¤Ó’b²ººÂªb’²bšÂÊŠ‚bŠ’ÂbŠbšrÂÊŠ‚‚‚bšrÂÊŠ‚‚‚b²±,0,,uncalibrated-v1,FE97FFFFFFFFC558,EC02
+M,135,current_afe_gpio1,67786,67792,28,8999,128,1,0.899900,-0.000133,A,,0,,uncalibrated-v1,2723900C950CADA2,F1D2
+M,135,temperature_gpio2,67786,67792,38,3216,128,1,0.321600,24.065508,degC,,0,,uncalibrated-v1,2723900C950CADA2,8748
+M,135,temperature_gpio3,67786,67792,48,3221,128,1,0.322100,24.559807,degC,,0,,uncalibrated-v1,2723900C950CADA2,DD52
+M,135,temperature_gpio4,67786,67792,59,3217,128,1,0.321700,24.164404,degC,,0,,uncalibrated-v1,910C000041756538,3FC6
+M,135,current_mcu_adc1,67772,67772,89,1024,128,1,0.450110,-0.596854,A,,0,,uncalibrated-v1,,C944
+M,135,afe_vref2,67786,67792,77,30017,128,1,3.001700,3.001700,V,,0,,uncalibrated-v1,910C000041756538,546C

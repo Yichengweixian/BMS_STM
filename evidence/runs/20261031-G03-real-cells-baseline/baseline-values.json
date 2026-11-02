@@ -1,0 +1,22 @@
+{
+  "cell_voltage_nominal_V": {
+    "cell1": 3.8906725,
+    "cell7": 3.89072,
+    "cell13": 3.89111
+  },
+  "sum_selected_cell_voltage_nominal_V": 11.6725025,
+  "calibrated": false,
+  "afe_current_channel_raw_range": [
+    8994,
+    9002
+  ],
+  "mcu_current_channel_raw_range": [
+    1006,
+    1012
+  ],
+  "battery_current_A": null,
+  "load_current_A": null,
+  "load_voltage_V": null,
+  "discharge_power_W": null,
+  "note": "AFE nominal scaling only. No zero-current calibration, current gain/sign or independently measured pack voltage."
+}

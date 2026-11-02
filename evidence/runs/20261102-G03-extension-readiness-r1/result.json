@@ -1,0 +1,17 @@
+{
+  "scope": "static/model; no hardware access",
+  "calculated_rows": 14,
+  "power_balance_checks": "pass",
+  "protected_artifacts_unchanged": true,
+  "protected_hashes": {
+    "evidence\\runs\\20261102-G03-discharge-sprint-r4\\report.md": "ac156f67d91263acf7f34ec8887ac895e613d34f9be1998ec4cdcbffb98c30c0",
+    "evidence\\runs\\20261102-G03-discharge-sprint-r4\\completed-points.csv": "959661a526a208162c93321f45953b33da4eca0f16bc4915cc5a6298adfd64dc",
+    "evidence\\runs\\20261102-G03-discharge-sprint-r4\\delivery-manifest.json": "a45f06f39a53e800ce85d1c21b7aca68fb98ef5cea9620116733a12a6bae8c61",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_power_port.c": "8bd079432766d1bfcab7d843e80d1697a48b6397d051185db69e575520a5da3a",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_power_profile.h": "b0638e058ec010afc53922f50f27f9fbc56f3da5f0d35f16d68488260056df2f",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\firmware_identity.h": "d92333e80452b1c1509265b33b661d5c21d3ecdc23abd38099b918911eed367a"
+  },
+  "new_physical_result": null,
+  "runtime_changed": false,
+  "thresholds_changed": false
+}

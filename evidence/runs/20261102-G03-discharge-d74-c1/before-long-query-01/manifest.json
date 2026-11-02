@@ -1,0 +1,10 @@
+{
+  "firmware": "g03-power-d74-c1",
+  "image_sha256": "001577eeccc6ab3d264283cb4d85be17e19051a08dccc2eb983f02fd9da2d4ab",
+  "recorder_sha256": "2269cb03bf773437187a1923b7877c889b7d339e67fb4452bac12b64f35b4726",
+  "mode": "query",
+  "profile": 1345925889,
+  "physical_valid": 0,
+  "created_utc": "2026-11-02T07:05:34.418413+00:00",
+  "start_retries": 0
+}

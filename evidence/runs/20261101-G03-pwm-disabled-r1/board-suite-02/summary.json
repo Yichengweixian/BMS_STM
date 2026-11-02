@@ -1,0 +1,51 @@
+{
+  "planned": 8,
+  "executed": 8,
+  "results": [
+    {
+      "case": "cache-full",
+      "verdict": "pass",
+      "error": null
+    },
+    {
+      "case": "heartbeat-expiry",
+      "verdict": "pass",
+      "error": null
+    },
+    {
+      "case": "explicit-stop",
+      "verdict": "pass",
+      "error": null
+    },
+    {
+      "case": "foreground-stall",
+      "verdict": "pass",
+      "error": null
+    },
+    {
+      "case": "bad-crc",
+      "verdict": "pass",
+      "error": null
+    },
+    {
+      "case": "rx-pressure",
+      "verdict": "pass",
+      "error": null
+    },
+    {
+      "case": "duplicate-start",
+      "verdict": "pass",
+      "error": null
+    },
+    {
+      "case": "conflicting-start",
+      "verdict": "pass",
+      "error": null
+    }
+  ],
+  "verdict": "pass",
+  "finished_utc": "2026-11-01T13:36:26.531970+00:00",
+  "physical_valid": 0,
+  "power_output_tested": false,
+  "warm_reset_evidence_only": true
+}

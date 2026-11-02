@@ -1,0 +1,51 @@
+{
+  "created_utc": "2026-11-01T08:45:49.259181+00:00",
+  "mode": "hotplug read-only; no halt/reset/write",
+  "commands": [
+    {
+      "name": "vector",
+      "command": [
+        "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+        "-c",
+        "port=SWD",
+        "sn=16004A002933353739303541",
+        "freq=100",
+        "mode=HOTPLUG",
+        "-r32",
+        "0xe000ed08",
+        "4"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "faults",
+      "command": [
+        "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+        "-c",
+        "port=SWD",
+        "sn=16004A002933353739303541",
+        "freq=100",
+        "mode=HOTPLUG",
+        "-r32",
+        "0xe000ed24",
+        "24"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "debug-status",
+      "command": [
+        "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+        "-c",
+        "port=SWD",
+        "sn=16004A002933353739303541",
+        "freq=100",
+        "mode=HOTPLUG",
+        "-r32",
+        "0xe000edf0",
+        "4"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "verdict": null,
+  "evidence_scope": [
+    "static",
+    "build",
+    "simulation",
+    "bench",
+    "release_boot"
+  ],
+  "software_checks": "passed",
+  "extended_board_groups": 13,
+  "python_tests": 14,
+  "download_verified": true,
+  "capture_rows": 1071,
+  "capture_complete_groups": 119,
+  "capture_parse_errors": 0,
+  "hardware_calibration_verified": false,
+  "physical_waveforms_verified": false,
+  "physical_stop_verified": false,
+  "powered_run_allowed": false
+}

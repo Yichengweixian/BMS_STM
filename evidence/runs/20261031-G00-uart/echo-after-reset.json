@@ -1,0 +1,20 @@
+[
+  {
+    "sent": "G00_TEST_A",
+    "received": "G00_TEST_A",
+    "hex": "47-30-30-5F-54-45-53-54-5F-41",
+    "exact_echo": true
+  },
+  {
+    "sent": "G00_TEST_B_123",
+    "received": "G00_TEST_B_123",
+    "hex": "47-30-30-5F-54-45-53-54-5F-42-5F-31-32-33",
+    "exact_echo": true
+  },
+  {
+    "sent": "G00_TEST_C_xyz",
+    "received": "G00_TEST_C_xyz",
+    "hex": "47-30-30-5F-54-45-53-54-5F-43-5F-78-79-7A",
+    "exact_echo": true
+  }
+]

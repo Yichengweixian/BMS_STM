@@ -1,0 +1,25 @@
+{
+  "profile": 1345925890,
+  "firmware_sha256": "d24854613869c973c3483ebc7ca7d973fb5bf2ca67e75ca8789ff454b5703784",
+  "source_wiring_confirmed": true,
+  "source_settings_confirmed": true,
+  "source_cv_confirmed": true,
+  "no_real_cells": true,
+  "load_connected": true,
+  "charge_port_open": true,
+  "new_image_default_off_verified": true,
+  "dry_run_passed": true,
+  "source_paths_reviewed": true,
+  "hardware_profile_sha256": "c994d46ca95b9b51852a7302c41ba03ed145466e5c375667da68f7856d2da59d",
+  "point": {
+    "D": 0.8,
+    "CCR": 1600,
+    "ARR": 2000,
+    "run_us": 100000
+  },
+  "user_confirmation": "User confirmed CH1/A contact fault found and resecured, 3.5V restored. DMM DCV front 100V across load. Normal startup/source idle confirmation retained in conversation.",
+  "default_off_evidence": "default-off-query-01",
+  "dry_evidence": "../20261102-G03-discharge-sprint-r3/new-image-dry-long-01 (unchanged normal path); r4 recovery change tested offline",
+  "physical_short_current_ceiling_confirmed": false,
+  "frozen_utc": "2026-11-02T05:57:00.219148+00:00"
+}

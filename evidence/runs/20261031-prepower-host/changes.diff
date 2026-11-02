@@ -1,0 +1,2752 @@
+--- a/BMS_EXv1.1/BMS_EX/BSP/g02_link.c
++++ b/BMS_EXv1.1/BMS_EX/BSP/g02_link.c
+@@ -40,7 +40,7 @@
+ static void execute(void)
+ {
+     const char *p=line+4, *star;
+-    uint32_t id,op,arg,i,wire=0; char c;
++    uint32_t id,op,arg,i,wire=0,previous_compare,previous_window; char c;
+     if(strncmp(line,"G02,",4)!=0 || !number(&p,&id,',') || !number(&p,&op,',') ||
+        !number(&p,&arg,'*') || !id || strlen(p)!=4U) { ++bad_frames; return; }
+     star=p-1;
+@@ -56,6 +56,7 @@
+      * 5 compare. There is deliberately no pin-output operation. */
+     reply_code=G02_BAD_ARGUMENT; last_code=reply_code;
+     if(op==0U && arg==0U) {reply_code=G02_OK;last_code=reply_code;return;}
++    previous_compare=g02_compare;previous_window=g02_window_ms;
+     if(op==1U) {
+         if(!arg||arg>G02_MAX_WINDOW_MS)return;
+         g02_window_ms=arg; g02_command=G02_CMD_SAMPLE;
+@@ -66,6 +67,9 @@
+         g02_command=op==2U?G02_CMD_STOP:(op==3U?G02_CMD_FAULT:G02_CMD_CLEAR);
+     else return;
+     G02_Task(); reply_code=(uint32_t)g02_command_result;last_code=reply_code;
++    if(reply_code!=G02_OK) {
++        g02_compare=previous_compare;g02_window_ms=previous_window;
++    }
+     if(op==1U && reply_code==G02_OK)start_id=id;
+ }
+ static void report(void)
+@@ -74,7 +78,7 @@
+     /* Called only when TIM session stopped, including failed ADC cleanup.
+      * No TX/formatting in fast ISRs or in the sampling window. */
+     n=snprintf(out,sizeof out,
+-        "#G02,g02-host-r1,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu",
++        "#G02,g02-host-r2,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu",
+         (unsigned long)reply_id,(unsigned long)reply_code,(unsigned long)start_id,
+         (unsigned long)g02_control.state,(unsigned long)g02_control.faults,
+         (unsigned long)G02_OwnsADC(&g02_control),(unsigned long)g02_telemetry.cpu_hz,
+--- a/BMS_EXv1.1/BMS_EX/BSP/measurement.c
++++ b/BMS_EXv1.1/BMS_EX/BSP/measurement.c
+@@ -1,53 +1,53 @@
+-#include "measurement.h"
+-#include "measurement_core.h"
+-#include "adbms_acquisition.h"
+-#include "main.h"
+-#include "uart.h"
+-#include <string.h>
+-extern ADC_HandleTypeDef hadc1;
+-static uint32_t seq,last_start;
+-static uint8_t first;
+-static void metadata(void)
+-{
+-    uart_printf("#META,schema=%s,fw=g02-host-r1,build=%s %s,cal=%s,period_ms=500,kind=instantaneous_sample\r\n",
+-                MEAS_SCHEMA,__DATE__,__TIME__,MEAS_CAL_ID);
+-    uart_printf("#CONFIG,profile=cnn647b-bms-g02-20261031-r1,ADC1=PA1_12bit_SW_OS2_shift1,VREF_nominal=1.8,ADC_selfcal=off,AFE_MD=2_ADCOPT0,sign=unconfirmed\r\n");
+-    uart_printf("#FIELDS,type,seq,channel,start_ms,end_ms,age_ms,raw,status,raw_valid,sensor_V_nominal,estimate,unit,physical_value,physical_valid,reference,cal_id,frame_hex,wire_pec15\r\n");
+-}
+-void Measurement_Init(void)
+-{
+-    seq=0; first=1; last_start=HAL_GetTick();
+-    uart_printf("#BOOT,g02-host-r1,tick=%lu\r\n",(unsigned long)last_start);
+-    metadata();
+-}
+-static void adc_sample(MeasSample *s)
+-{
+-    HAL_StatusTypeDef st;
+-    memset(s,0,sizeof *s); s->start_ms=HAL_GetTick();
+-    st=HAL_ADC_Start(&hadc1);
+-    if (st==HAL_OK) st=HAL_ADC_PollForConversion(&hadc1,10);
+-    if (st==HAL_OK) {
+-        s->raw=(uint16_t)HAL_ADC_GetValue(&hadc1); s->has_raw=1;
+-        if (HAL_ADC_GetError(&hadc1)!=HAL_ADC_ERROR_NONE) s->status|=MEAS_ADC;
+-    } else s->status|=MEAS_ADC|(st==HAL_TIMEOUT?MEAS_TIMEOUT:MEAS_IO);
+-    s->end_ms=HAL_GetTick();
+-    if (HAL_ADC_Stop(&hadc1)!=HAL_OK) s->status|=MEAS_ADC;
+-}
+-void Measurement_Task(void)
+-{
+-    MeasSample samples[MEAS_CHANNELS];
+-    char row[320]; unsigned i; int n;
+-    uint32_t now=HAL_GetTick();
+-    if (!first && (uint32_t)(now-last_start)<MEAS_PERIOD_MS) return;
+-    first=0; last_start=now;
+-    memset(samples,0,sizeof samples);
+-    adc_sample(&samples[MEAS_MCU_I]); /* Independent of TIM1/PWM and AFE failures. */
+-    Afe_Acquire(samples);
+-    if (seq && seq%20U==0U) metadata(); /* Late serial attachment gets schema. */
+-    for(i=0;i<MEAS_CHANNELS;++i) {
+-        n=Meas_Format(row,sizeof row,seq,(MeasChannel)i,&samples[i],HAL_GetTick());
+-        if (n>0 && n<(int)sizeof row) uart_printf("%s",row);
+-        else uart_printf("#ERROR,format,seq=%lu,ch=%u\r\n",(unsigned long)seq,i);
+-    }
+-    ++seq; /* Increment even if transport drops a row; recorder checks per channel. */
+-}
++#include "measurement.h"
++#include "measurement_core.h"
++#include "adbms_acquisition.h"
++#include "main.h"
++#include "uart.h"
++#include <string.h>
++extern ADC_HandleTypeDef hadc1;
++static uint32_t seq,last_start;
++static uint8_t first;
++static void metadata(void)
++{
++    uart_printf("#META,schema=%s,fw=g02-host-r2,build=%s %s,cal=%s,period_ms=500,kind=instantaneous_sample\r\n",
++                MEAS_SCHEMA,__DATE__,__TIME__,MEAS_CAL_ID);
++    uart_printf("#CONFIG,profile=cnn647b-bms-g02-20261031-r1,ADC1=PA1_12bit_SW_OS2_shift1,VREF_nominal=1.8,ADC_selfcal=off,AFE_MD=2_ADCOPT0,sign=unconfirmed\r\n");
++    uart_printf("#FIELDS,type,seq,channel,start_ms,end_ms,age_ms,raw,status,raw_valid,sensor_V_nominal,estimate,unit,physical_value,physical_valid,reference,cal_id,frame_hex,wire_pec15\r\n");
++}
++void Measurement_Init(void)
++{
++    seq=0; first=1; last_start=HAL_GetTick();
++    uart_printf("#BOOT,g02-host-r2,tick=%lu\r\n",(unsigned long)last_start);
++    metadata();
++}
++static void adc_sample(MeasSample *s)
++{
++    HAL_StatusTypeDef st;
++    memset(s,0,sizeof *s); s->start_ms=HAL_GetTick();
++    st=HAL_ADC_Start(&hadc1);
++    if (st==HAL_OK) st=HAL_ADC_PollForConversion(&hadc1,10);
++    if (st==HAL_OK) {
++        s->raw=(uint16_t)HAL_ADC_GetValue(&hadc1); s->has_raw=1;
++        if (HAL_ADC_GetError(&hadc1)!=HAL_ADC_ERROR_NONE) s->status|=MEAS_ADC;
++    } else s->status|=MEAS_ADC|(st==HAL_TIMEOUT?MEAS_TIMEOUT:MEAS_IO);
++    s->end_ms=HAL_GetTick();
++    if (HAL_ADC_Stop(&hadc1)!=HAL_OK) s->status|=MEAS_ADC;
++}
++void Measurement_Task(void)
++{
++    MeasSample samples[MEAS_CHANNELS];
++    char row[320]; unsigned i; int n;
++    uint32_t now=HAL_GetTick();
++    if (!first && (uint32_t)(now-last_start)<MEAS_PERIOD_MS) return;
++    first=0; last_start=now;
++    memset(samples,0,sizeof samples);
++    adc_sample(&samples[MEAS_MCU_I]); /* Independent of TIM1/PWM and AFE failures. */
++    Afe_Acquire(samples);
++    if (seq && seq%20U==0U) metadata(); /* Late serial attachment gets schema. */
++    for(i=0;i<MEAS_CHANNELS;++i) {
++        n=Meas_Format(row,sizeof row,seq,(MeasChannel)i,&samples[i],HAL_GetTick());
++        if (n>0 && n<(int)sizeof row) uart_printf("%s",row);
++        else uart_printf("#ERROR,format,seq=%lu,ch=%u\r\n",(unsigned long)seq,i);
++    }
++    ++seq; /* Increment even if transport drops a row; recorder checks per channel. */
++}
+--- a/tests/g02/test_link.c
++++ b/tests/g02/test_link.c
+@@ -11,7 +11,7 @@
+ {char s[80],frame[100];unsigned i;snprintf(s,sizeof s,"G02,%u,%u,%u",id,op,arg);snprintf(frame,sizeof frame,"%s*%04X\n",s,checksum(s));reply[0]=0;
+  for(i=0;frame[i];i++){G02_LinkRx((const uint8_t *)&frame[i],1);G02_LinkTask();}}
+ static void expect(unsigned id,unsigned result)
+-{char prefix[70];snprintf(prefix,sizeof prefix,"#G02,g02-host-r1,%u,%u,",id,result);assert(strncmp(reply,prefix,strlen(prefix))==0);}
++{char prefix[70];snprintf(prefix,sizeof prefix,"#G02,g02-host-r2,%u,%u,",id,result);assert(strncmp(reply,prefix,strlen(prefix))==0);}
+ int main(void)
+ {
+  unsigned start; char huge[300];
+@@ -34,5 +34,8 @@
+  send_command(10,1,0);expect(10,G02_BAD_ARGUMENT);assert_off();
+  send_command(11,1,10001);expect(11,G02_BAD_ARGUMENT);assert_off();
+  send_command(12,1,10);tick+=10;G02_Task();G02_LinkTask();expect(12,0);assert_off();
++ start=g02_compare;
++ send_command(13,5,1999);expect(13,G02_NOT_READY);assert_off();
++ assert(g02_compare==start); /* A rejected command must not change the next START. */
+  puts(reply);puts("PASS: CRC/fragments/overflow/replay/quiet-run/STOP/fault/clear/timeout transport using production core+port+link.");return 0;
+ }
+--- a/tests/g02/test_host.py
++++ b/tests/g02/test_host.py
+@@ -0,0 +1,134 @@
++import binascii
++import copy
++import json
++from pathlib import Path
++import sys
++import tempfile
++import unittest
++
++ROOT=Path(__file__).resolve().parents[2]
++sys.path.insert(0,str(ROOT/'scripts/g02'))
++from host_diagnostics import frame, parse, FIELDS
++from extended_diagnostics import Session
++from prepower_plan import compile_plan, simulate, port_power, prerequisites
++
++
++def response(request_id=1,firmware='g02-host-r2',**values):
++    fields=dict.fromkeys(FIELDS,0);fields.update(id=request_id,**values)
++    body=('#G02,'+firmware+','+','.join(str(fields[k]) for k in FIELDS)).encode()
++    return body+('*%04X\r\n'%binascii.crc_hqx(body,65535)).encode()
++
++
++class FakeLink:
++    def __init__(self,chunks):self.chunks=list(chunks);self.is_open=True;self.writes=[]
++    @property
++    def in_waiting(self):return len(self.chunks[0]) if self.chunks else 0
++    def read(self,n):return self.chunks.pop(0) if self.chunks else b''
++    def write(self,data):self.writes.append(data);return len(data)
++    def close(self):self.is_open=False
++
++
++class HostTests(unittest.TestCase):
++    def session(self,chunks):
++        tmp=tempfile.TemporaryDirectory();self.addCleanup(tmp.cleanup)
++        link=FakeLink(chunks);s=Session(link,Path(tmp.name));self.addCleanup(s.finish)
++        return s,link
++
++    def test_crc_reference(self):
++        self.assertEqual(binascii.crc_hqx(b'123456789',65535),0x29b1)
++        self.assertEqual(parse(response())['id'],1)
++
++    def test_unsigned_request_bounds(self):
++        for args in ((0,0,0),(-1,0,0),(2**32,0,0),(1,0,-1),(True,0,0),(1,0,float('nan'))):
++            with self.assertRaises(ValueError):frame(*args)
++
++    def test_crc_schema_and_nonfinite_rejected(self):
++        for data in (response().replace(b'g02-host-r2',b'g02-host-r9'),
++                     response(result='NaN'),response(idont_exist=3).replace(b'*',b'*0'),
++                     response(result=-1),response(result=2**32)):
++            with self.assertRaises(ValueError):parse(data)
++
++    def test_fragmented_coalesced_and_stale_responses(self):
++        wire=b'#META,x\n'+response(4)+response(5)
++        s,_=self.session([wire[:4],wire[4:20],wire[20:]])
++        self.assertEqual(s.receive(5,.1)['id'],5)
++        self.assertEqual(len(s.reports),2)
++
++    def test_reboot_cancels_without_replay(self):
++        s,link=self.session([b'#BOOT,new\n'+response()]);s.identified=True
++        with self.assertRaisesRegex(RuntimeError,'reset'):s.receive(1,.1)
++        self.assertEqual(link.writes,[])
++
++    def test_wrong_firmware_and_output_gate(self):
++        for wire in (response(firmware='g02-host-r1'),response(pins_gate=1)):
++            s,_=self.session([wire])
++            with self.assertRaises(RuntimeError):s.receive(1,.1)
++
++    def test_timeout_does_not_retry(self):
++        s,link=self.session([])
++        with self.assertRaises(TimeoutError):s.receive(1,.001)
++        self.assertEqual(link.writes,[])
++
++    def test_oversized_stream_and_counter_exhaustion(self):
++        s,link=self.session([b'x'*4097])
++        with self.assertRaises(RuntimeError):s.receive(1,.1)
++        s.counter=0xffffffff
++        with self.assertRaises(RuntimeError):s.send(0)
++        self.assertEqual(link.writes,[])
++
++
++class PlanTests(unittest.TestCase):
++    def setUp(self):
++        # Fictional software fixture only, never copied into the real hardware profile.
++        self.profile={'control':{'permitted_test_duty_min':.2,'permitted_test_duty_max':.8,'open_loop_point_max_ms':100},
++                      'software_configuration':{'pwm':{'period':2000}}}
++        self.plan={'mode':'fixed-duty','direction':'discharge','points':[
++            {'duty':.4,'duration_ms':100},{'duty':.5,'duration_ms':100}]}
++        self.v={'value':10.,'unit':'V','physical_valid':True,'cal_id':'synthetic-v',
++                'session_id':'synthetic','port':'battery','time_ms':0,'reference':'positive_to_negative'}
++        self.i=dict(self.v,value=-2.,unit='A',cal_id='synthetic-i',reference='positive_into_battery')
++
++    def test_order_quantization_and_final_stop(self):
++        c=compile_plan(self.plan,self.profile)
++        self.assertEqual([p['ccr'] for p in c['points']],[800,1000])
++        self.assertEqual([p['at_ms'] for p in c['points']],[0,100])
++        r=simulate(c);self.assertEqual(r['events'][-1]['at_ms'],200)
++        self.assertFalse(r['output_enabled'])
++
++    def test_stop_fault_cancel_remaining_points(self):
++        c=compile_plan(self.plan,self.profile)
++        for when in (0,50,100,200):
++            for key in ('stop_at_ms','fault_at_ms'):
++                r=simulate(c,**{key:when})
++                self.assertTrue(all(e['at_ms']<when for e in r['events'][:-1]))
++                self.assertFalse(r['output_enabled']);self.assertFalse(r['automatic_restart'])
++
++    def test_unknown_limits_not_course_defaults(self):
++        actual=json.loads((ROOT/'instructions/specs/hardware-profile.json').read_text(encoding='utf-8-sig'))
++        with self.assertRaises(ValueError):compile_plan(self.plan,actual)
++        self.assertIn('control.permitted_test_duty_min',prerequisites(actual))
++
++    def test_invalid_duty_duration_and_closed_loop(self):
++        for duty in (None,float('nan'),float('inf'),-.1,1.0,True):
++            p=copy.deepcopy(self.plan);p['points'][0]['duty']=duty
++            with self.assertRaises(ValueError):compile_plan(p,self.profile)
++        for duration in (0,-1,101,True,1.5):
++            p=copy.deepcopy(self.plan);p['points'][0]['duration_ms']=duration
++            with self.assertRaises(ValueError):compile_plan(p,self.profile)
++        p=copy.deepcopy(self.plan);p['mode']='current-tracking'
++        with self.assertRaises(ValueError):compile_plan(p,self.profile)
++
++    def test_quantization_cannot_escape_limits(self):
++        self.profile['control']['permitted_test_duty_min']=.4001
++        self.plan['points'][0]['duty']=.4001
++        with self.assertRaises(ValueError):compile_plan(self.plan,self.profile)
++
++    def test_power_sign_and_quality(self):
++        self.assertEqual(port_power(self.v,self.i,1)['value'],-20.)
++        for key,value in (('port','load'),('session_id','other'),('physical_valid',False),
++                          ('cal_id',None),('value',float('nan')),('time_ms',2),('unit','V'),('reference',None)):
++            sample=dict(self.i,**{key:value})
++            with self.assertRaises(ValueError):port_power(self.v,sample,1)
++
++
++if __name__=='__main__':unittest.main()
+--- a/scripts/g02/host_diagnostics.py
++++ b/scripts/g02/host_diagnostics.py
+@@ -2,23 +2,27 @@
+ import argparse
+ import binascii
+ import json
++import re
+ from pathlib import Path
+ import time
+ 
+ FIELDS = 'id result start_id state faults owns_adc cpu_hz tim_hz adc_hz start_ms stop_ms updates completions overruns adc_errors gap_max_cycles tim_isr_max_cycles adc_isr_max_cycles late_irqs ccr_writes ccr_requested ccr_observed stop_software_cycles bad_frames rx_errors pins_gate'.split()
+ 
+ def frame(request_id, op, arg=0):
++    if any(type(x) is not int or x < 0 or x > 0xffffffff for x in (request_id,op,arg)) or request_id == 0:
++        raise ValueError('uint32 request fields; request id must be nonzero')
+     body = ('G02,%d,%d,%d' % (request_id,op,arg)).encode('ascii')
+     return body + ('*%04X\n' % binascii.crc_hqx(body,65535)).encode('ascii')
+ 
+ def parse(line):
+     body, check = line.rstrip(b'\r\n').rsplit(b'*',1)
+-    if len(check)!=4 or int(check,16)!=binascii.crc_hqx(body,65535): raise ValueError('CRC')
++    if not re.fullmatch(b'[0-9A-F]{4}',check) or int(check,16)!=binascii.crc_hqx(body,65535): raise ValueError('CRC')
+     parts=body.decode('ascii').split(',')
+-    if parts[:2]!=['#G02','g02-host-r1'] or len(parts)!=len(FIELDS)+2: raise ValueError('schema/firmware')
++    if parts[0]!='#G02' or parts[1] not in ('g02-host-r1','g02-host-r2') or len(parts)!=len(FIELDS)+2: raise ValueError('schema/firmware')
++    if any(not re.fullmatch('[0-9]+',x) for x in parts[2:]): raise ValueError('unsigned decimal fields')
+     values=[int(x) for x in parts[2:]]
+     if any(x<0 or x>0xffffffff for x in values): raise ValueError('range')
+-    return dict(zip(FIELDS,values))
++    return dict(firmware=parts[1],**dict(zip(FIELDS,values)))
+ 
+ def main():
+     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--port',required=True);p.add_argument('--out',required=True)
+--- a/scripts/g02/extended_diagnostics.py
++++ b/scripts/g02/extended_diagnostics.py
+@@ -0,0 +1,226 @@
++"""Automated internal-only board checks; no power command exists in this tool."""
++import argparse
++import binascii
++import csv
++import hashlib
++import json
++from pathlib import Path
++import time
++from host_diagnostics import frame, parse, FIELDS
++
++
++def require(condition, message):
++    if not condition:
++        raise RuntimeError(message)
++
++
++def clean(r, code=0):
++    require(r['result']==code and r['state']==0 and r['faults']==0 and r['owns_adc']==0,
++            'Unexpected stopped result: '+str(r))
++
++
++class Session:
++    def __init__(self, link, out):
++        self.link=link
++        self.out=out
++        self.raw=(out/'serial.bin').open('xb')
++        self.events=(out/'events.jsonl').open('x',encoding='utf-8')
++        self.pending=b''
++        self.identified=False
++        self.counter=int(time.time()*1000)&0xffffffff
++        self.reports=[]
++
++    def event(self, **data):
++        self.events.write(json.dumps(dict(monotonic=time.monotonic(),**data))+'\n')
++        self.events.flush()
++
++    def write(self, wire):
++        require(self.link.write(wire)==len(wire),'Short serial write')
++        self.event(tx_hex=wire.hex())
++
++    def send(self, op, arg=0):
++        # Permit only diagnostic operations (99 is an intentionally invalid command).
++        require(op in (0,1,2,3,4,5,99),'Not a diagnostic operation')
++        require(self.counter<0xffffffff,'Request id exhausted; no wrap/replay')
++        self.counter+=1
++        self.write(frame(self.counter,op,arg))
++        return self.counter
++
++    def receive(self, wanted, timeout=3):
++        end=time.monotonic()+timeout
++        while True:
++            while b'\n' in self.pending:
++                line,self.pending=self.pending.split(b'\n',1)
++                if line.startswith(b'#BOOT,') and self.identified:
++                    raise RuntimeError('Device reset; no automatic restart')
++                if not line.startswith(b'#G02,'):
++                    continue
++                r=parse(line)
++                self.event(report=r)
++                self.reports.append(r)
++                require(r['firmware']=='g02-host-r2' and r['pins_gate']==0,
++                        'Require fixed r2 firmware with pin output disabled')
++                if r['id']==wanted:
++                    return r
++            require(len(self.pending)<=4096,'Oversized unterminated response')
++            if time.monotonic()>=end:
++                raise TimeoutError('No matching response; commands are not retried')
++            data=self.link.read(max(1,min(self.link.in_waiting,4096)))
++            self.raw.write(data)
++            self.pending+=data
++
++    def request(self, op, arg=0, timeout=3):
++        return self.receive(self.send(op,arg),timeout)
++
++    def finish(self):
++        if self.link.is_open:
++            self.link.close()
++        self.raw.close()
++        self.events.close()
++        with (self.out/'reports.csv').open('x',newline='',encoding='utf-8') as f:
++            w=csv.DictWriter(f,fieldnames=['firmware']+FIELDS)
++            w.writeheader()
++            w.writerows(self.reports)
++
++
++def check_sample(r, start_id, duration):
++    clean(r)
++    require(r['start_id']==start_id,'Unexpected sampling session')
++    require(r['updates']>0 and r['completions']>0,'No serviced sampling events')
++    require(r['overruns']==0 and r['adc_errors']==0,'Sampling errors')
++    require((r['stop_ms']-r['start_ms'])&0xffffffff >= duration,'Early automatic stop')
++    require((r['cpu_hz'],r['tim_hz'],r['adc_hz'])==(800000000,400000000,64000000),'Clock mismatch')
++
++
++def suite(s, result):
++    def passed(name):
++        result['checks'].append(name)
++        s.event(check_passed=name)
++    clean(s.request(0))
++    s.identified=True
++    start=s.send(1,200)
++    base=s.receive(start)
++    check_sample(base,start,200)
++    passed('identify-and-sample')
++
++    # A rejected stopped-state compare must not leak into the next START.
++    clean(s.request(5,1999),2)
++    start=s.send(1,200)
++    r=s.receive(start)
++    check_sample(r,start,200)
++    require(r['ccr_requested']==base['ccr_requested'],'Rejected CCR changed next start')
++    passed('rejected-compare-has-no-side-effect')
++    previous=r.copy()
++    s.write(frame(start,1,200))
++    clean(s.receive(start))
++    require(s.reports[-1]['start_ms']==previous['start_ms'],'Repeated request restarted')
++    s.write(frame(start,1,201));clean(s.receive(start),8)
++    s.write(frame(start-1,1,200));clean(s.receive(start-1),7)
++    passed('duplicate-conflict-stale')
++
++    for op,arg in ((1,0),(1,10001),(5,0),(5,2000),(99,0),(2,1),(4,1)):
++        clean(s.request(op,arg),1)
++    passed('range-and-unknown-rejection')
++    before=s.request(0)
++    malformed=[b'G02,1,1,NaN',b'G02,1,1,Inf',b'G02,1,1,-1',
++               b'G02,1,1,4294967296',b'G02,1,1',b'G02,0,1,10',b'x'*80]
++    for body in malformed:
++        s.write(body+('*%04X\n'%binascii.crc_hqx(body,65535)).encode())
++        time.sleep(.15)
++    s.write(b'G02,1,1,10*FFFF\n')
++    time.sleep(.15)
++    r=s.request(0);clean(r)
++    require(r['bad_frames']>=before['bad_frames']+len(malformed)+1,'Bad frames not accounted')
++    require(r['start_ms']==previous['start_ms'],'Malformed input started sampling')
++    passed('malformed-crc-numeric-overlong')
++
++    s.counter+=1
++    wire=frame(s.counter,0)
++    s.write(wire[:7]);time.sleep(.03);s.write(wire[7:]);clean(s.receive(s.counter))
++    s.counter+=1
++    s.write(b'bad\n'+frame(s.counter,0));clean(s.receive(s.counter))
++    passed('fragment-and-concatenation')
++
++    start=s.send(1,1000);time.sleep(.15)
++    busy=s.send(1,1)
++    r=s.receive(busy,3);clean(r,3)
++    require(r['start_id']==start and ((r['stop_ms']-r['start_ms'])&0xffffffff)>=1000,
++            'BUSY start replaced active window')
++    passed('busy-start-preserves-window')
++
++    for compare in (1,1000,1999):
++        start=s.send(1,700);time.sleep(.15)
++        r=s.receive(s.send(5,compare),3)
++        check_sample(r,start,700)
++        require(r['ccr_writes']==1 and r['ccr_observed']==compare,'CCR observation mismatch')
++    passed('internal-ccr-boundary-scan')
++
++    start=s.send(1,10000);time.sleep(.2)
++    r=s.request(2);clean(r)
++    require(r['start_id']==start and ((r['stop_ms']-r['start_ms'])&0xffffffff)<10000,'STOP did not shorten window')
++    clean(s.request(2))
++    passed('stop-and-repeated-stop')
++    s.send(1,10000);time.sleep(.2)
++    r=s.request(3)
++    require(r['result']==0 and r['state']==3 and r['faults']==32 and r['owns_adc']==0,'Fault cleanup failed')
++    r=s.request(1,200)
++    require(r['result']==5 and r['state']==3,'Fault did not reject START')
++    clean(s.request(4));clean(s.request(0))
++    passed('fault-latch-clear')
++
++    # Close the host handle without STOP. This tests autonomous window expiry,
++    # not physical USB removal or a firmware communication-loss watchdog.
++    start=s.send(1,1000)
++    s.link.flush();time.sleep(.15)
++    s.link.close();s.event(host_handle='closed_without_STOP')
++    time.sleep(1.3)
++    s.link.open();s.event(host_handle='reopened_without_replay')
++    r=s.request(0);check_sample(r,start,1000)
++    clean(s.request(0))
++    passed('host-close-expiry-reconnect-no-replay')
++
++    start=s.send(1,1000)
++    for _ in range(20):
++        time.sleep(.02)
++        last=s.send(99)
++    r=s.receive(last,3);clean(r,1)
++    require(r['start_id']==start and r['overruns']==0 and r['adc_errors']==0,'Traffic disturbed sampling')
++    passed('bounded-command-traffic')
++    for _ in range(3):
++        start=s.send(1,10000)
++        check_sample(s.receive(start,13),start,10000)
++    passed('three-10s-windows')
++    clean(s.request(2))
++
++
++def main():
++    p=argparse.ArgumentParser(description=__doc__)
++    p.add_argument('--port',required=True);p.add_argument('--out',required=True)
++    a=p.parse_args();out=Path(a.out);out.mkdir(parents=True,exist_ok=False)
++    import serial
++    link=serial.Serial();link.port=a.port;link.baudrate=115200;link.timeout=.1
++    link.write_timeout=1;link.dtr=link.rts=False
++    s=Session(link,out)
++    result=dict(status='in_progress',verdict=None,evidence_scope=['bench'],checks=[],
++                physical_waveforms_verified=False,physical_disconnect_tested=False)
++    try:
++        link.open();suite(s,result)
++        result.update(status='complete',software_checks='passed')
++    except Exception as exc:
++        result.update(software_checks='failed_or_unavailable',error=repr(exc))
++        if s.identified:
++            try:
++                if not link.is_open:link.open()
++                result['stop_after_error']=s.request(2)
++            except Exception as stop_error:result['stop_after_error']=repr(stop_error)
++    finally:
++        s.finish()
++        result['reports']=s.reports
++        result['sha256']={x.name:hashlib.sha256(x.read_bytes()).hexdigest() for x in
++                          (out/'serial.bin',out/'events.jsonl',out/'reports.csv',Path(__file__))}
++        (out/'result.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
++    print(json.dumps({k:v for k,v in result.items() if k!='reports'},indent=2))
++    return 0 if result.get('software_checks')=='passed' else 1
++
++
++if __name__=='__main__':raise SystemExit(main())
+--- a/scripts/g02/prepower_plan.py
++++ b/scripts/g02/prepower_plan.py
+@@ -0,0 +1,120 @@
++"""Offline-only open-loop preparation. There is intentionally no serial executor."""
++import argparse
++import hashlib
++import json
++import math
++from pathlib import Path
++
++
++def finite(value):
++    return type(value) in (int,float) and math.isfinite(value)
++
++
++def prerequisites(profile):
++    """Return unresolved evidence/limits, never manufacture defaults or authorization."""
++    missing=[]
++    for name in ('cell_voltage_min_V','cell_voltage_max_V','charge_current_max_A',
++                 'discharge_current_max_A','charge_temperature_min_C','charge_temperature_max_C',
++                 'discharge_temperature_min_C','discharge_temperature_max_C',
++                 'converter_voltage_max_V','converter_current_max_A','converter_power_max_W',
++                 'load_power_continuous_W','supply_current_limit_A'):
++        if not finite(profile.get('limits',{}).get(name)):
++            missing.append('limits.'+name)
++    control=profile.get('control',{})
++    for name in ('permitted_test_duty_min','permitted_test_duty_max','stop_delay_limit_us',
++                 'effective_deadtime_min_ns','open_loop_point_max_ms','communication_timeout_ms'):
++        if not finite(control.get(name)):
++            missing.append('control.'+name)
++    for name in ('relay_change_conditions','communication_loss_action','default_power_disabled_verified_run_id'):
++        if not control.get(name):missing.append('control.'+name)
++    # These are evidence gaps, not booleans a plan file can use to enable hardware.
++    missing.extend(['verified pin/driver/Vgs waveforms and stop response',
++                    'calibrated battery-branch current and voltage with sign/range',
++                    'confirmed direction-specific wiring, energy sink, load and thermal conditions',
++                    'MCU-local powered-mode interlocks, communication timeout and protection integration'])
++    return missing
++
++
++def compile_plan(plan, profile):
++    if plan.get('direction') not in ('charge','discharge'):
++        raise ValueError('direction must be charge or discharge')
++    if plan.get('mode')!='fixed-duty':raise ValueError('fixed-duty mode required')
++    control=profile.get('control',{})
++    low,high=control.get('permitted_test_duty_min'),control.get('permitted_test_duty_max')
++    limit=control.get('open_loop_point_max_ms')
++    if not all(finite(x) for x in (low,high,limit)) or not 0<low<=high<1 or limit<=0:
++        raise ValueError('Unknown/invalid permitted duty or duration in hardware profile')
++    arr=profile.get('software_configuration',{}).get('pwm',{}).get('period')
++    if type(arr) is not int or arr<2:raise ValueError('Profile must provide integer PWM arr')
++    points=plan.get('points')
++    if not isinstance(points,list) or not points or len(points)>1000:
++        raise ValueError('Require 1..1000 fixed points')
++    compiled=[];elapsed=0
++    for p in points:
++        duty,duration=p.get('duty'),p.get('duration_ms')
++        if not finite(duty) or not low<=duty<=high:raise ValueError('Duty outside confirmed interval')
++        if type(duration) is not int or not 0<duration<=limit:raise ValueError('Duration outside confirmed interval')
++        ccr=int(math.floor(duty*arr+.5));actual=ccr/arr
++        if not 0<ccr<arr or not low<=actual<=high:raise ValueError('Quantized duty outside confirmed interval')
++        compiled.append(dict(index=len(compiled),at_ms=elapsed,duration_ms=duration,
++                             requested_duty=duty,ccr=ccr,quantized_duty=actual))
++        elapsed+=duration
++        if elapsed>0x7fffffff:raise ValueError('Schedule duration exceeds unambiguous tick interval')
++    return dict(direction=plan['direction'],points=compiled,stop_at_ms=elapsed)
++
++
++def simulate(compiled, stop_at_ms=None, fault_at_ms=None):
++    """Discrete software sequence only; does not model the converter or measured current."""
++    end=compiled['stop_at_ms'];reason='schedule_end'
++    for t,label in ((stop_at_ms,'STOP'),(fault_at_ms,'latched_fault')):
++        if t is not None:
++            if type(t) is not int or t<0:raise ValueError('Invalid injected event time')
++            if t<=end:end=t;reason=label
++    events=[dict(at_ms=p['at_ms'],event='apply_fixed_ccr',ccr=p['ccr'])
++            for p in compiled['points'] if p['at_ms']<end]
++    events.append(dict(at_ms=end,event=reason,output_enabled=False))
++    return dict(simulated=True,physical_model=False,events=events,
++                final_state='FAULT' if reason=='latched_fault' else 'STOPPED',
++                output_enabled=False,automatic_restart=False)
++
++
++def port_power(voltage, current, max_skew_ms):
++    """Only calibrated, same-port, same-session samples with explicit sign conventions."""
++    if not finite(max_skew_ms) or max_skew_ms<0:raise ValueError('Invalid alignment tolerance')
++    for sample,unit in ((voltage,'V'),(current,'A')):
++        if sample.get('physical_valid') is not True or not sample.get('cal_id'):
++            raise ValueError('Calibrated valid physical sample required')
++        if sample.get('unit')!=unit or not finite(sample.get('value')) or not finite(sample.get('time_ms')):
++            raise ValueError('Invalid physical value/unit/time')
++        if not sample.get('session_id') or not sample.get('port') or not sample.get('reference'):
++            raise ValueError('Missing session/port/reference')
++    if voltage['session_id']!=current['session_id'] or voltage['port']!=current['port']:
++        raise ValueError('Cannot multiply different sessions or ports')
++    if abs(voltage['time_ms']-current['time_ms'])>max_skew_ms:raise ValueError('Unaligned samples')
++    power=voltage['value']*current['value']
++    if not finite(power):raise ValueError('Power overflow')
++    return dict(port=voltage['port'],value=power,unit='W',
++                voltage_reference=voltage['reference'],current_reference=current['reference'],
++                session_id=voltage['session_id'],cal_ids=[voltage['cal_id'],current['cal_id']])
++
++
++def main():
++    p=argparse.ArgumentParser(description=__doc__)
++    p.add_argument('--profile',required=True);p.add_argument('--plan',required=True);p.add_argument('--out',required=True)
++    a=p.parse_args();out=Path(a.out);out.mkdir(parents=True,exist_ok=False)
++    profile=json.loads(Path(a.profile).read_text(encoding='utf-8-sig'))
++    plan=json.loads(Path(a.plan).read_text(encoding='utf-8-sig'))
++    result=dict(evidence_scope=['static'],verdict=None,power_execution_available=False,
++                missing=prerequisites(profile),input_sha256={str(x):hashlib.sha256(x.read_bytes()).hexdigest()
++                    for x in (Path(a.profile),Path(a.plan),Path(__file__))})
++    try:
++        result['compiled']=compile_plan(plan,profile)
++        result['simulation']=simulate(result['compiled'])
++        result['evidence_scope'].append('simulation')
++    except (ValueError,TypeError,KeyError) as exc:result['plan_error']=str(exc)
++    (out/'result.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
++    print(json.dumps(result,indent=2))
++    return 0 # Producing a missing-input report is a successful offline action, never authorization.
++
++
++if __name__=='__main__':raise SystemExit(main())
+--- a/scripts/g02/open-loop-plan.template.json
++++ b/scripts/g02/open-loop-plan.template.json
+@@ -0,0 +1,6 @@
++{
++  "mode": "fixed-duty",
++  "direction": "discharge",
++  "points": [{"duty": null, "duration_ms": null}],
++  "note": "Preparation only. Unknown values deliberately unset; no serial/power executor. Use hardware-profile confirmed limits."
++}
+--- a/scripts/g02/run_checks.py
++++ b/scripts/g02/run_checks.py
+@@ -5,6 +5,7 @@
+ import json
+ from pathlib import Path
+ import subprocess
++import sys
+ import xml.etree.ElementTree as ET
+ 
+ 
+@@ -52,6 +53,8 @@
+     spec.loader.exec_module(host)
+     replies = [x for x in (out / 'link.stdout').read_bytes().splitlines() if x.startswith(b'#G02,')]
+     assert replies and all(host.parse(x)['pins_gate'] == 0 for x in replies)
++    run('host-python', [sys.executable, '-m', 'unittest', 'discover', '-s', test,
++                       '-p', 'test_host.py', '-v'])
+ 
+     project = root / 'BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx'
+     targets = ET.parse(str(project)).findall('./Targets/Target')
+@@ -70,7 +73,7 @@
+     it = (root / 'BMS_EXv1.1/BMS_EX/Appli/Core/Src/stm32n6xx_it.c').read_text(encoding='utf-8-sig')
+     assert it.count('G02_CPUFault();') == 6
+     assert 'if (!G02_ADC_IRQHandler()) HAL_ADC_IRQHandler(&hadc1);' in it
+-    sources = list(bsp.glob('g02_*.[ch]')) + list(test.glob('*.c')) + [test / 'stubs/main.h', Path(__file__).resolve(), host_path]
++    sources = list(bsp.glob('g02_*.[ch]')) + list(test.glob('*.c')) + list(test.glob('*.py')) + [test / 'stubs/main.h'] + list((root / 'scripts/g02').glob('*.py'))
+     report = dict(scope=['static', 'simulation'], verdict=None, checks='passed',
+         hardware_verified=False, pin_output_run='host simulation only',
+         limitations=['Register/HAL stubs do not model electrical behavior, actual clock/ADC timing or reset pin levels.',
+--- a/scripts/g01/run_checks.py
++++ b/scripts/g01/run_checks.py
+@@ -1,47 +1,47 @@
+-"""Build/run host fault injection plus recorder replay against production sources."""
+-import argparse
+-import csv
+-import json
+-from pathlib import Path
+-import subprocess
+-import sys
+-import hashlib
+-
+-def main():
+-    p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--cc',default='gcc')
+-    a=p.parse_args();out=Path(a.out).resolve();out.mkdir(parents=True,exist_ok=False)
+-    root=Path(__file__).resolve().parents[2];bsp=root/'BMS_EXv1.1/BMS_EX/BSP';test=root/'tests/g01'
+-    results=[]
+-    def run(name,cmd,stdout_name=None):
+-        r=subprocess.run([str(x) for x in cmd],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+-        (out/(stdout_name or name+'.stdout')).write_bytes(r.stdout)
+-        (out/(name+'.stderr')).write_bytes(r.stderr)
+-        results.append(dict(name=name,command=[str(x) for x in cmd],exit_code=r.returncode))
+-        (out/'checks.json').write_text(json.dumps(results,indent=2),encoding='utf-8')
+-        if r.returncode: raise RuntimeError(name+' failed: '+r.stderr.decode(errors='replace'))
+-        return r
+-    exe=out/'native-tests.exe'
+-    run('gcc',[a.cc,'-std=c99','-Wall','-Wextra','-Werror','-I'+str(test/'stubs'),'-I'+str(bsp),
+-               test/'test_measurement.c',bsp/'measurement_core.c',bsp/'adbms_acquisition.c',bsp/'measurement.c','-lm','-o',exe])
+-    run('native',[exe],'simulated-uart.bin')
+-    run('python-tests',[sys.executable,'-m','unittest','discover','-s',test,'-p','test_*.py','-v'])
+-    run('replay',[sys.executable,root/'scripts/g01/g01_capture.py','--replay',out/'simulated-uart.bin','--out',out/'replay'])
+-    manifest=json.loads((out/'replay/manifest.json').read_text())
+-    assert manifest['rows']==36 and manifest['errors']==0 and manifest['simulated'] is True
+-    with (out/'replay/derived/device.csv').open(newline='',encoding='utf-8') as f: rows=list(csv.DictReader(f))
+-    assert len({r['channel'] for r in rows})==9
+-    assert all(r['physical_valid']=='0' and r['physical_value']=='' and r['reference']=='' for r in rows)
+-    main_source=(root/'BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c').read_text(encoding='utf-8-sig')
+-    assert 'hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;' in main_source
+-    assert 'Measurement_Task();' in main_source
+-    assert 'HAL_TIM_PWM_Start' not in main_source and 'HAL_TIM_Base_Start' not in main_source
+-    assert 'BMS_ReadSample' not in main_source and 'uart_send_dma(uart_rx_data()' not in main_source
+-    report=dict(scope=['static','simulation'],verdict=None,checks='passed',rows=36,channels=9,
+-                raw_source='synthetic HAL fault injection; not board capture',hardware_verified=False,
+-                sha256={str(x.relative_to(root)):hashlib.sha256(x.read_bytes()).hexdigest()
+-                        for x in [bsp/'measurement_core.c',bsp/'adbms_acquisition.c',bsp/'measurement.c',test/'test_measurement.c',test/'test_recorder.py',test/'test_voltage_calibration.py',
+-                                root/'scripts/g01/g01_capture.py',root/'scripts/g01/voltage_calibration.py',Path(__file__)]})
+-    (out/'result.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
+-    print('PASS: production C fault injection, parser checks, 36-row end-to-end replay; hardware/calibration pending.')
+-
+-if __name__=='__main__':main()
++"""Build/run host fault injection plus recorder replay against production sources."""
++import argparse
++import csv
++import json
++from pathlib import Path
++import subprocess
++import sys
++import hashlib
++
++def main():
++    p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--cc',default='gcc')
++    a=p.parse_args();out=Path(a.out).resolve();out.mkdir(parents=True,exist_ok=False)
++    root=Path(__file__).resolve().parents[2];bsp=root/'BMS_EXv1.1/BMS_EX/BSP';test=root/'tests/g01'
++    results=[]
++    def run(name,cmd,stdout_name=None):
++        r=subprocess.run([str(x) for x in cmd],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
++        (out/(stdout_name or name+'.stdout')).write_bytes(r.stdout)
++        (out/(name+'.stderr')).write_bytes(r.stderr)
++        results.append(dict(name=name,command=[str(x) for x in cmd],exit_code=r.returncode))
++        (out/'checks.json').write_text(json.dumps(results,indent=2),encoding='utf-8')
++        if r.returncode: raise RuntimeError(name+' failed: '+r.stderr.decode(errors='replace'))
++        return r
++    exe=out/'native-tests.exe'
++    run('gcc',[a.cc,'-std=c99','-Wall','-Wextra','-Werror','-I'+str(test/'stubs'),'-I'+str(bsp),
++               test/'test_measurement.c',bsp/'measurement_core.c',bsp/'adbms_acquisition.c',bsp/'measurement.c','-lm','-o',exe])
++    run('native',[exe],'simulated-uart.bin')
++    run('python-tests',[sys.executable,'-m','unittest','discover','-s',test,'-p','test_*.py','-v'])
++    run('replay',[sys.executable,root/'scripts/g01/g01_capture.py','--replay',out/'simulated-uart.bin','--out',out/'replay'])
++    manifest=json.loads((out/'replay/manifest.json').read_text())
++    assert manifest['rows']==36 and manifest['errors']==0 and manifest['simulated'] is True
++    with (out/'replay/derived/device.csv').open(newline='',encoding='utf-8') as f: rows=list(csv.DictReader(f))
++    assert len({r['channel'] for r in rows})==9
++    assert all(r['physical_valid']=='0' and r['physical_value']=='' and r['reference']=='' for r in rows)
++    main_source=(root/'BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c').read_text(encoding='utf-8-sig')
++    assert 'hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;' in main_source
++    assert 'Measurement_Task();' in main_source
++    assert 'HAL_TIM_PWM_Start' not in main_source and 'HAL_TIM_Base_Start' not in main_source
++    assert 'BMS_ReadSample' not in main_source and 'uart_send_dma(uart_rx_data()' not in main_source
++    report=dict(scope=['static','simulation'],verdict=None,checks='passed',rows=36,channels=9,
++                raw_source='synthetic HAL fault injection; not board capture',hardware_verified=False,
++                sha256={str(x.relative_to(root)):hashlib.sha256(x.read_bytes()).hexdigest()
++                        for x in [bsp/'measurement_core.c',bsp/'adbms_acquisition.c',bsp/'measurement.c',test/'test_measurement.c',test/'test_recorder.py',test/'test_voltage_calibration.py',
++                                root/'scripts/g01/g01_capture.py',root/'scripts/g01/voltage_calibration.py',Path(__file__).resolve()]})
++    (out/'result.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
++    print('PASS: production C fault injection, parser checks, 36-row end-to-end replay; hardware/calibration pending.')
++
++if __name__=='__main__':main()
+--- a/instructions/specs/G02-host-diagnostics.md
++++ b/instructions/specs/G02-host-diagnostics.md
+@@ -1,4 +1,6 @@
+ # G02 上位机内部诊断
++
++版本补充：`g02-host-r2`修复拒绝COMPARE/START后共享参数的副作用，帧结构和命令号不变；报告版本标记改为r2。新版支持的扩展工具和验证边界见[开环前上位机验证](prepower-host-validation.md)。旧r1日志保持原版本，不覆盖。
+ 
+ 用户明确当前不能配合PWM探测、示波器或硬件标定。G02后续采用串口自动诊断；不要求更换电池为三路源、拆电池测空载充电电压或探测芯片细脚。沿用当前测量，不开展能量传输。三路普通直流源不能因用作G01电压激励就被当作可承受充电回灌的电池。
+ 
+--- a/instructions/specs/prepower-host-validation.md
++++ b/instructions/specs/prepower-host-validation.md
+@@ -0,0 +1,40 @@
++# 开环充放电前的上位机验证
++
++本轮按用户要求跳过需要探头、接线夹具和硬件标定的工作；不要求将电池改成三路电源或拆电池。使用已验证的禁能固件完成内部采样、协议异常、停止/故障及记录链测试。普通直流电源不能据此作为充电吸收端。
++
++## 已提供的工具
++
++| 工具 | 用途 |
++|---|---|
++| `scripts/g02/run_checks.py --out <新目录>` | 生产状态机、寄存器端口、串口及14项Python上位机/工况测试 |
++| `scripts/g02/extended_diagnostics.py --port COM9 --out <新目录>` | 13组真实板端禁能测试；要求g02-host-r2，识别失败不启动 |
++| `scripts/g01/g01_capture.py --port COM9 --seconds 60 --firmware-sha256 <实际HEX哈希> --out <新目录>` | 九通道只读记录、身份、质量、序号、原始数据 |
++| `scripts/g02/prepower_plan.py --profile instructions/specs/hardware-profile.json --plan scripts/g02/open-loop-plan.template.json --out <新目录>` | 输出未知硬限/证据缺项；仅在给定合法参数时编译和模拟固定占空比表，无串口执行能力 |
++
++串口一次只有一个控制者。每次运行使用新目录；原始串口、收发事件、派生CSV和结果包含哈希，失败也保留。旧r1记录可由解析器读取，扩展板测工具要求修复后的r2。现成课程上位机exe没有被臆定为兼容本协议；本轮提供的是有源码的命令行上位机。
++
++## 重要修复和语义
++
++`g02-host-r1`在停机时拒绝COMPARE，却先修改了共享的下一次启动参数。r2在命令返回非OK时恢复原compare/window参数；回归先复现失败，再验证修复，实板检查确认被拒的CCR不影响随后START。
++
++同一最新请求的完全重复返回原命令结果，不重新执行；相同id不同参数返回8，过期id返回7。一个业务请求未完成时不排队未来启动；COMPARE/STOP/FAULT可以取代等待响应，start_id关联当前采样。重连只查询，不重放。测试工具识别到复位/超时/坏CRC会终止本轮，识别固件后异常会尝试STOP；没有自动清锁存和重启。
++
++内部采样的本地窗口为1—10000ms，主循环执行到期停止。关闭主机句柄测试验证主机不发送STOP时窗口仍收尾；**没有物理拔USB，也没有新增独立通信失联看门狗**。主循环不服务时窗口不能保证停止；该结果不能用于带功率失联保护验收。
++
++运行中不发送统计，停止后才能读取；因此收发往返时间不是真实停止延迟。CCR1/1000/1999仅检查内部合法边界和更新观察，均无引脚输出，不是允许带载的占空比范围。重复窗口的计数为软件服务次数，不是独立硬件事件计数；不能将名义周期与统计差值事后设成合格容差。
++
++## 固定工况与功率分析准备
++
++`open-loop-plan.template.json`保留未知duty/duration为null；唯一实物限值来源仍为hardware-profile。准备工具检查方向、固定模式、有限数值、持续时间、量化后CCR及总时间。离散模拟支持STOP/故障取消后续工况并保留停机/锁存，不模拟转换器、电流或热行为。14项测试里的电压、电流和限值全部是显式合成夹具，不写入实物profile。
++
++`port_power()`只接受带有效物理量、标定身份、端口、会话、时间和参考方向的数据。异端口、异会话、未标定、无效、时间偏差过大或非有限值会拒绝。当前G01原码未标定，不能用于宣称真实充放电功率或局部D→I方向。
++
++## 本轮明确跳过的验证
++
++- MCU PWM引脚、驱动及Vgs波形，电平、互补、死区、实际采样相位和真实停止期限：需探头与合适测点。
++- 电压/电流/温度的物理标定、同支路参考与方向确认：需独立参考及适用夹具。
++- 冷启动重复、物理拔线、CPU复位电气行为：本轮只验证用户正常BOOT复位启动，未把软件回放当实物验证。
++- 继电器实际极性/触点隔离、带载失联和越限停止：需要已确认的功率路径与硬限，不能由内部命令测试推断。
++- 受限开环充放电、带功率换向和PI：没有执行。准备工具没有功率执行接口，G02编译门仍关闭。
++
++这些缺项不阻塞独立软件准备，也不会因跳过而变成通过。实际阶段进度和证据入口统一见[STATUS](../STATUS.md)。
+--- a/instructions/README.md
++++ b/instructions/README.md
+@@ -1,49 +1,50 @@
+-# BMS 执行规范 · 项目执行版
+-
+-建立于 2026-10-28，并于同日按用户要求放入项目 `instructions/`。项目根 [AGENTS.md](../AGENTS.md) 已采用本流程；E类工程建议指标仍为待冻结草案，H类实物限制仍须确认。适用于 STM32N6 + ADBMS1818 + 双向 DC-DC 课程工程，**不代表固件已补全、已烧录或硬件验收通过**。项目目录入口见 [根README](../README.md)。
+-
+-先读 [问题解答与实施路线](guide.md)，也可打开同目录的 `BMS实施与验收指南.html`。然后读 [验收标准](specs/acceptance.md)、[测量分层](specs/measurement.md)、[数据规范](specs/data.md)。
+-
+-## 分阶段提示词
+-
+-从 [prompts/README.md](prompts/README.md) 进入，选择 G00—G07 的独立提示词。每阶段分成 5 个可单独推进的子任务，包含阅读入口、实现、验证、交付与缺条件时的后续动作。例如：“读取 instructions/prompts/G01-measurement.md，先完成 G01.1—G01.3。”
+-
+-提示词安排执行，specs 保留技术与验收标准，工作卡保存本次范围和结果。提示词中的子任务编号不另设一套验收门，当前状态仍以 STATUS 为准。
+-
+-## 如何使用
+-
+-1. 从 [当前状态](STATUS.md) 找到下一阶段，先处理 [待确认项](references/open-questions.md) 中影响该阶段的项目。
+-2. 用 [工作卡](templates/work-card.md) 记录问题、实现、方法、验收判据与结果。调试允许迭代；正式验收前固定待测版本、方法和判据。
+-3. 正式运行复制 [运行清单](templates/run-manifest.json)，生成唯一 `run_id`。原始数据、波形和参考仪器记录一起保存。
+-4. 按判据复算结果，登记 `status`、`verdict`、证据范围。失败保留，新修订新运行；不改写旧结果。
+-5. 只在 STATUS 维护阶段状态；RUNLOG 追加改变判断的重要动作。硬件参数在 [hardware-profile](specs/hardware-profile.json) 维护，不到处复制常数。
+-
+-## 文件用途
+-
+-| 文件 | 用途 |
+-|---|---|
+-| guide.md / BMS实施与验收指南.html | 解释 ADC、换算、开环/闭环、SOC 及实施次序；HTML 为阅读版 |
+-| prompts/README.md / G00—G07 提示词 | 启动、细分实施与复核各阶段任务 |
+-| MIGRATION.md | 旧 instructions 哪些保留、简化、删除与替换 |
+-| WORKFLOW.md | 调试、正式验收、状态、版本和失效范围规则 |
+-| STATUS.md / RUNLOG.md | 当前阶段与关键过程记录 |
+-| ../AGENTS.md / AGENTS_BMS.example.md | 当前项目代理入口 / 已采用情况说明；不再使用示例中的另一套规则 |
+-| specs/G02-pwm-timing.md | G02诊断入口、配置推导、时序观测边界与待执行波形/停止清单 |
+-| specs/G02-host-diagnostics.md | 无需探头的串口内部采样、STOP/故障诊断与证据边界 |
+-| specs/measurement.md | 驱动、换算、标定和应用算法职责 |
+-| specs/acceptance.md | G00—G07 的前置、指标、证据和失败处理 |
+-| specs/data.md | 时间戳、原始数据、SOC 标签与训练集规则 |
+-| specs/hardware-profile.json | 实际硬件边界，未知项保留 null |
+-| templates/work-card.md | 小任务五部分合一的记录模板 |
+-| templates/run-manifest.json | 每次验收的版本、固件、仪器、判据和证据入口 |
+-| templates/calibration-record.json | 各通道标定系数、拟合点和独立验证点 |
+-| references/open-questions.md | 未知项、解决证据、阻塞范围 |
+-| references/source-map.md / source-manifest.json | 依据定位及本次读取资料的 SHA-256 快照 |
+-| references/layout-migration.json / history/ | 目录整理前后路径、原始文件哈希及旧版说明快照 |
+-| validation/render_html.cjs | 从说明文件生成离线 HTML，编辑内容后重新运行 |
+-| validation/check_bundle.py | 检查 JSON、内部链接、模板和哈希快照；不测试硬件 |
+-| validation/structure-report.json | 上述检查器实际执行生成的报告 |
+-| validation/review_html.cjs / html-report.json | 桌面/手机布局、章节导航与链接检查及实际报告 |
+-| validation/desktop.png、acceptance.png、mobile.png | HTML 阅读效果检查截图，不是硬件实验截图 |
+-
+-外部 `D:/ADMIN/Desktop/instructions` 仅作为流程设计参考，保持原样。其赛题、模型路由、额度监控、截止时间不适用于此 BMS 任务。采用本流程没有执行硬件实验，也没有启用 MCP。
++# BMS 执行规范 · 项目执行版
++
++建立于 2026-10-28，并于同日按用户要求放入项目 `instructions/`。项目根 [AGENTS.md](../AGENTS.md) 已采用本流程；E类工程建议指标仍为待冻结草案，H类实物限制仍须确认。适用于 STM32N6 + ADBMS1818 + 双向 DC-DC 课程工程，**不代表固件已补全、已烧录或硬件验收通过**。项目目录入口见 [根README](../README.md)。
++
++先读 [问题解答与实施路线](guide.md)，也可打开同目录的 `BMS实施与验收指南.html`。然后读 [验收标准](specs/acceptance.md)、[测量分层](specs/measurement.md)、[数据规范](specs/data.md)。
++
++## 分阶段提示词
++
++从 [prompts/README.md](prompts/README.md) 进入，选择 G00—G07 的独立提示词。每阶段分成 5 个可单独推进的子任务，包含阅读入口、实现、验证、交付与缺条件时的后续动作。例如：“读取 instructions/prompts/G01-measurement.md，先完成 G01.1—G01.3。”
++
++提示词安排执行，specs 保留技术与验收标准，工作卡保存本次范围和结果。提示词中的子任务编号不另设一套验收门，当前状态仍以 STATUS 为准。
++
++## 如何使用
++
++1. 从 [当前状态](STATUS.md) 找到下一阶段，先处理 [待确认项](references/open-questions.md) 中影响该阶段的项目。
++2. 用 [工作卡](templates/work-card.md) 记录问题、实现、方法、验收判据与结果。调试允许迭代；正式验收前固定待测版本、方法和判据。
++3. 正式运行复制 [运行清单](templates/run-manifest.json)，生成唯一 `run_id`。原始数据、波形和参考仪器记录一起保存。
++4. 按判据复算结果，登记 `status`、`verdict`、证据范围。失败保留，新修订新运行；不改写旧结果。
++5. 只在 STATUS 维护阶段状态；RUNLOG 追加改变判断的重要动作。硬件参数在 [hardware-profile](specs/hardware-profile.json) 维护，不到处复制常数。
++
++## 文件用途
++
++| 文件 | 用途 |
++|---|---|
++| guide.md / BMS实施与验收指南.html | 解释 ADC、换算、开环/闭环、SOC 及实施次序；HTML 为阅读版 |
++| prompts/README.md / G00—G07 提示词 | 启动、细分实施与复核各阶段任务 |
++| MIGRATION.md | 旧 instructions 哪些保留、简化、删除与替换 |
++| WORKFLOW.md | 调试、正式验收、状态、版本和失效范围规则 |
++| STATUS.md / RUNLOG.md | 当前阶段与关键过程记录 |
++| ../AGENTS.md / AGENTS_BMS.example.md | 当前项目代理入口 / 已采用情况说明；不再使用示例中的另一套规则 |
++| specs/G02-pwm-timing.md | G02诊断入口、配置推导、时序观测边界与待执行波形/停止清单 |
++| specs/G02-host-diagnostics.md | 无需探头的串口内部采样、STOP/故障诊断与证据边界 |
++| specs/prepower-host-validation.md | 扩展板测、固定工况离线准备、功率数据检查和本轮跳过项 |
++| specs/measurement.md | 驱动、换算、标定和应用算法职责 |
++| specs/acceptance.md | G00—G07 的前置、指标、证据和失败处理 |
++| specs/data.md | 时间戳、原始数据、SOC 标签与训练集规则 |
++| specs/hardware-profile.json | 实际硬件边界，未知项保留 null |
++| templates/work-card.md | 小任务五部分合一的记录模板 |
++| templates/run-manifest.json | 每次验收的版本、固件、仪器、判据和证据入口 |
++| templates/calibration-record.json | 各通道标定系数、拟合点和独立验证点 |
++| references/open-questions.md | 未知项、解决证据、阻塞范围 |
++| references/source-map.md / source-manifest.json | 依据定位及本次读取资料的 SHA-256 快照 |
++| references/layout-migration.json / history/ | 目录整理前后路径、原始文件哈希及旧版说明快照 |
++| validation/render_html.cjs | 从说明文件生成离线 HTML，编辑内容后重新运行 |
++| validation/check_bundle.py | 检查 JSON、内部链接、模板和哈希快照；不测试硬件 |
++| validation/structure-report.json | 上述检查器实际执行生成的报告 |
++| validation/review_html.cjs / html-report.json | 桌面/手机布局、章节导航与链接检查及实际报告 |
++| validation/desktop.png、acceptance.png、mobile.png | HTML 阅读效果检查截图，不是硬件实验截图 |
++
++外部 `D:/ADMIN/Desktop/instructions` 仅作为流程设计参考，保持原样。其赛题、模型路由、额度监控、截止时间不适用于此 BMS 任务。采用本流程没有执行硬件实验，也没有启用 MCP。
+--- a/instructions/STATUS.md
++++ b/instructions/STATUS.md
+@@ -1,28 +1,28 @@
+-# 当前状态
+-
+-日期：2026-10-31。此文件是阶段状态唯一人工维护入口。下面状态是“正式验收状态”，已完成的文档与静态审查见 RUNLOG。
+-
+-| 阶段 | status | verdict | 已有证据 / 下一动作 |
+-|---|---|---|---|
+-| G00 基线与硬件契约 | in_progress | null | 构建/烧录/3次冷启动/OLED/UART基础项完成，资料标称、实物已知、配置冲突和停止设计缺项已登记；已登记3节14500电芯标签；电阻标签33Ω/25W/±5%已登记；C.A 5212万用表及MSO3034HD示波器型号已据照片登记；已核对5212相关DC档手册规格；用户实测圆孔适配器约18V、充电源未接；供电额定电流、负载接线/散热和仪器校准状态待补。见 evidence/runs/20261031-G00-hardware-audit/review.md |
+-| G01 测量与标定 | in_progress | null | G01.1—G01.3软件及实板采集已验证，Release r2保持。最新COM9重采60秒、1071条/119完整组，已解析raw全部有效，无校验错误或缺序号；前79组约3.5V，随后降至近零，保留为调试数据，无配对参考、无标定系数。用户决定电压/电流后续统一标定，当前停止追加取点；温度继续暂缓。CH1/A、CH2/B、CH3/C由用户确认，A/B/C到AFE映射仍待辨识。最新用户报告已接负载；固件仍未启动继电器/PWM控制。见 evidence/runs/20261031-G01-source-capture-01/work-card.md；历史工具和采集证据保留。 |
+-| G02 无功率 PWM 与时序 | in_progress | null | g02-host-r1已实现串口内部诊断、双target构建及状态机/端口/协议回归通过，烧录读回校验和正常BOOT复位通信通过。实板1秒采样、CCR1500/STOP、故障锁存/拒绝重启/清除、10秒采样通过；10秒UEV/ADC服务计数均999998，OVR/ADC错误0。退出后九通道原码恢复；引脚输出编译门关闭，无功率操作。用户无法配合探头/硬件标定，继续软件可验证工作；物理波形、死区及停止期限缺测，不放行G03。见 evidence/runs/20261031-G02-host/work-card.md |
+-| G03 受限开环功率级 | not_started | null | 等待实际硬件边界、停止链路和前置门通过 |
+-| G04 PI 恒流与故障退出 | not_started | null | 有 pi.h，尚未接入周期控制；无闭环证据 |
+-| G05 串口/上位机联调 | not_started | null | 简单记录器应从 G01 开始；现有主机与当前模板协议未对齐 |
+-| G06 SOC 基准与数据集 | not_started | null | 容量、初值、参考标签及独立验证方案待建立 |
+-| G07 模型与端侧部署 | not_started | null | 无可验收数据集或模型产物 |
+-
+-当前源码与实板镜像为 g02-host-r1：默认G01周期采集，显式串口命令仅启动内部TIM1/ADC1诊断；两target引脚输出编译门关闭，无自动PWM/继电器启动。新镜像烧录读回校验和正常BOOT复位后通信已确认；G02停止清理后10秒COM9采集获得177条有效原码、19完整九通道组，末尾截断89字节/1不完整组如实保留，无内部序号缺失或重复。没有新增电流/温度/电压标定。旧镜像冷启动证据不转移，本轮仅正常BOOT复位启动；pi.h与旧pi.c尚未形成运行控制器。
+-
+-本轮完成：适配规范、说明 HTML、模板和资料哈希；其检查结果仅支持文档结构和来源完整性，不支持硬件性能。
+-
+-目录采用：资料与工具已分类，规范位于 `instructions/`，项目根 `AGENTS.md` 已建立；历史目录与旧说明快照保留。此项仅为组织与文档变更，上表所有硬件阶段状态不变。
+-
+-
+-
+-
+-
+-
+-
+-
++# 当前状态
++
++日期：2026-10-31。此文件是阶段状态唯一人工维护入口。下面状态是“正式验收状态”，已完成的文档与静态审查见 RUNLOG。
++
++| 阶段 | status | verdict | 已有证据 / 下一动作 |
++|---|---|---|---|
++| G00 基线与硬件契约 | in_progress | null | 构建/烧录/3次冷启动/OLED/UART基础项完成，资料标称、实物已知、配置冲突和停止设计缺项已登记；已登记3节14500电芯标签；电阻标签33Ω/25W/±5%已登记；C.A 5212万用表及MSO3034HD示波器型号已据照片登记；已核对5212相关DC档手册规格；用户实测圆孔适配器约18V、充电源未接；供电额定电流、负载接线/散热和仪器校准状态待补。见 evidence/runs/20261031-G00-hardware-audit/review.md |
++| G01 测量与标定 | in_progress | null | 测量软件和原码采集已验证。最新g02-host-r2在扩展诊断退出后COM9采集60秒，1071条/119完整九通道组，原码全有效，解析错误/缺序/重复均0。电压/电流标定按用户安排暂跳过，温度与AFE物理映射仍待确认；没有用未标定原码作功率/保护验收。历史配对观察与接线事实保留，最新证据见 evidence/runs/20261031-prepower-host/g01-resume-summary.json。 |
++| G02 无功率 PWM 与时序 | in_progress | null | g02-host-r2修复被拒CCR改变下次启动参数的问题，Release 0错0警告，Debug仅既有EXTRAM警告；生产core/port/link与14项Python测试通过。已烧录校验并正常复位，13组实板扩展检查通过；三轮10秒更新/ADC各999998，OVR/ADC错误0。功率输出编译门关闭；用户无法配合的探头、硬件标定先跳过，物理波形/死区/停止期限未判定，不放行带载。见 evidence/runs/20261031-prepower-host/work-card.md。 |
++| G03 受限开环功率级 | in_progress | null | 完成开环前工况表检查、CCR量化/顺序/提前停止与故障的离散模拟、同端口同会话时间对齐功率计算校验；真实profile未知限值拒绝编译，模板保留null，工具无串口功率执行接口。仅static/simulation准备，无带载实验或D→I方向结果；见prepower-host工作卡。 |
++| G04 PI 恒流与故障退出 | not_started | null | 有 pi.h，尚未接入周期控制；无闭环证据 |
++| G05 串口/上位机联调 | in_progress | null | 禁能诊断协议及命令行主机已实现：CRC/参数、分片粘包、重复/冲突/过期、STOP/故障、关闭主机句柄后窗口到期/查询重连、有限通信压力实板通过；原始收发及CSV留档，60秒G01流无缺序。未验证完整功率业务、独立失联看门狗、物理拔线/OLED业务状态及长时并发验收。 |
++| G06 SOC 基准与数据集 | not_started | null | 容量、初值、参考标签及独立验证方案待建立 |
++| G07 模型与端侧部署 | not_started | null | 无可验收数据集或模型产物 |
++
++当前源码与实板镜像为g02-host-r2，烧录HEX SHA256为2a75563eff600af7049202a29d77649a3ebea0edba06ddeca8793899d93a4012。默认G01采集，串口只提供内部诊断；PA9/PF7输出编译门关闭，无继电器/充放电操作。扩展测试已回STOP并释放ADC，60秒九通道采集已恢复。用户可配合BOOT切换，无法配合探头和硬件标定；这些项目按要求先跳过并保持未判定。正常复位启动不等于新镜像已重复冷启动。
++
++本轮完成：适配规范、说明 HTML、模板和资料哈希；其检查结果仅支持文档结构和来源完整性，不支持硬件性能。
++
++目录采用：资料与工具已分类，规范位于 `instructions/`，项目根 `AGENTS.md` 已建立；历史目录与旧说明快照保留。此项仅为组织与文档变更，上表所有硬件阶段状态不变。
++
++
++
++
++
++
++
++
+--- a/instructions/RUNLOG.md
++++ b/instructions/RUNLOG.md
+@@ -1,189 +1,198 @@
+-# 关键过程记录
+-
+-## 2026-10-28 · 规范适配
+-
+-- 类型：documentation / static review。
+-- 输入：当前 BMS 工程、课程资料、外部 `D:/ADMIN/Desktop/instructions` 工作流模板、官方芯片与测量参考资料。
+-- 动作：建立 BMS 分层解释、G00—G07 验收草案、迁移说明、工作卡和运行/标定模板，记录待确认参数。
+-- 范围：新建当前项目内 `BMS执行规范`；未修改固件或外部 instructions；未烧录、未运行功率实验、未产生训练数据。
+-- 结论：可供下一阶段准备和审阅；全部硬件验收 verdict 仍为 null。结构检查以 validation/structure-report.json 的实际结果为准。
+-
+-## 2026-10-28 · 目录整理与规范采用
+-
+-- 来源：用户要求“整理项目文件夹，然后把新的instruction改了放到对应目录下面”。
+-- 目录：原 `BMS执行规范/` 改为 `instructions/`；课程、手册、阅读指南分别归档到 `docs/`；现成HEX到 `firmware/prebuilt/`；上位机、Flash加载器与安装包到 `tools/`。
+-- 入口：项目根新增README导航及AGENTS执行入口；流程采用，E类建议阈值仍待具体正式实验冻结。
+-- 保留：Keil工程 `BMS_EXv1.1/` 原路径与内容；外部旧instructions；所有原始压缩包与固件。旧说明及来源快照保存在 references/history。Office临时锁文件由Office管理。
+-- 追溯：references/layout-migration.json 记录路径映射、13份移动文件的前后哈希及432份Keil文件基线；validation/layout-report.json给出最终一致性与链接检查结果。
+-- 实验状态：没有构建、烧录、台架或模型实验；G00仍in_progress/null，其余阶段不变。
+-
+-## 2026-10-28 · GitHub 初始同步准备
+-
+-- 用户指定目标：`https://github.com/Yichengweixian/BMS_STM`；开始时远端为空，默认分支main。
+-- 本地建立Git仓库、origin、忽略规则与Git LFS；压缩包通过LFS传输，源码和资料保持原有内容。
+-- 文档适配：项目内部HTML文件链接改用相对路径；保留外部参考与历史快照的原始语义。
+-- 范围：仅版本管理与同步，不编译、安装、烧录或启动硬件实验。实际远端完成状态以Git提交和远端分支核对为准。
+-
+-## 2026-10-28 · 配套工具改为仅本地
+-
+-- 用户要求从仓库移除配套工具、安装程序和全部RAR/ZIP等压缩包，保留本地文件。
+-- 通过Git取消跟踪`tools/`中的5个压缩包及`firmware/prebuilt/BMS_Appli.hex`，不删除本地文件；移除当前LFS匹配规则并补充大小写兼容的忽略规则。
+-- 源码、工程配置、开发规范和说明文档继续保留。更新根AGENTS与README，避免后续重新上传工具包。
+-- 范围为当前分支的后续提交，不重写已发布历史；初始提交和GitHub端旧LFS对象仍可能保留原记录。
+-- 无软件卸载、固件构建或硬件实验；实验状态不变。
+-
+-## 2026-10-30 · 当前基础源码烧录
+-
+-- 安装用户提供的 MX25UM25645G_ATK-CNN647B.FLM 至 Keil；解压配套 CubeProgrammer stldr。
+-- 用户切换开发启动模式后识别 STM32N647。ST-Link V2J37S7 未升级。
+-- BMS_EX_Release 构建 0 错误、0 警告；SWD 100 kHz Under Reset 写入 0x70100400，Download verified successfully。
+-- 首次 HotPlug 擦除失败与成功重试日志均保留于 evidence/runs/20261030-basic-flash；镜像 SHA256 与工作卡同目录。
+-- 证据范围 build、bench；独立启动正在等待实物确认，未进行测量/功率级验收。
+-
+-- 后续启动确认：BOOTSR 实测 0x3，用户反向切换两个 BOOT 开关并复位后确认 OLED 显示 BMS_EX；Flash 复位启动已跑通。最终纠正开关后的全断电重启未另行观察。保存复用脚本 tools/flash-loaders/flash-current-release.ps1，已检查语法。
+-
+-
+-## 2026-10-30 · G00 软件基线核验
+-
+-- 当前源码/配置快照、Git差异、工具哈希、材料清单和双target干净构建归档于 evidence/runs/20261030-G00-baseline。
+-- Release 0错误0警告，HEX与实际烧录镜像完全一致；Debug 0错误1条空EXTRAM警告，已分析并记录外部堆依赖。源码未修改。
+-- ADC2 ioc/源码差异、PI旧接口、默认输出/停止设计、实物资料适配均已登记。
+-- G00整体尚未宣告通过：等待冷启动重复记录、串口通路与实物登记。
+-
+-- G00启动复测：用户确认完全断电重启3次均显示BMS_EX，已逐次登记为用户报告证据。Keil型号STM32N647X0HxQ与实测STM32N647对应；不据此推断板卡版本、供电和仪器。最新串口枚举仍只有蓝牙COM3–COM8，基础UART实测待接入。
+-
+-## 2026-10-31 · 分阶段提示词
+-
+-- 按用户要求新增 prompts/README.md 与 G00—G07 八份独立提示词；每阶段细分五个子任务，允许按范围实施或复核。
+-- 通用要求集中在 prompts/README.md，阶段文件引用现有验收、数据和硬件规范，不复制数值阈值或维护第二套阶段状态。
+-- 新增根 README 与规范 README 的导航。提示词要求核对已有工作卡和实际代码，复用有效证据，明确离线/台架及正式验收边界。
+-- 本次为提示词与入口文档变更，没有执行固件构建、烧录或硬件实验，不改变阶段验收状态。
+-
+-## 2026-10-31 · G00 串口 USB 识别排查
+-
+-- 用户报告独立 CH340 模块，换数据线直连电脑并断开所有板侧杜邦线后，仍为 VID_0000/PID_0002、设备描述符请求失败、Code 43，未生成串口。
+-- 已存在 CH341 驱动文件与驱动仓库记录。指定设备的软件重启被 Windows 拒绝访问，未执行成功。
+-- 当前 Release HEX 哈希仍与已烧录基线一致。串口测试尚未执行，等待可正常枚举的模块；原三次冷启动结果保留。证据：evidence/runs/20261031-G00-uart。
+-
+-- CH340恢复：用户再次换线后识别为USB-SERIAL CH340(COM10)，VID_1A86/PID_7523，状态OK。115200/8N1成功打开，被动接收2秒0字节，未发送数据。USB/驱动通路恢复，等待接线确认后进行板端日志/回显测试；G00尚未整体通过。
+-
+-- 照片补充：核心板丝印CNN647B、AFE丝印ADBMS1818可见。用户只展示底板/核心板，CH340可能为板载接口，先前按独立模块理解的接线隔离证据不能当作已验证物理事实。
+-- 例程确认USART1 PE5/PE6、115200/8N1；说明书关于ST-Link提供串口的描述与实物CH340枚举不一致。COM10短帧回显收到非匹配字节，未通过；保持原固件，抓取复位启动数据定位。
+-
+-- G00基础UART通过：RST后COM10以115200/8N1捕获两次BMS_EX UART ready与测量文本；3组短帧逐字节回显一致。证据见evidence/runs/20261031-G00-uart。应用代码未改动，测量数据未标定。G00总体硬件契约待实物登记。
+-
+-
+-## 2026-10-31 G00硬件资料审查
+-
+-- 对照课件、任务2步骤、模板说明、现成上位机说明和当前源码，补齐已确认身份、软件配置、资料标称以及冲突来源。
+-- profile_id=cnn647b-bms-baseline-20261031-r1；实测值和硬限没有从示例自动填充。未改固件或执行功率动作。
+-- 实物供电/电池/负载/仪器仍需用户只看标签确认；分流器、增益和传感器属于后续测量前核对。G00整体保持in_progress/null。
+-- 记录及参数变更前后快照：evidence/runs/20261031-G00-hardware-audit。
+-
+-- 全板照片补充：实装3节14500标签Li-ion电芯（3.7V、800mAh标签值），金色铝壳外接电阻可见但参数不清。电源可能12V仅用户未确认估计，不填实际值；当前无万用表。照片原件和参数快照已归档。
+-
+-- 用户确认外接电阻标签25W33ΩJ，已登记33Ω/25W/±5%标称规格；未执行功率测试。
+-
+-
+-## 2026-10-31 G01 软件采集、记录及异常处理
+-
+-按用户指定范围完成G01.1—G01.3软件部分：ADC1软件触发、500ms周期原码流、AFE配置/PEC/转换完成与有界超时、无效值传播；独立记录器保留原字节及复位/丢帧事件。Release最终0错误0警告；Debug0错误、1个原有.EXTRAM警告。原生C故障注入、7项Python测试及36行/9通道端到端模拟回放通过。安装当前用户pyserial3.5供记录器使用。未烧录新镜像，未取得板端新版本数据；仪表标定与独立验证待补。证据范围static/build/simulation，正式G01 verdict=null。详见 [工作卡](../evidence/runs/20261031-G01-software/work-card.md) 和 [采集说明](specs/G01-software.md)。
+-
+-
+-## 2026-10-31 G01 Release实板验证及GPIO读回修复
+-
+-用户授权下载并采9通道。首版r1烧录校验后发现AFE CONFIG误判，原始756条失败记录保留。按手册修正GPIO位读写语义比较，补充只读状态/真实配置错误回归；r2 Release0错误0警告，Debug仅原有1警告。r2烧录读回成功，正常BOOT复位显示BMS_EX，COM9实采71.603秒、144完整组/1296条，9通道原码全有效，无PEC/串口校验/序号丢失。仍为未标定数据，G01正式判定null。见 [实板工作卡](../evidence/runs/20261031-G01-board/work-card.md)。
+-
+-
+-## 2026-10-31 实物仪器型号补充
+-
+-用户提供照片确认 Chauvin Arnoux C.A 5212 万用表与 UNI-T MSO3034HD 示波器可用；示波器面板350MHz/2.5GSa/s/12bit登记为标称。更新hardware-profile与当前STATUS，原照片及旧profile保存在evidence/runs/20261031-instrument-registration。序列号、校准/精度依据、参考量程和示波器探头仍未知；没有新增板卡测量或精度结论。
+-
+-
+-## 2026-10-31 G01 首组实物电压参考
+-
+-用户报告A=3.896V、B/C=3.895V，各3次一致；原始转录/参考CSV已归档。COM9五分钟窗口取得593完整组/5337条，9通道原码全有效。核对C.A5212中文厂家手册14/15页及来源哈希。A/B/C与AFE通道、参考精确时间均未确认，所有可能对照差约2.35—4.91mV；未拟合或写入补偿，正式G01仍null。见 evidence/runs/20261031-G01-voltage-reference-01/work-card.md。
+-
+-
+-## 2026-10-31 G01 供电实测及无编号反馈
+-
+-用户报告圆孔适配器实测18V、另一未知测点3V、充电源未接、电池座无编号。更新硬件profile，旧12V猜测仅存历史；15V/1A保留课程输入示例，未定为电池电流限值。复查课件第7页嵌入电路图补充A1/A2及NTC/PT1000资料冲突。下一步待各电芯负极对GND电位，未启用功率级。详见 evidence/runs/20261031-G01-supply-observation-01/review.md。
+-
+-
+-## 2026-10-31 G01 电池串位置测量
+-
+-用户报告A/B/C负极对板上GND为7.77/3.895/0.000V，结合单体电压支持低到高C→B→A，已登记profile；AFE实际接线映射仍为空。请求查找明确电流采样测试点，未令用户探测芯片细脚或改变功率接线。未拟合、未写系数。证据：evidence/runs/20261031-G01-cell-position-01/review.md。
+-
+-
+-## 2026-10-31 G01 电流采样区域定位
+-
+-用户未找到信号标识，提供整板照片。对照课件U5/C24及源码PA1定位U5候选区域；实际型号、方向及可测焊点未知，未给出猜测性引脚测量指令。核对TI INA199条件引脚表，保存原照片与放大观察图。见 evidence/runs/20261031-G01-current-location-01/review.md。
+-
+-
+-## 2026-10-31 G01 改用整链参考标定
+-
+-用户提出将总误差合并到易操作位置进行标定。执行方式改为外部同物理量参考与串口原码直接拟合；暂停U5细脚探测要求，两路电流独立系数。确认接线与范围后采零点/多点及独立验证；不使用DC-DC另一侧表显电流代替电池侧参考，不将稳定性当准确性。未改固件、未写系数、未启动功率级。见specs/measurement.md当前执行方式及evidence/runs/20261031-G01-system-calibration-method。
+-
+-
+-## 2026-10-31 G01 外部串表接法核对
+-
+-从课件标注照片确认黄色充电输入、绿色负载接口，均不能直接代替电池侧参考。所需断点为电池侧同分流器支路；照片中电池座直接上板，无已确认可拔总正极线。保存条件接线图与表笔极性（充电正：红板侧、黑电池正侧），询问有无专用夹具/已引出测试线，未进行改接或功率动作。见evidence/runs/20261031-G01-series-meter-wiring-01/wiring-review.md。
+-
+-
+-## 2026-10-31 G01 现有线材与新增细节照片核对
+-
+-确认P_VS充电/P_LOAD放电丝印、R1位置与015标记；用户仅有普通表笔/鳄鱼夹等，无已识别串联夹具。未找到可安全指定的电池支路断点，转由实验室确认并提供绝缘串联转接。保留实物照片和前版硬件登记；无改接或功率动作。见evidence/runs/20261031-G01-series-fixture-review-02/review.md。
+-
+-
+-## 2026-10-31 G01 电压优先与上位机工具完成
+-
+-按用户要求暂缓电流/温度实物标定。新增电压统计、候选拟合及独立验证工具和未填实测值模板；16项Python测试、生产C故障注入及36条合成回放通过。串口重采90秒、177完整组/1603条，九通道原码有效，首尾2项错误保留。登记无负载A/B/C=3.895/3.894/3.894V及用户读数基本稳定的补充，作为近3.9V工作点核对；未假定时钟同步或AFE物理映射，未写校准系数。固件/BOOT/功率状态未改。证据：evidence/runs/20261031-G01-VT-followup-01/work-card.md。
+-
+-## 2026-10-31 G01 电压模拟源登记与多点方案准备
+-
+-据用户照片登记UNI-T UDP3305S；核对官方独立输出/通道隔离说明，记录CH1远端接线与三对夹具未知。准备空电池座替代激励、单路变化辨识、3点拟合及2个独立验证点的待执行工作卡。所有参考读数、映射、系数与验收结果留空；未改变固件、BOOT或操作电源，电流/温度仍暂缓。见 evidence/runs/20261031-G01-voltage-source-preparation-01/work-card.md。
+-
+-
+-## 2026-10-31 G01 三路模拟源设置与取点表
+-
+-用户确认CH1/A、CH2/B、CH3/C及真实电池移除、原约18V板供电保留、充电与负载端空。归档两张照片；识别CH3仍预设5V/3A且三路Off。准备各路3.9V/50mA初始设置、3.2/3.6/3.9V拟合、重新采集3.8/3.4V验证及端点回测；实际映射/参考/系数均留空，AFE供电条件待核实。未操作电源或固件。见 evidence/runs/20261031-G01-voltage-source-settings-02/work-card.md。
+-
+-随后最新照片三路改为3.5V/0.5A、仍Off；OVP3.5V未启用/OCP1A启用。登记为设置，不作为实测；已说明完整单点需独立表读数与板端raw配对。
+-
+-
+-## 2026-10-31 G01 load-connected observation
+-
+-User reports load is now connected but no current observed. Updated current setup; previous load-empty confirmation is historical. Rechecked r2 source: measurement-only loop, relays LOW, no PWM start or charge/discharge commands. COM9 read attempt failed with Windows error 31; zero records captured. No firmware or power-output changes. Evidence: evidence/runs/20261031-G01-source-current-check-01/.
+-
+-
+-## 2026-10-31 G01 COM9重采及标定暂缓
+-
+-COM9恢复后只接收记录60秒，1071条/119完整组，哈希/协议/PEC与连续性复核通过。前79组约3.5V，后段下降至近零，不将整段均值用于标定。用户要求电压、电流以后统一标定，本轮停止追加取点，无参考配对或系数发布；温度继续暂缓。固件、功率控制未变。见 evidence/runs/20261031-G01-source-capture-01/work-card.md。
+-
+-
+-## 2026-10-31 G02 默认禁能诊断、停止和时序观测
+-
+-按阶段提示推进G02.1—G02.3：核对N6 TIMG时钟与100kHz推导，50%比较值改为1000，显式公共时钟配置；新增两阶段启动、直接硬停、故障锁存、ADC独占/恢复、TIM/ADC服务计数、overrun/缺完成退出和128项内存trace。Release/Debug均默认禁止引脚输出、无自动启动；异常处理接入撤销输出。运行中拒绝重复START保持原期限，下降方向重启先退出中心对齐再复位DIR。
+-
+-10组生产状态机测试、两种引脚门控分支的生产端口寄存器/HAL模拟通过；G01原生故障注入、16项Python检查、36条/9通道回放通过。最终Release 0错误0警告（exit 0），Debug 0错误、原有L6314W EXTRAM警告1个（exit 1）。首轮沙箱链接器启动失败、检查报告相对路径错误均保留，修正后重跑存证。
+-
+-实际工程在WEIJI/zonghe，聊天旧目录不存在；使用临时副本实现/构建，按文件哈希检查后回写。源码/候选镜像身份、修改前文件、工作卡、配置推导和待执行波形矩阵保存在evidence/runs/20261031-G02-software。未烧录、未操作串口/下载器或开启功率路径，硬件未知限值未填猜测值；G02正式verdict=null，G03未放行。
+-
+-
+-## 2026-10-31 G02 Release烧录
+-
+-用户授权后写入g02-sw-r1，CubeProgrammer退出0、读回校验成功。COM9尚未观察到新固件身份，0条记录/0完整组；启动确认待用户反馈。未启用PWM/继电器，未采集示波器波形。证据：evidence/runs/20261031-G02-board。
+-
+-
+-## 2026-10-31 G02启动确认与电源用途澄清
+-
+-用户确认正常BOOT复位显示BMS_EX；COM9重采60秒确认fw=g02-sw-r1，1071条/119完整组，解析错误0；全部已记录raw有效=True。三路直流源是此前电压模拟激励，不用于承受充电回灌；当前继续G02无功率测试准备。PWM波形和停止期限仍未测。见evidence/runs/20261031-G02-board。
+-
+-
+-## 2026-10-31 G02 上位机内部诊断与重试部署
+-
+-用户说明不能配合PWM探头或硬件标定，要求可由上位机执行的工作继续。实现g02-host-r1：CRC16/请求序号/重放拒绝、内部采样/CCR/STOP/故障/CLEAR；不提供PINS或继电器命令，默认引脚编译门仍关闭。串口ISR仅收字节，采样窗口内不打印，停止后回传统计。新增生产core+port+link原生回归及上位机脚本；G01回归通过，Release 0错0警告，Debug仅已有EXTRAM警告。
+-
+-部署保留所有尝试：flash-01读回一处不一致；flash-02读回通过但复位失败；host-session-01无响应。用户说明此前未切BOOT后重试，flash-03工具exit0且读回通过；外层脚本仅终端GBK打印失败，原始日志及成功结果已保存。用户恢复正常BOOT并复位后，host-session-02全部内部检查通过。CPU/TIM/ADC读回800/400/64MHz；10秒软件更新/ADC完成均999998，OVR和ADC错误0。CCR1500在后续更新观察到；STOP、故障锁存、故障后拒绝START、CLEAR不启动均验证。退出后G01采集177条/19完整组，全已解析raw有效，末尾截断89字节及1不完整组保留，不声称零记录错误。
+-
+-本次记录见evidence/runs/20261031-G02-host/work-card.md。软件计数不是物理PWM频率或无漏触发证明；999998与名义1000000的差异不作为通过容差。引脚/驱动波形、死区、停止期限仍未判定；没有充放电、继电器动作或标定，G03不放行。不再反复要求用户做其已说明无法完成的探头测量。
++# 关键过程记录
++
++## 2026-10-28 · 规范适配
++
++- 类型：documentation / static review。
++- 输入：当前 BMS 工程、课程资料、外部 `D:/ADMIN/Desktop/instructions` 工作流模板、官方芯片与测量参考资料。
++- 动作：建立 BMS 分层解释、G00—G07 验收草案、迁移说明、工作卡和运行/标定模板，记录待确认参数。
++- 范围：新建当前项目内 `BMS执行规范`；未修改固件或外部 instructions；未烧录、未运行功率实验、未产生训练数据。
++- 结论：可供下一阶段准备和审阅；全部硬件验收 verdict 仍为 null。结构检查以 validation/structure-report.json 的实际结果为准。
++
++## 2026-10-28 · 目录整理与规范采用
++
++- 来源：用户要求“整理项目文件夹，然后把新的instruction改了放到对应目录下面”。
++- 目录：原 `BMS执行规范/` 改为 `instructions/`；课程、手册、阅读指南分别归档到 `docs/`；现成HEX到 `firmware/prebuilt/`；上位机、Flash加载器与安装包到 `tools/`。
++- 入口：项目根新增README导航及AGENTS执行入口；流程采用，E类建议阈值仍待具体正式实验冻结。
++- 保留：Keil工程 `BMS_EXv1.1/` 原路径与内容；外部旧instructions；所有原始压缩包与固件。旧说明及来源快照保存在 references/history。Office临时锁文件由Office管理。
++- 追溯：references/layout-migration.json 记录路径映射、13份移动文件的前后哈希及432份Keil文件基线；validation/layout-report.json给出最终一致性与链接检查结果。
++- 实验状态：没有构建、烧录、台架或模型实验；G00仍in_progress/null，其余阶段不变。
++
++## 2026-10-28 · GitHub 初始同步准备
++
++- 用户指定目标：`https://github.com/Yichengweixian/BMS_STM`；开始时远端为空，默认分支main。
++- 本地建立Git仓库、origin、忽略规则与Git LFS；压缩包通过LFS传输，源码和资料保持原有内容。
++- 文档适配：项目内部HTML文件链接改用相对路径；保留外部参考与历史快照的原始语义。
++- 范围：仅版本管理与同步，不编译、安装、烧录或启动硬件实验。实际远端完成状态以Git提交和远端分支核对为准。
++
++## 2026-10-28 · 配套工具改为仅本地
++
++- 用户要求从仓库移除配套工具、安装程序和全部RAR/ZIP等压缩包，保留本地文件。
++- 通过Git取消跟踪`tools/`中的5个压缩包及`firmware/prebuilt/BMS_Appli.hex`，不删除本地文件；移除当前LFS匹配规则并补充大小写兼容的忽略规则。
++- 源码、工程配置、开发规范和说明文档继续保留。更新根AGENTS与README，避免后续重新上传工具包。
++- 范围为当前分支的后续提交，不重写已发布历史；初始提交和GitHub端旧LFS对象仍可能保留原记录。
++- 无软件卸载、固件构建或硬件实验；实验状态不变。
++
++## 2026-10-30 · 当前基础源码烧录
++
++- 安装用户提供的 MX25UM25645G_ATK-CNN647B.FLM 至 Keil；解压配套 CubeProgrammer stldr。
++- 用户切换开发启动模式后识别 STM32N647。ST-Link V2J37S7 未升级。
++- BMS_EX_Release 构建 0 错误、0 警告；SWD 100 kHz Under Reset 写入 0x70100400，Download verified successfully。
++- 首次 HotPlug 擦除失败与成功重试日志均保留于 evidence/runs/20261030-basic-flash；镜像 SHA256 与工作卡同目录。
++- 证据范围 build、bench；独立启动正在等待实物确认，未进行测量/功率级验收。
++
++- 后续启动确认：BOOTSR 实测 0x3，用户反向切换两个 BOOT 开关并复位后确认 OLED 显示 BMS_EX；Flash 复位启动已跑通。最终纠正开关后的全断电重启未另行观察。保存复用脚本 tools/flash-loaders/flash-current-release.ps1，已检查语法。
++
++
++## 2026-10-30 · G00 软件基线核验
++
++- 当前源码/配置快照、Git差异、工具哈希、材料清单和双target干净构建归档于 evidence/runs/20261030-G00-baseline。
++- Release 0错误0警告，HEX与实际烧录镜像完全一致；Debug 0错误1条空EXTRAM警告，已分析并记录外部堆依赖。源码未修改。
++- ADC2 ioc/源码差异、PI旧接口、默认输出/停止设计、实物资料适配均已登记。
++- G00整体尚未宣告通过：等待冷启动重复记录、串口通路与实物登记。
++
++- G00启动复测：用户确认完全断电重启3次均显示BMS_EX，已逐次登记为用户报告证据。Keil型号STM32N647X0HxQ与实测STM32N647对应；不据此推断板卡版本、供电和仪器。最新串口枚举仍只有蓝牙COM3–COM8，基础UART实测待接入。
++
++## 2026-10-31 · 分阶段提示词
++
++- 按用户要求新增 prompts/README.md 与 G00—G07 八份独立提示词；每阶段细分五个子任务，允许按范围实施或复核。
++- 通用要求集中在 prompts/README.md，阶段文件引用现有验收、数据和硬件规范，不复制数值阈值或维护第二套阶段状态。
++- 新增根 README 与规范 README 的导航。提示词要求核对已有工作卡和实际代码，复用有效证据，明确离线/台架及正式验收边界。
++- 本次为提示词与入口文档变更，没有执行固件构建、烧录或硬件实验，不改变阶段验收状态。
++
++## 2026-10-31 · G00 串口 USB 识别排查
++
++- 用户报告独立 CH340 模块，换数据线直连电脑并断开所有板侧杜邦线后，仍为 VID_0000/PID_0002、设备描述符请求失败、Code 43，未生成串口。
++- 已存在 CH341 驱动文件与驱动仓库记录。指定设备的软件重启被 Windows 拒绝访问，未执行成功。
++- 当前 Release HEX 哈希仍与已烧录基线一致。串口测试尚未执行，等待可正常枚举的模块；原三次冷启动结果保留。证据：evidence/runs/20261031-G00-uart。
++
++- CH340恢复：用户再次换线后识别为USB-SERIAL CH340(COM10)，VID_1A86/PID_7523，状态OK。115200/8N1成功打开，被动接收2秒0字节，未发送数据。USB/驱动通路恢复，等待接线确认后进行板端日志/回显测试；G00尚未整体通过。
++
++- 照片补充：核心板丝印CNN647B、AFE丝印ADBMS1818可见。用户只展示底板/核心板，CH340可能为板载接口，先前按独立模块理解的接线隔离证据不能当作已验证物理事实。
++- 例程确认USART1 PE5/PE6、115200/8N1；说明书关于ST-Link提供串口的描述与实物CH340枚举不一致。COM10短帧回显收到非匹配字节，未通过；保持原固件，抓取复位启动数据定位。
++
++- G00基础UART通过：RST后COM10以115200/8N1捕获两次BMS_EX UART ready与测量文本；3组短帧逐字节回显一致。证据见evidence/runs/20261031-G00-uart。应用代码未改动，测量数据未标定。G00总体硬件契约待实物登记。
++
++
++## 2026-10-31 G00硬件资料审查
++
++- 对照课件、任务2步骤、模板说明、现成上位机说明和当前源码，补齐已确认身份、软件配置、资料标称以及冲突来源。
++- profile_id=cnn647b-bms-baseline-20261031-r1；实测值和硬限没有从示例自动填充。未改固件或执行功率动作。
++- 实物供电/电池/负载/仪器仍需用户只看标签确认；分流器、增益和传感器属于后续测量前核对。G00整体保持in_progress/null。
++- 记录及参数变更前后快照：evidence/runs/20261031-G00-hardware-audit。
++
++- 全板照片补充：实装3节14500标签Li-ion电芯（3.7V、800mAh标签值），金色铝壳外接电阻可见但参数不清。电源可能12V仅用户未确认估计，不填实际值；当前无万用表。照片原件和参数快照已归档。
++
++- 用户确认外接电阻标签25W33ΩJ，已登记33Ω/25W/±5%标称规格；未执行功率测试。
++
++
++## 2026-10-31 G01 软件采集、记录及异常处理
++
++按用户指定范围完成G01.1—G01.3软件部分：ADC1软件触发、500ms周期原码流、AFE配置/PEC/转换完成与有界超时、无效值传播；独立记录器保留原字节及复位/丢帧事件。Release最终0错误0警告；Debug0错误、1个原有.EXTRAM警告。原生C故障注入、7项Python测试及36行/9通道端到端模拟回放通过。安装当前用户pyserial3.5供记录器使用。未烧录新镜像，未取得板端新版本数据；仪表标定与独立验证待补。证据范围static/build/simulation，正式G01 verdict=null。详见 [工作卡](../evidence/runs/20261031-G01-software/work-card.md) 和 [采集说明](specs/G01-software.md)。
++
++
++## 2026-10-31 G01 Release实板验证及GPIO读回修复
++
++用户授权下载并采9通道。首版r1烧录校验后发现AFE CONFIG误判，原始756条失败记录保留。按手册修正GPIO位读写语义比较，补充只读状态/真实配置错误回归；r2 Release0错误0警告，Debug仅原有1警告。r2烧录读回成功，正常BOOT复位显示BMS_EX，COM9实采71.603秒、144完整组/1296条，9通道原码全有效，无PEC/串口校验/序号丢失。仍为未标定数据，G01正式判定null。见 [实板工作卡](../evidence/runs/20261031-G01-board/work-card.md)。
++
++
++## 2026-10-31 实物仪器型号补充
++
++用户提供照片确认 Chauvin Arnoux C.A 5212 万用表与 UNI-T MSO3034HD 示波器可用；示波器面板350MHz/2.5GSa/s/12bit登记为标称。更新hardware-profile与当前STATUS，原照片及旧profile保存在evidence/runs/20261031-instrument-registration。序列号、校准/精度依据、参考量程和示波器探头仍未知；没有新增板卡测量或精度结论。
++
++
++## 2026-10-31 G01 首组实物电压参考
++
++用户报告A=3.896V、B/C=3.895V，各3次一致；原始转录/参考CSV已归档。COM9五分钟窗口取得593完整组/5337条，9通道原码全有效。核对C.A5212中文厂家手册14/15页及来源哈希。A/B/C与AFE通道、参考精确时间均未确认，所有可能对照差约2.35—4.91mV；未拟合或写入补偿，正式G01仍null。见 evidence/runs/20261031-G01-voltage-reference-01/work-card.md。
++
++
++## 2026-10-31 G01 供电实测及无编号反馈
++
++用户报告圆孔适配器实测18V、另一未知测点3V、充电源未接、电池座无编号。更新硬件profile，旧12V猜测仅存历史；15V/1A保留课程输入示例，未定为电池电流限值。复查课件第7页嵌入电路图补充A1/A2及NTC/PT1000资料冲突。下一步待各电芯负极对GND电位，未启用功率级。详见 evidence/runs/20261031-G01-supply-observation-01/review.md。
++
++
++## 2026-10-31 G01 电池串位置测量
++
++用户报告A/B/C负极对板上GND为7.77/3.895/0.000V，结合单体电压支持低到高C→B→A，已登记profile；AFE实际接线映射仍为空。请求查找明确电流采样测试点，未令用户探测芯片细脚或改变功率接线。未拟合、未写系数。证据：evidence/runs/20261031-G01-cell-position-01/review.md。
++
++
++## 2026-10-31 G01 电流采样区域定位
++
++用户未找到信号标识，提供整板照片。对照课件U5/C24及源码PA1定位U5候选区域；实际型号、方向及可测焊点未知，未给出猜测性引脚测量指令。核对TI INA199条件引脚表，保存原照片与放大观察图。见 evidence/runs/20261031-G01-current-location-01/review.md。
++
++
++## 2026-10-31 G01 改用整链参考标定
++
++用户提出将总误差合并到易操作位置进行标定。执行方式改为外部同物理量参考与串口原码直接拟合；暂停U5细脚探测要求，两路电流独立系数。确认接线与范围后采零点/多点及独立验证；不使用DC-DC另一侧表显电流代替电池侧参考，不将稳定性当准确性。未改固件、未写系数、未启动功率级。见specs/measurement.md当前执行方式及evidence/runs/20261031-G01-system-calibration-method。
++
++
++## 2026-10-31 G01 外部串表接法核对
++
++从课件标注照片确认黄色充电输入、绿色负载接口，均不能直接代替电池侧参考。所需断点为电池侧同分流器支路；照片中电池座直接上板，无已确认可拔总正极线。保存条件接线图与表笔极性（充电正：红板侧、黑电池正侧），询问有无专用夹具/已引出测试线，未进行改接或功率动作。见evidence/runs/20261031-G01-series-meter-wiring-01/wiring-review.md。
++
++
++## 2026-10-31 G01 现有线材与新增细节照片核对
++
++确认P_VS充电/P_LOAD放电丝印、R1位置与015标记；用户仅有普通表笔/鳄鱼夹等，无已识别串联夹具。未找到可安全指定的电池支路断点，转由实验室确认并提供绝缘串联转接。保留实物照片和前版硬件登记；无改接或功率动作。见evidence/runs/20261031-G01-series-fixture-review-02/review.md。
++
++
++## 2026-10-31 G01 电压优先与上位机工具完成
++
++按用户要求暂缓电流/温度实物标定。新增电压统计、候选拟合及独立验证工具和未填实测值模板；16项Python测试、生产C故障注入及36条合成回放通过。串口重采90秒、177完整组/1603条，九通道原码有效，首尾2项错误保留。登记无负载A/B/C=3.895/3.894/3.894V及用户读数基本稳定的补充，作为近3.9V工作点核对；未假定时钟同步或AFE物理映射，未写校准系数。固件/BOOT/功率状态未改。证据：evidence/runs/20261031-G01-VT-followup-01/work-card.md。
++
++## 2026-10-31 G01 电压模拟源登记与多点方案准备
++
++据用户照片登记UNI-T UDP3305S；核对官方独立输出/通道隔离说明，记录CH1远端接线与三对夹具未知。准备空电池座替代激励、单路变化辨识、3点拟合及2个独立验证点的待执行工作卡。所有参考读数、映射、系数与验收结果留空；未改变固件、BOOT或操作电源，电流/温度仍暂缓。见 evidence/runs/20261031-G01-voltage-source-preparation-01/work-card.md。
++
++
++## 2026-10-31 G01 三路模拟源设置与取点表
++
++用户确认CH1/A、CH2/B、CH3/C及真实电池移除、原约18V板供电保留、充电与负载端空。归档两张照片；识别CH3仍预设5V/3A且三路Off。准备各路3.9V/50mA初始设置、3.2/3.6/3.9V拟合、重新采集3.8/3.4V验证及端点回测；实际映射/参考/系数均留空，AFE供电条件待核实。未操作电源或固件。见 evidence/runs/20261031-G01-voltage-source-settings-02/work-card.md。
++
++随后最新照片三路改为3.5V/0.5A、仍Off；OVP3.5V未启用/OCP1A启用。登记为设置，不作为实测；已说明完整单点需独立表读数与板端raw配对。
++
++
++## 2026-10-31 G01 load-connected observation
++
++User reports load is now connected but no current observed. Updated current setup; previous load-empty confirmation is historical. Rechecked r2 source: measurement-only loop, relays LOW, no PWM start or charge/discharge commands. COM9 read attempt failed with Windows error 31; zero records captured. No firmware or power-output changes. Evidence: evidence/runs/20261031-G01-source-current-check-01/.
++
++
++## 2026-10-31 G01 COM9重采及标定暂缓
++
++COM9恢复后只接收记录60秒，1071条/119完整组，哈希/协议/PEC与连续性复核通过。前79组约3.5V，后段下降至近零，不将整段均值用于标定。用户要求电压、电流以后统一标定，本轮停止追加取点，无参考配对或系数发布；温度继续暂缓。固件、功率控制未变。见 evidence/runs/20261031-G01-source-capture-01/work-card.md。
++
++
++## 2026-10-31 G02 默认禁能诊断、停止和时序观测
++
++按阶段提示推进G02.1—G02.3：核对N6 TIMG时钟与100kHz推导，50%比较值改为1000，显式公共时钟配置；新增两阶段启动、直接硬停、故障锁存、ADC独占/恢复、TIM/ADC服务计数、overrun/缺完成退出和128项内存trace。Release/Debug均默认禁止引脚输出、无自动启动；异常处理接入撤销输出。运行中拒绝重复START保持原期限，下降方向重启先退出中心对齐再复位DIR。
++
++10组生产状态机测试、两种引脚门控分支的生产端口寄存器/HAL模拟通过；G01原生故障注入、16项Python检查、36条/9通道回放通过。最终Release 0错误0警告（exit 0），Debug 0错误、原有L6314W EXTRAM警告1个（exit 1）。首轮沙箱链接器启动失败、检查报告相对路径错误均保留，修正后重跑存证。
++
++实际工程在WEIJI/zonghe，聊天旧目录不存在；使用临时副本实现/构建，按文件哈希检查后回写。源码/候选镜像身份、修改前文件、工作卡、配置推导和待执行波形矩阵保存在evidence/runs/20261031-G02-software。未烧录、未操作串口/下载器或开启功率路径，硬件未知限值未填猜测值；G02正式verdict=null，G03未放行。
++
++
++## 2026-10-31 G02 Release烧录
++
++用户授权后写入g02-sw-r1，CubeProgrammer退出0、读回校验成功。COM9尚未观察到新固件身份，0条记录/0完整组；启动确认待用户反馈。未启用PWM/继电器，未采集示波器波形。证据：evidence/runs/20261031-G02-board。
++
++
++## 2026-10-31 G02启动确认与电源用途澄清
++
++用户确认正常BOOT复位显示BMS_EX；COM9重采60秒确认fw=g02-sw-r1，1071条/119完整组，解析错误0；全部已记录raw有效=True。三路直流源是此前电压模拟激励，不用于承受充电回灌；当前继续G02无功率测试准备。PWM波形和停止期限仍未测。见evidence/runs/20261031-G02-board。
++
++
++## 2026-10-31 G02 上位机内部诊断与重试部署
++
++用户说明不能配合PWM探头或硬件标定，要求可由上位机执行的工作继续。实现g02-host-r1：CRC16/请求序号/重放拒绝、内部采样/CCR/STOP/故障/CLEAR；不提供PINS或继电器命令，默认引脚编译门仍关闭。串口ISR仅收字节，采样窗口内不打印，停止后回传统计。新增生产core+port+link原生回归及上位机脚本；G01回归通过，Release 0错0警告，Debug仅已有EXTRAM警告。
++
++部署保留所有尝试：flash-01读回一处不一致；flash-02读回通过但复位失败；host-session-01无响应。用户说明此前未切BOOT后重试，flash-03工具exit0且读回通过；外层脚本仅终端GBK打印失败，原始日志及成功结果已保存。用户恢复正常BOOT并复位后，host-session-02全部内部检查通过。CPU/TIM/ADC读回800/400/64MHz；10秒软件更新/ADC完成均999998，OVR和ADC错误0。CCR1500在后续更新观察到；STOP、故障锁存、故障后拒绝START、CLEAR不启动均验证。退出后G01采集177条/19完整组，全已解析raw有效，末尾截断89字节及1不完整组保留，不声称零记录错误。
++
++本次记录见evidence/runs/20261031-G02-host/work-card.md。软件计数不是物理PWM频率或无漏触发证明；999998与名义1000000的差异不作为通过容差。引脚/驱动波形、死区、停止期限仍未判定；没有充放电、继电器动作或标定，G03不放行。不再反复要求用户做其已说明无法完成的探头测量。
++
++
++## 2026-10-31 开环前上位机扩展验证
++
++按用户指令完成无需探头/硬件标定的开环前软件准备与验证。新增回归复现r1停机COMPARE返回NOT_READY却改写下一次启动参数的副作用；r2在非OK后恢复原compare/window，修复后原生和实板通过。Release 0错0警告、Debug只有原有EXTRAM警告；用户切BOOT后烧录读回成功，再恢复正常BOOT复位。新增14项Python检查，生产core/port/link通过；G01生产C、16项Python及36条合成回放通过。G01报告脚本的相对路径错误一并修复，失败尝试保留。
++
++board-01完成13组禁能检查：身份、拒绝无副作用、重复/冲突/过期、参数边界、坏CRC/NaN/Inf/超长、分片粘包、BUSY窗口保持、CCR1/1000/1999、重复STOP、故障锁存/清除、主机句柄关闭后本地到期及查询重连、20条有界命令压力、3个10秒窗口。各长窗口更新/ADC服务数均999998，OVR/ADC错误/late_irqs均0；主动注入的9条非法帧计数保留。没有物理拔USB、驱动波形或功率失联看门狗验收。随后COM9采集60秒，1071条/119完整组，全raw有效，无解析错误/缺序/重复。
++
++开环准备工具可检查固定工况、量化CCR、模拟STOP/故障取消余下动作，并拒绝未标定/不同端口或会话/未对齐数据的P=VI运算。真实profile未知限值不被填默认值，模板null不能编译；工具没有功率执行接口。新增的最长工况/通信超时字段仍null。证据位于evidence/runs/20261031-prepower-host；G02物理验收、标定与真实带载继续未判定，不要求用户重复提供已说明无法完成的探头帮助。
+--- a/instructions/specs/hardware-profile.json
++++ b/instructions/specs/hardware-profile.json
+@@ -1,660 +1,663 @@
+-{
+-  "schema_version": "1.0-draft",
+-  "profile_id": "cnn647b-bms-g02-20261031-r1",
+-  "status": "partially_confirmed",
+-  "note": "Confirmed facts, document nominal values and code assumptions are separate below. Unknown physical parameters and limits remain null. No power-stage acceptance is implied.",
+-  "board_id": null,
+-  "hardware_revision": null,
+-  "schematic_sha256": null,
+-  "mcu_from_project": "STM32N647X0HxQ",
+-  "afe_from_project": "ADBMS1818",
+-  "current_sign_proposed": "positive_into_battery_pack",
+-  "amplifier_actual_part": null,
+-  "amplifier_gain_V_per_V": null,
+-  "shunt_ohm_measured": null,
+-  "adc_reference_V_measured": null,
+-  "mcu_and_afe_current_same_node": null,
+-  "temperature_sensor_actual_part": null,
+-  "sensor_divider_topology": null,
+-  "cell_model": null,
+-  "cell_ids": [],
+-  "capacity_reference_Ah": null,
+-  "limits": {
+-    "cell_voltage_min_V": null,
+-    "cell_voltage_max_V": null,
+-    "charge_current_max_A": null,
+-    "discharge_current_max_A": null,
+-    "charge_temperature_min_C": null,
+-    "charge_temperature_max_C": null,
+-    "discharge_temperature_min_C": null,
+-    "discharge_temperature_max_C": null,
+-    "converter_voltage_max_V": null,
+-    "converter_current_max_A": null,
+-    "converter_power_max_W": null,
+-    "load_power_continuous_W": null,
+-    "supply_current_limit_A": null
+-  },
+-  "control": {
+-    "pwm_frequency_Hz_course": 100000,
+-    "upper_switch_duty_min_course": 0.4,
+-    "upper_switch_duty_max_course": 0.9,
+-    "permitted_test_duty_min": null,
+-    "permitted_test_duty_max": null,
+-    "feedback_sign_charge": null,
+-    "feedback_sign_discharge": null,
+-    "effective_deadtime_min_ns": null,
+-    "relay_change_conditions": null,
+-    "stop_delay_limit_us": null,
+-    "communication_loss_action": null,
+-    "default_power_disabled_verified_run_id": null
+-  },
+-  "confirmed_by": null,
+-  "confirmed_at_utc": null,
+-  "evidence": [
+-    {
+-      "source": "Keil project and STM32CubeProgrammer connection",
+-      "scope": "MCU identity only; board revision and connected power hardware not established",
+-      "path": "evidence/runs/20261030-basic-flash/flash-release-20261030-ur.log"
+-    },
+-    {
+-      "source": "User-provided board photographs 2026-10-31",
+-      "path": "D:/ADMIN/Temp/codex-clipboard-37d4c8f1-d9de-4232-8a27-6712bfe3ba9d.jpg",
+-      "scope": "Visible CNN647B core-board silkscreen and ADBMS1818 chip marking; carrier revision and UART wiring not established"
+-    },
+-    {
+-      "source": "2026-10-31 source and course-material audit",
+-      "path": "evidence/runs/20261031-G00-hardware-audit/document-excerpts.json",
+-      "scope": "Document nominal information and code configuration, not measured limits"
+-    },
+-    {
+-      "source": "User full-board photo and text confirmation",
+-      "path": "evidence/runs/20261031-G00-hardware-audit/board-cells-load-photo.jpg",
+-      "sha256": "6f2b705a26d78cc4b9430c4938b33881e570dcb9a33b9fc97494bd74be43ceb6",
+-      "scope": "3 installed cells, visible 14500/3.7V/800mAh/Li-ion markings, power plug, external resistor appearance; actual voltage/load rating not established"
+-    },
+-    {
+-      "source": "User message 2026-10-31",
+-      "scope": "External resistor marking transcribed as 25W33ΩJ; label rating only, not measured resistance or installed thermal capability"
+-    },
+-    {
+-      "source": "G01.1-G01.3 software implementation and offline fault injection",
+-      "path": "evidence/runs/20261031-G01-software/work-card.md",
+-      "scope": "software/build/simulation only; actual calibration and hardware limits unchanged"
+-    },
+-    {
+-      "source": "G01 actual Release r2 flash/readback and 9-channel serial capture",
+-      "path": "evidence/runs/20261031-G01-board/result.json",
+-      "scope": "real raw acquisition and reset startup only; no accuracy/calibration/power-stage acceptance"
+-    },
+-    {
+-      "source": "User equipment photo 2026-10-31",
+-      "path": "evidence/runs/20261031-instrument-registration/multimeter.jpg",
+-      "sha256": "05b19c06ec322b12abd807cc2669057a926dbf0f5a5a09f6a600532689bf5f09",
+-      "scope": "front-panel identity and printed nominal specifications only"
+-    },
+-    {
+-      "source": "User equipment photo 2026-10-31",
+-      "path": "evidence/runs/20261031-instrument-registration/oscilloscope.jpg",
+-      "sha256": "0f2edfa84c9aaf9979b35b68a87983a48acbc88dbdae7500a53845704055119c",
+-      "scope": "front-panel identity and printed nominal specifications only"
+-    },
+-    {
+-      "source": "User manual voltage readings and COM9 capture 2026-10-31",
+-      "path": "evidence\\runs\\20261031-G01-voltage-reference-01\\work-card.md",
+-      "scope": "single-point exploratory voltage comparison; physical channel mapping and exact timing unconfirmed; no calibration fit"
+-    },
+-    {
+-      "source": "User supply measurements and course slide7 figures",
+-      "path": "evidence\\runs\\20261031-G01-supply-observation-01\\user-observation.json",
+-      "scope": "18V reported measurement, unidentified3V node, charger not connected, holders have no identifiers; not power-stage acceptance"
+-    },
+-    {
+-      "source": "User cell negative-terminal voltages to board GND",
+-      "path": "evidence\\runs\\20261031-G01-cell-position-01\\user-measurements.json",
+-      "scope": "supports C/B/A low-to-high stack positions; no direct AFE channel correspondence or current zero verification"
+-    },
+-    {
+-      "source": "User full-board photo and course slide7 comparison",
+-      "path": "evidence\\runs\\20261031-G01-current-location-01\\review.md",
+-      "scope": "U5 region localization only; fitted identity/orientation and probing pad unverified"
+-    },
+-    {
+-      "source": "User photos and explicit current setup confirmation 2026-10-31",
+-      "path": "evidence/runs/20261031-G01-voltage-source-settings-02/work-card.md",
+-      "scope": "CH1/A CH2/B CH3/C; real cells removed, board adapter retained, charge/load ports empty; no live output or accuracy measurement"
+-    }
+-  ],
+-  "mcu_detected": "STM32N647 (Device ID 0x486)",
+-  "mcu_user_reported": "stm32N647X",
+-  "core_board_marking": "CNN647B",
+-  "afe_marking_observed": "ADBMS1818",
+-  "registration_id": "local-bms-board-01",
+-  "registration_id_note": "Administrative identifier for the board in this chat; not a manufacturer serial number.",
+-  "verified_identity": {
+-    "core_board_marking": "CNN647B",
+-    "mcu_project": "STM32N647X0HxQ",
+-    "mcu_device_id": "0x486",
+-    "afe_photo_marking": "ADBMS1818",
+-    "uart_usb_device": "CH340 VID_1A86 PID_7523",
+-    "uart_last_port": "COM9",
+-    "source": "Existing photographs, programmer log, USB enumeration; see evidence entries"
+-  },
+-  "software_configuration": {
+-    "source": "BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c and Appli/Core/Inc/main.h",
+-    "uart": {
+-      "peripheral": "USART1",
+-      "tx": "PE5",
+-      "rx": "PE6",
+-      "baud": 115200,
+-      "format": "8N1",
+-      "validation": "G01 Release r2 COM9: normal BOOT/reset, 9-channel continuous raw stream and wire/AFE PEC verified; calibration pending"
+-    },
+-    "relays": {
+-      "discharge": "PG5/SWL",
+-      "charge": "PB5/SWS",
+-      "initialized_gpio_level": "LOW",
+-      "physical_open_state_verified": false
+-    },
+-    "pwm": {
+-      "timer": "TIM1",
+-      "channel": "CH2/CH2N",
+-      "pins": [
+-        "PA9",
+-        "PF7"
+-      ],
+-      "prescaler": 0,
+-      "period": 2000,
+-      "repetition_counter": 1,
+-      "counter_mode": "CENTERALIGNED1",
+-      "programmed_deadtime": 0,
+-      "break_enabled": false,
+-      "start_call_present": true,
+-      "actual_frequency_measured_Hz": null,
+-      "initial_compare": 1000,
+-      "start_on_boot": false,
+-      "pin_output_compiled": false,
+-      "idle_gpio_level": "PA9/PF7 GPIO push-pull LOW after application GPIO init; physical driver state unverified"
+-    },
+-    "adc_start_call_present": true,
+-    "adc_signal_labels": {
+-      "PA0": "VB_AD",
+-      "PA1": "I_AD",
+-      "PA2": "VS_AD",
+-      "PA10": "VL_AD"
+-    },
+-    "afe": {
+-      "selected_cell_channels": [
+-        1,
+-        7,
+-        13
+-      ],
+-      "current": "GPIO1",
+-      "temperature": [
+-        "GPIO2",
+-        "GPIO3",
+-        "GPIO4"
+-      ],
+-      "output_cadence": "attempted every 500ms; PLADC completion poll, 20ms conversion timeout"
+-    },
+-    "measurement_assumptions": {
+-      "current_zero_V": 0.9,
+-      "current_A_per_V": 1.3333,
+-      "temperature_model": "PT1000 linear approximation",
+-      "pullup_ohm": 9100,
+-      "excitation_V": 3.0,
+-      "R0_ohm": 1000,
+-      "alpha_per_C": 0.00385,
+-      "physical_calibration_verified": false
+-    },
+-    "stop_design": "G02 source candidate: immediate MOE/AOE/CEN/CCER off, PA9/PF7 and relay commands LOW, latched faults, deferred ADC cleanup; no hardware STOP/reset timing verified",
+-    "adc1_acquisition": {
+-      "trigger": "software",
+-      "period_ms": 500,
+-      "resolution_bits": 12,
+-      "oversampling_ratio": 2,
+-      "right_shift": 1,
+-      "internal_self_calibration": "not_enabled",
+-      "actual_sampling_verified": true,
+-      "verified_run_id": "20261031-G02-host",
+-      "actual_sampling_verified_firmware": "g02-host-r1; G01 SW trigger restored after internal diagnostic"
+-    },
+-    "adc2_acquisition": "not_started; existing initialization retained",
+-    "measurement_firmware": "g02-host-r1 flashed/readback verified; normal BOOT reset and COM9 internal diagnostics plus resumed 9-channel raw capture verified; uncalibrated",
+-    "g02_diagnostic": {
+-      "source_firmware": "g02-host-r1",
+-      "actually_flashed": true,
+-      "evidence_run_id": "20261031-G02-host",
+-      "evidence_scope": [
+-        "static",
+-        "build",
+-        "simulation",
+-        "bench",
+-        "release_boot"
+-      ],
+-      "internal_trigger": "TIM1 TRGO update, ADC1 exclusive session; G01 SW trigger restored only after successful cleanup",
+-      "clock_policy": "Explicit TIMPRE DIV1/CKPER HSI; diagnostic requires runtime TIMG=400MHz and ADC=64MHz",
+-      "adc2": "not started",
+-      "auto_start": false,
+-      "pin_output_compile_gate": false,
+-      "window_max_ms": 10000,
+-      "window_note": "software observation cap, not a verified power safety limit",
+-      "measured_pwm_Hz": null,
+-      "measured_stop_us": null,
+-      "measured_driver_deadtime_ns": null,
+-      "flash_verified_run_id": "20261031-G02-host",
+-      "normal_boot_verified": true,
+-      "normal_boot_verified_run_id": "20261031-G02-host",
+-      "normal_boot_basis": "User confirms normal BOOT/reset; matching g02-host-r1 COM9 reports; not a repeated cold boot",
+-      "actual_release_hex_sha256": "ea05cc76e484a1afe60e3b61ff652668d3261e5a38355d83d34ba944044f70d1",
+-      "internal_diagnostic_verified": true,
+-      "internal_diagnostic_result": "evidence/runs/20261031-G02-host/host-session-02/result.json",
+-      "uart_operations": "status/sample/stop/fault/clear/compare only; no pin-output or relay operation"
+-    }
+-  },
+-  "document_nominal": {
+-    "source_ppt": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+-    "board_supply": {
+-      "adapter_V": 18,
+-      "source": "slide4",
+-      "actual_connected_value_confirmed": false
+-    },
+-    "cells": {
+-      "series_count": 3,
+-      "source": "任务2恒流控制实验_实验步骤.docx paragraph169",
+-      "actual_cells_confirmed": false
+-    },
+-    "current_frontend": {
+-      "part_claim": "INA199A2",
+-      "gain_claim": 50,
+-      "shunt_ohm": 0.015,
+-      "source": "PPT slide4/7; task2 paragraphs213-215",
+-      "conflict": "TI INA199x2 nominal gain is 100 V/V; actual installed suffix and full signal chain unknown"
+-    },
+-    "temperature": {
+-      "sensor_claim": "PT1000",
+-      "pullup_ohm": 9100,
+-      "excitation_V": 3.0,
+-      "topology_claim": "pull-up divider into AFE GPIO",
+-      "source": "PPT slide7; main.c and adbms1818.h",
+-      "actual_sensor_confirmed": false
+-    },
+-    "mcu_adc_reference_V": {
+-      "value": 1.8,
+-      "source": "task2 paragraph201",
+-      "measured": false
+-    },
+-    "relays": {
+-      "claim": "LOW=open, HIGH=energized",
+-      "source": "PPT slide6; task2 paragraph126",
+-      "actual_polarity_confirmed": false
+-    },
+-    "power_stage": {
+-      "driver_claim": "EG3112 with internal deadtime",
+-      "mosfet_claim": "SiZ998DT",
+-      "source": "PPT slide8; task2 paragraphs18/102",
+-      "actual_verified": false
+-    },
+-    "examples_not_limits": {
+-      "load_ohm": 33,
+-      "load_rating_W": 25,
+-      "charge_supply_V": 15,
+-      "charge_supply_A": 1,
+-      "source": "task2 paragraphs80/82",
+-      "note": "Illustrative conditions only; not actual equipment or permitted limits"
+-    }
+-  },
+-  "conflicts": [
+-    {
+-      "id": "G00-C01",
+-      "item": "INA199A2 versus gain50",
+-      "resolution": "Do not set actual gain. Confirm fitted device/complete chain then calibrate.",
+-      "source": "https://www.ti.com/product/INA199",
+-      "additional_document_evidence": "Course slide7 embedded amplifier schematic labeled INA199A1DCKR (text says A2); drawn 0.9REF. Complete physical circuit remains unverified."
+-    },
+-    {
+-      "id": "G00-C02",
+-      "item": "Temperature PT1000 template versus NTC host software terminology",
+-      "resolution": "Use PT1000 only as current code model; physical sensor unknown.",
+-      "additional_document_evidence": "Course slide7 embedded divider schematic labels R31/R32/R33 NTC while displayed formula/code uses PT1000 approximation."
+-    },
+-    {
+-      "id": "G00-C03",
+-      "item": "ADC2 ioc one channel versus source three channels",
+-      "resolution": "Current source is build baseline. Reconcile before regeneration/ADC measurement."
+-    },
+-    {
+-      "id": "G00-C04",
+-      "item": "Template manual claims ST-Link virtual COM; actual device CH340",
+-      "resolution": "Use observed CH340 COM10 and actual echo/startup evidence."
+-    },
+-    {
+-      "id": "G00-C05",
+-      "item": "F4 schematic in repository versus N647 hardware",
+-      "resolution": "F4 PDF is not an accepted circuit source for this carrier."
+-    },
+-    {
+-      "id": "G00-C06",
+-      "item": "pi.c and pi.h types differ",
+-      "resolution": "pi.c excluded from targets; controller is not active."
+-    }
+-  ],
+-  "physical_setup": {
+-    "board_supply_source": "barrel-jack adapter; user measured approximately 18 V",
+-    "adapter_label": null,
+-    "bench_supply_connected": true,
+-    "installed_cell_count": 0,
+-    "installed_cell_markings": [
+-      "14500",
+-      "3.7 V",
+-      "800 mAh",
+-      "Li-ion"
+-    ],
+-    "load_connected": true,
+-    "load_label": "25W33ΩJ",
+-    "reference_instruments": [
+-      {
+-        "instrument_id": "dmm-ca5212-01",
+-        "type": "digital_multimeter",
+-        "manufacturer": "Chauvin Arnoux",
+-        "model": "C.A 5212",
+-        "identification_basis": "user photo front-panel marking",
+-        "available": true,
+-        "serial_number": null,
+-        "calibration_date": null,
+-        "calibration_certificate": null,
+-        "reference_grade": "manufacturer_spec_only_calibration_unverified",
+-        "accuracy_specification": {
+-          "source": "evidence\\runs\\20261031-instrument-registration\\CA5212-manual-cn.pdf",
+-          "sha256": "f40d807f8b6183b1b9c555fa87bbbf943051e177505225e3145032a3df70e792",
+-          "source_url": "https://exp-seee.hust.edu.cn/__local/1/75/9B/0D723459EA09AFD8721611C9444_3B733295_C0A90.pdf",
+-          "document_identity": "Chauvin Arnoux C.A 5212/5215/5217 Chinese manufacturer manual, 03-2014 C00097 Ed.1",
+-          "pages_visually_checked": [
+-            14,
+-            15
+-          ],
+-          "dc_voltage_4V": {
+-            "range_V": 4,
+-            "resolution_V": 0.001,
+-            "reading_percent": 0.2,
+-            "counts": 2
+-          },
+-          "dc_current_4A": {
+-            "range_A": 4,
+-            "resolution_A": 0.001,
+-            "reading_percent": 1,
+-            "counts": 5
+-          },
+-          "dc_current_10A": {
+-            "range_A": 10,
+-            "resolution_A": 0.01,
+-            "reading_percent": 0.5,
+-            "counts": 5
+-          },
+-          "dedicated_temperature_function": false,
+-          "reference_conditions": "23 +/-3 degC, RH45-75%; DC AC component <0.1%; other manual reference conditions apply",
+-          "accuracy_bound_at_3_896V": 0.009792,
+-          "scope": "manufacturer specification only; not a calibration certificate or U95; actual environment and calibration validity unknown"
+-        },
+-        "selected_reference_range": null,
+-        "reference_uncertainty": null,
+-        "panel_markings": [
+-          "TRMS MULTIMETER",
+-          "600V CAT III"
+-        ],
+-        "photo_observation": "Display in DC voltage mode; black lead at COM, red lead at +. No test point is established; display value is not registered as a board measurement.",
+-        "photo": "evidence/runs/20261031-instrument-registration/multimeter.jpg",
+-        "selected_reference_range_assessment": {
+-          "range_V": 4,
+-          "basis": "inferred from reported 3.xxx digits",
+-          "explicitly_confirmed": false
+-        }
+-      },
+-      {
+-        "instrument_id": "scope-mso3034hd-01",
+-        "type": "mixed_signal_oscilloscope",
+-        "manufacturer": "UNI-T",
+-        "model": "MSO3034HD",
+-        "identification_basis": "user photo front-panel marking",
+-        "available": true,
+-        "serial_number": null,
+-        "calibration_date": null,
+-        "calibration_certificate": null,
+-        "reference_grade": "unknown",
+-        "front_panel_nominal": {
+-          "bandwidth_Hz": 350000000,
+-          "sample_rate_Sa_per_s": 2500000000,
+-          "resolution_bits": 12
+-        },
+-        "actual_acquisition_settings": null,
+-        "probe_models": null,
+-        "probe_attenuation": null,
+-        "differential_probe_available": null,
+-        "note": "Printed nominal specifications; not verified per-channel acquisition performance or probe capability.",
+-        "photo": "evidence/runs/20261031-instrument-registration/oscilloscope.jpg"
+-      }
+-    ],
+-    "user_action_needed": "Verify polarity/secure contacts; follow voltage-only work card. No formal calibration result yet.",
+-    "supply_user_estimate_unverified": null,
+-    "supply_photo_observation": "Barrel power plug is connected; adapter label is outside photo; board USB and ribbon cable also connected.",
+-    "multimeter_available": true,
+-    "oscilloscope_available": true,
+-    "external_resistor_observation": "Gold aluminum-housed resistor visible left of board; red/black wires present at lower terminal; resistor resistance and power label unreadable, full electrical route not established.",
+-    "load_label_specification": {
+-      "resistance_nominal_ohm": 33,
+-      "power_rating_label_W": 25,
+-      "tolerance_code": "J",
+-      "tolerance_percent": 5,
+-      "source": "User transcription of resistor marking",
+-      "resistance_measured_ohm": null,
+-      "continuous_power_in_actual_mounting_W": null
+-    },
+-    "board_adapter_measurement": {
+-      "voltage_V": 18.0,
+-      "source": "evidence\\runs\\20261031-G01-supply-observation-01\\user-observation.json",
+-      "measurement_time_utc": null,
+-      "exact_probe_points": null,
+-      "load_state": null,
+-      "current_rating_A": null
+-    },
+-    "charge_supply_connected": false,
+-    "cell_holder_position_labels": {
+-      "A": null,
+-      "B": null,
+-      "C": null,
+-      "observation": "no printed identifiers reported by user"
+-    },
+-    "unidentified_voltage_observation": {
+-      "voltage_V": 3.0,
+-      "node_identity": null,
+-      "reference_node": null,
+-      "user_guess": "OLED supply; not verified"
+-    },
+-    "supply_history": "Earlier unverified estimate 12 V superseded by user-reported multimeter measurement 18 V on 2026-10-31; rating and probe points remain unknown.",
+-    "cell_stack_position_observation": {
+-      "source": "evidence\\runs\\20261031-G01-cell-position-01\\user-measurements.json",
+-      "negative_terminal_to_board_GND_V": {
+-        "A": 7.77,
+-        "B": 3.895,
+-        "C": 0.0
+-      },
+-      "inferred_order_low_to_high": [
+-        "C",
+-        "B",
+-        "A"
+-      ],
+-      "basis": "user-reported voltage measurements; not continuity verification",
+-      "position_definition": "OLED above, battery holder below: A left, B middle, C right",
+-      "physical_position_to_afe_channel": {
+-        "A": null,
+-        "B": null,
+-        "C": null
+-      }
+-    },
+-    "current_frontend_location_candidate": {
+-      "reference_designator": "U5",
+-      "nearby_designators": [
+-        "C24",
+-        "R18",
+-        "R5",
+-        "R3"
+-      ],
+-      "location": "right of1.8V silkscreen, left ofADBMS1818",
+-      "basis": "photo designator match to course slide7",
+-      "actual_part_confirmed": false,
+-      "verified_probe_pad": null,
+-      "evidence": "evidence\\runs\\20261031-G01-current-location-01\\location.json"
+-    },
+-    "external_connector_identification": {
+-      "basis": "Course labelled photo and user close-up silkscreen: yellow P_VS/充电, green P_LOAD/放电; continuity still unverified.",
+-      "yellow": "external charge DC supply input",
+-      "green": "external load connection",
+-      "board_continuity_verified": false,
+-      "source": "evidence\\runs\\20261031-G01-series-meter-wiring-01\\course-labelled-connectors.jpg"
+-    },
+-    "current_reference_series_connection": {
+-      "status": "electrical position identified; physical break and fixture unverified",
+-      "target": "battery-side current path in series with onboard current shunt, not DC-DC external supply/load side",
+-      "battery_high_terminal_candidate": "A cell positive; A is left with OLED up; inferred from earlier cell/GND potentials",
+-      "confirmed_removable_wire": null,
+-      "fixture_available": false,
+-      "same_current_as_shunt_verified": false,
+-      "connection_performed": false,
+-      "meter_polarity_for_positive_charge": {
+-        "red_10A": "board/shunt side of verified break",
+-        "black_COM": "battery positive side of verified break"
+-      },
+-      "next": "Ask laboratory technician for a verified battery-branch series test break and insulated fixture in the same current path as R1; do not cut sensor wires or bypass the shunt.",
+-      "fixture_availability_basis": "User reports only supplied photographed leads; ordinary probes/crocodile clips/scope probes visible, no battery series interposer identified.",
+-      "photo_review": "evidence\\runs\\20261031-G01-series-fixture-review-02/review.md"
+-    },
+-    "stimulus_instruments": [
+-      {
+-        "instrument_id": "psu-udp3305s-01",
+-        "manufacturer": "UNI-T",
+-        "model": "UDP3305S",
+-        "available": true,
+-        "role": "candidate voltage stimulus, DMM remains independent reference",
+-        "identification_basis": "user front-panel photo 2026-10-31",
+-        "serial_number": null,
+-        "calibration_status": null,
+-        "adjustable_channels": [
+-          "CH1",
+-          "CH2",
+-          "CH3"
+-        ],
+-        "channel_isolation_documented": true,
+-        "channel_isolation_basis": "https://uni-trendus.com/products/udp3305s",
+-        "unit_wiring_verified": false,
+-        "output_state_verified": null,
+-        "current_limits_A": null,
+-        "connected_to_board": null,
+-        "lead_observation": "CH1 red/black leads inserted; remote ends unknown; three-pair fixture availability pending",
+-        "photo_evidence": "evidence/runs/20261031-G01-voltage-source-preparation-01/user-UDP3305S.jpg",
+-        "manual_url": "https://storage.googleapis.com/uni-tdocuments/Library/UDP3000S%20Series%20DC%20Power%20Supplies%20-%20User%20Manual.pdf"
+-      }
+-    ],
+-    "voltage_source_current_session": {
+-      "run_id": "20261031-G01-voltage-source-settings-02",
+-      "user_confirmed": {
+-        "source_to_holder": {
+-          "CH1": "A",
+-          "CH2": "B",
+-          "CH3": "C"
+-        },
+-        "real_cells_removed": true,
+-        "original_approximately_18V_board_supply_retained": true,
+-        "charge_port_empty": true,
+-        "load_port_empty": true
+-      },
+-      "source_photo": {
+-        "all_outputs_off": true,
+-        "voltage_set_V": {
+-          "CH1": 3.5,
+-          "CH2": 3.5,
+-          "CH3": 3.5
+-        },
+-        "current_set_A": {
+-          "CH1": 0.5,
+-          "CH2": 0.5,
+-          "CH3": 0.5
+-        },
+-        "ovp_V": 3.5,
+-        "ovp_enabled": false,
+-        "ocp_A": 1,
+-        "ocp_enabled": true,
+-        "scope": "Latest user photo, settings only; output display zero while Off"
+-      },
+-      "proposed_settings_not_measured": {
+-        "mode": "independent",
+-        "start_voltage_V": 3.9,
+-        "current_set_A": 0.05,
+-        "ovp_V": 4.05,
+-        "ovp_enabled": true,
+-        "ocp_A": 0.06,
+-        "ocp_enabled": true,
+-        "note": "Engineering starting settings only. Stop on CC, trip or droop; do not increase current blindly. Not board hard ratings."
+-      },
+-      "afe_supply": {
+-        "actual_Vplus_V": null,
+-        "actual_Vreg_V": null,
+-        "note": "Original 18 V adapter retained by user. Actual AFE rails not established; do not equate adapter voltage to V+. Datasheet Table 3 TME conditions V+16–90 V, VREG4.5–5.5 V."
+-      },
+-      "note": "Source-to-holder mapping confirmed; holder-to-AFE mapping remains unverified.",
+-      "latest_setup_change": {
+-        "source": "latest user message",
+-        "load_connected": true,
+-        "load_identity": null,
+-        "actual_load_current_A": null,
+-        "user_report": "Load now connected, no current observed; charge/discharge needs software control.",
+-        "firmware_review": "g01-sw-r2: Measurement_Task only; relay outputs initialized LOW; no PWM start or charge/discharge command implementation.",
+-        "scope": "user observation plus source review; no proof of relay contact state"
+-      }
+-    },
+-    "latest_load_observation": {
+-      "source": "latest user message",
+-      "load_connected": true,
+-      "load_identity": null,
+-      "actual_load_current_A": null,
+-      "user_report": "Load now connected, no current observed; charge/discharge needs software control.",
+-      "firmware_review": "g01-sw-r2: Measurement_Task only; relay outputs initialized LOW; no PWM start or charge/discharge command implementation.",
+-      "scope": "user observation plus source review; no proof of relay contact state"
+-    },
+-    "g02_setup_pending_note": "Three-channel source previously used for G01 voltage stimulus; current output/wiring not reconfirmed. No charging/backfeed test authorized by source use; G02 power isolation and PWM probe points pending."
+-  },
+-  "cell_label_specification": {
+-    "designation": "14500",
+-    "chemistry_label": "Li-ion",
+-    "nominal_voltage_V": 3.7,
+-    "capacity_label_mAh": 800,
+-    "manufacturer_confirmed": null,
+-    "actual_capacity_measured_Ah": null,
+-    "series_wiring_verified": false,
+-    "note": "Printed label values only; not a measured capacity or charge/discharge limit."
+-  },
+-  "previous_profile_id": "cnn647b-bms-g01-20261031-r2",
+-  "voltage_only_followup_observation": {
+-    "source": "evidence/runs/20261031-G01-VT-followup-01/raw/user-voltage-reference.json",
+-    "load_connected": false,
+-    "load_basis": "user report 2026-10-31",
+-    "independent_temperature_reference_available": false,
+-    "reference_time_alignment_verified": false,
+-    "physical_position_to_afe_channel": {
+-      "A": null,
+-      "B": null,
+-      "C": null
+-    }
+-  },
+-  "g02_user_assistance_constraint": {
+-    "source": "User message 2026-10-31",
+-    "cannot_assist": [
+-      "PWM/scope probing",
+-      "hardware calibration before open-loop charge/discharge"
+-    ],
+-    "available_user_actions": [
+-      "replace three cells with three DC source outputs",
+-      "remove cells"
+-    ],
+-    "current_work": "Host-only internal diagnostics with pin-output gate closed; no battery rewiring required",
+-    "ordinary_dc_source_charge_sink_verified": false
+-  }
+-}
++{
++  "schema_version": "1.0-draft",
++  "profile_id": "cnn647b-bms-g02-20261031-r1",
++  "status": "partially_confirmed",
++  "note": "Confirmed facts, document nominal values and code assumptions are separate below. Unknown physical parameters and limits remain null. No power-stage acceptance is implied.",
++  "board_id": null,
++  "hardware_revision": null,
++  "schematic_sha256": null,
++  "mcu_from_project": "STM32N647X0HxQ",
++  "afe_from_project": "ADBMS1818",
++  "current_sign_proposed": "positive_into_battery_pack",
++  "amplifier_actual_part": null,
++  "amplifier_gain_V_per_V": null,
++  "shunt_ohm_measured": null,
++  "adc_reference_V_measured": null,
++  "mcu_and_afe_current_same_node": null,
++  "temperature_sensor_actual_part": null,
++  "sensor_divider_topology": null,
++  "cell_model": null,
++  "cell_ids": [],
++  "capacity_reference_Ah": null,
++  "limits": {
++    "cell_voltage_min_V": null,
++    "cell_voltage_max_V": null,
++    "charge_current_max_A": null,
++    "discharge_current_max_A": null,
++    "charge_temperature_min_C": null,
++    "charge_temperature_max_C": null,
++    "discharge_temperature_min_C": null,
++    "discharge_temperature_max_C": null,
++    "converter_voltage_max_V": null,
++    "converter_current_max_A": null,
++    "converter_power_max_W": null,
++    "load_power_continuous_W": null,
++    "supply_current_limit_A": null
++  },
++  "control": {
++    "pwm_frequency_Hz_course": 100000,
++    "upper_switch_duty_min_course": 0.4,
++    "upper_switch_duty_max_course": 0.9,
++    "permitted_test_duty_min": null,
++    "permitted_test_duty_max": null,
++    "feedback_sign_charge": null,
++    "feedback_sign_discharge": null,
++    "effective_deadtime_min_ns": null,
++    "relay_change_conditions": null,
++    "stop_delay_limit_us": null,
++    "communication_loss_action": null,
++    "default_power_disabled_verified_run_id": null,
++    "open_loop_point_max_ms": null,
++    "communication_timeout_ms": null
++  },
++  "confirmed_by": null,
++  "confirmed_at_utc": null,
++  "evidence": [
++    {
++      "source": "Keil project and STM32CubeProgrammer connection",
++      "scope": "MCU identity only; board revision and connected power hardware not established",
++      "path": "evidence/runs/20261030-basic-flash/flash-release-20261030-ur.log"
++    },
++    {
++      "source": "User-provided board photographs 2026-10-31",
++      "path": "D:/ADMIN/Temp/codex-clipboard-37d4c8f1-d9de-4232-8a27-6712bfe3ba9d.jpg",
++      "scope": "Visible CNN647B core-board silkscreen and ADBMS1818 chip marking; carrier revision and UART wiring not established"
++    },
++    {
++      "source": "2026-10-31 source and course-material audit",
++      "path": "evidence/runs/20261031-G00-hardware-audit/document-excerpts.json",
++      "scope": "Document nominal information and code configuration, not measured limits"
++    },
++    {
++      "source": "User full-board photo and text confirmation",
++      "path": "evidence/runs/20261031-G00-hardware-audit/board-cells-load-photo.jpg",
++      "sha256": "6f2b705a26d78cc4b9430c4938b33881e570dcb9a33b9fc97494bd74be43ceb6",
++      "scope": "3 installed cells, visible 14500/3.7V/800mAh/Li-ion markings, power plug, external resistor appearance; actual voltage/load rating not established"
++    },
++    {
++      "source": "User message 2026-10-31",
++      "scope": "External resistor marking transcribed as 25W33ΩJ; label rating only, not measured resistance or installed thermal capability"
++    },
++    {
++      "source": "G01.1-G01.3 software implementation and offline fault injection",
++      "path": "evidence/runs/20261031-G01-software/work-card.md",
++      "scope": "software/build/simulation only; actual calibration and hardware limits unchanged"
++    },
++    {
++      "source": "G01 actual Release r2 flash/readback and 9-channel serial capture",
++      "path": "evidence/runs/20261031-G01-board/result.json",
++      "scope": "real raw acquisition and reset startup only; no accuracy/calibration/power-stage acceptance"
++    },
++    {
++      "source": "User equipment photo 2026-10-31",
++      "path": "evidence/runs/20261031-instrument-registration/multimeter.jpg",
++      "sha256": "05b19c06ec322b12abd807cc2669057a926dbf0f5a5a09f6a600532689bf5f09",
++      "scope": "front-panel identity and printed nominal specifications only"
++    },
++    {
++      "source": "User equipment photo 2026-10-31",
++      "path": "evidence/runs/20261031-instrument-registration/oscilloscope.jpg",
++      "sha256": "0f2edfa84c9aaf9979b35b68a87983a48acbc88dbdae7500a53845704055119c",
++      "scope": "front-panel identity and printed nominal specifications only"
++    },
++    {
++      "source": "User manual voltage readings and COM9 capture 2026-10-31",
++      "path": "evidence\\runs\\20261031-G01-voltage-reference-01\\work-card.md",
++      "scope": "single-point exploratory voltage comparison; physical channel mapping and exact timing unconfirmed; no calibration fit"
++    },
++    {
++      "source": "User supply measurements and course slide7 figures",
++      "path": "evidence\\runs\\20261031-G01-supply-observation-01\\user-observation.json",
++      "scope": "18V reported measurement, unidentified3V node, charger not connected, holders have no identifiers; not power-stage acceptance"
++    },
++    {
++      "source": "User cell negative-terminal voltages to board GND",
++      "path": "evidence\\runs\\20261031-G01-cell-position-01\\user-measurements.json",
++      "scope": "supports C/B/A low-to-high stack positions; no direct AFE channel correspondence or current zero verification"
++    },
++    {
++      "source": "User full-board photo and course slide7 comparison",
++      "path": "evidence\\runs\\20261031-G01-current-location-01\\review.md",
++      "scope": "U5 region localization only; fitted identity/orientation and probing pad unverified"
++    },
++    {
++      "source": "User photos and explicit current setup confirmation 2026-10-31",
++      "path": "evidence/runs/20261031-G01-voltage-source-settings-02/work-card.md",
++      "scope": "CH1/A CH2/B CH3/C; real cells removed, board adapter retained, charge/load ports empty; no live output or accuracy measurement"
++    }
++  ],
++  "mcu_detected": "STM32N647 (Device ID 0x486)",
++  "mcu_user_reported": "stm32N647X",
++  "core_board_marking": "CNN647B",
++  "afe_marking_observed": "ADBMS1818",
++  "registration_id": "local-bms-board-01",
++  "registration_id_note": "Administrative identifier for the board in this chat; not a manufacturer serial number.",
++  "verified_identity": {
++    "core_board_marking": "CNN647B",
++    "mcu_project": "STM32N647X0HxQ",
++    "mcu_device_id": "0x486",
++    "afe_photo_marking": "ADBMS1818",
++    "uart_usb_device": "CH340 VID_1A86 PID_7523",
++    "uart_last_port": "COM9",
++    "source": "Existing photographs, programmer log, USB enumeration; see evidence entries"
++  },
++  "software_configuration": {
++    "source": "BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c and Appli/Core/Inc/main.h",
++    "uart": {
++      "peripheral": "USART1",
++      "tx": "PE5",
++      "rx": "PE6",
++      "baud": 115200,
++      "format": "8N1",
++      "validation": "G01 Release r2 COM9: normal BOOT/reset, 9-channel continuous raw stream and wire/AFE PEC verified; calibration pending"
++    },
++    "relays": {
++      "discharge": "PG5/SWL",
++      "charge": "PB5/SWS",
++      "initialized_gpio_level": "LOW",
++      "physical_open_state_verified": false
++    },
++    "pwm": {
++      "timer": "TIM1",
++      "channel": "CH2/CH2N",
++      "pins": [
++        "PA9",
++        "PF7"
++      ],
++      "prescaler": 0,
++      "period": 2000,
++      "repetition_counter": 1,
++      "counter_mode": "CENTERALIGNED1",
++      "programmed_deadtime": 0,
++      "break_enabled": false,
++      "start_call_present": true,
++      "actual_frequency_measured_Hz": null,
++      "initial_compare": 1000,
++      "start_on_boot": false,
++      "pin_output_compiled": false,
++      "idle_gpio_level": "PA9/PF7 GPIO push-pull LOW after application GPIO init; physical driver state unverified"
++    },
++    "adc_start_call_present": true,
++    "adc_signal_labels": {
++      "PA0": "VB_AD",
++      "PA1": "I_AD",
++      "PA2": "VS_AD",
++      "PA10": "VL_AD"
++    },
++    "afe": {
++      "selected_cell_channels": [
++        1,
++        7,
++        13
++      ],
++      "current": "GPIO1",
++      "temperature": [
++        "GPIO2",
++        "GPIO3",
++        "GPIO4"
++      ],
++      "output_cadence": "attempted every 500ms; PLADC completion poll, 20ms conversion timeout"
++    },
++    "measurement_assumptions": {
++      "current_zero_V": 0.9,
++      "current_A_per_V": 1.3333,
++      "temperature_model": "PT1000 linear approximation",
++      "pullup_ohm": 9100,
++      "excitation_V": 3.0,
++      "R0_ohm": 1000,
++      "alpha_per_C": 0.00385,
++      "physical_calibration_verified": false
++    },
++    "stop_design": "G02 source candidate: immediate MOE/AOE/CEN/CCER off, PA9/PF7 and relay commands LOW, latched faults, deferred ADC cleanup; no hardware STOP/reset timing verified",
++    "adc1_acquisition": {
++      "trigger": "software",
++      "period_ms": 500,
++      "resolution_bits": 12,
++      "oversampling_ratio": 2,
++      "right_shift": 1,
++      "internal_self_calibration": "not_enabled",
++      "actual_sampling_verified": true,
++      "verified_run_id": "20261031-prepower-host",
++      "actual_sampling_verified_firmware": "g02-host-r2; restored G01 SW-trigger stream after extended diagnostics"
++    },
++    "adc2_acquisition": "not_started; existing initialization retained",
++    "measurement_firmware": "g02-host-r2 flashed/readback verified; normal BOOT reset, 13 internal diagnostic groups, resumed 60s/1071 raw records; uncalibrated",
++    "g02_diagnostic": {
++      "source_firmware": "g02-host-r2",
++      "actually_flashed": true,
++      "evidence_run_id": "20261031-prepower-host",
++      "evidence_scope": [
++        "static",
++        "build",
++        "simulation",
++        "bench",
++        "release_boot"
++      ],
++      "internal_trigger": "TIM1 TRGO update, ADC1 exclusive session; G01 SW trigger restored only after successful cleanup",
++      "clock_policy": "Explicit TIMPRE DIV1/CKPER HSI; diagnostic requires runtime TIMG=400MHz and ADC=64MHz",
++      "adc2": "not started",
++      "auto_start": false,
++      "pin_output_compile_gate": false,
++      "window_max_ms": 10000,
++      "window_note": "software observation cap, not a verified power safety limit",
++      "measured_pwm_Hz": null,
++      "measured_stop_us": null,
++      "measured_driver_deadtime_ns": null,
++      "flash_verified_run_id": "20261031-prepower-host",
++      "normal_boot_verified": true,
++      "normal_boot_verified_run_id": "20261031-prepower-host",
++      "normal_boot_basis": "User restored normal BOOT/reset; matching r2 diagnostic reports and G01 metadata, not repeated cold boots",
++      "actual_release_hex_sha256": "2a75563eff600af7049202a29d77649a3ebea0edba06ddeca8793899d93a4012",
++      "internal_diagnostic_verified": true,
++      "internal_diagnostic_result": "evidence/runs/20261031-prepower-host/board-01/result.json",
++      "uart_operations": "status/sample/stop/fault/clear/compare only; no pin-output or relay operation",
++      "host_disconnect_test": "Host serial handle closed without STOP, local 1000ms window expired; query-only reconnect; no physical cable removal or communication watchdog test"
++    }
++  },
++  "document_nominal": {
++    "source_ppt": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
++    "board_supply": {
++      "adapter_V": 18,
++      "source": "slide4",
++      "actual_connected_value_confirmed": false
++    },
++    "cells": {
++      "series_count": 3,
++      "source": "任务2恒流控制实验_实验步骤.docx paragraph169",
++      "actual_cells_confirmed": false
++    },
++    "current_frontend": {
++      "part_claim": "INA199A2",
++      "gain_claim": 50,
++      "shunt_ohm": 0.015,
++      "source": "PPT slide4/7; task2 paragraphs213-215",
++      "conflict": "TI INA199x2 nominal gain is 100 V/V; actual installed suffix and full signal chain unknown"
++    },
++    "temperature": {
++      "sensor_claim": "PT1000",
++      "pullup_ohm": 9100,
++      "excitation_V": 3.0,
++      "topology_claim": "pull-up divider into AFE GPIO",
++      "source": "PPT slide7; main.c and adbms1818.h",
++      "actual_sensor_confirmed": false
++    },
++    "mcu_adc_reference_V": {
++      "value": 1.8,
++      "source": "task2 paragraph201",
++      "measured": false
++    },
++    "relays": {
++      "claim": "LOW=open, HIGH=energized",
++      "source": "PPT slide6; task2 paragraph126",
++      "actual_polarity_confirmed": false
++    },
++    "power_stage": {
++      "driver_claim": "EG3112 with internal deadtime",
++      "mosfet_claim": "SiZ998DT",
++      "source": "PPT slide8; task2 paragraphs18/102",
++      "actual_verified": false
++    },
++    "examples_not_limits": {
++      "load_ohm": 33,
++      "load_rating_W": 25,
++      "charge_supply_V": 15,
++      "charge_supply_A": 1,
++      "source": "task2 paragraphs80/82",
++      "note": "Illustrative conditions only; not actual equipment or permitted limits"
++    }
++  },
++  "conflicts": [
++    {
++      "id": "G00-C01",
++      "item": "INA199A2 versus gain50",
++      "resolution": "Do not set actual gain. Confirm fitted device/complete chain then calibrate.",
++      "source": "https://www.ti.com/product/INA199",
++      "additional_document_evidence": "Course slide7 embedded amplifier schematic labeled INA199A1DCKR (text says A2); drawn 0.9REF. Complete physical circuit remains unverified."
++    },
++    {
++      "id": "G00-C02",
++      "item": "Temperature PT1000 template versus NTC host software terminology",
++      "resolution": "Use PT1000 only as current code model; physical sensor unknown.",
++      "additional_document_evidence": "Course slide7 embedded divider schematic labels R31/R32/R33 NTC while displayed formula/code uses PT1000 approximation."
++    },
++    {
++      "id": "G00-C03",
++      "item": "ADC2 ioc one channel versus source three channels",
++      "resolution": "Current source is build baseline. Reconcile before regeneration/ADC measurement."
++    },
++    {
++      "id": "G00-C04",
++      "item": "Template manual claims ST-Link virtual COM; actual device CH340",
++      "resolution": "Use observed CH340 COM10 and actual echo/startup evidence."
++    },
++    {
++      "id": "G00-C05",
++      "item": "F4 schematic in repository versus N647 hardware",
++      "resolution": "F4 PDF is not an accepted circuit source for this carrier."
++    },
++    {
++      "id": "G00-C06",
++      "item": "pi.c and pi.h types differ",
++      "resolution": "pi.c excluded from targets; controller is not active."
++    }
++  ],
++  "physical_setup": {
++    "board_supply_source": "barrel-jack adapter; user measured approximately 18 V",
++    "adapter_label": null,
++    "bench_supply_connected": true,
++    "installed_cell_count": 0,
++    "installed_cell_markings": [
++      "14500",
++      "3.7 V",
++      "800 mAh",
++      "Li-ion"
++    ],
++    "load_connected": true,
++    "load_label": "25W33ΩJ",
++    "reference_instruments": [
++      {
++        "instrument_id": "dmm-ca5212-01",
++        "type": "digital_multimeter",
++        "manufacturer": "Chauvin Arnoux",
++        "model": "C.A 5212",
++        "identification_basis": "user photo front-panel marking",
++        "available": true,
++        "serial_number": null,
++        "calibration_date": null,
++        "calibration_certificate": null,
++        "reference_grade": "manufacturer_spec_only_calibration_unverified",
++        "accuracy_specification": {
++          "source": "evidence\\runs\\20261031-instrument-registration\\CA5212-manual-cn.pdf",
++          "sha256": "f40d807f8b6183b1b9c555fa87bbbf943051e177505225e3145032a3df70e792",
++          "source_url": "https://exp-seee.hust.edu.cn/__local/1/75/9B/0D723459EA09AFD8721611C9444_3B733295_C0A90.pdf",
++          "document_identity": "Chauvin Arnoux C.A 5212/5215/5217 Chinese manufacturer manual, 03-2014 C00097 Ed.1",
++          "pages_visually_checked": [
++            14,
++            15
++          ],
++          "dc_voltage_4V": {
++            "range_V": 4,
++            "resolution_V": 0.001,
++            "reading_percent": 0.2,
++            "counts": 2
++          },
++          "dc_current_4A": {
++            "range_A": 4,
++            "resolution_A": 0.001,
++            "reading_percent": 1,
++            "counts": 5
++          },
++          "dc_current_10A": {
++            "range_A": 10,
++            "resolution_A": 0.01,
++            "reading_percent": 0.5,
++            "counts": 5
++          },
++          "dedicated_temperature_function": false,
++          "reference_conditions": "23 +/-3 degC, RH45-75%; DC AC component <0.1%; other manual reference conditions apply",
++          "accuracy_bound_at_3_896V": 0.009792,
++          "scope": "manufacturer specification only; not a calibration certificate or U95; actual environment and calibration validity unknown"
++        },
++        "selected_reference_range": null,
++        "reference_uncertainty": null,
++        "panel_markings": [
++          "TRMS MULTIMETER",
++          "600V CAT III"
++        ],
++        "photo_observation": "Display in DC voltage mode; black lead at COM, red lead at +. No test point is established; display value is not registered as a board measurement.",
++        "photo": "evidence/runs/20261031-instrument-registration/multimeter.jpg",
++        "selected_reference_range_assessment": {
++          "range_V": 4,
++          "basis": "inferred from reported 3.xxx digits",
++          "explicitly_confirmed": false
++        }
++      },
++      {
++        "instrument_id": "scope-mso3034hd-01",
++        "type": "mixed_signal_oscilloscope",
++        "manufacturer": "UNI-T",
++        "model": "MSO3034HD",
++        "identification_basis": "user photo front-panel marking",
++        "available": true,
++        "serial_number": null,
++        "calibration_date": null,
++        "calibration_certificate": null,
++        "reference_grade": "unknown",
++        "front_panel_nominal": {
++          "bandwidth_Hz": 350000000,
++          "sample_rate_Sa_per_s": 2500000000,
++          "resolution_bits": 12
++        },
++        "actual_acquisition_settings": null,
++        "probe_models": null,
++        "probe_attenuation": null,
++        "differential_probe_available": null,
++        "note": "Printed nominal specifications; not verified per-channel acquisition performance or probe capability.",
++        "photo": "evidence/runs/20261031-instrument-registration/oscilloscope.jpg"
++      }
++    ],
++    "user_action_needed": "Verify polarity/secure contacts; follow voltage-only work card. No formal calibration result yet.",
++    "supply_user_estimate_unverified": null,
++    "supply_photo_observation": "Barrel power plug is connected; adapter label is outside photo; board USB and ribbon cable also connected.",
++    "multimeter_available": true,
++    "oscilloscope_available": true,
++    "external_resistor_observation": "Gold aluminum-housed resistor visible left of board; red/black wires present at lower terminal; resistor resistance and power label unreadable, full electrical route not established.",
++    "load_label_specification": {
++      "resistance_nominal_ohm": 33,
++      "power_rating_label_W": 25,
++      "tolerance_code": "J",
++      "tolerance_percent": 5,
++      "source": "User transcription of resistor marking",
++      "resistance_measured_ohm": null,
++      "continuous_power_in_actual_mounting_W": null
++    },
++    "board_adapter_measurement": {
++      "voltage_V": 18.0,
++      "source": "evidence\\runs\\20261031-G01-supply-observation-01\\user-observation.json",
++      "measurement_time_utc": null,
++      "exact_probe_points": null,
++      "load_state": null,
++      "current_rating_A": null
++    },
++    "charge_supply_connected": false,
++    "cell_holder_position_labels": {
++      "A": null,
++      "B": null,
++      "C": null,
++      "observation": "no printed identifiers reported by user"
++    },
++    "unidentified_voltage_observation": {
++      "voltage_V": 3.0,
++      "node_identity": null,
++      "reference_node": null,
++      "user_guess": "OLED supply; not verified"
++    },
++    "supply_history": "Earlier unverified estimate 12 V superseded by user-reported multimeter measurement 18 V on 2026-10-31; rating and probe points remain unknown.",
++    "cell_stack_position_observation": {
++      "source": "evidence\\runs\\20261031-G01-cell-position-01\\user-measurements.json",
++      "negative_terminal_to_board_GND_V": {
++        "A": 7.77,
++        "B": 3.895,
++        "C": 0.0
++      },
++      "inferred_order_low_to_high": [
++        "C",
++        "B",
++        "A"
++      ],
++      "basis": "user-reported voltage measurements; not continuity verification",
++      "position_definition": "OLED above, battery holder below: A left, B middle, C right",
++      "physical_position_to_afe_channel": {
++        "A": null,
++        "B": null,
++        "C": null
++      }
++    },
++    "current_frontend_location_candidate": {
++      "reference_designator": "U5",
++      "nearby_designators": [
++        "C24",
++        "R18",
++        "R5",
++        "R3"
++      ],
++      "location": "right of1.8V silkscreen, left ofADBMS1818",
++      "basis": "photo designator match to course slide7",
++      "actual_part_confirmed": false,
++      "verified_probe_pad": null,
++      "evidence": "evidence\\runs\\20261031-G01-current-location-01\\location.json"
++    },
++    "external_connector_identification": {
++      "basis": "Course labelled photo and user close-up silkscreen: yellow P_VS/充电, green P_LOAD/放电; continuity still unverified.",
++      "yellow": "external charge DC supply input",
++      "green": "external load connection",
++      "board_continuity_verified": false,
++      "source": "evidence\\runs\\20261031-G01-series-meter-wiring-01\\course-labelled-connectors.jpg"
++    },
++    "current_reference_series_connection": {
++      "status": "electrical position identified; physical break and fixture unverified",
++      "target": "battery-side current path in series with onboard current shunt, not DC-DC external supply/load side",
++      "battery_high_terminal_candidate": "A cell positive; A is left with OLED up; inferred from earlier cell/GND potentials",
++      "confirmed_removable_wire": null,
++      "fixture_available": false,
++      "same_current_as_shunt_verified": false,
++      "connection_performed": false,
++      "meter_polarity_for_positive_charge": {
++        "red_10A": "board/shunt side of verified break",
++        "black_COM": "battery positive side of verified break"
++      },
++      "next": "Ask laboratory technician for a verified battery-branch series test break and insulated fixture in the same current path as R1; do not cut sensor wires or bypass the shunt.",
++      "fixture_availability_basis": "User reports only supplied photographed leads; ordinary probes/crocodile clips/scope probes visible, no battery series interposer identified.",
++      "photo_review": "evidence\\runs\\20261031-G01-series-fixture-review-02/review.md"
++    },
++    "stimulus_instruments": [
++      {
++        "instrument_id": "psu-udp3305s-01",
++        "manufacturer": "UNI-T",
++        "model": "UDP3305S",
++        "available": true,
++        "role": "candidate voltage stimulus, DMM remains independent reference",
++        "identification_basis": "user front-panel photo 2026-10-31",
++        "serial_number": null,
++        "calibration_status": null,
++        "adjustable_channels": [
++          "CH1",
++          "CH2",
++          "CH3"
++        ],
++        "channel_isolation_documented": true,
++        "channel_isolation_basis": "https://uni-trendus.com/products/udp3305s",
++        "unit_wiring_verified": false,
++        "output_state_verified": null,
++        "current_limits_A": null,
++        "connected_to_board": null,
++        "lead_observation": "CH1 red/black leads inserted; remote ends unknown; three-pair fixture availability pending",
++        "photo_evidence": "evidence/runs/20261031-G01-voltage-source-preparation-01/user-UDP3305S.jpg",
++        "manual_url": "https://storage.googleapis.com/uni-tdocuments/Library/UDP3000S%20Series%20DC%20Power%20Supplies%20-%20User%20Manual.pdf"
++      }
++    ],
++    "voltage_source_current_session": {
++      "run_id": "20261031-G01-voltage-source-settings-02",
++      "user_confirmed": {
++        "source_to_holder": {
++          "CH1": "A",
++          "CH2": "B",
++          "CH3": "C"
++        },
++        "real_cells_removed": true,
++        "original_approximately_18V_board_supply_retained": true,
++        "charge_port_empty": true,
++        "load_port_empty": true
++      },
++      "source_photo": {
++        "all_outputs_off": true,
++        "voltage_set_V": {
++          "CH1": 3.5,
++          "CH2": 3.5,
++          "CH3": 3.5
++        },
++        "current_set_A": {
++          "CH1": 0.5,
++          "CH2": 0.5,
++          "CH3": 0.5
++        },
++        "ovp_V": 3.5,
++        "ovp_enabled": false,
++        "ocp_A": 1,
++        "ocp_enabled": true,
++        "scope": "Latest user photo, settings only; output display zero while Off"
++      },
++      "proposed_settings_not_measured": {
++        "mode": "independent",
++        "start_voltage_V": 3.9,
++        "current_set_A": 0.05,
++        "ovp_V": 4.05,
++        "ovp_enabled": true,
++        "ocp_A": 0.06,
++        "ocp_enabled": true,
++        "note": "Engineering starting settings only. Stop on CC, trip or droop; do not increase current blindly. Not board hard ratings."
++      },
++      "afe_supply": {
++        "actual_Vplus_V": null,
++        "actual_Vreg_V": null,
++        "note": "Original 18 V adapter retained by user. Actual AFE rails not established; do not equate adapter voltage to V+. Datasheet Table 3 TME conditions V+16–90 V, VREG4.5–5.5 V."
++      },
++      "note": "Source-to-holder mapping confirmed; holder-to-AFE mapping remains unverified.",
++      "latest_setup_change": {
++        "source": "latest user message",
++        "load_connected": true,
++        "load_identity": null,
++        "actual_load_current_A": null,
++        "user_report": "Load now connected, no current observed; charge/discharge needs software control.",
++        "firmware_review": "g01-sw-r2: Measurement_Task only; relay outputs initialized LOW; no PWM start or charge/discharge command implementation.",
++        "scope": "user observation plus source review; no proof of relay contact state"
++      }
++    },
++    "latest_load_observation": {
++      "source": "latest user message",
++      "load_connected": true,
++      "load_identity": null,
++      "actual_load_current_A": null,
++      "user_report": "Load now connected, no current observed; charge/discharge needs software control.",
++      "firmware_review": "g01-sw-r2: Measurement_Task only; relay outputs initialized LOW; no PWM start or charge/discharge command implementation.",
++      "scope": "user observation plus source review; no proof of relay contact state"
++    },
++    "g02_setup_pending_note": "Three-channel source previously used for G01 voltage stimulus; current output/wiring not reconfirmed. No charging/backfeed test authorized by source use; G02 power isolation and PWM probe points pending."
++  },
++  "cell_label_specification": {
++    "designation": "14500",
++    "chemistry_label": "Li-ion",
++    "nominal_voltage_V": 3.7,
++    "capacity_label_mAh": 800,
++    "manufacturer_confirmed": null,
++    "actual_capacity_measured_Ah": null,
++    "series_wiring_verified": false,
++    "note": "Printed label values only; not a measured capacity or charge/discharge limit."
++  },
++  "previous_profile_id": "cnn647b-bms-g01-20261031-r2",
++  "voltage_only_followup_observation": {
++    "source": "evidence/runs/20261031-G01-VT-followup-01/raw/user-voltage-reference.json",
++    "load_connected": false,
++    "load_basis": "user report 2026-10-31",
++    "independent_temperature_reference_available": false,
++    "reference_time_alignment_verified": false,
++    "physical_position_to_afe_channel": {
++      "A": null,
++      "B": null,
++      "C": null
++    }
++  },
++  "g02_user_assistance_constraint": {
++    "source": "User message 2026-10-31",
++    "cannot_assist": [
++      "PWM/scope probing",
++      "hardware calibration before open-loop charge/discharge"
++    ],
++    "available_user_actions": [
++      "replace three cells with three DC source outputs",
++      "remove cells"
++    ],
++    "current_work": "Host-only internal diagnostics with pin-output gate closed; no battery rewiring required",
++    "ordinary_dc_source_charge_sink_verified": false
++  }
++}

@@ -1,0 +1,2 @@
+id,result,state,direction,faults,reason,configured,fixture,ccr,shadow_relays,shadow_pwm,actual_bits,start_ms,stop_ms,heartbeat_ms,transitions,starts,ticks,max_tick_gap,scenario,synthetic,power_capable
+2436684022,0,0,1,0,0,0,0,1000,0,0,0,17064,18132,17142,75,14,878,1,0,1,0

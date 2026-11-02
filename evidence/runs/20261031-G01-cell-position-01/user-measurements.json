@@ -1,0 +1,33 @@
+{
+  "source": "user response to negative-terminal-to-GND measurement request",
+  "record_created_utc": "2026-10-31T04:46:26.126339+00:00",
+  "measurement_time_utc": null,
+  "verbatim": "A：7.77V；B：3.895；C:0.000V",
+  "instrument_id": "dmm-ca5212-01",
+  "method_requested": "DC voltage, black probe board marked GND, red probe each cell negative terminal",
+  "position_definition": "OLED above, battery holder below: A left, B middle, C right",
+  "negative_terminal_to_board_GND_V": {
+    "A": 7.77,
+    "B": 3.895,
+    "C": 0.0
+  },
+  "display_transcription": {
+    "A": "7.77",
+    "B": "3.895",
+    "C": "0.000"
+  },
+  "explicit_range_confirmation": null,
+  "inferred_stack_order_low_to_high": [
+    "C",
+    "B",
+    "A"
+  ],
+  "inference_basis": "ascending negative-terminal potentials and earlier individual cell voltages near3.895V",
+  "electrical_continuity_verified": false,
+  "physical_position_to_afe_channel": {
+    "A": null,
+    "B": null,
+    "C": null
+  },
+  "verdict": null
+}

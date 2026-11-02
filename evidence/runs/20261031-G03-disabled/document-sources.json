@@ -1,0 +1,22 @@
+[
+  {
+    "path": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "sha256": "5f8b027080aa93b1905be925cbd0828aafd45f769110e780513fd4c380ea4a72"
+  },
+  {
+    "path": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "sha256": "72833f0c35c861dd5d80618f4f3b6780ac4e033f694400756aac3d53da731449"
+  },
+  {
+    "path": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "sha256": "ebb19c3b99fe483176c5c4537f169c0684df2d2c39712d5beb97d73dd01de162"
+  },
+  {
+    "path": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "sha256": "24e4cd218052f920c7a70f49b4afe0c7334034addae7faaecfff04d485e8923a"
+  },
+  {
+    "path": "docs/manuals/STM32N6软件安装.docx",
+    "sha256": "84d971f2e7edbc374fe2de8bd76ec7472d9bb36031621afc3bc46db1d7954b0c"
+  }
+]

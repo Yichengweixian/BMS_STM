@@ -1,0 +1,56 @@
+[
+  {
+    "name": "gcc",
+    "command": [
+      "D:/ADMIN/mingw64/bin/gcc.exe",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\tests\\g01\\stubs",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\tests\\g01\\test_measurement.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\measurement_core.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\adbms_acquisition.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\measurement.c",
+      "-lm",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\evidence\\runs\\20261101-G03-relay-r1\\g01-checks-03\\native-tests.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "native",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\evidence\\runs\\20261101-G03-relay-r1\\g01-checks-03\\native-tests.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "python-tests",
+    "command": [
+      "C:\\Users\\ADMIN\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\tests\\g01",
+      "-p",
+      "test_*.py",
+      "-v"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "replay",
+    "command": [
+      "C:\\Users\\ADMIN\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\scripts\\g01\\g01_capture.py",
+      "--replay",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\evidence\\runs\\20261101-G03-relay-r1\\g01-checks-03\\simulated-uart.bin",
+      "--out",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\evidence\\runs\\20261101-G03-relay-r1\\g01-checks-03\\replay"
+    ],
+    "exit_code": 0
+  }
+]

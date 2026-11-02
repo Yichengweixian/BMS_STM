@@ -1,0 +1,9 @@
+{
+  "source": "latest user message",
+  "load_connected": true,
+  "load_identity": null,
+  "actual_load_current_A": null,
+  "user_report": "Load now connected, no current observed; charge/discharge needs software control.",
+  "firmware_review": "g01-sw-r2: Measurement_Task only; relay outputs initialized LOW; no PWM start or charge/discharge command implementation.",
+  "scope": "user observation plus source review; no proof of relay contact state"
+}

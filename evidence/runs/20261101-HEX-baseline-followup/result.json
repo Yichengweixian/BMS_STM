@@ -1,0 +1,16 @@
+{
+  "run_id": "20261101-HEX-baseline-followup",
+  "date": "2026-11-01",
+  "status": "complete",
+  "scope": [
+    "static",
+    "host_simulation"
+  ],
+  "physical_experiment_performed": false,
+  "firmware_flashed": false,
+  "existing_firmware_source_changed": false,
+  "correction": "DTG=0 may be supported by verified driver-provided deadtime; a nonzero timer DTG is not universally required",
+  "candidate_tests_passed": 16,
+  "exploration_goal": "Use teacher firmware as a matched-condition baseline; a successful trial establishes one operating condition, not absolute duty/duration limits",
+  "driver_actual_identity_confirmed_this_run": false
+}

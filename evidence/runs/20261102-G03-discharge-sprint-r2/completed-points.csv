@@ -1,0 +1,2 @@
+﻿D_command,CCR,ARR,active_complete_samples,Vbat_nominal_V,Ibat_nominal_A,Vload_measured_V,Iload_measured_A,temperature_C,PWM_software_us,relay_hold_after_pwm_us,steady_state,data_kind,source_run
+0.9,1800,2000,4,10.34835,-0.3552813350359598,,,,100072,20100,False,raw-derived nominal conversion; physical_valid=0,live-d90-01

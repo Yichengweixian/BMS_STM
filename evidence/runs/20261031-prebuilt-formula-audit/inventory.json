@@ -1,0 +1,128 @@
+{
+  "source": "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\firmware\\prebuilt\\BMS_Appli.hex",
+  "sha256": "dd44fae11ed542ad6bcee45b35a13e93bd6632481b7d29662afda8ac7856be7f",
+  "base": "0x70100400",
+  "end": "0x70119a80",
+  "payload_bytes": 104056,
+  "span_bytes": 104064,
+  "entry": "0x70102715",
+  "first_words": [
+    "0x34200000",
+    "0x70102715",
+    "0x701025b1",
+    "0x701025b5",
+    "0x701025d1",
+    "0x701025d5",
+    "0x701025d9",
+    "0x701025dd"
+  ],
+  "constants": {
+    "1.8": [
+      {
+        "address": "0x701068f4",
+        "format": "<f"
+      }
+    ],
+    "3.3": [],
+    "0.9": [
+      {
+        "address": "0x70119840",
+        "format": "<f"
+      },
+      {
+        "address": "0x70119844",
+        "format": "<f"
+      }
+    ],
+    "0.75": [],
+    "50.0": [
+      {
+        "address": "0x70104018",
+        "format": "<f"
+      }
+    ],
+    "100.0": [
+      {
+        "address": "0x70107604",
+        "format": "<f"
+      },
+      {
+        "address": "0x70119720",
+        "format": "<d"
+      }
+    ],
+    "0.015": [
+      {
+        "address": "0x70105fc4",
+        "format": "<f"
+      }
+    ],
+    "4095.0": [
+      {
+        "address": "0x70105d24",
+        "format": "<f"
+      },
+      {
+        "address": "0x701068dc",
+        "format": "<f"
+      },
+      {
+        "address": "0x70106af4",
+        "format": "<f"
+      },
+      {
+        "address": "0x701075f4",
+        "format": "<f"
+      },
+      {
+        "address": "0x701077e8",
+        "format": "<f"
+      },
+      {
+        "address": "0x70107918",
+        "format": "<f"
+      },
+      {
+        "address": "0x70107a24",
+        "format": "<f"
+      }
+    ],
+    "4096.0": [],
+    "0.0001": [
+      {
+        "address": "0x70104d4c",
+        "format": "<f"
+      },
+      {
+        "address": "0x70105244",
+        "format": "<f"
+      }
+    ],
+    "1.333333333": [],
+    "2000.0": [],
+    "1800.0": [],
+    "0.4": [
+      {
+        "address": "0x70107ba8",
+        "format": "<f"
+      }
+    ],
+    "0.0005860805860805861": [],
+    "0.0005859375": []
+  },
+  "objdump_command": [
+    "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\\tools\\bin\\arm-none-eabi-objdump.exe",
+    "-D",
+    "-b",
+    "binary",
+    "-m",
+    "arm",
+    "-M",
+    "force-thumb",
+    "--adjust-vma=0x70100400",
+    "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\hex-audit\\prebuilt.bin"
+  ],
+  "objdump_exit": 0,
+  "formula_recovered": true,
+  "recovery_scope": "Arithmetic and threshold construction; not original C source or validated board transfer function"
+}

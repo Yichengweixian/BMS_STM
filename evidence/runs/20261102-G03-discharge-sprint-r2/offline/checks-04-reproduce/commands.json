@@ -1,0 +1,133 @@
+[
+  {
+    "name": "build",
+    "args": [
+      "D:\\Program Files\\JetBrains\\CLion 2025.2.3\\bin\\mingw\\bin\\g++.exe",
+      "-x",
+      "c++",
+      "-std=c++17",
+      "-O2",
+      "-Wall",
+      "-Werror",
+      "-Wno-missing-field-initializers",
+      "-Wno-misleading-indentation",
+      "-DG03_PWM_LIVE_BUILD=1",
+      "-DG3R_LIVE_PROFILE_VERIFIED=0",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\workspace\\tests\\g03\\power_port_fixture",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\workspace\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "-ID:\\ADMIN\\Desktop\\WEIJI\\zonghe\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "-include",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\workspace\\tests\\g03\\power_port_fixture\\main.h",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\workspace\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_power_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\workspace\\BMS_EXv1.1\\BMS_EX\\BSP\\pwm_oneshot.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\workspace\\tests\\g03\\test_power_port.cpp",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\checks-04-reproduce\\power.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "normal",
+    "args": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\checks-04-reproduce\\power.exe",
+      "normal"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "dry",
+    "args": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\checks-04-reproduce\\power.exe",
+      "dry"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "stop_baseline",
+    "args": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\checks-04-reproduce\\power.exe",
+      "stop_baseline"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "stop_settle",
+    "args": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\checks-04-reproduce\\power.exe",
+      "stop_settle"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "bad_baseline",
+    "args": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\checks-04-reproduce\\power.exe",
+      "bad_baseline"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "stop",
+    "args": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\checks-04-reproduce\\power.exe",
+      "stop"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "protocol",
+    "args": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\checks-04-reproduce\\power.exe",
+      "protocol"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "overcurrent",
+    "args": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\checks-04-reproduce\\power.exe",
+      "overcurrent"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "pec",
+    "args": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\checks-04-reproduce\\power.exe",
+      "pec"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "ccr",
+    "args": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\checks-04-reproduce\\power.exe",
+      "ccr"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "stale",
+    "args": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\checks-04-reproduce\\power.exe",
+      "stale"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "late_irq",
+    "args": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\checks-04-reproduce\\power.exe",
+      "late_irq"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "replay",
+    "args": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\02\\01a19a8a-4630-7842-89f5-2b0cccea4066\\g03-sprint-work\\checks-04-reproduce\\power.exe",
+      "replay"
+    ],
+    "exit_code": 0
+  }
+]

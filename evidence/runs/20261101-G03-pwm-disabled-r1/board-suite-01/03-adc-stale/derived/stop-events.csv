@@ -1,0 +1,5 @@
+suite,case,scenario,start_id,start_us,terminal_state,faults,stop_reason,sample_count,fast_retained,trace_overflow,restored,physical_valid,source,event,seq,timestamp_us,relative_us,raw,flags,flags_meaning,actual_bits
+board-suite-01,03-adc-stale,1,2538660187,63999,4,8,stale,500,68,0,1,0,status,stop_us,,71100,7101,,,,0
+board-suite-01,03-adc-stale,1,2538660187,63999,4,8,stale,500,68,0,1,0,trace,off,133,71102,7103,1279,3,ADC_ISR_bits,0
+board-suite-01,03-adc-stale,1,2538660187,63999,4,8,stale,500,68,0,1,0,trace,fault record,134,71985,7986,1279,8,core_fault_mask,0
+board-suite-01,03-adc-stale,1,2538660187,63999,4,8,stale,500,68,0,1,0,trace,cleanup,135,71987,7988,1279,0,cleanup_flags,0

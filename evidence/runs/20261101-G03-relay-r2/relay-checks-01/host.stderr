@@ -1,0 +1,18 @@
+test_no_change_is_not_missing (test_relay_host.Tests.test_no_change_is_not_missing) ... ok
+test_quality_not_zero (test_relay_host.Tests.test_quality_not_zero) ... ok
+test_status_crc_shape_and_output (test_relay_host.Tests.test_status_crc_shape_and_output) ... FAIL
+test_window_coverage_and_recovery (test_relay_host.Tests.test_window_coverage_and_recovery) ... ok
+
+======================================================================
+FAIL: test_status_crc_shape_and_output (test_relay_host.Tests.test_status_crc_shape_and_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ADMIN\.codex\visualizations\2026\11\01\01a195e9-9166-7063-a043-ddd6a0d0d237\g03-live-work\tests\g03\test_relay_host.py", line 13, in test_status_crc_shape_and_output
+    with self.assertRaises(ValueError):r.parse(bad)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.003s
+
+FAILED (failures=1)

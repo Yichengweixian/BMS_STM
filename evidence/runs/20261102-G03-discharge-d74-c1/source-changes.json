@@ -1,0 +1,32 @@
+[
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/g03_power_port.c",
+    "before": "8bd079432766d1bfcab7d843e80d1697a48b6397d051185db69e575520a5da3a",
+    "after": "953e2d32f8cfe19418e3bf271fd0141dbe72ac587c62907c759be533b5660359"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/g03_power_profile.h",
+    "before": "b0638e058ec010afc53922f50f27f9fbc56f3da5f0d35f16d68488260056df2f",
+    "after": "172b6ec50cbbe757672e933ce7f763cae3028e14a8d4ac3c600372826bb68242"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/firmware_identity.h",
+    "before": "d92333e80452b1c1509265b33b661d5c21d3ecdc23abd38099b918911eed367a",
+    "after": "2848873e4c8b41aa0c1e7f02ee22dedb4d91c937a51dbc28880c2fb13ade3a8a"
+  },
+  {
+    "path": "scripts/g03/power_capture.py",
+    "before": "7ae7a36f2e9414bbd805d018b4e5af3195ccc2f0c931ff4c4e176a8b5d71f766",
+    "after": "2269cb03bf773437187a1923b7877c889b7d339e67fb4452bac12b64f35b4726"
+  },
+  {
+    "path": "tests/g03/test_power_port.cpp",
+    "before": "65c8e1b008a67216ed7aa34d358d105f2b4ecdc6eefe48b1b0d08d48fab2eb5c",
+    "after": "d8af67668ddc1d2f1864115e7e5fa922c905dec8b9f2df84a77f8c9ee27cfc89"
+  },
+  {
+    "path": "tests/g03/test_power_host.py",
+    "before": "3c5d5fd6d4e5b85ba21e33e80678606d20403bb7ca83f0477961527378b5e81d",
+    "after": "3c5d5fd6d4e5b85ba21e33e80678606d20403bb7ca83f0477961527378b5e81d"
+  }
+]

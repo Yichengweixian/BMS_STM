@@ -1,0 +1,47 @@
+{
+  "evidence_scope": [
+    "bench"
+  ],
+  "verdict": null,
+  "purpose": "initial single-operating-point voltage comparison",
+  "reference_mean_V": {
+    "A": 3.8959999999999995,
+    "B": 3.895,
+    "C": 3.895
+  },
+  "afe_mean_nominal_V": {
+    "cell1": 3.8910917369308597,
+    "cell7": 3.8915549747048908,
+    "cell13": 3.8926462057335582
+  },
+  "all_possible_pairings_dmm_minus_afe_mV": {
+    "A": {
+      "cell1": 4.908263,
+      "cell7": 4.445025,
+      "cell13": 3.353794
+    },
+    "B": {
+      "cell1": 3.908263,
+      "cell7": 3.445025,
+      "cell13": 2.353794
+    },
+    "C": {
+      "cell1": 3.908263,
+      "cell7": 3.445025,
+      "cell13": 2.353794
+    }
+  },
+  "physical_mapping_verified": false,
+  "exact_temporal_pairing_verified": false,
+  "coefficients_fitted": false,
+  "firmware_modified": false,
+  "physical_calibration_verified": false,
+  "conclusion": "Similar voltage levels, repeat readings identical at 1mV display resolution. Mapping/timing unresolved and only one operating point. No per-channel correction or formal accuracy conclusion.",
+  "remaining": [
+    "physical channel correspondence",
+    "suitable multiple reference points",
+    "independent validation",
+    "current path/zero and gain",
+    "temperature reference and sensor model"
+  ]
+}

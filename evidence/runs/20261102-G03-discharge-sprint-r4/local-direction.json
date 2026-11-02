@@ -1,0 +1,9 @@
+{
+  "D_from": 0.9,
+  "D_to": 0.8,
+  "Ibat_from_nominal_A": -0.3566080017089844,
+  "Ibat_to_nominal_A": -0.44443333546320596,
+  "signed_dI_dD_A": 0.878253337542216,
+  "direction": "D decreases: load voltage and discharge-current magnitude increase; signed Ibat becomes more negative",
+  "scope": "local finite difference between two 2-second runs, same wiring and firmware; not global control model"
+}

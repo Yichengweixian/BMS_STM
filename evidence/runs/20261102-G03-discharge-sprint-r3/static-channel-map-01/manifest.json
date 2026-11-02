@@ -1,0 +1,30 @@
+{
+  "schema": "g01-recorder-v1",
+  "session": "54c244a34c9546bba14a2aacd4d98204",
+  "evidence_scope": "bench",
+  "source": "COM12",
+  "simulated": false,
+  "baud": 115200,
+  "started_utc": "2026-11-02T05:46:30.886425+00:00",
+  "physical_calibration_verified": false,
+  "firmware_sha256": "09ebe375c8daebbfaf6075e1e2ad21a47338492d17e2cfba5c321b22a8510785",
+  "verdict": null,
+  "rows": 108,
+  "errors": 0,
+  "tick_hz": 1000,
+  "tick_bits": 32,
+  "sample_time": "conversion bracket; not UART transmit time",
+  "boot_id_policy": "host session:segment; reconnect starts a new session",
+  "metadata": [
+    "#META,schema=g01-v1,fw=g03-power-points-r3,build=Nov  2 2026 13:28:02,cal=uncalibrated-v1,period_ms=500,kind=instantaneous_sample",
+    "#CONFIG,profile=cnn647b-g03-power-points-r3,ADC_profile=0,ADC_selfcal=0,VREF_nominal=1.8,current_model=hex-dd44fae1-nominal-v1,zero_nominal_V=0.9,physical_valid=0,sign=unconfirmed"
+  ],
+  "exit_reason": "completed",
+  "ended_utc": "2026-11-02T05:46:37.061754+00:00",
+  "sha256": {
+    "derived\\device.csv": "398bc38e4f5f8072b3fccb73ced1bf3132dbbf118f21e5aa221322d940d88469",
+    "raw\\events.jsonl": "5263fafb4e6f9a237a3d484fa012206f33175707394a4447ea84f797ea086d1b",
+    "raw\\serial.bin": "d564fbb49888519d992e9807b127b4eb72bd045b9046cf679ad445cf9157c7f0"
+  },
+  "recorder_sha256": "d704d126a518a4d130c28ab087052bd87c7c5f431b263b2b58701f0a1256bd84"
+}

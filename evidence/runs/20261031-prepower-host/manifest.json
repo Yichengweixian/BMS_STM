@@ -1,0 +1,24 @@
+{
+  "run_id": "20261031-prepower-host",
+  "mode": "exploratory",
+  "firmware": "g02-host-r2",
+  "target": "BMS_EX_Release",
+  "firmware_sha256": "2a75563eff600af7049202a29d77649a3ebea0edba06ddeca8793899d93a4012",
+  "actually_flashed": true,
+  "download_verified": true,
+  "pin_output_enabled": false,
+  "profile_snapshot": "hardware-profile-snapshot.json",
+  "scope": [
+    "static",
+    "build",
+    "simulation",
+    "bench",
+    "release_boot"
+  ],
+  "formal_criteria_frozen": false,
+  "physical_rewiring_requested": false,
+  "power_transfer_requested": false,
+  "repeated_cold_boot": false,
+  "user_constraint": "Skip probe and hardware calibration tasks",
+  "board_script_sha256": "3b9445b73b7f1dc53ded9a7429751f17bc7f9bb35823c04cf73205257f5d63a5"
+}

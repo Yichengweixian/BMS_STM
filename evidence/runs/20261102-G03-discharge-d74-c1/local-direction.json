@@ -1,0 +1,13 @@
+{
+  "from_run": "evidence\\runs\\20261102-G03-current-crosscheck-r1\\live-d80-01",
+  "to_run": "evidence\\runs\\20261102-G03-discharge-d74-c1\\live-d74-long-01",
+  "D_from": 0.8,
+  "D_to": 0.74,
+  "PSU_source_A_from": 0.433,
+  "PSU_source_A_to": 0.512,
+  "nominal_AFE_A_from": -0.4450966687997182,
+  "nominal_AFE_A_to": -0.5142160024642944,
+  "source_discharge_magnitude_dI_dD": -1.3166666666666658,
+  "interpretation": "D decreases, discharge magnitude increases locally",
+  "scope": "same wiring/source settings; r4 to c1 exact-point whitelist extension, unchanged normal power path and thresholds; display readings not synchronized; not a global control model"
+}

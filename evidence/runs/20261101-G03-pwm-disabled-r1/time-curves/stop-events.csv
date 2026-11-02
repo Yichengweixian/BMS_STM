@@ -1,0 +1,57 @@
+suite,case,scenario,start_id,start_us,terminal_state,faults,stop_reason,sample_count,fast_retained,trace_overflow,restored,physical_valid,source,event,seq,timestamp_us,relative_us,raw,flags,flags_meaning,actual_bits
+board-suite-01,01-normal,0,2538647505,63997,3,0,deadline,9999,163,0,1,0,status,stop_us,,163999,100002,,,,0
+board-suite-01,01-normal,0,2538647505,63997,3,0,deadline,9999,163,0,1,0,trace,off,228,164001,100004,1282,3,ADC_ISR_bits,0
+board-suite-01,01-normal,0,2538647505,63997,3,0,deadline,9999,163,0,1,0,trace,cleanup,229,165984,101987,1282,0,cleanup_flags,0
+board-suite-01,02-sample-6p5,8,2538653902,63998,3,0,deadline,9999,163,0,1,0,status,stop_us,,163999,100001,,,,0
+board-suite-01,02-sample-6p5,8,2538653902,63998,3,0,deadline,9999,163,0,1,0,trace,off,228,164002,100004,1283,11,ADC_ISR_bits,0
+board-suite-01,02-sample-6p5,8,2538653902,63998,3,0,deadline,9999,163,0,1,0,trace,cleanup,229,165984,101986,1283,0,cleanup_flags,0
+board-suite-01,03-adc-stale,1,2538660187,63999,4,8,stale,500,68,0,1,0,status,stop_us,,71100,7101,,,,0
+board-suite-01,03-adc-stale,1,2538660187,63999,4,8,stale,500,68,0,1,0,trace,off,133,71102,7103,1279,3,ADC_ISR_bits,0
+board-suite-01,03-adc-stale,1,2538660187,63999,4,8,stale,500,68,0,1,0,trace,fault record,134,71985,7986,1279,8,core_fault_mask,0
+board-suite-01,03-adc-stale,1,2538660187,63999,4,8,stale,500,68,0,1,0,trace,cleanup,135,71987,7988,1279,0,cleanup_flags,0
+board-suite-01,04-adc-invalid,2,2538665075,63998,4,4,invalid,499,68,0,1,0,status,stop_us,,69000,5002,,,,0
+board-suite-01,04-adc-invalid,2,2538665075,63998,4,4,invalid,499,68,0,1,0,trace,off,133,69002,5004,1284,15,ADC_ISR_bits,0
+board-suite-01,04-adc-invalid,2,2538665075,63998,4,4,invalid,499,68,0,1,0,trace,fault record,134,69985,5987,1284,4,core_fault_mask,0
+board-suite-01,04-adc-invalid,2,2538665075,63998,4,4,invalid,499,68,0,1,0,trace,cleanup,135,69986,5988,1284,0,cleanup_flags,0
+board-suite-01,05-fifo-overrun,3,2538669767,63999,4,16,OVR,499,68,0,1,0,status,stop_us,,69205,5206,,,,0
+board-suite-01,05-fifo-overrun,3,2538669767,63999,4,16,OVR,499,68,0,1,0,trace,off,133,69203,5204,1285,27,ADC_ISR_bits,0
+board-suite-01,05-fifo-overrun,3,2538669767,63999,4,16,OVR,499,68,0,1,0,trace,fault record,134,69985,5986,1285,16,core_fault_mask,0
+board-suite-01,05-fifo-overrun,3,2538669767,63999,4,16,OVR,499,68,0,1,0,trace,cleanup,135,69987,5988,1285,0,cleanup_flags,0
+board-suite-01,06-awd-low,4,2538674561,63998,4,32,AWD,0,0,0,1,0,status,stop_us,,64018,20,,,,0
+board-suite-01,06-awd-low,4,2538674561,63998,4,32,AWD,0,0,0,1,0,trace,off,65,64016,18,1403,139,ADC_ISR_bits,0
+board-suite-01,06-awd-low,4,2538674561,63998,4,32,AWD,0,0,0,1,0,trace,fault record,66,65986,1988,1403,32,core_fault_mask,0
+board-suite-01,06-awd-low,4,2538674561,63998,4,32,AWD,0,0,0,1,0,trace,cleanup,67,65987,1989,1403,0,cleanup_flags,0
+board-suite-01,07-awd-high,5,2538678297,63996,4,32,AWD,0,0,0,1,0,status,stop_us,,64017,21,,,,0
+board-suite-01,07-awd-high,5,2538678297,63996,4,32,AWD,0,0,0,1,0,trace,off,65,64015,19,1406,139,ADC_ISR_bits,0
+board-suite-01,07-awd-high,5,2538678297,63996,4,32,AWD,0,0,0,1,0,trace,fault record,66,65983,1987,1406,32,core_fault_mask,0
+board-suite-01,07-awd-high,5,2538678297,63996,4,32,AWD,0,0,0,1,0,trace,cleanup,67,65985,1989,1406,0,cleanup_flags,0
+board-suite-02,01-cache-full,6,2538775298,63997,4,65536,cache_full,445,444,1,1,0,status,stop_us,,68452,4455,,,,0
+board-suite-02,01-cache-full,6,2538775298,63997,4,65536,cache_full,445,444,1,1,0,trace,off,509,68454,4457,1284,3,ADC_ISR_bits,0
+board-suite-02,01-cache-full,6,2538775298,63997,4,65536,cache_full,445,444,1,1,0,trace,fault record,510,69984,5987,1284,65536,core_fault_mask,0
+board-suite-02,01-cache-full,6,2538775298,63997,4,65536,cache_full,445,444,1,1,0,trace,cleanup,511,69985,5988,1284,0,cleanup_flags,0
+board-suite-02,02-heartbeat-expiry,7,2538785973,64000,4,64,heartbeat,1999,83,0,1,0,status,stop_us,,84001,20001,,,,0
+board-suite-02,02-heartbeat-expiry,7,2538785973,64000,4,64,heartbeat,1999,83,0,1,0,trace,off,148,84003,20003,1284,3,ADC_ISR_bits,0
+board-suite-02,02-heartbeat-expiry,7,2538785973,64000,4,64,heartbeat,1999,83,0,1,0,trace,fault record,149,85987,21987,1284,64,core_fault_mask,0
+board-suite-02,02-heartbeat-expiry,7,2538785973,64000,4,64,heartbeat,1999,83,0,1,0,trace,cleanup,150,85988,21988,1284,0,cleanup_flags,0
+board-suite-02,03-explicit-stop,0,2538790950,63998,4,1,STOP,2598,89,0,1,0,status,stop_us,,89988,25990,,,,0
+board-suite-02,03-explicit-stop,0,2538790950,63998,4,1,STOP,2598,89,0,1,0,trace,off,154,89991,25993,1282,3,ADC_ISR_bits,0
+board-suite-02,03-explicit-stop,0,2538790950,63998,4,1,STOP,2598,89,0,1,0,trace,fault record,155,91986,27988,1282,1,core_fault_mask,0
+board-suite-02,03-explicit-stop,0,2538790950,63998,4,1,STOP,2598,89,0,1,0,trace,cleanup,156,91987,27989,1282,0,cleanup_flags,0
+board-suite-02,04-foreground-stall,0,2538796092,63998,3,0,deadline,9999,163,0,1,0,status,stop_us,,163999,100001,,,,0
+board-suite-02,04-foreground-stall,0,2538796092,63998,3,0,deadline,9999,163,0,1,0,trace,off,228,164002,100004,1284,11,ADC_ISR_bits,0
+board-suite-02,04-foreground-stall,0,2538796092,63998,3,0,deadline,9999,163,0,1,0,trace,cleanup,229,341984,277986,1284,0,cleanup_flags,0
+board-suite-02,05-bad-crc,0,2538802661,63998,4,2,protocol,2598,89,0,1,0,status,stop_us,,89988,25990,,,,0
+board-suite-02,05-bad-crc,0,2538802661,63998,4,2,protocol,2598,89,0,1,0,trace,off,154,89989,25991,1287,3,ADC_ISR_bits,0
+board-suite-02,05-bad-crc,0,2538802661,63998,4,2,protocol,2598,89,0,1,0,trace,fault record,155,91985,27987,1287,2,core_fault_mask,0
+board-suite-02,05-bad-crc,0,2538802661,63998,4,2,protocol,2598,89,0,1,0,trace,cleanup,156,91987,27989,1287,0,cleanup_flags,0
+board-suite-02,06-rx-pressure,0,2538807780,63998,4,2,protocol,3998,103,0,1,0,status,stop_us,,103985,39987,,,,0
+board-suite-02,06-rx-pressure,0,2538807780,63998,4,2,protocol,3998,103,0,1,0,trace,off,168,103987,39989,1282,3,ADC_ISR_bits,0
+board-suite-02,06-rx-pressure,0,2538807780,63998,4,2,protocol,3998,103,0,1,0,trace,fault record,169,105985,41987,1282,2,core_fault_mask,0
+board-suite-02,06-rx-pressure,0,2538807780,63998,4,2,protocol,3998,103,0,1,0,trace,cleanup,170,105986,41988,1282,0,cleanup_flags,0
+board-suite-02,07-duplicate-start,0,2538813246,63998,3,0,deadline,19999,263,0,1,0,status,stop_us,,263999,200001,,,,0
+board-suite-02,07-duplicate-start,0,2538813246,63998,3,0,deadline,19999,263,0,1,0,trace,off,328,264001,200003,1284,3,ADC_ISR_bits,0
+board-suite-02,07-duplicate-start,0,2538813246,63998,3,0,deadline,19999,263,0,1,0,trace,cleanup,329,265985,201987,1284,0,cleanup_flags,0
+board-suite-02,08-conflicting-start,0,2538821269,63999,4,2,protocol,2598,89,0,1,0,status,stop_us,,89989,25990,,,,0
+board-suite-02,08-conflicting-start,0,2538821269,63999,4,2,protocol,2598,89,0,1,0,trace,off,154,89990,25991,1284,3,ADC_ISR_bits,0
+board-suite-02,08-conflicting-start,0,2538821269,63999,4,2,protocol,2598,89,0,1,0,trace,fault record,155,91985,27986,1284,2,core_fault_mask,0
+board-suite-02,08-conflicting-start,0,2538821269,63999,4,2,protocol,2598,89,0,1,0,trace,cleanup,156,91987,27988,1284,0,cleanup_flags,0

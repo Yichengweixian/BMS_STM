@@ -1,0 +1,7 @@
+{
+  "programmer_exit_code": 0,
+  "verification_phrase_present": true,
+  "wrapper_issue": "UnicodeEncodeError while echoing already-saved UTF-8 replacement character to GBK console after successful verification",
+  "raw_log_preserved": true,
+  "action": "No reflash; set PYTHONIOENCODING=utf-8 for future command output"
+}

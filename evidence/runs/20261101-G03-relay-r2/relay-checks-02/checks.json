@@ -1,0 +1,138 @@
+[
+  {
+    "name": "build-core",
+    "exit_code": 0,
+    "command": [
+      "D:/ADMIN/mingw64/bin/gcc.exe",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\tests\\g03\\test_relay_core.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_core.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\evidence\\runs\\20261101-G03-relay-r2\\relay-checks-02\\core.exe"
+    ]
+  },
+  {
+    "name": "core",
+    "exit_code": 0,
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\evidence\\runs\\20261101-G03-relay-r2\\relay-checks-02\\core.exe"
+    ]
+  },
+  {
+    "name": "adapter-stack-frame",
+    "exit_code": 0,
+    "command": [
+      "D:/ADMIN/mingw64/bin/gcc.exe",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "-Wframe-larger-than=512",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\tests\\g02\\stubs",
+      "-c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_port.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\evidence\\runs\\20261101-G03-relay-r2\\relay-checks-02\\relay.o"
+    ]
+  },
+  {
+    "name": "build-disabled",
+    "exit_code": 0,
+    "command": [
+      "D:/ADMIN/mingw64/bin/gcc.exe",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "-DG3R_LIVE_PROFILE_VERIFIED=0",
+      "-include",
+      "stdlib.h",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\tests\\g02\\stubs",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\tests\\g03\\test_relay_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_link.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_core.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_core.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\measurement_core.c",
+      "-lm",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\evidence\\runs\\20261101-G03-relay-r2\\relay-checks-02\\disabled.exe"
+    ]
+  },
+  {
+    "name": "disabled",
+    "exit_code": 0,
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\evidence\\runs\\20261101-G03-relay-r2\\relay-checks-02\\disabled.exe"
+    ]
+  },
+  {
+    "name": "build-live-register-fixture",
+    "exit_code": 0,
+    "command": [
+      "D:/ADMIN/mingw64/bin/gcc.exe",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "-DG3R_LIVE_PROFILE_VERIFIED=1",
+      "-DG3R_CELL_LOW_CODE=36000",
+      "-DG3R_CELL_HIGH_CODE=41000",
+      "-include",
+      "stdlib.h",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\tests\\g02\\stubs",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\tests\\g03\\test_relay_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_link.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_core.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_core.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\BMS_EXv1.1\\BMS_EX\\BSP\\measurement_core.c",
+      "-lm",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\evidence\\runs\\20261101-G03-relay-r2\\relay-checks-02\\live-register-fixture.exe"
+    ]
+  },
+  {
+    "name": "live-register-fixture",
+    "exit_code": 0,
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\evidence\\runs\\20261101-G03-relay-r2\\relay-checks-02\\live-register-fixture.exe"
+    ]
+  },
+  {
+    "name": "host",
+    "exit_code": 0,
+    "command": [
+      "C:\\Users\\ADMIN\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-live-work\\tests\\g03",
+      "-p",
+      "test_relay_host.py",
+      "-v"
+    ]
+  }
+]

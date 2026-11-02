@@ -1,0 +1,1 @@
+PASS: production G02 port/register model; default gate, pair release (if enabled), ADC ownership, callbacks, failures, cancellation, cleanup and stop. Simulation only.

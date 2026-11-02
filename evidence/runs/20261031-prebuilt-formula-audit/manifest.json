@@ -1,0 +1,19 @@
+{
+  "run_id": "20261031-prebuilt-formula-audit",
+  "evidence_scope": [
+    "static"
+  ],
+  "bench_executed": false,
+  "firmware_changed": false,
+  "power_enabled": false,
+  "full_local_analysis": "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\hex-audit",
+  "source_hex_sha256": "dd44fae11ed542ad6bcee45b35a13e93bd6632481b7d29662afda8ac7856be7f",
+  "artifacts": {
+    "review.md": "5cd26ed053519a5ce0e832ce37692690d515a578fc3f737b480505fba6681541",
+    "result.json": "15aed8c47bb552236f84687c77b1e0e101553ceabe66701a936cf36869c3298f",
+    "inventory.json": "6bbf77e605ba0dc793dbd07fc6404dec56740a413a4195ca230e9289e8634fc0",
+    "arithmetic-excerpts.txt": "c5f22566df41141a7851d3e8f1e0e6b42e904be22599332ce08e20e9fe4720ca",
+    "course-excerpts.json": "470ef3b90d3bb2f9989383c6a039743865ed5ffd6f8c690c8c8e95268ef6b9bb",
+    "calibration-strings.json": "9761a93a89e19a6b099a99b8b7ea241a3e21b09ec67e1f197d5b77fe7db6ecd2"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "firmware": "g03-power-d90-r2",
+  "image_sha256": "774c7f388db0e5a1b1fc20d87e9dfad34f314afa992c2c488079a2200f5d4743",
+  "mode": "live",
+  "profile": 1345925170,
+  "physical_valid": 0,
+  "created_utc": "2026-11-02T05:24:30.587066+00:00",
+  "start_retries": 0,
+  "contract_sha256": "31d67206bc2e9863c220b18b9ff862de59e9c6c475e6fa0500490bd6f9df5128"
+}

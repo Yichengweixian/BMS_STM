@@ -1,0 +1,51 @@
+{
+  "planned": 15,
+  "executed": 8,
+  "results": [
+    {
+      "case": "normal",
+      "verdict": "pass",
+      "error": null
+    },
+    {
+      "case": "sample-6p5",
+      "verdict": "pass",
+      "error": null
+    },
+    {
+      "case": "adc-stale",
+      "verdict": "pass",
+      "error": null
+    },
+    {
+      "case": "adc-invalid",
+      "verdict": "pass",
+      "error": null
+    },
+    {
+      "case": "fifo-overrun",
+      "verdict": "pass",
+      "error": null
+    },
+    {
+      "case": "awd-low",
+      "verdict": "pass",
+      "error": null
+    },
+    {
+      "case": "awd-high",
+      "verdict": "pass",
+      "error": null
+    },
+    {
+      "case": "cache-full",
+      "verdict": "fail",
+      "error": "RuntimeError('SWD reset failed; no repeated reset or start')"
+    }
+  ],
+  "verdict": "fail",
+  "finished_utc": "2026-11-01T13:34:02.500112+00:00",
+  "physical_valid": 0,
+  "power_output_tested": false,
+  "warm_reset_evidence_only": true
+}

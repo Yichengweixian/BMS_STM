@@ -1,0 +1,13 @@
+{
+  "evidence_scope": [
+    "static"
+  ],
+  "verdict": null,
+  "sha256": {
+    "board-photo.jpg": "41e76b225a994cf990e5ef49d99340028e430824e2c163526ed9b4a4c33600d3",
+    "current-area-inspection.png": "3449c57a7bebf97a70696698b739f202a76c319b2031aa4031b027534a694ef7",
+    "hardware-profile-before.json": "f1da0c8adcdc086b8d971f909d49000b8c467f52d63629f76c5e5e9f9b675e60",
+    "location.json": "f8752eaf786868cbb6fa716c91ce3fcbdd131d14b25a8d56828ee69441dffe36",
+    "review.md": "46f966634bb227dc2dc26526acf0d1be1eb5e3d0aa5690c15d3479c33ba72a37"
+  }
+}

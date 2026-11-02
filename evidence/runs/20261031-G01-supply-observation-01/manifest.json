@@ -1,0 +1,18 @@
+{
+  "evidence_scope": [
+    "static",
+    "bench"
+  ],
+  "bench_basis": "user-reported manual measurement only; no remotely observed measurement",
+  "verdict": null,
+  "sha256": {
+    "evidence\\runs\\20261031-G01-supply-observation-01\\course-slide7-image10.png": "7406a4b0350a88fc350804a56acf6678cd156aec687578b11c094f3c3f153bf1",
+    "evidence\\runs\\20261031-G01-supply-observation-01\\course-slide7-image11.png": "faa732efdca2293b8a07d734fd52d7e3acf993c3966aff8457631136b5b2f9c2",
+    "evidence\\runs\\20261031-G01-supply-observation-01\\course-slide7-image9.png": "f7caaa4114a1f528f5e0b3eddd5369df2c6071f9b2c4c26568c09d20c243df09",
+    "evidence\\runs\\20261031-G01-supply-observation-01\\document-evidence.json": "574071eb6cd4a7259018ae27be6867570ae59cea053d977ce8c4b5f67330ee8a",
+    "evidence\\runs\\20261031-G01-supply-observation-01\\hardware-profile-before.json": "b80126c584c902181f8e132014c81f93a1e31501f70fc7ac221ca3c6c5d43656",
+    "evidence\\runs\\20261031-G01-supply-observation-01\\review.md": "e24b2171ead1d80531d10d302505a3a652ff1877ad472fed73a3765bb5d0a0cf",
+    "evidence\\runs\\20261031-G01-supply-observation-01\\user-observation.json": "a73e4b09b619415c3c1afb0a661c28b3b08b918c1ab91a1cf78ce8c0754f9d68",
+    "instructions\\specs\\hardware-profile.json": "cb78c8eeec482bfd18baba5b1a0a34104e979280ce19b290db47cbe300d15212"
+  }
+}

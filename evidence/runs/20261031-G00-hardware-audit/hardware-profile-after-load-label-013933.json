@@ -1,0 +1,285 @@
+{
+  "schema_version": "1.0-draft",
+  "profile_id": "cnn647b-bms-baseline-20261031-r1",
+  "status": "partially_confirmed",
+  "note": "Confirmed facts, document nominal values and code assumptions are separate below. Unknown physical parameters and limits remain null. No power-stage acceptance is implied.",
+  "board_id": null,
+  "hardware_revision": null,
+  "schematic_sha256": null,
+  "mcu_from_project": "STM32N647X0HxQ",
+  "afe_from_project": "ADBMS1818",
+  "current_sign_proposed": "positive_into_battery_pack",
+  "amplifier_actual_part": null,
+  "amplifier_gain_V_per_V": null,
+  "shunt_ohm_measured": null,
+  "adc_reference_V_measured": null,
+  "mcu_and_afe_current_same_node": null,
+  "temperature_sensor_actual_part": null,
+  "sensor_divider_topology": null,
+  "cell_model": null,
+  "cell_ids": [],
+  "capacity_reference_Ah": null,
+  "limits": {
+    "cell_voltage_min_V": null,
+    "cell_voltage_max_V": null,
+    "charge_current_max_A": null,
+    "discharge_current_max_A": null,
+    "charge_temperature_min_C": null,
+    "charge_temperature_max_C": null,
+    "discharge_temperature_min_C": null,
+    "discharge_temperature_max_C": null,
+    "converter_voltage_max_V": null,
+    "converter_current_max_A": null,
+    "converter_power_max_W": null,
+    "load_power_continuous_W": null,
+    "supply_current_limit_A": null
+  },
+  "control": {
+    "pwm_frequency_Hz_course": 100000,
+    "upper_switch_duty_min_course": 0.4,
+    "upper_switch_duty_max_course": 0.9,
+    "permitted_test_duty_min": null,
+    "permitted_test_duty_max": null,
+    "feedback_sign_charge": null,
+    "feedback_sign_discharge": null,
+    "effective_deadtime_min_ns": null,
+    "relay_change_conditions": null,
+    "stop_delay_limit_us": null,
+    "communication_loss_action": null,
+    "default_power_disabled_verified_run_id": null
+  },
+  "confirmed_by": null,
+  "confirmed_at_utc": null,
+  "evidence": [
+    {
+      "source": "Keil project and STM32CubeProgrammer connection",
+      "scope": "MCU identity only; board revision and connected power hardware not established",
+      "path": "evidence/runs/20261030-basic-flash/flash-release-20261030-ur.log"
+    },
+    {
+      "source": "User-provided board photographs 2026-10-31",
+      "path": "D:/ADMIN/Temp/codex-clipboard-37d4c8f1-d9de-4232-8a27-6712bfe3ba9d.jpg",
+      "scope": "Visible CNN647B core-board silkscreen and ADBMS1818 chip marking; carrier revision and UART wiring not established"
+    },
+    {
+      "source": "2026-10-31 source and course-material audit",
+      "path": "evidence/runs/20261031-G00-hardware-audit/document-excerpts.json",
+      "scope": "Document nominal information and code configuration, not measured limits"
+    },
+    {
+      "source": "User full-board photo and text confirmation",
+      "path": "evidence/runs/20261031-G00-hardware-audit/board-cells-load-photo.jpg",
+      "sha256": "6f2b705a26d78cc4b9430c4938b33881e570dcb9a33b9fc97494bd74be43ceb6",
+      "scope": "3 installed cells, visible 14500/3.7V/800mAh/Li-ion markings, power plug, external resistor appearance; actual voltage/load rating not established"
+    },
+    {
+      "source": "User message 2026-10-31",
+      "scope": "External resistor marking transcribed as 25W33ΩJ; label rating only, not measured resistance or installed thermal capability"
+    }
+  ],
+  "mcu_detected": "STM32N647 (Device ID 0x486)",
+  "mcu_user_reported": "stm32N647X",
+  "core_board_marking": "CNN647B",
+  "afe_marking_observed": "ADBMS1818",
+  "registration_id": "local-bms-board-01",
+  "registration_id_note": "Administrative identifier for the board in this chat; not a manufacturer serial number.",
+  "verified_identity": {
+    "core_board_marking": "CNN647B",
+    "mcu_project": "STM32N647X0HxQ",
+    "mcu_device_id": "0x486",
+    "afe_photo_marking": "ADBMS1818",
+    "uart_usb_device": "CH340 VID_1A86 PID_7523",
+    "uart_last_port": "COM10",
+    "source": "Existing photographs, programmer log, USB enumeration; see evidence entries"
+  },
+  "software_configuration": {
+    "source": "BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c and Appli/Core/Inc/main.h",
+    "uart": {
+      "peripheral": "USART1",
+      "tx": "PE5",
+      "rx": "PE6",
+      "baud": 115200,
+      "format": "8N1",
+      "validation": "Startup log and three exact echo frames"
+    },
+    "relays": {
+      "discharge": "PG5/SWL",
+      "charge": "PB5/SWS",
+      "initialized_gpio_level": "LOW",
+      "physical_open_state_verified": false
+    },
+    "pwm": {
+      "timer": "TIM1",
+      "channel": "CH2/CH2N",
+      "pins": [
+        "PA9",
+        "PF7"
+      ],
+      "prescaler": 0,
+      "period": 2000,
+      "repetition_counter": 1,
+      "counter_mode": "CENTERALIGNED1",
+      "programmed_deadtime": 0,
+      "break_enabled": false,
+      "start_call_present": false,
+      "actual_frequency_measured_Hz": null
+    },
+    "adc_start_call_present": false,
+    "adc_signal_labels": {
+      "PA0": "VB_AD",
+      "PA1": "I_AD",
+      "PA2": "VS_AD",
+      "PA10": "VL_AD"
+    },
+    "afe": {
+      "selected_cell_channels": [
+        1,
+        7,
+        13
+      ],
+      "current": "GPIO1",
+      "temperature": [
+        "GPIO2",
+        "GPIO3",
+        "GPIO4"
+      ],
+      "output_cadence": "one sample at boot"
+    },
+    "measurement_assumptions": {
+      "current_zero_V": 0.9,
+      "current_A_per_V": 1.3333,
+      "temperature_model": "PT1000 linear approximation",
+      "pullup_ohm": 9100,
+      "excitation_V": 3.0,
+      "R0_ohm": 1000,
+      "alpha_per_C": 0.00385,
+      "physical_calibration_verified": false
+    },
+    "stop_design": "UART echo only; no STOP/mode/interlock/communication-loss control state machine in current application"
+  },
+  "document_nominal": {
+    "source_ppt": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "board_supply": {
+      "adapter_V": 18,
+      "source": "slide4",
+      "actual_connected_value_confirmed": false
+    },
+    "cells": {
+      "series_count": 3,
+      "source": "任务2恒流控制实验_实验步骤.docx paragraph169",
+      "actual_cells_confirmed": false
+    },
+    "current_frontend": {
+      "part_claim": "INA199A2",
+      "gain_claim": 50,
+      "shunt_ohm": 0.015,
+      "source": "PPT slide4/7; task2 paragraphs213-215",
+      "conflict": "TI INA199x2 nominal gain is 100 V/V; actual installed suffix and full signal chain unknown"
+    },
+    "temperature": {
+      "sensor_claim": "PT1000",
+      "pullup_ohm": 9100,
+      "excitation_V": 3.0,
+      "topology_claim": "pull-up divider into AFE GPIO",
+      "source": "PPT slide7; main.c and adbms1818.h",
+      "actual_sensor_confirmed": false
+    },
+    "mcu_adc_reference_V": {
+      "value": 1.8,
+      "source": "task2 paragraph201",
+      "measured": false
+    },
+    "relays": {
+      "claim": "LOW=open, HIGH=energized",
+      "source": "PPT slide6; task2 paragraph126",
+      "actual_polarity_confirmed": false
+    },
+    "power_stage": {
+      "driver_claim": "EG3112 with internal deadtime",
+      "mosfet_claim": "SiZ998DT",
+      "source": "PPT slide8; task2 paragraphs18/102",
+      "actual_verified": false
+    },
+    "examples_not_limits": {
+      "load_ohm": 33,
+      "load_rating_W": 25,
+      "charge_supply_V": 15,
+      "charge_supply_A": 1,
+      "source": "task2 paragraphs80/82",
+      "note": "Illustrative conditions only; not actual equipment or permitted limits"
+    }
+  },
+  "conflicts": [
+    {
+      "id": "G00-C01",
+      "item": "INA199A2 versus gain50",
+      "resolution": "Do not set actual gain. Confirm fitted device/complete chain then calibrate.",
+      "source": "https://www.ti.com/product/INA199"
+    },
+    {
+      "id": "G00-C02",
+      "item": "Temperature PT1000 template versus NTC host software terminology",
+      "resolution": "Use PT1000 only as current code model; physical sensor unknown."
+    },
+    {
+      "id": "G00-C03",
+      "item": "ADC2 ioc one channel versus source three channels",
+      "resolution": "Current source is build baseline. Reconcile before regeneration/ADC measurement."
+    },
+    {
+      "id": "G00-C04",
+      "item": "Template manual claims ST-Link virtual COM; actual device CH340",
+      "resolution": "Use observed CH340 COM10 and actual echo/startup evidence."
+    },
+    {
+      "id": "G00-C05",
+      "item": "F4 schematic in repository versus N647 hardware",
+      "resolution": "F4 PDF is not an accepted circuit source for this carrier."
+    },
+    {
+      "id": "G00-C06",
+      "item": "pi.c and pi.h types differ",
+      "resolution": "pi.c excluded from targets; controller is not active."
+    }
+  ],
+  "physical_setup": {
+    "board_supply_source": null,
+    "adapter_label": null,
+    "bench_supply_connected": null,
+    "installed_cell_count": 3,
+    "installed_cell_markings": [
+      "14500",
+      "3.7 V",
+      "800 mAh",
+      "Li-ion"
+    ],
+    "load_connected": null,
+    "load_label": "25W33ΩJ",
+    "reference_instruments": null,
+    "user_action_needed": "Visual inspection only; do not rewire or energize a new circuit for registration.",
+    "supply_user_estimate_unverified": "User thinks possibly 12 V; not confirmed; do not use as measured voltage or allowed input rating.",
+    "supply_photo_observation": "Barrel power plug is connected; adapter label is outside photo; board USB and ribbon cable also connected.",
+    "multimeter_available": false,
+    "oscilloscope_available": null,
+    "external_resistor_observation": "Gold aluminum-housed resistor visible left of board; red/black wires present at lower terminal; resistor resistance and power label unreadable, full electrical route not established.",
+    "load_label_specification": {
+      "resistance_nominal_ohm": 33,
+      "power_rating_label_W": 25,
+      "tolerance_code": "J",
+      "tolerance_percent": 5,
+      "source": "User transcription of resistor marking",
+      "resistance_measured_ohm": null,
+      "continuous_power_in_actual_mounting_W": null
+    }
+  },
+  "cell_label_specification": {
+    "designation": "14500",
+    "chemistry_label": "Li-ion",
+    "nominal_voltage_V": 3.7,
+    "capacity_label_mAh": 800,
+    "manufacturer_confirmed": null,
+    "actual_capacity_measured_Ah": null,
+    "series_wiring_verified": false,
+    "note": "Printed label values only; not a measured capacity or charge/discharge limit."
+  }
+}

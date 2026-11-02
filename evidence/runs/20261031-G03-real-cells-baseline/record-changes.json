@@ -1,0 +1,17 @@
+[
+  {
+    "path": "instructions/specs/hardware-profile.json",
+    "before_sha256": "a6f268fb6172d23cbb6bb55e55ed92a98ba95e328adaebcaefe8b53d780cfb02",
+    "after_sha256": "9bbb1ea74ddcafe5c2b6938565a42d85dd6f237815230b868c28303df2e6d8d4"
+  },
+  {
+    "path": "instructions/STATUS.md",
+    "before_sha256": "1856cb170464a920e64c0943d7a223a2ee301e1c1f443325870af1957a3cd0ba",
+    "after_sha256": "a604c482ddb6a981bb48a44a5c5b211df50b067dfb37c568a87462f322b9e702"
+  },
+  {
+    "path": "instructions/RUNLOG.md",
+    "before_sha256": "35c8c2c109f1e7fc892abf92f34fd56187d97b302ba56d929d4b7dcf87f8bfe3",
+    "after_sha256": "37e211e7ea9b75225537c02930c9a253984b325ea65de8a3b9968807375f6a64"
+  }
+]

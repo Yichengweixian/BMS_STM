@@ -1,0 +1,30 @@
+{
+  "schema": "g01-recorder-v1",
+  "session": "78c80e7a7dac4c6e878fd4e57b4f63a0",
+  "evidence_scope": "simulation",
+  "source": "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\evidence\\runs\\20261031-G03-disabled\\g01-regression\\simulated-uart.bin",
+  "simulated": true,
+  "baud": 115200,
+  "started_utc": "2026-10-31T08:50:58.538606+00:00",
+  "physical_calibration_verified": false,
+  "firmware_sha256": null,
+  "verdict": null,
+  "rows": 36,
+  "errors": 0,
+  "tick_hz": 1000,
+  "tick_bits": 32,
+  "sample_time": "conversion bracket; not UART transmit time",
+  "boot_id_policy": "host session:segment; reconnect starts a new session",
+  "metadata": [
+    "#META,schema=g01-v1,fw=g03-disabled-r1,build=Oct 31 2026 16:50:56,cal=uncalibrated-v1,period_ms=500,kind=instantaneous_sample",
+    "#CONFIG,profile=cnn647b-bms-g02-20261031-r1,ADC1=PA1_12bit_SW_OS2_shift1,VREF_nominal=1.8,ADC_selfcal=off,AFE_MD=2_ADCOPT0,sign=unconfirmed"
+  ],
+  "exit_reason": "completed",
+  "ended_utc": "2026-10-31T08:50:58.568040+00:00",
+  "sha256": {
+    "derived\\device.csv": "92830837e30dc299f012aee8c0e86227d35253d60c059fdfb5fb01b8228fafb9",
+    "raw\\events.jsonl": "966c3894022be0ae7f48909028120dd7c0f6cd844fdae4d45d76ae8be2cd423e",
+    "raw\\serial.bin": "50f37dc12096be0e024c0348398dda44d3b2bfa922d836e903f62aa28f4caf32"
+  },
+  "recorder_sha256": "fa391af37180247c3fc9e536316a05115ef4476aad0d18d6e65221550b84fd05"
+}

@@ -1,0 +1,53 @@
+diff --git a/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx b/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx
+index 1761899..abcb518 100644
+--- a/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx
++++ b/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx
+@@ -10,7 +10,7 @@
+       <TargetName>BMS_EX_Debug</TargetName>
+       <ToolsetNumber>0x4</ToolsetNumber>
+       <ToolsetName>ARM-ADS</ToolsetName>
+-      <pCCUsed>6230000::V6.23::ARMCLANG</pCCUsed>
++      <pCCUsed>6240000::V6.24::ARMCLANG</pCCUsed>
+       <uAC6>1</uAC6>
+       <TargetOption>
+         <TargetCommonOption>
+diff --git a/BMS_EXv1.1/BMS_EX/Secure_nsclib/secure_nsclib.o b/BMS_EXv1.1/BMS_EX/Secure_nsclib/secure_nsclib.o
+index b81314f..aebaf6e 100644
+Binary files a/BMS_EXv1.1/BMS_EX/Secure_nsclib/secure_nsclib.o and b/BMS_EXv1.1/BMS_EX/Secure_nsclib/secure_nsclib.o differ
+diff --git a/instructions/RUNLOG.md b/instructions/RUNLOG.md
+index a1ca3f9..04eed4a 100644
+--- a/instructions/RUNLOG.md
++++ b/instructions/RUNLOG.md
+@@ -31,3 +31,13 @@
+ - 源码、工程配置、开发规范和说明文档继续保留。更新根AGENTS与README，避免后续重新上传工具包。
+ - 范围为当前分支的后续提交，不重写已发布历史；初始提交和GitHub端旧LFS对象仍可能保留原记录。
+ - 无软件卸载、固件构建或硬件实验；实验状态不变。
++
++## 2026-10-30 · 当前基础源码烧录
++
++- 安装用户提供的 MX25UM25645G_ATK-CNN647B.FLM 至 Keil；解压配套 CubeProgrammer stldr。
++- 用户切换开发启动模式后识别 STM32N647。ST-Link V2J37S7 未升级。
++- BMS_EX_Release 构建 0 错误、0 警告；SWD 100 kHz Under Reset 写入 0x70100400，Download verified successfully。
++- 首次 HotPlug 擦除失败与成功重试日志均保留于 evidence/runs/20261030-basic-flash；镜像 SHA256 与工作卡同目录。
++- 证据范围 build、bench；独立启动正在等待实物确认，未进行测量/功率级验收。
++
++- 后续启动确认：BOOTSR 实测 0x3，用户反向切换两个 BOOT 开关并复位后确认 OLED 显示 BMS_EX；Flash 复位启动已跑通。最终纠正开关后的全断电重启未另行观察。保存复用脚本 tools/flash-loaders/flash-current-release.ps1，已检查语法。
+diff --git a/instructions/STATUS.md b/instructions/STATUS.md
+index 742c65b..568c638 100644
+--- a/instructions/STATUS.md
++++ b/instructions/STATUS.md
+@@ -4,7 +4,7 @@
+ 
+ | 阶段 | status | verdict | 已有证据 / 下一动作 |
+ |---|---|---|---|
+-| G00 基线与硬件契约 | in_progress | null | 已审查源码/文档/旧产物；下一步核对实物和构建身份，尚未构建或上板复现 |
++| G00 基线与硬件契约 | in_progress | null | 2026-10-30 当前 Release 已构建并烧录读回校验成功；见 evidence/runs/20261030-basic-flash，用户已确认 Flash 复位启动显示 BMS_EX，正式硬件契约仍待补齐 |
+ | G01 测量与标定 | not_started | null | 有示例换算；需原码/有效性输出、两路电流分别标定 |
+ | G02 无功率 PWM 与时序 | not_started | null | 有初始化配置；未取得示波器波形 |
+ | G03 受限开环功率级 | not_started | null | 等待实际硬件边界、停止链路和前置门通过 |
+@@ -18,3 +18,5 @@
+ 本轮完成：适配规范、说明 HTML、模板和资料哈希；其检查结果仅支持文档结构和来源完整性，不支持硬件性能。
+ 
+ 目录采用：资料与工具已分类，规范位于 `instructions/`，项目根 `AGENTS.md` 已建立；历史目录与旧说明快照保留。此项仅为组织与文档变更，上表所有硬件阶段状态不变。
++
++

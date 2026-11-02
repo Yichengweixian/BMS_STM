@@ -1,0 +1,23 @@
+{
+  "live-d90-long-01": {
+    "Vload_display_V": 10.916,
+    "reported_behavior": "小幅度波动，较为稳定；没有任何问题",
+    "after_stop": "user confirmed near zero before next point",
+    "source": "user DMM6500 front DCV 100V display observation",
+    "synchronized": false,
+    "reference_accuracy_verified": false
+  },
+  "live-d80-long-01": {
+    "Vload_display_V": 12.152,
+    "reported_behavior": "小幅度波动；所有现象正常",
+    "after_stop": "user reported all phenomena normal; no numeric after-stop voltage supplied",
+    "source": "user DMM6500 front DCV 100V display observation",
+    "synchronized": false,
+    "reference_accuracy_verified": false
+  },
+  "final": {
+    "sources": "all three OFF confirmed by user",
+    "board_aux": "18V and serial may remain connected",
+    "final_outputs": "MCU run ended off, once token consumed"
+  }
+}

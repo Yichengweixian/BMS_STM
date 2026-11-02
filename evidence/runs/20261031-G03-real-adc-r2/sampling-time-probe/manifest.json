@@ -1,0 +1,9 @@
+{
+  "firmware": "g03-adc-r2",
+  "experiment": "peripheral-only sampling-time override, outputs disabled",
+  "address": "0x50022014",
+  "before": 24,
+  "after": 56,
+  "sampling_cycles": 1499.5,
+  "other_bits_preserved": true
+}

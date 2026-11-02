@@ -1,0 +1,110 @@
+{
+  "run_id": "20261031-G01-voltage-source-settings-02",
+  "status": "preparation",
+  "verdict": null,
+  "evidence_scope": [
+    "static"
+  ],
+  "user_confirmed": {
+    "source_to_holder": {
+      "CH1": "A",
+      "CH2": "B",
+      "CH3": "C"
+    },
+    "real_cells_removed": true,
+    "original_approximately_18V_board_supply_retained": true,
+    "charge_port_empty": true,
+    "load_port_empty": true
+  },
+  "photo_observation": {
+    "all_outputs_off": true,
+    "voltage_set_V": {
+      "CH1": 3.5,
+      "CH2": 3.5,
+      "CH3": 3.5
+    },
+    "current_set_A": {
+      "CH1": 0.5,
+      "CH2": 0.5,
+      "CH3": 0.5
+    },
+    "ovp_V": 3.5,
+    "ovp_enabled": false,
+    "ocp_A": 1,
+    "ocp_enabled": true,
+    "scope": "Latest user photo, settings only; output display zero while Off"
+  },
+  "proposed_settings": {
+    "mode": "independent",
+    "start_voltage_V": 3.9,
+    "current_set_A": 0.05,
+    "ovp_V": 4.05,
+    "ovp_enabled": true,
+    "ocp_A": 0.06,
+    "ocp_enabled": true,
+    "note": "Engineering starting settings only. Stop on CC, trip or droop; do not increase current blindly. Not board hard ratings."
+  },
+  "proposed_plan": {
+    "range_per_cell_V": [
+      3.2,
+      3.9
+    ],
+    "other_channels_held_V": 3.9,
+    "mapping_step_V": [
+      3.9,
+      3.8,
+      3.9
+    ],
+    "fit_setpoints_V": [
+      3.2,
+      3.6,
+      3.9
+    ],
+    "validation_setpoints_V": [
+      3.8,
+      3.4
+    ],
+    "independent_endpoint_rechecks_V": [
+      3.2,
+      3.9
+    ],
+    "settle_seconds_min": 10,
+    "capture_seconds_per_window": 60,
+    "minimum_valid_contiguous_samples": 100,
+    "reference": "C.A 5212 DC V 4 V range, measured at holder contacts, never source setpoint",
+    "point_strategy": "One source at a time; separate windows for each holder and new observations for validation.",
+    "formal_frozen": false
+  },
+  "physical_position_to_afe_channel": {
+    "A": null,
+    "B": null,
+    "C": null
+  },
+  "afe_supply": {
+    "actual_Vplus_V": null,
+    "actual_Vreg_V": null,
+    "note": "Original 18 V adapter retained by user. Actual AFE rails not established; do not equate adapter voltage to V+. Datasheet Table 3 TME conditions V+16–90 V, VREG4.5–5.5 V."
+  },
+  "reference_V": null,
+  "candidate_coefficients": null,
+  "calibration_verified": false,
+  "formal_G01_verdict": null,
+  "hardware_operation_performed_by_agent": false,
+  "photo_observation_history": [
+    {
+      "all_outputs_off": true,
+      "voltage_set_V": {
+        "CH1": 1,
+        "CH2": 1,
+        "CH3": 5
+      },
+      "current_set_A": {
+        "CH1": 0.2,
+        "CH2": 0.2,
+        "CH3": 3
+      },
+      "scope": "photo snapshot, not live state or measured terminal values"
+    }
+  ],
+  "additional_user_report": "All channels set to 3.5 V / 0.5 A. No output-on or measured reference observation."
+}

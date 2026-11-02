@@ -1,0 +1,22 @@
+test_expected_fault_is_scoped_and_unrelated_fault_fails (test_pwm_disabled_host.Integrity.test_expected_fault_is_scoped_and_unrelated_fault_fails) ... ok
+test_failed_cleanup_trace_is_readable_and_explicitly_failed (test_pwm_disabled_host.Integrity.test_failed_cleanup_trace_is_readable_and_explicitly_failed) ... ok
+test_invalid_record_not_interpreted_as_zero (test_pwm_disabled_host.Integrity.test_invalid_record_not_interpreted_as_zero) ... ok
+test_normal_deadline_must_not_be_early_or_unbounded (test_pwm_disabled_host.Integrity.test_normal_deadline_must_not_be_early_or_unbounded) ... ok
+test_restoration_required_and_wrap_duration (test_pwm_disabled_host.Integrity.test_restoration_required_and_wrap_duration) ... ok
+test_sequence_missing_duplicate_reordered (test_pwm_disabled_host.Integrity.test_sequence_missing_duplicate_reordered) ... ok
+test_bad_uint_and_quality_states (test_pwm_disabled_host.Parser.test_bad_uint_and_quality_states) ... ok
+test_crc_firmware_and_length_rejected (test_pwm_disabled_host.Parser.test_crc_firmware_and_length_rejected) ... ok
+test_exact_schema_and_internal_timer_allowed (test_pwm_disabled_host.Parser.test_exact_schema_and_internal_timer_allowed) ... ok
+test_invalid_raw_is_retained_with_flags (test_pwm_disabled_host.Parser.test_invalid_raw_is_retained_with_flags) ... ok
+test_output_and_calibration_invariants (test_pwm_disabled_host.Parser.test_output_and_calibration_invariants) ... ok
+test_consumed_token_blocks_restart_even_if_clear_idle (test_pwm_disabled_host.Transport.test_consumed_token_blocks_restart_even_if_clear_idle) ... ok
+test_operation_allowlist_and_counter_wrap (test_pwm_disabled_host.Transport.test_operation_allowlist_and_counter_wrap) ... ok
+test_partial_start_write_never_retries (test_pwm_disabled_host.Transport.test_partial_start_write_never_retries) ... ok
+test_reset_after_identification_aborts (test_pwm_disabled_host.Transport.test_reset_after_identification_aborts) ... ok
+test_split_send_receive_and_monotonic_ids (test_pwm_disabled_host.Transport.test_split_send_receive_and_monotonic_ids) ... ok
+test_start_timeout_does_not_retry (test_pwm_disabled_host.Transport.test_start_timeout_does_not_retry) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.034s
+
+OK

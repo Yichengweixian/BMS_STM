@@ -1,0 +1,89 @@
+[
+  {
+    "target": "BMS_EX_Debug",
+    "exit_code": 1,
+    "summary": [
+      "\"BMS_EX_Debug\\BMS_EX_Debug.axf\" - 0 Error(s), 1 Warning(s).\r"
+    ],
+    "warnings": [
+      "stm32n647xx_LRUN_RAMxspi1.sct(26): warning: L6314W: No section matches pattern *(.EXTRAM)."
+    ],
+    "artifacts": {
+      "hex": {
+        "sha256": "5d77afac38529423f673dbf8eddc9752e5c8fb919f3a9dcd816f49060a10f9a7",
+        "bytes": 471145
+      },
+      "map": {
+        "sha256": "8d1e6c84db7bad23f184d1b23c840b7931ad08d69517995f1b142607376ab0c0",
+        "bytes": 1203230
+      },
+      "axf": {
+        "sha256": "aa4836731e546b18b59a20588433769c082caa8208a7932e2110d1cf3d0c3e7a",
+        "bytes": 812620
+      },
+      "bin": {
+        "sha256": "ce3723e0eacd103966f3a9ef243b4e64fdcaab838652b38a262c2c1cae63a55d",
+        "bytes": 167488
+      }
+    },
+    "previous_hex_sha256": "5d77afac38529423f673dbf8eddc9752e5c8fb919f3a9dcd816f49060a10f9a7",
+    "hex": {
+      "min": "0x34000400",
+      "max": "0x3402923f",
+      "data_bytes": 167488,
+      "all_record_checksums_valid": true
+    },
+    "map_regions": [
+      "Load Region LR_IROM1 (Base: 0x34000400, Size: 0x00028e40, Max: 0x0007fc00, ABSOLUTE)",
+      "Execution Region ER_IROM1 (Exec base: 0x34000400, Load base: 0x34000400, Size: 0x00028e18, Max: 0x0007fc00, ABSOLUTE)",
+      "Execution Region RW_IRAM1 (Exec base: 0x34080000, Load base: 0x34029220, Size: 0x00000be8, Max: 0x00080000, ABSOLUTE)",
+      "Execution Region RW_NONCACHEABLEBUFFER (Exec base: 0x34080be8, Load base: 0x34029240, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)",
+      "Execution Region ARM_LIB_STACK (Exec base: 0x340ff7f8, Load base: 0x34029240, Size: 0x00000800, Max: 0x00000800, ABSOLUTE)",
+      "Execution Region RW_EXTRAM (Exec base: 0x90000000, Load base: 0x34029240, Size: 0x00000000, Max: 0x02000000, ABSOLUTE)",
+      "Execution Region ARM_LIB_HEAP (Exec base: 0x90000000, Load base: 0x34029240, Size: 0x00000200, Max: 0x00000200, ABSOLUTE)"
+    ],
+    "same_hex_as_previous": true
+  },
+  {
+    "target": "BMS_EX_Release",
+    "exit_code": 0,
+    "summary": [
+      "\"BMS_EX_Release\\BMS_EX_Release.axf\" - 0 Error(s), 0 Warning(s).\r"
+    ],
+    "warnings": [],
+    "artifacts": {
+      "hex": {
+        "sha256": "4979c23cb90efa5efb74ecb7af30af43cb5c57619d3b8fe74be92bb4e6bcdc2b",
+        "bytes": 195638
+      },
+      "map": {
+        "sha256": "73726466e9bb57f8477c049fc7f391564686c33ecb050477fe49d7e265e9d089",
+        "bytes": 753612
+      },
+      "axf": {
+        "sha256": "b3d90f6c01ad215e12dc5812b344170da48d099cfb409bb34d23064b9e0fea9e",
+        "bytes": 816428
+      },
+      "bin": {
+        "sha256": "35cda4a179ec942cc82738431a46d69fb0171374ea1075cb08375cfa12c656fa",
+        "bytes": 69536
+      }
+    },
+    "previous_hex_sha256": "4979c23cb90efa5efb74ecb7af30af43cb5c57619d3b8fe74be92bb4e6bcdc2b",
+    "hex": {
+      "min": "0x70100400",
+      "max": "0x7011139f",
+      "data_bytes": 69536,
+      "all_record_checksums_valid": true
+    },
+    "map_regions": [
+      "Load Region LR_IROM1 (Base: 0x70100400, Size: 0x00010fa0, Max: 0x01effc00, ABSOLUTE)",
+      "Execution Region RW_IRAM1 (Exec base: 0x34080000, Load base: 0x70111380, Size: 0x00000aa8, Max: 0x00080000, ABSOLUTE)",
+      "Execution Region RW_NONCACHEABLEBUFFER (Exec base: 0x34080aa8, Load base: 0x701113a0, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)",
+      "Execution Region ARM_LIB_HEAP (Exec base: 0x34080aa8, Load base: 0x701113a0, Size: 0x00000200, Max: 0x00000200, ABSOLUTE)",
+      "Execution Region ARM_LIB_STACK (Exec base: 0x340ff7f8, Load base: 0x701113a0, Size: 0x00000800, Max: 0x00000800, ABSOLUTE)",
+      "Execution Region ER_IROM1 (Exec base: 0x70100400, Load base: 0x70100400, Size: 0x00010f6c, Max: 0x01effc00, ABSOLUTE)"
+    ],
+    "same_hex_as_previous": true
+  }
+]

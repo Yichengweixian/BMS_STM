@@ -1,0 +1,1 @@
+PASS: core vectors; AFE faults 0..10 including GPIO/DTEN/MUTE read semantics; ADC faults 0..5; independent ADC; scheduler; CSV emitted by production C. SIMULATION ONLY.

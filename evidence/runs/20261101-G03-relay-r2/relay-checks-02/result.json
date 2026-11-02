@@ -1,0 +1,7 @@
+{
+  "checks": "passed",
+  "evidence_scope": [
+    "simulation"
+  ],
+  "physical_limits_verified": false
+}

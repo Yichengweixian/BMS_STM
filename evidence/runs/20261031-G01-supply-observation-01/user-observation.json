@@ -1,0 +1,23 @@
+{
+  "record_created_utc": "2026-10-31T04:42:30.682754+00:00",
+  "source": "user message",
+  "measurement_time_utc": null,
+  "verbatim": "无编号；圆形电源插孔适配器没有说明但是我用万用表测量得到的是18V，经过一个电源电路得到了3V（应该是oled供电），还有其他的可能我没有找到。充电电压我看老师发的说明是15V，1A，现在还没有连接，应该是使用直流源来做充电",
+  "cell_holder_position_labels": "none reported",
+  "board_adapter_voltage_V_user_measured": 18.0,
+  "adapter_label_available": false,
+  "adapter_current_rating_A": null,
+  "measurement_instrument_id": "dmm-ca5212-01",
+  "exact_probe_points": null,
+  "adapter_measurement_load_state": null,
+  "other_measured_voltage_V": 3.0,
+  "other_node_identity": null,
+  "other_node_user_guess": "OLED supply; unconfirmed",
+  "charge_supply_connected": false,
+  "charge_supply_15V_1A_basis": "teacher/course example, not a connected source or measured setting",
+  "physical_afe_channel_mapping": {
+    "A": null,
+    "B": null,
+    "C": null
+  }
+}

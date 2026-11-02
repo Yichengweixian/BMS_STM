@@ -1,0 +1,138 @@
+[
+  {
+    "name": "compiler",
+    "command": [
+      "D:/ADMIN/mingw64/bin/gcc.exe",
+      "--version"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "build-control",
+    "command": [
+      "D:/ADMIN/mingw64/bin/gcc.exe",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\tests\\g02\\test_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_control.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\evidence\\runs\\20261031-G03-real-adc-r3\\checks-2\\control.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "control",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\evidence\\runs\\20261031-G03-real-adc-r3\\checks-2\\control.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "build-default",
+    "command": [
+      "D:/ADMIN/mingw64/bin/gcc.exe",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\tests\\g02\\stubs",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\tests\\g02\\test_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\tests\\g03\\adc_bridge_stub.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\evidence\\runs\\20261031-G03-real-adc-r3\\checks-2\\default.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "default",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\evidence\\runs\\20261031-G03-real-adc-r3\\checks-2\\default.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "build-pins-simulated",
+    "command": [
+      "D:/ADMIN/mingw64/bin/gcc.exe",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-DG02_ALLOW_PIN_OUTPUT=1",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\tests\\g02\\stubs",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\tests\\g02\\test_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\tests\\g03\\adc_bridge_stub.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\evidence\\runs\\20261031-G03-real-adc-r3\\checks-2\\pins-simulated.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "pins-simulated",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\evidence\\runs\\20261031-G03-real-adc-r3\\checks-2\\pins-simulated.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "build-link",
+    "command": [
+      "D:/ADMIN/mingw64/bin/gcc.exe",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\tests\\g02\\stubs",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\tests\\g02\\test_link.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_link.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\tests\\g03\\adc_bridge_stub.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\evidence\\runs\\20261031-G03-real-adc-r3\\checks-2\\link.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "link",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\evidence\\runs\\20261031-G03-real-adc-r3\\checks-2\\link.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "host-python",
+    "command": [
+      "C:\\Users\\ADMIN\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\tests\\g02",
+      "-p",
+      "test_host.py",
+      "-v"
+    ],
+    "exit_code": 0
+  }
+]

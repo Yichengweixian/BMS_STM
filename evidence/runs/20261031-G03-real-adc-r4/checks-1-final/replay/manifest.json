@@ -1,0 +1,30 @@
+{
+  "schema": "g01-recorder-v1",
+  "session": "5bbd5aae2e1748fc9468c057388b64f6",
+  "evidence_scope": "simulation",
+  "source": "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\evidence\\runs\\20261031-G03-real-adc-r4\\checks-1-final\\simulated-uart.bin",
+  "simulated": true,
+  "baud": 115200,
+  "started_utc": "2026-10-31T11:11:42.948409+00:00",
+  "physical_calibration_verified": false,
+  "firmware_sha256": null,
+  "verdict": null,
+  "rows": 36,
+  "errors": 0,
+  "tick_hz": 1000,
+  "tick_bits": 32,
+  "sample_time": "conversion bracket; not UART transmit time",
+  "boot_id_policy": "host session:segment; reconnect starts a new session",
+  "metadata": [
+    "#META,schema=g01-v1,fw=g03-adc-r4,build=Oct 31 2026 19:11:41,cal=uncalibrated-v1,period_ms=500,kind=instantaneous_sample",
+    "#CONFIG,profile=cnn647b-g03-adc-r4,ADC_profile=0,ADC_selfcal=0,VREF_nominal=1.8,current_model=hex-dd44fae1-nominal-v1,zero_nominal_V=0.9,physical_valid=0,sign=unconfirmed"
+  ],
+  "exit_reason": "completed",
+  "ended_utc": "2026-10-31T11:11:42.978287+00:00",
+  "sha256": {
+    "derived\\device.csv": "0b99092681b607cd87b0d8f7f5cb27e98bbd787c4ea6c66ce63458466dcef491",
+    "raw\\events.jsonl": "dd00b44b057d90cad56d5ded2881534802092202c46f15803f8cad370bfa4a5a",
+    "raw\\serial.bin": "b5ef67acc1503edddde27f9eae61b51e718ed76104851020cfb70d335edc8a54"
+  },
+  "recorder_sha256": "d704d126a518a4d130c28ab087052bd87c7c5f431b263b2b58701f0a1256bd84"
+}

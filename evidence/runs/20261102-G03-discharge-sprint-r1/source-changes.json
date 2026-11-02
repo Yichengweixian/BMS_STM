@@ -1,0 +1,47 @@
+[
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\adbms_acquisition.c",
+    "before_sha256": "0324d399b0ee0232d5327163c4927092b6b2e5d71f5babce2ed1f021b474a92f",
+    "after_sha256": "16a886c1a9b177ca30ec52f07a67bf36e7a89bc697cafb60003b96950aee0cd1"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\adbms_acquisition.h",
+    "before_sha256": "dd77f20c92b870598e4e43cb3169739e67fb2bcda93f8c5c39f31528653add7b",
+    "after_sha256": "ff410beb3146abd2cb59730f35b08d5a661d0008b89199776658d2a9fdae416d"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\firmware_identity.h",
+    "before_sha256": "451dbb08458e37158e0ccaf31c1998bdc4b2736e03bcba90852417f4d3c1e3ab",
+    "after_sha256": "edfe71aa9117923b6b5f75f657e072e4daac9efc61fe925c159ea3ce3aa100cf"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_power_port.c",
+    "before_sha256": null,
+    "after_sha256": "6c55e36f521aca74fd3c5cad7d7b53de4f77d0a9e8bc21ad0f3fa2ad7a075f38"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_power_profile.h",
+    "before_sha256": null,
+    "after_sha256": "e055acac33f50650fa02c30f54adc53c25e206ffeb9c9ce8374e8b8c868801a3"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_pwm_port.h",
+    "before_sha256": "d858b87c1800f8919296609f3426824fd753e05e7da2ff0d1b9e83043bc2d59e",
+    "after_sha256": "de255f583ed24e25610f39744654981531b6076c79783ccb69f701452b405ec2"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\pwm_oneshot.c",
+    "before_sha256": "dafe719d57b41f00062d87ace7a976721cd600b91ecb5f58348282eceb83878b",
+    "after_sha256": "dafe719d57b41f00062d87ace7a976721cd600b91ecb5f58348282eceb83878b"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\pwm_oneshot.h",
+    "before_sha256": "371e1f019dae6e66c61adbbbb18de04a2de2c47e69c87d9c2608848e8a5d73a3",
+    "after_sha256": "371e1f019dae6e66c61adbbbb18de04a2de2c47e69c87d9c2608848e8a5d73a3"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\MDK-ARM\\Appli\\BMS_EX_Appli.uvprojx",
+    "before_sha256": "99af128c688af898406a552f3da896bd3f6ee01e29ee93ebc4d9b72382b1c384",
+    "after_sha256": "8f6a2509b3f3af1249bb9812b6224f6bea6ea474f58cae7394c69add77380c0c"
+  }
+]

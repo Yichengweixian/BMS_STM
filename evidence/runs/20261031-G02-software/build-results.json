@@ -1,0 +1,102 @@
+[
+  {
+    "target": "BMS_EX_Release",
+    "exit_code": 0,
+    "start_utc": "2026-10-31T07:24:20.7098373Z",
+    "end_utc": "2026-10-31T07:24:30.1891333Z",
+    "log": "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-work\\evidence\\runs\\20261031-G02-software\\raw\\BMS_EX_Release-r2.log",
+    "command": [
+      "D:\\K5\\UV4\\UV4.exe",
+      "-r",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-work\\BMS_EXv1.1\\BMS_EX\\MDK-ARM\\Appli\\BMS_EX_Appli.uvprojx",
+      "-t",
+      "BMS_EX_Release",
+      "-j0",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-work\\evidence\\runs\\20261031-G02-software\\raw\\BMS_EX_Release-r2.log"
+    ],
+    "artifacts": [
+      {
+        "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Release/BMS_EX_Release.hex",
+        "sha256": "fd1d2a84a43fefde8e265cc879757e15c06babe2efd019f9fcf76bdb8ed4013f",
+        "size": 218408
+      },
+      {
+        "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Release/BMS_EX_Release.axf",
+        "sha256": "048aaf8121bb394d059462a9e25ae987cfeddf21c2a3aaf920b956f30f03b22d",
+        "size": 865116
+      },
+      {
+        "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Release/BMS_EX_Release.bin",
+        "sha256": "895076cf3ccfbce3bd42c2660d41a16de91ae5dfa6004ee5529ec54ae4fa4715",
+        "size": 77632
+      },
+      {
+        "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Release/BMS_EX_Release.map",
+        "sha256": "d4a33b5946b8a3798b3025e911d12a2ded5c58d527c0132027c863772bd64fa5",
+        "size": 809214
+      }
+    ],
+    "errors": 0,
+    "warnings": 0,
+    "warning_explanation": null,
+    "log_path": "raw/BMS_EX_Release-r2.log",
+    "hex_check": {
+      "checksums_valid": true,
+      "start_address": "0x70100400",
+      "end_address": "0x7011333f",
+      "payload_bytes": 77632,
+      "matches_bin": true
+    }
+  },
+  {
+    "target": "BMS_EX_Debug",
+    "exit_code": 1,
+    "start_utc": "2026-10-31T07:24:30.2708691Z",
+    "end_utc": "2026-10-31T07:24:39.2007633Z",
+    "log": "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-work\\evidence\\runs\\20261031-G02-software\\raw\\BMS_EX_Debug-r2.log",
+    "command": [
+      "D:\\K5\\UV4\\UV4.exe",
+      "-r",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-work\\BMS_EXv1.1\\BMS_EX\\MDK-ARM\\Appli\\BMS_EX_Appli.uvprojx",
+      "-t",
+      "BMS_EX_Debug",
+      "-j0",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-work\\evidence\\runs\\20261031-G02-software\\raw\\BMS_EX_Debug-r2.log"
+    ],
+    "artifacts": [
+      {
+        "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Debug/BMS_EX_Debug.hex",
+        "sha256": "1ee4384484f1ca39aade63cdaab80a437c209e79e22bc611583485373d986126",
+        "size": 502285
+      },
+      {
+        "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Debug/BMS_EX_Debug.axf",
+        "sha256": "23199fe69753ee665858ef0b2f60ceaa354eed72500713ad6eff571b0dbad75e",
+        "size": 863548
+      },
+      {
+        "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Debug/BMS_EX_Debug.bin",
+        "sha256": "1fe542764de0a84c5bde584e590750daa0066d611fae497f33caa2c2005f9193",
+        "size": 178560
+      },
+      {
+        "path": "evidence/runs/20261031-G02-software/firmware-final/BMS_EX_Debug/BMS_EX_Debug.map",
+        "sha256": "1ad209d6cad182b1c17a203de4cf26134bd9e1598a27374a3f7168cb7451a15e",
+        "size": 1261847
+      }
+    ],
+    "errors": 0,
+    "warnings": 1,
+    "warning_explanation": "Existing L6314W: no section matches *(.EXTRAM), same as G00/G01; no new warning.",
+    "log_path": "raw/BMS_EX_Debug-r2.log",
+    "hex_check": {
+      "checksums_valid": true,
+      "start_address": "0x34000400",
+      "end_address": "0x3402bd7f",
+      "payload_bytes": 178560,
+      "matches_bin": true
+    }
+  }
+]

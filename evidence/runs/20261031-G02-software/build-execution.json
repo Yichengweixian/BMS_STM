@@ -1,0 +1,36 @@
+[
+  {
+    "target": "BMS_EX_Release",
+    "exit_code": 0,
+    "start_utc": "2026-10-31T07:17:47.2733294Z",
+    "end_utc": "2026-10-31T07:17:57.0594085Z",
+    "log": "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-work\\evidence\\runs\\20261031-G02-software\\raw\\BMS_EX_Release-final.log",
+    "command": [
+      "D:\\K5\\UV4\\UV4.exe",
+      "-r",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-work\\BMS_EXv1.1\\BMS_EX\\MDK-ARM\\Appli\\BMS_EX_Appli.uvprojx",
+      "-t",
+      "BMS_EX_Release",
+      "-j0",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-work\\evidence\\runs\\20261031-G02-software\\raw\\BMS_EX_Release-final.log"
+    ]
+  },
+  {
+    "target": "BMS_EX_Debug",
+    "exit_code": 1,
+    "start_utc": "2026-10-31T07:17:57.1679718Z",
+    "end_utc": "2026-10-31T07:18:06.5039143Z",
+    "log": "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-work\\evidence\\runs\\20261031-G02-software\\raw\\BMS_EX_Debug-final.log",
+    "command": [
+      "D:\\K5\\UV4\\UV4.exe",
+      "-r",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-work\\BMS_EXv1.1\\BMS_EX\\MDK-ARM\\Appli\\BMS_EX_Appli.uvprojx",
+      "-t",
+      "BMS_EX_Debug",
+      "-j0",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g02-work\\evidence\\runs\\20261031-G02-software\\raw\\BMS_EX_Debug-final.log"
+    ]
+  }
+]

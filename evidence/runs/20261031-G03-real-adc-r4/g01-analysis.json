@@ -1,0 +1,162 @@
+{
+  "source_capture": "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261031-G03-real-adc-r4\\g01-capture",
+  "evidence_scope": "bench",
+  "simulated": false,
+  "firmware_sha256": "b9ffb2024a164cc299b6edbeb1644bd1f64b5815854195ffed84aaa0502dda26",
+  "metadata": [
+    "#META,schema=g01-v1,fw=g03-adc-r4,build=Oct 31 2026 19:11:55,cal=uncalibrated-v1,period_ms=500,kind=instantaneous_sample",
+    "#CONFIG,profile=cnn647b-g03-adc-r4,ADC_profile=5,ADC_selfcal=1,VREF_nominal=1.8,current_model=hex-dd44fae1-nominal-v1,zero_nominal_V=0.9,physical_valid=0,sign=unconfirmed"
+  ],
+  "rows": 531,
+  "boot_segments": [
+    "084ded53148d44f79a3716add665551e:0"
+  ],
+  "complete_groups": 59,
+  "incomplete_groups": [],
+  "event_counts": {
+    "device_metadata": 9,
+    "partial_tail": 1
+  },
+  "channels": {
+    "cell1": {
+      "records": 59,
+      "raw_valid": 59,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 59
+      },
+      "raw_min": 38904,
+      "raw_max": 38907,
+      "valid_raw_mean": 38905.06779661017,
+      "period_ms_median": 500.0,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    },
+    "cell7": {
+      "records": 59,
+      "raw_valid": 59,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 59
+      },
+      "raw_min": 38904,
+      "raw_max": 38908,
+      "valid_raw_mean": 38905.745762711864,
+      "period_ms_median": 500.0,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    },
+    "cell13": {
+      "records": 59,
+      "raw_valid": 59,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 59
+      },
+      "raw_min": 38907,
+      "raw_max": 38911,
+      "valid_raw_mean": 38908.372881355936,
+      "period_ms_median": 500.0,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    },
+    "current_afe_gpio1": {
+      "records": 59,
+      "raw_valid": 59,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 59
+      },
+      "raw_min": 8994,
+      "raw_max": 9004,
+      "valid_raw_mean": 8998.796610169491,
+      "period_ms_median": 500.0,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    },
+    "temperature_gpio2": {
+      "records": 59,
+      "raw_valid": 59,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 59
+      },
+      "raw_min": 3215,
+      "raw_max": 3218,
+      "valid_raw_mean": 3216.3389830508477,
+      "period_ms_median": 500.0,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    },
+    "temperature_gpio3": {
+      "records": 59,
+      "raw_valid": 59,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 59
+      },
+      "raw_min": 3221,
+      "raw_max": 3223,
+      "valid_raw_mean": 3222.169491525424,
+      "period_ms_median": 500.0,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    },
+    "temperature_gpio4": {
+      "records": 59,
+      "raw_valid": 59,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 59
+      },
+      "raw_min": 3216,
+      "raw_max": 3218,
+      "valid_raw_mean": 3217.169491525424,
+      "period_ms_median": 500.0,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    },
+    "current_mcu_adc1": {
+      "records": 59,
+      "raw_valid": 59,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 59
+      },
+      "raw_min": 1007,
+      "raw_max": 1013,
+      "valid_raw_mean": 1010.1186440677966,
+      "period_ms_median": 500.0,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    },
+    "afe_vref2": {
+      "records": 59,
+      "raw_valid": 59,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 59
+      },
+      "raw_min": 30015,
+      "raw_max": 30018,
+      "valid_raw_mean": 30016.474576271186,
+      "period_ms_median": 500.0,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    }
+  },
+  "all_nine_channels_present": true,
+  "all_recorded_raw_valid": true,
+  "formal_G01_verdict": null,
+  "calibration_verified": false,
+  "note": "Capture edges may have incomplete groups. Inspect events; stable raw is not calibrated accuracy."
+}

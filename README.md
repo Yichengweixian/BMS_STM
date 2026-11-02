@@ -1,10 +1,11 @@
 # STM32N6 BMS 综合实验
 
-本项目围绕三节电池的电压/电流/温度测量、双向DC-DC恒流控制、串口交互与SOC数据/模型部署。当前源码仍处于基础模板阶段，硬件验收尚未执行。
+本项目围绕三节电池的电压/电流/温度测量、双向DC-DC恒流控制、串口交互与SOC数据/模型部署。源码已包含分层测量、禁能PWM时序诊断、充放电影子状态机及真实ADC本地保护测试；正式硬件验收进度以STATUS为准。
 
 ## 从这里进入
 
 - **执行规范**：[instructions/README.md](instructions/README.md)；当前进度：[STATUS](instructions/STATUS.md)。
+- **分阶段提示词**：[G00—G07 执行入口](instructions/prompts/README.md)，支持指定阶段或子任务。
 - **系统解释与验收路线**：[BMS实施与验收指南](instructions/BMS实施与验收指南.html)。
 - **硬件、软件与PI原理**：[BMS系统原理与开发路线](docs/guides/BMS系统原理与开发路线.html)。
 - **每个文件的用途**：[目录逐文件说明](docs/guides/目录逐文件说明.html)。

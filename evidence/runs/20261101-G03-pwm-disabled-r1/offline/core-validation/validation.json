@@ -1,0 +1,19 @@
+{
+  "scope": "Microsecond core host simulation and actual Cortex-M55 relocatable object compilation; no board validation",
+  "gcc_version": "gcc.exe (GCC) 13.1.0",
+  "armclang_version": "Product: MDK Plus 5.43",
+  "test_groups": 21,
+  "time_unit": "us",
+  "timebase_contract": "One naturally wrapping free-running uint32 1MHz counter",
+  "source_basis": "20261101-HEX-baseline-followup/candidate r2",
+  "driver_deadtime_source_allows_zero_dtg": true,
+  "host_verdict": "pass",
+  "target_object_verdict": "pass",
+  "object_size": 5624,
+  "sha256": {
+    "workspace\\BMS_EXv1.1\\BMS_EX\\BSP\\pwm_oneshot.c": "dafe719d57b41f00062d87ace7a976721cd600b91ecb5f58348282eceb83878b",
+    "workspace\\BMS_EXv1.1\\BMS_EX\\BSP\\pwm_oneshot.h": "371e1f019dae6e66c61adbbbb18de04a2de2c47e69c87d9c2608848e8a5d73a3",
+    "workspace\\tests\\g03\\test_pwm_oneshot.c": "8c92895ef8dba8eaa4a819f9ff3288c1ad5a491b5dfc41fb3fecf5bc25c505f4",
+    "core-validation\\pwm_oneshot_m55.o": "2fbdd6c3cdf73206814b365c485f56df591c70cb6e2cf6242cd9a57e2e33c38b"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "only_operation": "G03 STATUS op10",
+  "power_start_sent": false,
+  "status": "verified_stopped",
+  "report": {
+    "id": 2436684022,
+    "result": 0,
+    "state": 0,
+    "direction": 1,
+    "faults": 0,
+    "reason": 0,
+    "configured": 0,
+    "fixture": 0,
+    "ccr": 1000,
+    "shadow_relays": 0,
+    "shadow_pwm": 0,
+    "actual_bits": 0,
+    "start_ms": 17064,
+    "stop_ms": 18132,
+    "heartbeat_ms": 17142,
+    "transitions": 75,
+    "starts": 14,
+    "ticks": 878,
+    "max_tick_gap": 1,
+    "scenario": 0,
+    "synthetic": 1,
+    "power_capable": 0
+  }
+}

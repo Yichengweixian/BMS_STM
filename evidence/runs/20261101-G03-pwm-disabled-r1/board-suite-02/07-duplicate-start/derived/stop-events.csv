@@ -1,0 +1,4 @@
+suite,case,scenario,start_id,start_us,terminal_state,faults,stop_reason,sample_count,fast_retained,trace_overflow,restored,physical_valid,source,event,seq,timestamp_us,relative_us,raw,flags,flags_meaning,actual_bits
+board-suite-02,07-duplicate-start,0,2538813246,63998,3,0,deadline,19999,263,0,1,0,status,stop_us,,263999,200001,,,,0
+board-suite-02,07-duplicate-start,0,2538813246,63998,3,0,deadline,19999,263,0,1,0,trace,off,328,264001,200003,1284,3,ADC_ISR_bits,0
+board-suite-02,07-duplicate-start,0,2538813246,63998,3,0,deadline,19999,263,0,1,0,trace,cleanup,329,265985,201987,1284,0,cleanup_flags,0

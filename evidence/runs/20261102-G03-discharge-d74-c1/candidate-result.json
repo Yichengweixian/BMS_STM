@@ -1,0 +1,12 @@
+{
+  "scope": "isolated candidate/register model/host tests",
+  "port_cases_passed": 12,
+  "firmware_identity": "g03-power-d74-c1",
+  "protection_limits_unchanged": true,
+  "hardware_access": false,
+  "arm_image_built": true,
+  "flashed": false,
+  "physical_result": null,
+  "release_hex_sha256": "001577eeccc6ab3d264283cb4d85be17e19051a08dccc2eb983f02fd9da2d4ab",
+  "arm_build_exit_code": 0
+}

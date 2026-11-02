@@ -1,0 +1,62 @@
+[
+  {
+    "name": "compiler",
+    "command": [
+      "gcc",
+      "--version"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "build-core",
+    "command": [
+      "gcc",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\tests\\g03\\test_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\evidence\\runs\\20261031-G03-disabled\\checks-01\\core.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "core",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\evidence\\runs\\20261031-G03-disabled\\checks-01\\core.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "build-port",
+    "command": [
+      "gcc",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\tests\\g02\\stubs",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\tests\\g03\\test_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\evidence\\runs\\20261031-G03-disabled\\checks-01\\port.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\evidence\\runs\\20261031-G03-disabled\\checks-01\\port.exe"
+    ],
+    "exit_code": 0
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "profile": 1345925169,
+  "firmware_sha256": "a5a0c5c300c089828f1056fb37ac1f5beb96fefeef421361ab34a490a2cedea9",
+  "source_wiring_confirmed": true,
+  "source_settings_confirmed": true,
+  "source_cv_confirmed": true,
+  "no_real_cells": true,
+  "load_connected": true,
+  "charge_port_open": true,
+  "new_image_default_off_verified": true,
+  "dry_run_passed": true,
+  "source_paths_reviewed": true,
+  "confirmation_basis": "User prepared channels and returned source voltage readings/zero current; dry AFE stack 10.498 V confirms powered input. CV inferred from maintained programmed voltage at zero displayed current.",
+  "physical_short_current_ceiling_confirmed": false,
+  "energy_scope": "CC/OCP sustained supply constraint plus driver interlock and MCU cutoff. Capacitor peak and OCP trip time not measured.",
+  "hardware_profile_sha256": "50ad5739116a2fdde59d1b0d8afdaf7aa5837625d1fdd0ad1a39a70b8ae544ce"
+}

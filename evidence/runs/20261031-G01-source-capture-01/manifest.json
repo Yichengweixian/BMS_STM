@@ -1,0 +1,21 @@
+{
+  "run_id": "20261031-G01-source-capture-01",
+  "status": "complete",
+  "verdict": null,
+  "evidence_scope": [
+    "bench"
+  ],
+  "calibration_verified": false,
+  "voltage_and_current_calibration": "deferred_by_user",
+  "firmware_changed": false,
+  "power_control_changed": false,
+  "files_sha256": {
+    "continuity.json": "73541599917a7c37d191a72b014983be3f8ad0f7ffcc9451f06c28163e8213a4",
+    "statistics.json": "9c10cdd3c7aa6c567f7348280d0515751dd89cfc89fa4f94ecfa570b01bbf0c6",
+    "work-card.md": "0308ff99cc58bded55e7b6fd90f43b6a11d57c521bdad34446650c1d8ea3ca70",
+    "capture\\manifest.json": "4b29bbbbb623dffe5fe2908666dca6560425f017b869fbfa20fdbcbba9d22ee3",
+    "capture\\derived\\device.csv": "4cf9174034163ce7523adce1f6a2e0e315429a71ec5cc9adc07319425cd3a6fc",
+    "capture\\raw\\events.jsonl": "c61aba197cb1c0eb86074d2e5e80a00dbdbd5b7490b114dd26c4ca22c00a0ad6",
+    "capture\\raw\\serial.bin": "bd80f23a9982ddcf6c0eb9ab09efe8d217da3d213272264f6cdee58a75d24bda"
+  }
+}

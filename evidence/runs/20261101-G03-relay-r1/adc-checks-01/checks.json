@@ -1,0 +1,126 @@
+[
+  {
+    "name": "transport-stack-frame",
+    "command": [
+      "D:/ADMIN/mingw64/bin/gcc.exe",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "-Wframe-larger-than=512",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\tests\\g02\\stubs",
+      "-c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_link.c",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\evidence\\runs\\20261101-G03-relay-r1\\adc-checks-01\\transport.o"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "build-core",
+    "command": [
+      "D:/ADMIN/mingw64/bin/gcc.exe",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\tests\\g03\\test_adc_core.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_core.c",
+      "-lm",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\evidence\\runs\\20261101-G03-relay-r1\\adc-checks-01\\core.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "core",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\evidence\\runs\\20261101-G03-relay-r1\\adc-checks-01\\core.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "build-port",
+    "command": [
+      "D:/ADMIN/mingw64/bin/gcc.exe",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\tests\\g02\\stubs",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\tests\\g03\\test_adc_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\tests\\g03\\relay_bridge_stub.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_core.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.c",
+      "-lm",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\evidence\\runs\\20261101-G03-relay-r1\\adc-checks-01\\port.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "port",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\evidence\\runs\\20261101-G03-relay-r1\\adc-checks-01\\port.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "build-link",
+    "command": [
+      "D:/ADMIN/mingw64/bin/gcc.exe",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "-IC:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\tests\\g02\\stubs",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\tests\\g03\\test_adc_link.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\tests\\g03\\relay_bridge_stub.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g02_link.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_core.c",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.c",
+      "-lm",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\evidence\\runs\\20261101-G03-relay-r1\\adc-checks-01\\link.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "link",
+    "command": [
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\evidence\\runs\\20261101-G03-relay-r1\\adc-checks-01\\link.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "python",
+    "command": [
+      "C:\\Users\\ADMIN\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\11\\01\\01a195e9-9166-7063-a043-ddd6a0d0d237\\g03-work\\tests\\g03",
+      "-p",
+      "test_adc_host.py",
+      "-v"
+    ],
+    "exit_code": 1
+  }
+]

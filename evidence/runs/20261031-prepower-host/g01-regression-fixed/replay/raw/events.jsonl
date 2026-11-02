@@ -1,0 +1,5 @@
+{"event": "boot_marker", "boot_id": "3253cf8604d4463d8ffcc40310895565:0", "host_rx_utc": "2026-10-31T08:30:41.891916+00:00"}
+{"event": "device_metadata", "text": "#BOOT,g02-host-r2,tick=0", "host_rx_utc": "2026-10-31T08:30:41.891916+00:00", "boot_id": "3253cf8604d4463d8ffcc40310895565:0"}
+{"event": "device_metadata", "text": "#META,schema=g01-v1,fw=g02-host-r2,build=Oct 31 2026 16:30:39,cal=uncalibrated-v1,period_ms=500,kind=instantaneous_sample", "host_rx_utc": "2026-10-31T08:30:41.891916+00:00", "boot_id": "3253cf8604d4463d8ffcc40310895565:0"}
+{"event": "device_metadata", "text": "#CONFIG,profile=cnn647b-bms-g02-20261031-r1,ADC1=PA1_12bit_SW_OS2_shift1,VREF_nominal=1.8,ADC_selfcal=off,AFE_MD=2_ADCOPT0,sign=unconfirmed", "host_rx_utc": "2026-10-31T08:30:41.891916+00:00", "boot_id": "3253cf8604d4463d8ffcc40310895565:0"}
+{"event": "device_metadata", "text": "#FIELDS,type,seq,channel,start_ms,end_ms,age_ms,raw,status,raw_valid,sensor_V_nominal,estimate,unit,physical_value,physical_valid,reference,cal_id,frame_hex,wire_pec15", "host_rx_utc": "2026-10-31T08:30:41.893277+00:00", "boot_id": "3253cf8604d4463d8ffcc40310895565:0"}

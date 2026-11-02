@@ -1,0 +1,20 @@
+{
+  "run_id": "20261031-G01-voltage-source-settings-02",
+  "status": "preparation",
+  "verdict": null,
+  "evidence_scope": [
+    "static"
+  ],
+  "files_sha256": {
+    "hardware-profile-before.json": "bc559c83346d039d9cc9a998839f4fa94f1db4ac958b13decc83b6c29cf935f3",
+    "plan.json": "e25cf017fcd3d778411a4b3a9318f72564c76a21a5aedb4b068da7e3a94537b0",
+    "RUNLOG.md.before": "93bf124b5dcfbe6d3ef4758326032a03001709d9894b137857b0556eeb617bf2",
+    "STATUS.md.before": "4bbb0f6ab2d7560c1047434f1cac70717aac29727f7507020de5818e96ddfd92",
+    "work-card.md": "4e65b6e770f7b202d13183fa43a20675d3166a434cf369be91bdd0ead0979d0a",
+    "raw\\empty-holders.jpg": "2dfdba1f0d6a4d6315b58d0bcabbdcdfdbda10054db3fba1787534c1f9d358ee",
+    "raw\\latest-3p5V-settings.jpg": "db55a9c2d37fc2aebb21b3dcde1cd41d1fe123b6b6d26081ed41070e05ca6b91",
+    "raw\\source-panel.jpg": "47c77551521ca51f48a6bf585b248cbe38fda21273d3bec67195fe9c905753ca"
+  },
+  "firmware_changed": false,
+  "hardware_operated": false
+}

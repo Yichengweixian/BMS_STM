@@ -1,0 +1,21 @@
+{
+  "command": [
+    "E:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107/tools/bin/STM32_Programmer_CLI.exe",
+    "-c",
+    "port=SWD",
+    "sn=16004A002933353739303541",
+    "freq=100",
+    "mode=UR",
+    "reset=HWrst",
+    "-el",
+    "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\tools\\flash-loaders\\MX25UM25645G_ATK-CNN647B_ExtMemLoader.stldr",
+    "-w",
+    "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261102-G03-discharge-sprint-r1\\firmware\\BMS_PWM_Power_Release\\BMS_PWM_Power_Release.hex",
+    "-v"
+  ],
+  "firmware_sha256": "a5a0c5c300c089828f1056fb37ac1f5beb96fefeef421361ab34a490a2cedea9",
+  "user_boot_download_confirmed": true,
+  "sources_off_confirmed": true,
+  "verdict": "pass",
+  "exit_code": 0
+}

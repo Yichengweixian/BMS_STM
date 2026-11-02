@@ -1,0 +1,21 @@
+{
+  "run_id": "20261031-G03-disabled",
+  "mode": "exploratory",
+  "firmware": "g03-disabled-r1",
+  "target": "BMS_EX_Release",
+  "firmware_sha256": "d94e10e2f5cc144a495125e9461abb4d570af8afcf9daf6567aa4b732ce763a6",
+  "download_verified": true,
+  "scope": [
+    "static",
+    "build",
+    "simulation",
+    "bench",
+    "release_boot"
+  ],
+  "sensors": "synthetic G03 fixture, independent uncalibrated physical G01 stream",
+  "power_capable": false,
+  "hardware_profile_snapshot": "hardware-profile-snapshot.json",
+  "formal_criteria_frozen": false,
+  "startup": "user normal BOOT/reset plus matching device reports; not repeated cold boot",
+  "script_sha256": "72194152eadb23a246a4de745cce19e6961057770cc7a0bc76391b622c644583"
+}

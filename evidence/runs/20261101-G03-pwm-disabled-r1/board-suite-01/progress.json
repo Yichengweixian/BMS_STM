@@ -1,0 +1,42 @@
+[
+  {
+    "case": "normal",
+    "verdict": "pass",
+    "error": null
+  },
+  {
+    "case": "sample-6p5",
+    "verdict": "pass",
+    "error": null
+  },
+  {
+    "case": "adc-stale",
+    "verdict": "pass",
+    "error": null
+  },
+  {
+    "case": "adc-invalid",
+    "verdict": "pass",
+    "error": null
+  },
+  {
+    "case": "fifo-overrun",
+    "verdict": "pass",
+    "error": null
+  },
+  {
+    "case": "awd-low",
+    "verdict": "pass",
+    "error": null
+  },
+  {
+    "case": "awd-high",
+    "verdict": "pass",
+    "error": null
+  },
+  {
+    "case": "cache-full",
+    "verdict": "fail",
+    "error": "RuntimeError('SWD reset failed; no repeated reset or start')"
+  }
+]

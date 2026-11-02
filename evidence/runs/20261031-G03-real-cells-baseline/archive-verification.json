@@ -1,0 +1,8 @@
+{
+  "time_utc": "2026-10-31T09:15:06.723300+00:00",
+  "raw_sha256": {
+    "capture\\raw\\events.jsonl": "236c0cd19137fb8b681a32bc5aecc00f3a831a0ddaa63b23d590df2e6176565e",
+    "capture\\raw\\serial.bin": "14b14acab162b944b2f8bddea002a9ced476be3a8946fe69cfab31bf664e2800"
+  },
+  "render_exit": 0
+}

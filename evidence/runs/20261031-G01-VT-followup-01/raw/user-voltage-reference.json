@@ -1,0 +1,33 @@
+{
+  "source": "user report in chat",
+  "date": "2026-10-31",
+  "load_connected": false,
+  "position_definition": "OLED above, battery holder below: A left, B middle, C right",
+  "instrument_id": "dmm-ca5212-01",
+  "time_alignment_verified": false,
+  "timezone_assumed": "Asia/Shanghai",
+  "measurements": [
+    {
+      "position": "A",
+      "time_reported": "14:05:05",
+      "voltage_V": 3.895,
+      "afe_channel": null
+    },
+    {
+      "position": "B",
+      "time_reported": "14:06:09",
+      "voltage_V": 3.894,
+      "afe_channel": null
+    },
+    {
+      "position": "C",
+      "time_reported": "14:07:00",
+      "voltage_V": 3.894,
+      "afe_channel": null
+    }
+  ],
+  "original_user_message": "现在没接负载，A：14：05：05，3.895，B：14：06：09，3.894；C：14：07：00，3.894",
+  "constraint": "User can currently measure voltage only; current and temperature physical calibration deferred.",
+  "reference_uncertainty_V": null,
+  "calibration_used": false
+}

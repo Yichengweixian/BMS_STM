@@ -1,0 +1,36 @@
+{
+  "profile": 1345926146,
+  "firmware_sha256": "001577eeccc6ab3d264283cb4d85be17e19051a08dccc2eb983f02fd9da2d4ab",
+  "source_wiring_confirmed": true,
+  "source_settings_confirmed": true,
+  "source_cv_confirmed": true,
+  "no_real_cells": true,
+  "load_connected": true,
+  "charge_port_open": true,
+  "new_image_default_off_verified": true,
+  "dry_run_passed": true,
+  "source_paths_reviewed": true,
+  "default_off_evidence": "before-long-query-01",
+  "dry_evidence": "new-image-dry-03",
+  "static_voltage_evidence": "static-voltage-before-reset-01",
+  "prior_point_reference": "D0.80 PSU CH1/2/3 each 0.433A; no anomaly reported",
+  "D": 0.74,
+  "CCR": 1480,
+  "ARR": 2000,
+  "run_us": 2000000,
+  "cell_run_V": [
+    3.3,
+    3.65
+  ],
+  "source_CC_A": 0.6,
+  "source_OCP_A": 0.55,
+  "source_OVP_V": 3.65,
+  "Ibat_trip_A": [
+    -0.55,
+    0.05
+  ],
+  "physical_short_current_ceiling_confirmed": false,
+  "automatic_retry": false,
+  "same_D_short_evidence": "live-d74-short-01",
+  "user_long_ready": "User confirmed no CC/trip/anomaly after short point and ready to record PSU currents and DMM voltage"
+}

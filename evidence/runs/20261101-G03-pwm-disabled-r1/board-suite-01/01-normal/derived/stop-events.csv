@@ -1,0 +1,4 @@
+suite,case,scenario,start_id,start_us,terminal_state,faults,stop_reason,sample_count,fast_retained,trace_overflow,restored,physical_valid,source,event,seq,timestamp_us,relative_us,raw,flags,flags_meaning,actual_bits
+board-suite-01,01-normal,0,2538647505,63997,3,0,deadline,9999,163,0,1,0,status,stop_us,,163999,100002,,,,0
+board-suite-01,01-normal,0,2538647505,63997,3,0,deadline,9999,163,0,1,0,trace,off,228,164001,100004,1282,3,ADC_ISR_bits,0
+board-suite-01,01-normal,0,2538647505,63997,3,0,deadline,9999,163,0,1,0,trace,cleanup,229,165984,101987,1282,0,cleanup_flags,0

@@ -1,0 +1,79 @@
+[
+  {
+    "name": "vector_head",
+    "address": "0x70100400",
+    "words_hex": [
+      "0x34200000",
+      "0x70102715"
+    ],
+    "pass_": true
+  },
+  {
+    "name": "adc_irq_vector",
+    "address": "0x701004f8",
+    "words_hex": [
+      "0x701025f1"
+    ],
+    "pass_": true
+  },
+  {
+    "name": "adc1_default_channel_struct",
+    "address": "0x70101820",
+    "words_hex": [
+      "0xb",
+      "0x6",
+      "0x3",
+      "0x3ff"
+    ],
+    "pass_": true
+  },
+  {
+    "name": "adc1_active_channel_struct",
+    "address": "0x70105d00",
+    "words_hex": [
+      "0x1",
+      "0x6",
+      "0x2",
+      "0x3ff"
+    ],
+    "pass_": true
+  },
+  {
+    "name": "tim1_base_fields",
+    "address": "0x70101850",
+    "words_hex": [
+      "0x0",
+      "0x20",
+      "0x7cf",
+      "0x0"
+    ],
+    "pass_": true
+  },
+  {
+    "name": "tim1_oc_fields",
+    "address": "0x70101860",
+    "words_hex": [
+      "0x60",
+      "0x1f4",
+      "0x0",
+      "0x0"
+    ],
+    "pass_": true
+  },
+  {
+    "name": "duty_multiplier_f32",
+    "address": "0x70101194",
+    "words_hex": [
+      "0x44f9e000"
+    ],
+    "pass_": true
+  },
+  {
+    "name": "current_lsb_f32",
+    "address": "0x701032e8",
+    "words_hex": [
+      "0x39e674cd"
+    ],
+    "pass_": true
+  }
+]

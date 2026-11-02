@@ -1,0 +1,20 @@
+{
+  "run_id": "20261101-G03-relay-repeat-r1",
+  "status": "complete",
+  "verdict": "pass",
+  "evidence_scope": [
+    "static",
+    "simulation",
+    "bench"
+  ],
+  "firmware_sha256": "8ff78e03997c4a5facd8f6feade09024fdd4721a3f0e32fc3531312bf1598c49",
+  "conditions": "conditions-frozen.json",
+  "actual_new_triggers": 2,
+  "verdict_scope": "same-condition relay direction/recovery only",
+  "total_independent_triggers": 3,
+  "report": "work-card.md",
+  "pwm_power_executed": false,
+  "pwm_ready": false,
+  "physical_valid": 0,
+  "formal_G03_verdict": null
+}

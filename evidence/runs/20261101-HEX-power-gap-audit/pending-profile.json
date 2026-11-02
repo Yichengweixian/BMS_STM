@@ -1,0 +1,38 @@
+{
+  "profile_id": "pwm-oneshot-pending-20261101",
+  "status": "not_ready",
+  "purpose": "Pending physical inputs for a future board port; not executable configuration",
+  "reference_only": {
+    "mcu": "STM32N647",
+    "timer": "TIM1",
+    "channel": "CH2/CH2N",
+    "pins": ["PA9", "PF7"],
+    "current_channel": "ADC1_CH1_PA1",
+    "candidate_arr_from_current_source": 2000,
+    "current_source_nominal_timer_hz": 400000000,
+    "teacher_hex_sha256": "dd44fae11ed542ad6bcee45b35a13e93bd6632481b7d29662afda8ac7856be7f"
+  },
+  "required": {
+    "current_path_evidence": null,
+    "current_slope_direction_and_valid_window": null,
+    "independent_overcurrent_path_if_used": null,
+    "pa9_pf7_to_high_low_driver_mapping": null,
+    "driver_enable_and_shutdown_levels": null,
+    "effective_deadtime_evidence": null,
+    "deadtime_ns": null,
+    "dtg": null,
+    "upper_switch_duty": null,
+    "ccr2": null,
+    "max_on_time_us": null,
+    "max_current_A": null,
+    "max_sample_age_us": null,
+    "max_irq_gap_us": null,
+    "energy_source_limits_and_backfeed": null,
+    "max_allowed_energy_J": null,
+    "allowed_supply_voltage_range_V": null,
+    "shutdown_and_freewheel_evidence": null
+  },
+  "power_ready": false,
+  "power_execution_authorized_by_this_file": false,
+  "physical_limits_unchanged": true
+}

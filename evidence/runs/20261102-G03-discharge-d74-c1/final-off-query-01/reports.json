@@ -1,0 +1,30 @@
+[
+  {
+    "id": 2602084642,
+    "result": 0,
+    "phase": 6,
+    "faults": 0,
+    "used": 1,
+    "owned": 0,
+    "live": 1,
+    "start_id": 2601795528,
+    "profile": 1345926146,
+    "ccr": 1480,
+    "arr": 2000,
+    "run_us": 2000000,
+    "rows": 197,
+    "bits": 0,
+    "restored": 1,
+    "pwm_on_us": 1115129,
+    "pwm_off_us": 3115203,
+    "relay_on_us": 1010118,
+    "relay_off_us": 3135303,
+    "max_irq_gap_us": 102,
+    "zero": 8998,
+    "recovery_good": 47,
+    "power_capable": 1,
+    "physical_valid": 0,
+    "core_state": 3,
+    "kind": "#G3Q"
+  }
+]

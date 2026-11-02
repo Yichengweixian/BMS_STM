@@ -1,0 +1,26 @@
+{
+  "software_scope": "completed",
+  "formal_G01_verdict": null,
+  "evidence_scope": [
+    "static",
+    "build",
+    "simulation"
+  ],
+  "release": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "debug": {
+    "errors": 0,
+    "warnings": 1,
+    "warning_is_preexisting": true
+  },
+  "native_fault_tests": "passed",
+  "python_tests": 7,
+  "python_tests_passed": 7,
+  "end_to_end_simulated_rows": 36,
+  "channels": 9,
+  "actual_board_samples": 0,
+  "calibration": "pending_reference_instruments",
+  "actual_flashing": "not_performed"
+}

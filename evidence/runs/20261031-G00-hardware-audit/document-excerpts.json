@@ -1,0 +1,1610 @@
+[
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide2.xml",
+    "paragraph": 8,
+    "text": "电压 / 电流 / 温度实时采集"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide2.xml",
+    "paragraph": 12,
+    "text": "继电器时序、越限保护"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide2.xml",
+    "paragraph": 18,
+    "text": "电流采样误差直接进入积分"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide2.xml",
+    "paragraph": 25,
+    "text": "“边缘智能”在电池管理终端真正落地"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide3.xml",
+    "paragraph": 16,
+    "text": "学习产出：系统掌握嵌入式系统开发与边缘 AI 的完整技术链路，具备独立开展智能电池管理算法研究的能力。"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide4.xml",
+    "paragraph": 11,
+    "text": "ADBMS1818：电池电压、温度等高精度采集"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide4.xml",
+    "paragraph": 12,
+    "text": "电流"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide4.xml",
+    "paragraph": 13,
+    "text": "INA199A2 + 0.015 Ω 采样电阻（增益 ×50）"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide4.xml",
+    "paragraph": 18,
+    "text": "实物标注：18 V 电源适配器 · 串口 · 接仿真器 · 接负载 · 接直流电源（含充/放电继电器）"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide6.xml",
+    "paragraph": 10,
+    "text": "放电继电器"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide6.xml",
+    "paragraph": 13,
+    "text": "推挽输出 · 上电 RESET（低），继电器断开"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide6.xml",
+    "paragraph": 14,
+    "text": "充电继电器"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide6.xml",
+    "paragraph": 20,
+    "text": "PE5 / PE6"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide6.xml",
+    "paragraph": 41,
+    "text": "ADC1：INP0 / INP1 / — / INP11；ADC2：INP0 / INP1 / INP14 / INP11"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide7.xml",
+    "paragraph": 2,
+    "text": "AFE 采集链路：电压 / 电流 / 温度"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide7.xml",
+    "paragraph": 8,
+    "text": "读取单节电池电压、回路电流、电池温度"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide7.xml",
+    "paragraph": 9,
+    "text": "先分别验证电压 / 电流 / 温度单点读数，再合并显示"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide7.xml",
+    "paragraph": 10,
+    "text": "电流方向符号要在充电 / 放电中分别验证"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide7.xml",
+    "paragraph": 11,
+    "text": "电流换算（INA199，增益 ×50，R = 0.015 Ω）"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide7.xml",
+    "paragraph": 14,
+    "text": "温度换算（PT1000 + 9.1 kΩ 上拉，VREF2 = 3.0 V 激励）"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide7.xml",
+    "paragraph": 15,
+    "text": "0.015 Ω 采样电阻（左）与 INA199 放大（右），输出 I_AD"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide7.xml",
+    "paragraph": 16,
+    "text": "温度测量：PT1000 + 9.1 kΩ 上拉分压，送 AFE GPIO 通道（图 8）"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide8.xml",
+    "paragraph": 16,
+    "text": "充电 Buck：母线 → 电池"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide8.xml",
+    "paragraph": 17,
+    "text": "放电 Boost：电池 → 母线，方向由电流给定符号控制"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide8.xml",
+    "paragraph": 19,
+    "text": "死区说明"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide8.xml",
+    "paragraph": 20,
+    "text": "EG3112 半桥驱动芯片自带死区，TIM1_CH2 / CH2N 可不设死区。"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide9.xml",
+    "paragraph": 8,
+    "text": "记录占空比 — 输出电压 / 电流曲线"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide9.xml",
+    "paragraph": 10,
+    "text": "放电接指定阻值负载，充电接指定直流电源"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide9.xml",
+    "paragraph": 12,
+    "text": "负载固定为33欧姆，则放电电流需限定在0.5A~0.8A"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide10.xml",
+    "paragraph": 7,
+    "text": "周期中点采样 ≈ 电感电流纹波中间值 ≈ 平均电流(中央对齐模式，更新事件作为TRGO触发ADC，RepetitionCounter = 1)"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide10.xml",
+    "paragraph": 8,
+    "text": "ADC 结果按标定系数换算为实际电压 / 电流（PI 反馈量），在ADC中断回调函数中计算PI。"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide10.xml",
+    "paragraph": 11,
+    "text": "一次转换即得控制所需的平均电流，无需额外滤波"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide10.xml",
+    "paragraph": 12,
+    "text": "先标定，再控制：用万用表 / 直流电源标定 VB、I、VS、VL 通道"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide11.xml",
+    "paragraph": 14,
+    "text": "充 / 放电两个电流环共用同一套 PI 算法，仅给定符号不同"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide11.xml",
+    "paragraph": 20,
+    "text": "电流环开环穿越频率取开关频率的 1/10～1/20，PI 零点置于 1/10 fs 附近"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide11.xml",
+    "paragraph": 21,
+    "text": "充电恒流：给定 = +Iref；放电恒流：给定 = −Iref（方向由电流符号决定）"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide12.xml",
+    "paragraph": 8,
+    "text": "固定步长 50 mA 或 100 mA 增减电流设定"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide12.xml",
+    "paragraph": 13,
+    "text": "电流设定值（实时更新）"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide12.xml",
+    "paragraph": 14,
+    "text": "实测电压 / 电流 / 温度（1 Hz 刷新）"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide12.xml",
+    "paragraph": 17,
+    "text": "1 Hz 上传：电压 / 电流 / 温度 / 工作模式"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide12.xml",
+    "paragraph": 19,
+    "text": "上位机下发电流设定指令 → 下位机更新 PI 给定"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide13.xml",
+    "paragraph": 7,
+    "text": "BOOT / 下载 / 串口 / OLED"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide13.xml",
+    "paragraph": 11,
+    "text": "单点验证电压 / 电流 / 温度"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide13.xml",
+    "paragraph": 27,
+    "text": "✓ 串口数据截图"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide15.xml",
+    "paragraph": 9,
+    "text": "CSV 字段：电压、电流、温度（+ 时间戳）"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide15.xml",
+    "paragraph": 20,
+    "text": "时间戳与采样周期是否均匀、电流方向符号是否正确（充电为正 / 放电为负）"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide15.xml",
+    "paragraph": 21,
+    "text": "安时积分初值 SOC0 与电池容量 CN 的标定方法要在报告中说明"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide18.xml",
+    "paragraph": 26,
+    "text": "“10 Hz SOC 上传”与“1 Hz 测量数据流”是两条不同频率的数据流； 注意串口带宽与帧协议设计，避免数据流互相阻塞。"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide20.xml",
+    "paragraph": 13,
+    "text": "ADBMS1818 / ADC / DMA / OLED 驱动；TIM1 互补 PWM 与死区配置；开环占空比扫描"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide20.xml",
+    "paragraph": 19,
+    "text": "基础层代码、开环 / 闭环测试记录、OLED 与串口截图"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide23.xml",
+    "paragraph": 7,
+    "text": "顺序：先电源 → 再通信 → 后功率；先开环 → 再闭环"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide23.xml",
+    "paragraph": 8,
+    "text": "继电器顺序：充电先闭合充电继电器、断开放电继电器；放电反之"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide23.xml",
+    "paragraph": 10,
+    "text": "测试中不要插拔串口线，不要随意同步参数"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide23.xml",
+    "paragraph": 11,
+    "text": "示波器观察点：PWM 互补波形、死区 / 驱动波形、电感电流纹波"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide23.xml",
+    "paragraph": 12,
+    "text": "串口打不开：检查线缆、CH340C 驱动、端口占用"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide23.xml",
+    "paragraph": 15,
+    "text": "功率级调试：限流电源 + 先低压、低占空比"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide23.xml",
+    "paragraph": 17,
+    "text": "离开时：先停止测量 → 关闭串口 → 断电拆线"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide23.xml",
+    "paragraph": 18,
+    "text": "长时间测试前确认电池电量、散热与接线端子温度"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide24.xml",
+    "paragraph": 14,
+    "text": "关键波形（PWM / 电流纹波 / 阶跃响应）"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide24.xml",
+    "paragraph": 15,
+    "text": "OLED / 串口截图"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 18,
+    "text": "STM32N647X0HxQ + SiZ998DT 半桥 + INA199A2 电流检测"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 22,
+    "text": "TIM1 互补 PWM 100 kHz / 死区插入 / 周期中点采样 / 数字 PI 双环"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 24,
+    "text": "开环扫描 → 电流标定 → 闭环 → 人机交互 → 上位机"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 33,
+    "text": "1.  第一步：TIM1 互补 PWM（100 kHz + 死区）    ARR/RCR/空闲电平/死区换算"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 35,
+    "text": "3.  第三步：把 ADC 接到电流通道上    CH11→CH1、触发源、过采样"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 36,
+    "text": "4.  第四步：电流怎么算    灵敏度 / 零点 / 每码电流 / 量程 / 三个坑"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 57,
+    "text": "ADC2"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 72,
+    "text": "继电器"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 80,
+    "text": "电池 → 半桥（SiZ998DT）→ 功率电阻负载（如 33 Ω / 25 W）"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 82,
+    "text": "直流电源（如 15 V / 1 A）→ 半桥 → 电池"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 83,
+    "text": "继电器"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 89,
+    "text": "串口"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 90,
+    "text": "USB-TTL：TX→PE6、RX→PE5、GND 共地，115200 8N1"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 92,
+    "text": "⚠️ 上电顺序：先接好负载/电源，再上电。模板上电不输出 PWM，安全的。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 98,
+    "text": "为什么 RCR 必须是 1：中心对齐模式下计数器一上一下，如果 RCR=0，每个 PWM 周期会产生两次更新事件（上溢一次、下溢一次），于是 ADC 触发和中断频率都变成 200 kHz，是开关频率的两倍；而且两次采样点分别在电流波形的峰和谷，平均下来不是平均电流。RCR=1 让它每个 PWM 周期只产生一次。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 101,
+    "text": "1.2 死区"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 102,
+    "text": "本板驱动芯片 EG3112 自带死区，程序可不设死区。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 116,
+    "text": "取下电池，接示波器，观察互补PWM信号。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 122,
+    "text": "不写任何串口代码。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 124,
+    "text": "断电状态下接好：装上电池 → 半桥 → 功率电阻负载（如 33Ω / 25 W）。然后上电。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 125,
+    "text": "在 USER CODE BEGIN 2 里、PWM 启动之前合放电继电器。把第 1.4 步的启动代码和这里合起来，顺序应该是这样："
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 126,
+    "text": "/* USER CODE BEGIN 2 *//* ① 先合放电继电器，等触点稳定 */HAL_GPIO_WritePin(GPIOG, GPIO_PIN_5,  GPIO_PIN_SET);    /* SWL 放电吸合 */HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5,  GPIO_PIN_RESET);  /* SWS 充电断开（互锁） */HAL_Delay(100); /* ② 再启动 PWM（第 1.4 步那三行放这里） */__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, TEST_CCR);HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 127,
+    "text": "顺序不能反：先启动 PWM 再合继电器，等于让半桥带着占空比去接通负载，合闸瞬间会有电流冲击。先合继电器、等 100 ms 触点稳定，再让 PWM 输出。 每次下载重启都会重新执行这段，听到继电器\"咔哒\"一声是正常的。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 166,
+    "text": "两个操作要点： ① 每改一次都要确认 Build Output 里真的重新编译了（看到 compiling main.c）。只点下载不重编，烧进去还是上一个占空比。 ② 测完一组就把 TEST_DUTY 改回 0.90f（最小电流端）再断电，下次上电不会一上来就是大电流。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 169,
+    "text": "V_out = V_in / (1 − D_下管) ，而 D_下管 = 1 − D      ⇒ V_out = V_in / D，V_in是3节串联电池总电压，V_out是负载电压"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 175,
+    "text": "检查：继电器是否吸合、PA9 是否真有波形、电感/驱动供电"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 181,
+    "text": "注意：扫描时负载电阻固定，所以 I_out = V_out / R，D 越小电流越大。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 183,
+    "text": "3. 第三步：把 ADC 接到电流通道上"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 184,
+    "text": "目标：HAL_ADC_GetValue() 能读到随电流变化的数。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 186,
+    "text": "电流在 PA1 = ADC1_INP1。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 194,
+    "text": "为什么这个点等于平均电流：中心对齐时，上管导通区间以 CNT=0 为中心、下管导通区间以 CNT=ARR 为中心；而三角波电流在每个斜坡的时间中点恰好等于平均值。所以无论 UEV 落在哪一侧，采到的都是平均电流，不需要额外补偿。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 201,
+    "text": "ADC 码（12 位，VREF=1.8V）"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 202,
+    "text": "不通电、无电流"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 210,
+    "text": "4. 第四步：电流怎么算"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 213,
+    "text": "电池电流 ──► 采样电阻 R_sh ──► INA199A2（增益 50）──► PA1 (ADC1_INP1)"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 215,
+    "text": "· INA199A2 是电流检测放大器，增益 G = 50"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 216,
+    "text": "· 它把采样电阻上的压降放大：V_out = 0.9 V + G × R_sh × I"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 217,
+    "text": "· 零点为什么是 0.9 V：INA199 的 REF 引脚接在 VREF/2 = 1.8/2 = 0.9 V，这样正负电流都能测（双极性）。零点不是 0 V。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 223,
+    "text": "VREF"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 231,
+    "text": "INA199 增益 50 × 15 mΩ"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 234,
+    "text": "V_LSB = VREF / 4095 = 1.8 / 4095 = 0.4395 mV/码"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 239,
+    "text": "理论零点 = 0.9 / 1.8 × 4095 = 2047.5。但实际板子有器件偏差、REF 分压误差、温漂，可增加CODE_zero ，是零电流时实测的 ADC 码（不是理论值 2048）。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 240,
+    "text": "I(A) = (CODE − CODE_zero) × VREF / 4095 / 0.75     = (CODE − CODE_zero) × 0.000586"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 241,
+    "text": "在继电器全断、PWM 不输出的时刻，对电流进行ADC采样，得到CODE_zero。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 243,
+    "text": "零点 0.9 V 正好在 VREF/2，所以正负量程对称："
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 247,
+    "text": "· INA199 的输出 = 0.9 + 0.75 × I"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 248,
+    "text": "· 放电时电流从电池流出，按定义 I 为负 → 输出低于 0.9 V → ADC 码低于零点"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 254,
+    "text": "用 3.3 V 算 VREF"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 256,
+    "text": "所有电流放大 1.83 倍，实际只有设定值的 55%，不报任何错"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 258,
+    "text": "零电流时读数约 1.2 A"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 266,
+    "text": "前三步做完了：PWM 能出波形、ADC 能读电流、码能换算成安培。但那时占空比是手写的固定值，电流是多少全看负载——这叫开环。这一步把它闭起来。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 268,
+    "text": "开环时你给的是占空比，得到的是一个\"碰巧的\"电流。三个原因让它在实际中不能用："
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 271,
+    "text": "母线电压变化（电池放电、电源内阻）"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 272,
+    "text": "同一个占空比，电流跟着变"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 274,
+    "text": "电流反比于电阻，直接变"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 276,
+    "text": "慢漂，几十分钟后电流偏离设定值"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 278,
+    "text": "而实验要求是\"设定 −0.5 A，就稳定输出 −0.5 A\"。所以必须有一个环节不断测电流、比较、修正——这就是闭环。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 281,
+    "text": "半桥的两只 MOSFET 互补开关，电感电流在一个开关周期内\"上升段伏秒积 = 下降段伏秒积\"，而电池电流就是电感电流的平均值。也就是说："
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 282,
+    "text": "占空比 D ──► 电感电流 i_L ──► 电池电流（= INA199 采到的值）"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 290,
+    "text": "电感电流 i_L 正方向取\"流向电池\""
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 297,
+    "text": "电流符号"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 299,
+    "text": "母线 → 电池"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 300,
+    "text": "D 越大，上管导通越久，电感储能越多 → 充电电流越大"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 303,
+    "text": "电池 → 母线"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 304,
+    "text": "D 越小，下管导通越久，电感从电池吸能越多 → 放电电流越大"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 307,
+    "text": "看起来两个方向的规律相反，但用代数看是一致的：D 增大时，电流都朝\"更正\"的方向走（充电更正、放电更接近 0，即放电减弱）。这就是题面说的\"*同一对开关管的占空比 D 由电压比决定、取值不变，切换方向时只需改变电流给定的符号，占空比与 PI 参数均保持不变*\"。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 310,
+    "text": "测电流 i  →  算误差 e = i_ref − i  →  PI 运算得 u  →  限幅后写 CCR"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 311,
+    "text": "· i_ref 是给定（任务 3 里由按键或串口写入）"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 312,
+    "text": "· 误差为零时 PI 输出保持不变，电流就停在设定值"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 313,
+    "text": "· 只要误差不为零，积分项就会一直累积，直到把电流拉回来"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 318,
+    "text": "1. 主链：i_ref → 比较 → PI → 限幅 → 占空比 D → TIM1 互补 PWM → 半桥/电感 → 实际电流 i_L"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 319,
+    "text": "2. 反馈链：i_L 经 INA199 变成电压、ADC1 采成码、再换算成安培，回到比较点与给定相减。减法就是\"负反馈\"，符号错了会变成正反馈（电流一路冲到限幅）"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 365,
+    "text": "TIM1 + EG3112 + 半桥"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 367,
+    "text": "100 kHz，含死区"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 374,
+    "text": "按键 / 串口  ──写──►  i_ref（全局变量）  ──读──►  100 kHz 中断里的求误差环节                              ▲                       中断每 10 µs 只读不写，                       所以主循环随便改，不会打架"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 383,
+    "text": "/* USER CODE BEGIN 4 */void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){  if (hadc->Instance != ADC1) { return; }   /* 1) 取值（必须在这里读：回调返回后 HAL 会清标志、释放数据） */  uint16_t code = (uint16_t)(HAL_ADC_GetValue(&hadc1) & 0x0FFFU);   /* 2) 换算电流 */  float i_meas = ((float)code - (float)g_zero) * 1.8f / 4095.0f / 0.75f;   /* 3) PI */  float u = PI_Update(&g_pi, g_i_ramp - i_meas);   /* 4) 写 CCR */  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, (uint32_t)(u * 2000.0f + 0.5f));}"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 388,
+    "text": "· 实测：CCR/ARR 越小 → 放电电流越大 ⇒ 负反馈成立 ✅"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 389,
+    "text": "· 充电：i_ref = +0.5、u 增大 → CCR 增大 → 充电电流增大 ⇒ 也是负反馈 ✅"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 390,
+    "text": "两个方向用同一套增益，因为换向时\"电流符号\"和\"占空比↔幅值的关系\"同时反了一次，正好抵消。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 396,
+    "text": "改给定后电流是否跟随"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 402,
+    "text": "7. 第七步：充放电切换（继电器 + 给定符号）"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 403,
+    "text": "7.1 时序（先断后合，绝不带电流换向）"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 404,
+    "text": "t = 0     两路继电器全断t = 20ms  合方向继电器（放电 → PG5；充电 → PB5）t = 120ms 使能 PWM，PI 从 0.90 起，指令从 0 斜坡t ≈ 320ms 斜坡到目标值"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 405,
+    "text": "停机顺序相反：先关 PWM → 等 20 ms 让电流衰减 → 再断继电器（带载断触点会拉弧）。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 407,
+    "text": "static void SetMode(int8_t dir)      /* dir: -1 放电, +1 充电 */{  /* 1. 先停 */  HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_2);  HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);  HAL_GPIO_WritePin(GPIOG, GPIO_PIN_5, GPIO_PIN_RESET);  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);  HAL_Delay(20);   /* 2. 合方向继电器（互锁：先断对面） */  if (dir < 0) { HAL_GPIO_WritePin(GPIOG, GPIO_PIN_5, GPIO_PIN_SET); }  else         { HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET); }  HAL_Delay(100);   /* 3. 重启 PWM，PI 从安全端起步 */  g_i_ramp = 0.0f;  g_i_ref  = (float)dir * g_i_set;            /* 设定量 */  PI_Init(&g_pi, 0.07f, 90.0f, 1.0e-5f, 0.40f, 0.90f, 0.90f);  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 1800);   /* 0.90 */  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);  HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);}"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 408,
+    "text": "u0 = 0.90 的含义：放电方向它是最小电流端（实测约 −0.37 A），启动零冲击。充电方向它对应约 +0.63 A（比 0.5 A 目标大）。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 441,
+    "text": "本实验只用 CLICK（短按）。其他事件一律过滤掉——否则按一下可能连触发 CLICK 和 REPEAT，电流一次跳好几档。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 446,
+    "text": "3. 动作的后果不能在中断里发生。按键最终要改 g_i_ref、甚至调 SetMode（里面有 HAL_Delay 和继电器时序），这些只能在主循环上下文执行。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 479,
+    "text": "10.1 \"上位机\"就是 PC 上的串口助手"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 480,
+    "text": "PC 端用任意一款串口助手即可，它同时承担两个角色："
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 481,
+    "text": "串口助手的功能"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 484,
+    "text": "显示下位机 1 Hz 上报的电压、电流、温度、工作模式"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 486,
+    "text": "下发电流设定指令，实现远程设定"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 487,
+    "text": "串口参数必须与下位机一致："
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 508,
+    "text": "串口助手按行显示的前提；缺了就全挤成一行"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 509,
+    "text": "电流带符号"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 511,
+    "text": "电流保留 3 位小数"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 525,
+    "text": "串口上报"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 532,
+    "text": "建议把两个 1 Hz 任务错开（比如 OLED 在 0 ms 触发、串口在 500 ms 触发）。否则同一圈主循环里既推屏又发串口，会叠出 100 ms 以上的连续占用。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 535,
+    "text": "模板用 HAL_UARTEx_ReceiveToIdle_IT() 接收，判断帧结束的依据是线路空闲（IDLE），不是回车符。串口助手发完 set 0.3 后，线路静默约 1 个字符时间（115200 下 ≈ 87 µs）就认为本帧结束、回调被调用。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 546,
+    "text": "理由：UART 中断不是控制中断，不影响 100 kHz 电流环（ADC 中断优先级更高，能抢占它）。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 548,
+    "text": "只设计一条命令就够：set <电流值>，带符号表示方向。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 565,
+    "text": "5. 应用：方向变了就走 SetMode 的完整时序（停 → 等 → 换继电器 → 重启），方向没变就直接写 g_i_ref，靠斜坡平滑过渡"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 579,
+    "text": "2030~2170 码（0.88~0.95 V），无电流时"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 600,
+    "text": "1 Hz 收到帧；下发 set 0.3 电流跟随"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 621,
+    "text": "零电流读数约 1.2 A"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 624,
+    "text": "闭环\"收敛\"但实际电流只有一半"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 625,
+    "text": "VREF 用了 3.3 V"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 627,
+    "text": "一上电就跳到最大电流"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 628,
+    "text": "启动占空比落在了大电流端"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 629,
+    "text": "确认 u0 = 0.90（最小电流端）、CCR 初值 1800 "
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 633,
+    "text": "测电流时好时坏、抖动大"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 636,
+    "text": "串口只收到第一帧命令"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 27,
+    "text": "Debug(LRUN) 与 Release(XIP) 均已上板跑通：OLED 显示 + 串口打印正常"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 48,
+    "text": "继电器、串口、SPI5、OLED 等引脚总表"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 51,
+    "text": "OLED / 串口 / ADBMS1818 / 按键的具体用法"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 68,
+    "text": "BMS_EX 是面向电池管理系统（BMS）教学与原型验证的 STM32N6 工程模板。它不是\"裸机单镜像\"，而是 CubeMX 生成的 Appli 工程，配合板上 FSBL 使用：调试阶段在内部 SRAM 里跑（LRUN），发布阶段由 FSBL 引导到外部 flash 上原地执行（XIP）。不要用CubeMX 重新生成工程。"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 92,
+    "text": "串口通信"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 96,
+    "text": "单体电压 / 母线电流 / 三路 PT1000 温度，一次读完，含 PEC 校验"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 104,
+    "text": "ADC（ADC1/ADC2）"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 105,
+    "text": "CubeMX 已生成配置，但从未启动，且电流通道未进序列"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 107,
+    "text": "继电器控制"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 113,
+    "text": "提示：本模板的\"验证状态\"指：OLED 能显示、串口能打印、Debug 与 Release 两种加载方式都能跑。ADBMS1818 采样代码就绪，但需接上电池监视板实测（没接时 SPI 会一直等，见 7.4 与 11 节）。"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 145,
+    "text": "串口助手"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 167,
+    "text": "7) 观察结果：OLED 第一行显示 BMS_EX；串口 115200 打印 `BMS_EX UART ready, tick=... ms`。"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 188,
+    "text": "8) 观察：OLED 显示 `BMS_EX`；串口打印 `BMS_EX UART ready, tick=... ms`。"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 193,
+    "text": "串口 115200"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 199,
+    "text": "串口发送任意字符"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 258,
+    "text": "继电器"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 263,
+    "text": "继电器"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 268,
+    "text": "串口"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 270,
+    "text": "PE5"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 273,
+    "text": "串口"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 275,
+    "text": "PE6"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 329,
+    "text": "注意：两个继电器（PG5 / PB5）目前只有初始化，没有任何控制逻辑：全工程没有驱动函数、没有按键联动、没有互锁。要接功率回路请先确认\"高电平吸合还是低电平吸合\"，并自己做互锁。"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 354,
+    "text": "6.2 串口收发"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 366,
+    "text": "操作步骤：用串口助手看到打印"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 367,
+    "text": "1) 确认板上 ST-LINK 已插好（虚拟串口由 ST-LINK 提供）。"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 369,
+    "text": "3) 打开串口助手：选 COMx，波特率 115200，数据位 8，停止位 1，校验无，流控无。"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 370,
+    "text": "4) 点\"打开串口\"，然后按板子复位键，应看到 `BMS_EX UART ready, tick=... ms`。"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 377,
+    "text": "6.3 ADBMS1818 采样（电压 / 电流 / 温度）"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 387,
+    "text": "3) 第一次上板先只打印 `V1/V7/V13`，确认电压与万用表一致；再标定电流零点（见 6.3 末尾）。"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 397,
+    "text": "母线电流"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 400,
+    "text": "静置零电流时把实测值填进 `BMS_I_ZERO_V`"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 403,
+    "text": "R = V·R_UP/(VREF2−V)，t = (R/1000 − 1)/0.00385"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 451,
+    "text": "两个 target 都保留，别删。删了之后 SysTick/串口中断会飞到错误地址。"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 459,
+    "text": "    DMA_CHANNEL_SEC | DMA_CHANNEL_PRIV | DMA_CHANNEL_SRC_SEC | DMA_CHANNEL_DEST_SEC);  /* USART1-TX → 串口 */"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 461,
+    "text": "这两句**不能塞进 `#ifdef DEBUG`**：OLED 刷新和串口打印都走 GPDMA1，Release 下不设就是\"屏全黑 + 串口一个字都不出\"，而 CPU 其实还在正常跑。与 Debug 分支里的调用重复是幂等的。"
+  },
+  {
+    "source": "docs/manuals/BMS_EX工程模板使用说明.docx",
+    "part": "word/document.xml",
+    "paragraph": 475,
+    "text": "8.8 串口接收回调"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 1,
+    "text": "BMS 电池测试上位机"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 4,
+    "text": "本软件通过串口（USB 转 TTL）与 BMS 下位机连接，用于三节锂电池测试平台的日常操作：实时查看电压、电流、温度等数据，手动控制充电 / 放电，设置并同步保护参数，以及运行恒流循环、HPPC、DST 三类自动测试。测试数据可录制并导出为 CSV，运行日志可导出为 TXT。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 7,
+    "text": "软件主界面左侧固定为“数据监测”曲线区与“串口日志”区；右上方为 5 个功能页签，右下方为日志操作按钮（导出日志 / 清空日志 / 发送）。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 13,
+    "text": "连接串口、查看实时电压/电流/温度/电荷量、开始或停止测量与录制、手动充放电控制"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 15,
+    "text": "充放电保护参数、电池均衡、温度校准、恢复出厂默认、同步参数到下位机"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 25,
+    "text": "接好硬件线路，用 USB 转串口线连接电脑后给下位机上电。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 26,
+    "text": "在“基础设置”页选择串口号、波特率保持 115200，点击【打开串口】；按钮变红显示“关闭串口”即连接成功。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 33,
+    "text": "图 2　基础设置页：串口设置、实时数据与手动控制区"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 34,
+    "text": "在“串口设置”区选择正确的串口号（不确定时可拔插 USB 观察端口增减），波特率选 115200。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 35,
+    "text": "点击【打开串口】。成功后按钮变红、文字变为“关闭串口”，串口号与波特率框锁定。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 36,
+    "text": "若弹出“无法打开串口”提示，请检查线缆、驱动，或该端口是否被其他软件占用。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 37,
+    "text": "断开时直接点击【关闭串口】即可：软件会先自动下发停止指令、终止全部正在运行的测试，再安全断开，无需先手动停机。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 39,
+    "text": "打开串口后，点击【开始测量】：软件请求下位机开启数据流，按钮变红显示“停止测量 (录制中...)”，实时数值与曲线开始刷新，数据同时自动录制。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 49,
+    "text": "下位机进入恒流放电模式，电流按“参数设置”页的放电电流执行"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 57,
+    "text": "操作前必须先打开串口并点击【开始测量】。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 58,
+    "text": "电压条件不满足时（如电源电压、电池电压越限）下位机会拒绝进入并自动退回 STOP，“系统状态”框会显示 VS_ERROR / VB_ERROR 等错误，请按提示检查接线与电压。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 60,
+    "text": "在“参数设置”页修改参数后，必须点击【同步参数到下位机】才会真正生效（同步的是全部参数）。当前电池类型固定为三元锂（NMC），出厂默认值如下："
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 67,
+    "text": "电源最低"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 71,
+    "text": "电源最高"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 77,
+    "text": "电池最低"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 79,
+    "text": "充电电流"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 81,
+    "text": "放电电流"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 83,
+    "text": "截止电流"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 93,
+    "text": "任一参数超出协议合法范围时，软件会弹窗拦截（例如充电电流 0.001–0.8 A、最大放电 0.001–1.1 A）；即使绕过界面，下位机也会整帧拒绝、全部参数不生效。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 94,
+    "text": "电流均指电池的电流，而不是端口电流。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 95,
+    "text": "注意：DST 测试运行期间禁止同步参数——配置帧会清零当前电流目标。请先停止 DST 再同步。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 96,
+    "text": "4.5 电池均衡"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 98,
+    "text": "手动均衡：直接勾选“电池1/2/3 放电”可单独接通某一节的放电通路；再次勾选取消。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 99,
+    "text": "停止测量或关闭串口时，软件会自动关闭全部均衡通道。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 100,
+    "text": "对于新的电池组，需要做电池均衡。操作步骤如下："
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 101,
+    "text": "在待机状态，打开自动均衡，压差阈值可设为0.005-0.01V。等待至均衡完毕：无均衡蓝灯点亮，3电池电压大致一致。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 105,
+    "text": "先让设备静置，确认三节电池温度和环境温度一致且稳定（页面提示“静置温度一致后操作”）。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 106,
+    "text": "打开串口后点击【rupcal校准】，下位机即更新温度通道的上拉电阻校准值。一般仅在更换 NTC 或温度示值偏差时执行。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 108,
+    "text": "在“恒流测试”页设置：充电上限、放电下限、充电电流、充电截止电流、放电电流、循环次数、空电/满电静置时间。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 114,
+    "text": "电池总电压低于放电下限时软件会自动终止测试并在日志中红色提示。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 116,
+    "text": "在“HPPC测试”页设置各阶段参数：电池满电静置时间、1.25C 放电时间、三次静置时间、1.18C 充电时间、1C 倍率放电时间、循环放电次数、倍率 C（A）。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 122,
+    "text": "在“DST测试”页只需设置两项：充放电基础电流（A，对应工况 100% 倍率的电流值）、循环次数。每轮为固定的 20 步工况（共 360 秒），静置、充电、放电自动连续切换，中途无暂停与人工操作。注意页内提示：DST 需在充电接口接入 4 节串联电池组，请确保接线牢固、外接电池组电压在允许范围内。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 125,
+    "text": "确认外接电源与电池电压满足进入条件，先点击【开始测量】。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 126,
+    "text": "点击【开始DST测试】：软件先请求下位机进入 DST 模式，确认后自动下发第 1 步工况，日志逐行打印“步骤 N（时长, 倍率）目标电流已下发”，进度条与阶段标签实时更新。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 127,
+    "text": "测试期间不要点击“同步参数到下位机”，不要关闭串口；如需中止，点击【停止测试】（变红的同一按钮），软件会通知下位机正常结束。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 129,
+    "text": "异常处理：若日志出现红色“固件已异常终止 DST 测试：……I_ERROR”等字样，表示下位机因自身保护（如电压/电流/失联保护）已紧急停机。此时点击【停止测试】复位界面，检查接线、电源电压与工况电流设置后再重试；必要时在串口日志区点击【导出日志】保存日志供分析。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 130,
+    "text": "4.10 串口日志"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 142,
+    "text": "外接电源（高压侧）电压不满足条件"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 143,
+    "text": "检查电源端口接线、电源电压和外接 4 节锂电电压"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 145,
+    "text": "电池组总压不满足进入条件"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 146,
+    "text": "检查3节电池电量与接线"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 151,
+    "text": "电池已充满"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 154,
+    "text": "电流类保护停机（含 DST 失联/过流）"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 155,
+    "text": "停止当前测试，检查工况电流、接线与串口连接后重试"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 158,
+    "text": "电池温度达到约 44 °C 时设备会过热保护自动停机，待温度下降后再使用。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 160,
+    "text": "操作顺序：先接线、检查无误后再上电并打开软件；离开时先停止测量，再关闭串口、断电拆线。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 162,
+    "text": "【停止测量】与【关闭串口】都会自动下发停止指令并终止全部测试，是推荐的一键收尾方式。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 163,
+    "text": "测试运行中不要插拔串口线；修改参数后记得点击【同步参数到下位机】。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 164,
+    "text": "电流参数不要超过协议上限：充电电流 ≤ 0.8 A，放电电流 ≤ 1.0 A，最大放电 ≤ 1.1 A；超限配置将被下位机整帧拒绝。"
+  },
+  {
+    "source": "docs/manuals/BMS电池测试上位机操作手册（图文版）.docx",
+    "part": "word/document.xml",
+    "paragraph": 165,
+    "text": "长时间测试前确认电池电量、散热与接线端子温度；如发现异常发热、异味或读数异常，立即点击停止并断开硬件。"
+  },
+  {
+    "source": "课堂复习重点.pptx",
+    "part": "ppt/slides/slide8.xml",
+    "paragraph": 6,
+    "text": "5、高级定时器中，死区的作用是什么，在PWM调制如何应用，举例说明插入2us如何实现？"
+  },
+  {
+    "source": "课堂复习重点.pptx",
+    "part": "ppt/slides/slide11.xml",
+    "paragraph": 2,
+    "text": "7、输入电压 2.5V，VREF=3.3V，12位分辨率，规则数据寄存器的值是多少 ？"
+  },
+  {
+    "source": "课堂复习重点.pptx",
+    "part": "ppt/slides/slide12.xml",
+    "paragraph": 3,
+    "text": "串口通讯为什么要设置为中断方式？不采用中断方式能实现串口通讯吗"
+  },
+  {
+    "source": "课堂复习重点.pptx",
+    "part": "ppt/slides/slide13.xml",
+    "paragraph": 43,
+    "text": "调试口、GPS、蓝牙、串口屏、RS-232/485"
+  }
+]

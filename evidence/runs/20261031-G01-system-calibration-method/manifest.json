@@ -1,0 +1,12 @@
+{
+  "evidence_scope": [
+    "static"
+  ],
+  "verdict": null,
+  "calibration_executed": false,
+  "sha256": {
+    "measurement-before.md": "0e16c21e3fcb42fbf6c81937f3643057779ae4e6f19ad6198955709ea83961d4",
+    "method.md": "846ef1243613ee966df6ed4010ce1be1d57c4da4ea9dc1f0fbbac3c9a32ed1ab",
+    "user-closeup.jpg": "b2d94b4aa9a67b4bc0a8497220d3579c885e6b8956f7cbcf390c5adc814d89c2"
+  }
+}

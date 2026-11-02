@@ -1,0 +1,51 @@
+# 当前状态
+
+日期：2026-11-02。本轮已完成真实固定D0.90/0.80各2秒放电、电压表测与自动停止恢复。当前固件g03-power-points-r4，最终串口核对faults0/bits0/owned0/restored1/used1，用户已确认三路电源OFF。G03全项尚未完成。
+
+当前交付：[现场报告](../evidence/runs/20261102-G03-discharge-sprint-r4/report.md)、[操作步骤](../evidence/runs/20261102-G03-discharge-sprint-r4/operation-guide.md)、[完成点CSV](../evidence/runs/20261102-G03-discharge-sprint-r4/completed-points.csv)。CH1/A=cell13、CH2/B=cell7、CH3/C=cell1已静态辨识，A接触问题已处理后验证。
+
+|阶段|status|verdict|已有证据 / 剩余工作|
+|---|---|---|---|
+|G00 基线与硬件契约|in_progress|null|构建/烧录及历史冷启动基础项完成，三节14500、33Ω负载、充电口开路已登记；物理额定值、散热和仪器校准缺项保留|
+|G01 测量与标定|in_progress|null|本轮有效性/完成/错误传播/时间戳/序号/复算与快速AFE时序补测完成；真实动作后264条有效原码、29完整组；物理V/I/T标定和MCU电流路径问题仍未闭合；追加448点禁能输入交叉检查及新PWM版本270条/30组常规采集恢复验证|
+|G02 无功率PWM与时序|in_progress|null|受影响软件回归、13组禁能板测、STOP/锁存/协议异常/资源互斥完成；新增单次PWM禁能15项及采集恢复通过；物理波形、有效死区与电气停止时间缺测|
+|G03 受限开环功率级|in_progress|null|2026-11-02完成r4真实固定D0.90/0.80各2s，负载表测10.916/12.152V，电池标称I−0.3566/−0.4444A，自动停止恢复通过；其余课程点、电流范围、精度/热稳态/波形和充电侧仍缺|
+|G04 PI恒流与故障退出|not_started|null|尚无闭环实物证据|
+|G05 串口/上位机联调|in_progress|null|CRC/id/防重放、专用采集读回、停止与单次命令工具完成；真实恢复未确认先提示现场停止；完整功率业务仍未验收|
+|G06 SOC基准与数据集|not_started|null|容量、初值、参考标签及独立验证尚待建立|
+|G07 模型与端侧部署|not_started|null|无可验收数据集或模型产物|
+
+扩点/充电准备复核（2026-11-02）：现场仅33Ω负载；原电芯板外3.885/3.886/3.886V，不符合r4启动/运行电压范围。原两点继续有效；未放宽阈值、未换接电池、未新增充电结果。[具体差项与数值核算](../evidence/runs/20261102-G03-extension-readiness-r1/review.md)。
+
+## 历史过程记录
+
+以下保存各阶段当时状态；当前状态以上方汇总为准。
+
+历史禁能阶段实板运行 `g03-pwm-disabled-r1`，Release HEX SHA256为`9126778404c6f9a9890ab729522f7fbd9fe7fe0a380436694494ebecde81f9fb`。ROM下载写入/读回成功，用户恢复BOOT1=0/BOOT0=0并RESET后COM11核对默认禁能及身份。单次PWM禁能15项全部取得通过结果，G01恢复270条/30完整组，G02 1秒更新/完成99997无错误，relay DRY102组。最终PWM IDLE、used1、faults0、owned0、timer_running0、actual_bits0；物理量有效标志保持0。本版不能开启真实PWM或继电器。
+
+核心21组、port寄存器模型15组、主机19项及受影响旧回归通过；Release0错0警告、Debug原有EXTRAM警告1。一次软件复位接口Error32保留，独立串口证实默认启动后继续未执行场景，无复位/启动自动重试。详见[禁能工作卡](../evidence/runs/20261101-G03-pwm-disabled-r1/work-card.md)、[最终报告](../evidence/runs/20261101-G03-pwm-disabled-r1/report.md)。未新增断电冷启动或电气关断结论。
+
+历史真实继电器镜像 `g03-relay-r2` / `8ff78e03997c4a5facd8f6feade09024fdd4721a3f0e32fc3531312bf1598c49` 与三次观察数据保留。此版下载后不再把旧固件的live_used状态当作当前运行状态。
+
+此前完成r1禁能实测及G01/G02补测，固定r2观察边界并完成首次真实命令；用户继续G03后，沿用同一条件追加两次独立记录。三路电芯与AFE均观察到相关响应，AFE恢复；软件窗口不是触点测量。未知制造商硬限和实际电流标定仍留空，观察区间仅属于本次工程探索。
+
+此前继电器交付：[工作卡](../evidence/runs/20261101-G03-relay-r2/work-card.md)、[补测表](../evidence/runs/20261101-G03-relay-r2/retest-matrix.md)、[首次报告](../evidence/runs/20261101-G03-relay-r2/first-experiment-report.md)、[冻结工况](../evidence/runs/20261101-G03-relay-r2/conditions-table.md)。失败历史与已完成动作见RUNLOG和各run。r1恢复采集的截断位于开头；r2恢复采集为末尾9字节截断，均保留且不参与有效样本判定。
+
+此前交付：[重复性工作卡](../evidence/runs/20261101-G03-relay-repeat-r1/work-card.md)、[三次曲线](../evidence/runs/20261101-G03-relay-repeat-r1/comparison/aligned-responses.png)、[PWM准备](../evidence/runs/20261101-G03-relay-repeat-r1/pwm-preparation.md)。AFE三次中位响应−2492.5/−2493/−2491码；MCU为+0.5/−1/0码，不能作为已验证的快速反馈。手动RESET后曾停留ROM且串口无响应，软件复位恢复；该启动问题保留，未新增冷启动通过结论。禁能适配器已接入；下一项落实本次PWM路径的反馈或快速保护、实装驱动及有限工况，随后接真实输出版本。EG3112资料支持内部死区，DTG0不单独否决，不要求完整原理图作为禁能工作的前提。
+
+
+此前输入诊断：[MCU电流输入工作卡](../evidence/runs/20261101-G03-current-path-r1/work-card.md)。7组448点完成并核对原始CRC/聚合值，PA1原采样/长采样/恢复后的尾段中位数1272/1232/1271码；模拟供电有效位、模拟引脚模式和通道配置读回符合源码，寄存器与ADC状态全部恢复，第三次继电器记录保留，输出0。静态检查未定位I_ADA至PA1的实际连接或传递关系，根因仍inconclusive，真实PWM未执行；用户确认没有完整原理图，需要板厂资料或具备条件的路径确认，不以修改系数替代。
+
+
+2026-11-02 G03冲刺：真实输出适配层g03-power-d90-r1已完成双构建、读回和COM12默认关闭确认；Release SHA256 `a5a0c5c300c089828f1056fb37ac1f5beb96fefeef421361ab34a490a2cedea9`。新镜像必要禁能核对105组、100074us、faults0、恢复通过；三路电源替代实电池。该历史记录冻结后已执行r1空载失败，随后r2修复并完成带载首点，见下文。入口：[冲刺工作卡](../evidence/runs/20261102-G03-discharge-sprint-r1/work-card.md)。旧三次继电器、15项禁能结果沿用。
+
+
+2026-11-02 当前实板为 `g03-power-d90-r2`，一次带载单点已完成，used1/输出0/故障0/资源恢复。PWM100072us，继电器延迟20100us，4个完整活动样本，电池端标称电流−0.35528A、串电压10.34835V；本次raw physical_valid=0，非最终精度、非稳态。r1空载/停止顺序失败完整保留。[r2报告](../evidence/runs/20261102-G03-discharge-sprint-r2/report.md)。r3离线22项及主机12项通过、双构建完成，尚未烧录，不混作当前固件。
+
+当前更新：r3已写入且读回通过，尚待正常运行身份核对。r2实测首点仍为已取得的有效结果，r3未执行点保持null。
+
+2026-11-02 扩点更新：r3 D0.80请求在PWM开启前因cell13欠压退出，故障锁存、输出0、资源恢复；不计入有效开环点。静态通道辨识已确认CH1/A→cell13，CH2/B→cell7，CH3/C→cell1。用户已纠正CH1/A接触问题；r4恢复计数修正已构建，待运行验证。[r3异常与映射报告](../evidence/runs/20261102-G03-discharge-sprint-r3/report.md)。
+
+当前更新：r4镜像d2485461…已烧录读回，等待用户正常运行档确认；CH1/A接触处理已由用户确认，尚未进行处理后的实功率验证。
+
+2026-11-02 冲刺最终状态：实板g03-power-points-r4，Release SHA256 `d24854613869c973c3483ebc7ca7d973fb5bf2ca67e75ca8789ff454b5703784`；D0.80短点及D0.90/0.80两笔2s带载点全部通过，197组/95完整PWM样本各点，PWM2000072us、继电器后保持20100us，输出0/故障0/资源恢复/used1。用户已确认三路OFF。D减小时放电幅值与负载电压增加，仅作局部关系；未把标称换算写成精度验收。[现场报告](../evidence/runs/20261102-G03-discharge-sprint-r4/report.md) · [操作步骤](../evidence/runs/20261102-G03-discharge-sprint-r4/operation-guide.md)。r1/r3失败保留，r4端口23项与最终主机13项检查通过。

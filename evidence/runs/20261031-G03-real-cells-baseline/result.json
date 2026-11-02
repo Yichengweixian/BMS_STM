@@ -1,0 +1,14 @@
+{
+  "status": "complete",
+  "verdict": null,
+  "evidence_scope": [
+    "bench",
+    "static"
+  ],
+  "baseline_records": 360,
+  "complete_groups": 40,
+  "actual_discharge_status": "not_started",
+  "physical_power_start_executed": false,
+  "blocking_reason": "No qualified real-current protection or verified power-stage bounds/stop evidence",
+  "source_firmware_sha256": "d94e10e2f5cc144a495125e9461abb4d570af8afcf9daf6567aa4b732ce763a6"
+}

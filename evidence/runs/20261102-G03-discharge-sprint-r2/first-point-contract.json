@@ -1,0 +1,19 @@
+{
+  "profile": 1345925170,
+  "firmware_sha256": "774c7f388db0e5a1b1fc20d87e9dfad34f314afa992c2c488079a2200f5d4743",
+  "source_wiring_confirmed": true,
+  "source_settings_confirmed": true,
+  "source_cv_confirmed": true,
+  "no_real_cells": true,
+  "load_connected": true,
+  "charge_port_open": true,
+  "new_image_default_off_verified": true,
+  "dry_run_passed": true,
+  "source_paths_reviewed": true,
+  "confirmation_basis": "Normal boot, load connected, three channels about 3.5V, idle current near zero, no trip.",
+  "physical_short_current_ceiling_confirmed": false,
+  "energy_scope": "CC/OCP sustained supply constraint plus driver interlock and MCU cutoff. Capacitor peak and OCP trip time not measured.",
+  "hardware_profile_sha256": "cb71b8994a760766f750adbe3f428a89887ba2b6f2b660b21264214bdc141242",
+  "dry_evidence_scope": "r1 dry 105 rows; unchanged acquisition/resource paths inherited. r2 changed timer and pre-PWM guard: 15 register model tests + 10 host tests. r2 default off independently queried.",
+  "frozen_utc": "2026-11-02T05:24:16.186057+00:00"
+}

@@ -1,0 +1,31 @@
+{
+  "run_id": "20261031-G01-board",
+  "recorded_utc": "2026-10-31T04:16:28.187908+00:00",
+  "mode": "exploratory",
+  "status": "complete",
+  "verdict": null,
+  "evidence_scope": [
+    "static",
+    "build",
+    "simulation",
+    "bench",
+    "release_boot"
+  ],
+  "firmware_sha256": "dfe902bbf676e214cdf41f4a3a7bab6f1217e6b6506359a93a3a99bfe7d39dd5",
+  "source_manifest_sha256": "d25048d5d37ea8faf27b161decced4c5555891236be2f846dd68d4e7fb8c02e9",
+  "source_snapshot_sha256": "afd3aaa19fc8d64c53c9843ad48e4fcce6a10c859674f8bcf03408bba8a88aec",
+  "programmer": "STM32CubeProgrammer v2.20.0",
+  "stlink_serial": "16004A002933353739303541",
+  "SWD_kHz": 100,
+  "connect_mode": "UR/HWrst",
+  "application_base": "0x70100400",
+  "loader": "tools/flash-loaders/MX25UM25645G_ATK-CNN647B_ExtMemLoader.stldr",
+  "successful_flash_log": "flash-02.log",
+  "successful_capture": "capture-02",
+  "failed_capture_preserved": "capture-01",
+  "reference_instruments": null,
+  "calibration_id": "uncalibrated-v1",
+  "hardware_profile_id": "cnn647b-bms-g01-20261031-r2",
+  "hardware_profile_sha256": "3695430696cc0f123ec5e21c5ec2e87af2d67ac18f503f151c02d2f01d9d2b53",
+  "run_result": "result.json"
+}

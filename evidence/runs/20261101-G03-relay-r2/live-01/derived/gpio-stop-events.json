@@ -1,0 +1,25 @@
+[
+  {
+    "event": "command_window_start",
+    "tick_ms": 66035,
+    "dwt_cycles": 2999240113,
+    "pg5_command": 1,
+    "source": "MCU recorded GPIO command bracket; no contact measurement"
+  },
+  {
+    "event": "command_window_stop",
+    "tick_ms": 66134,
+    "dwt_cycles": 3078062965,
+    "pg5_command": 0,
+    "reason": 1,
+    "reason_name": "deadline",
+    "faults": 0
+  },
+  {
+    "event": "terminal_snapshot",
+    "state": 5,
+    "actual_bits": 0,
+    "recover_count": 47,
+    "live_used": 1
+  }
+]

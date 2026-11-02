@@ -1,0 +1,27 @@
+{
+  "mapping": {
+    "CH1": {
+      "holder": "A left",
+      "afe": "cell13",
+      "set_V": 3.4,
+      "nominal_median_V": 3.3998
+    },
+    "CH2": {
+      "holder": "B middle",
+      "afe": "cell7",
+      "set_V": 3.5,
+      "nominal_median_V": 3.499
+    },
+    "CH3": {
+      "holder": "C right",
+      "afe": "cell1",
+      "set_V": 3.6,
+      "nominal_median_V": 3.5999
+    }
+  },
+  "groups": 12,
+  "rows": 108,
+  "parse_errors": 0,
+  "scope": "single static distinct-voltage channel identification, not accuracy calibration",
+  "power_commands_sent": 0
+}

@@ -1,0 +1,10 @@
+{
+  "analysis_script_sha256": "dae125edd2a43ae166b1717e863b1e82feea9b137ae57e5fad5eb83344c4179a",
+  "artifact_sha256": {
+    "adc-mode-comparison.png": "33586b4f095d52843bfe489bcb46f91aee0d889edc72ef9cc300f9117e97dadc",
+    "adc-mode-comparison.svg": "839b111bb38fab0aae096db64e46944d689796dafcf0d0e069e39d926da24739",
+    "comparison.md": "8b52e135fd4c6d55fb82c364ddeeee5e8424f94745c64b2c24792ff0a886d1de",
+    "retained-samples.csv": "bffad88dd6965b5a981ac81d7e9bd9f2d90a06715d2d8dd2bca433c3b92fcf88",
+    "summary.json": "6bb438de33e1d21e447d7ac484bb8dcbbf4144919e8c699e6200e49cd127ecfe"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "command": [
+    "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107\\tools\\bin\\STM32_Programmer_CLI.exe",
+    "-c",
+    "port=SWD",
+    "sn=16004A002933353739303541",
+    "freq=100",
+    "mode=HOTPLUG",
+    "-rst"
+  ],
+  "started_utc": "2026-11-01T13:33:27.598514+00:00",
+  "warm_reset_only": true,
+  "attempts": 1,
+  "exit_code": 0,
+  "finished_utc": "2026-11-01T13:33:27.877353+00:00",
+  "completed": true
+}

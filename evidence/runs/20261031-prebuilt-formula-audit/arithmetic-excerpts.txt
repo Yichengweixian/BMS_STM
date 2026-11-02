@@ -1,0 +1,276 @@
+
+RANGE 70102fc6..70102ffe (literal pools are DATA, not instructions)
+70102fc6:	ee07 6a90 	vmov	s15, r6
+70102fca:	4bc6      	ldr	r3, [pc, #792]	@ (0x701032e4)
+70102fcc:	eddf 5ac6 	vldr	s11, [pc, #792]	@ 0x701032e8
+70102fd0:	ed93 8a00 	vldr	s16, [r3]
+70102fd4:	eef8 7a67 	vcvt.f32.u32	s15, s15
+70102fd8:	ee97 8aa5 	vfnms.f32	s16, s15, s11
+70102fdc:	ed9f 6bbe 	vldr	d6, [pc, #760]	@ 0x701032d8
+70102fe0:	eeb7 8ac8 	vcvt.f64.f32	d8, s16
+70102fe4:	ee28 8b06 	vmul.f64	d8, d8, d6
+70102fe8:	4bc0      	ldr	r3, [pc, #768]	@ (0x701032ec)
+70102fea:	eeb7 8bc8 	vcvt.f32.f64	s16, d8
+70102fee:	ed93 7a00 	vldr	s14, [r3]
+70102ff2:	ee77 8a48 	vsub.f32	s17, s14, s16
+70102ff6:	4bbe      	ldr	r3, [pc, #760]	@ (0x701032f0)
+70102ff8:	4abe      	ldr	r2, [pc, #760]	@ (0x701032f4)
+70102ffa:	ed83 8a00 	vstr	s16, [r3]
+
+RANGE 701032ae..70103300 (literal pools are DATA, not instructions)
+701032ae:	ee07 6a90 	vmov	s15, r6
+701032b2:	4b0c      	ldr	r3, [pc, #48]	@ (0x701032e4)
+701032b4:	ed9f 7a0c 	vldr	s14, [pc, #48]	@ 0x701032e8
+701032b8:	ed93 8a00 	vldr	s16, [r3]
+701032bc:	eef8 7a67 	vcvt.f32.u32	s15, s15
+701032c0:	eea7 8ac7 	vfms.f32	s16, s15, s14
+701032c4:	ed9f 6b04 	vldr	d6, [pc, #16]	@ 0x701032d8
+701032c8:	eeb7 8ac8 	vcvt.f64.f32	d8, s16
+701032cc:	ee28 8b06 	vmul.f64	d8, d8, d6
+701032d0:	eeb7 8bc8 	vcvt.f32.f64	s16, d8
+701032d4:	e7c4      	b.n	0x70103260
+701032d6:	bf00      	nop
+701032d8:	5555      	strb	r5, [r2, r5]
+701032da:	d555      	bpl.n	0x70103388
+701032dc:	3a06      	subs	r2, #6
+701032de:	3ff5      	subs	r7, #245	@ 0xf5
+701032e0:	0514      	lsls	r4, r2, #20
+701032e2:	3400      	adds	r4, #0
+701032e4:	0058      	lsls	r0, r3, #1
+701032e6:	3400      	adds	r4, #0
+701032e8:	74cd      	strb	r5, [r1, #19]
+701032ea:	39e6      	subs	r1, #230	@ 0xe6
+701032ec:	056c      	lsls	r4, r5, #21
+701032ee:	3400      	adds	r4, #0
+701032f0:	0568      	lsls	r0, r5, #21
+701032f2:	3400      	adds	r4, #0
+701032f4:	0aac      	lsrs	r4, r5, #10
+701032f6:	3400      	adds	r4, #0
+701032f8:	0aa8      	lsrs	r0, r5, #10
+701032fa:	3400      	adds	r4, #0
+701032fc:	0000      	movs	r0, r0
+701032fe:	3d80      	subs	r5, #128	@ 0x80
+
+RANGE 701050ec..70105148 (literal pools are DATA, not instructions)
+701050ec:	ee07 7a90 	vmov	s15, r7
+701050f0:	4b56      	ldr	r3, [pc, #344]	@ (0x7010524c)
+701050f2:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+701050f6:	ed93 7a00 	vldr	s14, [r3]
+701050fa:	ed9f 6a52 	vldr	s12, [pc, #328]	@ 0x70105244
+701050fe:	ee97 7a86 	vfnms.f32	s14, s15, s12
+70105102:	ed9f 5b4d 	vldr	d5, [pc, #308]	@ 0x70105238
+70105106:	eeb7 7ac7 	vcvt.f64.f32	d7, s14
+7010510a:	ee27 7b05 	vmul.f64	d7, d7, d5
+7010510e:	eeb7 7bc7 	vcvt.f32.f64	s14, d7
+70105112:	eddf 6a4f 	vldr	s13, [pc, #316]	@ 0x70105250
+70105116:	eef0 7ac7 	vabs.f32	s15, s14
+7010511a:	f8bd 3000 	ldrh.w	r3, [sp]
+7010511e:	eef4 7ae6 	vcmpe.f32	s15, s13
+70105122:	ee07 3a90 	vmov	s15, r3
+70105126:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+7010512a:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+7010512e:	eddf 5a45 	vldr	s11, [pc, #276]	@ 0x70105244
+70105132:	bf48      	it	mi
+70105134:	ed9f 7a47 	vldrmi	s14, [pc, #284]	@ 0x70105254
+70105138:	eef0 6a08 	vmov.f32	s13, #8	@ 0x40400000  3.0
+7010513c:	ee67 7aa5 	vmul.f32	s15, s15, s11
+70105140:	ed9f 6a45 	vldr	s12, [pc, #276]	@ 0x70105258
+70105144:	ed84 7a03 	vstr	s14, [r4, #12]
+
+RANGE 70105238..70105258 (literal pools are DATA, not instructions)
+70105238:	5555      	strb	r5, [r2, r5]
+7010523a:	d555      	bpl.n	0x701052e8
+7010523c:	3a06      	subs	r2, #6
+7010523e:	3ff5      	subs	r7, #245	@ 0xf5
+70105240:	0c8c      	lsrs	r4, r1, #18
+70105242:	3400      	adds	r4, #0
+70105244:	b717      			@ <UNDEFINED> instruction: 0xb717
+70105246:	38d1      	subs	r0, #209	@ 0xd1
+70105248:	0c88      	lsrs	r0, r1, #18
+7010524a:	3400      	adds	r4, #0
+7010524c:	005c      	lsls	r4, r3, #1
+7010524e:	3400      	adds	r4, #0
+70105250:	b717      			@ <UNDEFINED> instruction: 0xb717
+70105252:	3a51      	subs	r2, #81	@ 0x51
+70105254:	0000      	movs	r0, r0
+70105256:	0000      	movs	r0, r0
+
+RANGE 70105c1a..70105ccc (literal pools are DATA, not instructions)
+70105c1a:	4b40      	ldr	r3, [pc, #256]	@ (0x70105d1c)
+70105c1c:	ed9f 6b3c 	vldr	d6, [pc, #240]	@ 0x70105d10
+70105c20:	ed93 7a00 	vldr	s14, [r3]
+70105c24:	eeb7 0ac8 	vcvt.f64.f32	d0, s16
+70105c28:	eeb7 7ac7 	vcvt.f64.f32	d7, s14
+70105c2c:	ee80 5b06 	vdiv.f64	d5, d0, d6
+70105c30:	ee35 6b07 	vadd.f64	d6, d5, d7
+70105c34:	eddf 4a3a 	vldr	s9, [pc, #232]	@ 0x70105d20
+70105c38:	eeb7 6bc6 	vcvt.f32.f64	s12, d6
+70105c3c:	eec6 6a24 	vdiv.f32	s13, s12, s9
+70105c40:	eef5 6ac0 	vcmpe.f32	s13, #0.0
+70105c44:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+70105c48:	4b33      	ldr	r3, [pc, #204]	@ (0x70105d18)
+70105c4a:	681a      	ldr	r2, [r3, #0]
+70105c4c:	6b13      	ldr	r3, [r2, #48]	@ 0x30
+70105c4e:	f023 030f 	bic.w	r3, r3, #15
+70105c52:	f043 0301 	orr.w	r3, r3, #1
+70105c56:	6313      	str	r3, [r2, #48]	@ 0x30
+70105c58:	dd45      	ble.n	0x70105ce6
+70105c5a:	ed9f 6a32 	vldr	s12, [pc, #200]	@ 0x70105d24
+70105c5e:	eef4 6ac6 	vcmpe.f32	s13, s12
+70105c62:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+70105c66:	dc45      	bgt.n	0x70105cf4
+70105c68:	eefc 6ae6 	vcvt.u32.f32	s13, s13
+70105c6c:	ee16 2a90 	vmov	r2, s13
+70105c70:	ee37 7b45 	vsub.f64	d7, d7, d5
+70105c74:	eddf 6a2a 	vldr	s13, [pc, #168]	@ 0x70105d20
+70105c78:	eeb7 7bc7 	vcvt.f32.f64	s14, d7
+70105c7c:	eec7 7a26 	vdiv.f32	s15, s14, s13
+70105c80:	eef5 7ac0 	vcmpe.f32	s15, #0.0
+70105c84:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+70105c88:	dd2f      	ble.n	0x70105cea
+70105c8a:	ed9f 7a26 	vldr	s14, [pc, #152]	@ 0x70105d24
+70105c8e:	eef4 7ac7 	vcmpe.f32	s15, s14
+70105c92:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+70105c96:	dc2a      	bgt.n	0x70105cee
+70105c98:	eefc 7ae7 	vcvt.u32.f32	s15, s15
+70105c9c:	ee17 3a90 	vmov	r3, s15
+70105ca0:	2401      	movs	r4, #1
+70105ca2:	f44f 0740 	mov.w	r7, #12582912	@ 0xc00000
+70105ca6:	9204      	str	r2, [sp, #16]
+70105ca8:	f04f 4260 	mov.w	r2, #3758096384	@ 0xe0000000
+70105cac:	4e1e      	ldr	r6, [pc, #120]	@ (0x70105d28)
+70105cae:	4669      	mov	r1, sp
+70105cb0:	4819      	ldr	r0, [pc, #100]	@ (0x70105d18)
+70105cb2:	e9cd 6700 	strd	r6, r7, [sp]
+70105cb6:	9305      	str	r3, [sp, #20]
+70105cb8:	9402      	str	r4, [sp, #8]
+70105cba:	f88d 400c 	strb.w	r4, [sp, #12]
+70105cbe:	9206      	str	r2, [sp, #24]
+70105cc0:	f002 fe06 	bl	0x701088d0
+70105cc4:	b930      	cbnz	r0, 0x70105cd4
+70105cc6:	b010      	add	sp, #64	@ 0x40
+70105cc8:	ecbd 8b02 	vpop	{d8}
+
+RANGE 70105d10..70105d2c (literal pools are DATA, not instructions)
+70105d10:	5555      	strb	r5, [r2, r5]
+70105d12:	d555      	bpl.n	0x70105dc0
+70105d14:	3a06      	subs	r2, #6
+70105d16:	3ff5      	subs	r7, #245	@ 0xf5
+70105d18:	0a18      	lsrs	r0, r3, #8
+70105d1a:	3400      	adds	r4, #0
+70105d1c:	0058      	lsls	r0, r3, #1
+70105d1e:	3400      	adds	r4, #0
+70105d20:	74cd      	strb	r5, [r1, #19]
+70105d22:	39e6      	subs	r1, #230	@ 0xe6
+70105d24:	f000 457f 	and.w	r5, r0, #4278190080	@ 0xff000000
+70105d28:	0000      	movs	r0, r0
+70105d2a:	7dc0      	ldrb	r0, [r0, #23]
+
+RANGE 70106660..70106730 (literal pools are DATA, not instructions)
+70106660:	783b      	ldrb	r3, [r7, #0]
+70106662:	4e9b      	ldr	r6, [pc, #620]	@ (0x701068d0)
+70106664:	2b01      	cmp	r3, #1
+70106666:	bf0a      	itet	eq
+70106668:	eddf 7a9a 	vldreq	s15, [pc, #616]	@ 0x701068d4
+7010666c:	ed95 6a09 	vldrne	s12, [r5, #36]	@ 0x24
+70106670:	ee26 6a27 	vmuleq.f32	s12, s12, s15
+70106674:	ed9f 3b8c 	vldr	d3, [pc, #560]	@ 0x701068a8
+70106678:	eeb7 6ac6 	vcvt.f64.f32	d6, s12
+7010667c:	ed96 7a00 	vldr	s14, [r6]
+70106680:	ee86 5b03 	vdiv.f64	d5, d6, d3
+70106684:	eeb7 7ac7 	vcvt.f64.f32	d7, s14
+70106688:	ee35 6b07 	vadd.f64	d6, d5, d7
+7010668c:	eddf 4a92 	vldr	s9, [pc, #584]	@ 0x701068d8
+70106690:	eeb7 6bc6 	vcvt.f32.f64	s12, d6
+70106694:	eec6 6a24 	vdiv.f32	s13, s12, s9
+70106698:	eef5 6ac0 	vcmpe.f32	s13, #0.0
+7010669c:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+701066a0:	f340 81db 	ble.w	0x70106a5a
+701066a4:	ed9f 6a8d 	vldr	s12, [pc, #564]	@ 0x701068dc
+701066a8:	eef4 6ac6 	vcmpe.f32	s13, s12
+701066ac:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+701066b0:	f300 81ff 	bgt.w	0x70106ab2
+701066b4:	eefc 6ae6 	vcvt.u32.f32	s13, s13
+701066b8:	ee16 2a90 	vmov	r2, s13
+701066bc:	ee37 7b45 	vsub.f64	d7, d7, d5
+701066c0:	eddf 6a85 	vldr	s13, [pc, #532]	@ 0x701068d8
+701066c4:	eeb7 7bc7 	vcvt.f32.f64	s14, d7
+701066c8:	eec7 7a26 	vdiv.f32	s15, s14, s13
+701066cc:	eef5 7ac0 	vcmpe.f32	s15, #0.0
+701066d0:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+701066d4:	f340 81bf 	ble.w	0x70106a56
+701066d8:	ed9f 7a80 	vldr	s14, [pc, #512]	@ 0x701068dc
+701066dc:	eef4 7ac7 	vcmpe.f32	s15, s14
+701066e0:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+701066e4:	f300 81e8 	bgt.w	0x70106ab8
+701066e8:	eefc 7ae7 	vcvt.u32.f32	s15, s15
+701066ec:	ee17 3a90 	vmov	r3, s15
+701066f0:	9309      	str	r3, [sp, #36]	@ 0x24
+701066f2:	2301      	movs	r3, #1
+701066f4:	9208      	str	r2, [sp, #32]
+701066f6:	f04f 4260 	mov.w	r2, #3758096384	@ 0xe0000000
+701066fa:	9306      	str	r3, [sp, #24]
+701066fc:	f88d 301c 	strb.w	r3, [sp, #28]
+70106700:	f44f 0340 	mov.w	r3, #12582912	@ 0xc00000
+70106704:	920a      	str	r2, [sp, #40]	@ 0x28
+70106706:	4a76      	ldr	r2, [pc, #472]	@ (0x701068e0)
+70106708:	4876      	ldr	r0, [pc, #472]	@ (0x701068e4)
+7010670a:	e9cd 2304 	strd	r2, r3, [sp, #16]
+7010670e:	f002 fc45 	bl	0x70108f9c
+70106712:	4874      	ldr	r0, [pc, #464]	@ (0x701068e4)
+70106714:	a904      	add	r1, sp, #16
+70106716:	f002 f8db 	bl	0x701088d0
+7010671a:	783b      	ldrb	r3, [r7, #0]
+7010671c:	2b01      	cmp	r3, #1
+7010671e:	f000 80fa 	beq.w	0x70106916
+70106722:	783b      	ldrb	r3, [r7, #0]
+70106724:	2b03      	cmp	r3, #3
+70106726:	f000 80f6 	beq.w	0x70106916
+7010672a:	eef3 7a02 	vmov.f32	s15, #50	@ 0x41900000  18.0
+7010672e:	ed95 6a06 	vldr	s12, [r5, #24]
+
+RANGE 701068a8..70106904 (literal pools are DATA, not instructions)
+701068a8:	5555      	strb	r5, [r2, r5]
+701068aa:	d555      	bpl.n	0x70106958
+701068ac:	3a06      	subs	r2, #6
+701068ae:	3ff5      	subs	r7, #245	@ 0xf5
+701068b0:	0000      	movs	r0, r0
+701068b2:	a000      	add	r0, pc, #0	@ (adr r0, 0x701068b4)
+701068b4:	9999      	ldr	r1, [sp, #612]	@ 0x264
+701068b6:	3fa9      	subs	r7, #169	@ 0xa9
+701068b8:	91d8      	str	r1, [sp, #864]	@ 0x360
+701068ba:	7011      	strb	r1, [r2, #0]
+701068bc:	ffff 7f7f 	vcvt.u32.f32	<illegal reg q11.5>, <illegal reg q15.5>, #1
+701068c0:	006c      	lsls	r4, r5, #1
+701068c2:	3400      	adds	r4, #0
+701068c4:	cccd      	ldmia	r4!, {r0, r2, r3, r6, r7}
+701068c6:	3e4c      	subs	r6, #76	@ 0x4c
+701068c8:	25cc      	movs	r5, #204	@ 0xcc
+701068ca:	3400      	adds	r4, #0
+701068cc:	25b4      	movs	r5, #180	@ 0xb4
+701068ce:	3400      	adds	r4, #0
+701068d0:	0058      	lsls	r0, r3, #1
+701068d2:	3400      	adds	r4, #0
+701068d4:	3333      	adds	r3, #51	@ 0x33
+701068d6:	3fb3      	subs	r7, #179	@ 0xb3
+701068d8:	74cd      	strb	r5, [r1, #19]
+701068da:	39e6      	subs	r1, #230	@ 0xe6
+701068dc:	f000 457f 	and.w	r5, r0, #4278190080	@ 0xff000000
+701068e0:	0000      	movs	r0, r0
+701068e2:	7dc0      	ldrb	r0, [r0, #23]
+701068e4:	0a18      	lsrs	r0, r3, #8
+701068e6:	3400      	adds	r4, #0
+701068e8:	09b8      	lsrs	r0, r7, #6
+701068ea:	3400      	adds	r4, #0
+701068ec:	25b1      	movs	r5, #177	@ 0xb1
+701068ee:	3400      	adds	r4, #0
+701068f0:	25c9      	movs	r5, #201	@ 0xc9
+701068f2:	3400      	adds	r4, #0
+701068f4:	6666      	str	r6, [r4, #100]	@ 0x64
+701068f6:	3fe6      	subs	r7, #230	@ 0xe6
+701068f8:	cccd      	ldmia	r4!, {r0, r2, r3, r6, r7}
+701068fa:	3d4c      	subs	r5, #76	@ 0x4c
+701068fc:	8680      	strh	r0, [r0, #52]	@ 0x34
+701068fe:	7011      	strb	r1, [r2, #0]
+70106900:	8744      	strh	r4, [r0, #58]	@ 0x3a
+70106902:	7011      	strb	r1, [r2, #0]

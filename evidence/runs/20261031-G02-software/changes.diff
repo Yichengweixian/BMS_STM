@@ -1,0 +1,2116 @@
+--- before/BMS_EXv1.1/BMS_EX/BSP/g02_control.c
++++ after/BMS_EXv1.1/BMS_EX/BSP/g02_control.c
+@@ -0,0 +1,211 @@
++#include "g02_control.h"
++#include <stddef.h>
++
++static int valid_ops(const G02Ops *ops)
++{
++    return ops != NULL && ops->enter != NULL && ops->leave != NULL &&
++           ops->allow_mode != NULL && ops->prepare != NULL &&
++           ops->enable != NULL && ops->off != NULL &&
++           ops->write_compare != NULL && ops->cleanup != NULL;
++}
++
++static int ready(const G02Control *c)
++{
++    return c != NULL && c->initialized != 0U;
++}
++
++static int valid_compare(const G02Control *c, uint32_t compare)
++{
++    return compare > 0U && compare < c->arr;
++}
++
++/* Caller holds the short critical section. No HAL waits belong here. */
++static void fault_locked(G02Control *c, uint32_t faults)
++{
++    c->ops->off(c->ctx);
++    if (c->state == G02_STATE_STARTING || c->state == G02_STATE_RUNNING ||
++        c->preparing != 0U || c->cleaning != 0U) {
++        c->cleanup_pending = 1U;
++    }
++    c->faults |= faults != 0U ? faults : G02_FAULT_CONFIG;
++    c->state = G02_STATE_FAULT;
++}
++
++G02Result G02_Init(G02Control *c, const G02Ops *ops, void *ctx, uint32_t arr)
++{
++    uint32_t key;
++    if (c == NULL) return G02_BAD_ARGUMENT;
++    if (c->initialized != 0U) {
++        /* Initialization is not a fault reset or a back door to reuse ADC. */
++        G02_Stop(c);
++        return c->faults != 0U ? G02_FAULTED : G02_NOT_READY;
++    }
++    if (!valid_ops(ops) || arr <= G02_INITIAL_COMPARE) return G02_BAD_ARGUMENT;
++    c->ops = ops;
++    c->ctx = ctx;
++    key = ops->enter(ctx);
++    ops->off(ctx);
++    c->arr = arr;
++    c->compare = G02_INITIAL_COMPARE;
++    c->faults = 0U;
++    c->state = G02_STATE_STOPPED;
++    c->mode = G02_MODE_SAMPLING;
++    c->preparing = 0U;
++    c->cleaning = 0U;
++    c->cleanup_pending = 0U;
++    c->initialized = 1U;
++    ops->leave(ctx, key);
++    return G02_OK;
++}
++
++G02Result G02_Start(G02Control *c, G02Mode mode, uint32_t compare)
++{
++    uint32_t key, faults;
++    G02Result result = G02_OK;
++    if (!ready(c)) return G02_NOT_READY;
++    key = c->ops->enter(c->ctx);
++    if (c->faults != 0U || c->state == G02_STATE_FAULT) result = G02_FAULTED;
++    else if (mode != G02_MODE_SAMPLING && mode != G02_MODE_PINS) result = G02_BAD_ARGUMENT;
++    else if (!valid_compare(c, compare)) result = G02_BAD_ARGUMENT;
++    else if (c->state != G02_STATE_STOPPED || c->preparing != 0U || c->cleaning != 0U)
++        result = G02_BUSY;
++    else if (c->cleanup_pending != 0U) result = G02_NOT_READY;
++    else if (!c->ops->allow_mode(c->ctx, mode)) result = G02_DISALLOWED;
++    if (result != G02_OK) {
++        c->ops->leave(c->ctx, key);
++        return result;
++    }
++    c->state = G02_STATE_STARTING;
++    c->mode = mode;
++    c->compare = compare;
++    c->preparing = 1U;
++    c->cleanup_pending = 1U;
++    c->ops->leave(c->ctx, key);
++
++    /* Preparation may block briefly in HAL and must remain interruptible.
++     * STOP/fault can cancel it; the state check below is the only enable gate. */
++    faults = c->ops->prepare(c->ctx, mode, compare);
++
++    key = c->ops->enter(c->ctx);
++    c->preparing = 0U;
++    if (faults != 0U) {
++        fault_locked(c, faults);
++        result = G02_FAULTED;
++    } else if (c->state != G02_STATE_STARTING || c->faults != 0U) {
++        /* Preparation could have continued after an IRQ STOP. Remove any
++         * peripheral state it established after that STOP, before returning. */
++        c->ops->off(c->ctx);
++        result = c->faults != 0U ? G02_FAULTED : G02_CANCELED;
++    } else {
++        faults = c->ops->enable(c->ctx, mode);
++        if (faults != 0U) {
++            fault_locked(c, faults);
++            result = G02_FAULTED;
++        } else if (c->state != G02_STATE_STARTING || c->faults != 0U) {
++            c->ops->off(c->ctx);
++            result = c->faults != 0U ? G02_FAULTED : G02_CANCELED;
++        } else {
++            c->state = G02_STATE_RUNNING;
++        }
++    }
++    c->ops->leave(c->ctx, key);
++    return result;
++}
++
++void G02_Stop(G02Control *c)
++{
++    uint32_t key;
++    if (!ready(c)) return;
++    key = c->ops->enter(c->ctx);
++    c->ops->off(c->ctx);
++    if (c->state == G02_STATE_STARTING || c->state == G02_STATE_RUNNING ||
++        c->preparing != 0U || c->cleaning != 0U) {
++        c->cleanup_pending = 1U;
++    }
++    c->state = c->faults != 0U ? G02_STATE_FAULT : G02_STATE_STOPPED;
++    c->ops->leave(c->ctx, key);
++}
++
++void G02_Fault(G02Control *c, uint32_t faults)
++{
++    uint32_t key;
++    if (!ready(c)) return;
++    key = c->ops->enter(c->ctx);
++    fault_locked(c, faults);
++    c->ops->leave(c->ctx, key);
++}
++
++G02Result G02_ClearFault(G02Control *c)
++{
++    uint32_t key;
++    G02Result result = G02_OK;
++    if (!ready(c)) return G02_NOT_READY;
++    key = c->ops->enter(c->ctx);
++    if (c->state == G02_STATE_RUNNING || c->state == G02_STATE_STARTING ||
++        c->preparing != 0U || c->cleaning != 0U) result = G02_BUSY;
++    else if (c->cleanup_pending != 0U) result = G02_NOT_READY;
++    else {
++        c->ops->off(c->ctx);
++        c->faults = 0U;
++        c->state = G02_STATE_STOPPED;
++    }
++    c->ops->leave(c->ctx, key);
++    return result;
++}
++
++G02Result G02_SetCompare(G02Control *c, uint32_t compare)
++{
++    uint32_t key, faults;
++    G02Result result = G02_OK;
++    if (!ready(c)) return G02_NOT_READY;
++    key = c->ops->enter(c->ctx);
++    if (c->faults != 0U || c->state == G02_STATE_FAULT) result = G02_FAULTED;
++    else if (!valid_compare(c, compare)) result = G02_BAD_ARGUMENT;
++    else if (c->state != G02_STATE_RUNNING) result = G02_NOT_READY;
++    else {
++        faults = c->ops->write_compare(c->ctx, compare);
++        if (faults != 0U) {
++            fault_locked(c, faults);
++            result = G02_FAULTED;
++        } else if (c->faults != 0U || c->state != G02_STATE_RUNNING) {
++            c->ops->off(c->ctx);
++            result = c->faults != 0U ? G02_FAULTED : G02_CANCELED;
++        } else c->compare = compare;
++    }
++    c->ops->leave(c->ctx, key);
++    return result;
++}
++
++G02Result G02_Service(G02Control *c)
++{
++    uint32_t key, faults;
++    if (!ready(c)) return G02_NOT_READY;
++    key = c->ops->enter(c->ctx);
++    if (c->state == G02_STATE_RUNNING || c->state == G02_STATE_STARTING ||
++        c->preparing != 0U || c->cleaning != 0U) {
++        c->ops->leave(c->ctx, key);
++        return G02_BUSY;
++    }
++    if (c->cleanup_pending == 0U) {
++        c->ops->leave(c->ctx, key);
++        return G02_OK;
++    }
++    c->cleaning = 1U;
++    c->ops->leave(c->ctx, key);
++    faults = c->ops->cleanup(c->ctx);
++    key = c->ops->enter(c->ctx);
++    c->cleaning = 0U;
++    if (faults != 0U) {
++        fault_locked(c, faults);
++        c->cleanup_pending = 1U;
++    } else c->cleanup_pending = 0U;
++    c->ops->leave(c->ctx, key);
++    return faults != 0U ? G02_FAULTED : G02_OK;
++}
++
++int G02_OwnsADC(const G02Control *c)
++{
++    if (!ready(c)) return 0;
++    return c->state == G02_STATE_STARTING || c->state == G02_STATE_RUNNING ||
++           c->preparing != 0U || c->cleanup_pending != 0U || c->cleaning != 0U;
++}
+--- before/BMS_EXv1.1/BMS_EX/BSP/g02_control.h
++++ after/BMS_EXv1.1/BMS_EX/BSP/g02_control.h
+@@ -0,0 +1,87 @@
++#ifndef G02_CONTROL_H
++#define G02_CONTROL_H
++
++#include <stdint.h>
++
++#define G02_INITIAL_COMPARE 1000U
++
++typedef enum {
++    G02_MODE_SAMPLING = 0,
++    G02_MODE_PINS = 1
++} G02Mode;
++
++typedef enum {
++    G02_STATE_STOPPED = 0,
++    G02_STATE_STARTING,
++    G02_STATE_RUNNING,
++    G02_STATE_FAULT
++} G02State;
++
++typedef enum {
++    G02_OK = 0,
++    G02_BAD_ARGUMENT,
++    G02_NOT_READY,
++    G02_BUSY,
++    G02_DISALLOWED,
++    G02_FAULTED,
++    G02_CANCELED
++} G02Result;
++
++enum {
++    G02_FAULT_CONFIG    = 1U << 0,
++    G02_FAULT_ADC       = 1U << 1,
++    G02_FAULT_OVERRUN   = 1U << 2,
++    G02_FAULT_INTERLOCK = 1U << 3,
++    G02_FAULT_TIMING    = 1U << 4,
++    G02_FAULT_INJECTED  = 1U << 5,
++    G02_FAULT_CPU       = 1U << 6,
++    G02_FAULT_CLOCK     = 1U << 7,
++    G02_FAULT_PREPARE   = 1U << 8
++};
++
++/* enter/leave protect short state and register operations only. prepare and
++ * cleanup run in the caller's main context, with interrupts enabled normally.
++ * All fault-returning callbacks return zero on success, or a fault bitmask.
++ * off MUST be nonblocking, idempotent, and remove output before other work.
++ * enable MUST recheck relay/configuration interlocks before opening output.
++ * allow_mode is a software capability gate, not proof of physical isolation. */
++typedef struct {
++    uint32_t (*enter)(void *ctx);
++    void (*leave)(void *ctx, uint32_t key);
++    int (*allow_mode)(void *ctx, G02Mode mode);
++    uint32_t (*prepare)(void *ctx, G02Mode mode, uint32_t compare);
++    uint32_t (*enable)(void *ctx, G02Mode mode);
++    void (*off)(void *ctx);
++    uint32_t (*write_compare)(void *ctx, uint32_t compare);
++    uint32_t (*cleanup)(void *ctx);
++} G02Ops;
++
++/* Instances MUST be zero initialized before their first G02_Init call.
++ * State fields are observable; all writes belong to the control API.
++ * Repeated Init stops the existing instance and retains faults and ownership. */
++typedef struct {
++    const G02Ops *ops;
++    void *ctx;
++    uint32_t arr;
++    volatile uint32_t compare;
++    volatile uint32_t faults;
++    volatile G02State state;
++    volatile G02Mode mode;
++    volatile uint8_t initialized;
++    volatile uint8_t preparing;
++    volatile uint8_t cleanup_pending;
++    volatile uint8_t cleaning;
++} G02Control;
++
++G02Result G02_Init(G02Control *c, const G02Ops *ops, void *ctx, uint32_t arr);
++/* Start, ClearFault, Service: main context only. Never call Start from an IRQ.
++ * Compare is diagnostic CCR, strictly 1..ARR-1, not an allowed power range. */
++G02Result G02_Start(G02Control *c, G02Mode mode, uint32_t compare);
++void G02_Stop(G02Control *c);
++void G02_Fault(G02Control *c, uint32_t faults);
++G02Result G02_ClearFault(G02Control *c);
++G02Result G02_SetCompare(G02Control *c, uint32_t compare);
++G02Result G02_Service(G02Control *c);
++int G02_OwnsADC(const G02Control *c);
++
++#endif
+--- before/BMS_EXv1.1/BMS_EX/BSP/g02_port.c
++++ after/BMS_EXv1.1/BMS_EX/BSP/g02_port.c
+@@ -0,0 +1,295 @@
++#include "g02_port.h"
++#include "main.h"
++#include <string.h>
++
++extern ADC_HandleTypeDef hadc1;
++extern TIM_HandleTypeDef htim1;
++G02Control g02_control;
++volatile G02Telemetry g02_telemetry;
++volatile uint32_t g02_command;
++volatile uint32_t g02_compare = G02_INITIAL_COMPARE;
++volatile uint32_t g02_window_ms = G02_MAX_WINDOW_MS;
++volatile G02Result g02_command_result;
++static ADC_InitTypeDef saved_adc;
++static volatile uint8_t adc_owned, timer_running, ccr_pending;
++static uint32_t last_update_cycles, window_ms;
++
++static uint32_t enter(void *ctx)
++{
++    uint32_t key = __get_PRIMASK(); (void)ctx;
++    __disable_irq(); return key;
++}
++static void leave(void *ctx, uint32_t key)
++{
++    (void)ctx; __set_PRIMASK(key);
++}
++static uint32_t cycles(void) { return DWT->CYCCNT; }
++static void maximum(volatile uint32_t *value, uint32_t n)
++{
++    if (n > *value) *value = n;
++}
++static void trace(uint32_t event)
++{
++    uint32_t seq = g02_telemetry.trace_written;
++    volatile G02TraceEvent *e = &g02_telemetry.trace[seq % G02_TRACE_LENGTH];
++    e->cycles = cycles(); e->counter = TIM1->CNT;
++    e->down = (TIM1->CR1 & TIM_CR1_DIR) != 0U;
++    e->event = event; e->update_seq = g02_telemetry.update_irqs;
++    g02_telemetry.trace_written = seq + 1U;
++    if (seq >= G02_TRACE_LENGTH) ++g02_telemetry.trace_overwritten;
++}
++
++/* Register-only shutdown: valid before PortInit and from a fault handler.
++ * LOW is a defined MCU level, NOT proof of driver/relay physical isolation. */
++void G02_EmergencyOff(void)
++{
++    if (__HAL_RCC_TIM1_IS_CLK_ENABLED()) {
++        CLEAR_BIT(TIM1->BDTR, TIM_BDTR_MOE | TIM_BDTR_AOE);
++        TIM1->DIER = 0U;
++        CLEAR_BIT(TIM1->CR1, TIM_CR1_CEN);
++        TIM1->CCER = 0U;
++    }
++    if (__HAL_RCC_GPIOA_IS_CLK_ENABLED()) {
++        GPIOA->BSRR = GPIO_PIN_9 << 16U;
++        CLEAR_BIT(GPIOA->OTYPER, GPIO_PIN_9);
++        MODIFY_REG(GPIOA->MODER, 3UL << 18U, 1UL << 18U);
++    }
++    if (__HAL_RCC_GPIOF_IS_CLK_ENABLED()) {
++        GPIOF->BSRR = GPIO_PIN_7 << 16U;
++        CLEAR_BIT(GPIOF->OTYPER, GPIO_PIN_7);
++        MODIFY_REG(GPIOF->MODER, 3UL << 14U, 1UL << 14U);
++    }
++    if (__HAL_RCC_GPIOB_IS_CLK_ENABLED()) GPIOB->BSRR = SWS_Relay_Pin << 16U;
++    if (__HAL_RCC_GPIOG_IS_CLK_ENABLED()) GPIOG->BSRR = SWL_Relay_Pin << 16U;
++    __DSB();
++}
++static void off(void *ctx)
++{
++    (void)ctx;
++    if (timer_running) g02_telemetry.stop_request_cycles = cycles();
++    G02_EmergencyOff();
++    if (timer_running) {
++        timer_running = 0U;
++        g02_telemetry.stop_cycles = cycles();
++        g02_telemetry.stop_ms = HAL_GetTick();
++        trace(G02_EVENT_OFF);
++    }
++    ccr_pending = 0U;
++}
++static uint32_t interlock(void)
++{
++    return ((SWS_Relay_GPIO_Port->ODR & SWS_Relay_Pin) ||
++            (SWL_Relay_GPIO_Port->ODR & SWL_Relay_Pin)) ? G02_FAULT_INTERLOCK : 0U;
++}
++static int allow_mode(void *ctx, G02Mode mode)
++{
++    (void)ctx;
++    return mode == G02_MODE_SAMPLING || (mode == G02_MODE_PINS && G02_ALLOW_PIN_OUTPUT);
++}
++static uint32_t prepare(void *ctx, G02Mode mode, uint32_t compare)
++{
++    uint32_t before, after;
++    (void)ctx; (void)mode;
++    if (interlock()) return G02_FAULT_INTERLOCK;
++    /* Snapshot actual runtime clocks, including Release's inherited FSBL. */
++    memset((void *)&g02_telemetry, 0, sizeof g02_telemetry);
++    g02_telemetry.cpu_hz = HAL_RCC_GetCpuClockFreq();
++    g02_telemetry.tim_hz = HAL_RCCEx_GetTIMGFreq();
++    g02_telemetry.adc_hz = HAL_RCCEx_GetPeriphCLKFreq(RCC_PERIPHCLK_ADC);
++    g02_telemetry.psc = TIM1->PSC; g02_telemetry.arr = TIM1->ARR;
++    g02_telemetry.rcr = TIM1->RCR; g02_telemetry.dtg = TIM1->BDTR & TIM_BDTR_DTG;
++    if (g02_telemetry.tim_hz != 400000000U || g02_telemetry.adc_hz != 64000000U ||
++        g02_telemetry.cpu_hz == 0U) return G02_FAULT_CLOCK;
++    if (TIM1->PSC != 0U || TIM1->ARR != 2000U || TIM1->RCR != 1U ||
++        (TIM1->CR1 & TIM_CR1_CMS) != TIM_COUNTERMODE_CENTERALIGNED1 ||
++        (TIM1->CR1 & TIM_CR1_CKD) != TIM_CLOCKDIVISION_DIV1 ||
++        (TIM1->CCMR1 & TIM_CCMR1_OC2M) != (TIM_OCMODE_PWM1 << 8U) ||
++        !(TIM1->CCMR1 & TIM_CCMR1_OC2PE) || !(TIM1->CR1 & TIM_CR1_ARPE))
++        return G02_FAULT_CONFIG;
++    /* DWT timestamps are observations, never a replacement for scope timing. */
++    CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
++    DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
++    before = cycles(); __DSB(); __ISB(); after = cycles();
++    g02_telemetry.cycle_read_pair_cycles = after - before;
++    if ((DWT->CTRL & DWT_CTRL_NOCYCCNT_Msk) || after == before) return G02_FAULT_TIMING;
++    last_update_cycles = 0U; ccr_pending = 0U;
++
++    /* Quiet preparation: UG must occur BEFORE ADC is armed. MMS=RESET still
++     * propagates UG as TRGO, so use ENABLE (CEN=0) while forcing preload. */
++    CLEAR_BIT(TIM1->BDTR, TIM_BDTR_MOE | TIM_BDTR_AOE);
++    TIM1->DIER = 0U; TIM1->CCER = 0U;
++    /* DIR is read-only while center-aligned. Stop, temporarily select edge
++     * alignment, reset DIR, then restore CMS so every restart starts up. */
++    CLEAR_BIT(TIM1->CR1, TIM_CR1_CEN | TIM_CR1_CMS | TIM_CR1_UDIS);
++    CLEAR_BIT(TIM1->CR1, TIM_CR1_DIR);
++    SET_BIT(TIM1->CR1, TIM_COUNTERMODE_CENTERALIGNED1);
++    SET_BIT(TIM1->CR1, TIM_CR1_URS);
++    MODIFY_REG(TIM1->CR2, TIM_CR2_MMS, TIM_TRGO_ENABLE);
++    TIM1->CNT = 0U; TIM1->CCR2 = compare;
++    TIM1->EGR = TIM_EGR_UG;
++    TIM1->SR = 0U;
++    MODIFY_REG(TIM1->CR2, TIM_CR2_MMS, TIM_TRGO_UPDATE);
++    g02_telemetry.ccr_requested = compare;
++    /* G01 and this session have exclusive ADC ownership until cleanup succeeds. */
++    saved_adc = hadc1.Init;
++    adc_owned = 1U;
++    if (HAL_ADC_Stop(&hadc1) != HAL_OK) return G02_FAULT_ADC;
++    hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIG_T1_TRGO;
++    hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
++    if (HAL_ADC_Init(&hadc1) != HAL_OK || HAL_ADC_Start_IT(&hadc1) != HAL_OK)
++        return G02_FAULT_ADC;
++    /* Same preemption priority serializes telemetry writers. ADC may run before
++     * update ISR; the two service counts are intentionally NOT paired by index. */
++    HAL_NVIC_SetPriority(TIM1_UP_IRQn, 0U, 0U);
++    HAL_NVIC_SetPriority(ADC1_2_IRQn, 0U, 0U);
++    HAL_NVIC_ClearPendingIRQ(TIM1_UP_IRQn);
++    HAL_NVIC_EnableIRQ(TIM1_UP_IRQn);
++    return 0U;
++}
++static uint32_t enable(void *ctx, G02Mode mode)
++{
++    (void)ctx;
++    if (interlock()) return G02_FAULT_INTERLOCK;
++    if (HAL_RCCEx_GetTIMGFreq() != g02_telemetry.tim_hz) return G02_FAULT_CLOCK;
++    if (mode == G02_MODE_PINS) {
++        if (!G02_ALLOW_PIN_OUTPUT) return G02_FAULT_CONFIG;
++        /* Configure AF with MOE=0; both CC2 channels prepared in one write. */
++        SET_BIT(TIM1->BDTR, TIM_BDTR_OSSI | TIM_BDTR_OSSR);
++        CLEAR_BIT(TIM1->CR2, TIM_CR2_OIS2 | TIM_CR2_OIS2N);
++        HAL_TIM_MspPostInit(&htim1);
++        TIM1->CCER = TIM_CCER_CC2E | TIM_CCER_CC2NE;
++    }
++    TIM1->SR = 0U;
++    TIM1->DIER = TIM_DIER_UIE;
++    g02_telemetry.start_ms = HAL_GetTick();
++    g02_telemetry.start_cycles = cycles();
++    timer_running = 1U;
++    /* CEN first keeps both off at MOE=0; one MOE write releases the pair. */
++    SET_BIT(TIM1->CR1, TIM_CR1_CEN);
++    if (mode == G02_MODE_PINS) SET_BIT(TIM1->BDTR, TIM_BDTR_MOE);
++    return 0U;
++}
++static uint32_t write_compare(void *ctx, uint32_t compare)
++{
++    (void)ctx;
++    if (interlock()) return G02_FAULT_INTERLOCK;
++    /* Leave the timer/trigger schedule untouched. Wait for TWO serviced UEVs
++     * after writing: the first could already have been pending before this
++     * write. This records a conservative observation bound, not active-CCR
++     * readback or a measured physical output edge. Scope remains mandatory. */
++    TIM1->CCR2 = compare;
++    ++g02_telemetry.ccr_writes;
++    g02_telemetry.ccr_requested = compare;
++    g02_telemetry.ccr_write_cycles = cycles();
++    ccr_pending = 2U;
++    trace(G02_EVENT_CCR);
++    return 0U;
++}
++static uint32_t cleanup(void *ctx)
++{
++    (void)ctx;
++    HAL_NVIC_DisableIRQ(TIM1_UP_IRQn);
++    HAL_NVIC_ClearPendingIRQ(TIM1_UP_IRQn);
++    if (!adc_owned) return 0U;
++    if (HAL_ADC_Stop_IT(&hadc1) != HAL_OK) return G02_FAULT_ADC;
++    hadc1.Init = saved_adc;
++    if (HAL_ADC_Init(&hadc1) != HAL_OK) return G02_FAULT_ADC;
++    adc_owned = 0U;
++    return 0U;
++}
++static const G02Ops ops = {enter, leave, allow_mode, prepare, enable, off, write_compare, cleanup};
++
++void G02_PortInit(void)
++{
++    G02_EmergencyOff();
++    g02_command = G02_CMD_NONE;
++    (void)G02_Init(&g02_control, &ops, 0, 2000U);
++}
++void G02_CPUFault(void)
++{
++    G02_EmergencyOff();
++    if (g02_control.initialized) G02_Fault(&g02_control, G02_FAULT_CPU);
++}
++int G02_MeasurementAllowed(void)
++{
++    return !adc_owned && !G02_OwnsADC(&g02_control);
++}
++void G02_Task(void)
++{
++    uint32_t command = g02_command, requested_window = g02_window_ms;
++    g02_command = G02_CMD_NONE;
++    (void)G02_Service(&g02_control);
++    switch (command) {
++    case G02_CMD_NONE: break;
++    case G02_CMD_SAMPLE:
++    case G02_CMD_PINS:
++        if (requested_window == 0U || requested_window > G02_MAX_WINDOW_MS) {
++            g02_command_result = G02_BAD_ARGUMENT; break;
++        }
++        g02_command_result = G02_Start(&g02_control,
++            command == G02_CMD_SAMPLE ? G02_MODE_SAMPLING : G02_MODE_PINS, g02_compare);
++        if (g02_command_result == G02_OK) window_ms = requested_window;
++        break;
++    case G02_CMD_STOP: G02_Stop(&g02_control); g02_command_result = G02_OK; break;
++    case G02_CMD_FAULT: G02_Fault(&g02_control, G02_FAULT_INJECTED); g02_command_result = G02_OK; break;
++    case G02_CMD_CLEAR: g02_command_result = G02_ClearFault(&g02_control); break;
++    case G02_CMD_COMPARE: g02_command_result = G02_SetCompare(&g02_control, g02_compare); break;
++    default: g02_command_result = G02_BAD_ARGUMENT; break;
++    }
++    if (g02_control.state == G02_STATE_RUNNING &&
++        (uint32_t)(HAL_GetTick() - g02_telemetry.start_ms) >= window_ms)
++        G02_Stop(&g02_control);
++    (void)G02_Service(&g02_control);
++}
++void G02_TIM1_IRQHandler(void)
++{
++    uint32_t start = cycles(), delta;
++    if (!(TIM1->SR & TIM_SR_UIF) || !(TIM1->DIER & TIM_DIER_UIE)) return;
++    TIM1->SR = ~TIM_SR_UIF;
++    if (!timer_running) return;
++    ++g02_telemetry.update_irqs;
++    if (g02_telemetry.update_irqs > 1U) {
++        delta = start - last_update_cycles;
++        maximum(&g02_telemetry.update_gap_max_cycles, delta);
++        if (delta > g02_telemetry.cpu_hz / 100000U * 3U / 2U)
++            ++g02_telemetry.late_update_irqs;
++    }
++    last_update_cycles = start;
++    if (ccr_pending && --ccr_pending == 0U) {
++        g02_telemetry.ccr_next_uev_observed = g02_telemetry.ccr_requested;
++        g02_telemetry.ccr_observed_cycles = start;
++    }
++    trace(G02_EVENT_UPDATE);
++    if (interlock()) G02_Fault(&g02_control, G02_FAULT_INTERLOCK);
++    /* A conversion may be in flight or its IRQ pending; two observations of
++     * slack avoid assuming ISR order. Persistent missing completion is fatal. */
++    if (g02_telemetry.update_irqs > g02_telemetry.adc_completions + 2U)
++        G02_Fault(&g02_control, G02_FAULT_TIMING);
++    maximum(&g02_telemetry.update_isr_max_cycles, cycles() - start);
++}
++int G02_ADC_IRQHandler(void)
++{
++    uint32_t start, overrun;
++    if (!adc_owned) return 0;
++    start = cycles(); overrun = ADC1->ISR & ADC_FLAG_OVR;
++    if (overrun) ++g02_telemetry.overruns;
++    HAL_ADC_IRQHandler(&hadc1);
++    if (overrun) G02_Fault(&g02_control, G02_FAULT_OVERRUN);
++    maximum(&g02_telemetry.adc_isr_max_cycles, cycles() - start);
++    return 1;
++}
++void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
++{
++    if (hadc != &hadc1 || !adc_owned) return;
++    g02_telemetry.last_adc_raw = HAL_ADC_GetValue(hadc);
++    ++g02_telemetry.adc_completions;
++    g02_telemetry.adc_counter = TIM1->CNT;
++    g02_telemetry.adc_down = (TIM1->CR1 & TIM_CR1_DIR) != 0U;
++    trace(G02_EVENT_ADC);
++}
++void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc)
++{
++    if (hadc != &hadc1 || !adc_owned) return;
++    ++g02_telemetry.adc_errors;
++    G02_Fault(&g02_control, G02_FAULT_ADC);
++}
+--- before/BMS_EXv1.1/BMS_EX/BSP/g02_port.h
++++ after/BMS_EXv1.1/BMS_EX/BSP/g02_port.h
+@@ -0,0 +1,46 @@
++#ifndef G02_PORT_H
++#define G02_PORT_H
++#include "g02_control.h"
++
++/* Deliberately OFF in both delivered targets. A separately reviewed no-power
++ * build is required for pin output. This flag is not hardware authorization. */
++#ifndef G02_ALLOW_PIN_OUTPUT
++#define G02_ALLOW_PIN_OUTPUT 0
++#endif
++#define G02_TRACE_LENGTH 128U
++#define G02_MAX_WINDOW_MS 10000U
++
++enum { G02_CMD_NONE, G02_CMD_SAMPLE, G02_CMD_PINS, G02_CMD_STOP,
++       G02_CMD_FAULT, G02_CMD_CLEAR, G02_CMD_COMPARE };
++enum { G02_EVENT_UPDATE=1, G02_EVENT_ADC, G02_EVENT_CCR, G02_EVENT_OFF };
++typedef struct {
++    uint32_t cycles, counter, down, event, update_seq;
++} G02TraceEvent;
++typedef struct {
++    uint32_t cpu_hz, tim_hz, adc_hz, psc, arr, rcr, dtg;
++    uint32_t start_ms, stop_ms, start_cycles, stop_request_cycles, stop_cycles;
++    uint32_t update_irqs, adc_completions, overruns, adc_errors;
++    uint32_t update_gap_max_cycles, update_isr_max_cycles, adc_isr_max_cycles;
++    uint32_t cycle_read_pair_cycles, late_update_irqs;
++    uint32_t adc_counter, adc_down, last_adc_raw;
++    uint32_t ccr_writes, ccr_requested, ccr_next_uev_observed;
++    uint32_t ccr_write_cycles, ccr_observed_cycles;
++    uint32_t trace_written, trace_overwritten;
++    G02TraceEvent trace[G02_TRACE_LENGTH];
++} G02Telemetry;
++
++/* Debugger mailbox: set compare/window first; write command LAST while halted,
++ * then run freely. No breakpoints during the timing window. No UART command.
++ * Mailbox is consumed in main context and never arms itself after reset. */
++extern volatile uint32_t g02_command, g02_compare, g02_window_ms;
++extern volatile G02Result g02_command_result;
++extern G02Control g02_control;
++extern volatile G02Telemetry g02_telemetry;
++void G02_PortInit(void);
++void G02_Task(void);
++int G02_MeasurementAllowed(void);
++void G02_EmergencyOff(void);
++void G02_CPUFault(void);
++void G02_TIM1_IRQHandler(void);
++int G02_ADC_IRQHandler(void);
++#endif
+--- before/BMS_EXv1.1/BMS_EX/BSP/measurement.c
++++ after/BMS_EXv1.1/BMS_EX/BSP/measurement.c
+@@ -9,15 +9,15 @@
+ static uint8_t first;
+ static void metadata(void)
+ {
+-    uart_printf("#META,schema=%s,fw=g01-sw-r2,build=%s %s,cal=%s,period_ms=500,kind=instantaneous_sample\r\n",
++    uart_printf("#META,schema=%s,fw=g02-sw-r1,build=%s %s,cal=%s,period_ms=500,kind=instantaneous_sample\r\n",
+                 MEAS_SCHEMA,__DATE__,__TIME__,MEAS_CAL_ID);
+-    uart_printf("#CONFIG,profile=cnn647b-bms-g01-20261031-r2,ADC1=PA1_12bit_SW_OS2_shift1,VREF_nominal=1.8,ADC_selfcal=off,AFE_MD=2_ADCOPT0,sign=unconfirmed\r\n");
++    uart_printf("#CONFIG,profile=cnn647b-bms-g02-20261031-r1,ADC1=PA1_12bit_SW_OS2_shift1,VREF_nominal=1.8,ADC_selfcal=off,AFE_MD=2_ADCOPT0,sign=unconfirmed\r\n");
+     uart_printf("#FIELDS,type,seq,channel,start_ms,end_ms,age_ms,raw,status,raw_valid,sensor_V_nominal,estimate,unit,physical_value,physical_valid,reference,cal_id,frame_hex,wire_pec15\r\n");
+ }
+ void Measurement_Init(void)
+ {
+     seq=0; first=1; last_start=HAL_GetTick();
+-    uart_printf("#BOOT,g01-sw-r2,tick=%lu\r\n",(unsigned long)last_start);
++    uart_printf("#BOOT,g02-sw-r1,tick=%lu\r\n",(unsigned long)last_start);
+     metadata();
+ }
+ static void adc_sample(MeasSample *s)
+--- before/BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c
++++ after/BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c
+@@ -23,6 +23,7 @@
+ /* USER CODE BEGIN Includes */
+ #include "uart.h"
+ #include "measurement.h"
++#include "g02_port.h"
+ #include "oled_driver.h"
+ #include "oled_font.h"
+ 
+@@ -82,6 +83,7 @@
+ static void SystemIsolation_Config(void);
+ /* USER CODE BEGIN PFP */
+ static void system_clock_config(void);
++void PeriphCommonClock_Config(void);
+ /* USER CODE END PFP */
+ 
+ /* Private user code ---------------------------------------------------------*/
+@@ -126,6 +128,8 @@
+ 
+   /* Initialize all configured peripherals */
+   MX_GPIO_Init();
++  G02_EmergencyOff();
++  PeriphCommonClock_Config();
+   MX_GPDMA1_Init();
+   MX_USART1_UART_Init();
+   MX_SPI5_Init();
+@@ -199,8 +203,9 @@
+ 	OLED_ShowString(0, 0, "BMS_EX", OLED_FONT_8x16);
+ 	OLED_Refresh();
+ 
+-	/* G01 acquisition only. TIM1/TIM2 and relay outputs are never started. */
++	/* Default: G01 acquisition. G02 starts only via an explicit diagnostic request. */
+ 	uart_init(115200);
++	G02_PortInit();
+ 	Measurement_Init();
+ 
+   /* USER CODE END 2 */
+@@ -212,7 +217,8 @@
+     /* USER CODE END WHILE */
+ 
+     /* USER CODE BEGIN 3 */
+-    Measurement_Task();
++    G02_Task();
++    if (G02_MeasurementAllowed()) Measurement_Task();
+     HAL_Delay(1);
+   }
+   /* USER CODE END 3 */
+@@ -649,7 +655,7 @@
+     Error_Handler();
+   }
+   sConfigOC.OCMode = TIM_OCMODE_PWM1;
+-  sConfigOC.Pulse = 500;
++  sConfigOC.Pulse = G02_INITIAL_COMPARE;
+   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
+   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+@@ -680,7 +686,7 @@
+   /* USER CODE BEGIN TIM1_Init 2 */
+ 
+   /* USER CODE END TIM1_Init 2 */
+-  HAL_TIM_MspPostInit(&htim1);
++  G02_EmergencyOff(); /* PA9/PF7 stay GPIO LOW until a gated test start. */
+ 
+ }
+ 
+@@ -1106,7 +1112,7 @@
+ void Error_Handler(void)
+ {
+   /* USER CODE BEGIN Error_Handler_Debug */
+-  /* User can add his own implementation to report the HAL error return state */
++  G02_CPUFault();
+   __disable_irq();
+   while (1)
+   {
+--- before/BMS_EXv1.1/BMS_EX/Appli/Core/Src/stm32n6xx_it.c
++++ after/BMS_EXv1.1/BMS_EX/Appli/Core/Src/stm32n6xx_it.c
+@@ -20,6 +20,7 @@
+ /* Includes ------------------------------------------------------------------*/
+ #include "main.h"
+ #include "stm32n6xx_it.h"
++#include "g02_port.h"
+ /* Private includes ----------------------------------------------------------*/
+ /* USER CODE BEGIN Includes */
+ /* USER CODE END Includes */
+@@ -74,6 +75,7 @@
+   */
+ void NMI_Handler(void)
+ {
++  G02_CPUFault();
+   /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
+ 
+   /* USER CODE END NonMaskableInt_IRQn 0 */
+@@ -89,6 +91,7 @@
+   */
+ void HardFault_Handler(void)
+ {
++  G02_CPUFault();
+   /* USER CODE BEGIN HardFault_IRQn 0 */
+ 
+   /* USER CODE END HardFault_IRQn 0 */
+@@ -104,6 +107,7 @@
+   */
+ void MemManage_Handler(void)
+ {
++  G02_CPUFault();
+   /* USER CODE BEGIN MemoryManagement_IRQn 0 */
+ 
+   /* USER CODE END MemoryManagement_IRQn 0 */
+@@ -119,6 +123,7 @@
+   */
+ void BusFault_Handler(void)
+ {
++  G02_CPUFault();
+   /* USER CODE BEGIN BusFault_IRQn 0 */
+ 
+   /* USER CODE END BusFault_IRQn 0 */
+@@ -134,6 +139,7 @@
+   */
+ void UsageFault_Handler(void)
+ {
++  G02_CPUFault();
+   /* USER CODE BEGIN UsageFault_IRQn 0 */
+ 
+   /* USER CODE END UsageFault_IRQn 0 */
+@@ -149,6 +155,7 @@
+   */
+ void SecureFault_Handler(void)
+ {
++  G02_CPUFault();
+   /* USER CODE BEGIN SecureFault_IRQn 0 */
+ 
+   /* USER CODE END SecureFault_IRQn 0 */
+@@ -227,7 +234,7 @@
+   /* USER CODE BEGIN ADC1_2_IRQn 0 */
+ 
+   /* USER CODE END ADC1_2_IRQn 0 */
+-  HAL_ADC_IRQHandler(&hadc1);
++  if (!G02_ADC_IRQHandler()) HAL_ADC_IRQHandler(&hadc1);
+   HAL_ADC_IRQHandler(&hadc2);
+   /* USER CODE BEGIN ADC1_2_IRQn 1 */
+ 
+@@ -319,5 +326,10 @@
+ }
+ 
+ /* USER CODE BEGIN 1 */
++void TIM1_UP_IRQHandler(void)
++{
++  G02_TIM1_IRQHandler();
++}
++
+ 
+ /* USER CODE END 1 */
+--- before/BMS_EXv1.1/BMS_EX/Appli/Core/Inc/stm32n6xx_it.h
++++ after/BMS_EXv1.1/BMS_EX/Appli/Core/Inc/stm32n6xx_it.h
+@@ -64,6 +64,7 @@
+ void TIM2_IRQHandler(void);
+ void USART1_IRQHandler(void);
+ /* USER CODE BEGIN EFP */
++void TIM1_UP_IRQHandler(void);
+ 
+ /* USER CODE END EFP */
+ 
+--- before/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx
++++ after/BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx
+@@ -544,6 +544,26 @@
+         <Group>
+           <GroupName>BSP</GroupName>
+           <Files>
++              <File>
++                <FileName>g02_control.c</FileName>
++                <FileType>1</FileType>
++                <FilePath>..\..\BSP\g02_control.c</FilePath>
++              </File>
++              <File>
++                <FileName>g02_control.h</FileName>
++                <FileType>5</FileType>
++                <FilePath>..\..\BSP\g02_control.h</FilePath>
++              </File>
++              <File>
++                <FileName>g02_port.c</FileName>
++                <FileType>1</FileType>
++                <FilePath>..\..\BSP\g02_port.c</FilePath>
++              </File>
++              <File>
++                <FileName>g02_port.h</FileName>
++                <FileType>5</FileType>
++                <FilePath>..\..\BSP\g02_port.h</FilePath>
++              </File>
+             <File>
+               <FileName>measurement.c</FileName>
+               <FileType>1</FileType>
+@@ -1196,6 +1216,26 @@
+         <Group>
+           <GroupName>BSP</GroupName>
+           <Files>
++              <File>
++                <FileName>g02_control.c</FileName>
++                <FileType>1</FileType>
++                <FilePath>..\..\BSP\g02_control.c</FilePath>
++              </File>
++              <File>
++                <FileName>g02_control.h</FileName>
++                <FileType>5</FileType>
++                <FilePath>..\..\BSP\g02_control.h</FilePath>
++              </File>
++              <File>
++                <FileName>g02_port.c</FileName>
++                <FileType>1</FileType>
++                <FilePath>..\..\BSP\g02_port.c</FilePath>
++              </File>
++              <File>
++                <FileName>g02_port.h</FileName>
++                <FileType>5</FileType>
++                <FilePath>..\..\BSP\g02_port.h</FilePath>
++              </File>
+             <File>
+               <FileName>measurement.c</FileName>
+               <FileType>1</FileType>
+--- before/tests/g02/test_control.c
++++ after/tests/g02/test_control.c
+@@ -0,0 +1,407 @@
++/* Host fault injection against the production control state machine.
++ * This mock proves API ordering/rollback, not MCU timing or electrical state. */
++#include "g02_control.h"
++#include <assert.h>
++#include <stdio.h>
++#include <string.h>
++
++typedef struct {
++    G02Control control;
++    uint32_t irq_mask;
++    uint32_t prepare_fault, enable_fault, compare_fault, cleanup_fault;
++    unsigned prepare_action, enable_action, compare_action, cleanup_action;
++    unsigned prepare_calls, enable_calls, off_calls, compare_calls, cleanup_calls;
++    unsigned output, timer, adc, relay;
++    unsigned pins_allowed;
++    uint32_t written_compare;
++} Fixture;
++
++static uint32_t enter(void *ctx)
++{
++    Fixture *f = ctx;
++    uint32_t previous = f->irq_mask;
++    f->irq_mask = 1U;
++    return previous;
++}
++static void leave(void *ctx, uint32_t previous)
++{
++    Fixture *f = ctx;
++    assert(f->irq_mask == 1U && previous <= 1U);
++    f->irq_mask = previous;
++}
++static int allow_mode(void *ctx, G02Mode mode)
++{
++    Fixture *f = ctx;
++    assert(f->irq_mask == 1U);
++    return mode == G02_MODE_SAMPLING || f->pins_allowed != 0U;
++}
++static void off(void *ctx)
++{
++    Fixture *f = ctx;
++    assert(f->irq_mask == 1U);
++    ++f->off_calls;
++    f->output = 0U;
++    f->timer = 0U;
++    f->relay = 0U;
++    /* ADC HAL cleanup is deliberately not performed in the fast off path. */
++}
++static uint32_t prepare(void *ctx, G02Mode mode, uint32_t compare)
++{
++    Fixture *f = ctx;
++    (void)mode;
++    assert(f->irq_mask == 0U);
++    assert(f->control.state == G02_STATE_STARTING);
++    assert(f->control.preparing != 0U && G02_OwnsADC(&f->control));
++    assert(!f->output && !f->timer);
++    ++f->prepare_calls;
++    if (f->relay != 0U) return G02_FAULT_INTERLOCK;
++    f->adc = 1U;
++    f->written_compare = compare;
++    switch (f->prepare_action) {
++    case 1: G02_Stop(&f->control); break;
++    case 2: G02_Fault(&f->control, G02_FAULT_INJECTED); break;
++    case 3: f->relay = 1U; break;
++    case 4:
++        assert(G02_Start(&f->control, G02_MODE_SAMPLING, 1000U) == G02_BUSY);
++        assert(G02_SetCompare(&f->control, 900U) == G02_NOT_READY);
++        assert(G02_Service(&f->control) == G02_BUSY);
++        assert(G02_ClearFault(&f->control) == G02_BUSY);
++        break;
++    case 5:
++        G02_Fault(&f->control, G02_FAULT_INJECTED);
++        assert(G02_Init(&f->control, NULL, NULL, 0U) == G02_FAULTED);
++        assert(G02_ClearFault(&f->control) == G02_BUSY);
++        assert(G02_Service(&f->control) == G02_BUSY);
++        break;
++    case 6:
++        G02_Stop(&f->control);
++        assert(G02_Start(&f->control, G02_MODE_SAMPLING, 1000U) == G02_BUSY);
++        assert(G02_Service(&f->control) == G02_BUSY);
++        break;
++    default: break;
++    }
++    /* Emulate HAL continuing after the IRQ cancellation. The core must not
++     * let this turn into a late enable and must retain cleanup ownership. */
++    f->adc = 1U;
++    return f->prepare_fault;
++}
++static uint32_t enable(void *ctx, G02Mode mode)
++{
++    Fixture *f = ctx;
++    assert(f->irq_mask == 1U && f->control.state == G02_STATE_STARTING);
++    assert(f->control.preparing == 0U);
++    ++f->enable_calls;
++    if (f->relay != 0U) return G02_FAULT_INTERLOCK;
++    if (f->enable_fault != 0U) return f->enable_fault;
++    f->timer = 1U;
++    f->output = mode == G02_MODE_PINS;
++    if (f->enable_action == 1U) G02_Fault(&f->control, G02_FAULT_CPU);
++    if (f->enable_action == 2U) G02_Stop(&f->control);
++    return 0U;
++}
++static uint32_t write_compare(void *ctx, uint32_t compare)
++{
++    Fixture *f = ctx;
++    assert(f->irq_mask == 1U && f->control.state == G02_STATE_RUNNING);
++    ++f->compare_calls;
++    if (f->compare_fault != 0U) return f->compare_fault;
++    f->written_compare = compare;
++    if (f->compare_action == 1U) G02_Fault(&f->control, G02_FAULT_OVERRUN);
++    if (f->compare_action == 2U) G02_Stop(&f->control);
++    return 0U;
++}
++static uint32_t cleanup(void *ctx)
++{
++    Fixture *f = ctx;
++    assert(f->irq_mask == 0U);
++    assert(!f->output && !f->timer);
++    assert(f->control.preparing == 0U && G02_OwnsADC(&f->control));
++    ++f->cleanup_calls;
++    if (f->cleanup_action == 1U) {
++        assert(G02_Start(&f->control, G02_MODE_SAMPLING, 1000U) == G02_BUSY);
++        assert(G02_Service(&f->control) == G02_BUSY);
++        assert(G02_ClearFault(&f->control) == G02_BUSY);
++        G02_Stop(&f->control);
++    }
++    if (f->cleanup_action == 2U) G02_Fault(&f->control, G02_FAULT_INJECTED);
++    if (f->cleanup_fault != 0U) return f->cleanup_fault;
++    f->adc = 0U;
++    return 0U;
++}
++static const G02Ops ops = {
++    enter, leave, allow_mode, prepare, enable, off, write_compare, cleanup
++};
++
++static void fixture(Fixture *f)
++{
++    memset(f, 0, sizeof *f);
++    assert(G02_Init(&f->control, &ops, f, 2000U) == G02_OK);
++    assert(f->irq_mask == 0U && f->off_calls == 1U);
++    assert(f->control.state == G02_STATE_STOPPED);
++    assert(f->control.compare == 1000U && f->control.faults == 0U);
++    assert(!G02_OwnsADC(&f->control));
++}
++static void assert_off(const Fixture *f)
++{
++    assert(f->output == 0U && f->timer == 0U && f->relay == 0U);
++    assert(f->irq_mask == 0U);
++}
++
++static void test_default_and_invalid_api(void)
++{
++    Fixture f;
++    G02Control empty = {0};
++    G02Ops incomplete = ops;
++    assert(G02_Init(NULL, &ops, NULL, 2000U) == G02_BAD_ARGUMENT);
++    assert(G02_Init(&empty, NULL, NULL, 2000U) == G02_BAD_ARGUMENT);
++    incomplete.off = NULL;
++    assert(G02_Init(&empty, &incomplete, NULL, 2000U) == G02_BAD_ARGUMENT);
++    assert(G02_Init(&empty, &ops, NULL, 1000U) == G02_BAD_ARGUMENT);
++    assert(G02_Start(&empty, G02_MODE_SAMPLING, 1000U) == G02_NOT_READY);
++    assert(G02_SetCompare(&empty, 1000U) == G02_NOT_READY);
++    assert(G02_ClearFault(&empty) == G02_NOT_READY);
++    assert(G02_Service(&empty) == G02_NOT_READY);
++    G02_Stop(&empty);
++    G02_Fault(&empty, G02_FAULT_CPU);
++    assert(!G02_OwnsADC(&empty) && !G02_OwnsADC(NULL));
++    fixture(&f);
++    assert(G02_Start(&f.control, (G02Mode)2, 1000U) == G02_BAD_ARGUMENT);
++    assert(G02_Start(&f.control, G02_MODE_SAMPLING, 0U) == G02_BAD_ARGUMENT);
++    assert(G02_Start(&f.control, G02_MODE_SAMPLING, 2000U) == G02_BAD_ARGUMENT);
++    assert(G02_Start(&f.control, G02_MODE_SAMPLING, UINT32_MAX) == G02_BAD_ARGUMENT);
++    assert(f.prepare_calls == 0U);
++    assert(G02_Service(&f.control) == G02_OK && f.cleanup_calls == 0U);
++    assert(G02_SetCompare(&f.control, 900U) == G02_NOT_READY);
++    assert_off(&f);
++}
++
++static void test_gate_and_modes(void)
++{
++    Fixture f;
++    fixture(&f);
++    assert(G02_Start(&f.control, G02_MODE_PINS, 1000U) == G02_DISALLOWED);
++    assert(f.prepare_calls == 0U && f.control.faults == 0U);
++    assert(G02_Start(&f.control, G02_MODE_SAMPLING, 1000U) == G02_OK);
++    assert(f.control.state == G02_STATE_RUNNING && f.timer && f.adc && !f.output);
++    assert(G02_OwnsADC(&f.control));
++    assert(G02_Start(&f.control, G02_MODE_SAMPLING, 1000U) == G02_BUSY);
++    assert(G02_ClearFault(&f.control) == G02_BUSY);
++    assert(G02_Service(&f.control) == G02_BUSY);
++    G02_Stop(&f.control);
++    assert_off(&f);
++    assert(G02_Start(&f.control, G02_MODE_SAMPLING, 1000U) == G02_NOT_READY);
++    assert(G02_Service(&f.control) == G02_OK && f.adc == 0U);
++    f.pins_allowed = 1U;
++    assert(G02_Start(&f.control, G02_MODE_PINS, 1000U) == G02_OK);
++    assert(f.output == 1U && f.control.mode == G02_MODE_PINS);
++    G02_Stop(&f.control);
++    assert_off(&f);
++    assert(G02_Service(&f.control) == G02_OK);
++}
++
++static void test_stop_idempotence_and_cleanup(void)
++{
++    Fixture f;
++    fixture(&f);
++    G02_Stop(&f.control);
++    G02_Stop(&f.control);
++    assert(!G02_OwnsADC(&f.control));
++    assert(G02_Start(&f.control, G02_MODE_SAMPLING, 1000U) == G02_OK);
++    G02_Stop(&f.control);
++    G02_Stop(&f.control);
++    assert(f.control.state == G02_STATE_STOPPED && G02_OwnsADC(&f.control));
++    assert(f.cleanup_calls == 0U && f.adc == 1U);
++    f.cleanup_action = 1U;
++    assert(G02_Service(&f.control) == G02_OK);
++    assert(f.cleanup_calls == 1U && !G02_OwnsADC(&f.control));
++    assert(G02_Service(&f.control) == G02_OK && f.cleanup_calls == 1U);
++    assert_off(&f);
++}
++
++static void test_fault_latching_and_explicit_clear(void)
++{
++    Fixture f;
++    fixture(&f);
++    f.pins_allowed = 1U;
++    assert(G02_Start(&f.control, G02_MODE_PINS, 1000U) == G02_OK);
++    G02_Fault(&f.control, G02_FAULT_OVERRUN);
++    G02_Fault(&f.control, G02_FAULT_TIMING);
++    G02_Stop(&f.control);
++    assert_off(&f);
++    assert(f.control.state == G02_STATE_FAULT);
++    assert(f.control.faults == (G02_FAULT_OVERRUN | G02_FAULT_TIMING));
++    assert(G02_Start(&f.control, G02_MODE_PINS, 1000U) == G02_FAULTED);
++    assert(G02_SetCompare(&f.control, 700U) == G02_FAULTED);
++    assert(G02_ClearFault(&f.control) == G02_NOT_READY);
++    assert(G02_Service(&f.control) == G02_OK);
++    assert(f.control.state == G02_STATE_FAULT);
++    assert(G02_ClearFault(&f.control) == G02_OK);
++    assert(f.control.state == G02_STATE_STOPPED && f.control.faults == 0U);
++    assert_off(&f);
++    assert(f.enable_calls == 1U);
++    assert(G02_Start(&f.control, G02_MODE_PINS, 1000U) == G02_OK);
++    G02_Stop(&f.control);
++    assert(G02_Service(&f.control) == G02_OK);
++    G02_Fault(&f.control, 0U);
++    assert(f.control.faults == G02_FAULT_CONFIG);
++    assert(!G02_OwnsADC(&f.control));
++}
++
++static void test_prepare_faults_and_interlocks(void)
++{
++    Fixture f;
++    uint32_t failures[] = {G02_FAULT_CLOCK, G02_FAULT_ADC, G02_FAULT_CONFIG, G02_FAULT_PREPARE};
++    unsigned i;
++    for (i = 0U; i < sizeof failures / sizeof failures[0]; ++i) {
++        fixture(&f);
++        f.prepare_fault = failures[i];
++        assert(G02_Start(&f.control, G02_MODE_SAMPLING, 1000U) == G02_FAULTED);
++        assert(f.control.faults == failures[i] && f.enable_calls == 0U);
++        assert(f.cleanup_calls == 0U && G02_OwnsADC(&f.control));
++        assert_off(&f);
++        assert(G02_Service(&f.control) == G02_OK);
++    }
++    fixture(&f);
++    f.relay = 1U;
++    assert(G02_Start(&f.control, G02_MODE_SAMPLING, 1000U) == G02_FAULTED);
++    assert(f.control.faults == G02_FAULT_INTERLOCK && f.enable_calls == 0U);
++    assert_off(&f);
++    fixture(&f);
++    f.prepare_action = 3U;
++    assert(G02_Start(&f.control, G02_MODE_SAMPLING, 1000U) == G02_FAULTED);
++    assert(f.control.faults == G02_FAULT_INTERLOCK && f.enable_calls == 1U);
++    assert_off(&f);
++    fixture(&f);
++    f.enable_fault = G02_FAULT_CLOCK;
++    assert(G02_Start(&f.control, G02_MODE_SAMPLING, 1000U) == G02_FAULTED);
++    assert(f.control.faults == G02_FAULT_CLOCK);
++    assert_off(&f);
++}
++
++static void test_prepare_cancellation_and_reentrancy(void)
++{
++    Fixture f;
++    unsigned action;
++    for (action = 1U; action <= 6U; ++action) {
++        if (action == 3U) continue;
++        fixture(&f);
++        f.prepare_action = action;
++        if (action == 4U) {
++            assert(G02_Start(&f.control, G02_MODE_SAMPLING, 1000U) == G02_OK);
++            G02_Stop(&f.control);
++        } else {
++            G02Result expected = action == 2U || action == 5U ? G02_FAULTED : G02_CANCELED;
++            assert(G02_Start(&f.control, G02_MODE_SAMPLING, 1000U) == expected);
++            assert(f.enable_calls == 0U && f.off_calls >= 3U);
++        }
++        assert(f.control.preparing == 0U && G02_OwnsADC(&f.control));
++        assert_off(&f);
++        assert(G02_Service(&f.control) == G02_OK);
++        assert(!G02_OwnsADC(&f.control));
++    }
++    fixture(&f);
++    f.prepare_action = 2U;
++    f.prepare_fault = G02_FAULT_ADC;
++    assert(G02_Start(&f.control, G02_MODE_SAMPLING, 1000U) == G02_FAULTED);
++    assert(f.control.faults == (G02_FAULT_INJECTED | G02_FAULT_ADC));
++}
++
++static void test_enable_cancellation(void)
++{
++    Fixture f;
++    unsigned action;
++    for (action = 1U; action <= 2U; ++action) {
++        fixture(&f);
++        f.pins_allowed = 1U;
++        f.enable_action = action;
++        assert(G02_Start(&f.control, G02_MODE_PINS, 1000U) ==
++               (action == 1U ? G02_FAULTED : G02_CANCELED));
++        assert(f.control.state != G02_STATE_RUNNING);
++        assert_off(&f);
++        assert(G02_Service(&f.control) == G02_OK);
++    }
++}
++
++static void test_compare_range_and_faults(void)
++{
++    Fixture f;
++    unsigned action;
++    fixture(&f);
++    assert(G02_Start(&f.control, G02_MODE_SAMPLING, 1000U) == G02_OK);
++    assert(G02_SetCompare(&f.control, 0U) == G02_BAD_ARGUMENT);
++    assert(G02_SetCompare(&f.control, 2000U) == G02_BAD_ARGUMENT);
++    assert(G02_SetCompare(&f.control, UINT32_MAX) == G02_BAD_ARGUMENT);
++    assert(f.compare_calls == 0U && f.control.compare == 1000U);
++    assert(G02_SetCompare(&f.control, 1U) == G02_OK);
++    assert(f.control.compare == 1U && f.written_compare == 1U);
++    assert(G02_SetCompare(&f.control, 1999U) == G02_OK);
++    assert(f.control.compare == 1999U && f.written_compare == 1999U);
++    f.compare_fault = G02_FAULT_CONFIG;
++    assert(G02_SetCompare(&f.control, 1000U) == G02_FAULTED);
++    assert(f.control.compare == 1999U && f.control.faults == G02_FAULT_CONFIG);
++    assert_off(&f);
++    for (action = 1U; action <= 2U; ++action) {
++        fixture(&f);
++        assert(G02_Start(&f.control, G02_MODE_SAMPLING, 1000U) == G02_OK);
++        f.compare_action = action;
++        assert(G02_SetCompare(&f.control, 900U) ==
++               (action == 1U ? G02_FAULTED : G02_CANCELED));
++        assert(f.control.compare == 1000U);
++        assert_off(&f);
++    }
++}
++
++static void test_reinit_preserves_fault_and_ownership(void)
++{
++    Fixture f;
++    fixture(&f);
++    assert(G02_Start(&f.control, G02_MODE_SAMPLING, 1000U) == G02_OK);
++    assert(G02_Init(&f.control, NULL, NULL, 0U) == G02_NOT_READY);
++    assert(f.control.ops == &ops && f.control.ctx == &f && f.control.arr == 2000U);
++    assert(f.control.state == G02_STATE_STOPPED && G02_OwnsADC(&f.control));
++    assert_off(&f);
++    G02_Fault(&f.control, G02_FAULT_CPU);
++    assert(G02_Init(&f.control, NULL, NULL, 0U) == G02_FAULTED);
++    assert(f.control.faults == G02_FAULT_CPU && f.control.state == G02_STATE_FAULT);
++    assert(G02_OwnsADC(&f.control));
++    assert(G02_Service(&f.control) == G02_OK);
++    assert(f.control.faults == G02_FAULT_CPU);
++}
++
++static void test_cleanup_failure_and_fault_during_cleanup(void)
++{
++    Fixture f;
++    fixture(&f);
++    assert(G02_Start(&f.control, G02_MODE_SAMPLING, 1000U) == G02_OK);
++    G02_Stop(&f.control);
++    f.cleanup_fault = G02_FAULT_ADC;
++    assert(G02_Service(&f.control) == G02_FAULTED);
++    assert(f.control.faults == G02_FAULT_ADC && G02_OwnsADC(&f.control));
++    assert(G02_ClearFault(&f.control) == G02_NOT_READY);
++    assert(G02_Start(&f.control, G02_MODE_SAMPLING, 1000U) == G02_FAULTED);
++    f.cleanup_fault = 0U;
++    f.cleanup_action = 2U;
++    assert(G02_Service(&f.control) == G02_OK);
++    assert(f.control.faults == (G02_FAULT_ADC | G02_FAULT_INJECTED));
++    assert(f.control.state == G02_STATE_FAULT && !G02_OwnsADC(&f.control));
++    assert_off(&f);
++}
++
++int main(void)
++{
++    unsigned count = 0U;
++#define RUN(test) do { test(); ++count; puts("PASS: " #test); } while (0)
++    RUN(test_default_and_invalid_api);
++    RUN(test_gate_and_modes);
++    RUN(test_stop_idempotence_and_cleanup);
++    RUN(test_fault_latching_and_explicit_clear);
++    RUN(test_prepare_faults_and_interlocks);
++    RUN(test_prepare_cancellation_and_reentrancy);
++    RUN(test_enable_cancellation);
++    RUN(test_compare_range_and_faults);
++    RUN(test_reinit_preserves_fault_and_ownership);
++    RUN(test_cleanup_failure_and_fault_during_cleanup);
++#undef RUN
++    printf("PASS: %u production-control host test groups; SIMULATION ONLY.\n", count);
++    return 0;
++}
+--- before/tests/g02/test_port.c
++++ after/tests/g02/test_port.c
+@@ -0,0 +1,289 @@
++#include "main.h"
++#include "g02_port.h"
++#include <assert.h>
++#include <stdio.h>
++#include <string.h>
++
++TIM_TypeDef test_tim;
++GPIO_TypeDef test_gpio_a, test_gpio_b, test_gpio_f, test_gpio_g;
++ADC_TypeDef test_adc;
++DWT_TypeDef test_dwt;
++CoreDebug_Type test_core_debug;
++ADC_HandleTypeDef hadc1;
++TIM_HandleTypeDef htim1;
++uint32_t test_clock_mask = 31U, test_primask;
++static uint32_t tick, timer_hz = 400000000U, adc_hz = 64000000U;
++static unsigned adc_started, stop_calls, start_calls, post_init_calls;
++static int fail_start, fail_stop, fail_init, fail_cleanup, callback_error;
++static int stop_during_prepare, fault_during_prepare;
++
++void test_register_write(volatile uint32_t *reg, uint32_t value)
++{
++    if (reg == &TIM1->CR1 && (TIM1->CR1 & TIM_CR1_CMS))
++        value = (value & ~TIM_CR1_DIR) | (TIM1->CR1 & TIM_CR1_DIR);
++    *reg = value;
++}
++static void apply_bsrr(GPIO_TypeDef *gpio)
++{
++    gpio->ODR = (gpio->ODR | (gpio->BSRR & 0xffffU)) & ~(gpio->BSRR >> 16);
++    gpio->BSRR = 0U;
++}
++void test_barrier(void)
++{
++    apply_bsrr(GPIOA); apply_bsrr(GPIOB); apply_bsrr(GPIOF); apply_bsrr(GPIOG);
++    if (DWT->CTRL & DWT_CTRL_CYCCNTENA_Msk) DWT->CYCCNT += 4U;
++}
++uint32_t HAL_GetTick(void) { return tick; }
++uint32_t HAL_RCC_GetCpuClockFreq(void) { return 800000000U; }
++uint32_t HAL_RCCEx_GetTIMGFreq(void) { return timer_hz; }
++uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t peripheral)
++{ assert(peripheral == RCC_PERIPHCLK_ADC); return adc_hz; }
++HAL_StatusTypeDef HAL_ADC_Stop(ADC_HandleTypeDef *adc)
++{
++    assert(adc == &hadc1 && test_primask == 0U);
++    ++stop_calls;
++    if (fail_stop) return HAL_ERROR;
++    adc_started = 0;
++    return HAL_OK;
++}
++HAL_StatusTypeDef HAL_ADC_Init(ADC_HandleTypeDef *adc)
++{
++    assert(adc == &hadc1 && test_primask == 0U);
++    return fail_init ? HAL_ERROR : HAL_OK;
++}
++HAL_StatusTypeDef HAL_ADC_Start_IT(ADC_HandleTypeDef *adc)
++{
++    assert(adc == &hadc1 && test_primask == 0U);
++    assert(!(TIM1->CR1 & TIM_CR1_CEN) && !(TIM1->BDTR & TIM_BDTR_MOE));
++    assert(TIM1->CCER == 0U && TIM1->EGR == TIM_EGR_UG && TIM1->SR == 0U);
++    assert(!(TIM1->CR1 & TIM_CR1_DIR));
++    assert((TIM1->CR1 & TIM_CR1_CMS) == TIM_COUNTERMODE_CENTERALIGNED1);
++    assert(adc->Init.ExternalTrigConv == ADC_EXTERNALTRIG_T1_TRGO);
++    assert(adc->Init.ExternalTrigConvEdge == ADC_EXTERNALTRIGCONVEDGE_RISING);
++    ++start_calls;
++    if (stop_during_prepare) G02_Stop(&g02_control);
++    if (fault_during_prepare) G02_Fault(&g02_control, G02_FAULT_INJECTED);
++    if (fail_start) return HAL_ERROR;
++    adc_started = 1;
++    return HAL_OK;
++}
++HAL_StatusTypeDef HAL_ADC_Stop_IT(ADC_HandleTypeDef *adc)
++{
++    assert(adc == &hadc1 && test_primask == 0U);
++    if (fail_cleanup) return HAL_ERROR;
++    adc_started = 0;
++    return HAL_OK;
++}
++void HAL_ADC_IRQHandler(ADC_HandleTypeDef *adc)
++{
++    assert(adc == &hadc1);
++    if ((ADC1->ISR & ADC_FLAG_OVR) || callback_error) HAL_ADC_ErrorCallback(adc);
++    else HAL_ADC_ConvCpltCallback(adc);
++    ADC1->ISR = 0U;
++}
++uint32_t HAL_ADC_GetValue(ADC_HandleTypeDef *adc)
++{ assert(adc == &hadc1); return ADC1->DR; }
++void HAL_TIM_MspPostInit(TIM_HandleTypeDef *timer)
++{
++    assert(timer == &htim1 && test_primask == 1U);
++    assert(!(TIM1->BDTR & TIM_BDTR_MOE));
++    assert(!(TIM1->CR1 & TIM_CR1_CEN));
++    ++post_init_calls;
++    MODIFY_REG(GPIOA->MODER, 3U << 18, 2U << 18);
++    MODIFY_REG(GPIOF->MODER, 3U << 14, 2U << 14);
++}
++void HAL_NVIC_SetPriority(uint32_t irq, uint32_t priority, uint32_t subpriority)
++{ (void)irq; (void)priority; (void)subpriority; }
++void HAL_NVIC_ClearPendingIRQ(uint32_t irq) { (void)irq; }
++void HAL_NVIC_EnableIRQ(uint32_t irq) { (void)irq; }
++void HAL_NVIC_DisableIRQ(uint32_t irq) { (void)irq; }
++
++static void assert_off(void)
++{
++    assert(!(TIM1->BDTR & (TIM_BDTR_MOE | TIM_BDTR_AOE)));
++    assert(!(TIM1->CR1 & TIM_CR1_CEN));
++    assert(TIM1->DIER == 0U && TIM1->CCER == 0U);
++    assert((GPIOA->MODER & (3U << 18)) == (1U << 18));
++    assert((GPIOF->MODER & (3U << 14)) == (1U << 14));
++    assert(!(GPIOA->ODR & GPIO_PIN_9) && !(GPIOF->ODR & GPIO_PIN_7));
++    assert(!(GPIOB->ODR & GPIO_PIN_5) && !(GPIOG->ODR & GPIO_PIN_5));
++}
++static void restore_and_clear(void)
++{
++    fail_start = fail_stop = fail_init = fail_cleanup = callback_error = 0;
++    stop_during_prepare = fault_during_prepare = 0;
++    timer_hz = 400000000U; adc_hz = 64000000U;
++    assert(G02_Service(&g02_control) == G02_OK);
++    assert(G02_ClearFault(&g02_control) == G02_OK);
++    assert_off();
++    assert(G02_MeasurementAllowed());
++    assert(!adc_started);
++    assert(g02_control.state == G02_STATE_STOPPED);
++    assert(hadc1.Init.ExternalTrigConv == ADC_SOFTWARE_START);
++    assert(hadc1.Init.ExternalTrigConvEdge == ADC_EXTERNALTRIGCONVEDGE_NONE);
++    assert(hadc1.Init.preserved_configuration == 0x12345678U);
++}
++static void start_sample(void)
++{
++    assert(G02_Start(&g02_control, G02_MODE_SAMPLING, 1000U) == G02_OK);
++    assert(g02_control.state == G02_STATE_RUNNING);
++    assert(TIM1->CR1 & TIM_CR1_CEN);
++    assert(!(TIM1->BDTR & TIM_BDTR_MOE) && TIM1->CCER == 0U);
++    assert(adc_started && !G02_MeasurementAllowed());
++}
++static void update_event(void)
++{
++    DWT->CYCCNT += 8000U;
++    TIM1->SR = TIM_SR_UIF;
++    G02_TIM1_IRQHandler();
++}
++int main(void)
++{
++    /* Earliest fault path tolerates clocks off and does not enter HAL. */
++    test_clock_mask = 0U;
++    G02_CPUFault();
++    assert(!g02_control.initialized && !stop_calls);
++    test_clock_mask = 31U;
++    TIM1->BDTR = TIM_BDTR_MOE | TIM_BDTR_AOE;
++    TIM1->CR1 = TIM_CR1_CEN;
++    TIM1->CCER = TIM_CCER_CC2E | TIM_CCER_CC2NE;
++    GPIOA->ODR = GPIO_PIN_9; GPIOF->ODR = GPIO_PIN_7;
++    GPIOB->ODR = GPIO_PIN_5; GPIOG->ODR = GPIO_PIN_5;
++    G02_CPUFault();
++    assert_off();
++    TIM1->ARR = 2000U; TIM1->RCR = 1U;
++    TIM1->CR1 = TIM_COUNTERMODE_CENTERALIGNED1 | TIM_CR1_ARPE;
++    TIM1->CCMR1 = (TIM_OCMODE_PWM1 << 8) | TIM_CCMR1_OC2PE;
++    hadc1.Instance = ADC1;
++    hadc1.Init.preserved_configuration = 0x12345678U;
++    htim1.Instance = TIM1;
++    G02_PortInit();
++    assert_off(); assert(G02_MeasurementAllowed());
++    G02_Task(); assert_off(); assert(start_calls == 0U);
++
++#if G02_ALLOW_PIN_OUTPUT
++    assert(G02_Start(&g02_control, G02_MODE_PINS, 1000U) == G02_OK);
++    assert(post_init_calls == 1U);
++    assert(TIM1->CCER == (TIM_CCER_CC2E | TIM_CCER_CC2NE));
++    assert(TIM1->BDTR & TIM_BDTR_MOE);
++    G02_Stop(&g02_control); assert_off(); restore_and_clear();
++#else
++    assert(G02_Start(&g02_control, G02_MODE_PINS, 1000U) == G02_DISALLOWED);
++    assert_off(); assert(post_init_calls == 0U && start_calls == 0U);
++#endif
++
++    /* Restart from the down-counting half: CMS must be exited before DIR can
++     * be cleared. The model rejects DIR writes while CMS is still selected. */
++    TIM1->CR1 |= TIM_CR1_DIR;
++    CLEAR_BIT(TIM1->CR1, TIM_CR1_DIR);
++    assert(TIM1->CR1 & TIM_CR1_DIR); /* Verify the read-only model itself. */
++    start_sample();
++    assert(!(TIM1->CR1 & TIM_CR1_DIR));
++    assert(TIM1->CCR2 == 1000U);
++    update_event();
++    ADC1->DR = 2345U;
++    assert(G02_ADC_IRQHandler() == 1);
++    assert(g02_telemetry.adc_completions == 1U && g02_telemetry.last_adc_raw == 2345U);
++    assert(G02_SetCompare(&g02_control, 1200U) == G02_OK);
++    assert(TIM1->CCR2 == 1200U && g02_telemetry.ccr_writes == 1U);
++    update_event();
++    assert(g02_telemetry.ccr_next_uev_observed == 0U);
++    (void)G02_ADC_IRQHandler();
++    update_event();
++    assert(g02_telemetry.ccr_next_uev_observed == 1200U);
++    G02_Stop(&g02_control); assert_off();
++    assert(!G02_MeasurementAllowed()); /* ADC cleanup is deferred from STOP. */
++    G02_Stop(&g02_control); assert_off(); restore_and_clear();
++    assert(G02_ADC_IRQHandler() == 0);
++
++    /* Bad clock/config and raised relay output cannot open either channel. */
++    timer_hz = 200000000U;
++    assert(G02_Start(&g02_control, G02_MODE_SAMPLING, 1000U) == G02_FAULTED);
++    assert(g02_control.faults & G02_FAULT_CLOCK); assert_off(); restore_and_clear();
++    TIM1->PSC = 1U;
++    assert(G02_Start(&g02_control, G02_MODE_SAMPLING, 1000U) == G02_FAULTED);
++    assert(g02_control.faults & G02_FAULT_CONFIG); assert_off(); TIM1->PSC = 0U; restore_and_clear();
++    GPIOB->ODR = GPIO_PIN_5;
++    assert(G02_Start(&g02_control, G02_MODE_SAMPLING, 1000U) == G02_FAULTED);
++    assert(g02_control.faults & G02_FAULT_INTERLOCK); assert_off(); restore_and_clear();
++
++    /* Three consecutive UEV services without any completion exceed the
++     * two-event software guard. This is loss detection, not real ADC timing. */
++    start_sample();
++    update_event(); update_event();
++    assert(g02_control.state == G02_STATE_RUNNING);
++    update_event();
++    assert(g02_control.faults & G02_FAULT_TIMING);
++    assert(g02_control.state == G02_STATE_FAULT); assert_off();
++    G02_Stop(&g02_control); assert_off();
++    assert(g02_control.faults & G02_FAULT_TIMING);
++    assert(G02_Service(&g02_control) == G02_OK);
++    assert(g02_control.state == G02_STATE_FAULT);
++    G02_Task(); assert_off();
++    assert(g02_control.state == G02_STATE_FAULT);
++    assert(G02_Start(&g02_control, G02_MODE_SAMPLING, 1000U) == G02_FAULTED);
++    restore_and_clear();
++    G02_Task(); assert_off();
++    assert(g02_control.state == G02_STATE_STOPPED);
++
++    /* Start failures and an IRQ stop/fault during preparation never reach CEN. */
++    fail_start = 1;
++    assert(G02_Start(&g02_control, G02_MODE_SAMPLING, 1000U) == G02_FAULTED);
++    assert_off(); restore_and_clear();
++    fail_stop = 1;
++    assert(G02_Start(&g02_control, G02_MODE_SAMPLING, 1000U) == G02_FAULTED);
++    assert_off(); restore_and_clear();
++    fail_init = 1;
++    assert(G02_Start(&g02_control, G02_MODE_SAMPLING, 1000U) == G02_FAULTED);
++    assert_off(); restore_and_clear();
++    stop_during_prepare = 1;
++    assert(G02_Start(&g02_control, G02_MODE_SAMPLING, 1000U) == G02_CANCELED);
++    assert_off(); restore_and_clear();
++    fault_during_prepare = 1;
++    assert(G02_Start(&g02_control, G02_MODE_SAMPLING, 1000U) == G02_FAULTED);
++    assert(g02_control.faults & G02_FAULT_INJECTED); assert_off(); restore_and_clear();
++
++    /* OVR, ADC error and runtime relay changes all latch an immediate stop. */
++    start_sample(); ADC1->ISR = ADC_FLAG_OVR;
++    assert(G02_ADC_IRQHandler() == 1);
++    assert(g02_telemetry.overruns == 1U && g02_telemetry.adc_errors == 1U);
++    assert(g02_control.faults & G02_FAULT_OVERRUN); assert_off();
++    assert(G02_Start(&g02_control, G02_MODE_SAMPLING, 1000U) == G02_FAULTED);
++    restore_and_clear();
++    start_sample(); callback_error = 1; (void)G02_ADC_IRQHandler();
++    assert(g02_control.faults & G02_FAULT_ADC); assert_off(); restore_and_clear();
++    start_sample(); GPIOG->ODR = GPIO_PIN_5; update_event();
++    assert(g02_control.faults & G02_FAULT_INTERLOCK); assert_off(); restore_and_clear();
++
++    /* A failed cleanup retains ADC ownership and prevents rearming/clearing. */
++    start_sample(); G02_Stop(&g02_control); fail_cleanup = 1;
++    assert(G02_Service(&g02_control) == G02_FAULTED);
++    assert(!G02_MeasurementAllowed());
++    assert(G02_ClearFault(&g02_control) == G02_NOT_READY);
++    assert_off(); restore_and_clear();
++
++    /* CPU fault latches; repeated init cannot clear it. */
++    start_sample(); G02_CPUFault(); assert_off();
++    assert(g02_control.faults & G02_FAULT_CPU);
++    G02_PortInit(); assert(g02_control.faults & G02_FAULT_CPU);
++    restore_and_clear();
++
++    /* Mailbox validation and bounded observation window (main-loop observed). */
++    g02_window_ms = 0U; g02_command = G02_CMD_SAMPLE; G02_Task();
++    assert(g02_command_result == G02_BAD_ARGUMENT); assert_off();
++    g02_window_ms = 5U; g02_command = G02_CMD_SAMPLE; G02_Task();
++    assert(g02_command_result == G02_OK && g02_control.state == G02_STATE_RUNNING);
++    tick += 5U; G02_Task(); assert_off(); assert(G02_MeasurementAllowed());
++    /* A rejected busy Start must not modify the active one-second deadline. */
++    g02_window_ms = 1000U; g02_command = G02_CMD_SAMPLE; G02_Task();
++    assert(g02_command_result == G02_OK);
++    tick += 100U;
++    g02_window_ms = 10000U; g02_command = G02_CMD_SAMPLE; G02_Task();
++    assert(g02_command_result == G02_BUSY);
++    tick += 900U; G02_Task();
++    assert_off(); assert(G02_MeasurementAllowed());
++    assert(g02_control.state == G02_STATE_STOPPED);
++    assert(test_primask == 0U);
++    puts("PASS: production G02 port/register model; default gate, pair release (if enabled), ADC ownership, callbacks, failures, cancellation, cleanup and stop. Simulation only.");
++    return 0;
++}
+--- before/tests/g02/stubs/main.h
++++ after/tests/g02/stubs/main.h
+@@ -0,0 +1,112 @@
++#ifndef TEST_G02_MAIN_H
++#define TEST_G02_MAIN_H
++#include <stdint.h>
++
++/* Deliberately small register model: verifies software writes/callbacks, not
++ * timer/ADC silicon timing. BSRR side effects are applied at barriers/HAL calls;
++ * timer flags, CNT, conversion events and elapsed time are test inputs. */
++typedef struct { volatile uint32_t CR1, CR2, DIER, SR, EGR, CCMR1, CCER,
++    CNT, PSC, ARR, RCR, CCR2, BDTR; } TIM_TypeDef;
++typedef struct { volatile uint32_t MODER, OTYPER, ODR, BSRR; } GPIO_TypeDef;
++typedef struct { volatile uint32_t ISR, DR; } ADC_TypeDef;
++typedef struct { volatile uint32_t CTRL, CYCCNT; } DWT_TypeDef;
++typedef struct { volatile uint32_t DEMCR; } CoreDebug_Type;
++typedef struct { uint32_t ExternalTrigConv, ExternalTrigConvEdge;
++    uint32_t preserved_configuration; } ADC_InitTypeDef;
++typedef struct { ADC_TypeDef *Instance; ADC_InitTypeDef Init; } ADC_HandleTypeDef;
++typedef struct { TIM_TypeDef *Instance; } TIM_HandleTypeDef;
++typedef enum { HAL_OK, HAL_ERROR, HAL_BUSY, HAL_TIMEOUT } HAL_StatusTypeDef;
++extern TIM_TypeDef test_tim;
++extern GPIO_TypeDef test_gpio_a, test_gpio_b, test_gpio_f, test_gpio_g;
++extern ADC_TypeDef test_adc;
++extern DWT_TypeDef test_dwt;
++extern CoreDebug_Type test_core_debug;
++extern uint32_t test_clock_mask, test_primask;
++#define TIM1 (&test_tim)
++#define GPIOA (&test_gpio_a)
++#define GPIOB (&test_gpio_b)
++#define GPIOF (&test_gpio_f)
++#define GPIOG (&test_gpio_g)
++#define ADC1 (&test_adc)
++#define DWT (&test_dwt)
++#define CoreDebug (&test_core_debug)
++#define __HAL_RCC_TIM1_IS_CLK_ENABLED() (test_clock_mask & 1U)
++#define __HAL_RCC_GPIOA_IS_CLK_ENABLED() (test_clock_mask & 2U)
++#define __HAL_RCC_GPIOB_IS_CLK_ENABLED() (test_clock_mask & 4U)
++#define __HAL_RCC_GPIOF_IS_CLK_ENABLED() (test_clock_mask & 8U)
++#define __HAL_RCC_GPIOG_IS_CLK_ENABLED() (test_clock_mask & 16U)
++/* In center-aligned mode DIR is read-only. Route register helper writes through
++ * this model so restart tests catch attempts to clear DIR before leaving CMS. */
++void test_register_write(volatile uint32_t *reg, uint32_t value);
++#define CLEAR_BIT(REG, BIT) test_register_write(&(REG), (REG) & ~(BIT))
++#define SET_BIT(REG, BIT) test_register_write(&(REG), (REG) | (BIT))
++#define MODIFY_REG(REG, MASK, VALUE) test_register_write(&(REG), ((REG) & ~(MASK)) | (VALUE))
++#define __get_PRIMASK() (test_primask)
++#define __disable_irq() (test_primask = 1U)
++#define __set_PRIMASK(value) (test_primask = (value))
++void test_barrier(void);
++#define __DSB() test_barrier()
++#define __ISB() test_barrier()
++#define TIM_CR1_CEN (1U << 0)
++#define TIM_CR1_UDIS (1U << 1)
++#define TIM_CR1_URS (1U << 2)
++#define TIM_CR1_DIR (1U << 4)
++#define TIM_CR1_CMS (3U << 5)
++#define TIM_CR1_ARPE (1U << 7)
++#define TIM_CR1_CKD (3U << 8)
++#define TIM_COUNTERMODE_CENTERALIGNED1 (1U << 5)
++#define TIM_CLOCKDIVISION_DIV1 0U
++#define TIM_CR2_MMS (7U << 4)
++#define TIM_CR2_OIS2 (1U << 10)
++#define TIM_CR2_OIS2N (1U << 11)
++#define TIM_TRGO_ENABLE (1U << 4)
++#define TIM_TRGO_UPDATE (2U << 4)
++#define TIM_DIER_UIE 1U
++#define TIM_SR_UIF 1U
++#define TIM_EGR_UG 1U
++#define TIM_CCMR1_OC2PE (1U << 11)
++#define TIM_CCMR1_OC2M (7U << 12)
++#define TIM_OCMODE_PWM1 (6U << 4)
++#define TIM_CCER_CC2E (1U << 4)
++#define TIM_CCER_CC2NE (1U << 6)
++#define TIM_BDTR_DTG 255U
++#define TIM_BDTR_OSSI (1U << 10)
++#define TIM_BDTR_OSSR (1U << 11)
++#define TIM_BDTR_AOE (1U << 14)
++#define TIM_BDTR_MOE (1U << 15)
++#define GPIO_PIN_5 (1U << 5)
++#define GPIO_PIN_7 (1U << 7)
++#define GPIO_PIN_9 (1U << 9)
++#define SWS_Relay_Pin GPIO_PIN_5
++#define SWL_Relay_Pin GPIO_PIN_5
++#define SWS_Relay_GPIO_Port GPIOB
++#define SWL_Relay_GPIO_Port GPIOG
++#define CoreDebug_DEMCR_TRCENA_Msk (1U << 24)
++#define DWT_CTRL_CYCCNTENA_Msk 1U
++#define DWT_CTRL_NOCYCCNT_Msk (1U << 25)
++#define ADC_SOFTWARE_START 0U
++#define ADC_EXTERNALTRIGCONVEDGE_NONE 0U
++#define ADC_EXTERNALTRIG_T1_TRGO 9U
++#define ADC_EXTERNALTRIGCONVEDGE_RISING 1U
++#define ADC_FLAG_OVR (1U << 4)
++#define RCC_PERIPHCLK_ADC 1U
++#define TIM1_UP_IRQn 113U
++#define ADC1_2_IRQn 46U
++uint32_t HAL_GetTick(void);
++uint32_t HAL_RCC_GetCpuClockFreq(void);
++uint32_t HAL_RCCEx_GetTIMGFreq(void);
++uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t peripheral);
++HAL_StatusTypeDef HAL_ADC_Stop(ADC_HandleTypeDef *adc);
++HAL_StatusTypeDef HAL_ADC_Init(ADC_HandleTypeDef *adc);
++HAL_StatusTypeDef HAL_ADC_Start_IT(ADC_HandleTypeDef *adc);
++HAL_StatusTypeDef HAL_ADC_Stop_IT(ADC_HandleTypeDef *adc);
++void HAL_ADC_IRQHandler(ADC_HandleTypeDef *adc);
++uint32_t HAL_ADC_GetValue(ADC_HandleTypeDef *adc);
++void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *adc);
++void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *adc);
++void HAL_TIM_MspPostInit(TIM_HandleTypeDef *timer);
++void HAL_NVIC_SetPriority(uint32_t irq, uint32_t priority, uint32_t subpriority);
++void HAL_NVIC_ClearPendingIRQ(uint32_t irq);
++void HAL_NVIC_EnableIRQ(uint32_t irq);
++void HAL_NVIC_DisableIRQ(uint32_t irq);
++#endif
+--- before/scripts/g02/run_checks.py
++++ after/scripts/g02/run_checks.py
+@@ -0,0 +1,72 @@
++"""Host checks of production G02 state/port code; no hardware access."""
++import argparse
++import hashlib
++import json
++from pathlib import Path
++import subprocess
++import xml.etree.ElementTree as ET
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--out', required=True)
++    parser.add_argument('--cc', default='gcc')
++    args = parser.parse_args()
++    root = Path(__file__).resolve().parents[2]
++    out = Path(args.out).resolve()
++    out.mkdir(parents=True, exist_ok=False)
++    bsp = root / 'BMS_EXv1.1/BMS_EX/BSP'
++    test = root / 'tests/g02'
++    results = []
++
++    def run(name, command):
++        command = [str(x) for x in command]
++        result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
++        (out / (name + '.stdout')).write_bytes(result.stdout)
++        (out / (name + '.stderr')).write_bytes(result.stderr)
++        results.append(dict(name=name, command=command, exit_code=result.returncode))
++        (out / 'checks.json').write_text(json.dumps(results, indent=2), encoding='utf-8')
++        if result.returncode:
++            raise RuntimeError(name + ' failed; see preserved output')
++
++    run('compiler', [args.cc, '--version'])
++    flags = [args.cc, '-std=c99', '-Wall', '-Wextra', '-Werror', '-pedantic']
++    run('build-control', flags + ['-I' + str(bsp), test / 'test_control.c',
++                                 bsp / 'g02_control.c', '-o', out / 'control.exe'])
++    run('control', [out / 'control.exe'])
++    for variant in ('default', 'pins-simulated'):
++        extra = ['-DG02_ALLOW_PIN_OUTPUT=1'] if variant == 'pins-simulated' else []
++        run('build-' + variant, flags + extra + ['-I' + str(test / 'stubs'),
++            '-I' + str(bsp), test / 'test_port.c', bsp / 'g02_control.c',
++            bsp / 'g02_port.c', '-o', out / (variant + '.exe')])
++        run(variant, [out / (variant + '.exe')])
++
++    project = root / 'BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx'
++    targets = ET.parse(str(project)).findall('./Targets/Target')
++    assert len(targets) == 2
++    for target in targets:
++        files = [x.text for x in target.findall('.//FileName')]
++        assert files.count('g02_control.c') == files.count('g02_port.c') == 1
++        defines = ' '.join(x.text or '' for x in target.findall('.//Define'))
++        assert 'G02_ALLOW_PIN_OUTPUT=1' not in defines
++    main_source = (root / 'BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c').read_text(encoding='utf-8-sig')
++    assert 'G02_PortInit();' in main_source and 'G02_Task();' in main_source
++    assert 'if (G02_MeasurementAllowed()) Measurement_Task();' in main_source
++    assert 'G02_Start(' not in main_source
++    assert 'sConfigOC.Pulse = G02_INITIAL_COMPARE;' in main_source
++    assert '  PeriphCommonClock_Config();' in main_source
++    it = (root / 'BMS_EXv1.1/BMS_EX/Appli/Core/Src/stm32n6xx_it.c').read_text(encoding='utf-8-sig')
++    assert it.count('G02_CPUFault();') == 6
++    assert 'if (!G02_ADC_IRQHandler()) HAL_ADC_IRQHandler(&hadc1);' in it
++    sources = list(bsp.glob('g02_*.[ch]')) + list(test.glob('*.c')) + [test / 'stubs/main.h', Path(__file__).resolve()]
++    report = dict(scope=['static', 'simulation'], verdict=None, checks='passed',
++        hardware_verified=False, pin_output_run='host simulation only',
++        limitations=['Register/HAL stubs do not model electrical behavior, actual clock/ADC timing or reset pin levels.',
++                     'Native tests and build are not G02 bench acceptance.'],
++        sha256={str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in sources})
++    (out / 'result.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
++    print('PASS: production G02 core + port, both software gate branches; hardware unverified.')
++
++
++if __name__ == '__main__':
++    main()
+--- before/instructions/specs/G02-pwm-timing.md
++++ after/instructions/specs/G02-pwm-timing.md
+@@ -0,0 +1,150 @@
++# G02 PWM、ADC 同步与停止：软件契约和测量方法
++
++适用范围：G02.1—G02.3 的实现与离线验证，以及 G02.4—G02.5 的待执行测量。阶段状态只在 [STATUS](../STATUS.md) 维护；本次实际执行命令、源码和产物哈希、日志与结果写入对应工作卡。本文中的配置推导不是实测波形，也不表示允许带载。
++
++判据来自 [G02 验收条款](acceptance.md#g02无功率-pwm采样时序与强制停止)，具体实物参数、禁能条件和限值只在 [hardware-profile](hardware-profile.json) 维护。最新既有记录为负载已接入、真实电池已移除并接了三路模拟源；这些历史信息不能代替测试当天的输出状态及隔离确认。
++
++## 1. 时钟和 PWM 定义
++
++真实构建入口是 `BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c`，工程是 `MDK-ARM/Appli/BMS_EX_Appli.uvprojx` 的 `BMS_EX_Debug` 和 `BMS_EX_Release`。Debug 自行配置系统时钟；Release 从既有 FSBL 继承时钟，FSBL 源码身份未建立。
++
++STM32N6 的 TIM 内核使用 TIMG 时钟。项目自带 HAL 的 `HAL_RCCEx_GetTIMGFreq()` 调用：
++
++```text
++f_TIM = f_SYSCLK / 2^TIMPRE
++```
++
++其中 TIMPRE 编码 0/1/2/3 对应除以 1/2/4/8。不能套用其他 STM32 系列的 APB 分频后乘 2 规则，也不能把 CPU 时钟当 TIM 时钟。`hal_rcc_ex.c` 的该函数和 `stm32n6xx_ll_rcc.h` 的 `LL_RCC_CALC_TIMG_FREQ` 是本项目所用实现依据。
++
++Debug 配置的名义推导为：HSI 64 MHz，PLL1=`64/2×25=800 MHz`，IC2 再除以 2 得 SYSCLK 400 MHz；TIMPRE 除以 1 时 TIMG 为 400 MHz。AHB 除以 2、APB1/2 除以 1不改变这一 TIMG 公式。原 `PeriphCommonClock_Config()` 曾只有定义而没有调用，本版已在两个target共用的初始化路径中显式调用，选择TIMPRE除以1及CLKP=HSI。诊断启动读取 `HAL_RCCEx_GetTIMGFreq()`、`HAL_RCCEx_GetPeriphCLKFreq(RCC_PERIPHCLK_ADC)` 和CPU时钟；TIM必须读回400 MHz、ADC必须读回64 MHz且CPU时钟非零，否则锁存时钟故障、拒绝启动。上述是软件守卫，尚不能仅凭Debug公式宣称Release实板已读回这些值。
++
++| 项目 | G02 诊断配置/解释 |
++|---|---|
++| TIM1 计数时钟 | 内部时钟，PSC=0；实际频率由运行时 TIMG 读回 |
++| 计数方式 | `CENTERALIGNED1`，ARR=2000，CKD=1 |
++| 完整 PWM 周期 | `2×ARR×(PSC+1)/f_TIM`；中心对齐不套用边沿对齐的 ARR+1 公式 |
++| 名义频率 | TIMG=400 MHz 时为 100 kHz，周期 10 µs |
++| 比较值 | 50%逻辑占空比使用 CCR2=1000；旧模板 CCR2=500 对应25% |
++| 输出 | PA9=TIM1_CH2，PF7=TIM1_CH2N；PWM1，CH2/CH2N均高有效 |
++| D 的定义 | 本阶段 `D_logic=CCR2/ARR` 表示 PA9 的逻辑高电平占比；PF7名义为其互补 |
++| 上管 D | MCU 引脚到驱动输入、再到上管的实际映射及有效电平须由接线/波形确认；不直接令 `D_logic=D_upper` |
++| 预装载 | ARR预装载开启；本项目HAL的 `HAL_TIM_PWM_ConfigChannel()` 自动开启 OC2PE |
++| 更新与触发 | RCR=1；TIM1 TRGO=UPDATE，TRGO2=RESET |
++| 死区和故障输入 | 原TIM死区为0；BKIN/BKIN2关闭；AOE关闭。内部驱动死区及实际故障输入仍须单独确认 |
++
++中心对齐每个完整周期经过一次上溢和一次下溢。RCR=1时，稳态UEV/TRGO每两次边界事件产生一次，即名义每完整周期一次。上下端的实际触发位置取决于启动时的CNT、方向和重复计数器初始化；记录设计位置，并以波形验证。
++
++停止状态下执行UG使预装载及重复计数器进入已知状态。本版准备期间暂用TRGO=ENABLE且CEN=0，避免TRGO=RESET把UG传播成触发；UG后清UIF，再恢复TRGO=UPDATE，然后arm ADC。HAL启动ADC时清除转换旧标志；TIM1待处理中断在使能前清除。运行中不得为了立即改变D而随意发UG：这会改变采样事件及相位。CCR正常更新通过预装载，在后续UEV才进入有效比较器。中心对齐时DIR只读；本版重启先停计数并暂时清CMS，再清DIR、恢复CENTERALIGNED1，然后设CNT=0并发UG，避免沿用上次下降计数方向。首次与重复启动的实际相位均纳入波形用例。
++
++## 2. ADC1 诊断和 G01 的所有权
++
++G01 的常态路径是ADC1软件触发、每500 ms轮询一次。G02诊断期间由诊断模块独占ADC1，G01任务暂停，不再执行 `HAL_ADC_Start/PollForConversion/GetValue/Stop`；退出诊断并完成清理后才能恢复G01。串口记录必须区分两种模式，不能将诊断完成计数当成G01的500 ms样本序号。
++
++ADC1诊断配置为PA1/INP1、12 bit、单rank、非连续转换、TIM1 TRGO上升沿触发、DR读回、OVR preserved、2倍过采样右移1、11.5 ADC周期采样。先清旧状态并arm ADC，再启动内部TIM计数；ADC2保持停用。ADC2现有3rank、DR、EOC_SEQ的配置不能直接靠每序列读取一次DR来获取三路完整数据，后续需要专门的逐rank或DMA方案。
++
++本项目 `stm32n6xx_hal_adc.c` 说明12位SAR核心转换为12.5 ADC周期。若运行时ADC内核读回64 MHz，则ADC1一次双采样的核心预算为：
++
++```text
++T_core = 2 × (11.5 + 12.5) / 64 MHz = 0.75 µs
++```
++
++此条件计算不包含触发跨时钟域同步、模拟建立、IRQ排队、ISR及CCR提交，也不是板上已测转换时间。ADC时钟改变时必须重算；物理采样准确性仍归G01，不因同步诊断计数正确而自动通过。
++
++## 3. 可观测事件与不能直接推出的结论
++
++设计事件链为：`计数边界 → RCR产生UEV/TRGO → ADC触发/转换 → EOS/IRQ → 读取DR → ISR返回`。CCR写入进入预装载，后续UEV再装载；UEV同时触发ADC时，该次转换对应的是更新边界之后的波形周期。
++
++| 记录项 | 能说明什么 | 观察边界 |
++|---|---|---|
++| TIM1更新ISR计数 | 软件服务过多少次UEV中断 | UIF是标志位，多个事件可能合并；不等于独立硬件触发计数 |
++| ADC EOS/回调计数 | 已处理的转换完成次数 | 必须结合OVR、错误及窗口首尾状态；不能单独证明无漏周期 |
++| ADC OVR/错误计数 | 观察到的数据覆盖/转换异常 | 不能将异常样本当有效零值；保留故障原因并停机 |
++| DWT入口/出口及最大周期数 | 已测软件区间耗时、ISR负担 | 入口前的IRQ延迟不在区间中；包含被抢占时间时须注明 |
++| 相邻IRQ间隔 | 服务周期的稳定性及长间隔线索 | 不是ADC精确采样相位；32 bit回绕按无符号差处理 |
++| ISR时的TIM CNT/方向 | 软件观察时刻在计数周期中的位置 | ISR读取有延迟，不能标成硬件触发的精确CNT |
++| CCR提交值、提交计数及后续UEV | 软件请求和见到更新边界的关联 | 本版保守等待两次已服务UEV；第一条可能在写入前已pending。该记录仍不是有效CCR读回或实际引脚变更 |
++| `stop_request_cycles/stop_cycles` | 包围 `G02_EmergencyOff()` 的软件执行区间 | 起点不含mailbox到主循环的等待；终点不是驱动或栅源关断时刻 |
++
++快速路径只做有界寄存器访问、整数计数和时标，不在ISR打印、等待串口或访问AFE。本版诊断模块也不在主循环打印；停止并完成清理后，通过调试器导出 `g02_control` 和 `g02_telemetry`，保存原始内存/字段转录及对应镜像身份。TIM1更新与ADC1 IRQ使用相同抢占优先级以串行更新统计；ADC IRQ可能先于UEV IRQ被服务，不能按二者第N条记录强行配对。
++
++`g02_telemetry.trace` 是128项事件环形缓冲，每项含DWT周期、TIM CNT/方向、事件类型与已服务UEV计数。`trace_written` 是总写入数，`trace_overwritten` 记录覆盖数，存储位置为 `seq % 128`；仅保留最后128项，不是整个窗口的完整原始轨迹。导出时按逻辑序号 `max(0, trace_written-128)` 到 `trace_written-1` 重排。事件1/2/3/4分别表示UPDATE、ADC完成、CCR写入、OFF；全窗口统计独立累积，环形覆盖不清空计数。下次获准启动会清空本次telemetry，因此必须先归档。
++
++`ccr_next_uev_observed` 保存最新CCR请求在两次已服务UEV后观察到的值，`ccr_write_cycles/ccr_observed_cycles` 给出软件观察区间；它不是实际引脚占空比或shadow寄存器读回。若前次观察完成前再次写CCR，以最新请求为准，前次请求不具有独立生效证明。`late_update_irqs` 仅记录服务间隔大于名义周期1.5倍的次数，是诊断线索，不是冻结的合格阈值。
++
++DWT启用及前进检查发生在启动准备时。`cycle_read_pair_cycles` 包含两次读数及DSB/ISB屏障开销，不是整个ISR的开销扣除值；各ISR最大周期字段也只包围代码中的测量区间。32 bit DWT在800 MHz下约5.37 s回绕，10 s窗口不能只用首尾DWT差推算时长；窗口使用HAL毫秒tick，DWT仅用于可确认小于一次回绕的局部区间。GPIO标记只在已经确认可用的引脚上增加，本版未分配标记引脚，不能把内存trace当作外部ADC采样相位波形。
++
++用于正式10 s窗口的计数关系应在运行前冻结：排除UG及启动清理，记录开始/结束计数、实际窗口、停止时是否有在途转换。稳定完整周期理论数为 `f_PWM×T_window`；名义100 kHz、10 s是1,000,000次。首尾相位、在途样本的处理要明确，不能把少1次固定解释成允许误差。通过软件计数并不足以证明TRGO没有丢失，采样相位和CCR生效仍须外部波形交叉验证。
++
++STOP优先撤销输出而不等待统计补齐：当时已经置位但未服务的UIF可能不计入 `update_irqs`，在途ADC可能被停止、或在清理前完成并再记一次。因此两类最终软件计数不能机械要求一一相等，也不能据差值直接计算漏触发数。应结合停止点相位、原始状态及外部波形解释窗口边缘；未消除歧义时保留缺测结论。
++
++## 4. 默认态、启动门控和停止契约
++
++常态启动只进入测量/停机状态，不自动启动TIM1 PWM、外触发采样或继电器。PA9/PF7配置为GPIO推挽LOW；TIM初始化后仍保持GPIO LOW，`HAL_TIM_MspPostInit()`只在获准的PINS启动中切换复用功能。继电器GPIO低电平是软件命令，实际触点是否开路及有效极性仍以profile中的实物证据为准。
++
++诊断启动分为内部采样时序与引脚输出两个许可层。`G02_MODE_SAMPLING`只开内部计数和ADC同步，MOE=0、CCER=0，PA9/PF7仍为GPIO LOW。两个交付target的 `G02_ALLOW_PIN_OUTPUT` 均为0，`G02_MODE_PINS`请求返回 `G02_DISALLOWED`，不会开始准备或输出。引脚测试必须另建经审查的无功率测试镜像，并具备明确测试授权及禁能接线。软件许可参数、编译开关或测试代码中的布尔值均不证明物理隔离已经成立。源码存在启动入口不构成烧录或上电授权。
++
++启动检查至少覆盖：未锁存故障、没有其他ADC1所有者、实际时钟及TIM/ADC配置相符、比较值有效、继电器保持禁能、前次清理结束。全部成立后按确定顺序预装载、UG、清标志、arm ADC、开启计数；引脚输出使能需保证CH2/CH2N共同受MOE控制，避免先后启动HAL两路产生单路窗口。启动首脉冲仍需波形检查。
++
++STOP和故障路径先撤销MOE/输出，再停止触发源和执行清理；故障锁存后不自动恢复。中断内快速关断不能依赖可能等待HAL tick的阻塞停止，ADC HAL清理与恢复G01放在允许完成该工作的上下文。清锁存仅使系统回到可检查的停机态，不自动使能输出。初始化错误、CPU fault及复位后均须回到既定禁能状态；软件无法证明复位期间引脚、驱动器或继电器的真实电气行为。
++
++本版 `G02_EmergencyOff()`先清MOE/AOE，再关TIM中断、CEN和CCER，将PA9/PF7恢复GPIO LOW并拉低继电器命令；不依赖HAL等待。`G02_Service()`在主循环停止ADC中断采样、恢复保存的G01初始化。清理失败会锁存ADC故障并保留所有权，禁止G01抢占ADC。Error_Handler、NMI及CPU fault处理入口调用快速禁能；对这些异常的实物响应仍需验证。
++
++### 调试器mailbox及操作顺序
++
++诊断入口是RAM mailbox，不是UART业务协议；串口不接受G02启动/停止命令。应用主循环调用 `G02_Task()`消费命令，随后仅在 `G02_MeasurementAllowed()` 为真时运行G01。
++
++| `g02_command` | 枚举 | 行为 |
++|---|---|---|
++| 0 | `G02_CMD_NONE` | 无请求；每次消费后自动清零 |
++| 1 | `G02_CMD_SAMPLE` | 使用 `g02_compare/g02_window_ms` 启动内部同步采样 |
++| 2 | `G02_CMD_PINS` | 请求引脚输出；交付target门控关闭，返回DISALLOWED |
++| 3 | `G02_CMD_STOP` | 强制停止；重复调用幂等，不清故障锁存 |
++| 4 | `G02_CMD_FAULT` | 注入 `G02_FAULT_INJECTED`，关断并锁存 |
++| 5 | `G02_CMD_CLEAR` | 清理完成后清锁存并回STOPPED；不启动输出 |
++| 6 | `G02_CMD_COMPARE` | 运行中提交新CCR预装载值，不发UG |
++
++`g02_compare`默认1000，允许整数1—1999；这是避免端点的诊断参数范围，不是已确认的带载D范围。`g02_window_ms`默认10000，允许1—10000 ms；该上限是诊断自动收尾措施，不是硬件允许运行时间或10 s截止期保证。主循环按HAL tick到期执行STOP，存在任务调度延迟；主循环失去服务时不能将其当独立硬件看门狗。
++
++1. 在已有烧录和无功率测试授权后，确认待测镜像身份及PA9/PF7禁能状态。在尚未启动诊断时暂停CPU，设置 `g02_compare` 和 `g02_window_ms`，最后写入 `g02_command`，再自由运行。
++2. 窗口内不设断点、不单步、不暂停CPU。内部采样结束后再读 `g02_command_result`、`g02_control.state/faults/cleanup_pending` 和telemetry；启动返回OK仅表示启动事务成功，最终状态及错误计数须另查。
++3. 需要窗口内COMPARE、STOP或FAULT时，只能用已经确认不会halt CPU的RAM写入方式，仍先写参数、最后写命令。本版没有设置调试暂停冻结TIM，halt CPU时计数器默认仍运行而ISR/主循环不能处理；这种写命令方式只用于逻辑演练，不能判定连续时序或STOP延迟。有引脚输出时不得依靠暂停调试器来停止输出。
++4. 停止并清理完成后归档快照。故障必须先完成清理、显式CLEAR，再另发START；复位清空mailbox，既有请求不会自动重放。
++
++`g02_command_result`按 `g02_control.h` 的 `G02Result` 解释：0=OK、1=BAD_ARGUMENT、2=NOT_READY、3=BUSY、4=DISALLOWED、5=FAULTED、6=CANCELED。运行终态以state/faults为准，不能只看最近命令返回值。
++
++现有窗口到期会在CPU自由运行时调用STOP，可用于无halt收集自动停止波形；后续测试镜像也可加入明确时刻的代码故障/停止注入并记录版本。真正人工STOP的触发引脚或业务接口、硬件请求到输出关闭的测量方法仍待制定；不能用一次暂停CPU后写mailbox的演练代替该验收项。
++
++## 5. 示波器测量清单
++
++开始前将本次实物边界补充到唯一profile并保存快照：当前源输出/电池/负载状态、能量隔离方式、驱动供电、继电器极性、可用STOP路径、接线照片、测点和探头。UNI-T MSO3034HD型号已登记，探头型号/衰减、参考方式、差分能力和实际采集设置仍未知。
++
++1. **MCU逻辑层**：核实PA9和PF7的实际可用测试点、板上GND及逻辑电平。在功率路径禁能条件下采50%和至少一个不同CCR的CH2/CH2N原始波形，记录频率、高电平占比、幅度、边沿和互补关系。
++2. **驱动与栅源层**：先确认驱动输入/输出及各源极参考点。高侧栅源测量按已确认的差分/隔离测量条件执行，不能把普通接地探头的地夹接到未知开关节点。分别记录两路Vgs、幅度、有效死区和可能重叠。
++3. **采样相位**：用已确认的硬件触发/标记观测点，与PWM波形及ADC完成标记建立关系；记录标记从实际事件到GPIO的延迟。若没有可用观测点，只报告软件统计，采样相位保持缺测。
++4. **CCR改变**：捕获请求前后连续周期，关联提交记录、后续UEV与实际新占空比；检查是否有不完整脉冲或超长周期。
++5. **停止和故障**：用停止/故障标记触发，保留触发前后的CH2、CH2N及适用Vgs波形，测到最后有效驱动/栅源关断的时间。仅看到MCU低电平不能替代驱动截止证据。
++
++每份波形保存原始导出、截图、通道映射、探头/参考点、耦合、带宽限制、采样率、存储深度、时基、触发配置、测量读数及固件哈希。截图和原始波形放 `evidence/runs/<run_id>/raw/`，复算与统计放 `derived/`，原始文件不覆盖。
++
++## 6. 待执行停止矩阵
++
++表中各项是测量用例，未执行前结果保持null。通过线采用本次运行前冻结的规范与profile限值。
++
++| 用例 | 最低观察项 | 后续状态 |
++|---|---|---|
++| 上电/正常复位 | PWM引脚、驱动输出、继电器命令及适用触点状态 | 默认停机，无自动输出 |
++| 正常STOP/重复STOP | 两路共同撤销、最后脉冲、驱动关断时限 | 停机；重复STOP不恢复 |
++| 启动参数/时钟不符 | 拒绝启动，未出现输出脉冲 | 停机或锁存故障，原因可查 |
++| ADC启动失败 | 清理前后MOE/通道/计数状态和实际引脚 | 禁能，无部分启动 |
++| 软件故障注入 | 注入到MOE撤销、驱动/Vgs关断的时间 | 故障锁存 |
++| ADC OVR/异常完成 | 原始错误、统计、输出撤销 | 故障锁存，错误不转为有效零 |
++| 运行中复位/适用CPU fault | 复位前后引脚和驱动状态 | 不自动恢复输出 |
++| 故障后再次START | 输出无恢复，记录拒绝原因 | 保持故障锁存 |
++| 明确清故障后 | 清锁存本身不输出，重新检查启动条件 | 停机，须另行启动 |
++| CCR更新与STOP相邻 | 停机后旧请求不得重新使能，保留边界波形 | 停机/故障锁存 |
++
++## 7. 缺失输入与下一步
++
++当前独立可做的是配置推导、软件实现、双target构建、故障注入与离线统计检查。它们支持对应的软件结论，不替代bench或release_boot证据，也不放行G03。
++
++下一项可执行的实物工作是冻结G02无功率接线与测量条件：确认能量路径禁能方法、继电器/驱动有效电平、PA9/PF7可测点、探头参考方式和STOP操作；把确认事实写入profile。随后在具体烧录/测试授权下，新建run，先验证默认态和STOP，再进行50%逻辑PWM及内部ADC同步窗口。驱动/Vgs波形、有效死区、采样相位、输出关闭期限中任何缺测项均单独保留，不以寄存器值或断点代替。
+--- before/instructions/specs/hardware-profile.json
++++ after/instructions/specs/hardware-profile.json
+@@ -1,6 +1,6 @@
+ {
+   "schema_version": "1.0-draft",
+-  "profile_id": "cnn647b-bms-g01-20261031-r2",
++  "profile_id": "cnn647b-bms-g02-20261031-r1",
+   "status": "partially_confirmed",
+   "note": "Confirmed facts, document nominal values and code assumptions are separate below. Unknown physical parameters and limits remain null. No power-stage acceptance is implied.",
+   "board_id": null,
+@@ -168,8 +168,12 @@
+       "counter_mode": "CENTERALIGNED1",
+       "programmed_deadtime": 0,
+       "break_enabled": false,
+-      "start_call_present": false,
+-      "actual_frequency_measured_Hz": null
++      "start_call_present": true,
++      "actual_frequency_measured_Hz": null,
++      "initial_compare": 1000,
++      "start_on_boot": false,
++      "pin_output_compiled": false,
++      "idle_gpio_level": "PA9/PF7 GPIO push-pull LOW after application GPIO init; physical driver state unverified"
+     },
+     "adc_start_call_present": true,
+     "adc_signal_labels": {
+@@ -202,7 +206,7 @@
+       "alpha_per_C": 0.00385,
+       "physical_calibration_verified": false
+     },
+-    "stop_design": "G01 receive-only measurement stream; no power-control commands; PWM not started; relay GPIO LOW; physical isolation unverified",
++    "stop_design": "G02 source candidate: immediate MOE/AOE/CEN/CCER off, PA9/PF7 and relay commands LOW, latched faults, deferred ADC cleanup; no hardware STOP/reset timing verified",
+     "adc1_acquisition": {
+       "trigger": "software",
+       "period_ms": 500,
+@@ -211,10 +215,31 @@
+       "right_shift": 1,
+       "internal_self_calibration": "not_enabled",
+       "actual_sampling_verified": true,
+-      "verified_run_id": "20261031-G01-board"
++      "verified_run_id": "20261031-G01-board",
++      "actual_sampling_verified_firmware": "g01-sw-r2 only"
+     },
+     "adc2_acquisition": "not_started; existing initialization retained",
+-    "measurement_firmware": "g01-sw-r2; uncalibrated-v1; raw_valid/physical_valid separate; normal BOOT/reset and continuous serial raw acquisition observed"
++    "measurement_firmware": "Source candidate g02-sw-r1 (not flashed); board last verified/last flashed g01-sw-r2 from 20261031-G01-board; calibration unchanged",
++    "g02_diagnostic": {
++      "source_firmware": "g02-sw-r1",
++      "actually_flashed": false,
++      "evidence_run_id": "20261031-G02-software",
++      "evidence_scope": [
++        "static",
++        "build",
++        "simulation"
++      ],
++      "internal_trigger": "TIM1 TRGO update, ADC1 exclusive session; G01 SW trigger restored only after successful cleanup",
++      "clock_policy": "Explicit TIMPRE DIV1/CKPER HSI; diagnostic requires runtime TIMG=400MHz and ADC=64MHz",
++      "adc2": "not started",
++      "auto_start": false,
++      "pin_output_compile_gate": false,
++      "window_max_ms": 10000,
++      "window_note": "software observation cap, not a verified power safety limit",
++      "measured_pwm_Hz": null,
++      "measured_stop_us": null,
++      "measured_driver_deadtime_ns": null
++    }
+   },
+   "document_nominal": {
+     "source_ppt": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+@@ -595,7 +620,7 @@
+     "series_wiring_verified": false,
+     "note": "Printed label values only; not a measured capacity or charge/discharge limit."
+   },
+-  "previous_profile_id": "cnn647b-bms-baseline-20261031-r1",
++  "previous_profile_id": "cnn647b-bms-g01-20261031-r2",
+   "voltage_only_followup_observation": {
+     "source": "evidence/runs/20261031-G01-VT-followup-01/raw/user-voltage-reference.json",
+     "load_connected": false,
+--- before/instructions/STATUS.md
++++ after/instructions/STATUS.md
+@@ -6,14 +6,14 @@
+ |---|---|---|---|
+ | G00 基线与硬件契约 | in_progress | null | 构建/烧录/3次冷启动/OLED/UART基础项完成，资料标称、实物已知、配置冲突和停止设计缺项已登记；已登记3节14500电芯标签；电阻标签33Ω/25W/±5%已登记；C.A 5212万用表及MSO3034HD示波器型号已据照片登记；已核对5212相关DC档手册规格；用户实测圆孔适配器约18V、充电源未接；供电额定电流、负载接线/散热和仪器校准状态待补。见 evidence/runs/20261031-G00-hardware-audit/review.md |
+ | G01 测量与标定 | in_progress | null | G01.1—G01.3软件及实板采集已验证，Release r2保持。最新COM9重采60秒、1071条/119完整组，已解析raw全部有效，无校验错误或缺序号；前79组约3.5V，随后降至近零，保留为调试数据，无配对参考、无标定系数。用户决定电压/电流后续统一标定，当前停止追加取点；温度继续暂缓。CH1/A、CH2/B、CH3/C由用户确认，A/B/C到AFE映射仍待辨识。最新用户报告已接负载；固件仍未启动继电器/PWM控制。见 evidence/runs/20261031-G01-source-capture-01/work-card.md；历史工具和采集证据保留。 |
+-| G02 无功率 PWM 与时序 | not_started | null | 有初始化配置；未取得示波器波形 |
++| G02 无功率 PWM 与时序 | in_progress | null | G02.1—G02.3软件完成：50%配置、运行时钟检查、默认禁能诊断、成对启动/STOP/锁存、ADC独占与内存时序统计；Release 0错0警告，Debug仅原有EXTRAM警告；状态机与端口模拟、G01回归通过。候选g02-sw-r1未烧录，波形/实际采样时序/停止期限仍待测；不放行G03。见 evidence/runs/20261031-G02-software/work-card.md |
+ | G03 受限开环功率级 | not_started | null | 等待实际硬件边界、停止链路和前置门通过 |
+ | G04 PI 恒流与故障退出 | not_started | null | 有 pi.h，尚未接入周期控制；无闭环证据 |
+ | G05 串口/上位机联调 | not_started | null | 简单记录器应从 G01 开始；现有主机与当前模板协议未对齐 |
+ | G06 SOC 基准与数据集 | not_started | null | 容量、初值、参考标签及独立验证方案待建立 |
+ | G07 模型与端侧部署 | not_started | null | 无可验收数据集或模型产物 |
+ 
+-当前源码：G01 主循环周期采集，ADC1软件触发，不启动PWM；AFE错误不再填零、转换完成使用PLADC查询。两路电流系数、温度模型和实物量程仍未确认；Release r2板端正常BOOT复位启动及9通道连续原码已验证，精度/标定仍未验证。G00冷启动证据属于旧镜像，新镜像本轮只做复位启动；pi.h 与旧 pi.c 尚未形成运行控制器。
++当前源码候选 g02-sw-r1：启动仍为G01周期采集、ADC1软件触发；新增显式G02诊断，两个target的引脚输出编译门均关闭，无自动PWM/继电器启动。最后已烧录/板端验证仍为G01 Release r2，新候选未烧录。AFE错误不再填零、转换完成使用PLADC查询。两路电流系数、温度模型和实物量程仍未确认；Release r2板端正常BOOT复位启动及9通道连续原码已验证，精度/标定仍未验证。G00冷启动证据属于旧镜像，新镜像本轮只做复位启动；pi.h 与旧 pi.c 尚未形成运行控制器。
+ 
+ 本轮完成：适配规范、说明 HTML、模板和资料哈希；其检查结果仅支持文档结构和来源完整性，不支持硬件性能。
+ 
+--- before/instructions/RUNLOG.md
++++ after/instructions/RUNLOG.md
+@@ -159,3 +159,12 @@
+ ## 2026-10-31 G01 COM9重采及标定暂缓
+ 
+ COM9恢复后只接收记录60秒，1071条/119完整组，哈希/协议/PEC与连续性复核通过。前79组约3.5V，后段下降至近零，不将整段均值用于标定。用户要求电压、电流以后统一标定，本轮停止追加取点，无参考配对或系数发布；温度继续暂缓。固件、功率控制未变。见 evidence/runs/20261031-G01-source-capture-01/work-card.md。
++
++
++## 2026-10-31 G02 默认禁能诊断、停止和时序观测
++
++按阶段提示推进G02.1—G02.3：核对N6 TIMG时钟与100kHz推导，50%比较值改为1000，显式公共时钟配置；新增两阶段启动、直接硬停、故障锁存、ADC独占/恢复、TIM/ADC服务计数、overrun/缺完成退出和128项内存trace。Release/Debug均默认禁止引脚输出、无自动启动；异常处理接入撤销输出。运行中拒绝重复START保持原期限，下降方向重启先退出中心对齐再复位DIR。
++
++10组生产状态机测试、两种引脚门控分支的生产端口寄存器/HAL模拟通过；G01原生故障注入、16项Python检查、36条/9通道回放通过。最终Release 0错误0警告（exit 0），Debug 0错误、原有L6314W EXTRAM警告1个（exit 1）。首轮沙箱链接器启动失败、检查报告相对路径错误均保留，修正后重跑存证。
++
++实际工程在WEIJI/zonghe，聊天旧目录不存在；使用临时副本实现/构建，按文件哈希检查后回写。源码/候选镜像身份、修改前文件、工作卡、配置推导和待执行波形矩阵保存在evidence/runs/20261031-G02-software。未烧录、未操作串口/下载器或开启功率路径，硬件未知限值未填猜测值；G02正式verdict=null，G03未放行。
+--- before/instructions/README.md
++++ after/instructions/README.md
+@@ -28,6 +28,7 @@
+ | WORKFLOW.md | 调试、正式验收、状态、版本和失效范围规则 |
+ | STATUS.md / RUNLOG.md | 当前阶段与关键过程记录 |
+ | ../AGENTS.md / AGENTS_BMS.example.md | 当前项目代理入口 / 已采用情况说明；不再使用示例中的另一套规则 |
++| specs/G02-pwm-timing.md | G02诊断入口、配置推导、时序观测边界与待执行波形/停止清单 |
+ | specs/measurement.md | 驱动、换算、标定和应用算法职责 |
+ | specs/acceptance.md | G00—G07 的前置、指标、证据和失败处理 |
+ | specs/data.md | 时间戳、原始数据、SOC 标签与训练集规则 |
+--- before/instructions/validation/render_html.cjs
++++ after/instructions/validation/render_html.cjs
+@@ -48,7 +48,7 @@
+ @media(max-width:1000px){.layout{grid-template-columns:190px minmax(0,1fr);gap:18px;padding:0 18px}.sidebar a{font-size:12px}article{padding:12px 22px 24px}.milestones{grid-template-columns:repeat(2,minmax(0,1fr))}}
+ @media(max-width:720px){header{padding:30px 21px}.layout{display:block;margin-top:18px;padding:0 12px}.sidebar{position:static;margin-bottom:20px}.sidebar nav{display:grid;grid-template-columns:1fr 1fr}.sidebar a{font-size:12px;padding:7px}.smallnote{display:none}.chapter summary{font-size:16px;padding:16px 13px;gap:8px}summary small{font-size:10px}article{padding:9px 17px 21px;font-size:15px}article h1{font-size:23px}article h2{font-size:20px}.milestones{gap:7px}.milestones div{padding:11px}.table-scroll{margin-left:0;margin-right:0}pre{font-size:12px;padding:13px}code{font-size:12px}.toolbar{margin:9px 0 17px}}
+ @media print{.sidebar,.toolbar,summary small{display:none}.layout{display:block;margin:0;padding:0}header{background:white;color:#142c3a;padding:15px;border-top:3px solid #142c3a}header p,.eyebrow{color:#234}header .tag{color:#234;border-color:#ccc}details{break-inside:auto}.chapter{border:0}article{padding:0}.table-scroll{overflow:visible}table{min-width:0;font-size:10px}pre{white-space:pre-wrap;background:#eee;color:#111}.chapter summary{padding:12px 0}body{font-size:11px}.milestones{display:none}a{color:#123;text-decoration:none}}
+-</style></head><body><header><div class="hero"><div class="eyebrow">BMS ENGINEERING NOTE · 2026.10.28</div><h1>从读数到闭环，再到可信数据</h1><p>把 ADC、标定、PWM、PI 与 SOC 放回同一条可追溯链路。先弄清每一层负责什么，再为每一步规定可测量的完成标准。</p><span class="tag">依据当前工程与课程资料</span><span class="tag">验收草案 · 硬件尚未实测</span><span class="tag">离线阅读 · 无外部依赖</span></div></header><div class="layout"><aside class="sidebar"><nav>${nav}</nav><div class="smallnote">C · 课程明确要求<br>E · 工程建议，正式验收前冻结<br>H · 硬件待确认，不代入猜测值<br><br>正式结果仍须回到原始数据。说明包完整不等于系统验收通过。</div></aside><main><div class="milestones"><div><b>01 测得可信</b><span>原码 / 标定 / 独立验证</span></div><div><b>02 控得稳定</b><span>PWM / 功率级 / PI</span></div><div><b>03 数据可追溯</b><span>时间 / 版本 / 参考 SOC</span></div><div><b>04 模型可复现</b><span>分组 / 评估 / 端侧一致</span></div></div><div class="statusnote">已完成：代码与资料审查、流程适配、文档和模板。尚未执行：新固件构建、烧录、台架标定、功率实验或模型训练。</div><div class="toolbar"><button id="expand">展开全部章节</button><button id="collapse">收起附录</button><button id="print">打印 / 保存 PDF</button><a href="${documentHref(path.join(root,'README.md'))}">打开规范包入口</a></div>${content}</main></div><div class="footer">说明源文件与模板位于 instructions · HTML 由本地 Markdown 生成 · 本文件不包含硬件控制接口</div>
++</style></head><body><header><div class="hero"><div class="eyebrow">BMS ENGINEERING NOTE · 2026.10.28</div><h1>从读数到闭环，再到可信数据</h1><p>把 ADC、标定、PWM、PI 与 SOC 放回同一条可追溯链路。先弄清每一层负责什么，再为每一步规定可测量的完成标准。</p><span class="tag">依据当前工程与课程资料</span><span class="tag">验收草案 · 硬件尚未实测</span><span class="tag">离线阅读 · 无外部依赖</span></div></header><div class="layout"><aside class="sidebar"><nav>${nav}</nav><div class="smallnote">C · 课程明确要求<br>E · 工程建议，正式验收前冻结<br>H · 硬件待确认，不代入猜测值<br><br>正式结果仍须回到原始数据。说明包完整不等于系统验收通过。</div></aside><main><div class="milestones"><div><b>01 测得可信</b><span>原码 / 标定 / 独立验证</span></div><div><b>02 控得稳定</b><span>PWM / 功率级 / PI</span></div><div><b>03 数据可追溯</b><span>时间 / 版本 / 参考 SOC</span></div><div><b>04 模型可复现</b><span>分组 / 评估 / 端侧一致</span></div></div><div class="statusnote">阶段进度、固件身份和证据范围见下方“当前项目状态”；软件构建和模拟检查不能代替硬件实测。</div><div class="toolbar"><button id="expand">展开全部章节</button><button id="collapse">收起附录</button><button id="print">打印 / 保存 PDF</button><a href="${documentHref(path.join(root,'README.md'))}">打开规范包入口</a></div>${content}</main></div><div class="footer">说明源文件与模板位于 instructions · HTML 由本地 Markdown 生成 · 本文件不包含硬件控制接口</div>
+ <script>const chapters=[...document.querySelectorAll('.chapter')];document.querySelector('#expand').onclick=()=>chapters.forEach(d=>d.open=true);document.querySelector('#collapse').onclick=()=>chapters.forEach(d=>d.open=d.id==='guide');function reveal(){const el=document.getElementById(location.hash.slice(1));if(el&&el.tagName==='DETAILS'){el.open=true;requestAnimationFrame(()=>el.scrollIntoView());}}document.addEventListener('click',e=>{const a=e.target.closest('a');if(a&&a.getAttribute('href')?.startsWith('#')){const el=document.querySelector(a.getAttribute('href'));if(el)el.open=true;}});window.addEventListener('hashchange',reveal);reveal();document.querySelector('#print').onclick=()=>{chapters.forEach(d=>d.open=true);window.print();};window.addEventListener('beforeprint',()=>chapters.forEach(d=>d.open=true));</script></body></html>`;
+   const output=path.join(root,'BMS实施与验收指南.html');fs.writeFileSync(output,html,'utf8');
+   console.log(JSON.stringify({output,bytes:Buffer.byteLength(html),chapters:docs.length}));
+--- before/instructions/BMS实施与验收指南.html
++++ after/instructions/BMS实施与验收指南.html
+@@ -4,7 +4,7 @@
+ @media(max-width:1000px){.layout{grid-template-columns:190px minmax(0,1fr);gap:18px;padding:0 18px}.sidebar a{font-size:12px}article{padding:12px 22px 24px}.milestones{grid-template-columns:repeat(2,minmax(0,1fr))}}
+ @media(max-width:720px){header{padding:30px 21px}.layout{display:block;margin-top:18px;padding:0 12px}.sidebar{position:static;margin-bottom:20px}.sidebar nav{display:grid;grid-template-columns:1fr 1fr}.sidebar a{font-size:12px;padding:7px}.smallnote{display:none}.chapter summary{font-size:16px;padding:16px 13px;gap:8px}summary small{font-size:10px}article{padding:9px 17px 21px;font-size:15px}article h1{font-size:23px}article h2{font-size:20px}.milestones{gap:7px}.milestones div{padding:11px}.table-scroll{margin-left:0;margin-right:0}pre{font-size:12px;padding:13px}code{font-size:12px}.toolbar{margin:9px 0 17px}}
+ @media print{.sidebar,.toolbar,summary small{display:none}.layout{display:block;margin:0;padding:0}header{background:white;color:#142c3a;padding:15px;border-top:3px solid #142c3a}header p,.eyebrow{color:#234}header .tag{color:#234;border-color:#ccc}details{break-inside:auto}.chapter{border:0}article{padding:0}.table-scroll{overflow:visible}table{min-width:0;font-size:10px}pre{white-space:pre-wrap;background:#eee;color:#111}.chapter summary{padding:12px 0}body{font-size:11px}.milestones{display:none}a{color:#123;text-decoration:none}}
+-</style></head><body><header><div class="hero"><div class="eyebrow">BMS ENGINEERING NOTE · 2026.10.28</div><h1>从读数到闭环，再到可信数据</h1><p>把 ADC、标定、PWM、PI 与 SOC 放回同一条可追溯链路。先弄清每一层负责什么，再为每一步规定可测量的完成标准。</p><span class="tag">依据当前工程与课程资料</span><span class="tag">验收草案 · 硬件尚未实测</span><span class="tag">离线阅读 · 无外部依赖</span></div></header><div class="layout"><aside class="sidebar"><nav><a href="#guide"><span>01</span>问题解答与路线</a><a href="#acceptance"><span>02</span>G00—G07 验收标准</a><a href="#measurement"><span>03</span>驱动与测量分层</a><a href="#data"><span>04</span>数据、标定与 SOC</a><a href="#migration"><span>05</span>旧 instructions 怎样改</a><a href="#workflow"><span>06</span>执行与证据链</a><a href="#questions"><span>07</span>待确认项</a><a href="#status"><span>08</span>当前项目状态</a><a href="#files"><span>09</span>规范包文件导航</a><a href="#sources"><span>10</span>依据与来源</a></nav><div class="smallnote">C · 课程明确要求<br>E · 工程建议，正式验收前冻结<br>H · 硬件待确认，不代入猜测值<br><br>正式结果仍须回到原始数据。说明包完整不等于系统验收通过。</div></aside><main><div class="milestones"><div><b>01 测得可信</b><span>原码 / 标定 / 独立验证</span></div><div><b>02 控得稳定</b><span>PWM / 功率级 / PI</span></div><div><b>03 数据可追溯</b><span>时间 / 版本 / 参考 SOC</span></div><div><b>04 模型可复现</b><span>分组 / 评估 / 端侧一致</span></div></div><div class="statusnote">已完成：代码与资料审查、流程适配、文档和模板。尚未执行：新固件构建、烧录、台架标定、功率实验或模型训练。</div><div class="toolbar"><button id="expand">展开全部章节</button><button id="collapse">收起附录</button><button id="print">打印 / 保存 PDF</button><a href="README.md">打开规范包入口</a></div><details class="chapter" id="guide" open><summary><span class="index">01</span><span>问题解答与路线</span><small>展开 / 收起</small></summary><article><h1>从“能读数”到“可信数据集”：BMS 实施与验收指南</h1>
++</style></head><body><header><div class="hero"><div class="eyebrow">BMS ENGINEERING NOTE · 2026.10.28</div><h1>从读数到闭环，再到可信数据</h1><p>把 ADC、标定、PWM、PI 与 SOC 放回同一条可追溯链路。先弄清每一层负责什么，再为每一步规定可测量的完成标准。</p><span class="tag">依据当前工程与课程资料</span><span class="tag">验收草案 · 硬件尚未实测</span><span class="tag">离线阅读 · 无外部依赖</span></div></header><div class="layout"><aside class="sidebar"><nav><a href="#guide"><span>01</span>问题解答与路线</a><a href="#acceptance"><span>02</span>G00—G07 验收标准</a><a href="#measurement"><span>03</span>驱动与测量分层</a><a href="#data"><span>04</span>数据、标定与 SOC</a><a href="#migration"><span>05</span>旧 instructions 怎样改</a><a href="#workflow"><span>06</span>执行与证据链</a><a href="#questions"><span>07</span>待确认项</a><a href="#status"><span>08</span>当前项目状态</a><a href="#files"><span>09</span>规范包文件导航</a><a href="#sources"><span>10</span>依据与来源</a></nav><div class="smallnote">C · 课程明确要求<br>E · 工程建议，正式验收前冻结<br>H · 硬件待确认，不代入猜测值<br><br>正式结果仍须回到原始数据。说明包完整不等于系统验收通过。</div></aside><main><div class="milestones"><div><b>01 测得可信</b><span>原码 / 标定 / 独立验证</span></div><div><b>02 控得稳定</b><span>PWM / 功率级 / PI</span></div><div><b>03 数据可追溯</b><span>时间 / 版本 / 参考 SOC</span></div><div><b>04 模型可复现</b><span>分组 / 评估 / 端侧一致</span></div></div><div class="statusnote">阶段进度、固件身份和证据范围见下方“当前项目状态”；软件构建和模拟检查不能代替硬件实测。</div><div class="toolbar"><button id="expand">展开全部章节</button><button id="collapse">收起附录</button><button id="print">打印 / 保存 PDF</button><a href="README.md">打开规范包入口</a></div><details class="chapter" id="guide" open><summary><span class="index">01</span><span>问题解答与路线</span><small>展开 / 收起</small></summary><article><h1>从“能读数”到“可信数据集”：BMS 实施与验收指南</h1>
+ <p><strong>你的主线是对的：先把测量做可信，再验证功率级，然后闭环控制，最后积累可用于 SOC 的数据。</strong> 需要修正的是：ADBMS 不会替你算好外接电路的电流和温度；占空比到功率不是固定的一条标定曲线；数据记录要从第一阶段开始；SOC 的参考依据需要单独建立。</p>
+ <p>本指南依据当前源码、课件、实验步骤、官方器件资料及你提供的其他工程 instructions。这里提出的是下一步执行方案，尚未完成任何硬件验收。</p>
+ <h2>1. ADBMS 已经做了什么，MCU 还要算什么</h2>
+@@ -1316,13 +1316,13 @@
+ <td>G01 测量与标定</td>
+ <td>in_progress</td>
+ <td>null</td>
+-<td>G01.1—G01.3软件及实板原码采集已验证；Release r2维持不变。本轮新增电压取点统计、候选拟合、独立验证工具，16项Python测试、生产C故障注入及36条合成回放通过。90秒重采1603条/177完整九通道组，已解析原码全部有效，首尾错误2项保留。无负载A/B/C=3.895/3.894/3.894V；用户确认基本稳定，作为约3.9V工作点初步对照；时间未精确对齐且AFE位置映射未确认。电流/温度实物标定按用户要求暂缓；电压仍缺映射、多点与独立精度验证，不写校准系数。 已据照片登记UDP3305S，并准备三路独立电压源方案；连接线、空电池座夹具及上电条件待核对，尚未接入或取点。见 evidence/runs/20261031-G01-VT-followup-01/work-card.md 及 instructions/specs/G01-voltage-tools.md</td>
++<td>G01.1—G01.3软件及实板采集已验证，Release r2保持。最新COM9重采60秒、1071条/119完整组，已解析raw全部有效，无校验错误或缺序号；前79组约3.5V，随后降至近零，保留为调试数据，无配对参考、无标定系数。用户决定电压/电流后续统一标定，当前停止追加取点；温度继续暂缓。CH1/A、CH2/B、CH3/C由用户确认，A/B/C到AFE映射仍待辨识。最新用户报告已接负载；固件仍未启动继电器/PWM控制。见 evidence/runs/20261031-G01-source-capture-01/work-card.md；历史工具和采集证据保留。</td>
+ </tr>
+ <tr>
+ <td>G02 无功率 PWM 与时序</td>
+-<td>not_started</td>
++<td>in_progress</td>
+ <td>null</td>
+-<td>有初始化配置；未取得示波器波形</td>
++<td>G02.1—G02.3软件完成：50%配置、运行时钟检查、默认禁能诊断、成对启动/STOP/锁存、ADC独占与内存时序统计；Release 0错0警告，Debug仅原有EXTRAM警告；状态机与端口模拟、G01回归通过。候选g02-sw-r1未烧录，波形/实际采样时序/停止期限仍待测；不放行G03。见 evidence/runs/20261031-G02-software/work-card.md</td>
+ </tr>
+ <tr>
+ <td>G03 受限开环功率级</td>
+@@ -1355,7 +1355,7 @@
+ <td>无可验收数据集或模型产物</td>
+ </tr>
+ </tbody></table></div>
+-<p>当前源码：G01 主循环周期采集，ADC1软件触发，不启动PWM；AFE错误不再填零、转换完成使用PLADC查询。两路电流系数、温度模型和实物量程仍未确认；Release r2板端正常BOOT复位启动及9通道连续原码已验证，精度/标定仍未验证。G00冷启动证据属于旧镜像，新镜像本轮只做复位启动；pi.h 与旧 pi.c 尚未形成运行控制器。</p>
++<p>当前源码候选 g02-sw-r1：启动仍为G01周期采集、ADC1软件触发；新增显式G02诊断，两个target的引脚输出编译门均关闭，无自动PWM/继电器启动。最后已烧录/板端验证仍为G01 Release r2，新候选未烧录。AFE错误不再填零、转换完成使用PLADC查询。两路电流系数、温度模型和实物量程仍未确认；Release r2板端正常BOOT复位启动及9通道连续原码已验证，精度/标定仍未验证。G00冷启动证据属于旧镜像，新镜像本轮只做复位启动；pi.h 与旧 pi.c 尚未形成运行控制器。</p>
+ <p>本轮完成：适配规范、说明 HTML、模板和资料哈希；其检查结果仅支持文档结构和来源完整性，不支持硬件性能。</p>
+ <p>目录采用：资料与工具已分类，规范位于 <code>instructions/</code>，项目根 <code>AGENTS.md</code> 已建立；历史目录与旧说明快照保留。此项仅为组织与文档变更，上表所有硬件阶段状态不变。</p>
+ </article></details>
+@@ -1406,6 +1406,10 @@
+ <td>当前项目代理入口 / 已采用情况说明；不再使用示例中的另一套规则</td>
+ </tr>
+ <tr>
++<td>specs/G02-pwm-timing.md</td>
++<td>G02诊断入口、配置推导、时序观测边界与待执行波形/停止清单</td>
++</tr>
++<tr>
+ <td>specs/measurement.md</td>
+ <td>驱动、换算、标定和应用算法职责</td>
+ </tr>

@@ -1,0 +1,37 @@
+{
+  "run_id": "20261031-G01-software",
+  "mode": "exploratory",
+  "started_scope": "G01.1-G01.3 software only",
+  "recorded_at_utc": "2026-10-30T18:06:17.560701+00:00",
+  "status": "complete",
+  "verdict": null,
+  "evidence_scope": [
+    "static",
+    "build",
+    "simulation"
+  ],
+  "firmware_id": "g01-sw-r1",
+  "schema": "g01-v1",
+  "calibration_id": "uncalibrated-v1",
+  "hardware_profile_id": "cnn647b-bms-g01-20261031-r2",
+  "hardware_profile_sha256": "426061a0ca0109ebaaae1dd02085a250a3aaf5dd7fd1ef03de6ae4a39f8bd9dc",
+  "source_manifest_sha256": "6525a9907293ece350300cc0c6a303a36758cf00684c6ca0d5062370e593bab5",
+  "source_snapshot_sha256": "50a814c3acc682cc97572955d3bdeaae9058a335dd2dfab4a08b53ae063f7cdf",
+  "release_hex_sha256": "4bdc43fa24168c0ae86f05f3bffb32452ece327518e4186e0a79c208744ddb20",
+  "actual_flashed_image": null,
+  "hardware_test": null,
+  "calibration_reference": null,
+  "calibration_fit": null,
+  "independent_validation": null,
+  "pyserial_version": "3.5",
+  "previous_baseline": "evidence/runs/20261030-G00-baseline",
+  "known_previous_warning": "Debug L6314W .EXTRAM; unchanged from G00",
+  "prior_failures_preserved": [
+    "checks-01 (Windows snprintf truncation test expectation; corrected and boundary handling hardened)"
+  ],
+  "remaining": [
+    "flash and capture actual G01 stream",
+    "G01.4 reference instrumentation and calibration",
+    "G01.5 independent hardware validation"
+  ]
+}

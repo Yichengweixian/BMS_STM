@@ -1,0 +1,5 @@
+suite,case,scenario,start_id,start_us,terminal_state,faults,stop_reason,sample_count,fast_retained,trace_overflow,restored,physical_valid,source,event,seq,timestamp_us,relative_us,raw,flags,flags_meaning,actual_bits
+board-suite-02,06-rx-pressure,0,2538807780,63998,4,2,protocol,3998,103,0,1,0,status,stop_us,,103985,39987,,,,0
+board-suite-02,06-rx-pressure,0,2538807780,63998,4,2,protocol,3998,103,0,1,0,trace,off,168,103987,39989,1282,3,ADC_ISR_bits,0
+board-suite-02,06-rx-pressure,0,2538807780,63998,4,2,protocol,3998,103,0,1,0,trace,fault record,169,105985,41987,1282,2,core_fault_mask,0
+board-suite-02,06-rx-pressure,0,2538807780,63998,4,2,protocol,3998,103,0,1,0,trace,cleanup,170,105986,41988,1282,0,cleanup_flags,0

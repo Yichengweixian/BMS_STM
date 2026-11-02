@@ -1,0 +1,21 @@
+{
+  "command": [
+    "E:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.2.200.202503041107/tools/bin/STM32_Programmer_CLI.exe",
+    "-c",
+    "port=SWD",
+    "sn=16004A002933353739303541",
+    "freq=100",
+    "mode=HOTPLUG",
+    "-halt",
+    "-el",
+    "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\tools\\flash-loaders\\MX25UM25645G_ATK-CNN647B_ExtMemLoader.stldr",
+    "-w",
+    "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261031-G03-real-adc-r2\\firmware\\BMS_EX_Release\\BMS_EX_Release.hex",
+    "-v"
+  ],
+  "start_utc": "2026-10-31T10:52:41.420041+00:00",
+  "end_utc": "2026-10-31T10:53:24.751620+00:00",
+  "exit_code": 1,
+  "verified": false,
+  "sha256": "48c5161a40c82590e97c884b9e84fcbed9d60f23367cc135931e2e6aa2988c6e"
+}

@@ -1,0 +1,13 @@
+test_condition_change_rejected (test_followup_tools.Comparison.test_condition_change_rejected) ... ok
+test_duplicate_run_not_repeatability (test_followup_tools.Comparison.test_duplicate_run_not_repeatability) ... ok
+test_no_run_is_not_pass (test_followup_tools.Comparison.test_no_run_is_not_pass) ... ok
+test_one_sample_study_remains_unjudged (test_followup_tools.Comparison.test_one_sample_study_remains_unjudged) ... ok
+test_dtg_boundaries (test_followup_tools.Timing.test_dtg_boundaries) ... ok
+test_fixed_duty_and_no_silent_rail (test_followup_tools.Timing.test_fixed_duty_and_no_silent_rail) ... ok
+test_invalid_clock_does_not_wrap (test_followup_tools.Timing.test_invalid_clock_does_not_wrap) ... ok
+test_round_up_all_ranges_and_ckd (test_followup_tools.Timing.test_round_up_all_ranges_and_ckd) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.496s
+
+OK

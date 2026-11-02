@@ -1,0 +1,68 @@
+      -------------------------------------------------------------------
+                       STM32CubeProgrammer v2.20.0                  
+      -------------------------------------------------------------------
+
+ST-LINK SN  : 16004A002933353739303541
+ST-LINK FW  : V2J37S7
+Board       : --
+Voltage     : 3.12V
+SWD freq    : 100 KHz
+Connect mode: Hot Plug
+Reset mode  : Software reset
+Device ID   : 0x486
+Revision ID : Rev B
+Device name : ST32N647
+Device type : MCU
+Device CPU  : Cortex-M55
+BL Version  : --
+
+Core halted
+R0       = 0x00000001
+R1       = 0x00000002
+R2       = 0x340836F4
+R3       = 0x0000016A
+R4       = 0x00000002
+R5       = 0x0000BBEF
+R6       = 0x56020400
+R7       = 0x56021800
+R8       = 0x56021400
+R9       = 0x340FFE30
+R10      = 0x00000000
+R11      = 0x00000001
+R12      = 0x500210D0
+SP       = 0x340FFE10
+LR       = 0x701076E9
+PC       = 0x701076E4
+XPSR     = 0x81000000
+MSP      = 0x340FFE10
+PSP      = 0x341037F0
+PRIMASK  = 0x00
+FAULTMASK= 0x00
+BASEPRI  = 0x00
+CONTROL  = 0x0C
+
+Reading 32-bit memory content
+  Size          : 64 Bytes
+  Address:      : 0xE000ED00
+
+0xE000ED00 : 411FD221 00000000 70100400 FA050300
+0xE000ED10 : 00000000 00030201 00000000 00000000
+0xE000ED20 : F0000000 00000000 00000000 00000000
+0xE000ED30 : 0000000B 1618A2A1 1618A2A1 00000000
+
+Reading 32-bit memory content
+  Size          : 64 Bytes
+  Address:      : 0xE002ED00
+
+0xE002ED00 : 00000000 00000000 00000000 00000000
+0xE002ED10 : 00000000 00000000 00000000 00000000
+0xE002ED20 : 00000000 00000000 00000000 00000000
+0xE002ED30 : 00000000 00000000 00000000 00000000
+
+Reading 32-bit memory content
+  Size          : 32 Bytes
+  Address:      : 0x34180600
+
+0x34180600 : 34180E0D 34180E0D 34180E0D 34180E0D
+0x34180610 : 34180E0D 34180E0D 34180E0D 34180E0D
+Core run

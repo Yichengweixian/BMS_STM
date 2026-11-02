@@ -1,0 +1,10 @@
+{
+  "evidence\\runs\\20261102-G03-discharge-sprint-r1\\firmware\\BMS_PWM_Power_Release\\BMS_PWM_Power_Release.hex": "a5a0c5c300c089828f1056fb37ac1f5beb96fefeef421361ab34a490a2cedea9",
+  "evidence\\runs\\20261102-G03-discharge-sprint-r1\\firmware\\BMS_PWM_Power_Release\\BMS_PWM_Power_Release.bin": "88f549d0cf96df3d1134164945a58306eb1d78dd2a0531f0381e73d27f98975e",
+  "evidence\\runs\\20261102-G03-discharge-sprint-r1\\firmware\\BMS_PWM_Power_Release\\BMS_PWM_Power_Release.axf": "4ed11f382be4b65ca5f91f6b841795a2aeb52336246743d0954f4c0272c24327",
+  "evidence\\runs\\20261102-G03-discharge-sprint-r1\\firmware\\BMS_PWM_Power_Release\\BMS_PWM_Power_Release.map": "0f63f106fd415f928607548e27cf71a7e6e29e69f939374187d835128a2581e5",
+  "evidence\\runs\\20261102-G03-discharge-sprint-r1\\firmware\\BMS_PWM_Power_Debug\\BMS_PWM_Power_Debug.hex": "6b7fb4fd84da7118d7e0e66275518a47cf941481e2e2235bcdc4ba74a36367ce",
+  "evidence\\runs\\20261102-G03-discharge-sprint-r1\\firmware\\BMS_PWM_Power_Debug\\BMS_PWM_Power_Debug.bin": "be99b2688a1ac8db57038fac73af9d8b2586f6631f5657780762feb9f151907e",
+  "evidence\\runs\\20261102-G03-discharge-sprint-r1\\firmware\\BMS_PWM_Power_Debug\\BMS_PWM_Power_Debug.axf": "19c29c04370c8df5afb3b03b1a3ee09ca8af3fa26c2358ce69982999a3185d9e",
+  "evidence\\runs\\20261102-G03-discharge-sprint-r1\\firmware\\BMS_PWM_Power_Debug\\BMS_PWM_Power_Debug.map": "d050cbf265f58ec3dc21993e12fad1f80403589a46b23971adfee0e7a3ccec7a"
+}

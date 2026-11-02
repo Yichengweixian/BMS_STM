@@ -1,0 +1,220 @@
+{
+  "firmware_id": "g03-adc-r1",
+  "files": [
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\Appli\\Core\\Src\\main.c",
+      "before_sha256": "1f749147b36341ead9022317a65611b68f665fbcc71fe949d06ba8109ad208b2",
+      "after_sha256": "03b366cb1db27dd97ae0c80ef3644e2a7a2e43557312f382d5d27fe53f5f0e43"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\Appli\\Core\\Src\\stm32n6xx_it.c",
+      "before_sha256": "5184566d4f5e16e1fb9ce3eef5923ede13ed29e75adf3dc8e3670c18d7cfc353",
+      "after_sha256": "f74867aba36c67d0d7f53b132722db3d6d1d9dd9b1c75b47ca4e13d1eb5229d3"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g02_link.c",
+      "before_sha256": "b978e7bbc0bfd0d4f2e1339882ddf1b5813812b5dc8fa7ec0d1826b5ca2ed3ec",
+      "after_sha256": "f3a51813d25b2cc93e4d467fb16eeb92e38122935e4892d1a1aeaa547b3aa886"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g02_port.c",
+      "before_sha256": "7036e76a39ddb6a05a26ec0d72c486a4083d9713ecccfbaa366ee0e49ac717ef",
+      "after_sha256": "ffaf06e57f2e5d0b5a67042139eed105f2d5ee5bf51adfdfa4781679daeb3108"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_core.c",
+      "before_sha256": null,
+      "after_sha256": "a6c8cd0caaf21660077441bebba0f492b1c3d529ca07d57c75f2a408db37b90c"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_core.h",
+      "before_sha256": null,
+      "after_sha256": "8c8d46022fc918461eedbbf7bd115f46ef8ea6b557b744747e6f54081eef1861"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.c",
+      "before_sha256": null,
+      "after_sha256": "07d2a96d26fa45d352cb6b50c1aa19923cbc3fc2eba867e844898d099322b3ea"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.h",
+      "before_sha256": null,
+      "after_sha256": "2a34efac64d63168cd6bbef22b0fd676d03b235649bf93fd622d7b8633f23fd2"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.c",
+      "before_sha256": "45befe864e21392193fba8ea92dd12a7ed6136b2b85368341f74e6107c9eabb2",
+      "after_sha256": "09948d3dc92492a7ca0b74b7b6e3550316d59da5d5b41af101548165b4caa457"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.h",
+      "before_sha256": "36f8a5c43046ffe2843cd5a75f9eb9b3122f02850cfed0faf88fb77a122b29a7",
+      "after_sha256": "6b92449c4757d7f3caa8a5e428e254e2d7e1a4f150a4c949edac37bfdc054aa0"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\BSP\\measurement.c",
+      "before_sha256": "502b427f419f2411d6e8edfc26484a3aa66cfd7f0fa83282d930fe1059561b6b",
+      "after_sha256": "b2146ee3d9085fc22e250262567febe29c77ce94638399e2d11d5641c96b90f1"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\BSP\\measurement_core.c",
+      "before_sha256": "d538110e60a7844154841be706359bcc18f0438e1a6cbcd5b7adb606ba039c44",
+      "after_sha256": "2e2fc6f65df0984f279715fa98f90abaa9705f34c019ae3947e052cc5b4d77a3"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\BSP\\nominal_current.h",
+      "before_sha256": null,
+      "after_sha256": "d9ac27703fb2cace17f2bf0393e69fd08dfc3c23f9061e7fd5e3d87071c6afaf"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\BSP\\uart.h",
+      "before_sha256": "3d94d10e7041d784be9767861beb38ffca0ecb16a41cdd9283506438d365cb8a",
+      "after_sha256": "0908caa3c16f1020819fb42bb25beeeaf7d0f2cd55942a23894569fdbd1833be"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\MDK-ARM\\Appli\\BMS_EX_Appli.uvprojx",
+      "before_sha256": "10b9a137724c428b28a36bfeb12136b86fa62d2484992b9f9043cadf9e65ddde",
+      "after_sha256": "1baf230ee3fcb3a977e98132cf81780503ee0995572dcdf2a9b5c9c707e3beb5"
+    },
+    {
+      "path": "instructions\\README.md",
+      "before_sha256": "61f78d87f195a5af0962681297bf7b643ff5616bb674317d3e9b7f6eb17af944",
+      "after_sha256": "68b7e3a59fd45ac358a2357b500e207a486fe63bd3dacd8a78788f975991e6cd"
+    },
+    {
+      "path": "instructions\\RUNLOG.md",
+      "before_sha256": "4786d36a1108cbaa988eef2a6b0027f52c6bb6b1e4c1942707db2a9b9f036471",
+      "after_sha256": "dc18c5d35a3e16d94af2c382935c776f540bec88f2e216324ddb921e395a0183"
+    },
+    {
+      "path": "instructions\\specs\\G03-real-adc-disabled.md",
+      "before_sha256": null,
+      "after_sha256": "859eee544021e8e925533456a501ee1d40e3e87fcd9cb4a50c1cb5b84ee595a8"
+    },
+    {
+      "path": "instructions\\specs\\hardware-profile.json",
+      "before_sha256": "9bbb1ea74ddcafe5c2b6938565a42d85dd6f237815230b868c28303df2e6d8d4",
+      "after_sha256": "4b1e08e60be0578b59931b2d841031f7308905f8acb8fef4afb6f67994965fe5"
+    },
+    {
+      "path": "instructions\\STATUS.md",
+      "before_sha256": "a604c482ddb6a981bb48a44a5c5b211df50b067dfb37c568a87462f322b9e702",
+      "after_sha256": "60ddd5330a6a474e9653d777e32aeac12dbf766fd3fbd378f1c01dfdf0a6e296"
+    },
+    {
+      "path": "scripts\\g01\\g01_capture.py",
+      "before_sha256": "fa391af37180247c3fc9e536316a05115ef4476aad0d18d6e65221550b84fd05",
+      "after_sha256": "d704d126a518a4d130c28ab087052bd87c7c5f431b263b2b58701f0a1256bd84"
+    },
+    {
+      "path": "scripts\\g02\\extended_diagnostics.py",
+      "before_sha256": "8cbdb2417e6f877ef16ca88bb57e91f5604815df55496b0280c2cb9e0197f64e",
+      "after_sha256": "50c799e75278db95b68c2b954e7fefeefa1d6670fb24fa1c1a1548dd6f71ed7a"
+    },
+    {
+      "path": "scripts\\g02\\host_diagnostics.py",
+      "before_sha256": "3eade1b8ed34085614fc7ef858edabdcaca7e5436a0521b854795e22ef34dd7e",
+      "after_sha256": "490f202dd6b5fd1d2d22fe58bc5407d3dc4b344d5c74dbb4d80114b76dbe30ec"
+    },
+    {
+      "path": "scripts\\g02\\run_checks.py",
+      "before_sha256": "ff4fde2a1c5c055e8ab4307b636ea3fb1fdf4371d63eda17f75a736233c3c18e",
+      "after_sha256": "fed18be0a966a5ded86f088f850c42f3abce1f3eacfe22e3c7d90a6f49e8fb85"
+    },
+    {
+      "path": "scripts\\g03\\adc_diagnostics.py",
+      "before_sha256": null,
+      "after_sha256": "f3d0ef6430d784c6ea6e611a34786c89647298c885873e1270c7b61ff64c5a8d"
+    },
+    {
+      "path": "scripts\\g03\\disabled_diagnostics.py",
+      "before_sha256": "72194152eadb23a246a4de745cce19e6961057770cc7a0bc76391b622c644583",
+      "after_sha256": "1a006ec7ffa2fb685d988c9e3a1a931c06951eb13051276916b8fa139d618f6e"
+    },
+    {
+      "path": "scripts\\g03\\run_adc_checks.py",
+      "before_sha256": null,
+      "after_sha256": "8d0cf6680c7710f4e867446bbe7720741961b0149e03163cce14043e99d147db"
+    },
+    {
+      "path": "scripts\\g03\\run_checks.py",
+      "before_sha256": "7a4d8ee872c7d84cba3b67a137c2f5163719fec91f5e10b2a7b0bba03f1d21ef",
+      "after_sha256": "853f6fdc0f2d3790778451962bae6657cccb94d96e6260587ae5f049247c388f"
+    },
+    {
+      "path": "tests\\g01\\test_measurement.c",
+      "before_sha256": "8fc4fea0c67e4698ef245a790bcedde365a22994c00e0a3c863ba9d5291a5c9c",
+      "after_sha256": "d9f8740355412d8c56fe169e147e3f1d4e3f58e98464f7d2472e80fe42ff2c98"
+    },
+    {
+      "path": "tests\\g01\\test_recorder.py",
+      "before_sha256": "a53ee4d61a88bf9250e2a4a37260b2327d10932315c30f6788aaf7d1caf4159b",
+      "after_sha256": "1e0129d34b3ddbd0afce7e16d9e1b8bc67c1d2f90ea0daa3aed6dc102ad775bd"
+    },
+    {
+      "path": "tests\\g02\\stubs\\main.h",
+      "before_sha256": "a2acc5bdcedcb0ab62342038f202a452edf27f5c92b4957c61f71467d2218975",
+      "after_sha256": "c9a352c3dcd33eb31bfe22050923c4ab38e5ee678343f5382022e5f71179362a"
+    },
+    {
+      "path": "tests\\g02\\test_link.c",
+      "before_sha256": "8843c05197a643f73912b759761039eaddba8eb08e53111e7801a23227533ce0",
+      "after_sha256": "9e3e459c00fd6649913597fa7b9f71d26f4a325c783edf94d9942618d0263a79"
+    },
+    {
+      "path": "tests\\g02\\test_port.c",
+      "before_sha256": "90b8b017c1b6eabdc549fd327b4744906f0e87cd549d4ecc450dd02f6baaeac5",
+      "after_sha256": "811c548e3c8d13ace0886c1fc23b5151f605b69725d20ba7c2ac4d6259408769"
+    },
+    {
+      "path": "tests\\g03\\adc_bridge_stub.c",
+      "before_sha256": null,
+      "after_sha256": "42ec203dff970ea487e0390f372165e52b0e9b8c6ef1b90439758d0eab324132"
+    },
+    {
+      "path": "tests\\g03\\test_adc_core.c",
+      "before_sha256": null,
+      "after_sha256": "423fc033309460f5c9a207bd2cb081bcd4708b1bdeb444db181067c04a5b26cd"
+    },
+    {
+      "path": "tests\\g03\\test_adc_host.py",
+      "before_sha256": null,
+      "after_sha256": "6ff6ecff33ebe79c7971834521ef9b9bf6d06722714fa5d9fb2f6f7e102077ca"
+    },
+    {
+      "path": "tests\\g03\\test_adc_link.c",
+      "before_sha256": null,
+      "after_sha256": "42d6545dacedc1d9877ca600ce0d4dcaacbd0e075e032291a59fdf7fa677c68f"
+    },
+    {
+      "path": "tests\\g03\\test_adc_port.c",
+      "before_sha256": null,
+      "after_sha256": "50cf7a2b44364129d76a0da73dd3849f9f3649d5db63c42c654281a8f95cfd19"
+    },
+    {
+      "path": "tests\\g03\\test_host.py",
+      "before_sha256": "684ec559883a1f67d9a10e9eebe45633fa56595276615293980908d7535780eb",
+      "after_sha256": "a0bcb07a0fd2b317032a2b3ea9bf2c0e9bee23149a3d346e56a27f3d102e47dd"
+    },
+    {
+      "path": "tests\\g03\\test_link.c",
+      "before_sha256": "4eaf32fb3a61570b3c3307c527b85c1e78b4707cacda019dfab827524b1db042",
+      "after_sha256": "0ad931c29cdac617009d6716f2d9a1a9b6ac3e7de94c5f8b7a763d12fad386cf"
+    }
+  ],
+  "firmware": {
+    "BMS_EX_Release": {
+      "sha256": "5e128db566340ec4539e07efd6f2921baa1ebafea7c058d6bf0f69c629cc520e",
+      "path": "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\evidence\\runs\\20261031-G03-real-adc\\firmware\\BMS_EX_Release\\BMS_EX_Release.hex"
+    },
+    "BMS_EX_Debug": {
+      "sha256": "2226784f2c4585e104417f3fd4c8fbc8eb7b628e6cf012186441f20a707937c9",
+      "path": "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-adc-work\\evidence\\runs\\20261031-G03-real-adc\\firmware\\BMS_EX_Debug\\BMS_EX_Debug.hex"
+    }
+  },
+  "evidence_scope": [
+    "static",
+    "simulation",
+    "build"
+  ]
+}

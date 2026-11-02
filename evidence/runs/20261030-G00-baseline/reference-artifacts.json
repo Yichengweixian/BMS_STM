@@ -1,0 +1,10 @@
+[
+  {
+    "path": "firmware/prebuilt/BMS_Appli.hex",
+    "sha256": "dd44fae11ed542ad6bcee45b35a13e93bd6632481b7d29662afda8ac7856be7f"
+  },
+  {
+    "path": "evidence/runs/20261030-basic-flash/existing-fsbl-backup.bin",
+    "sha256": "e7f216a90649572319edfc80db851b4a45f47fb0720a8bd05c176f89d8e5e4cd"
+  }
+]

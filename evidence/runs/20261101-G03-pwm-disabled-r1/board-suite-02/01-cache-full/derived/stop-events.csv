@@ -1,0 +1,5 @@
+suite,case,scenario,start_id,start_us,terminal_state,faults,stop_reason,sample_count,fast_retained,trace_overflow,restored,physical_valid,source,event,seq,timestamp_us,relative_us,raw,flags,flags_meaning,actual_bits
+board-suite-02,01-cache-full,6,2538775298,63997,4,65536,cache_full,445,444,1,1,0,status,stop_us,,68452,4455,,,,0
+board-suite-02,01-cache-full,6,2538775298,63997,4,65536,cache_full,445,444,1,1,0,trace,off,509,68454,4457,1284,3,ADC_ISR_bits,0
+board-suite-02,01-cache-full,6,2538775298,63997,4,65536,cache_full,445,444,1,1,0,trace,fault record,510,69984,5987,1284,65536,core_fault_mask,0
+board-suite-02,01-cache-full,6,2538775298,63997,4,65536,cache_full,445,444,1,1,0,trace,cleanup,511,69985,5988,1284,0,cleanup_flags,0

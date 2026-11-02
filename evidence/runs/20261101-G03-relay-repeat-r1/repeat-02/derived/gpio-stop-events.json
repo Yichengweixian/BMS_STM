@@ -1,0 +1,24 @@
+[
+  {
+    "event": "PG5_command_high",
+    "at_ms": 19656,
+    "dwt_cycles": 1689089469,
+    "request_id": 2521445083,
+    "scope": "GPIO command bracket; no contact measurement"
+  },
+  {
+    "event": "PG5_command_low",
+    "at_ms": 19755,
+    "dwt_cycles": 1767913701,
+    "reason": 1,
+    "faults": 0,
+    "command_ms": 98.53029
+  },
+  {
+    "event": "terminal",
+    "state": 5,
+    "actual_bits": 0,
+    "recover_count": 47,
+    "live_used": 1
+  }
+]

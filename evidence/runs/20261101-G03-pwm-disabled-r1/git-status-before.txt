@@ -1,0 +1,60 @@
+ M BMS_EXv1.1/BMS_EX/Appli/Core/Inc/stm32n6xx_it.h
+ M BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c
+ M BMS_EXv1.1/BMS_EX/Appli/Core/Src/stm32n6xx_it.c
+ M BMS_EXv1.1/BMS_EX/BMS_EX.ioc
+ M BMS_EXv1.1/BMS_EX/BSP/uart.c
+ M BMS_EXv1.1/BMS_EX/BSP/uart.h
+ M BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx
+ M BMS_EXv1.1/BMS_EX/Secure_nsclib/secure_nsclib.o
+ M README.md
+ M instructions/BMS实施与验收指南.html
+ M instructions/README.md
+ M instructions/RUNLOG.md
+ M instructions/STATUS.md
+ M instructions/references/open-questions.md
+ M instructions/specs/hardware-profile.json
+ M instructions/specs/measurement.md
+ M instructions/validation/render_html.cjs
+?? ALIENTEK探索者STM32F4开发板原理图.pdf
+?? BMS_EXv1.1/BMS_EX/BSP/adbms_acquisition.c
+?? BMS_EXv1.1/BMS_EX/BSP/adbms_acquisition.h
+?? BMS_EXv1.1/BMS_EX/BSP/g02_control.c
+?? BMS_EXv1.1/BMS_EX/BSP/g02_control.h
+?? BMS_EXv1.1/BMS_EX/BSP/g02_link.c
+?? BMS_EXv1.1/BMS_EX/BSP/g02_link.h
+?? BMS_EXv1.1/BMS_EX/BSP/g02_port.c
+?? BMS_EXv1.1/BMS_EX/BSP/g02_port.h
+?? BMS_EXv1.1/BMS_EX/BSP/g03_adc_core.c
+?? BMS_EXv1.1/BMS_EX/BSP/g03_adc_core.h
+?? BMS_EXv1.1/BMS_EX/BSP/g03_adc_port.c
+?? BMS_EXv1.1/BMS_EX/BSP/g03_adc_port.h
+?? BMS_EXv1.1/BMS_EX/BSP/g03_control.c
+?? BMS_EXv1.1/BMS_EX/BSP/g03_control.h
+?? BMS_EXv1.1/BMS_EX/BSP/g03_port.c
+?? BMS_EXv1.1/BMS_EX/BSP/g03_port.h
+?? BMS_EXv1.1/BMS_EX/BSP/g03_relay_core.c
+?? BMS_EXv1.1/BMS_EX/BSP/g03_relay_core.h
+?? BMS_EXv1.1/BMS_EX/BSP/g03_relay_port.c
+?? BMS_EXv1.1/BMS_EX/BSP/g03_relay_port.h
+?? BMS_EXv1.1/BMS_EX/BSP/g03_relay_profile.h
+?? BMS_EXv1.1/BMS_EX/BSP/measurement.c
+?? BMS_EXv1.1/BMS_EX/BSP/measurement.h
+?? BMS_EXv1.1/BMS_EX/BSP/measurement_core.c
+?? BMS_EXv1.1/BMS_EX/BSP/measurement_core.h
+?? BMS_EXv1.1/BMS_EX/BSP/nominal_current.h
+?? evidence/
+?? instructions/G03-单次100ms继电器放电测试方案.md
+?? instructions/G03-无探头条件下的推进计划.md
+?? instructions/prompts/
+?? instructions/references/history/20261031-G03-roadmap-update/
+?? instructions/specs/G01-software.md
+?? instructions/specs/G01-voltage-tools.md
+?? instructions/specs/G02-host-diagnostics.md
+?? instructions/specs/G02-pwm-timing.md
+?? instructions/specs/G03-disabled.md
+?? instructions/specs/G03-real-adc-disabled.md
+?? instructions/specs/G03-relay-single.md
+?? instructions/specs/prepower-host-validation.md
+?? scripts/
+?? tests/
+?? 课堂复习重点.pptx

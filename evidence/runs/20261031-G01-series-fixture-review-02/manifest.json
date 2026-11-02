@@ -1,0 +1,15 @@
+{
+  "evidence_scope": [
+    "static",
+    "user_report"
+  ],
+  "verdict": null,
+  "connection_performed": false,
+  "sha256": {
+    "available-leads.jpg": "08db8b152ae51c86def9f51dab6ffdbaeb4b103db46ba083b4416a0372781b72",
+    "connectors.jpg": "db3104cf46729f9a3ce3ba81f5cc779885f2ef96a058cf9dcaaf6ed9d6dd1b57",
+    "hardware-profile-before.json": "e0080220f14150a4186e9666ee364d646306e6db74b1114e5abbfb558e5ea9de",
+    "review.md": "4eb1f393a3bf1ab17003cb7f8d6ebca9e653220cccbf1df73d4b080fae388b42",
+    "shunt-area.jpg": "0cdda46c6c6dcb460362a0d2a63f1fcaf34c93391b93fa7abc118613c3c52672"
+  }
+}

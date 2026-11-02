@@ -1,4 +1,5 @@
 #include "uart.h"
+#include "g02_link.h"
 #include <stdarg.h>
 #include <string.h>
 
@@ -291,6 +292,7 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
         if ((huart->ErrorCode & (HAL_UART_ERROR_PE | HAL_UART_ERROR_NE |
                                  HAL_UART_ERROR_FE | HAL_UART_ERROR_ORE)) != 0U)
         {
+            G02_LinkRxError();
             __HAL_UART_CLEAR_FLAG(huart, UART_CLEAR_OREF | UART_CLEAR_FEF |
                                          UART_CLEAR_NEF  | UART_CLEAR_PEF);
             huart->ErrorCode = HAL_UART_ERROR_NONE;

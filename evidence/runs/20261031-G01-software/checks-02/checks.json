@@ -1,0 +1,49 @@
+[
+  {
+    "name": "gcc",
+    "command": [
+      "gcc",
+      "-std=c99",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-ID:\\ADMIN\\Desktop\\WEIJI\\zonghe\\tests\\g01\\stubs",
+      "-ID:\\ADMIN\\Desktop\\WEIJI\\zonghe\\BMS_EXv1.1\\BMS_EX\\BSP",
+      "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\tests\\g01\\test_measurement.c",
+      "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\BMS_EXv1.1\\BMS_EX\\BSP\\measurement_core.c",
+      "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\BMS_EXv1.1\\BMS_EX\\BSP\\adbms_acquisition.c",
+      "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\BMS_EXv1.1\\BMS_EX\\BSP\\measurement.c",
+      "-lm",
+      "-o",
+      "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261031-G01-software\\checks-02\\native-tests.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "native",
+    "command": [
+      "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261031-G01-software\\checks-02\\native-tests.exe"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "python-tests",
+    "command": [
+      "C:\\Users\\ADMIN\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+      "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\tests\\g01\\test_recorder.py"
+    ],
+    "exit_code": 0
+  },
+  {
+    "name": "replay",
+    "command": [
+      "C:\\Users\\ADMIN\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+      "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\scripts\\g01\\g01_capture.py",
+      "--replay",
+      "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261031-G01-software\\checks-02\\simulated-uart.bin",
+      "--out",
+      "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261031-G01-software\\checks-02\\replay"
+    ],
+    "exit_code": 0
+  }
+]

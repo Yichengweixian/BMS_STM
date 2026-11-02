@@ -1,0 +1,15 @@
+{
+  "evidence_scope": [
+    "bench"
+  ],
+  "checks": [],
+  "power_enabled": false,
+  "physical_calibration_verified": false,
+  "checks_status": "failed_or_unavailable",
+  "error": "TimeoutError('ADC report timeout; no automatic replay')",
+  "sha256": {
+    "events.jsonl": "bd3555490b6e6dcc1ffcf141495ef4353812ee6aff60ba1865b388dfd35cab0d",
+    "reports.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "serial.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

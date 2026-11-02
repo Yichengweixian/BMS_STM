@@ -1,0 +1,33 @@
+{
+  "status": "complete",
+  "verdict": null,
+  "evidence_scope": [
+    "static",
+    "simulation"
+  ],
+  "checks": "passed",
+  "physical_outputs_verified": false,
+  "sha256": {
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_core.c": "a6c8cd0caaf21660077441bebba0f492b1c3d529ca07d57c75f2a408db37b90c",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_core.h": "8c8d46022fc918461eedbbf7bd115f46ef8ea6b557b744747e6f54081eef1861",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.c": "07dbc9b78c756b1325f4906b76f75b7949c14e96f82d6e8f0354eb954318de9f",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.h": "2a34efac64d63168cd6bbef22b0fd676d03b235649bf93fd622d7b8633f23fd2",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.c": "83224dd8f78336a5ec052cb574ac052a3a2444a30ca3fc724586d7fb8a6c0ad1",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.h": "885a41928344bf0008b39e1d8f6be7246362c54a4b7a5e2eb38684177cc8ccd4",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.c": "75528f64a7203d4e7214deb7fc3731b352c6277f38df95997166637b870cafa8",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.h": "6b92449c4757d7f3caa8a5e428e254e2d7e1a4f150a4c949edac37bfdc054aa0",
+    "tests\\g03\\adc_bridge_stub.c": "42ec203dff970ea487e0390f372165e52b0e9b8c6ef1b90439758d0eab324132",
+    "tests\\g03\\test_adc_core.c": "423fc033309460f5c9a207bd2cb081bcd4708b1bdeb444db181067c04a5b26cd",
+    "tests\\g03\\test_adc_link.c": "3243c292eaccafcf6337c1076639f314624cf95eb5b7bda9e430fc5c3cffa85a",
+    "tests\\g03\\test_adc_port.c": "d5c758e7232ec8b9df60496a50afea6d61e2055b132b6fcc3889340f351b722d",
+    "tests\\g03\\test_control.c": "181a5b216d1619a1bad20ba7498034770d7e9c21f0992222a966bfebb367d5ef",
+    "tests\\g03\\test_link.c": "08fea64b6323343ee4214d7edecfb4b42b863a7403e0d16a25389f76fe14101b",
+    "tests\\g03\\test_port.c": "4afd501cd93b61f9129dfbe0677a937c733cabd493ba26d227b756a2044c5a6e",
+    "tests\\g03\\test_adc_host.py": "b7c29a5e91d2cac3a7a483589bda263b65977b47ca62d15a41119d847c13d5a4",
+    "tests\\g03\\test_host.py": "679d4fb7502301df4c04a31ed3e6baf09d36aa33a5c27cae53cff1b560320f13",
+    "scripts\\g03\\adc_diagnostics.py": "7031447298bc078ee227a181d376bc425a0c8fb1064049189b13bc17799902ad",
+    "scripts\\g03\\disabled_diagnostics.py": "6027f904fe9ec980ed39d5003c56ea0efd73e704421439332e849e1562a9d645",
+    "scripts\\g03\\run_adc_checks.py": "c34ff01aebff45f50cfa35051cb977e0eb142faeead138aa998709e5f0108956",
+    "scripts\\g03\\run_checks.py": "853f6fdc0f2d3790778451962bae6657cccb94d96e6260587ae5f049247c388f"
+  }
+}

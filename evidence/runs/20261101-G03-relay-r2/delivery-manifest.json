@@ -1,0 +1,127 @@
+[
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g02_link.c",
+    "before_sha256": "6bb13dc20125a152a529b6678529b0482fb4e8ea9ca0625203bd0d04e44f2136",
+    "after_sha256": "603ec904bedfe7bb459aafe5f2b71179ae0a52e293dc860f667d797783cee4a0"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.c",
+    "before_sha256": "330f8c51c3057ba48e8d257ea6ab00ba094440400a9437639380fbf256e05dc1",
+    "after_sha256": "85fc9f228a5cfc80e4756d4419dcf474c304682b45e90175402a67b2f897da26"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.c",
+    "before_sha256": "7a9639565a210760896637bbb16795e9a4347c5b1cd578379621a57c635a5306",
+    "after_sha256": "d84ea9e052b11ffeb57b2745157b4c3e7e102ea1110b508e50eb068655b38d98"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_port.c",
+    "before_sha256": "bae1f85fccac71bf9880528bc65d660534c75073a1e6c18eddf4277640676f4f",
+    "after_sha256": "c63d6b0a52a89556f81ab952cab6aeaf4ec17a9a7a361b42c0e1adac6b10481b"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_profile.h",
+    "before_sha256": "0f2e07a14d204b765b6b6733cd2f5af2752c2a8d71ba40f7795a4d7dc36d5f42",
+    "after_sha256": "d709288fd934542d1c368220bc5f7310ae3fc04788d35cbd4119c7d421992a1d"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\measurement.c",
+    "before_sha256": "79632e726f436724eb533ff753ef1f4c6a90348cefd64e2f6b9c5e41c0223b57",
+    "after_sha256": "609bde6ddc7979ffc96cc3770d1289659af0fd08899f1ff1c1a9d95a39b01958"
+  },
+  {
+    "path": "instructions\\BMS实施与验收指南.html",
+    "before_sha256": "ad84a4451780b4330858d5ecb9b44c135fec0ce2a06b257d10f4bdf05df09c2c",
+    "after_sha256": "92aa0a12d54dd27b6b0f3009bcba4e608adcafd74478160c968bc5fe70399b6c"
+  },
+  {
+    "path": "instructions\\RUNLOG.md",
+    "before_sha256": "8ec0752d0940463fe2dbe4028d4796b524700f9ea2345ed343f0010be817fede",
+    "after_sha256": "f2a42487c7877b802ae1cee942ce0bd7cd9d6b87dec73cda4c47cb0d4b446245"
+  },
+  {
+    "path": "instructions\\specs\\G03-relay-single.md",
+    "before_sha256": "b7cb256d5721882d4ab6d9cbc72217ce251688055d00d44042e8e0104da98e0a",
+    "after_sha256": "8ef5aeeafd193769a75f7d3c7f3d46ad429113e58f0f242d6d404fd48a9e915c"
+  },
+  {
+    "path": "instructions\\specs\\hardware-profile.json",
+    "before_sha256": "99000730d79075d2ba7c5ddd1a981362fe4ebaa9c55f2c2b14eccc45e90a5400",
+    "after_sha256": "5c0765994daf4efa9543f74776f54b8c2def0a48403faa9b85011cd0d260f298"
+  },
+  {
+    "path": "instructions\\STATUS.md",
+    "before_sha256": "4ed4d1d4a4b475ae9d779b7684e29d1abc3997520f7acfb9ffb652b49911d95a",
+    "after_sha256": "c421e6ed6a2ebe4391458a38b15c1ee52636bbcf5686c5b1fe8f168fe2407da3"
+  },
+  {
+    "path": "scripts\\g02\\extended_diagnostics.py",
+    "before_sha256": "ab43387fdb60935f10aeba4e9c110110b1587dbf64947a36b41df7f9b0e6248f",
+    "after_sha256": "f36328579d70b29333307e2e1bd1265dc6fd42a2024853787d8f339779527a28"
+  },
+  {
+    "path": "scripts\\g02\\host_diagnostics.py",
+    "before_sha256": "1846a59d925658b7fc864fbdd7acf04d1a7954e74e8c8ed48afbf3e2a63aed90",
+    "after_sha256": "e50c41a458c9b8cfdd07ca86d334f38718c86a10e3fde12a8d0d1fc7ee5a0203"
+  },
+  {
+    "path": "scripts\\g03\\adc_diagnostics.py",
+    "before_sha256": "6d4df1388bc6fc9fab594e597375170793355db5b026efe4438f049930a53c9c",
+    "after_sha256": "48076588b846c80574c264ee013fa1df05ed4ef47bf653976b8ba49171aa5c26"
+  },
+  {
+    "path": "scripts\\g03\\disabled_diagnostics.py",
+    "before_sha256": "a0cfe25117a4539021a67455072d06383cea32552f0671363de2460e0001990a",
+    "after_sha256": "e17a430269e94f71d66b89c4b4cf8e5b32a2e0e221e3eae1d4012fe55cc82ece"
+  },
+  {
+    "path": "scripts\\g03\\relay_capture.py",
+    "before_sha256": "56ebad357d958e67bc06d87815e859bc0bfde285f5e0f7f81e4226033599a214",
+    "after_sha256": "c440190ddeff157b5dfd01bc586a2bd8a865421ebbf99f0075c685367c27c64b"
+  },
+  {
+    "path": "scripts\\g03\\run_relay_checks.py",
+    "before_sha256": "40f9b6036fe78e35d5d94d960af5751e663e1b3fc2835e36707d676759d4e3da",
+    "after_sha256": "4ca59e15d728dd4a07aded9eaa6318908e2bb8492ac0ce934604765d933c5193"
+  },
+  {
+    "path": "tests\\g02\\test_link.c",
+    "before_sha256": "e37145420c431f3e577275b4c6868c0c4d8b0fc7a29d729baa8089ba1f8f9168",
+    "after_sha256": "594ff378d71701813e96e40f3a4e8fed3ba0e268f02111d64fa387d3a24c53f9"
+  },
+  {
+    "path": "tests\\g03\\test_adc_host.py",
+    "before_sha256": "c9bde466b5bffa9c3d18ea6455e885694efdc360d49addb90186e591d1bb752c",
+    "after_sha256": "4ceb37e4a6342d3813ba403d74d02bc6309a97040103ec00a5ca84b2ecca773a"
+  },
+  {
+    "path": "tests\\g03\\test_adc_link.c",
+    "before_sha256": "c0428dda08239153fc4d81468a8754b4b0283e63eae3a6273bbc4438bb3621be",
+    "after_sha256": "d96a89f87d0e60d389339dca9d061b279fe44b1e2ea5f433eb3417dc37a22090"
+  },
+  {
+    "path": "tests\\g03\\test_adc_port.c",
+    "before_sha256": "adabfc5540b9f4008e3166c33816dbe2834abb73a367331816578bc27139c513",
+    "after_sha256": "2643f6b63c75a902d51e9d7c6f59bd791ebc30511f92fffb118d190beb4f03ab"
+  },
+  {
+    "path": "tests\\g03\\test_host.py",
+    "before_sha256": "7034f51770b5fe5597e1a4c77b76691865515499517aa85df63afce5d1d89503",
+    "after_sha256": "4bdfc31f59e1a88ba6ad382e7a16c3284c4aac4879229bfce18b5750ecf8d85d"
+  },
+  {
+    "path": "tests\\g03\\test_link.c",
+    "before_sha256": "9978f4d64653d50edeaf8080299ed6ef9acde91797fe3ccb546200ddfc56ac39",
+    "after_sha256": "3dde6c66a69765673a55ab48c12cce6225a6995c339122cff4f3245d77d0f823"
+  },
+  {
+    "path": "tests\\g03\\test_relay_host.py",
+    "before_sha256": "1167d3bc99c1303f0130cb95c74556ca1b1c1e76dca11294a81134383682de21",
+    "after_sha256": "399d920df1ea95ef3d02857881b8248122e09f0bb2245377a360534cb69f14dd"
+  },
+  {
+    "path": "tests\\g03\\test_relay_port.c",
+    "before_sha256": "37ba61b12aa798035ef1038fa46f83bf72c9381a7bfb633976765d675be2e3c5",
+    "after_sha256": "7edb0056a65f0cf22bc62c1bea28dd6bd90a3218710db06d6d30f225081f32d0"
+  }
+]

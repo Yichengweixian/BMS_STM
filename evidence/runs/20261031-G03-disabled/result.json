@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "verdict": null,
+  "evidence_scope": [
+    "static",
+    "build",
+    "simulation",
+    "bench",
+    "release_boot"
+  ],
+  "software_checks": "passed",
+  "g03_board_groups": 8,
+  "g03_reports": 143,
+  "native_event_sequences": 10000,
+  "new_python_tests": 5,
+  "g01_records": 531,
+  "g01_complete_groups": 59,
+  "local_systick_checks_verified_with_synthetic_inputs": true,
+  "physical_calibration_verified": false,
+  "physical_protection_verified": false,
+  "power_capable": false
+}

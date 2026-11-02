@@ -1,0 +1,116 @@
+{
+  "candidate_r2_source_hashes_match": true,
+  "candidate_r2_test_evidence": {
+    "groups": 16,
+    "compile_exit_code": 0,
+    "tests_rerun_this_review": false,
+    "test_exit_code": 0
+  },
+  "report": "hex-followup.md",
+  "limits": [
+    "Physical driver identity not established by this desk review",
+    "Disabled timer/ADC checks do not establish a real current transfer function",
+    "Teacher STOP response without load does not prove electrical stop latency"
+  ],
+  "web_primary_sources": [
+    {
+      "access_date": "2026-11-01",
+      "claims": [
+        "links manufacturer datasheet"
+      ],
+      "title": "EG3112 official product page",
+      "url": "https://www.egmicro.com/products/detail/?name=EG3112"
+    },
+    {
+      "access_date": "2026-11-01",
+      "claims": [
+        {
+          "supports": "built-in deadtime and interlock",
+          "page": 4
+        },
+        {
+          "supports": "HIN/LIN active-high and logic-low turn-off",
+          "page": 5
+        },
+        {
+          "supports": "DT min/typ/max 50/100/300ns at CL=0; not measured board deadtime",
+          "page": 8
+        },
+        {
+          "supports": "both inputs equal gives both outputs low",
+          "page": "10-11"
+        }
+      ],
+      "title": "EG3112 datasheet V1.1",
+      "url": "https://www.egmicro.com/static/upload/drive/%E7%BD%91%E7%AB%99%E5%85%AC%E5%BC%80%E8%8A%AF%E7%89%87%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C/%E5%8D%95%E7%9B%B8%E5%8D%8A%E6%A1%A5%E9%A9%B1%E5%8A%A8/EG3112%E9%AB%98%E5%8E%8B600V2A%E5%8D%8A%E6%A1%A5%E9%A9%B1%E5%8A%A8%E8%8A%AF%E7%89%87%E6%95%B0%E6%8D%AE%E6%89%8B%E5%86%8CV1.1.pdf"
+    }
+  ],
+  "date": "2026-11-01",
+  "local_sources": [
+    {
+      "path": "evidence/runs/20261101-HEX-baseline-followup/baseline-plan.md",
+      "sha256": "c0d9bd2c2626c39b4258a96ccd5b2925621ac4506f250db8f03845e679475cde"
+    },
+    {
+      "path": "evidence/runs/20261101-HEX-baseline-followup/result.json",
+      "sha256": "8e4ecd8703478e8356b18a8538136ba651a51654ebb1e8b45c9c1f52a6c30e52"
+    },
+    {
+      "path": "evidence/runs/20261101-HEX-baseline-followup/candidate/pwm_oneshot.c",
+      "sha256": "eafa6d36c090af812ae71f45c625dc2c900ddc8857183942fed24c1ea8ef6ff9"
+    },
+    {
+      "path": "evidence/runs/20261101-HEX-baseline-followup/candidate/pwm_oneshot.h",
+      "sha256": "0be238329a554c7b1f3d7dc97820c4f184fd6e6fdab55a30370a9961f06d14f7"
+    },
+    {
+      "path": "evidence/runs/20261101-HEX-baseline-followup/candidate/validation.json",
+      "sha256": "f9055da0cef2cbb918e02c8f077ba9f133fa0ffb4efb9c7dc378dee0d0883100"
+    },
+    {
+      "path": "evidence/runs/20261101-HEX-baseline-followup/candidate/test-results.txt",
+      "sha256": "1e1001bfa5a057bfa7c28ea3fe1cf0fd35f96f5250822a45db0f05aa438a02b2"
+    },
+    {
+      "path": "evidence/runs/20261101-HEX-baseline-followup/candidate/test_pwm_oneshot.c",
+      "sha256": "7e223ac4e48213510a86209d0bdd43ba60cd328a02e9bbcf8e5358d634ecc68f"
+    },
+    {
+      "path": "evidence/runs/20261101-HEX-power-gap-audit/adc-analysis.md",
+      "sha256": "13fabcf0e169cd7170a59195c686d1a4c6aa458c273e661c254377c1c9211ef3"
+    },
+    {
+      "path": "evidence/runs/20261101-HEX-power-gap-audit/pwm-analysis.md",
+      "sha256": "bfe04084e002f301064714aaba6b4c3e27c098c0094bddf6f93a74eebc9797f3"
+    },
+    {
+      "path": "evidence/runs/20261101-HEX-power-gap-audit/verification-notes.md",
+      "sha256": "bba990ce32a4cff22ee7379c279d90e0624f2db4fad08188f0a9161da3f8033c"
+    },
+    {
+      "path": "evidence/runs/20261031-G00-hardware-audit/document-excerpts.json",
+      "sha256": "2c1cd182f638e12efeb239cc4d4a109a0d010a48f9f26bc07e7fd5d2b2f83be5"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/g02_port.c",
+      "sha256": "0f38e34e9dfff5e1f51b348c7dc36a1e5f1bd100b77a5ba9152fa22ee6d68b11"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/g03_adc_port.c",
+      "sha256": "85fc9f228a5cfc80e4756d4419dcf474c304682b45e90175402a67b2f897da26"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/BSP/g03_relay_port.c",
+      "sha256": "c63d6b0a52a89556f81ab952cab6aeaf4ec17a9a7a361b42c0e1adac6b10481b"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c",
+      "sha256": "40fbd27d41e27e48ed48f3acfa8ef2d5a9fcbcfa9544f46967c25592e0ef2cf9"
+    },
+    {
+      "path": "BMS_EXv1.1/BMS_EX/Appli/Core/Src/stm32n6xx_it.c",
+      "sha256": "78917a1de89690c0e7d98f0d0c1d005a26cb47365aa115ae8594b92d1de2a8b3"
+    }
+  ],
+  "scope": "static read-only review; no hardware access, flashing or original HEX execution"
+}

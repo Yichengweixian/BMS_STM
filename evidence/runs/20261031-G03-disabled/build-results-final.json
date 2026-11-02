@@ -1,0 +1,30 @@
+[
+  {
+    "log": "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\evidence\\runs\\20261031-G03-disabled\\raw\\BMS_EX_Release-final.log",
+    "exit_code": 0,
+    "target": "BMS_EX_Release",
+    "command": [
+      "-r",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\BMS_EXv1.1\\BMS_EX\\MDK-ARM\\Appli\\BMS_EX_Appli.uvprojx",
+      "-t",
+      "BMS_EX_Release",
+      "-j0",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\evidence\\runs\\20261031-G03-disabled\\raw\\BMS_EX_Release-final.log"
+    ]
+  },
+  {
+    "log": "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\evidence\\runs\\20261031-G03-disabled\\raw\\BMS_EX_Debug-final.log",
+    "exit_code": 1,
+    "target": "BMS_EX_Debug",
+    "command": [
+      "-r",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\BMS_EXv1.1\\BMS_EX\\MDK-ARM\\Appli\\BMS_EX_Appli.uvprojx",
+      "-t",
+      "BMS_EX_Debug",
+      "-j0",
+      "-o",
+      "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190c5-3850-70d2-9a03-6e23ce232c1f\\g03-work\\evidence\\runs\\20261031-G03-disabled\\raw\\BMS_EX_Debug-final.log"
+    ]
+  }
+]

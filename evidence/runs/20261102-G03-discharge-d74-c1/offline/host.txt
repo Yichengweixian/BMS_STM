@@ -1,0 +1,12 @@
+{
+  "verdict": "fail",
+  "error": "KeyboardInterrupt()",
+  "stop_reply": {
+    "result": 0
+  }
+}
+.............
+----------------------------------------------------------------------
+Ran 13 tests in 0.242s
+
+OK

@@ -1,0 +1,16 @@
+{
+  "scope": [
+    "bench"
+  ],
+  "verdict": null,
+  "status": "in_progress",
+  "checks": [],
+  "hardware_waveforms_verified": false,
+  "software_checks": "failed_or_unavailable",
+  "error": "No matching G02 response; no automatic command retry",
+  "reports": [],
+  "sha256": {
+    "serial.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "events.jsonl": "5b7413696170ac9196614cf646d3670e3223905bd1590163f0ff193546fa42cd"
+  }
+}

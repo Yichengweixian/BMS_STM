@@ -1,0 +1,217 @@
+[
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\Appli\\Core\\Src\\main.c",
+    "before_sha256": "03b366cb1db27dd97ae0c80ef3644e2a7a2e43557312f382d5d27fe53f5f0e43",
+    "after_sha256": "40fbd27d41e27e48ed48f3acfa8ef2d5a9fcbcfa9544f46967c25592e0ef2cf9"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\Appli\\Core\\Src\\stm32n6xx_it.c",
+    "before_sha256": "f74867aba36c67d0d7f53b132722db3d6d1d9dd9b1c75b47ca4e13d1eb5229d3",
+    "after_sha256": "78917a1de89690c0e7d98f0d0c1d005a26cb47365aa115ae8594b92d1de2a8b3"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\adbms_acquisition.c",
+    "before_sha256": "0807b461ae6c1641f8404be4bba81e34ff1f8de40ffdf19848279c0b2e418ef7",
+    "after_sha256": "0324d399b0ee0232d5327163c4927092b6b2e5d71f5babce2ed1f021b474a92f"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\adbms_acquisition.h",
+    "before_sha256": "3d53f4e67ab0b6e8f7b245523b8d6c55306235ed012391349459d8f0d9d511f3",
+    "after_sha256": "dd77f20c92b870598e4e43cb3169739e67fb2bcda93f8c5c39f31528653add7b"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g02_link.c",
+    "before_sha256": "28b114794fa37b3a9530ea3f7590716383f3ec540a7c58225a203c879fcfc9ef",
+    "after_sha256": "6bb13dc20125a152a529b6678529b0482fb4e8ea9ca0625203bd0d04e44f2136"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g02_port.c",
+    "before_sha256": "ffaf06e57f2e5d0b5a67042139eed105f2d5ee5bf51adfdfa4781679daeb3108",
+    "after_sha256": "0f38e34e9dfff5e1f51b348c7dc36a1e5f1bd100b77a5ba9152fa22ee6d68b11"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.c",
+    "before_sha256": "07dbc9b78c756b1325f4906b76f75b7949c14e96f82d6e8f0354eb954318de9f",
+    "after_sha256": "330f8c51c3057ba48e8d257ea6ab00ba094440400a9437639380fbf256e05dc1"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.c",
+    "before_sha256": "75528f64a7203d4e7214deb7fc3731b352c6277f38df95997166637b870cafa8",
+    "after_sha256": "7a9639565a210760896637bbb16795e9a4347c5b1cd578379621a57c635a5306"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_core.c",
+    "before_sha256": null,
+    "after_sha256": "535ee3337be108edbbf2550de22dc8dfea1d27750324afd5096a729795b127dc"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_core.h",
+    "before_sha256": null,
+    "after_sha256": "52ae2ab25d7c52cb14cc52441692f19654c4f097c86ba03467eb77a24bce0151"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_port.c",
+    "before_sha256": null,
+    "after_sha256": "bae1f85fccac71bf9880528bc65d660534c75073a1e6c18eddf4277640676f4f"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_port.h",
+    "before_sha256": null,
+    "after_sha256": "5f1786e1b9cce3cfc5f09cc9c8cee9e4d2ba1a6344ca8cf7e8c5b4188b142100"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_relay_profile.h",
+    "before_sha256": null,
+    "after_sha256": "0f2e07a14d204b765b6b6733cd2f5af2752c2a8d71ba40f7795a4d7dc36d5f42"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\BSP\\measurement.c",
+    "before_sha256": "c56a954eb061f873d7dbb96ef9b166d29daca120dff61233f0b41f4c258ec71b",
+    "after_sha256": "79632e726f436724eb533ff753ef1f4c6a90348cefd64e2f6b9c5e41c0223b57"
+  },
+  {
+    "path": "BMS_EXv1.1\\BMS_EX\\MDK-ARM\\Appli\\BMS_EX_Appli.uvprojx",
+    "before_sha256": "1baf230ee3fcb3a977e98132cf81780503ee0995572dcdf2a9b5c9c707e3beb5",
+    "after_sha256": "af0825d5a9ccbbac2f785906f2d199de5c787ef6538d286e997bff4d398926c2"
+  },
+  {
+    "path": "instructions\\BMS实施与验收指南.html",
+    "before_sha256": "41441ec55d1fbafa3f84b8c88fdfda10d11847e9c545a1a3f2c4f84606660012",
+    "after_sha256": "ad84a4451780b4330858d5ecb9b44c135fec0ce2a06b257d10f4bdf05df09c2c"
+  },
+  {
+    "path": "instructions\\README.md",
+    "before_sha256": "6c0d4443ca641ac4beb82c3ebaa8abda702bfda7b04855f8a79034da81b37e54",
+    "after_sha256": "658157526cb920925f15d9e164adfd6fcd6914f5d6816a79b0a5d7ae6f3261db"
+  },
+  {
+    "path": "instructions\\RUNLOG.md",
+    "before_sha256": "bac29aa1cd3dc4fb4df0360bd5cab2ecb8e42db828f25bd71621b24bc67b86b9",
+    "after_sha256": "8ec0752d0940463fe2dbe4028d4796b524700f9ea2345ed343f0010be817fede"
+  },
+  {
+    "path": "instructions\\specs\\G03-relay-single.md",
+    "before_sha256": null,
+    "after_sha256": "b7cb256d5721882d4ab6d9cbc72217ce251688055d00d44042e8e0104da98e0a"
+  },
+  {
+    "path": "instructions\\specs\\hardware-profile.json",
+    "before_sha256": "e52ec49a756eb1adcef8ad17f697b5da0bc470774220ede884ebc7c4403c5866",
+    "after_sha256": "99000730d79075d2ba7c5ddd1a981362fe4ebaa9c55f2c2b14eccc45e90a5400"
+  },
+  {
+    "path": "instructions\\STATUS.md",
+    "before_sha256": "24d1ffcc852d20fccb84ce5e0de1874cf62c8a19e8367d372597bc3802b186d6",
+    "after_sha256": "4ed4d1d4a4b475ae9d779b7684e29d1abc3997520f7acfb9ffb652b49911d95a"
+  },
+  {
+    "path": "scripts\\g02\\extended_diagnostics.py",
+    "before_sha256": "5e87756ac077db45dc8e168b2c56c424467d9c4280afb7e6e38956866e8f0aa8",
+    "after_sha256": "ab43387fdb60935f10aeba4e9c110110b1587dbf64947a36b41df7f9b0e6248f"
+  },
+  {
+    "path": "scripts\\g02\\host_diagnostics.py",
+    "before_sha256": "7512cc02ebc497c472249c98675769ccb9e339b736503fdd14dcffc2fdb32080",
+    "after_sha256": "1846a59d925658b7fc864fbdd7acf04d1a7954e74e8c8ed48afbf3e2a63aed90"
+  },
+  {
+    "path": "scripts\\g02\\run_checks.py",
+    "before_sha256": "fed18be0a966a5ded86f088f850c42f3abce1f3eacfe22e3c7d90a6f49e8fb85",
+    "after_sha256": "63dc0903c9e84916b703453ff75cd3712695336749a54de9f8a4941864c3a5de"
+  },
+  {
+    "path": "scripts\\g03\\adc_diagnostics.py",
+    "before_sha256": "7031447298bc078ee227a181d376bc425a0c8fb1064049189b13bc17799902ad",
+    "after_sha256": "6d4df1388bc6fc9fab594e597375170793355db5b026efe4438f049930a53c9c"
+  },
+  {
+    "path": "scripts\\g03\\disabled_diagnostics.py",
+    "before_sha256": "6027f904fe9ec980ed39d5003c56ea0efd73e704421439332e849e1562a9d645",
+    "after_sha256": "a0cfe25117a4539021a67455072d06383cea32552f0671363de2460e0001990a"
+  },
+  {
+    "path": "scripts\\g03\\plot_relay_capture.py",
+    "before_sha256": null,
+    "after_sha256": "2fe3c752c899560b8b24d5fade4b007c47933aa990ee0a65c8e6d91575564bad"
+  },
+  {
+    "path": "scripts\\g03\\relay_capture.py",
+    "before_sha256": null,
+    "after_sha256": "56ebad357d958e67bc06d87815e859bc0bfde285f5e0f7f81e4226033599a214"
+  },
+  {
+    "path": "scripts\\g03\\run_adc_checks.py",
+    "before_sha256": "c34ff01aebff45f50cfa35051cb977e0eb142faeead138aa998709e5f0108956",
+    "after_sha256": "3d1f969a34dbf146632e64c40b2556b2881c65a4bf3140dd504e93de52e14dca"
+  },
+  {
+    "path": "scripts\\g03\\run_checks.py",
+    "before_sha256": "853f6fdc0f2d3790778451962bae6657cccb94d96e6260587ae5f049247c388f",
+    "after_sha256": "fd20bd60eae7829f694d19273385d93ad6649fbc0bee5733d0e23ee21559b51d"
+  },
+  {
+    "path": "scripts\\g03\\run_relay_checks.py",
+    "before_sha256": null,
+    "after_sha256": "40f9b6036fe78e35d5d94d960af5751e663e1b3fc2835e36707d676759d4e3da"
+  },
+  {
+    "path": "tests\\g01\\test_measurement.c",
+    "before_sha256": "d9f8740355412d8c56fe169e147e3f1d4e3f58e98464f7d2472e80fe42ff2c98",
+    "after_sha256": "88287a7876f907240edb42ce642b353ad253969cfc885cb6783e459caabcfc48"
+  },
+  {
+    "path": "tests\\g02\\stubs\\main.h",
+    "before_sha256": "69c14691e061c58aadd43f06fd2e509276a1e940208424b6a38b6676f005b3bd",
+    "after_sha256": "b032fb29b7bc15897d4a2a1d115db306b63e4a48fab4defb548a7680f1b05b42"
+  },
+  {
+    "path": "tests\\g02\\test_link.c",
+    "before_sha256": "0dead4a6619ddd17bbe768f83791828d7da6537cf30c6ae4ed50b0720bcafc25",
+    "after_sha256": "e37145420c431f3e577275b4c6868c0c4d8b0fc7a29d729baa8089ba1f8f9168"
+  },
+  {
+    "path": "tests\\g03\\relay_bridge_stub.c",
+    "before_sha256": null,
+    "after_sha256": "59567ada5c88ed57a4207d1db635bdb6c8aa48a6d35802c473f6e09dc05129f8"
+  },
+  {
+    "path": "tests\\g03\\test_adc_host.py",
+    "before_sha256": "b7c29a5e91d2cac3a7a483589bda263b65977b47ca62d15a41119d847c13d5a4",
+    "after_sha256": "c9bde466b5bffa9c3d18ea6455e885694efdc360d49addb90186e591d1bb752c"
+  },
+  {
+    "path": "tests\\g03\\test_adc_link.c",
+    "before_sha256": "3243c292eaccafcf6337c1076639f314624cf95eb5b7bda9e430fc5c3cffa85a",
+    "after_sha256": "c0428dda08239153fc4d81468a8754b4b0283e63eae3a6273bbc4438bb3621be"
+  },
+  {
+    "path": "tests\\g03\\test_adc_port.c",
+    "before_sha256": "d5c758e7232ec8b9df60496a50afea6d61e2055b132b6fcc3889340f351b722d",
+    "after_sha256": "adabfc5540b9f4008e3166c33816dbe2834abb73a367331816578bc27139c513"
+  },
+  {
+    "path": "tests\\g03\\test_host.py",
+    "before_sha256": "679d4fb7502301df4c04a31ed3e6baf09d36aa33a5c27cae53cff1b560320f13",
+    "after_sha256": "7034f51770b5fe5597e1a4c77b76691865515499517aa85df63afce5d1d89503"
+  },
+  {
+    "path": "tests\\g03\\test_link.c",
+    "before_sha256": "08fea64b6323343ee4214d7edecfb4b42b863a7403e0d16a25389f76fe14101b",
+    "after_sha256": "9978f4d64653d50edeaf8080299ed6ef9acde91797fe3ccb546200ddfc56ac39"
+  },
+  {
+    "path": "tests\\g03\\test_relay_core.c",
+    "before_sha256": null,
+    "after_sha256": "c75851191924b5382fdec132cf79d08accce6fdc18761ee1620ad308b7ef0790"
+  },
+  {
+    "path": "tests\\g03\\test_relay_host.py",
+    "before_sha256": null,
+    "after_sha256": "1167d3bc99c1303f0130cb95c74556ca1b1c1e76dca11294a81134383682de21"
+  },
+  {
+    "path": "tests\\g03\\test_relay_port.c",
+    "before_sha256": null,
+    "after_sha256": "37ba61b12aa798035ef1038fa46f83bf72c9381a7bfb633976765d675be2e3c5"
+  }
+]

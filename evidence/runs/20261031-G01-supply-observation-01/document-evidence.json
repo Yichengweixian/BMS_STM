@@ -1,0 +1,22 @@
+{
+  "text_excerpts": [
+    {
+      "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+      "part": "ppt/slides/slide7.xml",
+      "paragraph": 15,
+      "text": "0.015 Ω 采样电阻（左）与 INA199 放大（右），输出 I_AD"
+    },
+    {
+      "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+      "part": "word/document.xml",
+      "paragraph": 82,
+      "text": "直流电源（如 15 V / 1 A）→ 半桥 → 电池"
+    }
+  ],
+  "course_slide7_visual_observations": {
+    "image9": "R1 0.015 ohm between VI and VB; document only",
+    "image10": "schematic label INA199A1DCKR differs from slide text INA199A2; 0.9REF input drawn; actual fitted circuit unverified",
+    "image11": "TEMP1/2/3, 9.1K pullup to VREF2; R31/32/33 labeled NTC, conflicting with PT1000 formula/model"
+  },
+  "pptx_sha256": "72833f0c35c861dd5d80618f4f3b6780ac4e033f694400756aac3d53da731449"
+}

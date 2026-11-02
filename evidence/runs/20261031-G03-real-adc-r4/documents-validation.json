@@ -1,0 +1,12 @@
+{
+  "scope": "changed documents UTF-8/JSON, fixed hardware facts unchanged, evidence links and HTML generation",
+  "passed": true,
+  "physical_hardware_limits_unchanged": true,
+  "sha256": {
+    "README.md": "4bb05422c5a58a147a7de78d7f5afa77f129adc85fc96ce95d8dc8dcf5bf6669",
+    "instructions/STATUS.md": "160cdee0d9e21013cae2f1020e21582407ec600a8043d6a14758a98e70c9501e",
+    "instructions/RUNLOG.md": "25a3d34b2dae02b3c6699ee880b566a1e85d0874f746ec9a18dafd53213d877d",
+    "instructions/specs/G03-real-adc-disabled.md": "ad8cdf7d46ab6e469dc80437332475e800c11e7824e3e9bd03b451bf8c4d6fa8",
+    "instructions/specs/hardware-profile.json": "e52ec49a756eb1adcef8ad17f697b5da0bc470774220ede884ebc7c4403c5866"
+  }
+}

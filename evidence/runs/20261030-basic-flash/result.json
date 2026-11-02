@@ -1,0 +1,25 @@
+{
+  "mode": "exploratory",
+  "target": "BMS_EX_Release",
+  "build_errors": 0,
+  "build_warnings": 0,
+  "stlink_serial": "16004A002933353739303541",
+  "stlink_firmware": "V2J37S7",
+  "programmer_version": "2.20.0",
+  "device_id": "0x486",
+  "device": "STM32N647",
+  "image": "BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Release/BMS_EX_Release.hex",
+  "sha256": "4979C23CB90EFA5EFB74ECB7AF30AF43CB5C57619D3B8FE74BE92BB4E6BCDC2B",
+  "address": "0x70100400",
+  "connection": "SWD 100 kHz Under Reset Hardware reset",
+  "download_verified": true,
+  "release_boot": true,
+  "evidence_scope": [
+    "build",
+    "bench",
+    "release_boot"
+  ],
+  "verdict": null,
+  "boot_diagnostic": "User initially reports black display; PC=0x18003514 VTOR=0x18000000; SYSCFG_BOOTSR=0x3 (BOOT0=1 BOOT1=1). Existing FSBL payload checksum matches header 0x311E74 with v2.3 base header offset 0x240.",
+  "release_boot_evidence": "User confirmed OLED shows BMS_EX after reversing both BOOT switches and pressing RESET. Independent power-cycle after final switch correction not separately observed."
+}

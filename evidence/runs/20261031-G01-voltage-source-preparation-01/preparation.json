@@ -1,0 +1,44 @@
+{
+  "run_id": "20261031-G01-voltage-source-preparation-01",
+  "status": "preparation",
+  "verdict": null,
+  "evidence_scope": "photo identity, official documentation and offline protocol only",
+  "firmware_change": false,
+  "hardware_connection_performed_by_agent": false,
+  "current_and_temperature_calibration": "deferred by user",
+  "physical_position_to_afe_channel": {
+    "A": null,
+    "B": null,
+    "C": null
+  },
+  "mapping_proposal": "With all real cells removed and verified isolated sources at holder contacts, apply distinguishable voltages and change one position at a time; correlate raw cell1/cell7/cell13 response.",
+  "mapping_nominal_stimulus_V": [
+    3.3,
+    3.6,
+    3.9
+  ],
+  "fit_nominal_stimulus_V": [
+    3.2,
+    3.6,
+    3.9
+  ],
+  "independent_validation_nominal_stimulus_V": [
+    3.4,
+    3.8
+  ],
+  "nominal_values_are_measurements": false,
+  "reference_instrument_id": "dmm-ca5212-01",
+  "reference_V": null,
+  "candidate_coefficients": null,
+  "tolerance_V": null,
+  "expanded_uncertainty_V": null,
+  "formal_plan_frozen": false,
+  "preconnection_requirements": [
+    "Confirm lead remote ends and three pairs of mechanically stable insulated connections.",
+    "Verify empty-holder polarity and board stack connectivity; previous C-B-A order is inferred, not AFE mapping.",
+    "Plan power-off/removal/reconnection order including board supply, USB, ST-Link and battery energy; no live rewiring.",
+    "Real cells must not remain paralleled with bench outputs; charger and load disconnected.",
+    "Review AFE supply minimum, stack startup/shutdown and source reverse-current exposure before energizing.",
+    "Verify independent mode, output limits and stop path; do not tie channel negatives together or attach scope ground to stack taps."
+  ]
+}

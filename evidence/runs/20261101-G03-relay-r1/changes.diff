@@ -1,0 +1,1312 @@
+--- before/BMS_EXv1.1\BMS_EX\Appli\Core\Src\main.c
++++ after/BMS_EXv1.1\BMS_EX\Appli\Core\Src\main.c
+@@ -27,6 +27,7 @@
+ #include "g02_link.h"
+ #include "g03_port.h"
+ #include "g03_adc_port.h"
++#include "g03_relay_port.h"
+ #include "oled_driver.h"
+ #include "oled_font.h"
+ 
+@@ -210,6 +211,7 @@
+ 	uart_init(115200);
+ 	G02_PortInit();
+     G03_PortInit();
++    G03_RelayInit();
+ 	Measurement_Init();
+ 
+   /* USER CODE END 2 */
+@@ -224,6 +226,7 @@
+     G03_ADC_Task();
+     G02_Task();
+     G02_LinkTask();
++    G03_RelayTask();
+     if (G02_MeasurementAllowed()) Measurement_Task();
+     HAL_Delay(1);
+   }
+--- before/BMS_EXv1.1\BMS_EX\Appli\Core\Src\stm32n6xx_it.c
++++ after/BMS_EXv1.1\BMS_EX\Appli\Core\Src\stm32n6xx_it.c
+@@ -20,6 +20,7 @@
+ /* Includes ------------------------------------------------------------------*/
+ #include "main.h"
+ #include "g03_adc_port.h"
++#include "g03_relay_port.h"
+ #include "stm32n6xx_it.h"
+ #include "g02_port.h"
+ #include "g03_port.h"
+@@ -309,7 +310,7 @@
+   /* USER CODE BEGIN TIM2_IRQn 0 */
+ 
+   /* USER CODE END TIM2_IRQn 0 */
+-  HAL_TIM_IRQHandler(&htim2);
++  G03_RelayTickIRQ();
+   /* USER CODE BEGIN TIM2_IRQn 1 */
+ 
+   /* USER CODE END TIM2_IRQn 1 */
+--- before/BMS_EXv1.1\BMS_EX\BSP\adbms_acquisition.c
++++ after/BMS_EXv1.1\BMS_EX\BSP\adbms_acquisition.c
+@@ -112,3 +112,18 @@
+     read_channel(&s[MEAS_TEMP3],0x000e,0);
+     read_channel(&s[MEAS_REF2],0x000e,2);
+ }
++
++uint32_t Afe_PulsePrepare(void){return prepare();}
++void Afe_PulseAcquire(MeasSample s[4])
++{
++    uint32_t st,begin,end;unsigned i;
++    memset(s,0,4U*sizeof *s);
++    st=convert(0x0711,0x0361,&begin,&end);
++    for(i=0;i<3U;++i){s[i].start_ms=begin;s[i].end_ms=end;s[i].status=st;}
++    read_channel(&s[0],0x0004,0);
++    read_channel(&s[1],0x0008,0);
++    read_channel(&s[2],0x0009,0);
++    st=convert(0x0712,0x0560,&begin,&end);
++    s[3].start_ms=begin;s[3].end_ms=end;s[3].status=st;
++    read_channel(&s[3],0x000c,0);
++}
+--- before/BMS_EXv1.1\BMS_EX\BSP\adbms_acquisition.h
++++ after/BMS_EXv1.1\BMS_EX\BSP\adbms_acquisition.h
+@@ -3,4 +3,7 @@
+ #include "measurement_core.h"
+ /* Single ADBMS1818; bounded transfers; no balancing or S-control commands. */
+ void Afe_Acquire(MeasSample samples[MEAS_CHANNELS]);
++uint32_t Afe_PulsePrepare(void);
++/* samples: cells 1/7/13 then GPIO1. No reconfiguration or temperature reads. */
++void Afe_PulseAcquire(MeasSample samples[4]);
+ #endif
+--- before/BMS_EXv1.1\BMS_EX\BSP\g02_link.c
++++ after/BMS_EXv1.1\BMS_EX\BSP\g02_link.c
+@@ -1,8 +1,9 @@
+-/* G02-only receive/diagnostic transport. Never exposes PINS or relay control. */
++/* Shared CRC/id transport; relay commands have an independent one-shot gate. */
+ #include "g02_link.h"
+ #include "g02_port.h"
+ #include "g03_port.h"
+ #include "g03_adc_port.h"
++#include "g03_relay_port.h"
+ #include "main.h"
+ #include <stdio.h>
+ #include <string.h>
+@@ -12,7 +13,7 @@
+ static volatile uint32_t head, tail, overflow;
+ static char line[64];
+ static uint32_t used, dropping, last_id, last_op, last_arg, reply_id, reply_code;
+-static uint32_t reply_adc,reply_op,reply_arg;
++static uint32_t reply_adc,reply_op,reply_arg,reply_relay;
+ static uint32_t start_id, pending, bad_frames, rx_errors, last_code, reply_g03;
+ static uint16_t crc16(const char *p, uint32_t n)
+ {
+@@ -52,10 +53,11 @@
+         else {++bad_frames;return;} }
+     if(wire!=crc16(line,(uint32_t)(star-line))) {++bad_frames;return;}
+     reply_id=id; pending=1U;reply_g03=op>=10U && op<=19U;
+-    reply_adc=op>=20U && op<=29U;reply_op=op;reply_arg=arg;
++    reply_relay=op>=30U && op<=39U;reply_adc=op>=20U && op<=29U;reply_op=op;reply_arg=arg;
+     if(id<last_id) {reply_code=7U;return;}
+     if(id==last_id) {reply_code=(op==last_op&&arg==last_arg)?last_code:8U;return;}
+     last_id=id; last_op=op; last_arg=arg;
++    if(reply_relay){reply_code=G03_RelayCommand(op,arg);last_code=reply_code;return;}
+     if(reply_adc){reply_code=G03_ADC_Command(op,arg);last_code=reply_code;return;}
+     if(reply_g03){reply_code=G03_Command(op,arg);last_code=reply_code;return;}
+     /* Wire ops: 0 status, 1 sample(ms), 2 stop, 3 fault, 4 clear,
+@@ -85,6 +87,11 @@
+     /* Foreground-only, non-reentrant. Keep large diagnostics off the 2 KiB
+      * Cortex-M stack (r1 live status request exposed STKOF at MSPLIM). */
+     static char out[1024]; int n;
++    if(reply_relay){
++        n=G03_RelayReport(out,sizeof out,reply_id,reply_code,reply_op,reply_arg);
++        if(n>0 && n<(int)sizeof out)uart_printf("%s*%04X\r\n",out,(unsigned)crc16(out,(uint32_t)n));
++        return;
++    }
+     if(reply_adc){
+         n=G03_ADC_Report(out,sizeof out,reply_id,reply_code,reply_op,reply_arg);
+         if(n>0 && n<(int)sizeof out)uart_printf("%s*%04X\r\n",out,(unsigned)crc16(out,(uint32_t)n));
+@@ -98,7 +105,7 @@
+     /* Called only when TIM session stopped, including failed ADC cleanup.
+      * No TX/formatting in fast ISRs or in the sampling window. */
+     n=snprintf(out,sizeof out,
+-        "#G02,g03-adc-r4,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu",
++        "#G02,g03-relay-r1,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu",
+         (unsigned long)reply_id,(unsigned long)reply_code,(unsigned long)start_id,
+         (unsigned long)g02_control.state,(unsigned long)g02_control.faults,
+         (unsigned long)G02_OwnsADC(&g02_control),(unsigned long)g02_telemetry.cpu_hz,
+@@ -131,7 +138,7 @@
+             else line[used++]=(char)c;
+         }
+     }
+-    if(pending && g02_control.state!=G02_STATE_RUNNING && g02_control.state!=G02_STATE_STARTING) {
++    if(pending && !G03_RelayBusy() && g02_control.state!=G02_STATE_RUNNING && g02_control.state!=G02_STATE_STARTING) {
+         pending=0;report();
+     }
+ }
+--- before/BMS_EXv1.1\BMS_EX\BSP\g02_port.c
++++ after/BMS_EXv1.1\BMS_EX\BSP\g02_port.c
+@@ -1,6 +1,7 @@
+ #include "g02_port.h"
+ #include "g03_port.h"
+ #include "g03_adc_port.h"
++#include "g03_relay_port.h"
+ #include "main.h"
+ #include <string.h>
+ 
+@@ -209,12 +210,13 @@
+ }
+ void G02_CPUFault(void)
+ {
++    G03_RelayCPUFault();
+     G02_EmergencyOff();
+     if (g02_control.initialized) G02_Fault(&g02_control, G02_FAULT_CPU);
+ }
+ int G02_MeasurementAllowed(void)
+ {
+-    return !G03_ADC_Owns() && !adc_owned && !G02_OwnsADC(&g02_control);
++    return !G03_RelayBusy() && !G03_ADC_Owns() && !adc_owned && !G02_OwnsADC(&g02_control);
+ }
+ void G02_Task(void)
+ {
+@@ -233,8 +235,8 @@
+             command == G02_CMD_SAMPLE ? G02_MODE_SAMPLING : G02_MODE_PINS, g02_compare);
+         if (g02_command_result == G02_OK) window_ms = requested_window;
+         break;
+-    case G02_CMD_STOP: G02_Stop(&g02_control); g02_command_result = G02_OK; break;
+-    case G02_CMD_FAULT: G02_Fault(&g02_control, G02_FAULT_INJECTED); g02_command_result = G02_OK; break;
++    case G02_CMD_STOP: G03_RelayStop(); G02_Stop(&g02_control); g02_command_result = G02_OK; break;
++    case G02_CMD_FAULT: G03_RelayStop(); G02_Fault(&g02_control, G02_FAULT_INJECTED); g02_command_result = G02_OK; break;
+     case G02_CMD_CLEAR: g02_command_result = G02_ClearFault(&g02_control); break;
+     case G02_CMD_COMPARE: g02_command_result = G02_SetCompare(&g02_control, g02_compare); break;
+     default: g02_command_result = G02_BAD_ARGUMENT; break;
+--- before/BMS_EXv1.1\BMS_EX\BSP\g03_adc_port.c
++++ after/BMS_EXv1.1\BMS_EX\BSP\g03_adc_port.c
+@@ -1,4 +1,5 @@
+ #include "g03_adc_port.h"
++#include "g03_relay_port.h"
+ #include "g03_adc_core.h"
+ #include "g03_port.h"
+ #include "g02_port.h"
+@@ -197,7 +198,7 @@
+     if(op==25U&&!arg){k=lock();r=G3A_Heartbeat(&core,HAL_GetTick(),cycles())?G03_OK:G03_FAULTED;
+         if(owned&&core.state!=G3A_RUNNING)shutdown();
+         unlock(k);return r;}
+-    if(G02_OwnsADC(&g02_control)||g02_control.faults||G03_SyntheticBusy())return G03_BUSY;
++    if(G03_RelayBusy()||G02_OwnsADC(&g02_control)||g02_control.faults||G03_SyntheticBusy())return G03_BUSY;
+     G03_ADC_Task();
+     if(op==27U&&!arg){if(owned)return G03_BUSY;k=lock();r=G3A_Clear(&core)?G03_OK:G03_BUSY;unlock(k);return r;}
+     if(op==21U&&arg==6U)return diag_valid?G03_OK:G03_NOT_READY;
+@@ -219,7 +220,7 @@
+ {
+     uint32_t k,i;int n,m;G3AEvent e;
+     if(op==21U){
+-        n=snprintf(out,size,"#G3D,g03-adc-r4,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu",
++        n=snprintf(out,size,"#G3D,g03-relay-r1,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu",
+             (unsigned long)id,(unsigned long)result,(unsigned long)profile,(unsigned long)calibrated,
+             (unsigned long)(diag_valid?64U:0U),(unsigned long)diag_min,(unsigned long)diag_max,(unsigned long)diag_sum);
+         for(i=0;i<12U+(diag_valid?64U:0U);++i){
+@@ -231,7 +232,7 @@
+     }
+     if(op==28U){
+         k=lock();memset(&e,0,sizeof e);(void)G3A_Read(&core,arg,&e);unlock(k);
+-        return snprintf(out,size,"#G3T,g03-adc-r4,%lu,%lu,%lu,%lu,%lu,%lu,%ld,%lu,%lu,%lu",
++        return snprintf(out,size,"#G3T,g03-relay-r1,%lu,%lu,%lu,%lu,%lu,%lu,%ld,%lu,%lu,%lu",
+             (unsigned long)id,(unsigned long)result,(unsigned long)e.seq,(unsigned long)e.ms,(unsigned long)e.cycles,
+             (unsigned long)e.raw,(long)e.ua,(unsigned long)e.ccr,(unsigned long)e.event,(unsigned long)e.faults);
+     }
+@@ -244,7 +245,7 @@
+       v[20]=hw_low;v[21]=hw_high;v[22]=core.trip_ms;v[23]=core.trip_cycles;v[24]=off_cycles;
+       v[25]=ADC1->CFGR1;v[26]=ADC1->CFGR2;v[27]=ADC1->CALFACT;
+       v[28]=core.reason;v[29]=core.start_ms;v[30]=core.last_ms;v[31]=core.heartbeat_ms;v[32]=core.duration_ms;unlock(k);
+-      n=snprintf(out,size,"#G3A,g03-adc-r4,%lu,%lu,%ld",(unsigned long)id,(unsigned long)result,(long)ua);
++      n=snprintf(out,size,"#G3A,g03-relay-r1,%lu,%lu,%ld",(unsigned long)id,(unsigned long)result,(long)ua);
+       for(i=0;i<33U;++i){if(n<0||n>=(int)size)return -1;
+           m=snprintf(out+n,size-(unsigned)n,",%lu",(unsigned long)v[i]);if(m<0)return -1;
+             n+=m;}
+--- before/BMS_EXv1.1\BMS_EX\BSP\g03_port.c
++++ after/BMS_EXv1.1\BMS_EX\BSP\g03_port.c
+@@ -1,5 +1,6 @@
+ #include "g03_port.h"
+ #include "g03_adc_port.h"
++#include "g03_relay_port.h"
+ #include "g02_port.h"
+ #include "main.h"
+ #include <stdio.h>
+@@ -52,7 +53,7 @@
+ int G03_SyntheticBusy(void)
+ { return control.initialized && control.state!=G03_STOPPED; }
+ int G03_BlocksG02(void)
+-{ return G03_SyntheticBusy() || G03_ADC_BlocksOthers(); }
++{ return G03_RelayBusy() || G03_SyntheticBusy() || G03_ADC_BlocksOthers(); }
+ void G03_TickIRQ(void)
+ {
+     uint32_t now,delta,bits;G03Sample s;
+@@ -70,12 +71,12 @@
+ {
+     uint32_t k,r=G03_BAD_ARGUMENT,now;G03Sample s;
+     /* Foreground cleanup must occur before the short critical section. */
+-    if(op==13U && !arg){G03_ADC_Stop();g02_command=G02_CMD_STOP;G02_Task();}
++    if(op==13U && !arg){G03_RelayStop();G03_ADC_Stop();g02_command=G02_CMD_STOP;G02_Task();}
+     k=lock();now=HAL_GetTick();
+     if(op==10U && !arg)r=G03_OK;
+     else if(op==18U)r=G03_DISALLOWED; /* Power requests always rejected. */
+     else if(op==13U && !arg){G03_Stop(&control,now,G03_REASON_STOP);G02_EmergencyOff();r=G03_OK;}
+-    else if(G03_ADC_BlocksOthers()||G02_OwnsADC(&g02_control)||g02_control.faults)r=G03_BUSY;
++    else if(G03_RelayBusy()||G03_ADC_BlocksOthers()||G02_OwnsADC(&g02_control)||g02_control.faults)r=G03_BUSY;
+     else if(op==17U && arg<=1U){
+         if(control.state!=G03_STOPPED)r=control.faults?G03_FAULTED:G03_BUSY;
+         else if(arg==0U){control.configured=0U;fixture_selected=0U;r=G03_OK;}
+@@ -93,7 +94,7 @@
+ {
+     G03Control c;uint32_t k=lock(),bits=output_bits(),ticks=tick_count,gap=max_tick_gap,sc=scenario,fs=fixture_selected;
+     c=control;unlock(k);
+-    return snprintf(out,size,"#G03,g03-adc-r4,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,1,0",
++    return snprintf(out,size,"#G03,g03-relay-r1,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,1,0",
+         (unsigned long)id,(unsigned long)result,(unsigned long)c.state,(unsigned long)c.direction,
+         (unsigned long)c.faults,(unsigned long)c.reason,(unsigned long)c.configured,(unsigned long)fs,
+         (unsigned long)c.ccr,(unsigned long)c.shadow_relays,(unsigned long)c.shadow_pwm,(unsigned long)bits,
+--- before/BMS_EXv1.1\BMS_EX\BSP\g03_relay_core.c
++++ after/BMS_EXv1.1\BMS_EX\BSP\g03_relay_core.c
+@@ -0,0 +1,70 @@
++#include "g03_relay_core.h"
++#include <string.h>
++int G3R_Active(const G3RCore *c)
++{return c->state>=G3R_PREPARE && c->state<=G3R_POST;}
++void G3R_Init(G3RCore *c){memset(c,0,sizeof *c);}
++int G3R_Begin(G3RCore *c,uint32_t live,uint32_t now,uint32_t low,uint32_t high)
++{
++    if(c->state!=G3R_IDLE || live>1U || (live && (!low||low>=high||high>=65535U)))return 0;
++    G3R_Init(c);c->live=live;c->cell_low=low;c->cell_high=high;
++    c->state=G3R_PREPARE;c->session_start=now;c->last_sample=now;c->base_min=65535U;return 1;
++}
++void G3R_Ready(G3RCore *c,uint32_t now)
++{if(c->state==G3R_PREPARE){c->state=G3R_BASELINE;c->last_sample=now;}}
++static void finish_pulse(G3RCore *c,uint32_t now,uint32_t reason)
++{
++    if(c->state!=G3R_POST){c->off_ms=now;c->post_start=now;c->state=G3R_POST;}
++    c->command_on=0;c->reason=reason;
++}
++void G3R_Trip(G3RCore *c,uint32_t fault,uint32_t now)
++{
++    if(!G3R_Active(c))return;
++    c->faults|=fault;finish_pulse(c,now,G3R_END_FAULT);
++}
++void G3R_Stop(G3RCore *c,uint32_t now)
++{if(G3R_Active(c))finish_pulse(c,now,c->faults?G3R_END_FAULT:G3R_END_STOP);}
++void G3R_Tick(G3RCore *c,uint32_t now)
++{
++    if(!G3R_Active(c))return;
++    if(c->state==G3R_PREPARE){
++        if((uint32_t)(now-c->session_start)>200U)G3R_Trip(c,G3R_DATA,now);
++        return;
++    }
++    if(c->state==G3R_PULSE && (uint32_t)(now-c->on_ms)>=G3R_PULSE_MS)
++        finish_pulse(c,now,G3R_END_DEADLINE);
++    if(c->state==G3R_BASELINE || c->state==G3R_PULSE){
++        if((uint32_t)(now-c->last_sample)>G3R_STALE_MS)G3R_Trip(c,G3R_STALE,now);
++    }
++    if(c->state==G3R_POST && (uint32_t)(now-c->post_start)>=G3R_POST_MS)
++        c->state=c->faults?G3R_FAULT:G3R_DONE;
++}
++void G3R_Sample(G3RCore *c,uint32_t now,uint32_t oldest,uint32_t valid,const uint16_t raw[4])
++{
++    uint32_t i,delta;
++    if(!G3R_Active(c)||c->state==G3R_PREPARE)return;
++    ++c->samples;
++    if(c->samples>G3R_CAPACITY){G3R_Trip(c,G3R_BUFFER,now);return;}
++    if(!valid){c->recover_count=0;G3R_Trip(c,G3R_DATA,now);return;}
++    if((uint32_t)(now-oldest)>G3R_STALE_MS){c->recover_count=0;G3R_Trip(c,G3R_STALE,now);return;}
++    c->last_sample=oldest;
++    for(i=0;i<3U;++i)if(c->live && (raw[i]<c->cell_low||raw[i]>c->cell_high)){
++        G3R_Trip(c,G3R_CELL,now);return;
++    }
++    if(c->state==G3R_BASELINE){
++        if(raw[3]<c->base_min)c->base_min=raw[3];
++        if(raw[3]>c->base_max)c->base_max=raw[3];
++        c->base_sum+=raw[3];++c->base_count;
++        if(c->base_count==G3R_BASE_SAMPLES){
++            if(c->base_max-c->base_min>100U){G3R_Trip(c,G3R_BASE,now);return;}
++            c->center=(c->base_sum+G3R_BASE_SAMPLES/2U)/G3R_BASE_SAMPLES;
++            c->tolerance=3U*(c->base_max-c->base_min);
++            if(c->tolerance<20U)c->tolerance=20U;
++            c->on_ms=now;c->state=G3R_PULSE;c->command_on=1U;
++        }
++    }else if(c->state==G3R_POST){
++        delta=raw[3]>c->center?raw[3]-c->center:c->center-raw[3];
++        c->recover_count=delta<=c->tolerance?c->recover_count+1U:0U;
++    }
++}
++int G3R_Clear(G3RCore *c)
++{if(G3R_Active(c))return 0;G3R_Init(c);return 1;}
+--- before/BMS_EXv1.1\BMS_EX\BSP\g03_relay_core.h
++++ after/BMS_EXv1.1\BMS_EX\BSP\g03_relay_core.h
+@@ -0,0 +1,32 @@
++#ifndef G03_RELAY_CORE_H
++#define G03_RELAY_CORE_H
++#include <stdint.h>
++/* Engineering observation rules, not calibrated physical current limits. */
++#define G3R_PERIOD_MS 20U
++#define G3R_STALE_MS 40U
++#define G3R_BASE_SAMPLES 50U
++#define G3R_PULSE_MS 99U /* reserve 1 ms for interrupt entry; acceptance <=100 ms */
++#define G3R_POST_MS 1000U
++#define G3R_CAPACITY 256U
++enum { G3R_IDLE, G3R_PREPARE, G3R_BASELINE, G3R_PULSE, G3R_POST, G3R_DONE, G3R_FAULT };
++enum { G3R_DATA=1U, G3R_STALE=2U, G3R_CELL=4U, G3R_BASE=8U,
++       G3R_BUFFER=16U, G3R_INTERLOCK=32U, G3R_TIMING=64U, G3R_CPU=128U };
++enum { G3R_END_NONE, G3R_END_DEADLINE, G3R_END_STOP, G3R_END_FAULT };
++typedef struct {
++    uint32_t state, faults, reason, live, command_on, samples, base_count;
++    uint32_t base_min, base_max, base_sum, center, tolerance;
++    uint32_t last_sample, session_start, on_ms, off_ms, post_start, recover_count;
++    uint32_t cell_low, cell_high;
++} G3RCore;
++void G3R_Init(G3RCore *c);
++int G3R_Begin(G3RCore *c,uint32_t live,uint32_t now,uint32_t low,uint32_t high);
++void G3R_Ready(G3RCore *c,uint32_t now);
++void G3R_Trip(G3RCore *c,uint32_t fault,uint32_t now);
++void G3R_Stop(G3RCore *c,uint32_t now);
++void G3R_Tick(G3RCore *c,uint32_t now);
++/* Complete required-channel snapshot; timestamp is oldest conversion START. */
++void G3R_Sample(G3RCore *c,uint32_t now,uint32_t oldest,uint32_t valid,
++                const uint16_t raw[4]);
++int G3R_Clear(G3RCore *c);
++int G3R_Active(const G3RCore *c);
++#endif
+--- before/BMS_EXv1.1\BMS_EX\BSP\g03_relay_port.c
++++ after/BMS_EXv1.1\BMS_EX\BSP\g03_relay_port.c
+@@ -0,0 +1,168 @@
++#include "g03_relay_port.h"
++#include "g03_relay_core.h"
++#include "g03_relay_profile.h"
++#include "g02_port.h"
++#include "g03_port.h"
++#include "g03_adc_port.h"
++#include "adbms_acquisition.h"
++#include "main.h"
++#include <stdio.h>
++#include <string.h>
++#if G02_ALLOW_PIN_OUTPUT
++#error "Relay test requires PWM gate closed"
++#endif
++extern ADC_HandleTypeDef hadc1;
++typedef struct {
++    uint32_t phase,at_ms,done_ms,bits;
++    MeasSample s[4],mcu;
++} RelayRow;
++static G3RCore core;
++static RelayRow rows[G3R_CAPACITY];
++static RelayRow working; /* never put the capture buffer on the 2 KiB stack */
++static uint32_t written,prepared,next_ms,hz,last_irq,irq_max,on_cycles,off_cycles;
++static uint32_t actual_high,live_used,session_cycle,last_data_cycle,timer_ok,window_started,window_stopped;
++static uint32_t lock(void){uint32_t k=__get_PRIMASK();__disable_irq();return k;}
++static void unlock(uint32_t k){__set_PRIMASK(k);}
++static uint32_t bits(void)
++{
++    return ((TIM1->BDTR&TIM_BDTR_MOE)?1U:0U)|(TIM1->CCER?2U:0U)|
++        ((TIM1->CR1&TIM_CR1_CEN)?4U:0U)|((GPIOB->ODR&SWS_Relay_Pin)?8U:0U)|
++        ((GPIOG->ODR&SWL_Relay_Pin)?16U:0U)|
++        (((GPIOA->ODR&GPIO_PIN_9)||(GPIOF->ODR&GPIO_PIN_7))?32U:0U);
++}
++static void off(void)
++{
++    if(__HAL_RCC_GPIOG_IS_CLK_ENABLED())GPIOG->BSRR=SWL_Relay_Pin<<16U;
++    __DSB();
++    if(window_started && !window_stopped){off_cycles=DWT->CYCCNT;window_stopped=1U;}
++    actual_high=0;
++}
++static void apply(void)
++{
++    if(core.state!=G3R_PULSE || !core.command_on){off();return;}
++    /* Only the foreground transition from a validated baseline may enable. */
++}
++int G03_RelayBusy(void){return G3R_Active(&core);}
++void G03_RelayInit(void)
++{
++    uint32_t timg=HAL_RCCEx_GetTIMGFreq();
++    G3R_Init(&core);G02_EmergencyOff();
++    hz=HAL_RCC_GetCpuClockFreq();
++    CoreDebug->DEMCR|=CoreDebug_DEMCR_TRCENA_Msk;DWT->CTRL|=DWT_CTRL_CYCCNTENA_Msk;
++    TIM2->CR1=0;TIM2->DIER=0;TIM2->CR2=0;
++    timer_ok=timg>=1000000U && timg%1000000U==0U && hz>=1000000U;
++    if(!timer_ok)return;
++    TIM2->PSC=timg/1000000U-1U;TIM2->ARR=999U;TIM2->CNT=0;
++    TIM2->EGR=TIM_EGR_UG;TIM2->SR=0;
++    HAL_NVIC_SetPriority(TIM2_IRQn,0U,0U);
++    HAL_NVIC_ClearPendingIRQ(TIM2_IRQn);HAL_NVIC_EnableIRQ(TIM2_IRQn);
++}
++void G03_RelayTickIRQ(void)
++{
++    uint32_t stamp,delta,now;
++    if(!(TIM2->SR&TIM_SR_UIF)||!(TIM2->DIER&TIM_DIER_UIE))return;
++    TIM2->SR=~TIM_SR_UIF;stamp=DWT->CYCCNT;delta=stamp-last_irq;last_irq=stamp;
++    if(delta>irq_max)irq_max=delta;
++    if(!G03_RelayBusy())return;
++    now=HAL_GetTick();
++    if(delta>hz/1000U*2U)G3R_Trip(&core,G3R_TIMING,now);
++    if(bits() & ~(actual_high?16U:0U))G3R_Trip(&core,G3R_INTERLOCK,now);
++    if(core.state==G3R_PREPARE && stamp-session_cycle>hz/5U)G3R_Trip(&core,G3R_DATA,now);
++    if((core.state==G3R_BASELINE||core.state==G3R_PULSE) && stamp-last_data_cycle>hz/1000U*G3R_STALE_MS)
++        G3R_Trip(&core,G3R_STALE,now);
++    /* DWT deadline still expires if the HAL tick is delayed by a lower priority IRQ. */
++    if(core.state==G3R_PULSE && stamp-on_cycles>=hz/1000U*G3R_PULSE_MS)G3R_Tick(&core,core.on_ms+G3R_PULSE_MS);
++    G3R_Tick(&core,now);apply();
++}
++void G03_RelayStop(void)
++{uint32_t k=lock();G3R_Stop(&core,HAL_GetTick());off();unlock(k);}
++void G03_RelayCPUFault(void)
++{G3R_Trip(&core,G3R_CPU,HAL_GetTick());off();}
++static void mcu_sample(MeasSample *s)
++{
++    HAL_StatusTypeDef st;memset(s,0,sizeof *s);s->start_ms=HAL_GetTick();
++    st=HAL_ADC_Start(&hadc1);
++    if(st==HAL_OK)st=HAL_ADC_PollForConversion(&hadc1,10U);
++    if(st==HAL_OK){s->raw=(uint16_t)HAL_ADC_GetValue(&hadc1);s->has_raw=1U;
++        if(HAL_ADC_GetError(&hadc1)!=HAL_ADC_ERROR_NONE)s->status|=MEAS_ADC;
++    }else s->status|=MEAS_ADC|(st==HAL_TIMEOUT?MEAS_TIMEOUT:MEAS_IO);
++    s->end_ms=HAL_GetTick();if(HAL_ADC_Stop(&hadc1)!=HAL_OK)s->status|=MEAS_ADC;
++}
++void G03_RelayTask(void)
++{
++    uint32_t k,now,valid=1U,i,old_state;uint16_t raw[4];
++    if(!G03_RelayBusy()){
++        if(TIM2->DIER&TIM_DIER_UIE){TIM2->DIER=0;TIM2->CR1=0;off();}
++        return;
++    }
++    if(!prepared){
++        uint32_t st=Afe_PulsePrepare();prepared=1U;k=lock();
++        if(st)G3R_Trip(&core,G3R_DATA,HAL_GetTick());
++        else G3R_Ready(&core,HAL_GetTick());
++        last_data_cycle=DWT->CYCCNT;apply();unlock(k);next_ms=HAL_GetTick();return;
++    }
++    now=HAL_GetTick();if((int32_t)(now-next_ms)<0)return;
++    next_ms=now+G3R_PERIOD_MS;
++    memset(&working,0,sizeof working);working.at_ms=now;working.phase=core.state;working.bits=bits();
++    Afe_PulseAcquire(working.s);mcu_sample(&working.mcu);working.done_ms=HAL_GetTick();
++    for(i=0;i<4U;++i){
++        MeasValue v=Meas_Evaluate(&working.s[i],(MeasChannel)i,working.done_ms);
++        raw[i]=working.s[i].raw;if(!v.raw_valid)valid=0;
++    }
++    k=lock();old_state=core.state;
++    if(written<G3R_CAPACITY)rows[written++]=working;
++    else G3R_Trip(&core,G3R_BUFFER,working.done_ms);
++    G3R_Sample(&core,working.done_ms,working.s[0].start_ms,valid,raw);
++    if(valid)last_data_cycle=DWT->CYCCNT;
++    if(old_state==G3R_BASELINE && core.state==G3R_PULSE){
++        on_cycles=DWT->CYCCNT;window_started=1U; /* arm deadline before setting GPIO */
++        if(bits())G3R_Trip(&core,G3R_INTERLOCK,working.done_ms);
++        else if(core.live){
++            if(!G3R_LIVE_PROFILE_VERIFIED || live_used)G3R_Trip(&core,G3R_INTERLOCK,working.done_ms);
++            else{live_used=1U;actual_high=1U;GPIOG->BSRR=SWL_Relay_Pin;__DSB();}
++        }
++    }
++    apply();unlock(k);
++}
++uint32_t G03_RelayCommand(uint32_t op,uint32_t arg)
++{
++    uint32_t k;
++    if(op==30U&&!arg)return G02_OK;
++    if(op==34U&&!arg){G03_RelayStop();return G02_OK;}
++    if(op==36U)return !G03_RelayBusy()&&arg<written?G02_OK:G02_BAD_ARGUMENT;
++    if(op==35U&&!arg){k=lock();if(!G3R_Clear(&core)){unlock(k);return G02_BUSY;}unlock(k);return G02_OK;}
++    if(op!=31U && op!=32U)return G02_BAD_ARGUMENT;
++    if(arg)return G02_BAD_ARGUMENT;
++    if(G03_RelayBusy()||G02_OwnsADC(&g02_control)||g02_control.faults||G03_SyntheticBusy()||G03_ADC_BlocksOthers())return G02_BUSY;
++    if(op==32U && (!G3R_LIVE_PROFILE_VERIFIED||live_used))return G02_DISALLOWED;
++    if(core.state!=G3R_IDLE || !timer_ok || bits())return G02_NOT_READY;
++    k=lock();
++    if(!G3R_Begin(&core,op==32U,HAL_GetTick(),G3R_CELL_LOW_CODE,G3R_CELL_HIGH_CODE)){unlock(k);return G02_NOT_READY;}
++    written=prepared=irq_max=on_cycles=off_cycles=window_started=window_stopped=0;session_cycle=last_data_cycle=last_irq=DWT->CYCCNT;
++    TIM2->CNT=0;TIM2->SR=0;TIM2->DIER=TIM_DIER_UIE;TIM2->CR1=TIM_CR1_CEN;
++    unlock(k);return G02_OK;
++}
++int G03_RelayReport(char *out,unsigned size,uint32_t id,uint32_t result,uint32_t op,uint32_t arg)
++{
++    int n,m;uint32_t k,i;G3RCore c;
++    if(op==36U && result==G02_OK && arg<written && !G03_RelayBusy()){
++        const RelayRow *r=&rows[arg];
++        n=snprintf(out,size,"#G3S," G3R_FIRMWARE ",%lu,%lu,%lu,%lu,%lu,%lu,%lu",(unsigned long)id,(unsigned long)result,
++            (unsigned long)arg,(unsigned long)r->phase,(unsigned long)r->at_ms,(unsigned long)r->done_ms,(unsigned long)r->bits);
++        for(i=0;i<5U;++i){const MeasSample *s=i<4U?&r->s[i]:&r->mcu;MeasValue v=Meas_Evaluate(s,i<4U?(MeasChannel)i:MEAS_MCU_I,r->done_ms);
++            if(n<0||n>=(int)size)return -1;
++            m=snprintf(out+n,size-(unsigned)n,",%lu,%lu,%u,%lu,%u,%02X%02X%02X%02X%02X%02X%02X%02X",
++                (unsigned long)s->start_ms,(unsigned long)s->end_ms,(unsigned)s->raw,(unsigned long)v.status,(unsigned)v.raw_valid,
++                s->frame[0],s->frame[1],s->frame[2],s->frame[3],s->frame[4],s->frame[5],s->frame[6],s->frame[7]);
++            if(m<0)return -1;
++            n+=m;
++        }return n;
++    }
++    k=lock();c=core;unlock(k);
++    return snprintf(out,size,"#G3R," G3R_FIRMWARE ",%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,%lu,0",
++        (unsigned long)id,(unsigned long)result,(unsigned long)c.state,(unsigned long)c.faults,(unsigned long)c.reason,
++        (unsigned long)c.live,(unsigned long)written,(unsigned long)c.base_count,(unsigned long)c.center,(unsigned long)c.tolerance,
++        (unsigned long)c.on_ms,(unsigned long)c.off_ms,(unsigned long)c.recover_count,(unsigned long)bits(),
++        (unsigned long)on_cycles,(unsigned long)off_cycles,(unsigned long)irq_max,(unsigned long)hz,
++        (unsigned long)G3R_LIVE_PROFILE_VERIFIED,(unsigned long)live_used,(unsigned long)G3R_PERIOD_MS,(unsigned long)G3R_STALE_MS);
++}
+--- before/BMS_EXv1.1\BMS_EX\BSP\g03_relay_port.h
++++ after/BMS_EXv1.1\BMS_EX\BSP\g03_relay_port.h
+@@ -0,0 +1,12 @@
++#ifndef G03_RELAY_PORT_H
++#define G03_RELAY_PORT_H
++#include <stdint.h>
++void G03_RelayInit(void);
++int G03_RelayBusy(void);
++void G03_RelayTask(void);
++void G03_RelayTickIRQ(void);
++void G03_RelayStop(void);
++void G03_RelayCPUFault(void);
++uint32_t G03_RelayCommand(uint32_t op,uint32_t arg);
++int G03_RelayReport(char *out,unsigned size,uint32_t id,uint32_t result,uint32_t op,uint32_t arg);
++#endif
+--- before/BMS_EXv1.1\BMS_EX\BSP\g03_relay_profile.h
++++ after/BMS_EXv1.1\BMS_EX\BSP\g03_relay_profile.h
+@@ -0,0 +1,16 @@
++#ifndef G03_RELAY_PROFILE_H
++#define G03_RELAY_PROFILE_H
++/* Live gate remains closed until a run-specific evidence-backed profile exists.
++ * Zero is absence of a limit, never a physical rating or acceptable cell value. */
++#ifndef G3R_LIVE_PROFILE_VERIFIED
++#define G3R_LIVE_PROFILE_VERIFIED 0U
++#endif
++#ifndef G3R_CELL_LOW_CODE
++#define G3R_CELL_LOW_CODE 0U
++#endif
++#ifndef G3R_CELL_HIGH_CODE
++#define G3R_CELL_HIGH_CODE 0U
++#endif
++#define G3R_PROFILE_ID "relay-observation-draft-v1"
++#define G3R_FIRMWARE "g03-relay-r1"
++#endif
+--- before/BMS_EXv1.1\BMS_EX\BSP\measurement.c
++++ after/BMS_EXv1.1\BMS_EX\BSP\measurement.c
+@@ -12,9 +12,9 @@
+ static uint32_t metadata_profile,metadata_selfcal;
+ static void metadata(void)
+ {
+-    uart_printf("#META,schema=%s,fw=g03-adc-r4,build=%s %s,cal=%s,period_ms=500,kind=instantaneous_sample\r\n",
++    uart_printf("#META,schema=%s,fw=g03-relay-r1,build=%s %s,cal=%s,period_ms=500,kind=instantaneous_sample\r\n",
+                 MEAS_SCHEMA,__DATE__,__TIME__,MEAS_CAL_ID);
+-    uart_printf("#CONFIG,profile=cnn647b-g03-adc-r4,ADC_profile=%lu,ADC_selfcal=%lu,VREF_nominal=1.8,current_model=%s,zero_nominal_V=0.9,physical_valid=0,sign=unconfirmed\r\n",
++    uart_printf("#CONFIG,profile=cnn647b-g03-relay-r1,ADC_profile=%lu,ADC_selfcal=%lu,VREF_nominal=1.8,current_model=%s,zero_nominal_V=0.9,physical_valid=0,sign=unconfirmed\r\n",
+         (unsigned long)G03_ADC_Profile(),(unsigned long)G03_ADC_Calibrated(),CURRENT_MODEL_ID);
+     uart_printf("#FIELDS,type,seq,channel,start_ms,end_ms,age_ms,raw,status,raw_valid,sensor_V_nominal,estimate,unit,physical_value,physical_valid,reference,cal_id,frame_hex,wire_pec15\r\n");
+     metadata_profile=G03_ADC_Profile();metadata_selfcal=G03_ADC_Calibrated();
+@@ -22,7 +22,7 @@
+ void Measurement_Init(void)
+ {
+     seq=0; first=1; last_start=HAL_GetTick();
+-    uart_printf("#BOOT,g03-adc-r4,tick=%lu\r\n",(unsigned long)last_start);
++    uart_printf("#BOOT,g03-relay-r1,tick=%lu\r\n",(unsigned long)last_start);
+     metadata();
+ }
+ static void adc_sample(MeasSample *s)
+--- before/BMS_EXv1.1\BMS_EX\MDK-ARM\Appli\BMS_EX_Appli.uvprojx
++++ after/BMS_EXv1.1\BMS_EX\MDK-ARM\Appli\BMS_EX_Appli.uvprojx
+@@ -561,6 +561,8 @@
+ </File>
+               <File><FileName>g03_adc_core.c</FileName><FileType>1</FileType><FilePath>..\..\BSP\g03_adc_core.c</FilePath></File>
+               <File><FileName>g03_adc_port.c</FileName><FileType>1</FileType><FilePath>..\..\BSP\g03_adc_port.c</FilePath></File>
++              <File><FileName>g03_relay_core.c</FileName><FileType>1</FileType><FilePath>..\..\BSP\g03_relay_core.c</FilePath></File>
++              <File><FileName>g03_relay_port.c</FileName><FileType>1</FileType><FilePath>..\..\BSP\g03_relay_port.c</FilePath></File>
+ <File>
+ <FileName>g03_port.h</FileName>
+ <FileType>5</FileType>
+@@ -1265,6 +1267,8 @@
+ </File>
+               <File><FileName>g03_adc_core.c</FileName><FileType>1</FileType><FilePath>..\..\BSP\g03_adc_core.c</FilePath></File>
+               <File><FileName>g03_adc_port.c</FileName><FileType>1</FileType><FilePath>..\..\BSP\g03_adc_port.c</FilePath></File>
++              <File><FileName>g03_relay_core.c</FileName><FileType>1</FileType><FilePath>..\..\BSP\g03_relay_core.c</FilePath></File>
++              <File><FileName>g03_relay_port.c</FileName><FileType>1</FileType><FilePath>..\..\BSP\g03_relay_port.c</FilePath></File>
+ <File>
+ <FileName>g03_port.h</FileName>
+ <FileType>5</FileType>
+--- before/instructions\README.md
++++ after/instructions\README.md
+@@ -57,3 +57,6 @@
+ | validation/desktop.png、acceptance.png、mobile.png | HTML 阅读效果检查截图，不是硬件实验截图 |
+ 
+ 外部 `D:/ADMIN/Desktop/instructions` 仅作为流程设计参考，保持原样。其赛题、模型路由、额度监控、截止时间不适用于此 BMS 任务。采用本流程没有执行硬件实验，也没有启用 MCP。
++
++
++- 2026-11-01实现入口：[G03单次继电器接口](specs/G03-relay-single.md)，实际进展以STATUS和本轮工作卡为准。
+--- before/instructions\RUNLOG.md
++++ after/instructions\RUNLOG.md
+@@ -243,3 +243,8 @@
+ ## 2026-10-31 对齐两份G03计划及后续任务路线
+ 
+ 按用户要求将原无探头推进计划更新为G03—G07总路线，起点由r3更新至r4已有证据；单次100ms方案作为任务1—2的详细方案并建立双向链接。最近任务改为单次继电器入口和同步AFE记录准备，首次实测按有响应/无响应/缺测/异常/不恢复分支处理。后续安排固定负载实物记录、PWM单点与局部开环、PI、上位机、SOC和模型部署，明确各自依赖与可独立推进部分。原文快照保存在references/history/20261031-G03-roadmap-update，未修改固件或硬件参数，未烧录或执行功率动作。
++
++
++## 2026-11-01 G01/G02补测与G03单次继电器r1
++
++用户授权完成无需硬件配合的补测后推进首次100ms探索，确认原接线和现场断开电池能力。实现与相关离线验证通过；旧r4在COM11补采179条有效原码，保留截断。Release0错0警告，Debug原有警告1。两次外部Flash擦除失败，未取得新镜像烧录/读回和启动证据；新镜像真实动作门保持0。已请求按现有下载流程切换BOOT。实物脉冲未执行，阶段正式判定未变。证据：evidence/runs/20261101-G03-relay-r1/。
+--- before/instructions\specs\G03-relay-single.md
++++ after/instructions\specs\G03-relay-single.md
+@@ -0,0 +1,40 @@
++# G03 单次继电器接口与记录（g03-relay-r1）
++
++对应总推进计划任务1—2。生产默认 `G3R_LIVE_PROFILE_VERIFIED=0`，只允许禁能演练；该构建不能置高PG5。两种Keil target始终关闭G02引脚输出门。
++
++## 实现与时序
++
++独立状态：0空闲、1准备、2基线、3命令窗口、4恢复观察、5结果锁存、6故障锁存。
++主循环独占AFE和辅助MCU ADC，准备一次AFE配置，随后仅取电芯1/7/13及GPIO1；每20ms发起一组，分别保留转换起止时间、原始帧、PEC/错误状态。MCU ADC仅辅助记录，不参与绝对电流保护。
++
++50组有效基线后进入窗口。基线AFE峰峰值不得大于100码；中心为50点均值，比较带为`max(20码,3×峰峰值)`。这些是探索观察规则，不是电流标定或保护额定值。数据最大年龄40ms，从最早的必需通道转换开始计；当前容量256组，耗尽即故障，绝不环形覆盖。
++
++TIM2为独立1ms中断；运行时核对定时器/CPU时钟。截止采用99ms调度，给ISR入口预留1ms，并记录DWT时间用于复核GPIO命令区间不得超过100ms。ISR间隔超过2ms、必需数据失效/过期、互锁异常、STOP、CPU异常均撤销PG5。DWT时间检查不依赖SPI/串口主循环；软件时钟和寄存器观测不等于独立硬件截止或触点停止证据。
++
++撤销后继续观察1000ms，锁存全部结果。基线、命令窗口及恢复期间停止常规G01输出与串口格式化；结束后再读缓存。恢复需至少最后5个有效AFE样本回到比较带。新运行必须先明确清锁存，再明确请求；真实动作额外限制为每次启动最多一次。复位不能自动运行。
++
++## 命令与兼容性
++
++复用现有`G02,id,op,arg*CRC16`帧及全局递增请求编号。CRC为CCITT-FALSE；同一最新请求重放只回已有结果，冲突/旧编号拒绝。运行中可处理STOP；响应延迟到采集结束，因此主机不得以超时重发启动。
++
++| op | arg | 行为 |
++|---|---|---|
++|30|0|状态查询|
++|31|0|禁能完整演练；PG5始终LOW|
++|32|0|真实单次请求；未冻结实物工况、门关闭或本次启动已使用时拒绝|
++|34|0|停止，保持结果锁存|
++|35|0|空闲时清锁存；不清除真实动作已使用标志|
++|36|记录索引|结束后读取单组缓存|
++
++旧G02/G03停止命令均覆盖继电器停止；G02、合成G03、真实ADC诊断与继电器采集互斥。G01/G02/G03旧记录解析器保留r4兼容，新固件身份为g03-relay-r1。
++
++状态`#G3R`字段及样本`#G3S`字段以`scripts/g03/relay_capture.py`的STATUS和解析器为准。样本包含序号、阶段、采集开始/完成、输出位，以及5通道各自的起止、原码、质量状态、raw_valid和8字节帧。MCU无AFE帧，填充帧不作为其PEC证据。物理电流有效标志始终0。
++
++## 使用与结果
++
++`relay_capture.py --port <当前端口> --firmware-sha256 <已验证镜像> --out <新目录>`只执行一次禁能演练。
++真实请求必须另加`--live --profile <冻结工况JSON>`，JSON需具备live_ready、相同firmware_sha256和battery_disconnect_confirmed；同时板端实际编译门必须开启。工况就绪不能仅靠修改这几个字段宣称成立。
++
++默认工具不清故障、不重试启动、不重放重连命令。真实运行结束后若恢复计数不足或有故障，会在下载缓存前提示现场断开电池供能。所有原始数据保留；无窗口内有效样本时结论为观测不足。
++
++每轮冻结工况须补齐电芯进入/退出依据、禁能测得的采集覆盖和实际停止办法。当前草案电芯界限为缺失值，不能用于真实运行。当前进度以STATUS和本轮工作卡为准。
+--- before/instructions\specs\hardware-profile.json
++++ after/instructions\specs\hardware-profile.json
+@@ -138,7 +138,7 @@
+     "mcu_device_id": "0x486",
+     "afe_photo_marking": "ADBMS1818",
+     "uart_usb_device": "CH340 VID_1A86 PID_7523",
+-    "uart_last_port": "COM9",
++    "uart_last_port": "COM11",
+     "source": "Existing photographs, programmer log, USB enumeration; see evidence entries"
+   },
+   "software_configuration": {
+@@ -746,5 +746,16 @@
+       "external_path_mode_dependence_observed": true,
+       "physical_current_limits_changed": false
+     }
++  },
++  "g03_relay_preparation": {
++    "date": "2026-11-01",
++    "firmware": "g03-relay-r1",
++    "live_gate": false,
++    "wiring_reconfirmed_by_user": true,
++    "battery_disconnect_available_per_user": true,
++    "new_firmware_flashed_verified": false,
++    "physical_pulse_executed": false,
++    "evidence_run_id": "20261101-G03-relay-r1",
++    "physical_limits_unchanged": true
+   }
+ }
+--- before/instructions\STATUS.md
++++ after/instructions\STATUS.md
+@@ -1,6 +1,6 @@
+ # 当前状态
+ 
+-日期：2026-10-31。此文件是阶段状态唯一人工维护入口。下面状态是“正式验收状态”，已完成的文档与静态审查见 RUNLOG。
++日期：2026-11-01。此文件是阶段状态唯一人工维护入口。下面状态是“正式验收状态”，已完成的文档与静态审查见 RUNLOG。
+ 
+ | 阶段 | status | verdict | 已有证据 / 下一动作 |
+ |---|---|---|---|
+@@ -22,3 +22,12 @@
+ 2026-10-31 本轮禁能实现与可用主机验证已完成。r1栈溢出、r2启动样本稳定性拒绝、r3采样节拍切换导致AWD锁存及各次烧录校验失败均保留；r4统一基线/监控节拍后通过板测。1008/2048并非已证实的二倍比例误差，具体外部输入路径根因仍未闭合；不以标称公式或假定零点放行功率实验。
+ 
+ 计划入口：[后续任务总计划](G03-无探头条件下的推进计划.md)与[单次100ms详细方案](G03-单次100ms继电器放电测试方案.md)。下一项为总计划任务1：实现继电器单次入口、本地截止和AFE/电芯同步采集，并完成相关禁能验证；随后才按具体工况和授权安排首次实物运行。本次仅更新计划，上表进度、实际固件和输出状态不变。
++
++
++## 2026-11-01 最新进展：单次继电器实现，下载待恢复
++
++g03-relay-r1已完成独立单次入口、TIM2本地截止、AFE专用采集/缓存及主机记录工具。G01/G02、合成G03、真实ADC受影响离线回归和新增继电器用例通过；Release0错0警告，Debug保留原有EXTRAM警告1条。实际输出门保持关闭。
++
++COM11已采到旧g03-adc-r4有效原码179条（19完整组，末尾截断保留）。新固件两次下载都在外部Flash擦除阶段失败，尚未写入/读回验证；下载失败后的实际启动状态待确认。新采集的禁能板测、工况冻结及首次100ms真实脉冲未执行。G01/G02/G03正式验收状态仍为in_progress、verdict=null。
++
++下一步：按既有下载流程恢复BOOT下载模式，完成写入与读回校验后，继续新固件禁能演练。见[本轮工作卡](../evidence/runs/20261101-G03-relay-r1/work-card.md)、[补测矩阵](../evidence/runs/20261101-G03-relay-r1/retest-matrix.md)和[单次接口规范](specs/G03-relay-single.md)。
+--- before/scripts\g02\extended_diagnostics.py
++++ after/scripts\g02\extended_diagnostics.py
+@@ -58,7 +58,7 @@
+                 r=parse(line)
+                 self.event(report=r)
+                 self.reports.append(r)
+-                require(r['firmware'] in ('g02-host-r2','g03-adc-r4') and r['pins_gate']==0,
++                require(r['firmware'] in ('g02-host-r2','g03-adc-r4','g03-relay-r1') and r['pins_gate']==0,
+                         'Require fixed r2 firmware with pin output disabled')
+                 if r['id']==wanted:
+                     return r
+--- before/scripts\g02\host_diagnostics.py
++++ after/scripts\g02\host_diagnostics.py
+@@ -18,7 +18,7 @@
+     body, check = line.rstrip(b'\r\n').rsplit(b'*',1)
+     if not re.fullmatch(b'[0-9A-F]{4}',check) or int(check,16)!=binascii.crc_hqx(body,65535): raise ValueError('CRC')
+     parts=body.decode('ascii').split(',')
+-    if parts[0]!='#G02' or parts[1] not in ('g02-host-r1','g02-host-r2','g03-adc-r4') or len(parts)!=len(FIELDS)+2: raise ValueError('schema/firmware')
++    if parts[0]!='#G02' or parts[1] not in ('g02-host-r1','g02-host-r2','g03-adc-r4','g03-relay-r1') or len(parts)!=len(FIELDS)+2: raise ValueError('schema/firmware')
+     if any(not re.fullmatch('[0-9]+',x) for x in parts[2:]): raise ValueError('unsigned decimal fields')
+     values=[int(x) for x in parts[2:]]
+     if any(x<0 or x>0xffffffff for x in values): raise ValueError('range')
+--- before/scripts\g02\run_checks.py
++++ after/scripts\g02\run_checks.py
+@@ -40,11 +40,11 @@
+         extra = ['-DG02_ALLOW_PIN_OUTPUT=1'] if variant == 'pins-simulated' else []
+         run('build-' + variant, flags + extra + ['-I' + str(test / 'stubs'),
+             '-I' + str(bsp), test / 'test_port.c', bsp / 'g02_control.c',
+-            bsp / 'g02_port.c', bsp / 'g03_control.c', bsp / 'g03_port.c', root / 'tests/g03/adc_bridge_stub.c', '-o', out / (variant + '.exe')])
++            bsp / 'g02_port.c', root / 'tests/g03/relay_bridge_stub.c', bsp / 'g03_control.c', bsp / 'g03_port.c', root / 'tests/g03/adc_bridge_stub.c', '-o', out / (variant + '.exe')])
+         run(variant, [out / (variant + '.exe')])
+ 
+     run('build-link', flags + ['-I' + str(test / 'stubs'), '-I' + str(bsp),
+-        test / 'test_link.c', bsp / 'g02_control.c', bsp / 'g02_port.c',
++        test / 'test_link.c', bsp / 'g02_control.c', bsp / 'g02_port.c', root / 'tests/g03/relay_bridge_stub.c',
+         bsp / 'g02_link.c', bsp / 'g03_control.c', bsp / 'g03_port.c', root / 'tests/g03/adc_bridge_stub.c', '-o', out / 'link.exe'])
+     run('link', [out / 'link.exe'])
+     host_path = root / 'scripts/g02/host_diagnostics.py'
+--- before/scripts\g03\adc_diagnostics.py
++++ after/scripts\g03\adc_diagnostics.py
+@@ -16,7 +16,7 @@
+     body,crc=line.rstrip(b'\r\n').rsplit(b'*',1)
+     if not re.fullmatch(b'[0-9A-F]{4}',crc) or int(crc,16)!=binascii.crc_hqx(body,65535):raise ValueError('CRC')
+     v=body.decode('ascii').split(',');kind=v[0]
+-    if v[1]!='g03-adc-r4' or kind not in ('#G3A','#G3D','#G3T'):raise ValueError('Identity/schema')
++    if v[1] not in ('g03-adc-r4','g03-relay-r1') or kind not in ('#G3A','#G3D','#G3T'):raise ValueError('Identity/schema')
+     if any(not re.fullmatch('-?[0-9]+',x) or not -2147483648<=int(x)<=0xffffffff for x in v[2:]):raise ValueError('Range')
+     nums=list(map(int,v[2:]));fields={'#G3A':STATUS,'#G3T':TRACE,'#G3D':DIAG+REGS}[kind]
+     if kind!='#G3D' and len(nums)!=len(fields):raise ValueError('Length')
+--- before/scripts\g03\disabled_diagnostics.py
++++ after/scripts\g03\disabled_diagnostics.py
+@@ -10,7 +10,7 @@
+     body,crc=line.rstrip(b'\r\n').rsplit(b'*',1)
+     if not re.fullmatch(b'[0-9A-F]{4}',crc) or int(crc,16)!=binascii.crc_hqx(body,65535):raise ValueError('CRC')
+     fields=body.decode('ascii').split(',')
+-    if fields[:2]!=['#G03','g03-adc-r4'] or len(fields)!=len(FIELDS)+2:raise ValueError('Firmware/schema')
++    if len(fields)!=len(FIELDS)+2 or fields[0]!='#G03' or fields[1] not in ('g03-adc-r4','g03-relay-r1'):raise ValueError('Firmware/schema')
+     if any(not re.fullmatch('[0-9]+',x) or int(x)>0xffffffff for x in fields[2:]):raise ValueError('Range')
+     return dict(zip(FIELDS,map(int,fields[2:])))
+ 
+--- before/scripts\g03\plot_relay_capture.py
++++ after/scripts\g03\plot_relay_capture.py
+@@ -0,0 +1,28 @@
++"""Render an existing captured run; never synthesize absent measurements."""
++import argparse,json
++from pathlib import Path
++def main():
++    p=argparse.ArgumentParser();p.add_argument('run');a=p.parse_args();root=Path(a.run)
++    rows=json.loads((root/'samples.json').read_text(encoding='utf-8'))
++    result=json.loads((root/'result.json').read_text(encoding='utf-8'))
++    if not rows:raise SystemExit('No captured samples to plot')
++    import matplotlib
++    matplotlib.use('Agg')
++    import matplotlib.pyplot as plt
++    fig,axes=plt.subplots(2,1,figsize=(10,6),sharex=True,layout='constrained')
++    origin=rows[0]['at_ms']
++    for i,name in enumerate(['cell1','cell7','cell13','AFE GPIO1']):
++        points=[(((r['samples'][i]['end_ms']-origin)&0xffffffff)/1000,r['samples'][i]['raw']) for r in rows if r['samples'][i]['raw_valid']]
++        ax=axes[1] if i<3 else axes[0]
++        if points:ax.plot(*zip(*points),marker='.',markersize=3,label=name)
++    status=result.get('final',{})
++    if status.get('base_count')==50:
++        for ax in axes:
++            for key in ['on_ms','off_ms']:ax.axvline(((status[key]-origin)&0xffffffff)/1000,color='gray',linestyle='--')
++    axes[0].set_ylabel('AFE current raw code');axes[1].set_ylabel('Cell raw code');axes[1].set_xlabel('Device sample time (s)')
++    for ax in axes:ax.grid(alpha=.3);ax.legend()
++    fig.suptitle(root.name+' | '+result['mode']+' | uncalibrated raw data')
++    path=root/'response.png'
++    if path.exists():raise SystemExit('Plot already exists; use a new derived revision')
++    fig.savefig(path,dpi=160);print(path)
++if __name__=='__main__':main()
+--- before/scripts\g03\relay_capture.py
++++ after/scripts\g03\relay_capture.py
+@@ -0,0 +1,130 @@
++"""Single relay capture. Default is disabled rehearsal; never retries a start."""
++import argparse,binascii,csv,hashlib,json,re,sys,time
++from pathlib import Path
++sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'g02'))
++from host_diagnostics import frame
++sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'g01'))
++from g01_capture import pec15
++STATUS='id result state faults reason live written base_count center tolerance on_ms off_ms recover_count actual_bits on_cycles off_cycles irq_max_cycles cpu_hz live_gate live_used period_ms stale_ms physical_valid'.split()
++CHANNELS=['cell1','cell7','cell13','afe_current','mcu_current']
++def parse(line):
++    body,crc=line.rstrip(b'\r\n').rsplit(b'*',1)
++    if not re.fullmatch(b'[0-9A-F]{4}',crc) or int(crc,16)!=binascii.crc_hqx(body,65535):raise ValueError('CRC')
++    parts=body.decode('ascii').split(',');kind,firmware=parts[:2];v=parts[2:]
++    if firmware!='g03-relay-r1':raise ValueError('Firmware identity')
++    def num(s):
++        if not re.fullmatch('[0-9]+',s) or int(s)>0xffffffff:raise ValueError('uint32')
++        return int(s)
++    if kind=='#G3R':
++        if len(v)!=len(STATUS):raise ValueError('Status length')
++        r=dict(zip(STATUS,map(num,v)))
++        if r['physical_valid'] or r['actual_bits']&~16:raise ValueError('Output/quality invariant')
++    elif kind=='#G3S':
++        if len(v)!=37:raise ValueError('Sample length')
++        r=dict(zip('id result seq phase at_ms done_ms bits'.split(),map(num,v[:7])))
++        r['samples']=[]
++        for i,ch in enumerate(CHANNELS):
++            a=v[7+6*i:13+6*i]
++            s=dict(zip('start_ms end_ms raw status raw_valid'.split(),map(num,a[:5])))
++            if not re.fullmatch('[0-9A-F]{16}',a[5]):raise ValueError('Raw frame')
++            if s['raw_valid'] not in (0,1) or s['raw']>65535 or (s['raw_valid'] and s['status']&~128):raise ValueError('Sample validity')
++            if i<4 and s['raw_valid']:
++                f=bytes.fromhex(a[5])
++                if pec15(f[:6])!=int.from_bytes(f[6:],'big') or int.from_bytes(f[:2],'little')!=s['raw']:raise ValueError('AFE PEC/raw mismatch')
++            s.update(channel=ch,frame_hex=a[5]);r['samples'].append(s)
++    else:raise ValueError('Schema')
++    r.update(kind=kind,firmware=firmware);return r
++class Session:
++    def __init__(self,link,out):
++        self.link=link;self.out=out;self.pending=b'';self.counter=int(time.time()*1000)&0xffffffff;self.identified=False
++        self.raw=(out/'serial.bin').open('xb');self.events=(out/'events.jsonl').open('x',encoding='utf-8')
++    def event(self,**kw):self.events.write(json.dumps(dict(host_monotonic=time.monotonic(),**kw))+'\n');self.events.flush()
++    def request(self,op,arg=0,timeout=8):
++        if not 30<=op<=36:raise ValueError('Relay command only')
++        self.counter+=1;wire=frame(self.counter,op,arg);self.event(tx_hex=wire.hex(),op=op)
++        if self.link.write(wire)!=len(wire):raise IOError('Short request; do not replay')
++        until=time.monotonic()+timeout
++        while time.monotonic()<until:
++            data=self.link.read(max(1,min(self.link.in_waiting,4096)));self.raw.write(data);self.pending+=data
++            while b'\n' in self.pending:
++                line,self.pending=self.pending.split(b'\n',1)
++                if line.startswith(b'#BOOT,') and self.identified:raise RuntimeError('Reset detected; no restart')
++                if not line.startswith((b'#G3R,',b'#G3S,')):continue
++                r=parse(line);self.event(report=r)
++                if r['id']==self.counter:return r
++            if len(self.pending)>4096:raise RuntimeError('Unterminated report')
++        raise TimeoutError('No response; command will not be replayed')
++    def close(self):self.raw.close();self.events.close();self.link.close()
++def ok(r):
++    if r['result']:raise RuntimeError('Command rejected: '+str(r))
++    return r
++def analyze(status,rows):
++    window=[];latencies=[];starts=[];base=[];post=[]
++    for row in rows:
++        req=row['samples'][:4];latencies.append((row['done_ms']-row['at_ms'])&0xffffffff);starts.append(row['at_ms'])
++        valid=all(s['raw_valid'] for s in req)
++        if row['phase']==2 and valid:base.append(req[3]['raw'])
++        if row['phase']==3 and valid and all(((s['start_ms']-status['on_ms'])&0xffffffff)<=100 and ((status['off_ms']-s['end_ms'])&0xffffffff)<=100 for s in req):window.append(req[3]['raw'])
++        if row['phase']==4 and valid:post.append(req[3]['raw'])
++    response=[x-status['center'] for x in window if abs(x-status['center'])>status['tolerance']]
++    coherent=len(response)>=3 and (all(x>0 for x in response) or all(x<0 for x in response))
++    recovered=len(post)>=5 and all(abs(x-status['center'])<=status['tolerance'] for x in post[-5:])
++    width=((status['off_cycles']-status['on_cycles'])&0xffffffff)*1000/status['cpu_hz'] if status['on_cycles'] else None
++    if not status['live']:conclusion='disabled_rehearsal_only'
++    elif status['faults']:conclusion='aborted'
++    elif len(window)<3:conclusion='insufficient_observation'
++    elif coherent and recovered:conclusion='response_and_recovery'
++    elif not recovered:conclusion='not_recovered'
++    else:conclusion='no_clear_response'
++    return dict(conclusion=conclusion,valid_window_samples=len(window),response_codes=response,recovered=recovered,
++        capture_max_ms=max(latencies,default=None),start_gap_max_ms=max(((b-a)&0xffffffff for a,b in zip(starts,starts[1:])),default=None),
++        baseline_min=min(base,default=None),baseline_max=max(base,default=None),software_window_ms=width,command_high_ms=width if status['live'] else None,
++        observation_ready=not status['faults'] and status['state']==5 and len(window)>=3 and recovered and max(latencies,default=999)<=20 and width is not None and 0<width<=100,
++        physical_current_calibrated=False)
++def main():
++    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--port',required=True);p.add_argument('--out',required=True)
++    p.add_argument('--live',action='store_true');p.add_argument('--profile');p.add_argument('--firmware-sha256',required=True);a=p.parse_args()
++    out=Path(a.out);out.mkdir(parents=True,exist_ok=False)
++    import serial
++    link=serial.Serial();link.port=a.port;link.baudrate=115200;link.timeout=.05;link.write_timeout=1;link.dtr=link.rts=False
++    s=Session(link,out);result=dict(evidence_scope=['bench'],mode='live' if a.live else 'disabled',trigger_sent=False,verdict=None)
++    rows=[];status=None
++    try:
++        link.open();status=ok(s.request(30));s.identified=True;result['initial']=status
++        if status['state']!=0 or status['actual_bits']:raise RuntimeError('Require explicit idle state; no automatic clear')
++        if a.live:
++            if not a.profile:raise RuntimeError('Frozen profile required')
++            profile=json.loads(Path(a.profile).read_text(encoding='utf-8'))
++            if not profile.get('live_ready') or profile.get('firmware_sha256')!=a.firmware_sha256 or not profile.get('battery_disconnect_confirmed'):raise RuntimeError('Profile not ready or identity mismatch')
++            if not status['live_gate'] or status['live_used']:raise RuntimeError('Live firmware gate closed or pulse consumed')
++            result['profile']=profile
++        result['trigger_sent']=True
++        status=ok(s.request(32 if a.live else 31));result['final']=status
++        if status['state'] not in (5,6):raise RuntimeError('Capture did not reach latched terminal state')
++        # Alert before the potentially slow record dump, never after it.
++        if a.live and (status['recover_count']<5 or status['faults']):
++            print('恢复未确认或检测到异常：请立即按预定方式断开电池侧供能。',flush=True)
++        for i in range(status['written']):rows.append(ok(s.request(36,i)))
++        if [r['seq'] for r in rows]!=list(range(status['written'])):raise RuntimeError('Capture sequence gap')
++        result['analysis']=analyze(status,rows)
++        result['verdict']='pass' if not a.live and result['analysis']['observation_ready'] else ('inconclusive' if not status['faults'] else 'fail')
++        if a.live and not result['analysis']['recovered']:print('电流未确认恢复：请立即按预定方式断开电池侧供能。',flush=True)
++        if status['actual_bits']:raise RuntimeError('Output command still active')
++    except Exception as e:
++        result['error']=repr(e)
++        if s.identified:
++            try:result['stop_after_error']=s.request(34)
++            except Exception as stop:result['stop_error']=repr(stop)
++        if a.live and result['trigger_sent']:print('运行结果未确认：请检查并按预定方式断开电池侧供能。',flush=True)
++    finally:
++        s.close();(out/'samples.json').write_text(json.dumps(rows,indent=2),encoding='utf-8')
++        flat=[dict(seq=r['seq'],phase=r['phase'],at_ms=r['at_ms'],done_ms=r['done_ms'],bits=r['bits'],**s) for r in rows for s in r['samples']]
++        if flat:
++            with (out/'samples.csv').open('x',newline='',encoding='utf-8') as f:
++                w=csv.DictWriter(f,fieldnames=list(flat[0]));w.writeheader();w.writerows(flat)
++        result['sha256']={x.name:hashlib.sha256(x.read_bytes()).hexdigest() for x in out.iterdir() if x.is_file()}
++        (out/'result.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
++        (out/'manifest.json').write_text(json.dumps(dict(run_id=out.name,firmware_sha256=a.firmware_sha256,mode=result['mode'],physical_valid=0),indent=2))
++        print(json.dumps(result,indent=2))
++    return 0 if 'error' not in result else 1
++if __name__=='__main__':raise SystemExit(main())
+--- before/scripts\g03\run_adc_checks.py
++++ after/scripts\g03\run_adc_checks.py
+@@ -17,11 +17,11 @@
+     run('build-core',flags+[test/'test_adc_core.c',bsp/'g03_adc_core.c','-lm','-o',out/'core.exe'])
+     run('core',[out/'core.exe'])
+     run('build-port',flags+['-I'+str(root/'tests/g02/stubs'),test/'test_adc_port.c',
+-        bsp/'g02_control.c',bsp/'g02_port.c',bsp/'g03_control.c',bsp/'g03_port.c',
++        bsp/'g02_control.c',bsp/'g02_port.c',root/'tests/g03/relay_bridge_stub.c',bsp/'g03_control.c',bsp/'g03_port.c',
+         bsp/'g03_adc_core.c',bsp/'g03_adc_port.c','-lm','-o',out/'port.exe'])
+     run('port',[out/'port.exe'])
+     run('build-link',flags+['-I'+str(root/'tests/g02/stubs'),test/'test_adc_link.c',
+-        bsp/'g02_control.c',bsp/'g02_port.c',bsp/'g03_control.c',bsp/'g03_port.c',bsp/'g02_link.c',
++        bsp/'g02_control.c',bsp/'g02_port.c',root/'tests/g03/relay_bridge_stub.c',bsp/'g03_control.c',bsp/'g03_port.c',bsp/'g02_link.c',
+         bsp/'g03_adc_core.c',bsp/'g03_adc_port.c','-lm','-o',out/'link.exe'])
+     run('link',[out/'link.exe'])
+     sys.path.insert(0,str(root/'scripts/g03'))
+--- before/scripts\g03\run_checks.py
++++ after/scripts\g03\run_checks.py
+@@ -18,10 +18,10 @@
+     run('build-core',flags+[test/'test_control.c',bsp/'g03_control.c','-o',out/'core.exe'])
+     run('core',[out/'core.exe'])
+     run('build-port',flags+['-I'+str(root/'tests/g02/stubs'),test/'test_port.c',
+-        bsp/'g02_control.c',bsp/'g02_port.c',bsp/'g03_control.c',bsp/'g03_port.c',root/'tests/g03/adc_bridge_stub.c','-o',out/'port.exe'])
++        bsp/'g02_control.c',bsp/'g02_port.c',root/'tests/g03/relay_bridge_stub.c',bsp/'g03_control.c',bsp/'g03_port.c',root/'tests/g03/adc_bridge_stub.c','-o',out/'port.exe'])
+     run('port',[out/'port.exe'])
+     run('build-link',flags+['-I'+str(root/'tests/g02/stubs'),test/'test_link.c',
+-        bsp/'g02_control.c',bsp/'g02_port.c',bsp/'g02_link.c',bsp/'g03_control.c',bsp/'g03_port.c',root/'tests/g03/adc_bridge_stub.c','-o',out/'link.exe'])
++        bsp/'g02_control.c',bsp/'g02_port.c',root/'tests/g03/relay_bridge_stub.c',bsp/'g02_link.c',bsp/'g03_control.c',bsp/'g03_port.c',root/'tests/g03/adc_bridge_stub.c','-o',out/'link.exe'])
+     run('link',[out/'link.exe'])
+     sys.path.insert(0,str(root/'scripts/g03'))
+     from disabled_diagnostics import parse
+--- before/scripts\g03\run_relay_checks.py
++++ after/scripts\g03\run_relay_checks.py
+@@ -0,0 +1,25 @@
++"""Production relay core/adapter/link; register simulation is not electrical evidence."""
++import argparse,subprocess,sys,json
++from pathlib import Path
++def main():
++    p=argparse.ArgumentParser();p.add_argument('--out',required=True);p.add_argument('--cc',required=True);a=p.parse_args()
++    root=Path(__file__).resolve().parents[2];out=Path(a.out).resolve();out.mkdir(parents=True,exist_ok=False)
++    bsp=root/'BMS_EXv1.1/BMS_EX/BSP';test=root/'tests/g03';results=[]
++    def run(name,cmd):
++        r=subprocess.run(list(map(str,cmd)),capture_output=True)
++        (out/(name+'.stdout')).write_bytes(r.stdout);(out/(name+'.stderr')).write_bytes(r.stderr)
++        results.append(dict(name=name,exit_code=r.returncode,command=list(map(str,cmd))))
++        (out/'checks.json').write_text(json.dumps(results,indent=2))
++        if r.returncode:raise RuntimeError(name+': '+r.stderr.decode(errors='replace'))
++    flags=[a.cc,'-std=c99','-Wall','-Wextra','-Werror','-pedantic','-I'+str(bsp)]
++    run('build-core',flags+[test/'test_relay_core.c',bsp/'g03_relay_core.c','-o',out/'core.exe'])
++    run('core',[out/'core.exe'])
++    run('adapter-stack-frame',flags+['-Wframe-larger-than=512','-I'+str(root/'tests/g02/stubs'),'-c',bsp/'g03_relay_port.c','-o',out/'relay.o'])
++    sources=[test/'test_relay_port.c']+[bsp/n for n in ['g02_control.c','g02_port.c','g02_link.c','g03_control.c','g03_port.c','g03_adc_core.c','g03_adc_port.c','g03_relay_core.c','g03_relay_port.c','measurement_core.c']]
++    for name,defs in [('disabled',[]),('live-register-fixture',['-DG3R_LIVE_PROFILE_VERIFIED=1','-DG3R_CELL_LOW_CODE=36000','-DG3R_CELL_HIGH_CODE=41000'])]:
++        run('build-'+name,flags+defs+['-include','stdlib.h','-I'+str(root/'tests/g02/stubs')]+sources+['-lm','-o',out/(name+'.exe')])
++        run(name,[out/(name+'.exe')])
++    run('host',[sys.executable,'-m','unittest','discover','-s',test,'-p','test_relay_host.py','-v'])
++    (out/'result.json').write_text(json.dumps(dict(checks='passed',evidence_scope=['simulation'],physical_limits_verified=False),indent=2))
++    print('PASS relay core + production adapter/link, disabled and synthetic live register fixtures')
++if __name__=='__main__':main()
+--- before/tests\g01\test_measurement.c
++++ after/tests\g01\test_measurement.c
+@@ -135,6 +135,18 @@
+         }
+     }
+     fault=0;
++    /* Dedicated pulse path uses the same verified register/PEC decoder. */
++    assert(Afe_PulsePrepare()==0U);
++    for(fault=0;fault<=6;++fault){
++        Afe_PulseAcquire(s);assert(cs_high);
++        for(i=0;i<4;++i){
++            MeasValue v=Meas_Evaluate(&s[i],(MeasChannel)i,tick);
++            if(!fault)assert(v.raw_valid && s[i].has_frame);
++            if(fault==1||fault==2||fault==5||fault==6)assert(!v.raw_valid);
++            if(fault==4 && i==3)assert(!v.raw_valid && (v.status&MEAS_PEC));
++        }
++    }
++    fault=0;
+ }
+ int main(void)
+ {
+--- before/tests\g02\stubs\main.h
++++ after/tests\g02\stubs\main.h
+@@ -18,6 +18,9 @@
+ typedef struct { TIM_TypeDef *Instance; } TIM_HandleTypeDef;
+ typedef enum { HAL_OK, HAL_ERROR, HAL_BUSY, HAL_TIMEOUT } HAL_StatusTypeDef;
+ extern TIM_TypeDef test_tim;
++extern TIM_TypeDef test_tim2;
++#define TIM2 (&test_tim2)
++#define TIM2_IRQn 114U
+ extern GPIO_TypeDef test_gpio_a, test_gpio_b, test_gpio_f, test_gpio_g;
+ extern ADC_TypeDef test_adc;
+ extern DWT_TypeDef test_dwt;
+--- before/tests\g02\test_link.c
++++ after/tests\g02\test_link.c
+@@ -11,7 +11,7 @@
+ {char s[80],frame[100];unsigned i;snprintf(s,sizeof s,"G02,%u,%u,%u",id,op,arg);snprintf(frame,sizeof frame,"%s*%04X\n",s,checksum(s));reply[0]=0;
+  for(i=0;frame[i];i++){G02_LinkRx((const uint8_t *)&frame[i],1);G02_LinkTask();}}
+ static void expect(unsigned id,unsigned result)
+-{char prefix[70];snprintf(prefix,sizeof prefix,"#G02,g03-adc-r4,%u,%u,",id,result);assert(strncmp(reply,prefix,strlen(prefix))==0);}
++{char prefix[70];snprintf(prefix,sizeof prefix,"#G02,g03-relay-r1,%u,%u,",id,result);assert(strncmp(reply,prefix,strlen(prefix))==0);}
+ #ifndef G02_LINK_MAIN
+ #define G02_LINK_MAIN main
+ #endif
+--- before/tests\g03\relay_bridge_stub.c
++++ after/tests\g03\relay_bridge_stub.c
+@@ -0,0 +1,10 @@
++#include "g03_relay_port.h"
++void G03_RelayInit(void){}
++int G03_RelayBusy(void){return 0;}
++void G03_RelayTask(void){}
++void G03_RelayTickIRQ(void){}
++void G03_RelayStop(void){}
++void G03_RelayCPUFault(void){}
++uint32_t G03_RelayCommand(uint32_t op,uint32_t arg){(void)op;(void)arg;return 4U;}
++int G03_RelayReport(char *o,unsigned s,uint32_t i,uint32_t r,uint32_t p,uint32_t a)
++{(void)o;(void)s;(void)i;(void)r;(void)p;(void)a;return -1;}
+--- before/tests\g03\test_adc_host.py
++++ after/tests\g03\test_adc_host.py
+@@ -7,20 +7,20 @@
+ class Tests(unittest.TestCase):
+     def test_status_and_signed_current(self):
+         n=[0]*len(a.STATUS);n[2]=-1200
+-        r=a.parse(wire('#G3A,g03-adc-r4,'+','.join(map(str,n))))
++        r=a.parse(wire('#G3A,g03-relay-r1,'+','.join(map(str,n))))
+         self.assertEqual(r['ua'],-1200);self.assertEqual(r['power_capable'],0)
+     def test_corruption(self):
+-        b=wire('#G3A,g03-adc-r4,'+','.join(['0']*len(a.STATUS)))
+-        for v in [b[:-4],b.replace(b'g03-adc-',b'g03-bad-'),b.replace(b',0',b',1',1)]:
++        b=wire('#G3A,g03-relay-r1,'+','.join(['0']*len(a.STATUS)))
++        for v in [b[:-4],b.replace(b'g03-relay-',b'g03-bad-'),b.replace(b',0',b',1',1)]:
+             with self.assertRaises(ValueError):a.parse(v)
+     def test_diagnostic_aggregate(self):
+         nums=[1,0,3,1,64,2048,2048,131072]+[0]*12+[2048]*64
+-        body='#G3D,g03-adc-r4,'+','.join(map(str,nums));r=a.parse(wire(body))
++        body='#G3D,g03-relay-r1,'+','.join(map(str,nums));r=a.parse(wire(body))
+         self.assertEqual(len(r['samples']),64)
+         nums[-1]=2049
+-        with self.assertRaises(ValueError):a.parse(wire('#G3D,g03-adc-r4,'+','.join(map(str,nums))))
++        with self.assertRaises(ValueError):a.parse(wire('#G3D,g03-relay-r1,'+','.join(map(str,nums))))
+     def test_unsigned_and_length(self):
+         nums=[0]*len(a.STATUS);nums[0]=-1
+         for n in (nums,nums[:-1]):
+-            with self.assertRaises(ValueError):a.parse(wire('#G3A,g03-adc-r4,'+','.join(map(str,n))))
++            with self.assertRaises(ValueError):a.parse(wire('#G3A,g03-relay-r1,'+','.join(map(str,n))))
+ if __name__=='__main__':unittest.main()
+--- before/tests\g03\test_adc_link.c
++++ after/tests\g03\test_adc_link.c
+@@ -12,8 +12,11 @@
+ {char b[80],w[90];snprintf(b,sizeof b,"G02,%u,%u,%u",id,op,arg);snprintf(w,sizeof w,"%s*%04X\n",b,crc(b));
+  G02_LinkRx((const uint8_t *)w,(uint16_t)strlen(w));G02_LinkTask();}
+ static void expect(unsigned id,unsigned code,const char *kind)
+-{char b[90];snprintf(b,sizeof b,"%s,g03-adc-r4,%u,%u,",kind,id,code);assert(strncmp(reply,b,strlen(b))==0);puts(reply);}
+-int main(void)
++{char b[90];snprintf(b,sizeof b,"%s,g03-relay-r1,%u,%u,",kind,id,code);assert(strncmp(reply,b,strlen(b))==0);puts(reply);}
++#ifndef ADC_LINK_MAIN
++#define ADC_LINK_MAIN main
++#endif
++int ADC_LINK_MAIN(void)
+ {
+  unsigned i;assert(adc_port_main()==0);
+  send(100,21,5);expect(100,0,"#G3D");send(101,22,0);expect(101,0,"#G3A");
+--- before/tests\g03\test_adc_port.c
++++ after/tests\g03\test_adc_port.c
+@@ -22,7 +22,7 @@
+ static unsigned status_fault(void)
+ {char r[1024];unsigned id,result,state,fault;long ua;
+  G03_ADC_Report(r,sizeof r,1,0,20,0);
+- assert(sscanf(r,"#G3A,g03-adc-r4,%u,%u,%ld,%u,%u",&id,&result,&ua,&state,&fault)==5);
++ assert(sscanf(r,"#G3A,g03-relay-r1,%u,%u,%ld,%u,%u",&id,&result,&ua,&state,&fault)==5);
+  assert_off();return fault;}
+ static void conversion(uint32_t raw)
+ {
+--- before/tests\g03\test_host.py
++++ after/tests\g03\test_host.py
+@@ -4,7 +4,7 @@
+ from disabled_diagnostics import Session,parse,FIELDS
+ def reply(**values):
+     d=dict.fromkeys(FIELDS,0);d.update(id=1,synthetic=1);d.update(values)
+-    body=('#G03,g03-adc-r4,'+','.join(str(d[x]) for x in FIELDS)).encode()
++    body=('#G03,g03-relay-r1,'+','.join(str(d[x]) for x in FIELDS)).encode()
+     return body+('*%04X\n'%binascii.crc_hqx(body,65535)).encode()
+ class Link:
+     def __init__(self,parts):self.parts=list(parts);self.is_open=True;self.writes=[]
+@@ -19,6 +19,8 @@
+         s=Session(Link(parts),Path(temp.name));self.addCleanup(s.finish);return s
+     def test_crc_numeric_schema(self):
+         self.assertEqual(parse(reply())['synthetic'],1)
++        body=reply().split(b'*')[0].replace(b'g03-relay-r1',b'g03-adc-r4')
++        self.assertEqual(parse(body+b'*%04X\n'%binascii.crc_hqx(body,65535))['synthetic'],1)
+         for b in (reply().replace(b'*',b'*0'),reply(state='NaN'),reply(state=-1),reply(state=2**32)):
+             with self.assertRaises(ValueError):parse(b)
+     def test_fragment_and_metadata(self):
+--- before/tests\g03\test_link.c
++++ after/tests\g03\test_link.c
+@@ -2,7 +2,7 @@
+ #include "../g02/test_link.c"
+ #include "g03_port.h"
+ static void g03_expect(unsigned id,unsigned code)
+-{char prefix[80];snprintf(prefix,sizeof prefix,"#G03,g03-adc-r4,%u,%u,",id,code);assert(strncmp(reply,prefix,strlen(prefix))==0);puts(reply);}
++{char prefix[80];snprintf(prefix,sizeof prefix,"#G03,g03-relay-r1,%u,%u,",id,code);assert(strncmp(reply,prefix,strlen(prefix))==0);puts(reply);}
+ static void advance(unsigned n){while(n--){++tick;G03_TickIRQ();assert_off();}}
+ int main(void)
+ {
+--- before/tests\g03\test_relay_core.c
++++ after/tests\g03\test_relay_core.c
+@@ -0,0 +1,36 @@
++#include "g03_relay_core.h"
++#include <assert.h>
++#include <stdio.h>
++static G3RCore c;
++static uint16_t raw[4]={38900,38910,38920,9000};
++static uint32_t baseline(uint32_t start,uint32_t live)
++{
++    unsigned i;G3R_Init(&c);assert(G3R_Begin(&c,live,start,36000,41000));G3R_Ready(&c,start);
++    for(i=0;i<G3R_BASE_SAMPLES;++i)G3R_Sample(&c,start+i*20U,start+i*20U,1,raw);
++    assert(c.state==G3R_PULSE && c.command_on && c.base_count==50U);return c.on_ms;
++}
++int main(void)
++{
++    uint32_t t;unsigned i;
++    t=baseline(0,0);assert(!G3R_Begin(&c,1,t,36000,41000));
++    assert(!G3R_Clear(&c));
++    for(i=20;i<99;i+=20){G3R_Sample(&c,t+i,t+i,1,raw);G3R_Tick(&c,t+i);assert(c.command_on);}
++    G3R_Tick(&c,t+99);assert(c.state==G3R_POST && !c.command_on && c.reason==G3R_END_DEADLINE);
++    for(i=0;i<5;++i)G3R_Sample(&c,t+100+i*20,t+100+i*20,1,raw);
++    assert(c.recover_count==5);G3R_Tick(&c,t+1099);assert(c.state==G3R_DONE);assert(G3R_Clear(&c));
++    t=baseline(0xfffffc00U,1);G3R_Stop(&c,t+10);assert(!c.command_on && c.reason==G3R_END_STOP);
++    G3R_Stop(&c,t+20);assert(c.off_ms==t+10);G3R_Tick(&c,t+1010);assert(c.state==G3R_DONE);
++    t=baseline(0,1);G3R_Tick(&c,t+41);assert(c.faults&G3R_STALE);assert(!c.command_on);
++    t=baseline(0,1);G3R_Sample(&c,t+1,t+1,0,raw);assert(c.faults&G3R_DATA);
++    t=baseline(0,1);G3R_Sample(&c,t+1,t-50,1,raw);assert(c.faults&G3R_STALE);
++    t=baseline(0,1);raw[1]=35999;G3R_Sample(&c,t+1,t+1,1,raw);assert(c.faults&G3R_CELL);raw[1]=38910;
++    t=baseline(0,0);c.samples=G3R_CAPACITY;G3R_Sample(&c,t+1,t+1,1,raw);assert(c.faults&G3R_BUFFER);
++    t=baseline(0,0);G3R_Trip(&c,G3R_CPU,t+1);G3R_Trip(&c,G3R_DATA,t+50);assert(c.post_start==t+1);
++    G3R_Tick(&c,t+1001);assert(c.state==G3R_FAULT);
++    G3R_Init(&c);assert(!G3R_Begin(&c,1,0,0,0));assert(G3R_Begin(&c,0,0,0,0));
++    G3R_Tick(&c,201);assert(c.faults&G3R_DATA);
++    G3R_Init(&c);assert(G3R_Begin(&c,0,0,0,0));G3R_Ready(&c,0);
++    for(i=0;i<50;++i){raw[3]=(uint16_t)(9000+i*3);G3R_Sample(&c,i*20,i*20,1,raw);}
++    assert(c.faults&G3R_BASE);raw[3]=9000;
++    puts("PASS relay core deadlines, wrap, stale/error/cell/buffer, stop and latch");return 0;
++}
+--- before/tests\g03\test_relay_host.py
++++ after/tests\g03\test_relay_host.py
+@@ -0,0 +1,40 @@
++import unittest,sys,binascii
++from pathlib import Path
++sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'scripts/g03'))
++import relay_capture as r
++def wire(body):
++    b=body.encode();return b+b'*%04X\n'%binascii.crc_hqx(b,65535)
++class Tests(unittest.TestCase):
++    def test_status_crc_shape_and_output(self):
++        v=[0]*len(r.STATUS);v[0]=1;v[17]=800000000
++        body='#G3R,g03-relay-r1,'+','.join(map(str,v))
++        self.assertEqual(r.parse(wire(body))['cpu_hz'],800000000)
++        for bad in [wire(body)[:-4],wire(body.replace('relay-r1','bad-r1')),wire(body+',0')]:
++            with self.assertRaises(ValueError):r.parse(bad)
++        v[13]=1
++        with self.assertRaises(ValueError):r.parse(wire('#G3R,g03-relay-r1,'+','.join(map(str,v))))
++    def test_quality_not_zero(self):
++        start=['1','0','0','3','1000','1010','16']
++        samples=['1000','1007','0','4','1','0000000000000000']*5
++        with self.assertRaises(ValueError):r.parse(wire('#G3S,g03-relay-r1,'+','.join(start+samples)))
++    def test_window_coverage_and_recovery(self):
++        s=dict(live=1,faults=0,state=5,on_ms=1000,off_ms=1099,on_cycles=100,off_cycles=79200100,cpu_hz=800000000,center=9000,tolerance=20)
++        rows=[]
++        def row(phase,start,value,end=None):
++            return dict(phase=phase,at_ms=start,done_ms=end or start+8,samples=[dict(raw=value,raw_valid=1,start_ms=start,end_ms=end or start+7) for _ in range(5)])
++        rows+=[row(2,900,9000)]
++        rows+=[row(3,t,9500) for t in [1010,1030,1050,1070]]
++        rows+=[row(3,1090,9500,1105)] # spans actual off: not counted
++        rows+=[row(4,t,9000) for t in range(1120,1220,20)]
++        a=r.analyze(s,rows);self.assertEqual(a['conclusion'],'response_and_recovery');self.assertEqual(a['valid_window_samples'],4)
++        self.assertAlmostEqual(a['command_high_ms'],99)
++        self.assertEqual(r.analyze(s,rows[:2])['conclusion'],'insufficient_observation')
++        s['live']=0;self.assertEqual(r.analyze(s,rows)['conclusion'],'disabled_rehearsal_only')
++        s['live']=1;s['faults']=1;self.assertEqual(r.analyze(s,rows)['conclusion'],'aborted')
++    def test_no_change_is_not_missing(self):
++        s=dict(live=1,faults=0,state=5,on_ms=0,off_ms=99,on_cycles=1,off_cycles=2,cpu_hz=800000000,center=9000,tolerance=20)
++        rows=[dict(phase=3 if t<100 else 4,at_ms=t,done_ms=t+5,samples=[dict(raw=9000,raw_valid=1,start_ms=t,end_ms=t+5) for _ in range(5)]) for t in [10,30,50,120,140,160,180,200]]
++        self.assertEqual(r.analyze(s,rows)['conclusion'],'no_clear_response')
++        for row in rows[:3]:row['samples'][0]['raw_valid']=0
++        self.assertEqual(r.analyze(s,rows)['conclusion'],'insufficient_observation')
++if __name__=='__main__':unittest.main()
+--- before/tests\g03\test_relay_port.c
++++ after/tests\g03\test_relay_port.c
+@@ -0,0 +1,67 @@
++#define ADC_LINK_MAIN previous_adc_link_main
++#include "test_adc_link.c"
++#undef main
++#include "g03_relay_port.h"
++#include "g03_relay_core.h"
++#include "adbms_acquisition.h"
++TIM_TypeDef test_tim2;
++static unsigned afe_fault,spi_stall;
++static void elapsed(unsigned ms)
++{
++    while(ms--){++tick;DWT->CYCCNT+=800000U;
++        if(TIM2->DIER&TIM_DIER_UIE){TIM2->SR=TIM_SR_UIF;G03_RelayTickIRQ();}
++        assert(!(TIM1->CR1&TIM_CR1_CEN)&&!TIM1->CCER&&!(TIM1->BDTR&TIM_BDTR_MOE));
++        assert(!(GPIOB->ODR&SWS_Relay_Pin));
++    }
++}
++uint32_t Afe_PulsePrepare(void){elapsed(8);return 0;}
++void Afe_PulseAcquire(MeasSample s[4])
++{
++    unsigned i;memset(s,0,4*sizeof *s);
++    for(i=0;i<4;++i){s[i].start_ms=tick;s[i].raw=(uint16_t)(i<3?38900:9000);s[i].has_raw=1;
++        s[i].status=afe_fault?MEAS_PEC:0;}
++    elapsed(spi_stall?60:7);
++    for(i=0;i<4;++i)s[i].end_ms=tick;
++}
++static unsigned relay_field(unsigned index)
++{
++    char buf[1024],*s;unsigned i;
++    assert(G03_RelayReport(buf,sizeof buf,1,0,30,0)>0);s=buf;
++    for(i=0;i<index+2;++i){s=strchr(s,',');assert(s);++s;}
++    return (unsigned)strtoul(s,0,10);
++}
++static void run_until(unsigned state,unsigned max_ms)
++{while(relay_field(2)!=state && max_ms--){elapsed(1);G03_RelayTask();}assert(relay_field(2)==state);}
++int main(void)
++{
++    unsigned off_tick,on,old_count;
++    TIM1->ARR=2000;TIM1->RCR=1;TIM1->CR1=TIM_COUNTERMODE_CENTERALIGNED1|TIM_CR1_ARPE;
++    TIM1->CCMR1=(TIM_OCMODE_PWM1<<8)|TIM_CCMR1_OC2PE;hadc1.Instance=ADC1;
++    htim1.Instance=TIM1;G02_PortInit();G03_PortInit();G03_RelayInit();assert_off();
++    send(1,31,0);assert(G03_RelayBusy() && !G02_MeasurementAllowed());
++    elapsed(20);G03_RelayTask();send(1,31,0); /* replay cannot reset preparation */
++    assert(G03_Command(11,100)==G03_BUSY);assert(G03_ADC_Command(21,5)==G03_BUSY);
++    g02_command=G02_CMD_SAMPLE;G02_Task();assert(g02_command_result==G02_BUSY);
++    run_until(G3R_PULSE,1500);old_count=relay_field(7);assert(old_count==50);assert_off();
++    run_until(G3R_DONE,1500);assert_off();assert(relay_field(4)==G3R_END_DEADLINE);
++    G02_LinkTask();expect(1,0,"#G3R");send(2,31,0);expect(2,G02_NOT_READY,"#G3R");
++    send(3,35,0);expect(3,0,"#G3R");
++#if G3R_LIVE_PROFILE_VERIFIED
++    send(4,32,0);run_until(G3R_PULSE,1500);on=tick;assert(GPIOG->ODR&SWL_Relay_Pin);
++    send(4,32,0); /* same request must not retrigger */
++    spi_stall=1;elapsed(20);G03_RelayTask();spi_stall=0;
++    off_tick=relay_field(11);assert(!(GPIOG->ODR&SWL_Relay_Pin));assert(off_tick-on<=100);
++    assert(relay_field(3)&G3R_STALE);run_until(G3R_FAULT,1500);
++    send(5,35,0);send(6,32,0);expect(6,G02_DISALLOWED,"#G3R"); /* once per boot */
++#else
++    (void)off_tick;(void)on;
++    send(4,32,0);expect(4,G02_DISALLOWED,"#G3R");
++#endif
++    G03_RelayCommand(35,0);G03_RelayCommand(31,0);run_until(G3R_PULSE,1500);
++    G03_RelayStop();assert_off();assert(relay_field(4)==G3R_END_STOP);run_until(G3R_DONE,1500);
++    G03_RelayCommand(35,0);G03_RelayCommand(31,0);afe_fault=1;run_until(G3R_FAULT,2000);
++    assert(relay_field(3)&G3R_DATA);afe_fault=0;
++    G03_RelayCommand(35,0);G03_RelayCommand(31,0);G03_RelayTask();
++    elapsed(41);assert(relay_field(3)&G3R_STALE);assert_off();
++    puts("PASS relay production adapter/link, interlocks, no replay, SPI stall/local cutoff, STOP and PEC");return 0;
++}

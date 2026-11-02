@@ -1,0 +1,17 @@
+{
+  "samples": 49,
+  "active_complete_samples": 0,
+  "stopped": true,
+  "software_pwm_us": null,
+  "relay_hold_after_pwm_us": null,
+  "timing_sequence_ok": false,
+  "pwm_increment_Ibat_nominal_A": null,
+  "load_response_observed": null,
+  "actual_ccr_arr_constant": true,
+  "real_power_command_sent": false,
+  "actual_pwm_started": false,
+  "faults": 2228232,
+  "physical_valid": 0,
+  "steady_state_claim": false,
+  "verdict": "fail"
+}

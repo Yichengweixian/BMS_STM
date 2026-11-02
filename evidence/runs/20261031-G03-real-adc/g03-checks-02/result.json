@@ -1,0 +1,30 @@
+{
+  "status": "complete",
+  "verdict": null,
+  "evidence_scope": [
+    "static",
+    "simulation"
+  ],
+  "checks": "passed",
+  "physical_outputs_verified": false,
+  "sha256": {
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_core.c": "4503548f0ab1464aa5b50ba2ad70864edad0a6614717bd58bbfdb66b6cc35a95",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_core.h": "8c8d46022fc918461eedbbf7bd115f46ef8ea6b557b744747e6f54081eef1861",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.c": "8fe43627253312c165bcf3c69d5e7b4bfa24e1b7a1e31991d027e4cd317abed5",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.h": "2a34efac64d63168cd6bbef22b0fd676d03b235649bf93fd622d7b8633f23fd2",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.c": "83224dd8f78336a5ec052cb574ac052a3a2444a30ca3fc724586d7fb8a6c0ad1",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_control.h": "885a41928344bf0008b39e1d8f6be7246362c54a4b7a5e2eb38684177cc8ccd4",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.c": "09948d3dc92492a7ca0b74b7b6e3550316d59da5d5b41af101548165b4caa457",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.h": "6b92449c4757d7f3caa8a5e428e254e2d7e1a4f150a4c949edac37bfdc054aa0",
+    "tests\\g03\\adc_bridge_stub.c": "42ec203dff970ea487e0390f372165e52b0e9b8c6ef1b90439758d0eab324132",
+    "tests\\g03\\test_adc_core.c": "423fc033309460f5c9a207bd2cb081bcd4708b1bdeb444db181067c04a5b26cd",
+    "tests\\g03\\test_adc_port.c": "7058d290d6c0bcba68bd167ab8e4d2b3cee452f6b18a256e32ea43a09d0989e3",
+    "tests\\g03\\test_control.c": "181a5b216d1619a1bad20ba7498034770d7e9c21f0992222a966bfebb367d5ef",
+    "tests\\g03\\test_link.c": "0ad931c29cdac617009d6716f2d9a1a9b6ac3e7de94c5f8b7a763d12fad386cf",
+    "tests\\g03\\test_port.c": "4afd501cd93b61f9129dfbe0677a937c733cabd493ba26d227b756a2044c5a6e",
+    "tests\\g03\\test_host.py": "a0bcb07a0fd2b317032a2b3ea9bf2c0e9bee23149a3d346e56a27f3d102e47dd",
+    "scripts\\g03\\disabled_diagnostics.py": "1a006ec7ffa2fb685d988c9e3a1a931c06951eb13051276916b8fa139d618f6e",
+    "scripts\\g03\\run_adc_checks.py": "f1ef72bbdf13bce0298cfd480b5285db642858cf70fb8b45dc0ac6b7d2e6bcba",
+    "scripts\\g03\\run_checks.py": "853f6fdc0f2d3790778451962bae6657cccb94d96e6260587ae5f049247c388f"
+  }
+}

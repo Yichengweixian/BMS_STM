@@ -1,0 +1,72 @@
+{
+  "schema": "g01-voltage-points-v1",
+  "calibration_id": null,
+  "tolerance_V": null,
+  "acceptance_basis": null,
+  "points": [
+    {
+      "id": "cell1-point-1",
+      "capture": null,
+      "boot_id": null,
+      "channel": "cell1",
+      "role": "fit",
+      "seq_first": null,
+      "seq_last": null,
+      "reference_V": null,
+      "instrument_id": "dmm-ca5212-01",
+      "mapping_evidence": null,
+      "reference_time_evidence": null,
+      "reference_condition": null,
+      "expanded_uncertainty_V": null,
+      "uncertainty_basis": null
+    },
+    {
+      "id": "cell1-point-2",
+      "capture": null,
+      "boot_id": null,
+      "channel": "cell1",
+      "role": "fit",
+      "seq_first": null,
+      "seq_last": null,
+      "reference_V": null,
+      "instrument_id": "dmm-ca5212-01",
+      "mapping_evidence": null,
+      "reference_time_evidence": null,
+      "reference_condition": null,
+      "expanded_uncertainty_V": null,
+      "uncertainty_basis": null
+    },
+    {
+      "id": "cell1-point-3",
+      "capture": null,
+      "boot_id": null,
+      "channel": "cell1",
+      "role": "fit",
+      "seq_first": null,
+      "seq_last": null,
+      "reference_V": null,
+      "instrument_id": "dmm-ca5212-01",
+      "mapping_evidence": null,
+      "reference_time_evidence": null,
+      "reference_condition": null,
+      "expanded_uncertainty_V": null,
+      "uncertainty_basis": null
+    },
+    {
+      "id": "cell1-point-4",
+      "capture": null,
+      "boot_id": null,
+      "channel": "cell1",
+      "role": "validation",
+      "seq_first": null,
+      "seq_last": null,
+      "reference_V": null,
+      "instrument_id": "dmm-ca5212-01",
+      "mapping_evidence": null,
+      "reference_time_evidence": null,
+      "reference_condition": null,
+      "expanded_uncertainty_V": null,
+      "uncertainty_basis": null
+    }
+  ]
+}

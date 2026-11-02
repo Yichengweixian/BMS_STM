@@ -1,0 +1,23 @@
+{
+  "run_id": "20261031-G02-host",
+  "mode": "exploratory",
+  "firmware": "g02-host-r1",
+  "firmware_sha256": "ea05cc76e484a1afe60e3b61ff652668d3261e5a38355d83d34ba944044f70d1",
+  "target": "BMS_EX_Release",
+  "actually_flashed": true,
+  "flash_verified": true,
+  "pin_output_enabled": false,
+  "power_transfer_requested": false,
+  "scope": [
+    "static",
+    "build",
+    "simulation",
+    "bench",
+    "release_boot"
+  ],
+  "formal_criteria_frozen": false,
+  "startup_basis": "User confirms BOOT00 reset plus matching serial firmware; no cold boot repetition",
+  "physical_setup": "No rewiring requested; source/load present state not newly inferred",
+  "hardware_profile_snapshot": "hardware-profile-snapshot.json",
+  "host_result": "host-session-02/result.json"
+}

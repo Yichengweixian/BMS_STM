@@ -1,0 +1,127 @@
+[
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/g02_link.c",
+    "before_sha256": "b905c3df65ad18935e709124c5b66aa5c4834d67f46ef6b690e43a6acd48a5ef",
+    "after_sha256": "b978e7bbc0bfd0d4f2e1339882ddf1b5813812b5dc8fa7ec0d1826b5ca2ed3ec"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/g02_port.c",
+    "before_sha256": "9543248ff891079c99380999a1ea9c6cc608e7ddf739b7a7bfb9f2a31af13b08",
+    "after_sha256": "7036e76a39ddb6a05a26ec0d72c486a4083d9713ecccfbaa366ee0e49ac717ef"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/measurement.c",
+    "before_sha256": "fead0787e5d2c0774f084e6b2beeefe2dea1e541305469f99fe1709f7fbcda96",
+    "after_sha256": "502b427f419f2411d6e8edfc26484a3aa66cfd7f0fa83282d930fe1059561b6b"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/Appli/Core/Src/main.c",
+    "before_sha256": "d1bc1e16d2d21851689081a801eb7b8937b53c76214c664f7f582f94da7b3393",
+    "after_sha256": "1f749147b36341ead9022317a65611b68f665fbcc71fe949d06ba8109ad208b2"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/Appli/Core/Src/stm32n6xx_it.c",
+    "before_sha256": "774ddbf98a0891e91d927e9e953d62db28ed088bdf042bf6483cd3a38429746d",
+    "after_sha256": "5184566d4f5e16e1fb9ce3eef5923ede13ed29e75adf3dc8e3670c18d7cfc353"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/MDK-ARM/Appli/BMS_EX_Appli.uvprojx",
+    "before_sha256": "39a75a9b3c9fe6a775e32d5159551192235492ea53c5c8565b1fe6d1d1fbf8cb",
+    "after_sha256": "10b9a137724c428b28a36bfeb12136b86fa62d2484992b9f9043cadf9e65ddde"
+  },
+  {
+    "path": "tests/g02/test_link.c",
+    "before_sha256": "5871faf2fa80159c8969172fbd73e1b8186471de0423bcd1efd06bd42863095d",
+    "after_sha256": "8843c05197a643f73912b759761039eaddba8eb08e53111e7801a23227533ce0"
+  },
+  {
+    "path": "scripts/g02/run_checks.py",
+    "before_sha256": "823e0ff45f7f675f9338cc3cf9c799dd59bfec167381158f70ce22725df7fb1c",
+    "after_sha256": "ff4fde2a1c5c055e8ab4307b636ea3fb1fdf4371d63eda17f75a736233c3c18e"
+  },
+  {
+    "path": "scripts/g02/host_diagnostics.py",
+    "before_sha256": "7a2d1a25340087b648afdc499fbd0ff8636dab57cd2e51afb3387f11879f5cf2",
+    "after_sha256": "3eade1b8ed34085614fc7ef858edabdcaca7e5436a0521b854795e22ef34dd7e"
+  },
+  {
+    "path": "scripts/g02/extended_diagnostics.py",
+    "before_sha256": "3b9445b73b7f1dc53ded9a7429751f17bc7f9bb35823c04cf73205257f5d63a5",
+    "after_sha256": "8cbdb2417e6f877ef16ca88bb57e91f5604815df55496b0280c2cb9e0197f64e"
+  },
+  {
+    "path": "instructions/specs/G03-disabled.md",
+    "before_sha256": null,
+    "after_sha256": "2735c5b16f375557355223d09d3aa3a9b2e32e12ecf357eeb8d543cabc2d1629"
+  },
+  {
+    "path": "instructions/README.md",
+    "before_sha256": "00ab6ce273ebe9f1071743bd2b1d9e4e43449a45f9f8e6c063413f9107141923",
+    "after_sha256": "61f78d87f195a5af0962681297bf7b643ff5616bb674317d3e9b7f6eb17af944"
+  },
+  {
+    "path": "instructions/STATUS.md",
+    "before_sha256": "711a2763f6b32c73b7ad381a5bbb5ad2beee4753412aef2c5c54c1a2347d8196",
+    "after_sha256": "1856cb170464a920e64c0943d7a223a2ee301e1c1f443325870af1957a3cd0ba"
+  },
+  {
+    "path": "instructions/RUNLOG.md",
+    "before_sha256": "2c5337388bd219be8f1816ef1a54a261768790612619e1a0f902adc4a13ac4b6",
+    "after_sha256": "35c8c2c109f1e7fc892abf92f34fd56187d97b302ba56d929d4b7dcf87f8bfe3"
+  },
+  {
+    "path": "instructions/specs/hardware-profile.json",
+    "before_sha256": "63da6b4f90cd99670a3a80d500296aab2699e2bd83e570a5656d20cef311314e",
+    "after_sha256": "a6f268fb6172d23cbb6bb55e55ed92a98ba95e328adaebcaefe8b53d780cfb02"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/g03_control.c",
+    "before_sha256": null,
+    "after_sha256": "83224dd8f78336a5ec052cb574ac052a3a2444a30ca3fc724586d7fb8a6c0ad1"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/g03_control.h",
+    "before_sha256": null,
+    "after_sha256": "885a41928344bf0008b39e1d8f6be7246362c54a4b7a5e2eb38684177cc8ccd4"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/g03_port.c",
+    "before_sha256": null,
+    "after_sha256": "45befe864e21392193fba8ea92dd12a7ed6136b2b85368341f74e6107c9eabb2"
+  },
+  {
+    "path": "BMS_EXv1.1/BMS_EX/BSP/g03_port.h",
+    "before_sha256": null,
+    "after_sha256": "36f8a5c43046ffe2843cd5a75f9eb9b3122f02850cfed0faf88fb77a122b29a7"
+  },
+  {
+    "path": "tests/g03/test_control.c",
+    "before_sha256": null,
+    "after_sha256": "181a5b216d1619a1bad20ba7498034770d7e9c21f0992222a966bfebb367d5ef"
+  },
+  {
+    "path": "tests/g03/test_link.c",
+    "before_sha256": null,
+    "after_sha256": "4eaf32fb3a61570b3c3307c527b85c1e78b4707cacda019dfab827524b1db042"
+  },
+  {
+    "path": "tests/g03/test_port.c",
+    "before_sha256": null,
+    "after_sha256": "4afd501cd93b61f9129dfbe0677a937c733cabd493ba26d227b756a2044c5a6e"
+  },
+  {
+    "path": "tests/g03/test_host.py",
+    "before_sha256": null,
+    "after_sha256": "684ec559883a1f67d9a10e9eebe45633fa56595276615293980908d7535780eb"
+  },
+  {
+    "path": "scripts/g03/disabled_diagnostics.py",
+    "before_sha256": null,
+    "after_sha256": "72194152eadb23a246a4de745cce19e6961057770cc7a0bc76391b622c644583"
+  },
+  {
+    "path": "scripts/g03/run_checks.py",
+    "before_sha256": null,
+    "after_sha256": "7a4d8ee872c7d84cba3b67a137c2f5163719fec91f5e10b2a7b0bba03f1d21ef"
+  }
+]

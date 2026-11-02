@@ -1,0 +1,5 @@
+suite,case,scenario,start_id,start_us,terminal_state,faults,stop_reason,sample_count,fast_retained,trace_overflow,restored,physical_valid,source,event,seq,timestamp_us,relative_us,raw,flags,flags_meaning,actual_bits
+board-suite-01,06-awd-low,4,2538674561,63998,4,32,AWD,0,0,0,1,0,status,stop_us,,64018,20,,,,0
+board-suite-01,06-awd-low,4,2538674561,63998,4,32,AWD,0,0,0,1,0,trace,off,65,64016,18,1403,139,ADC_ISR_bits,0
+board-suite-01,06-awd-low,4,2538674561,63998,4,32,AWD,0,0,0,1,0,trace,fault record,66,65986,1988,1403,32,core_fault_mask,0
+board-suite-01,06-awd-low,4,2538674561,63998,4,32,AWD,0,0,0,1,0,trace,cleanup,67,65987,1989,1403,0,cleanup_flags,0

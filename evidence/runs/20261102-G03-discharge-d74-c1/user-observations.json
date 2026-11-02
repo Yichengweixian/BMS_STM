@@ -1,0 +1,20 @@
+{
+  "long_point": {
+    "source": "user reply",
+    "PSU_CH1_CH2_CH3_A": [
+      0.512,
+      0.512,
+      0.512
+    ],
+    "Vload_DMM_V": 13.052,
+    "other_observations_user_text": "其余无异常",
+    "stop_voltage_numeric_V": null,
+    "no_CC_trip_or_anomaly_reported": true
+  },
+  "short_point": {
+    "no_anomaly_user_confirmed": true
+  },
+  "final_three_sources_OFF_user_confirmed": true,
+  "real_cells_remain_removed": true,
+  "DMM_remains_DCV": true
+}

@@ -1,0 +1,34 @@
+{
+  "source": "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\firmware\\prebuilt\\BMS_Appli.hex",
+  "sha256": "dd44fae11ed542ad6bcee45b35a13e93bd6632481b7d29662afda8ac7856be7f",
+  "data_bytes": 104056,
+  "span_bytes": 104064,
+  "base": "0x70100400",
+  "end_exclusive": "0x70119a80",
+  "entry": "0x70102715",
+  "checksums_valid": true,
+  "eof": true,
+  "records": 6511,
+  "binary_sha256": "b33a285b7420960c826993f47c393486eee74fa79192b6aa8ab4a4b9366a7dc4",
+  "objdump_command": [
+    "E:\\ST\\STM32CubeIDE_1.19.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\\tools\\bin\\arm-none-eabi-objdump.exe",
+    "-D",
+    "-b",
+    "binary",
+    "-m",
+    "armv8.1-m.main",
+    "-M",
+    "force-thumb",
+    "--adjust-vma=0x70100400",
+    "C:\\Users\\ADMIN\\.codex\\visualizations\\2026\\10\\31\\01a190f7-17b3-7453-a3ab-b4c2e18cd61a\\hex-reverse-20261101\\local-only\\prebuilt.bin"
+  ],
+  "objdump_version": "GNU objdump (GNU Tools for STM32 13.3.rel1.20240926-1715) 2.42.0.20240614",
+  "disassembly_sha256": "c341cbf83f1374dd3a56b2661acd4c189578e62c27f8656bf09b933b37660aef",
+  "address_specific_checks": 8,
+  "evidence_scope": [
+    "static"
+  ],
+  "bench_executed": false,
+  "firmware_changed": false,
+  "ghidra_executed": false
+}

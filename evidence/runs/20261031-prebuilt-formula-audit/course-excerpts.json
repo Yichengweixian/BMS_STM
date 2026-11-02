@@ -1,0 +1,128 @@
+[
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide4.xml",
+    "paragraph": 13,
+    "text": "INA199A2 + 0.015 Ω 采样电阻（增益 ×50）"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide7.xml",
+    "paragraph": 11,
+    "text": "电流换算（INA199，增益 ×50，R = 0.015 Ω）"
+  },
+  {
+    "source": "docs/course/基于STM32N6的智能BMS边缘智能系统设计.pptx",
+    "part": "ppt/slides/slide7.xml",
+    "paragraph": 15,
+    "text": "0.015 Ω 采样电阻（左）与 INA199 放大（右），输出 I_AD"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 18,
+    "text": "STM32N647X0HxQ + SiZ998DT 半桥 + INA199A2 电流检测"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 166,
+    "text": "两个操作要点： ① 每改一次都要确认 Build Output 里真的重新编译了（看到 compiling main.c）。只点下载不重编，烧进去还是上一个占空比。 ② 测完一组就把 TEST_DUTY 改回 0.90f（最小电流端）再断电，下次上电不会一上来就是大电流。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 213,
+    "text": "电池电流 ──► 采样电阻 R_sh ──► INA199A2（增益 50）──► PA1 (ADC1_INP1)"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 215,
+    "text": "· INA199A2 是电流检测放大器，增益 G = 50"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 217,
+    "text": "· 零点为什么是 0.9 V：INA199 的 REF 引脚接在 VREF/2 = 1.8/2 = 0.9 V，这样正负电流都能测（双极性）。零点不是 0 V。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 231,
+    "text": "INA199 增益 50 × 15 mΩ"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 239,
+    "text": "理论零点 = 0.9 / 1.8 × 4095 = 2047.5。但实际板子有器件偏差、REF 分压误差、温漂，可增加CODE_zero ，是零电流时实测的 ADC 码（不是理论值 2048）。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 240,
+    "text": "I(A) = (CODE − CODE_zero) × VREF / 4095 / 0.75     = (CODE − CODE_zero) × 0.000586"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 247,
+    "text": "· INA199 的输出 = 0.9 + 0.75 × I"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 282,
+    "text": "占空比 D ──► 电感电流 i_L ──► 电池电流（= INA199 采到的值）"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 307,
+    "text": "看起来两个方向的规律相反，但用代数看是一致的：D 增大时，电流都朝\"更正\"的方向走（充电更正、放电更接近 0，即放电减弱）。这就是题面说的\"*同一对开关管的占空比 D 由电压比决定、取值不变，切换方向时只需改变电流给定的符号，占空比与 PI 参数均保持不变*\"。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 319,
+    "text": "2. 反馈链：i_L 经 INA199 变成电压、ADC1 采成码、再换算成安培，回到比较点与给定相减。减法就是\"负反馈\"，符号错了会变成正反馈（电流一路冲到限幅）"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 383,
+    "text": "/* USER CODE BEGIN 4 */void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){  if (hadc->Instance != ADC1) { return; }   /* 1) 取值（必须在这里读：回调返回后 HAL 会清标志、释放数据） */  uint16_t code = (uint16_t)(HAL_ADC_GetValue(&hadc1) & 0x0FFFU);   /* 2) 换算电流 */  float i_meas = ((float)code - (float)g_zero) * 1.8f / 4095.0f / 0.75f;   /* 3) PI */  float u = PI_Update(&g_pi, g_i_ramp - i_meas);   /* 4) 写 CCR */  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, (uint32_t)(u * 2000.0f + 0.5f));}"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 404,
+    "text": "t = 0     两路继电器全断t = 20ms  合方向继电器（放电 → PG5；充电 → PB5）t = 120ms 使能 PWM，PI 从 0.90 起，指令从 0 斜坡t ≈ 320ms 斜坡到目标值"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 407,
+    "text": "static void SetMode(int8_t dir)      /* dir: -1 放电, +1 充电 */{  /* 1. 先停 */  HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_2);  HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);  HAL_GPIO_WritePin(GPIOG, GPIO_PIN_5, GPIO_PIN_RESET);  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);  HAL_Delay(20);   /* 2. 合方向继电器（互锁：先断对面） */  if (dir < 0) { HAL_GPIO_WritePin(GPIOG, GPIO_PIN_5, GPIO_PIN_SET); }  else         { HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET); }  HAL_Delay(100);   /* 3. 重启 PWM，PI 从安全端起步 */  g_i_ramp = 0.0f;  g_i_ref  = (float)dir * g_i_set;            /* 设定量 */  PI_Init(&g_pi, 0.07f, 90.0f, 1.0e-5f, 0.40f, 0.90f, 0.90f);  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 1800);   /* 0.90 */  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);  HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);}"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 408,
+    "text": "u0 = 0.90 的含义：放电方向它是最小电流端（实测约 −0.37 A），启动零冲击。充电方向它对应约 +0.63 A（比 0.5 A 目标大）。"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 579,
+    "text": "2030~2170 码（0.88~0.95 V），无电流时"
+  },
+  {
+    "source": "docs/course/任务2恒流控制实验_实验步骤.docx",
+    "part": "word/document.xml",
+    "paragraph": 629,
+    "text": "确认 u0 = 0.90（最小电流端）、CCR 初值 1800 "
+  }
+]

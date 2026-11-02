@@ -1,0 +1,14 @@
+{
+  "prior_suite": "board-suite-01",
+  "failed_case": "cache-full",
+  "accepted_start_sent": false,
+  "reset_error": "Unable to run MCU; Error code: 32",
+  "query_evidence": "reset-failure-query-01/result.json",
+  "query_result": "same verified image label, IDLE, used=0, owned=0, outputs=0",
+  "next_run": "board-suite-02",
+  "decision": "Use current independently queried unused boot for cache-full; do not repeat reset. Remaining distinct cases retain one explicit reset each.",
+  "firmware_changed": false,
+  "criteria_changed": false,
+  "original_failure_retained": true,
+  "procedure_sha256": "b71a471d9cf26f4ad4a897c31f52b31e185208409318e63bd98723166bfee12f"
+}

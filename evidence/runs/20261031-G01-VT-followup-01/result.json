@@ -1,0 +1,26 @@
+{
+  "scope": [
+    "host voltage tools",
+    "board raw capture",
+    "manual voltage spot comparison"
+  ],
+  "software_checks": "passed",
+  "python_tests": 16,
+  "synthetic_replay_rows": 36,
+  "board_capture_seconds": 90,
+  "board_parsed_rows": 1603,
+  "complete_groups": 177,
+  "channels": 9,
+  "capture_edge_errors": 2,
+  "parsed_raw_valid": true,
+  "user_reported_stable_voltage": true,
+  "time_alignment_verified": false,
+  "position_channel_mapping_verified": false,
+  "calibration_verified": false,
+  "firmware_changed": false,
+  "physical_calibration_deferred": [
+    "current",
+    "temperature"
+  ],
+  "formal_G01_verdict": null
+}

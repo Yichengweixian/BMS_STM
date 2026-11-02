@@ -1,0 +1,16 @@
+case,run_us,elapsed_us,sample_count,retained_records,fault_mask,sample_gap_max_us,irq_gap_max_us,request_id,outputs,restored,path
+normal,100000,100002,9999,230,0,10,100,2538647505,0,True,board-suite-01/01-normal/result.json
+sample-6p5,100000,100001,9999,230,0,10,100,2538653902,0,True,board-suite-01/02-sample-6p5/result.json
+adc-stale,100000,7101,500,136,8,10,100,2538660187,0,True,board-suite-01/03-adc-stale/result.json
+adc-invalid,100000,5002,499,136,4,10,100,2538665075,0,True,board-suite-01/04-adc-invalid/result.json
+fifo-overrun,100000,5206,499,136,16,10,100,2538669767,0,True,board-suite-01/05-fifo-overrun/result.json
+awd-low,100000,20,0,68,32,0,0,2538674561,0,True,board-suite-01/06-awd-low/result.json
+awd-high,100000,21,0,68,32,0,0,2538678297,0,True,board-suite-01/07-awd-high/result.json
+cache-full,100000,4455,445,512,65536,10,100,2538775298,0,True,board-suite-02/01-cache-full/result.json
+heartbeat-expiry,100000,20001,1999,151,64,10,100,2538785973,0,True,board-suite-02/02-heartbeat-expiry/result.json
+explicit-stop,200000,25990,2598,157,1,11,100,2538790950,0,True,board-suite-02/03-explicit-stop/result.json
+foreground-stall,100000,100001,9999,230,0,12,100,2538796092,0,True,board-suite-02/04-foreground-stall/result.json
+bad-crc,200000,25990,2598,157,2,11,100,2538802661,0,True,board-suite-02/05-bad-crc/result.json
+rx-pressure,200000,39987,3998,171,2,12,100,2538807780,0,True,board-suite-02/06-rx-pressure/result.json
+duplicate-start,200000,200001,19999,330,0,11,100,2538813246,0,True,board-suite-02/07-duplicate-start/result.json
+conflicting-start,200000,25990,2598,157,2,12,100,2538821269,0,True,board-suite-02/08-conflicting-start/result.json

@@ -1,0 +1,66 @@
+[
+  {
+    "target": "BMS_EX_Release",
+    "summary": [
+      "\"BMS_EX_Release\\BMS_EX_Release.axf\" - 0 Error(s), 0 Warning(s)."
+    ],
+    "warnings": [],
+    "cli_exit_code": 0,
+    "artifacts": {
+      "axf": {
+        "path": "evidence/runs/20261031-G01-software/firmware/BMS_EX_Release/BMS_EX_Release.axf",
+        "sha256": "4236458e8f747d437d77923af4fda54cca8bcbd3bab958f031752a62a753e705",
+        "bytes": 821496
+      },
+      "hex": {
+        "path": "evidence/runs/20261031-G01-software/firmware/BMS_EX_Release/BMS_EX_Release.hex",
+        "sha256": "4bdc43fa24168c0ae86f05f3bffb32452ece327518e4186e0a79c208744ddb20",
+        "bytes": 204998
+      },
+      "bin": {
+        "path": "evidence/runs/20261031-G01-software/firmware/BMS_EX_Release/BMS_EX_Release.bin",
+        "sha256": "24cdd9e8201f277092bcd492e1f628ba68f059deae95c1941f169b9cec55a276",
+        "bytes": 72864
+      },
+      "map": {
+        "path": "evidence/runs/20261031-G01-software/firmware/BMS_EX_Release/BMS_EX_Release.map",
+        "sha256": "fcd2b2ec06cb4784380ad88c916ba0ebc57f57c04f220e61a81526d56f189216",
+        "bytes": 780224
+      }
+    },
+    "hardware_run": null
+  },
+  {
+    "target": "BMS_EX_Debug",
+    "summary": [
+      "\"BMS_EX_Debug\\BMS_EX_Debug.axf\" - 0 Error(s), 1 Warning(s)."
+    ],
+    "warnings": [
+      "stm32n647xx_LRUN_RAMxspi1.sct(26): warning: L6314W: No section matches pattern *(.EXTRAM)."
+    ],
+    "cli_exit_code": 1,
+    "artifacts": {
+      "axf": {
+        "path": "evidence/runs/20261031-G01-software/firmware/BMS_EX_Debug/BMS_EX_Debug.axf",
+        "sha256": "2834f65c1e5193a953b223baa3feda122f89c80db6d16d4d6d2bc321570d8bcf",
+        "bytes": 822508
+      },
+      "hex": {
+        "path": "evidence/runs/20261031-G01-software/firmware/BMS_EX_Debug/BMS_EX_Debug.hex",
+        "sha256": "923e35e6f445ec0a38269a05eb246f5fe1dcf6064b7a71ecb5d7e891b5fbc1af",
+        "bytes": 485005
+      },
+      "bin": {
+        "path": "evidence/runs/20261031-G01-software/firmware/BMS_EX_Debug/BMS_EX_Debug.bin",
+        "sha256": "b5bb03632612ba84215e719f81e8b686ff7c97422b9a27856a8bea3c37858e00",
+        "bytes": 172416
+      },
+      "map": {
+        "path": "evidence/runs/20261031-G01-software/firmware/BMS_EX_Debug/BMS_EX_Debug.map",
+        "sha256": "e306ecbfb28e728b6518643801402f9602adc5e326059a42684c0d6c81a0679a",
+        "bytes": 1224646
+      }
+    },
+    "hardware_run": null
+  }
+]

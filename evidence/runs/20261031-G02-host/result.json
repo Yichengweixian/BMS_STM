@@ -1,0 +1,20 @@
+{
+  "status": "complete",
+  "verdict": null,
+  "evidence_scope": [
+    "static",
+    "build",
+    "simulation",
+    "bench",
+    "release_boot"
+  ],
+  "software_checks": "passed",
+  "internal_bench_checks": "passed",
+  "download_verified": true,
+  "normal_reset_boot_verified": true,
+  "physical_pwm_verified": false,
+  "physical_stop_verified": false,
+  "calibration_verified": false,
+  "g03_released": false,
+  "g01_capture_tail_truncation_preserved": true
+}

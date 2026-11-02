@@ -1,0 +1,23 @@
+{
+  "scope": [
+    "static",
+    "simulation"
+  ],
+  "verdict": null,
+  "checks": "passed",
+  "rows": 36,
+  "channels": 9,
+  "raw_source": "synthetic HAL fault injection; not board capture",
+  "hardware_verified": false,
+  "sha256": {
+    "BMS_EXv1.1\\BMS_EX\\BSP\\measurement_core.c": "2e2fc6f65df0984f279715fa98f90abaa9705f34c019ae3947e052cc5b4d77a3",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\adbms_acquisition.c": "0324d399b0ee0232d5327163c4927092b6b2e5d71f5babce2ed1f021b474a92f",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\measurement.c": "79632e726f436724eb533ff753ef1f4c6a90348cefd64e2f6b9c5e41c0223b57",
+    "tests\\g01\\test_measurement.c": "d9f8740355412d8c56fe169e147e3f1d4e3f58e98464f7d2472e80fe42ff2c98",
+    "tests\\g01\\test_recorder.py": "1e0129d34b3ddbd0afce7e16d9e1b8bc67c1d2f90ea0daa3aed6dc102ad775bd",
+    "tests\\g01\\test_voltage_calibration.py": "eb20d9458f5b7bb48d19aa675d4a67a26e4d6fc964a65c2d35476f8f4b52932f",
+    "scripts\\g01\\g01_capture.py": "bdb223651734269afbe3d4fed29422947d228f8b54d6adc95186405aba4b412a",
+    "scripts\\g01\\voltage_calibration.py": "59521b9c7eae8e2032b12fefc3ad99061e5bee1c9ea00bfe6ac7f70bf0ffd89e",
+    "scripts\\g01\\run_checks.py": "a2256a6166477fd7b57efd3cf03107221d7c4a8694a9011de862ec7757380fae"
+  }
+}

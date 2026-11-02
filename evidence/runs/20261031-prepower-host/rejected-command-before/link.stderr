@@ -1,0 +1,6 @@
+Assertion failed!
+
+Program: C:\Users\ADMIN\.codex\visualizations\2026\10\31\01a190c5-3850-70d2-9a03-6e23ce232c1f\g02-prepower\evidence\runs\20261031-prepower-host\rejected-command-before\link.exe
+File: C:\Users\ADMIN\.codex\visualizations\2026\10\31\01a190c5-3850-70d2-9a03-6e23ce232c1f\g02-prepower\tests\g02\test_link.c, Line 39
+
+Expression: g02_compare==start

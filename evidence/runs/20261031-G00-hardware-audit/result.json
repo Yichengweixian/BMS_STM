@@ -1,0 +1,23 @@
+{
+  "gate": "G00",
+  "mode": "exploratory",
+  "status": "in_progress",
+  "verdict": null,
+  "evidence_scope": [
+    "static"
+  ],
+  "audit_completed": true,
+  "profile_id": "cnn647b-bms-baseline-20261031-r1",
+  "profile_sha256": "c1b55a54063b619df833f78f24feb75071276579edf3fb03def2f6e7f1759787",
+  "pending_user_visual_checks": [
+    "adapter_OUTPUT_label_and_actual_supply",
+    "external_resistor_connection_route_and_mounting",
+    "meter_model_when_available",
+    "carrier_revision_if_visible"
+  ],
+  "physical_limits_verified": false,
+  "firmware_modified": false,
+  "recorded_at": "2026-10-31T01:35:23.818365+08:00",
+  "installed_cells_confirmed": 3,
+  "multimeter_available": false
+}

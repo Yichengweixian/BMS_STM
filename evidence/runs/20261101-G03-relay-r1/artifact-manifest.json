@@ -1,0 +1,12 @@
+{
+  "firmware": {
+    "BMS_EX_Release": {
+      "path": "evidence\\runs\\20261101-G03-relay-r1\\firmware\\BMS_EX_Release\\BMS_EX_Release.hex",
+      "sha256": "529e6b83280d724f226e462dad59624f39552d640ba0eb9ec3366ccc694895bf"
+    },
+    "BMS_EX_Debug": {
+      "path": "evidence\\runs\\20261101-G03-relay-r1\\firmware\\BMS_EX_Debug\\BMS_EX_Debug.hex",
+      "sha256": "98fb7b3bff55d895be013d2b449b55e3f3178982d71e0817654cc63b744af4d0"
+    }
+  }
+}

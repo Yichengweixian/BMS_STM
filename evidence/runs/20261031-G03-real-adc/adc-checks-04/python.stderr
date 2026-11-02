@@ -1,0 +1,9 @@
+test_corruption (test_adc_host.Tests) ... ok
+test_diagnostic_aggregate (test_adc_host.Tests) ... ok
+test_status_and_signed_current (test_adc_host.Tests) ... ok
+test_unsigned_and_length (test_adc_host.Tests) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.002s
+
+OK

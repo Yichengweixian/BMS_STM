@@ -1,0 +1,5 @@
+﻿event,us
+relay_on,0
+pwm_on,1115128
+pwm_off,1215202
+relay_off,0

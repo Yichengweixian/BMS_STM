@@ -1,0 +1,5 @@
+{
+  "error": "TimeoutError: no status response in 8 seconds",
+  "record_type": "posthoc diagnostic from preserved empty serial.bin and single op30 event",
+  "real_trigger_sent": false
+}

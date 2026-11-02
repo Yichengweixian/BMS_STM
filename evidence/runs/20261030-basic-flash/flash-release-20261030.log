@@ -1,0 +1,35 @@
+      -------------------------------------------------------------------
+                       STM32CubeProgrammer v2.20.0                  
+      -------------------------------------------------------------------
+
+ST-LINK SN  : 16004A002933353739303541
+ST-LINK FW  : V2J37S7
+Board       : --
+Voltage     : 3.11V
+SWD freq    : 950 KHz
+Connect mode: Hot Plug
+Reset mode  : Software reset
+Device ID   : 0x486
+Revision ID : Rev B
+Device name : ST32N647
+Device type : MCU
+Device CPU  : Cortex-M55
+BL Version  : --
+
+
+
+Opening and parsing file: BMS_EX_Release.hex
+
+
+Memory Programming ...
+  File          : BMS_EX_Release.hex
+  Size          : 67.91 KB 
+  Address       : 0x70100400
+
+
+Erasing memory corresponding to segment 0:
+Erasing external memory sectors [256 273]
+Error: failed to erase memory
+
+
+Error: failed to erase memory

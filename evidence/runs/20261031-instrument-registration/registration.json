@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-31",
+  "scope": "instrument registration from user photos",
+  "status": "complete",
+  "verdict": null,
+  "evidence_scope": [
+    "static"
+  ],
+  "photos": [
+    {
+      "source": "User equipment photo 2026-10-31",
+      "path": "evidence/runs/20261031-instrument-registration/multimeter.jpg",
+      "sha256": "05b19c06ec322b12abd807cc2669057a926dbf0f5a5a09f6a600532689bf5f09",
+      "scope": "front-panel identity and printed nominal specifications only"
+    },
+    {
+      "source": "User equipment photo 2026-10-31",
+      "path": "evidence/runs/20261031-instrument-registration/oscilloscope.jpg",
+      "sha256": "0f2edfa84c9aaf9979b35b68a87983a48acbc88dbdae7500a53845704055119c",
+      "scope": "front-panel identity and printed nominal specifications only"
+    }
+  ],
+  "hardware_profile_sha256": "2f4850d871512cc45e3be47913ff10810e97bd233bf37baec24ffab1b102f163",
+  "measurements_performed": false,
+  "accuracy_or_calibration_verified": false
+}

@@ -1,0 +1,89 @@
+{
+  "files": [
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g02_link.c",
+      "before_sha256": "594537823eb96b01f65e7d35cbc5094c64a5a6117e72d10dc112f95480d43271",
+      "after_sha256": "69b7a0456500fbe02bbf1c7a7e36f31f0bbbe2cd2b7f04d4eda5a7feb1b04587"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_adc_port.c",
+      "before_sha256": "d13e5854cf0117bf972e455f5662e04ce019123cfb8bcf9335edbcfeb1b18209",
+      "after_sha256": "b7198c5b7dc7853449951bc779d8ff9b5b14ce9b44022a53e0d853f5df907291"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\BSP\\g03_port.c",
+      "before_sha256": "35c855e68e10fe9cea2ddf9823b78afede7ecb7a64d59de2c9b0cd0e5b436c32",
+      "after_sha256": "aeb5f5a39a719c81a87adfaaa0b83e32f894caaa3bbc46b15ba3a6089c4df5e3"
+    },
+    {
+      "path": "BMS_EXv1.1\\BMS_EX\\BSP\\measurement.c",
+      "before_sha256": "a65839e12490c8c8ea01d3696a1c45dd3cbc93bb64d7ec0fdc4890a33308fff4",
+      "after_sha256": "6b1fcef1aeda56e8fe2e354b9428d785f7e0be21a6ced017851a6c6238c28fc0"
+    },
+    {
+      "path": "scripts\\g02\\extended_diagnostics.py",
+      "before_sha256": "a609d0c4ab398a030606bf354cb6f68ee50f2dab927440a612a9ef8692021c5c",
+      "after_sha256": "0c246d9aa9b6c695b1f132daf9960aaac324a7e1d934d54cb1b5032651f160a9"
+    },
+    {
+      "path": "scripts\\g02\\host_diagnostics.py",
+      "before_sha256": "c37f81f8976133fb299399ee695c90e7ef76cec8eebf72416f591b59350c7b28",
+      "after_sha256": "32e3aec2eee0202dc1d5fd567a02fcbca0d77f533244d8a37a21389eca2471c2"
+    },
+    {
+      "path": "scripts\\g03\\adc_diagnostics.py",
+      "before_sha256": "dc98f94904b36cbe962265372a0166b86d2f18c2d72332ca0b17a46f51bfaa6e",
+      "after_sha256": "d3cc3131b713dddc053bcc90353d6c1318eb3087f10b9d64e77f678b9df7b51f"
+    },
+    {
+      "path": "scripts\\g03\\disabled_diagnostics.py",
+      "before_sha256": "94dcfc2369b9a070fc4cea7e88d218c903cde0777e20b7dd6bd632a401aa4610",
+      "after_sha256": "dddcef814205ea6c3f6d574e38fedbeed1688072c60514de07de408048ccda9c"
+    },
+    {
+      "path": "tests\\g02\\test_link.c",
+      "before_sha256": "6b7f35ffc51fa26f4f27fd64c4b2ac800fba5860e84f3dc0232854911262347a",
+      "after_sha256": "9678c9b0364ad5d948b451c300376db911b7b8c5e7ef5988c45e661fdc435ed7"
+    },
+    {
+      "path": "tests\\g02\\stubs\\main.h",
+      "before_sha256": "c9a352c3dcd33eb31bfe22050923c4ab38e5ee678343f5382022e5f71179362a",
+      "after_sha256": "69c14691e061c58aadd43f06fd2e509276a1e940208424b6a38b6676f005b3bd"
+    },
+    {
+      "path": "tests\\g03\\test_adc_host.py",
+      "before_sha256": "b5a54fe0de54667e9e33db779b57fd7c4df86d8350f484a42ce6991d6e26ca8c",
+      "after_sha256": "e52794acbfce680c5d40a6048212bfb1be40359a61e6cf001b68fff077ac18f4"
+    },
+    {
+      "path": "tests\\g03\\test_adc_link.c",
+      "before_sha256": "ea7e6a7e8a10af6bb63fbdd48814544e5bf90fc88ba0623839c35e552a03111f",
+      "after_sha256": "3199d57ce5acdb62062c6f2620f96e0ddb5bcba12e1713671b9f7b8ffb33f5a0"
+    },
+    {
+      "path": "tests\\g03\\test_adc_port.c",
+      "before_sha256": "72f6269792ac00d4c1d2732ba41f7ffa5cc12c7fd445ec39e3a062921e4e06f6",
+      "after_sha256": "3b1ae1e78f9bb17ff3c28b38178c2f8364aef39a97c292c977c2340ed257b36b"
+    },
+    {
+      "path": "tests\\g03\\test_host.py",
+      "before_sha256": "0d54998bffddeb057a9a8db2eae5d82207bbfa5fa15f7692a0b568f17f10d4b9",
+      "after_sha256": "bc836767f4ee1fe244055b494a7587a9f08feba92cc3acf8526e71e3f0b64ac8"
+    },
+    {
+      "path": "tests\\g03\\test_link.c",
+      "before_sha256": "b89ed47ac61e14464b5cd82244445d42050e064e8141d2eeb0bb2731e5baee97",
+      "after_sha256": "509b731d25ed97f719879e8eb74fe3dc1ac3de1efd17130401671e88b47d9e57"
+    }
+  ],
+  "firmware": {
+    "BMS_EX_Release": {
+      "path": "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261031-G03-real-adc-r3\\firmware\\BMS_EX_Release\\BMS_EX_Release.hex",
+      "sha256": "c5afb2ac8123f6904d193b5dc399a70ed809819a38cb7676d61065180d535b9c"
+    },
+    "BMS_EX_Debug": {
+      "path": "D:\\ADMIN\\Desktop\\WEIJI\\zonghe\\evidence\\runs\\20261031-G03-real-adc-r3\\firmware\\BMS_EX_Debug\\BMS_EX_Debug.hex",
+      "sha256": "7a6a8408fa860163d4c147d6b50fd416c4cbaac4af3eb15c617c8cbba8ebe15a"
+    }
+  }
+}

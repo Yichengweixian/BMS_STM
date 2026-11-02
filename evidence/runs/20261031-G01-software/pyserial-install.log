@@ -1,0 +1,8 @@
+Collecting pyserial==3.5
+  Downloading pyserial-3.5-py2.py3-none-any.whl (90 kB)
+Installing collected packages: pyserial
+  WARNING: The scripts pyserial-miniterm.exe and pyserial-ports.exe are installed in 'C:\Users\ADMIN\AppData\Roaming\Python\Python38\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed pyserial-3.5
+WARNING: You are using pip version 20.1.1; however, version 25.0.1 is available.
+You should consider upgrading via the 'C:\Users\ADMIN\AppData\Local\Programs\Python\Python38\python.exe -m pip install --upgrade pip' command.

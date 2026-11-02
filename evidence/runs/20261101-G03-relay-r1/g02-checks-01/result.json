@@ -1,0 +1,31 @@
+{
+  "scope": [
+    "static",
+    "simulation"
+  ],
+  "verdict": null,
+  "checks": "passed",
+  "hardware_verified": false,
+  "pin_output_run": "host simulation only",
+  "limitations": [
+    "Register/HAL stubs do not model electrical behavior, actual clock/ADC timing or reset pin levels.",
+    "Native tests and build are not G02 bench acceptance."
+  ],
+  "sha256": {
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g02_control.c": "25a1cd48ec3d4e84839ba703bb9877034916a0794265fdb5f21aed6a2636b8b9",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g02_control.h": "94c09b7f0d5ad55971a9fcc9b5375e7ab7fe588d8e92df335d74a63ac0ec7e18",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g02_link.c": "6bb13dc20125a152a529b6678529b0482fb4e8ea9ca0625203bd0d04e44f2136",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g02_link.h": "bed3fc0a9e8cc8f7bd17a51b32ffdc39ea7bf5bcc0fdd76d37943a45f898a97d",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g02_port.c": "0f38e34e9dfff5e1f51b348c7dc36a1e5f1bd100b77a5ba9152fa22ee6d68b11",
+    "BMS_EXv1.1\\BMS_EX\\BSP\\g02_port.h": "c0abd65e7efa6f5f40e169b1e04ee163f2a2bf9b610d7a5ad824325e53fd2b68",
+    "tests\\g02\\test_control.c": "f23be0a5206b74e88b74303ad4b1f63e3a234b827de62a05519fe2fc88f470e0",
+    "tests\\g02\\test_link.c": "e37145420c431f3e577275b4c6868c0c4d8b0fc7a29d729baa8089ba1f8f9168",
+    "tests\\g02\\test_port.c": "811c548e3c8d13ace0886c1fc23b5151f605b69725d20ba7c2ac4d6259408769",
+    "tests\\g02\\test_host.py": "05d61d0942fc4bbb0e51b4acb98ff62adcff06d8794593693b55f2f21bd7085b",
+    "tests\\g02\\stubs\\main.h": "b032fb29b7bc15897d4a2a1d115db306b63e4a48fab4defb548a7680f1b05b42",
+    "scripts\\g02\\extended_diagnostics.py": "ab43387fdb60935f10aeba4e9c110110b1587dbf64947a36b41df7f9b0e6248f",
+    "scripts\\g02\\host_diagnostics.py": "1846a59d925658b7fc864fbdd7acf04d1a7954e74e8c8ed48afbf3e2a63aed90",
+    "scripts\\g02\\prepower_plan.py": "aea854d4a0615551cf7067e1675173061a8c4fab42855c54b348b33e10cb6f52",
+    "scripts\\g02\\run_checks.py": "63dc0903c9e84916b703453ff75cd3712695336749a54de9f8a4941864c3a5de"
+  }
+}

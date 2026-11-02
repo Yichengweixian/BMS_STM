@@ -1,0 +1,194 @@
+[
+  {
+    "Status": "OK",
+    "Class": "HIDClass",
+    "FriendlyName": "USB 输入设备",
+    "InstanceId": "USB\\VID_046D&PID_C53F&MI_00\\6&3650D6C4&3&0000"
+  },
+  {
+    "Status": "OK",
+    "Class": "Bluetooth",
+    "FriendlyName": "英特尔(R) 无线 Bluetooth(R)",
+    "InstanceId": "USB\\VID_8087&PID_0033\\5&1423ACB5&0&10"
+  },
+  {
+    "Status": "OK",
+    "Class": "Camera",
+    "FriendlyName": "USB2.0 IR UVC WebCam",
+    "InstanceId": "USB\\VID_3277&PID_0060&MI_02\\6&174BABF4&0&0002"
+  },
+  {
+    "Status": "OK",
+    "Class": "USB",
+    "FriendlyName": "通用 USB 集线器",
+    "InstanceId": "USB\\VID_05E3&PID_0610\\5&1423ACB5&0&2"
+  },
+  {
+    "Status": "OK",
+    "Class": "Ports",
+    "FriendlyName": "蓝牙链接上的标准串行 (COM5)",
+    "InstanceId": "BTHENUM\\{00001101-0000-1000-8000-00805F9B34FB}_VID&000102B0_PID&0000\\7&13CF1A65&1&241AE62DE630_C00000000"
+  },
+  {
+    "Status": "OK",
+    "Class": "HIDClass",
+    "FriendlyName": "USB 输入设备",
+    "InstanceId": "USB\\VID_046D&PID_C53F&MI_01\\6&3650D6C4&3&0001"
+  },
+  {
+    "Status": "OK",
+    "Class": "USB",
+    "FriendlyName": "LIGHTSPEED Receiver",
+    "InstanceId": "USB\\VID_046D&PID_C53F\\5&1423ACB5&0&4"
+  },
+  {
+    "Status": "OK",
+    "Class": "Ports",
+    "FriendlyName": "蓝牙链接上的标准串行 (COM6)",
+    "InstanceId": "BTHENUM\\{00001101-0000-1000-8000-00805F9B34FB}_LOCALMFG&0002\\7&13CF1A65&1&CC14BC35A056_C00000000"
+  },
+  {
+    "Status": "OK",
+    "Class": null,
+    "FriendlyName": "LIGHTSPEED Receiver",
+    "InstanceId": "USB\\VID_046D&PID_C53F&LAMPARRAY\\6&3650D6C4&3&4_SLOT00"
+  },
+  {
+    "Status": "OK",
+    "Class": null,
+    "FriendlyName": "LIGHTSPEED Receiver",
+    "InstanceId": "USB\\VID_046D&PID_C53F&LAMPARRAY\\6&3650D6C4&3&4_SLOT01"
+  },
+  {
+    "Status": "OK",
+    "Class": null,
+    "FriendlyName": "LIGHTSPEED Receiver",
+    "InstanceId": "USB\\VID_046D&PID_C53F&LAMPARRAY\\6&3650D6C4&3&4_SLOT02"
+  },
+  {
+    "Status": "OK",
+    "Class": null,
+    "FriendlyName": "LIGHTSPEED Receiver",
+    "InstanceId": "USB\\VID_046D&PID_C53F&LAMPARRAY\\6&3650D6C4&3&4_SLOT03"
+  },
+  {
+    "Status": "OK",
+    "Class": null,
+    "FriendlyName": "LIGHTSPEED Receiver",
+    "InstanceId": "USB\\VID_046D&PID_C53F&LAMPARRAY\\6&3650D6C4&3&4_SLOT04"
+  },
+  {
+    "Status": "OK",
+    "Class": null,
+    "FriendlyName": "LIGHTSPEED Receiver",
+    "InstanceId": "USB\\VID_046D&PID_C53F&LAMPARRAY\\6&3650D6C4&3&4_SLOT05"
+  },
+  {
+    "Status": "OK",
+    "Class": null,
+    "FriendlyName": "LIGHTSPEED Receiver",
+    "InstanceId": "USB\\VID_046D&PID_C53F&LAMPARRAY\\6&3650D6C4&3&4_SLOT06"
+  },
+  {
+    "Status": "OK",
+    "Class": "HIDClass",
+    "FriendlyName": "USB 输入设备",
+    "InstanceId": "USB\\VID_046D&PID_C53F&MI_02\\6&3650D6C4&3&0002"
+  },
+  {
+    "Status": "OK",
+    "Class": "USB",
+    "FriendlyName": "USB 根集线器(USB 3.0)",
+    "InstanceId": "USB\\ROOT_HUB30\\4&37C5BD69&0&0"
+  },
+  {
+    "Status": "OK",
+    "Class": "Net",
+    "FriendlyName": "ASIX USB to Gigabit Ethernet Family Adapter",
+    "InstanceId": "USB\\VID_0B95&PID_1790\\00000000001FF5"
+  },
+  {
+    "Status": "OK",
+    "Class": "USBDevice",
+    "FriendlyName": "Camera DFU Device",
+    "InstanceId": "USB\\VID_3277&PID_0060&MI_04\\6&174BABF4&0&0004"
+  },
+  {
+    "Status": "OK",
+    "Class": "USB",
+    "FriendlyName": "通用 SuperSpeed USB 集线器",
+    "InstanceId": "USB\\VID_05E3&PID_0626\\5&DAB2676&0&2"
+  },
+  {
+    "Status": "OK",
+    "Class": "HIDClass",
+    "FriendlyName": "USB 输入设备",
+    "InstanceId": "USB\\VID_046D&PID_C09D&MI_01\\6&A184CDD&2&0001"
+  },
+  {
+    "Status": "OK",
+    "Class": "HIDClass",
+    "FriendlyName": "USB 输入设备",
+    "InstanceId": "USB\\VID_046D&PID_C09D&MI_00\\6&A184CDD&2&0000"
+  },
+  {
+    "Status": "OK",
+    "Class": "USB",
+    "FriendlyName": "USB 根集线器(USB 3.0)",
+    "InstanceId": "USB\\ROOT_HUB30\\4&20839074&0&0"
+  },
+  {
+    "Status": "OK",
+    "Class": "USB",
+    "FriendlyName": "USB Composite Device",
+    "InstanceId": "USB\\VID_3277&PID_0060\\200901010001"
+  },
+  {
+    "Status": "OK",
+    "Class": "Camera",
+    "FriendlyName": "USB2.0 FHD UVC WebCam",
+    "InstanceId": "USB\\VID_3277&PID_0060&MI_00\\6&174BABF4&0&0000"
+  },
+  {
+    "Status": "OK",
+    "Class": "USBDevice",
+    "FriendlyName": "STM32 STLink",
+    "InstanceId": "USB\\VID_0483&PID_3748\\6&3007E47C&1&3"
+  },
+  {
+    "Status": "OK",
+    "Class": "USB",
+    "FriendlyName": "G102 LIGHTSYNC",
+    "InstanceId": "USB\\VID_046D&PID_C09D\\2076395E5557"
+  },
+  {
+    "Status": "OK",
+    "Class": "Ports",
+    "FriendlyName": "蓝牙链接上的标准串行 (COM7)",
+    "InstanceId": "BTHENUM\\{00001101-0000-1000-8000-00805F9B34FB}_VID&0001027D_PID&410A\\7&13CF1A65&1&54D9C6B4DC46_C00000000"
+  },
+  {
+    "Status": "OK",
+    "Class": "Ports",
+    "FriendlyName": "蓝牙链接上的标准串行 (COM4)",
+    "InstanceId": "BTHENUM\\{00001101-0000-1000-8000-00805F9B34FB}_LOCALMFG&0000\\7&13CF1A65&1&000000000000_00000000"
+  },
+  {
+    "Status": "OK",
+    "Class": "Ports",
+    "FriendlyName": "蓝牙链接上的标准串行 (COM3)",
+    "InstanceId": "BTHENUM\\{00001101-0000-1000-8000-00805F9B34FB}_LOCALMFG&0000\\7&13CF1A65&1&000000000000_00000003"
+  },
+  {
+    "Status": "OK",
+    "Class": "Ports",
+    "FriendlyName": "蓝牙链接上的标准串行 (COM8)",
+    "InstanceId": "BTHENUM\\{00001101-0000-1000-8000-00805F9B34FB}_LOCALMFG&0000\\7&13CF1A65&1&000000000000_00000004"
+  },
+  {
+    "Status": "OK",
+    "Class": null,
+    "FriendlyName": "G102 LIGHTSYNC",
+    "InstanceId": "USB\\VID_046D&PID_C09D&LAMPARRAY\\6&A184CDD&2&2076395E5557_SLOT00"
+  }
+]

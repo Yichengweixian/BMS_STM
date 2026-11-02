@@ -1,0 +1,182 @@
+{
+  "run_id": "20261031-G01-board",
+  "mode": "exploratory",
+  "status": "complete",
+  "verdict": null,
+  "evidence_scope": [
+    "static",
+    "build",
+    "simulation",
+    "bench",
+    "release_boot"
+  ],
+  "observation": "Nine channels continuously emitted valid raw samples on Release r2 after normal BOOT/reset.",
+  "firmware_id": "g01-sw-r2",
+  "firmware_sha256": "dfe902bbf676e214cdf41f4a3a7bab6f1217e6b6506359a93a3a99bfe7d39dd5",
+  "flash_verified": true,
+  "port": "COM9",
+  "baud": 115200,
+  "valid_records": 1296,
+  "complete_groups": 144,
+  "actual_sample_span_seconds": 71.603,
+  "raw_quality_errors": 0,
+  "wire_parse_errors": 0,
+  "event_counts": {
+    "boot_marker": 1,
+    "device_metadata": 25
+  },
+  "incomplete_groups": [],
+  "channels": {
+    "cell1": {
+      "records": 144,
+      "raw_valid": 144,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 144
+      },
+      "raw_min": 38909,
+      "raw_max": 38913,
+      "valid_raw_mean": 38911.0625,
+      "period_ms_median": 501,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    },
+    "cell7": {
+      "records": 144,
+      "raw_valid": 144,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 144
+      },
+      "raw_min": 38914,
+      "raw_max": 38918,
+      "valid_raw_mean": 38915.868055555555,
+      "period_ms_median": 501,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    },
+    "cell13": {
+      "records": 144,
+      "raw_valid": 144,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 144
+      },
+      "raw_min": 38925,
+      "raw_max": 38929,
+      "valid_raw_mean": 38926.92361111111,
+      "period_ms_median": 501,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    },
+    "current_afe_gpio1": {
+      "records": 144,
+      "raw_valid": 144,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 144
+      },
+      "raw_min": 8993,
+      "raw_max": 9004,
+      "valid_raw_mean": 8998.506944444445,
+      "period_ms_median": 501,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    },
+    "temperature_gpio2": {
+      "records": 144,
+      "raw_valid": 144,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 144
+      },
+      "raw_min": 3218,
+      "raw_max": 3223,
+      "valid_raw_mean": 3220.875,
+      "period_ms_median": 501,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    },
+    "temperature_gpio3": {
+      "records": 144,
+      "raw_valid": 144,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 144
+      },
+      "raw_min": 3223,
+      "raw_max": 3228,
+      "valid_raw_mean": 3225.6875,
+      "period_ms_median": 501,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    },
+    "temperature_gpio4": {
+      "records": 144,
+      "raw_valid": 144,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 144
+      },
+      "raw_min": 3218,
+      "raw_max": 3221,
+      "valid_raw_mean": 3219.277777777778,
+      "period_ms_median": 501,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    },
+    "current_mcu_adc1": {
+      "records": 144,
+      "raw_valid": 144,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 144
+      },
+      "raw_min": 639,
+      "raw_max": 1041,
+      "valid_raw_mean": 1024.986111111111,
+      "period_ms_median": 501,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    },
+    "afe_vref2": {
+      "records": 144,
+      "raw_valid": 144,
+      "raw_invalid": 0,
+      "status_counts": {
+        "128": 144
+      },
+      "raw_min": 30015,
+      "raw_max": 30018,
+      "valid_raw_mean": 30016.25,
+      "period_ms_median": 501,
+      "period_ms_max": 501,
+      "missing_sequences": 0,
+      "duplicates": 0
+    }
+  },
+  "reset_boot_observed": true,
+  "cold_boot_test_count": 0,
+  "oled_user_confirmed": "BMS_EX",
+  "calibration_verified": false,
+  "formal_G01_verdict": null,
+  "previous_attempt": {
+    "capture": "capture-01",
+    "records": 756,
+    "complete_groups": 84,
+    "issue": "AFE CONFIG flags, GPIO read/write semantics incorrectly compared; raw remained invalid instead of fake zero"
+  },
+  "remaining": [
+    "Independent current and temperature calibration",
+    "Independent accuracy verification",
+    "Actual sensor, amplifier gain, reference voltage and physical wiring confirmation"
+  ]
+}

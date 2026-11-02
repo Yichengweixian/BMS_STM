@@ -1,0 +1,17 @@
+{
+  "created_utc": "2026-10-31T04:35:41.414697+00:00",
+  "purpose": "additional evidence index; original capture manifest unmodified",
+  "sha256": {
+    "hardware-profile-before-reference.json": "2f4850d871512cc45e3be47913ff10810e97bd233bf37baec24ffab1b102f163",
+    "instrument-specification.json": "7b5cd319f4d09ec6e0e3ddce5493189fe54ed2e307afe52a86b93630dac7d22b",
+    "manifest.json": "c0e01aefda0f7261d231a0d32290748fcb207ba9705595921c66ad50f6e028f7",
+    "result.json": "4b26c9d2caa677cdb7a2c2bdd5081680bbbc8ebc41fdbac53756b9497de69050",
+    "work-card.md": "2ef1969701f34fc3fdf10d1511c5349ea8eed5d387708b59ffb0f27c4576e82c",
+    "derived\\capture-analysis.json": "e9d2ef75c1295faf1f93aaaa2e3ecc816fea2bfc0e2a2d07f9fb842b9c7569fe",
+    "derived\\device.csv": "3f4082f3c1d72f798565dabc6e233d84d78f23cc48335180a7849d2a13d3e4c7",
+    "raw\\events.jsonl": "347a399b2f27564b012d01b113e5412e1b7fc180d5cfa7fce9620dda852ff5bb",
+    "raw\\manual-reference.json": "b01a00c10be6d2146e7362fcee772e9550d359d6bb719d103c7f0f37fe4f26dd",
+    "raw\\reference.csv": "084b76ce969e7730c2c83a0b8b10ed7c8bdc519184e8a4494dde6ca716c4ab29",
+    "raw\\serial.bin": "7a60357b5cf29594ba190cf53b39914f6f69cf59f3a658da010cab592491633d"
+  }
+}

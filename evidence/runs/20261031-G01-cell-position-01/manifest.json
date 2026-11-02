@@ -1,0 +1,13 @@
+{
+  "evidence_scope": [
+    "bench"
+  ],
+  "bench_basis": "user-reported manual readings",
+  "verdict": null,
+  "sha256": {
+    "evidence\\runs\\20261031-G01-cell-position-01\\hardware-profile-before.json": "cb78c8eeec482bfd18baba5b1a0a34104e979280ce19b290db47cbe300d15212",
+    "evidence\\runs\\20261031-G01-cell-position-01\\review.md": "7ee35c878db483bb3d88604260bee9ee2d57aa3880f33fc67622c3db18a90e89",
+    "evidence\\runs\\20261031-G01-cell-position-01\\user-measurements.json": "7eeb257f05d824a771bf3ca9a9e9d2dc2b2b6ae14aea580a4ea28cebf7adf909",
+    "instructions\\specs\\hardware-profile.json": "f1da0c8adcdc086b8d971f909d49000b8c467f52d63629f76c5e5e9f9b675e60"
+  }
+}

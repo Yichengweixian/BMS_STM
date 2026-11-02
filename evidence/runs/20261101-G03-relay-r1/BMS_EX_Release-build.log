@@ -1,0 +1,9 @@
+*** Using Compiler 'V6.24', folder: 'D:\K5\ARM\ARMCLANG\Bin'
+Build target 'BMS_EX_Release'
+compiling g03_relay_port.c...
+linking...
+Program Size: Code=91058 RO-data=4858 RW-data=20 ZI-data=54320  
+FromELF: creating hex file...
+After Build - User command #1: fromelf BMS_EX_Release\BMS_EX_Release.axf --bincombined --output=BMS_EX_Release\BMS_EX_Release.bin
+"BMS_EX_Release\BMS_EX_Release.axf" - 0 Error(s), 0 Warning(s).
+Build Time Elapsed:  00:00:03

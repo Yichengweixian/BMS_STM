@@ -1,0 +1,32 @@
+{
+  "mode": "plan",
+  "serial_opened": false,
+  "firmware": "g03-pwm-disabled-r1",
+  "sequence": [
+    "op40: stopped/used/restored PWM",
+    "optional exact-mask clear: op42 snapshot then op44",
+    "G01 read-only 15 s raw capture",
+    "G02 op0 then op1(1000 ms) internal sample",
+    "relay op30 then op31 DRY and op36 readback",
+    "op40/op0 final released and disabled checks"
+  ],
+  "allowed_ops": [
+    0,
+    1,
+    2,
+    30,
+    31,
+    34,
+    36,
+    40,
+    42,
+    44
+  ],
+  "no_reset_or_flash": true,
+  "tim2_register_readback_available": false,
+  "execute_requires": [
+    "--execute",
+    "--out NEW_DIRECTORY",
+    "--firmware-sha256 IMAGE_HASH"
+  ]
+}

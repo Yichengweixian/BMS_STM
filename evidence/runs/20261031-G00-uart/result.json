@@ -1,0 +1,22 @@
+{
+  "gate": "G00",
+  "mode": "exploratory",
+  "status": "complete",
+  "verdict": "pass",
+  "port": "COM10",
+  "uart_test_executed": true,
+  "usb_error": "Device descriptor request failed, Code 43",
+  "device_instance": "USB\\VID_1A86&PID_7523\\5&1423ACB5&0&3",
+  "device_identity_confirmed": true,
+  "existing_release_hex_sha256": "4979c23cb90efa5efb74ecb7af30af43cb5c57619d3b8fe74be92bb4e6bcdc2b",
+  "next_action": "Complete hardware registration for overall G00; no power testing",
+  "module_user_reported": "CH340",
+  "driver_evidence": "ch341ser.inf_amd64_34a3206305b40d57; CH341S64.SYS and CH341SER.SYS installed",
+  "isolation_evidence": "User changed cable, connected direct to PC, removed all TTL wires; descriptor error persists",
+  "restart_attempt": "pnputil restart-device returned Access is denied; restart not completed",
+  "usb_recovery": "User replaced cable; CH340 now enumerates normally and COM10 opens successfully. Earlier descriptor errors remain historical evidence.",
+  "verification_scope": "Basic UART startup output and three short exact echo frames only",
+  "startup_evidence": "boot-live-012854.bin",
+  "echo_evidence": "echo-after-reset.json",
+  "observations": "Two readable startup messages received at 115200/8N1; all three echo frames exact after reset. Initial failed echo retained; cause not established. Reported measurements uncalibrated."
+}
